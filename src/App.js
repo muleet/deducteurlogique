@@ -26,15 +26,15 @@ class App extends Component {
               <Link to="/cdpro">Calcul des propositions</Link>
               <Link to="/fde">Formalisation des énoncés</Link>
               <Link to="/cdpre">Calcul des prédicats</Link>
-              <footer>
-                <MakeLocution />
-              </footer>
             </ul>
             <Route exact={true} path="/" component={Home} />
             <Route path="/tuto" component={Tutoriels} />
             <Route path="/cdpro" component={CalculDesPropositions} />
             <Route path="/fde" component={FormalisationEnonces} />
             <Route path="/cdpre" component={CalculDesPredicats} />
+            <footer>
+              <MakeLocution />
+            </footer>
           </div>
         </Router>
       </div>

@@ -10,6 +10,7 @@ import CalculDesPropositions from "./CalculDesPropositions.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 // import CalculDesPredicats from "./CalculDesPredicats";
 import Linker from "../Linker";
+import MakeLocution from "../MakeLocution";
 
 class Home extends Component {
   render() {

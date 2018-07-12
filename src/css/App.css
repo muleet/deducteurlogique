@@ -36,15 +36,30 @@ h2 {
 }
 
 #locution {
-  font-size: 16px;
-  font-style: italic;
-  text-align: center;
   color: white;
+  font-size: 16px;
+  text-align: center;
+  font-style: italic;
 }
 
-#traduction-latine {
-  font-size: 14px;
-  font-style: italic;
-  text-align: center;
+#traduction-locution {
+  margin: 5px;
   color: #606060;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+}
+
+#alphabetlatin {
+  margin: 5px;
+  color: #606060;
+  font-size: 14px;
+  text-align: center;
+}
+
+#auteur-et-note {
+  margin: 3px;
+  color: white;
+  font-size: 14px;
+  text-align: center;
 }
