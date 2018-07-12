@@ -13,10 +13,6 @@ header {
 
 footer {
   margin-top: 50px;
-  font-size: 14px;
-  font-style: italic;
-  text-align: center;
-  color: white;
 }
 
 main {
@@ -37,4 +33,18 @@ h1 {
 
 h2 {
   color: white;
+}
+
+#locution {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  color: white;
+}
+
+#traduction-latine {
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  color: #606060;
 }

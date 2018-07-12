@@ -4,12 +4,13 @@ import "./css/App.css";
 import "./css/ButtonMenu.css";
 import "./css/Color.css";
 // Importation de mes composants
-import Home from "./components/Home";
-import CalculDesPropositions from "./components/CalculDesPropositions";
-import FormalisationEnonces from "./components/FormalisationEnonces";
-import CalculDesPredicats from "./components/CalculDesPredicats";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Tutoriels from "./components/Tutoriels";
+// Importation des pages
+import Home from "./components/Pages/Home";
+import CalculDesPropositions from "./components/Pages/CalculDesPropositions";
+import FormalisationEnonces from "./components/Pages/FormalisationEnonces";
+import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
+import Tutoriels from "./components/Pages/Tutoriels";
 
 class App extends Component {
   render() {

@@ -1,0 +1,404 @@
+[
+  {
+    "latin": "A posse ad esse non valet consequentia",
+    "traduction":
+      "De la possibilité d'une chose on ne doit pas conclure à son existence"
+  },
+  {
+    "latin": "Ab uno disce omnes",
+    "traduction": "Et qu'un seul vous apprenne à les connaître tous"
+  },
+  {
+    "latin": "Abstulit qui dedit",
+    "traduction": "Est ôté ce qui est donné"
+  },
+  {
+    "latin": "Adversus solem ne loquitor",
+    "traduction": "Ne parle pas contre le Soleil"
+  },
+  {
+    "latin": "Æquo pulsat pede",
+    "traduction": "La mort frappe d'un pied indifférent"
+  },
+  {
+    "latin": "Aliam vitam, alio mores",
+    "traduction": "Autre vie, autres mœurs"
+  },
+  {
+    "latin": "Amici, diem perdidi",
+    "traduction": "Amis, j'ai perdu ma journée"
+  },
+  {
+    "latin": "Amicus Plato, sed magis amica veritas",
+    "traduction": "J'aime Platon, mais j'aime mieux la vérité"
+  },
+  {
+    "latin": "Anguis in herba",
+    "traduction": "Le serpent est sous l'herbe"
+  },
+  {
+    "latin": "Animus meminisse horret",
+    "traduction": "À ce souvenir, mon âme frémit d'horreur"
+  },
+  {
+    "latin": "Annibal ad portas",
+    "traduction": "Hannibal est à nos portes"
+  },
+  {
+    "latin": "Aquila non capit muscas",
+    "traduction": "L'aigle n'attrape pas les mouches"
+  },
+  {
+    "latin": "Aut viam inveniam aut faciam",
+    "traduction": "Je trouverai le chemin ou je le percerai"
+  },
+  {
+    "latin": "Bellum se ipsum alet",
+    "traduction": "La guerre se nourrit d'elle-même"
+  },
+  {
+    "latin": "Bene navigavi cum naufragium feci",
+    "traduction": "J’ai bien navigué ayant fait naufrage"
+  },
+  {
+    "latin": "Canis sine dentibus vehementius latrat",
+    "traduction": "Un chien sans dents aboie plus vigoureusement"
+  },
+  {
+    "latin": "Celerius quam asparagi cocuntur",
+    "traduction": "En moins de temps qu'il n'en faut pour cuire les asperges"
+  },
+  {
+    "latin": "Christianos ad leones",
+    "traduction": "(Qu'on livre) les chrétiens aux lions"
+  },
+  {
+    "latin": "Contra vim mortis non est medicamen in hortis",
+    "traduction":
+      "Il n'y a dans le jardin aucun remède à la puissance de la mort"
+  },
+  {
+    "latin": "Deus sive natura",
+    "traduction": "Dieu c'est-à-dire la nature",
+    "auteur": "Spinoza"
+  },
+  {
+    "latin": "Et suppositio nil ponit in esse",
+    "traduction": "Supposer une chose ne lui confère pas l'existence"
+  },
+  {
+    "latin": "Ex falso sequitur quod libet",
+    "traduction": "Du faux découle ce que l'on veut"
+  },
+  {
+    "latin": "Exeat",
+    "traduction": "Qu'il sorte"
+  },
+  {
+    "latin": "Exoriare aliquis nostris ex ossibus ultor !",
+    "traduction": "Qu'un vengeur naisse un jour de ma cendre !"
+  },
+  {
+    "latin": "Fausta sit tibi nox !",
+    "traduction": "Que la nuit te soit favorable !"
+  },
+  {
+    "latin": "Festina lente !",
+    "traduction": "Hâte-toi lentement !"
+  },
+  {
+    "latin": "Fiat justicia pereat mundus",
+    "traduction": "Que Justice soit rendue, doive le monde en périr"
+  },
+  {
+    "latin": "Gesta non verba",
+    "traduction": "Moins de mots, des actes"
+  },
+  {
+    "latin": "Hic sunt dracones",
+    "traduction": "Ici sont les dragons"
+  },
+  {
+    "latin": "Hinc sunt leones",
+    "traduction": "Ici sont les lions",
+    "note":
+      "(Désigne dans la cartographie latine et médiévale des territoires dangereux ou inconnus.)"
+  },
+  {
+    "latin": "Hortum cum bibliotheca habes, nihil deerit",
+    "traduction": "Si tu as un jardin avec une bibliothèque, rien ne manquera"
+  },
+  {
+    "latin": "Into vinceres",
+    "traduction": "C'est toi-même qu'il faut vaincre"
+  },
+  {
+    "latin": "Margaritas ante porcos",
+    "traduction": "Jeter des perles aux cochons"
+  },
+  {
+    "latin": "Mihi ipsi scripi",
+    "traduction": "J'écris pour moi-même",
+    "auteur": "(Repris par Nietzsche)"
+  },
+  {
+    "latin": "Nec Hercules contra plures",
+    "traduction": "Il n'y a pas d'Hercule qui tienne contre une foule"
+  },
+  {
+    "latin": "Nec spe, nec metu",
+    "traduction": "Sans espoir et sans crainte"
+  },
+  {
+    "latin": "Odium nunquam bonum potest esse",
+    "traduction": "La haine ne peut jamais être bonne",
+    "auteur": "Spinoza"
+  },
+  {
+    "latin": "Omnia mea mecum porto",
+    "traduction": "Je transporte avec moi tous mes biens",
+    "note":
+      "Selon Cicéron, Bias, l'un des sept sages, fuyant Priène prise pas l'ennemi, à ceux qui s'étonnaient qu'il n'emporte aucun bien, ni meubles ni argent, répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
+  },
+  {
+    "latin": "Pede pœna claudo",
+    "traduction": "Le châtiment suit le crime en boitant"
+  },
+  {
+    "latin": "Pericula ludus",
+    "traduction": "Le danger est mon plaisir"
+  },
+  {
+    "latin": "Philosophum barba non facit",
+    "traduction": "La barbe ne fait pas le philosophe"
+  },
+  {
+    "latin": "Perinde ac cadaver",
+    "traduction": "[litt.] à la manière d’un cadavre",
+    "note":
+      "Désigne l’idéal ascétique d’obéissance parfaite et aveugle du moine, spécialement des moines du désert au IVe siècle."
+  },
+  {
+    "latin": "Post mortem nihil est ipsaque mors nihil",
+    "traduction": "Après la mort il n'y a rien ; la mort elle-même n'est rien"
+  },
+  {
+    "latin": "Qui rogat non errat",
+    "traduction": "Poser des questions n'est pas une erreur"
+  },
+  {
+    "latin": "Quidquid latine dictum sit, altum sonatur",
+    "traduction": "Quoi qu'on dise en latin, ça sonne profond"
+  },
+  {
+    "latin": "Quidquid luce fuit, tenebris agit",
+    "traduction": "Tout ce qui eut lieu à la lumière agit dans les ténèbres",
+    "auteur": "Vers d’un fragment attribué à Pétrone"
+  },
+  {
+    "latin": "Quis custodiet ipsos custodes ?",
+    "traduction":
+      "Qui garde les gardiens eux-mêmes ? / Who watches the watchmen [themselves] ?",
+    "auteur": "Juvénal"
+  },
+  {
+    "latin": "Satis sunt mihi pauci, satis est unus, satis est nullus",
+    "traduction":
+      "Ce m’est assez de quelques-uns, assez d’un seul, assez de pas un seul [d’aucun]",
+    "note": "Anonyme, citée et latinisée par Sénèque"
+  },
+  {
+    "latin": "Satius est supervacua scire quam nihil",
+    "traduction":
+      "Encore vaut-il mieux savoir des choses inutiles que rien du tout"
+  },
+  {
+    "latin": "Scio me nihil scire",
+    "traduction": "Je sais que je ne sais rien"
+  },
+  {
+    "latin": "Sero sed serio",
+    "traduction": "Tardivement mais avec ferveur"
+  },
+  {
+    "latin": "Serpens nisi serpentem comederit, non fit draco",
+    "traduction":
+      "Le serpent, s'il ne dévore pas un autre serpent, ne deviendra jamais un dragon.",
+    "auteur": "Citation de Bacon reprise par Schopenhauer et Nietzsche."
+  },
+  {
+    "latin": "Si tacuisses, philosophus mansisses",
+    "traduction": "Si tu t'étais tu, tu serais resté un philosophe"
+  },
+  {
+    "latin": "Si vales valeo",
+    "traduction": "Si tu vas bien alors je vais bien",
+    "note": "Formule d'introduction commune dans les lettres à Rome"
+  },
+  {
+    "latin": "Sol lucet omnibus",
+    "traduction": "Le soleil luit pour tous"
+  },
+  {
+    "latin": "Solem lucerna non ostenderent",
+    "traduction": "On ne représente pas le soleil par une lanterne"
+  },
+  {
+    "latin": "Soli sol soli",
+    "traduction": "Du seul soleil au sol"
+  },
+  {
+    "latin": "Spoliatis arma supersunt",
+    "traduction": "À qui est dépouillé, il reste les armes"
+  },
+  {
+    "latin": "Sublata causa, tollitur effectus",
+    "traduction": "La cause supprimée, l'effet disparaît"
+  },
+  {
+    "latin": "Sufficit cuique diei malitia sua",
+    "traduction": "À chaque jour suffit sa peine"
+  },
+  {
+    "latin": "Summum jus, summa injuria",
+    "traduction":
+      "[Paraphr.] L'application excessive du droit conduit à l'injustice"
+  },
+  {
+    "latin": "Tarde venientibus ossa",
+    "traduction": "Aux retardataires, il reste les os"
+  },
+  {
+    "latin": "Tempora mutantur et nos mutamur in illis",
+    "traduction": "Les temps changent et nous aussi changeons avec eux"
+  },
+  {
+    "latin": "Tempora si fuerint nubila, solus eris",
+    "traduction": "Lorsque viendra l'orage, tu seras seul"
+  },
+  {
+    "latin": "Tempus rerum imperator",
+    "traduction": "Le temps, maître de toute chose"
+  },
+  {
+    "latin": "Teneo lupum auribus",
+    "traduction": "Je tiens le loup par les oreilles"
+  },
+  {
+    "latin": "Timeo hominem unius libri",
+    "traduction": "Je crains l'homme d'un seul livre"
+  },
+  {
+    "latin": "Tres faciunt collegium",
+    "traduction": "Il faut trois personnes pour faire une société"
+  },
+  {
+    "latin": "Ubi bene, ibi patria",
+    "traduction": "La patrie est là où l'on se sent bien"
+  },
+  {
+    "latin": "Usque ad sideras et usque ad inferos",
+    "traduction": "Des étoiles jusqu'aux enfers"
+  },
+  {
+    "latin": "Usus magister est optimus",
+    "traduction": "La pratique est le meilleur des maîtres"
+  },
+  {
+    "latin": "Ut ameris, ama",
+    "traduction": "Pour être aimé, aime"
+  },
+  {
+    "latin": "Vade in pace",
+    "traduction": "Va en paix"
+  },
+  {
+    "latin": "Vade mecum",
+    "traduction": "Viens avec moi"
+  },
+  {
+    "latin": "Vanitas vanitatum et omnia vanitas",
+    "traduction": "Vanité des vanités, tout est vanité"
+  },
+  {
+    "latin": "Verba docent, exempla trahunt",
+    "traduction": "Les mots enseignent, les exemples entraînent"
+  },
+  {
+    "latin": "Verba volant, scripta manent",
+    "traduction": "Les paroles s'envolent, les écrits restent"
+  },
+  {
+    "latin": "Verbatim et litteratim",
+    "traduction": "Mot à mot et lettre à lettre"
+  },
+  {
+    "latin": "Veritas odium parit",
+    "traduction": "La franchise engendre la haine"
+  },
+  {
+    "latin": "Video meliora proboque deteriora sequor",
+    "traduction": "Je vois le bien, je l'aime et je fais le mal"
+  },
+  {
+    "latin": "Vincit qui patitur",
+    "traduction": "Il l'emporte celui qui souffre"
+  },
+  {
+    "latin": "Vinum aqua miscere",
+    "traduction": "Mettre de l'eau dans son vin"
+  },
+  {
+    "latin": "Vir prudens non contra ventum mingit",
+    "traduction": "Un homme prudent ne pisse pas contre le vent"
+  },
+  {
+    "latin": "Vox clamantis in deserto",
+    "traduction": "La voix qui crie dans le désert"
+  },
+  {
+    "latin": "Vulgum pecus",
+    "traduction": "Le commun des mortels"
+  },
+  {
+    "latin": "Vulnerant omnes, ultima necat",
+    "traduction": "Toutes [les heures] blessent, la dernière tue",
+    "note": "Inscription sur les panneaux solaires"
+  },
+  {
+    "latin": "Vulpem pilum mutat, non mores",
+    "traduction": "Le renard change de fourrure, mais pas de mœurs"
+  },
+  {
+    "latin": "Ultima ratio regum",
+    "traduction": "Le dernier argument des rois",
+    "note": "La violence, Louis XIV le faisait graver sur ses canons"
+  },
+  {
+    "latin": "Natura non facit saltus",
+    "traduction": "La nature ne fait pas de saut",
+    "auteur": "Leibniz"
+  },
+  {
+    "latin": "Poni securis in femur",
+    "traduction": "Se planter une hache dans la cuisse"
+  },
+  {
+    "latin": "Consuetudinis vis magna est",
+    "traduction": "La force de l'habitude est grande"
+  },
+  {
+    "latin": "Tempori servire",
+    "traduction": "S'adapter aux circonstances "
+  },
+  {
+    "latin": "Primum vivere dein de philosophare",
+    "traduction": "vivre d'abord, philosopher ensuite"
+  },
+  {
+    "latin": "Eadum sunt quorum unum alteri substitui potest salva veritate",
+    "traduction":
+      "Deux choses sont la même si l'une peut être substituée à l'autre sans perte de valeur de vérité.",
+    "note": "Leibniz"
+  }
+]

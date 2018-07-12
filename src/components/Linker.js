@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Pages/Home";
 
 function Linker(props) {
   return (

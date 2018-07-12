@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 // Importation de mon css
-import "../css/App.css";
-import "../css/ButtonMenu.css";
-import "../css/Color.css";
+import "../../css/App.css";
+import "../../css/ButtonMenu.css";
+import "../../css/Color.css";
 // Importation de mes composants
-import ButtonMenu from "./ButtonMenu";
+import ButtonMenu from "../ButtonMenu";
 import Tutoriels from "./Tutoriels";
 import CalculDesPropositions from "./CalculDesPropositions.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 import CalculDesPredicats from "./CalculDesPredicats";
-import Linker from "./Linker";
+import Linker from "../Linker";
+import Locutions from "../Locutions";
 
 class Home extends Component {
   render() {
@@ -98,7 +99,9 @@ class Home extends Component {
             />
           </div>
         </main>
-        <footer>Quidquid latine dictum sit, altum sonatur.</footer>
+        <footer>
+          <Locutions />
+        </footer>
       </div>
     );
   }
