@@ -37,14 +37,6 @@
     "traduction": "Le serpent est sous l'herbe"
   },
   {
-    "latin": "Animus meminisse horret",
-    "traduction": "À ce souvenir, mon âme frémit d'horreur"
-  },
-  {
-    "latin": "Annibal ad portas",
-    "traduction": "Hannibal est à nos portes"
-  },
-  {
     "latin": "Aquila non capit muscas",
     "traduction": "L'aigle n'attrape pas les mouches"
   },
@@ -223,7 +215,7 @@
   {
     "latin": "Serpens nisi serpentem comederit, non fit draco",
     "traduction":
-      "Le serpent, s'il ne dévore pas un autre serpent, ne deviendra jamais un dragon.",
+      "Le serpent, s'il ne dévore pas un autre serpent, ne deviendra jamais un dragon",
     "auteur": "Citation de Bacon reprise par Schopenhauer et Nietzsche."
   },
   {
@@ -381,7 +373,8 @@
   },
   {
     "latin": "Poni securis in femur",
-    "traduction": "Se planter une hache dans la cuisse"
+    "traduction": "Se planter une hache dans la cuisse",
+    "note": "Equivalent latin de \"Se tirer une balle dans le pied\""
   },
   {
     "latin": "Consuetudinis vis magna est",
@@ -393,12 +386,6 @@
   },
   {
     "latin": "Primum vivere dein de philosophare",
-    "traduction": "vivre d'abord, philosopher ensuite"
-  },
-  {
-    "latin": "Eadum sunt quorum unum alteri substitui potest salva veritate",
-    "traduction":
-      "Deux choses sont la même si l'une peut être substituée à l'autre sans perte de valeur de vérité.",
-    "note": "Leibniz"
+    "traduction": "Vivre d'abord, philosopher ensuite"
   }
 ]

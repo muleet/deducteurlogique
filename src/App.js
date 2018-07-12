@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./css/App.css";
 import "./css/ButtonMenu.css";
 import "./css/Color.css";
+import "./css/Deduction.css";
 // Importation de mes composants
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // Importation des pages
@@ -11,6 +12,7 @@ import CalculDesPropositions from "./components/Pages/CalculDesPropositions";
 import FormalisationEnonces from "./components/Pages/FormalisationEnonces";
 import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
 import Tutoriels from "./components/Pages/Tutoriels";
+import MakeLocution from "./components/MakeLocution";
 
 class App extends Component {
   render() {
@@ -24,6 +26,9 @@ class App extends Component {
               <Link to="/cdpro">Calcul des propositions</Link>
               <Link to="/fde">Formalisation des énoncés</Link>
               <Link to="/cdpre">Calcul des prédicats</Link>
+              <footer>
+                <MakeLocution />
+              </footer>
             </ul>
             <Route exact={true} path="/" component={Home} />
             <Route path="/tuto" component={Tutoriels} />

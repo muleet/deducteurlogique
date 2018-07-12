@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import MakeInference from "./MakeInference";
 
 class Deduction extends Component {
-  state = {
-    content: "wesh"
-  };
-
   makeInference = () => {
     <MakeInference />;
   };

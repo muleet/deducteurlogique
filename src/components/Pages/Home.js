@@ -8,9 +8,8 @@ import ButtonMenu from "../ButtonMenu";
 import Tutoriels from "./Tutoriels";
 import CalculDesPropositions from "./CalculDesPropositions.js";
 import FormalisationEnonces from "./FormalisationEnonces";
-import CalculDesPredicats from "./CalculDesPredicats";
+// import CalculDesPredicats from "./CalculDesPredicats";
 import Linker from "../Linker";
-import Locutions from "../Locutions";
 
 class Home extends Component {
   render() {
@@ -28,6 +27,7 @@ class Home extends Component {
             id="author-button"
             name={"Auteurs \n& contact"}
           />
+          <title>Bonjour</title>
         </header>
         <main>
           <Linker
@@ -99,9 +99,6 @@ class Home extends Component {
             />
           </div>
         </main>
-        <footer>
-          <Locutions />
-        </footer>
       </div>
     );
   }
