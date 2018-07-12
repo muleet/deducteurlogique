@@ -24,6 +24,7 @@
   display: flex;
   justify-content: center justify;
   align-content: center;
+  font-style: none;
 }
 
 .false-button {

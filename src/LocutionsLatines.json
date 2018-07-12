@@ -114,7 +114,7 @@
     "latin": "Hinc sunt leones",
     "traduction": "Ici sont les lions",
     "note":
-      "(Désigne dans la cartographie latine et médiévale des territoires dangereux ou inconnus.)"
+      "Désigne dans la cartographie latine et médiévale des territoires dangereux ou inconnus."
   },
   {
     "latin": "Hortum cum bibliotheca habes, nihil deerit",
@@ -131,7 +131,7 @@
   {
     "latin": "Mihi ipsi scripi",
     "traduction": "J'écris pour moi-même",
-    "auteur": "(Repris par Nietzsche)"
+    "note": "Repris par Nietzsche"
   },
   {
     "latin": "Nec Hercules contra plures",

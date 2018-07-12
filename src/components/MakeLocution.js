@@ -38,7 +38,9 @@ function MakeLocution() {
 function NoteOuAuteur(totalSentence, random) {
   let noteOuAuteur = "";
   if (totalSentence[random].note) {
-    noteOuAuteur = <div id="auteur-et-note">{totalSentence[random].note}</div>;
+    noteOuAuteur = (
+      <div id="auteur-et-note">{"(" + totalSentence[random].note + ")"}</div>
+    );
     console.log("wesh");
   } else if (totalSentence[random].auteur) {
     noteOuAuteur = (
