@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 // Fonction appelée par Deduction.js
 // Le nombre de propositions est fixé dès le départ pour chaque exercice.
