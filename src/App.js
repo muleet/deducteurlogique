@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 // Importation de mon css
-import "./css/app.css";
-import "./css/buttonMenu.css";
-import "./css/color.css";
-import "./css/deduction.css";
+// import "./css/app.css";
+// import "./css/buttonMenu.css";
+// import "./css/color.css";
+// import "./css/deduction.css";
 // Importation de mes composants
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // Importation des pages
