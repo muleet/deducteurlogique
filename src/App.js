@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 // Importation de mon css
-import "./css/App.css";
-import "./css/ButtonMenu.css";
-import "./css/Color.css";
-import "./css/Deduction.css";
+import "./css/app.css";
+import "./css/buttonMenu.css";
+import "./css/color.css";
+import "./css/deduction.css";
 // Importation de mes composants
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // Importation des pages
@@ -17,7 +17,7 @@ import MakeLocution from "./components/MakeLocution";
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Router>
           <div>
             <ul className="list-link">
@@ -37,7 +37,7 @@ class App extends Component {
             </footer>
           </div>
         </Router>
-      </div>
+      </Fragment>
     );
   }
 }

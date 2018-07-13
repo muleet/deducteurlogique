@@ -1,0 +1,18 @@
+[
+  {
+    "premisses": ["p", "p⊃q"],
+    "conclusion": "q",
+    "meaning": ["p : La terre est plate", "q : la terre est ronde"],
+    "propositionsImplied": 2
+  },
+  {
+    "premisses": ["p∧q", "q⊃~r"],
+    "conclusion": "~r",
+    "meaning": [
+      "p : Pierre Joray est professeur de logique",
+      "q : Pierre Joray est directeur de l'UFR de philosophie",
+      "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
+    ],
+    "propositionsImplied": 3
+  }
+]

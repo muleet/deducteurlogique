@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import LocutionsLatines from "../LocutionsLatines.json";
-import LocutionsGrecques from "../LocutionsGrecques.json";
+import React, { Fragment } from "react";
+import LocutionsLatines from "../data/LocutionsLatines.json";
+import LocutionsGrecques from "../data/LocutionsGrecques.json";
 
 function MakeLocution() {
   let random = Math.floor(
@@ -22,14 +22,14 @@ function MakeLocution() {
     );
   } else if (totalSentence[random].grec) {
     finalLocution = (
-      <div>
+      <Fragment>
         <div id="locution">{totalSentence[random].grec}</div>
         <div id="alphabetlatin">
           {"[" + totalSentence[random].alphabetlatin + "]"}
         </div>
         {NoteOuAuteur(totalSentence, random)}
         <div id="traduction-locution">{totalSentence[random].traduction}</div>
-      </div>
+      </Fragment>
     );
   }
   return finalLocution;
@@ -41,7 +41,6 @@ function NoteOuAuteur(totalSentence, random) {
     noteOuAuteur = (
       <div id="auteur-et-note">{"(" + totalSentence[random].note + ")"}</div>
     );
-    console.log("wesh");
   } else if (totalSentence[random].auteur) {
     noteOuAuteur = (
       <div id="auteur-et-note">{totalSentence[random].auteur}</div>

@@ -1,3 +1,22 @@
 .deduction {
-  font-style: underline;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  border: 3px #ff7b7b solid;
+}
+
+.informationsOnCurrentExercice {
+  /*style de l'ensemble des infos dans les co*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 3px red solid;
+}
+
+.setOfInformation {
+  /*style des prémisses et conclusion dans les exos, spécifiquement*/
+  display: "flex";
+  flex-direction: "column";
+  align-content: center;
+  border: 2px purple solid;
 }

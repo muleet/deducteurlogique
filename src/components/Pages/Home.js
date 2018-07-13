@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 // Importation de mon css
-import "../../css/App.css";
-import "../../css/ButtonMenu.css";
-import "../../css/Color.css";
+import "../../css/app.css";
+import "../../css/buttonMenu.css";
+import "../../css/color.css";
+import "../../css/deduction.css";
 // Importation de mes composants
 import ButtonMenu from "../ButtonMenu";
 import Tutoriels from "./Tutoriels";
@@ -10,12 +11,11 @@ import CalculDesPropositions from "./CalculDesPropositions.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 // import CalculDesPredicats from "./CalculDesPredicats";
 import Linker from "../Linker";
-import MakeLocution from "../MakeLocution";
 
 class Home extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <header>
           <ButtonMenu className="header-button" name="Login (optionnel)" />
           <ButtonMenu className="header-button" name="Option" />
@@ -67,7 +67,7 @@ class Home extends Component {
           <div class="three-options-menu">
             <ButtonMenu
               className="option-color main-button"
-              wesh={
+              link={
                 <Linker
                   link="/"
                   path="/"
@@ -78,7 +78,7 @@ class Home extends Component {
             />
             <ButtonMenu
               className="option-color main-button"
-              wesh={
+              link={
                 <Linker
                   link="/"
                   path="/"
@@ -89,7 +89,7 @@ class Home extends Component {
             />{" "}
             <ButtonMenu
               className="option-color main-button"
-              wesh={
+              link={
                 <Linker
                   link="/"
                   path="/"
@@ -100,7 +100,7 @@ class Home extends Component {
             />
           </div>
         </main>
-      </div>
+      </Fragment>
     );
   }
 }

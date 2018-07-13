@@ -1,7 +1,7 @@
 import React from "react";
 import Linker from "../Linker";
 import Home from "./Home";
-import Deduction from "../Calculs/Deduction";
+import Deduction from "../Calcul Tools/Deduction";
 
 const CalculDesPropositions = () => {
   return (

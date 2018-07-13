@@ -9,11 +9,12 @@
   display: flex;
   align-items: center;
   text-align: center;
+  padding: 10px;
 }
 
 .header-button {
   color: #606060;
-  height: 50px;
+  height: 25px;
   background-color: #272727;
   border-radius: 0px;
 }
@@ -25,6 +26,7 @@
   justify-content: center justify;
   align-content: center;
   font-style: none;
+  border: 3px white solid;
 }
 
 .false-button {
