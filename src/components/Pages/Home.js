@@ -25,7 +25,7 @@ class Home extends Component {
           />
           <title>Bonjour</title>
         </header>
-        <main>
+        <main class="main-menu">
           <Linker
             link="/tuto"
             path="/tuto"

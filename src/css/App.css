@@ -1,4 +1,6 @@
 body {
+  align-items: center;
+  flex-direction: row;
   margin-left: 276px;
   margin-right: 276px;
   background-color: black;
@@ -16,7 +18,7 @@ footer {
   margin-top: 50px;
 }
 
-main {
+.main-menu {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -36,6 +38,11 @@ h1 {
 
 h2 {
   color: white;
+}
+
+.setOfPropositionsButtons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 #locution {
