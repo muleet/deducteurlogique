@@ -2,7 +2,7 @@
   {
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
-    "meaning": ["p : La terre est plate", "q : la terre est ronde"],
+    "meaning": ["p : Il pleut", "q : J'ai faim"],
     "propositionsImplied": 2
   },
   {

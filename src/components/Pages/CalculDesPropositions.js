@@ -2,7 +2,7 @@ import React from "react";
 import Linker from "../Linker";
 import Home from "./Home";
 import Deducer from "../Calcul Tools/Deducer";
-import MakeInference from "../Calcul Tools/MakeInference";
+import ButAAtteindre from "../../img/repere.png"; //Image temporaire à supprimer plus tard
 
 // Ce fichier gère la page de calcul des propositions.
 
@@ -17,6 +17,11 @@ const CalculDesPropositions = () => {
         components={Home}
         name="Retour au menu"
         exactness="true"
+      />
+      <img
+        style={{ width: "300px", height: "380px" }}
+        src={ButAAtteindre}
+        alt=""
       />
     </main>
   );
