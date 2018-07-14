@@ -4,6 +4,7 @@ import "./css/app.css";
 import "./css/buttonMenu.css";
 import "./css/color.css";
 import "./css/deduction.css";
+import "./css/inference.css";
 // Importation de mes composants
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // Importation des pages

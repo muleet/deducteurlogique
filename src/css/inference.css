@@ -1,0 +1,23 @@
+.inferenceGlobal {
+  border: 10px #880015 solid;
+  display: flex;
+  justify-content: column;
+}
+
+.inferenceNumber {
+  border: 10px #22b14c solid;
+  display: flex;
+  justify-content: column;
+}
+
+.inferenceItself {
+  border: 10px #3f48cc solid;
+  display: flex;
+  justify-content: column;
+}
+
+.inferenceCommentary {
+  border: 10px #ff7f27 solid;
+  display: flex;
+  justify-content: column;
+}
