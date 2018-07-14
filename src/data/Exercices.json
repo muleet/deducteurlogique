@@ -2,7 +2,7 @@
   {
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
-    "meaning": ["p : Il pleut", "q : J'ai faim"],
+    "meaning": ["p : Il y a une table", "q : Une table existe"],
     "propositionsImplied": 2
   },
   {

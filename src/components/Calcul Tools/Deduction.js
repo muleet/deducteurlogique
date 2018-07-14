@@ -3,30 +3,43 @@ import MakeInference from "./MakeInference";
 
 class Deduction extends Component {
   state = {
-    totalInferences: {},
+    totalInferences: "",
     inferenceNumber: 1,
-    inferenceItself: "p et q",
-    inferenceCommentary: "",
-    isDisplayed: false // exemple à supprimer quand j'aurai compris
+    inferenceItself: "p⊃q",
+    inferenceCommentary: ""
+    // isAdded: false // exemple à supprimer quand j'aurai compris comment les méthodes marchent exactement
   };
 
-  displaySomething = () => {
+  addInference = () => {
     // On rend cette fonction accessible depuis n'importe où dans la classe, grâce à "= () =>". Sans ces caractères, la fonction serait comme en autarcie.
-    this.setState({ isDisplayed: true });
+    // this.setState({ isAdded: true });
   };
 
-  renderMakeInference() {
-    if (this.state.isDisplayed) {
-      // this.setState({ isDisplayed: false });
-      return (
-        <MakeInference
-          infNum={this.state.inferenceNumber}
-          content={this.state.inferenceItself}
-        />
-      );
-    }
-    return null;
-  }
+  renderMakeInference = () => {
+    console.log("wesh");
+
+    this.setState({
+      totalInferences:
+        this.state.totalInferences +
+        (
+          <MakeInference
+            infNum={this.state.inferenceNumber + ". "}
+            content={this.state.inferenceItself}
+          />
+        )
+    });
+    return this.state.totalInferences;
+  };
+
+  // determineType = () => {
+  //   this.setState({
+  //     typeNumber: this.state.typeNumber + 1
+  //   });
+  //   if (this.state.typeNumber > 2) {
+  //     this.state.typeNumber = 0;
+  //   }
+  //   return typeNumber;
+  // };
 
   render() {
     return (
@@ -36,7 +49,7 @@ class Deduction extends Component {
             <div className="inferenceNumber">
               <button
                 className="deduction-button"
-                onClick={this.displaySomething}
+                onClick={this.renderMakeInference()}
               >
                 {this.state.content}
               </button>
@@ -52,6 +65,7 @@ class Deduction extends Component {
       </Fragment>
     );
   }
+  componentDidMount() {}
 }
 
 export default Deduction;

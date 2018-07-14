@@ -25,6 +25,10 @@
     "traduction": "Autre vie, autres mœurs"
   },
   {
+    "latin": "O tempora, o mores",
+    "traduction": "Quelle époque, quelles mœurs"
+  },
+  {
     "latin": "Amici, diem perdidi",
     "traduction": "Amis, j'ai perdu ma journée"
   },
@@ -95,8 +99,8 @@
     "traduction": "Que la nuit te soit favorable !"
   },
   {
-    "latin": "Festina lente !",
-    "traduction": "Hâte-toi lentement !"
+    "latin": "Festina lente",
+    "traduction": "Hâte-toi lentement"
   },
   {
     "latin": "Fiat justicia pereat mundus",
@@ -305,10 +309,6 @@
     "traduction": "Viens avec moi"
   },
   {
-    "latin": "Vanitas vanitatum et omnia vanitas",
-    "traduction": "Vanité des vanités, tout est vanité"
-  },
-  {
     "latin": "Verba docent, exempla trahunt",
     "traduction": "Les mots enseignent, les exemples entraînent"
   },
@@ -383,5 +383,20 @@
   {
     "latin": "Primum vivere dein de philosophare",
     "traduction": "Vivre d'abord, philosopher ensuite"
+  },
+  {
+    "latin": "Memento mori",
+    "traduction": "Souviens-toi que tu vas mourir",
+    "note":
+      "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs"
+  },
+  {
+    "latin": "Respice post te, hominem te esse memento!",
+    "traduction":
+      "Regarde autour de toi, et souviens-toi que tu n'es qu'un homme !"
+  },
+  {
+    "latin": "Quod erat demonstrandum",
+    "traduction": "Ce qu'il fallait démontrer"
   }
 ]

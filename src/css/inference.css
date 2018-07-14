@@ -21,3 +21,7 @@
   display: flex;
   justify-content: column;
 }
+
+.inferenceItself:hover {
+  background-color: #ff7b7b;
+}
