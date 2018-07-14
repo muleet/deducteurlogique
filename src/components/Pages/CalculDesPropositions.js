@@ -4,6 +4,8 @@ import Home from "./Home";
 import Deducer from "../Calcul Tools/Deducer";
 import MakeInference from "../Calcul Tools/MakeInference";
 
+// Ce fichier gère la page de calcul des propositions.
+
 const CalculDesPropositions = () => {
   return (
     <main className="main-calcul">

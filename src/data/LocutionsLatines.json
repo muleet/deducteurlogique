@@ -150,7 +150,7 @@
     "latin": "Omnia mea mecum porto",
     "traduction": "Je transporte avec moi tous mes biens",
     "note":
-      "Selon Cicéron, Bias, l'un des sept sages, fuyant Priène prise pas l'ennemi, à ceux qui s'étonnaient qu'il n'emporte aucun bien, ni meubles ni argent, répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
+      "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, fuyant Priène prise par l'ennemi, à ceux qui s'étonnaient qu'il n'emporte aucun bien, ni meubles ni argent,\nrépondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
   },
   {
     "latin": "Pede pœna claudo",
@@ -203,10 +203,6 @@
     "latin": "Satius est supervacua scire quam nihil",
     "traduction":
       "Encore vaut-il mieux savoir des choses inutiles que rien du tout"
-  },
-  {
-    "latin": "Scio me nihil scire",
-    "traduction": "Je sais que je ne sais rien"
   },
   {
     "latin": "Sero sed serio",

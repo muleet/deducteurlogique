@@ -14,7 +14,7 @@ class Home extends Component {
         <header>
           <ButtonMenu className="header-button" name="Login (optionnel)" />
           <ButtonMenu className="header-button" name="Option" />
-          <ButtonMenu className="false-button" name="FalseButton" />
+          <ButtonMenu id="false-button" name="FalseButton" />
           {/* <h1>
             déducteur et<br />formaliseur logique
           </h1> */}

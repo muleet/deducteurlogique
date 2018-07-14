@@ -29,7 +29,7 @@
   border: 3px white solid;
 }
 
-.false-button {
+#false-button {
   border-style: none;
   background-color: rgba(0, 0, 0, 0);
 }

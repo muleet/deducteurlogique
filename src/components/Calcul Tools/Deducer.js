@@ -3,6 +3,7 @@ import MakeInference from "./MakeInference";
 import Exercices from "../../data/Exercices.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
+import Deduction from "./Deduction";
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à un
 class Deducer extends Component {
   state = {
@@ -48,17 +49,7 @@ class Deducer extends Component {
               premisses={Exercices[0].premisses}
               conclusion={Exercices[0].conclusion}
             />
-            <div className="deduction">
-              <div className="inferenceGlobal {">
-                <div className="inferenceNumber">
-                  {"exemple de numéro d'inférence"}
-                </div>
-                <div className="inferenceItself">{"exemple d'inférence"}</div>
-                <div className="inferenceCommentary">
-                  {"exemple de commentaire d'inférence"}
-                </div>
-              </div>
-            </div>
+            <Deduction />
           </section>
           <section className="informationsOnCurrentExercice">
             <button
