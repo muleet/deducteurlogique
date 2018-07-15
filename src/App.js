@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
 // Importation de mon css
-import resetcss from "./css/reset.css"; // Reset de tout le css
-import appcss from "./css/app.css";
-import buttonMenucss from "./css/buttonMenu.css";
-import colorcss from "./css/color.css";
-import deductioncss from "./css/deduction.css";
-import inferencecss from "./css/inference.css";
+// import "./css/reset.css"; // Reset de tout le css
+// import "./css/app.css";
+// import "./css/buttonMenu.css";
+// import "./css/color.css";
+// import "./css/deduction.css";
+// import "./css/inference.css";
 // // Importation de mes composants
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // Importation des pages

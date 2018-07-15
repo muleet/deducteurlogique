@@ -103,26 +103,19 @@
     "traduction": "Hâte-toi lentement"
   },
   {
-    "latin": "Fiat justicia pereat mundus",
-    "traduction": "Que Justice soit rendue, doive le monde en périr"
-  },
-  {
     "latin": "Gesta non verba",
     "traduction": "Moins de mots, des actes"
   },
   {
-    "latin": "Hic sunt dracones",
-    "traduction": "Ici sont les dragons"
-  },
-  {
-    "latin": "Hinc sunt leones",
-    "traduction": "Ici sont les lions",
+    "latin": "Hinc sunt leones \\ Hic sunt dracones",
+    "traduction": "Ici sont les lions \\ Ici sont les dragons",
     "note":
       "Désigne dans la cartographie latine et médiévale des territoires dangereux ou inconnus."
   },
   {
     "latin": "Hortum cum bibliotheca habes, nihil deerit",
-    "traduction": "Si tu as un jardin avec une bibliothèque, rien ne manquera"
+    "traduction": "Si tu as un jardin avec une bibliothèque, rien ne manquera",
+    "auteur": "Cicéron, dans une lettre à Varron"
   },
   {
     "latin": "Into vinceres",
@@ -154,11 +147,7 @@
     "latin": "Omnia mea mecum porto",
     "traduction": "Je transporte avec moi tous mes biens",
     "note":
-      "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, fuyant Priène prise par l'ennemi, à ceux qui s'étonnaient qu'il n'emporte aucun bien, ni meubles ni argent,\nrépondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
-  },
-  {
-    "latin": "Pede pœna claudo",
-    "traduction": "Le châtiment suit le crime en boitant"
+      "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, eut un jour à fuir sa ville Priène prise par l'ennemi. A ceux qui s'étonnaient qu'il n'emporte aucun bien avec lui, ni meubles ni argent,\n il répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
   },
   {
     "latin": "Pericula ludus",
@@ -172,11 +161,12 @@
     "latin": "Perinde ac cadaver",
     "traduction": "[litt.] à la manière d’un cadavre",
     "note":
-      "Désigne l’idéal ascétique d’obéissance parfaite et aveugle du moine, spécialement des moines du désert au IVe siècle."
+      "Désigne l’idéal ascétique d’obéissance parfaite et aveugle du moine."
   },
   {
     "latin": "Post mortem nihil est ipsaque mors nihil",
-    "traduction": "Après la mort il n'y a rien ; la mort elle-même n'est rien"
+    "traduction": "Après la mort il n'y a rien ; la mort elle-même n'est rien",
+    "auteur": "Sénèque"
   },
   {
     "latin": "Qui rogat non errat",
@@ -188,7 +178,8 @@
   },
   {
     "latin": "Quidquid luce fuit, tenebris agit",
-    "traduction": "Tout ce qui eut lieu à la lumière agit dans les ténèbres",
+    "traduction":
+      "Tout ce qui est dans la lumière provient d'abord des ténèbres",
     "auteur": "Vers d’un fragment attribué à Pétrone"
   },
   {
@@ -282,7 +273,7 @@
   },
   {
     "latin": "Tres faciunt collegium",
-    "traduction": "Il faut trois personnes pour faire une société"
+    "traduction": "[Paraphr.] Il faut trois personnes pour faire une société"
   },
   {
     "latin": "Ubi bene, ibi patria",
@@ -321,16 +312,9 @@
     "traduction": "Mot à mot et lettre à lettre"
   },
   {
-    "latin": "Veritas odium parit",
-    "traduction": "La franchise engendre la haine"
-  },
-  {
     "latin": "Video meliora proboque deteriora sequor",
-    "traduction": "Je vois le bien, je l'aime et je fais le mal"
-  },
-  {
-    "latin": "Vincit qui patitur",
-    "traduction": "Il l'emporte celui qui souffre"
+    "traduction": "Je vois le bien, je l'aime et je fais le mal",
+    "auteur": "Spinoza"
   },
   {
     "latin": "Vinum aqua miscere",
@@ -345,10 +329,6 @@
     "traduction": "La voix qui crie dans le désert"
   },
   {
-    "latin": "Vulgum pecus",
-    "traduction": "Le commun des mortels"
-  },
-  {
     "latin": "Vulnerant omnes, ultima necat",
     "traduction": "Toutes [les heures] blessent, la dernière tue",
     "note": "Inscription sur les panneaux solaires"
@@ -360,7 +340,8 @@
   {
     "latin": "Ultima ratio regum",
     "traduction": "Le dernier argument des rois",
-    "note": "La violence, Louis XIV le faisait graver sur ses canons"
+    "note":
+      "La violence, Louis XIV faisait graver ces mots latins sur ses canons"
   },
   {
     "latin": "Natura non facit saltus",
