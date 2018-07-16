@@ -3,7 +3,6 @@ import MakeInference from "./MakeInference";
 
 class Deduction extends Component {
   state = {
-    totalInferences: "",
     inferenceNumber: 1,
     inferenceItself: "p⊃q",
     inferenceCommentary: ""
@@ -31,7 +30,7 @@ class Deduction extends Component {
     return this.state.totalInferences;
   };
 
-  // determineType = () => {
+  // determineType = () => { // méthode tirée d'un projet du réacteur, je l'ai importée parce qu'elle est supposée fonctionner
   //   this.setState({
   //     typeNumber: this.state.typeNumber + 1
   //   });
@@ -51,7 +50,7 @@ class Deduction extends Component {
                 className="deduction-button"
                 onClick={this.renderMakeInference()}
               >
-                {this.state.content}
+                {this.state.inferenceItself}
               </button>
               {this.renderMakeInference()}
               {"exemple de numéro d'inférence"}
