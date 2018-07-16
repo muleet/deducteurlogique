@@ -1,0 +1,76 @@
+body {
+  font-family: sans-serif;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 276px;
+  margin-right: 276px;
+  background-color: black;
+  color: white;
+}
+
+header {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+footer {
+  margin-top: 50px;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+  border: 3px white solid;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 1;
+  font-style: italic;
+  text-align: center;
+  line-height: 27px;
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+.setOfPropositionsButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#locution {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  font-style: italic;
+}
+
+#traduction-locution {
+  margin: 5px;
+  color: #606060;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+}
+
+#alphabetlatin {
+  margin: 5px;
+  color: #606060;
+  font-size: 14px;
+  text-align: center;
+}
+
+#auteur-et-note {
+  margin: 3px;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
