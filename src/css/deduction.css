@@ -18,7 +18,7 @@
 .deduction {
   border: 10px #00a2e8 solid;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
 }
 
 .informationsOnCurrentExercice {

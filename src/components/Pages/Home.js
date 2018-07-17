@@ -11,21 +11,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <header>
-          <ButtonMenu className="header-button" name="Login (optionnel)" />
-          <ButtonMenu className="header-button" name="Option" />
-          <ButtonMenu id="false-button" name="FalseButton" />
-          {/* <h1>
-            déducteur et<br />formaliseur logique
-          </h1> */}
-          <ButtonMenu
-            className="header-button"
-            id="author-button"
-            name={"Auteurs \n& contact"}
-          />
-          <title>Bonjour</title>
-        </header>
-        <main class="main-menu">
+        <main className="main-menu">
           <Linker
             link="/tuto"
             path="/tuto"
@@ -59,7 +45,7 @@ class Home extends Component {
               />
             }
           />
-          <div class="three-options-menu">
+          <div className="three-options-menu">
             <ButtonMenu
               className="option-color main-button"
               link={

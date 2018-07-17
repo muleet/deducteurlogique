@@ -4,63 +4,56 @@ import MakeInference from "./MakeInference";
 class Deduction extends Component {
   state = {
     inferenceNumber: 1,
-    inferenceItself: "p⊃q",
-    inferenceCommentary: ""
-    // isAdded: false // exemple à supprimer quand j'aurai compris comment les méthodes marchent exactement
+    totalInferences: []
   };
 
-  addInference = () => {
-    // On rend cette fonction accessible depuis n'importe où dans la classe, grâce à "= () =>". Sans ces caractères, la fonction serait comme en autarcie.
-    // this.setState({ isAdded: true });
-  };
-
-  renderMakeInference = () => {
-    console.log("wesh");
+  updateTotalInferences = () => {
+    // On ajoute une nouvelle inférence à la déduction
+    const copyArray = [...this.state.totalInferences]; // 1. pour modifier un state il faut commencer par en faire une copie
+    copyArray.push({
+      // 2. ensuite on modifie cette copie comme on le souhaite [note entre crochets à suppr : sachant que cette fonction devrait recevoir pour props le contenu d'une nouvelle inférence et de ses règles]
+      inferenceItself: "p⊃q",
+      inferenceCommentary: "reit"
+    });
 
     this.setState({
-      totalInferences:
-        this.state.totalInferences +
-        (
-          <MakeInference
-            infNum={this.state.inferenceNumber + ". "}
-            content={this.state.inferenceItself}
-          />
-        )
+      totalInferences: copyArray // 3. pour finir, on di que le state d'origine est égal à la copie modifiée (on ne peut rien faire de plus)
     });
-    return this.state.totalInferences;
+    // return this.state.totalInferences;
   };
 
-  // determineType = () => { // méthode tirée d'un projet du réacteur, je l'ai importée parce qu'elle est supposée fonctionner
-  //   this.setState({
-  //     typeNumber: this.state.typeNumber + 1
-  //   });
-  //   if (this.state.typeNumber > 2) {
-  //     this.state.typeNumber = 0;
-  //   }
-  //   return typeNumber;
-  // };
+  increment = event => {
+    // console.log(event); // truc que xavier a mis et c'est intéressant mais je comprends pas
+    this.setState({ inferenceNumber: this.state.inferenceNumber + 1 });
+    return;
+  };
 
   render() {
+    const arrayToShow = [];
+    for (let i = 0; i < this.state.totalInferences.length; i++) {
+      this.increment;
+      arrayToShow.push(
+        <MakeInference
+          inferenceNumber={this.state.inferenceNumber + ". "}
+          inferenceItself={this.state.totalInferences.inferenceItself}
+          inferenceCommentary={this.state.totalInferences.inferenceCommentary}
+        />
+      );
+    }
+
     return (
       <Fragment>
-        <ul className="deduction">
-          <div className="inferenceGlobal">
-            <div className="inferenceNumber">
-              <button
-                className="deduction-button"
-                onClick={this.renderMakeInference()}
-              >
-                {this.state.inferenceItself}
-              </button>
-              {this.renderMakeInference()}
-              {"exemple de numéro d'inférence"}
-            </div>
-            <div className="inferenceItself">{"exemple d'inférence"}</div>
-            <div className="inferenceCommentary">
-              {"exemple de commentaire d'inférence"}
-            </div>
-          </div>
-        </ul>
+        <button
+          type="button"
+          className="deduction-button"
+          onClick={() => {
+            this.increment();
+            this.updateTotalInferences();
+          }}
+        >
+          inférer
+        </button>
+        <ul className="deduction">{arrayToShow}</ul>
       </Fragment>
     );
   }

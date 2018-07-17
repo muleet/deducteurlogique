@@ -5,19 +5,19 @@
 }
 
 .inferenceNumber {
-  border: 10px #22b14c solid;
+  border: 5px #22b14c solid;
   display: flex;
   justify-content: column;
 }
 
 .inferenceItself {
-  border: 10px #3f48cc solid;
+  border: 5px #3f48cc solid;
   display: flex;
   justify-content: column;
 }
 
 .inferenceCommentary {
-  border: 10px #ff7f27 solid;
+  border: 5px #ff7f27 solid;
   display: flex;
   justify-content: column;
 }

@@ -3,7 +3,7 @@ import Exercices from "../../data/Exercices.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 // import Deduction from "./Deduction";
-import Deductionasuppr from "./Deductionasuppr";
+import Deduction from "./Deduction";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à un
 class Deducer extends Component {
@@ -33,7 +33,7 @@ class Deducer extends Component {
               premisses={Exercices[0].premisses}
               conclusion={Exercices[0].conclusion}
             />
-            <Deductionasuppr exerciseSent={Exercices[0]} />
+            <Deduction exerciseSent={Exercices[0]} />
           </section>
           <section className="informationsOnCurrentExercice">
             {console.log(Exercices[0].propositionsImplied)}

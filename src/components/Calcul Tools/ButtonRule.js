@@ -9,7 +9,7 @@ class Deduction extends Component {
   render() {
     let number = 0;
     return (
-      <button class="deduction" onClick={this.makeInference()}>
+      <button class="deduction" onClick={this.makeInference}>
         wesh
       </button>
     );

@@ -41,6 +41,11 @@ h2 {
   color: white;
 }
 
+.nav-list {
+  display: flex;
+  justify-content: column;
+}
+
 .setOfPropositionsButtons {
   display: flex;
   justify-content: flex-end;

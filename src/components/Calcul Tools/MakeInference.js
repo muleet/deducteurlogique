@@ -8,8 +8,11 @@ import React, { Fragment } from "react";
 function MakeInference(props) {
   return (
     <Fragment>
-      {props.infNum}
-      {props.content}
+      <li className="inferenceGlobal">
+        <div className="inferenceNumber">{props.inferenceNumber}</div>
+        <div className="inferenceItself">{props.inferenceItself}</div>
+        <div className="inferenceCommentary">{props.inferenceCommentary}</div>
+      </li>
     </Fragment>
   );
 }
