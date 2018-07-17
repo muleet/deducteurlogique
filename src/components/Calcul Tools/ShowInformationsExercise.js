@@ -8,23 +8,17 @@ function ShowInformationsExercise(props) {
   for (let i = 0; i < props.premisses.length; i++) {
     numberOfPremisses = numberOfPremisses + 1;
     setOfPremisses.push(
-      <Fragment>
+      <div id="premisses">
         {numberOfPremisses.toString(36).toLowerCase()}. {props.premisses[i]}
-        <br />
-      </Fragment>
+      </div>
     );
   }
 
   // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
   return (
     <div className="setPremissesConclusion">
-      <div>
-        Prémisses : <div id="premisses">{setOfPremisses}</div>
-      </div>
-      <div>
-        {" "}
-        Conclusion : <div id="conclusion">{props.conclusion}</div>
-      </div>
+      Prémisses : {setOfPremisses}
+      Conclusion : <div id="conclusion">{props.conclusion}</div>
     </div>
   );
 }

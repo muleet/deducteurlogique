@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import MakeInference from "./MakeInference";
 
-class Deduction extends Component {
-  makeInference = () => {
-    <MakeInference />;
-  };
+// Cette classe s'instancie dès qu'on appuie sur le bouton d'une règle. Elle a pour rôle de connecter un symbole à une proposition ou un ensemble de proposition.
 
+class ButtonRule extends Component {
   render() {
-    let number = 0;
     return (
-      <button class="deduction" onClick={this.makeInference}>
-        wesh
-      </button>
+      <Reac.Fragment>
+        <MakeInference
+          key={i}
+          inferenceNumber={Number(i + 1) + "."}
+          inferenceItself={this.state.totalInferences[0].inferenceItself}
+          inferenceCommentary={
+            this.state.totalInferences[0].inferenceCommentary
+          }
+        />
+      </Reac.Fragment>
     );
   }
 }
 
-export default Deduction;
+export default ButtonRule;

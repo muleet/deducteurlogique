@@ -12,31 +12,33 @@ class Deduction extends Component {
     const copyArray = [...this.state.totalInferences]; // 1. pour modifier un state il faut commencer par en faire une copie
     copyArray.push({
       // 2. ensuite on modifie cette copie comme on le souhaite [note entre crochets à suppr : sachant que cette fonction devrait recevoir pour props le contenu d'une nouvelle inférence et de ses règles]
-      inferenceItself: "p⊃q",
-      inferenceCommentary: "reit"
+      inferenceItself: "p⊃q", // ces deux lignes ne peuvent avoir pour contenu QUE ce que contiennent les boutons de l'interface
+      inferenceCommentary: "reit" // ces deux lignes ne peuvent avoir pour contenu QUE ce que contiennent les boutons de l'interface
     });
 
     this.setState({
-      totalInferences: copyArray // 3. pour finir, on di que le state d'origine est égal à la copie modifiée (on ne peut rien faire de plus)
+      totalInferences: copyArray // 3. pour finir, on dit que le state d'origine est égal à la copie modifiée (on ne peut rien faire de plus)
     });
-    // return this.state.totalInferences;
   };
 
-  increment = event => {
-    // console.log(event); // truc que xavier a mis et c'est intéressant mais je comprends pas
-    this.setState({ inferenceNumber: this.state.inferenceNumber + 1 });
-    return;
-  };
+  // increment = event => {
+  //   // console.log(event); // truc que xavier a mis et c'est intéressant mais je comprends pas
+  //   this.setState({ inferenceNumber: this.state.inferenceNumber + 1 });
+  //   return;
+  // };
 
   render() {
-    const arrayToShow = [];
+    const arrayTotalInferences = [];
     for (let i = 0; i < this.state.totalInferences.length; i++) {
-      this.increment;
-      arrayToShow.push(
+      this.updateTotalInferences;
+      arrayTotalInferences.push(
         <MakeInference
-          inferenceNumber={this.state.inferenceNumber + ". "}
-          inferenceItself={this.state.totalInferences.inferenceItself}
-          inferenceCommentary={this.state.totalInferences.inferenceCommentary}
+          key={i}
+          inferenceNumber={Number(i + 1) + "."}
+          inferenceItself={this.state.totalInferences[0].inferenceItself}
+          inferenceCommentary={
+            this.state.totalInferences[0].inferenceCommentary
+          }
         />
       );
     }
@@ -47,13 +49,12 @@ class Deduction extends Component {
           type="button"
           className="deduction-button"
           onClick={() => {
-            this.increment();
             this.updateTotalInferences();
           }}
         >
           inférer
         </button>
-        <ul className="deduction">{arrayToShow}</ul>
+        <ul className="deduction">{arrayTotalInferences}</ul>
       </Fragment>
     );
   }

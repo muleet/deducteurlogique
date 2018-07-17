@@ -18,11 +18,12 @@
 .deduction {
   border: 10px #00a2e8 solid;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  height: 280px;
 }
 
 .informationsOnCurrentExercice {
-  /*style de l'ensemble des infos dans les co*/
+  /*style de l'ensemble des infos de l'exo en cours quand on est dans la page d'une déduction*/
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -41,7 +42,13 @@
   display: "flex";
   flex-direction: "column";
   align-content: center;
-  border: 3px white solid;
+  border: 1px white solid;
+  margin: 0 5px;
+  padding: 0 5px;
+}
+
+#premisses:hover {
+  background-color: #ff7b7b;
 }
 
 #conclusion {
@@ -49,5 +56,5 @@
   display: "flex";
   flex-direction: "column";
   align-content: center;
-  border: 3px white solid;
+  border: 1px white solid;
 }
