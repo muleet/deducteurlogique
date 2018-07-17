@@ -10,9 +10,7 @@
 .deducer {
   display: flex;
   flex-direction: row;
-  align-content: center;
   border: 10px red solid;
-  width: 550px;
 }
 
 .deduction {

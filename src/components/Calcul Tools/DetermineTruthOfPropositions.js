@@ -18,7 +18,6 @@ function DetermineTruthOfPropositions(props) {
     propositionName = variableImportanteMaisMysterieuse
       .toString(36)
       .toLowerCase();
-    // console.log(propositionName);
     setOfPropositions.push(<button>{propositionName}</button>);
   }
 

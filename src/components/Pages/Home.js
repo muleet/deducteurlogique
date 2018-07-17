@@ -57,7 +57,7 @@ class Home extends Component {
                 />
               }
             />
-            <ButtonMenu
+            {/* <ButtonMenu
               className="option-color main-button"
               link={
                 <Linker
@@ -77,8 +77,7 @@ class Home extends Component {
                   components={Home}
                   name="Infos menu 3"
                 />
-              }
-            />
+            } /> */}
           </div>
         </main>
       </Fragment>

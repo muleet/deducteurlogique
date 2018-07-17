@@ -3,7 +3,8 @@
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
     "meaning": ["p : Il y a une table", "q : Une table existe"],
-    "propositionsImplied": 2
+    "propositionsImplied": 2,
+    "rulesImplied": ["reit", "⊃e"]
   },
   {
     "premisses": ["p∧q", "q⊃~r"],
@@ -13,6 +14,7 @@
       "q : Pierre Joray est directeur de l'UFR de philosophie",
       "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
     ],
-    "propositionsImplied": 3
+    "propositionsImplied": 3,
+    "rulesImplied": ["reit", "∧e", "⊃e"]
   }
 ]

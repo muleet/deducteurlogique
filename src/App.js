@@ -6,6 +6,8 @@ import "./css/buttonMenu.css";
 import "./css/color.css";
 import "./css/deduction.css";
 import "./css/inference.css";
+// Importation de fonts
+import "./font/stylesheet.css";
 // // Importation de mes composants
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Cookies from "js-cookie";

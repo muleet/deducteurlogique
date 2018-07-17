@@ -7,7 +7,6 @@ class ButtonMenu extends Component {
         <div
           className={"button-menu " + this.props.className}
           id={this.props.id}
-          // onClick={this.props.link} // commenté puisque ça fonctionne mal je crois)
         >
           {this.props.name}
         </div>

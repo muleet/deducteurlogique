@@ -5,12 +5,12 @@ import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 // import Deduction from "./Deduction";
 import Deduction from "./Deduction";
 
-// Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à un
+// Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
+// Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
 class Deducer extends Component {
   state = {
     // inferenceNumber: 1, // à transférer dans la fonction déduction
     // content: "inférence",
-    // currentExercise: {}
     NewInference: []
   };
 
@@ -39,7 +39,7 @@ class Deducer extends Component {
             {console.log(Exercices[0].propositionsImplied)}
             <DetermineTruthOfPropositions
               exerciseSent={Exercices[0].propositionsImplied}
-            />;
+            />
           </section>
         </div>
       </Fragment>
