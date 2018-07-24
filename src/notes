@@ -3,8 +3,17 @@ Choses à faire :
 
 
 
-
+Codes à utiliser plus souvent :
+- { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state
+- "position: absolute" dans le css concernant la div de mon titre "déducteur et formaliseur logique". (Ca permet de dire qu'une div est à une position très précise par rapport à un parent. Mais pour cela il faut que le parent ait eu une position relative définie (par "position:relative").)
+- Notion de "wildcard" en css : c'est quand on vise "n'importe quoi qui est en css. Pour utiliser cela il faut mettre ".NomDeClasse > #".
+-     if (Object.keys(this.state.currentExercise).length === 0) {}
+      // Cette ligne permet de regarder si l'objet currentExercise contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
+- "Objet.keys(exempleTableau)" permet de renvoyer les clés d'un objet sous forme de tableau.
 
 Modifications/ajouts au sujet des citations grecques et latines :
 - Rajouter la citation d'Euclide dans les locutions grecques "ce qui peut être affirmé sans preuve peut être nié sans preuves"
 - Rajouter dans les locutions grecques "l'accès à la connaissance se fait dans la douleur"
+
+A faire pour mieux maîtriser le code :
+- Refaire l'exo "bodyparser" pour bien comprendre ce que c'est

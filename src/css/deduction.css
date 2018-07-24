@@ -5,12 +5,14 @@
   align-items: center;
   height: 800px;
   border: 3px white solid;
+  flex: 1;
 }
 
 .deducer {
   display: flex;
   flex-direction: row;
   border: 10px red solid;
+  flex: 1;
 }
 
 .deduction {
@@ -20,7 +22,7 @@
   height: 280px;
 }
 
-.informationsOnCurrentExercice {
+.usablesRules {
   /*style de l'ensemble des infos de l'exo en cours quand on est dans la page d'une déduction*/
   display: flex;
   flex-direction: column;
@@ -29,24 +31,30 @@
 }
 
 .setPremissesConclusion {
+  /* Concerne la box qui contient toutes les données d'un exo. Aussi bien les termes introductifs, que les boutons de prémisses, que la conclusion, ou autre.*/
   font-style: italic;
   display: flex;
   justify-content: row;
   border: 10px green solid;
 }
 
-#premisses {
+.premisses {
   /*style des prémisses et conclusion dans les exos, spécifiquement*/
   display: "flex";
   flex-direction: "column";
   align-content: center;
-  border: 1px white solid;
   margin: 0 5px;
   padding: 0 5px;
+  border: 1px white solid;
 }
 
-#premisses:hover {
+.premisses:hover {
   background-color: #ff7b7b;
+  text-shadow: 0 0 20px rgb(255, 0, 0, 0.9);
+}
+.premisses:click {
+  background-color: red;
+  text-shadow: 0 0 20px rgb(255, 0, 0, 0.9);
 }
 
 #conclusion {
