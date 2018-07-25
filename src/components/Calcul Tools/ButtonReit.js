@@ -7,7 +7,7 @@ class ButtonReit extends Component {
   render() {
     return (
       <div
-        className={"button-rule button-reit " + this.props.className}
+        className={"button-reit " + this.props.className}
         onClick={() => this.props.useOfMakeInference()}
       >
         {this.props.NumberButton + ". " + this.props.NameButton}

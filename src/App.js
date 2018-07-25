@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 import "./css/reset.css"; // Reset de tout le css
 import "./css/app.css";
 import "./css/buttonMenu.css";
+import "./css/buttonRule.css";
 import "./css/color.css";
 import "./css/deduction.css";
 import "./css/inference.css";

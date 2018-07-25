@@ -3,14 +3,9 @@ import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 import ButtonReit from "./ButtonReit";
-
-// import Deduction from "./Deduction";
-import Deduction from "./Deduction";
-
-// Création d'une variable contextuelle
-const InferenceContext = React.createContext({
-  inference: "weshceciestuncontexte"
-});
+import MakeInference from "./MakeInference";
+import TesteurTemporaire from "./TesteurTemporaire";
+import ButtonRuleMaker from "./ButtonRuleMaker";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -34,42 +29,35 @@ class Deducer extends Component {
     });
   };
 
-  // renderMakeInferenceInDeduction = currentExercise => {
-  //   <MakeInference inferenceNumber={this.state.currentExercise} />;
-  // };
-
   render() {
     if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
-      const arrayTotalInferences = [];
-      for (let i = 0; i < this.state.totalInferences.length; i++) {
-        // this
-        //   .updateTotalInferences(
-        //   <MakeInference
-        //     key={i}
-        //     inferenceNumber={Number(i + 1) + "."}
-        //     inferenceItself={this.state.currentExercise.premisses[1]}
-        //     inferenceCommentary={
-        //       this.state.currentExercise.commentarysaufqu'iln'existepaswesh (faut que je change totalement comment ça fonctionne, ici)
-        //     }
-        //   />
-        //   );
-      }
+      const arrayTotalInferences = [...this.state.totalInferences];
+      // for (let i = 0; i < this.state.totalInferences.length; i++) {
+      // this
+      //   .updateTotalInferences(
+      //   <MakeInference
+      //     key={i}
+      //     inferenceNumber={Number(i + 1) + "."}
+      //     inferenceItself={this.state.currentExercise.premisses[1]}
+      //     inferenceCommentary={
+      //       this.state.currentExercise.commentarysaufqu'iln'existepaswesh (faut que je change totalement comment ça fonctionne, ici)
+      //     }
+      //   />
+      //   );
+      // }
+
       return (
         <Fragment>
           <div className="deducer">
-            <section
-              id="infos-and-deduction-itself"
-              style={{ border: "10px solid yellow" }}
-            >
+            <div className="mini-header-deducer" />
+
+            <section className="infos-and-deduction-itself">
               <ShowInformationsExercise
                 exerciseSent={this.state.currentExercise}
               />
-
-              <ShowInformationsExercise exerciseSent={Exercises[1]} />
-
               <Fragment>
                 <button
                   type="button"
@@ -80,14 +68,18 @@ class Deducer extends Component {
                 >
                   inférer
                 </button>
-                <ul className="deduction">{this.props.arrayUpdated}</ul>
+                <ul className="deduction">
+                  {this.props.arrayUpdated}
+                  <TesteurTemporaire />
+                </ul>
               </Fragment>
               {/* <Deduction exerciseSent={Exercices[0]} /> */}
             </section>
             <section className="usablesRules">
-              <DetermineTruthOfPropositions
+              {/* <DetermineTruthOfPropositions
                 exerciseSent={this.state.currentExercise}
-              />
+              /> */}
+              <ButtonRuleMaker />
             </section>
           </div>
         </Fragment>

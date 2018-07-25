@@ -1,19 +1,26 @@
 .inferenceGlobal {
-  border: 3px #880015 solid;
+  border: 1px #880015 solid;
   display: flex;
   justify-content: column;
+  margin: 2px;
+  padding: 2px;
 }
 
 .inferenceNumber {
   border: 1px #22b14c solid;
   display: flex;
   justify-content: column;
+  margin-right: 10px;
 }
 
 .inferenceItself {
   border: 1px #3f48cc solid;
   display: flex;
   justify-content: column;
+  margin-right: 10px;
+}
+
+.inferenceItself:hover {
 }
 
 .inferenceCommentary {
@@ -23,5 +30,5 @@
 }
 
 .inferenceItself:hover {
-  background-color: #ff7b7b;
+  border-color: red;
 }

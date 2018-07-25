@@ -16,5 +16,12 @@
     ],
     "propositionsImplied": 3,
     "rulesImplied": ["reit", "∧e", "⊃e"]
+  },
+  {
+    "premisses": ["(p∧q)∧(p∧r)"],
+    "conclusion": "p∧(q∧r)",
+    "meaning": [""],
+    "propositionsImplied": 2,
+    "rulesImplied": ["reit", "∧e", "∧i"]
   }
 ]

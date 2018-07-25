@@ -1,7 +1,29 @@
-.button-rule {
-  font-size: 20px;
-  padding: 20px;
-  height: 40px;
-  width: 70px;
-  border: 1px solid red;
+.setOfRules > ul {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin: 0 10px;
+}
+
+.pairOfRules {
+  display: flex;
+  flex-direction: space-between;
+  margin: 5px;
+}
+
+.singleRule {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border: 1px white solid;
+}
+
+.singleRule:first-child {
+  margin-right: 5px;
+}
+
+.singleRule:hover {
+  border-color: red;
 }
