@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
-import ButtonReit from "./ButtonReit";
-import MakeInference from "./MakeInference";
 import TesteurTemporaire from "./TesteurTemporaire";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 
@@ -29,24 +27,13 @@ class Deducer extends Component {
     });
   };
 
-  changeExercise = str => {
-    const currentNumber = this.state.currentExercise.Number;
-    if (
-      (str =
-        "previous" &&
-        this.state.currentExercise !== this.state.currentExercise.length)
-    ) {
+  changeExercise = num => {
+    const newNumber = this.state.currentExercise.Number + num;
+    if (newNumber > 0 && newNumber < Exercises.length) {
       this.setState({
-        currentExercise:
-          Exercises[Number(this.state.currentExercise.Number - 1) - 1]
-      });
-    } else if ((str = "next" && this.state.currentExercise !== 0)) {
-      this.setState({
-        currentExercise:
-          Exercises[Number(this.state.currentExercise.Number - 1) + 1]
+        currentExercise: Exercises[newNumber - 1]
       });
     }
-    console.log(this.state.currentExercise);
   };
 
   ruleMaker = () => {
@@ -88,18 +75,23 @@ class Deducer extends Component {
               <h2>{this.props.pageName}</h2>
             </li>
             <li>
-              <span style={{ display: "flex", alignItems: "center" }}>
+              <span
+                style={{
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
                 <i
                   className="icon fas fa-arrow-left"
                   onClick={() => {
-                    this.changeExercise("previous");
+                    this.changeExercise(-1);
                   }}
                 />
                 Ex. {this.state.currentExercise.Number}
                 <i
                   className="icon fas fa-arrow-right"
                   onClick={() => {
-                    this.changeExercise("next");
+                    this.changeExercise(1);
                   }}
                 />
               </span>
@@ -125,7 +117,6 @@ class Deducer extends Component {
                   <TesteurTemporaire />
                 </ul>
               </Fragment>
-              {/* <Deduction exerciseSent={Exercices[0]} /> */}
             </section>
             <section className="usablesRules">
               {/* <DetermineTruthOfPropositions

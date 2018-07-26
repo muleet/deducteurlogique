@@ -23,7 +23,7 @@
 .mini-header-deducer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between center;
+  /* justify-content: space-between center; */
   height: 100px;
   width: 50%;
   align-items: center;
@@ -31,11 +31,11 @@
   border: 1px rgb(153, 217, 234) solid;
 }
 
-/* .mini-header-deducer > li {
+.mini-header-deducer:first-child {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
-} */
+  margin-left: 50px;
+}
 
 .infos-and-deduction-itself {
   border: 1px solid yellow;
