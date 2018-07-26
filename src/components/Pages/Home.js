@@ -24,8 +24,8 @@ class Home extends Component {
             }
           />
           <Linker
-            link="/cdpro"
-            path="/cdpro"
+            link="/calcul-prop"
+            path="/calcul-prop"
             components={CalculDesPropositions}
             name={
               <ButtonMenu

@@ -44,6 +44,14 @@ h2 {
   color: white;
 }
 
+.icon {
+  font-size: 35px;
+}
+
+.icon:hover {
+  color: red;
+}
+
 .nav-list {
   display: flex;
   justify-content: column;

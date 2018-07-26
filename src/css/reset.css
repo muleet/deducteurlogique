@@ -113,6 +113,13 @@ ol,
 ul {
   list-style: none;
 }
+li {
+  list-style: none;
+}
+a {
+  font-style: none;
+  list-style: none;
+}
 blockquote,
 q {
   quotes: none;

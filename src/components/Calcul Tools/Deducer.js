@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
@@ -22,11 +23,34 @@ class Deducer extends Component {
     copyArray.push(
       NewInference
       // 2. ensuite on modifie cette copie comme on le souhaite [note entre crochets à suppr : sachant que cette fonction devrait recevoir pour props le contenu d'une nouvelle inférence et de ses règles]
-      // this.renderMakeInferenceInDeduction() // A ce moment on appelle une autre fonction, qui va générer une inférence comme bouton
     );
     this.setState({
       totalInferences: copyArray // 4. pour finir, on dit que le state d'origine est égal à la copie modifiée (on ne peut rien faire de plus)
     });
+  };
+
+  changeExercise = str => {
+    const currentNumber = this.state.currentExercise.Number;
+    if (
+      (str =
+        "previous" &&
+        this.state.currentExercise !== this.state.currentExercise.length)
+    ) {
+      this.setState({
+        currentExercise:
+          Exercises[Number(this.state.currentExercise.Number - 1) - 1]
+      });
+    } else if ((str = "next" && this.state.currentExercise !== 0)) {
+      this.setState({
+        currentExercise:
+          Exercises[Number(this.state.currentExercise.Number - 1) + 1]
+      });
+    }
+    console.log(this.state.currentExercise);
+  };
+
+  ruleMaker = () => {
+    <ButtonRuleMaker rulesSent={this.state.currentExercise.rulesImplied} />;
   };
 
   render() {
@@ -51,9 +75,37 @@ class Deducer extends Component {
 
       return (
         <Fragment>
+          <ul className="mini-header-deducer">
+            <li>
+              <Link to="/">
+                <i className="icon fas fa-arrow-circle-left" />
+              </Link>
+              <Link to="/calcul-prop-exo">
+                <i className="icon fas fa-th" />
+              </Link>
+            </li>
+            <li>
+              <h2>{this.props.pageName}</h2>
+            </li>
+            <li>
+              <span style={{ display: "flex", alignItems: "center" }}>
+                <i
+                  className="icon fas fa-arrow-left"
+                  onClick={() => {
+                    this.changeExercise("previous");
+                  }}
+                />
+                Ex. {this.state.currentExercise.Number}
+                <i
+                  className="icon fas fa-arrow-right"
+                  onClick={() => {
+                    this.changeExercise("next");
+                  }}
+                />
+              </span>
+            </li>
+          </ul>
           <div className="deducer">
-            <div className="mini-header-deducer" />
-
             <section className="infos-and-deduction-itself">
               <ShowInformationsExercise
                 exerciseSent={this.state.currentExercise}
@@ -79,7 +131,9 @@ class Deducer extends Component {
               {/* <DetermineTruthOfPropositions
                 exerciseSent={this.state.currentExercise}
               /> */}
-              <ButtonRuleMaker />
+              {() => {
+                this.ruleMaker();
+              }}
             </section>
           </div>
         </Fragment>

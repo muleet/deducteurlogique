@@ -9,8 +9,7 @@ import ButAAtteindre from "../../img/repere.png"; //Image temporaire à supprime
 const CalculDesPropositions = () => {
   return (
     <main className="main-calcul">
-      <h2>Calcul des propositions</h2>
-      <Deducer />
+      <Deducer pageName="Calcul des propositions" />
       <Linker
         link="/"
         path="/"
@@ -19,7 +18,7 @@ const CalculDesPropositions = () => {
         exactness="true"
       />
       <img
-        style={{ width: "300px", height: "380px" }}
+        style={{ width: "450px", height: "300px" }}
         src={ButAAtteindre}
         alt=""
       />

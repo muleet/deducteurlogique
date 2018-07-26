@@ -1,10 +1,9 @@
 .inferenceGlobal {
   border: 1px #880015 solid;
   display: flex;
-  justify-content: column;
+  flex-direction: row;
   margin: 2px;
   padding: 2px;
-  font-size: 20px;
 }
 
 .inferenceNumber {

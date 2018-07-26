@@ -1,12 +1,17 @@
 [
   {
+    "Number": 1,
+    "titleForSpecificExercise": "",
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
     "meaning": ["p : Il y a une table", "q : Une table existe"],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "⊃e"]
+    "rulesImplied": ["reit", "⊃e"],
+    "minimalLine": 3
   },
   {
+    "Number": 2,
+    "titleForSpecificExercise": "",
     "premisses": ["p∧q", "q⊃~r"],
     "conclusion": "~r",
     "meaning": [
@@ -15,13 +20,78 @@
       "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
     ],
     "propositionsImplied": 3,
-    "rulesImplied": ["reit", "∧e", "⊃e"]
+    "rulesImplied": ["reit", "∧e", "⊃e"],
+    "minimalLine": 4
   },
   {
+    "Number": 3,
+    "titleForSpecificExercise": "Exo pour s'entraîner avec les conjonctions",
     "premisses": ["(p∧q)∧(p∧r)"],
     "conclusion": "p∧(q∧r)",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["reit", "∧i", "∧e"],
+    "minimalLine": 8
+  },
+  {
+    "Number": 4,
+    "titleForSpecificExercise": "Exo du tier exclu",
+    "premisses": ["~(p^q)"],
+    "conclusion": "q⊃~p",
     "meaning": [""],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "∧e", "∧i"]
+    "rulesImplied": ["reit", "hyp", "~i", "∧i", "⊃i"],
+    "minimalLine": 7
+  },
+  {
+    "Number": 5,
+    "titleForSpecificExercise": [
+      "Stratégie du fer à cheval pour une tautologie"
+    ],
+    "premisses": [],
+    "conclusion": "(pvq)⊃(qvp)",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["reit", "hyp", "~i", "∧i", "⊃i"],
+    "minimalLine": 7
+  },
+  {
+    "Number": 6
+  },
+  {
+    "Number": 7
+  },
+  {
+    "Number": 8
+  },
+  {
+    "Number": 9
+  },
+  {
+    "Number": 10
+  },
+  {
+    "Number": 11
+  },
+  {
+    "Number": 12
+  },
+  {
+    "Number": 13
+  },
+  {
+    "Number": 14
+  },
+  {
+    "Number": 15
+  },
+  {
+    "Number": 16
+  },
+  {
+    "Number": 17
+  },
+  {
+    "Number": 18
   }
 ]

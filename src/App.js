@@ -7,6 +7,7 @@ import "./css/buttonRule.css";
 import "./css/color.css";
 import "./css/deduction.css";
 import "./css/inference.css";
+import "./css/exercises.css";
 // Importation de fonts
 import "./font/stylesheet.css";
 // // Importation de mes composants
@@ -22,6 +23,7 @@ import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
 import Tutoriels from "./components/Pages/Tutoriels";
 import LogIn from "./components/Users/LogIn";
 import SignUp from "./components/Users/SignUp";
+import MakeListExercises from "./components/Pages/MakeListExercises";
 
 class App extends Component {
   // Code importé ci-dessous
@@ -66,15 +68,19 @@ class App extends Component {
             <ul className="list-link">
               <Link to="/">Menu principal</Link>
               <Link to="/tuto">Qu'est-ce que... que sont...</Link>
-              <Link to="/cdpro">Calcul des propositions</Link>
+              <Link to="/calcul-prop">Calcul des propositions</Link>
+              <Link to="/calcul-prop-exo">Exercices des propositions</Link>
               <Link to="/fde">Formalisation des énoncés</Link>
-              <Link to="/cdpre">Calcul des prédicats</Link>
+              <Link to="/calcul-pred">Calcul des prédicats</Link>
+              <Link to="/calcul-pred-exo">Exercices des prédicats</Link>
             </ul>
             <Route exact={true} path="/" component={Home} />
             <Route path="/tuto" component={Tutoriels} />
-            <Route path="/cdpro" component={CalculDesPropositions} />
+            <Route path="/calcul-prop" component={CalculDesPropositions} />
+            <Route path="/calcul-prop-exo" component={MakeListExercises} />
             <Route path="/fde" component={FormalisationEnonces} />
-            <Route path="/cdpre" component={CalculDesPredicats} />
+            <Route path="/calcul-pred" component={CalculDesPredicats} />
+            <Route path="/calcul-pred-exo" component={MakeListExercises} />
             <Route
               path="/sign_up"
               render={props => (
