@@ -7,7 +7,7 @@ import "./css/buttonRule.css";
 import "./css/color.css";
 import "./css/deduction.css";
 import "./css/inference.css";
-import "./css/exercises.css";
+import "./css/exerciseList.css";
 // Importation de fonts
 import "./font/stylesheet.css";
 // // Importation de mes composants
@@ -135,7 +135,6 @@ class App extends Component {
             <Route path="/tuto" component={Tutoriels} />
             <Route
               path="/calcul-prop/:num"
-              component={CalculDesPropositions}
               render={props => <CalculDesPropositions {...props} user={user} />}
             />
             <Route path="/calcul-prop-exo" component={MakeListExercises} />

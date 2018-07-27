@@ -27,9 +27,11 @@ class Deducer extends Component {
     });
   };
 
-  ruleMaker = () => {
-    <ButtonRuleMaker rulesSent={this.state.currentExercise.rulesImplied} />;
-  };
+  // ruleMaker = () => {
+  //   return (
+  //     <ButtonRuleMaker rulesSent={this.state.currentExercise.rulesImplied} />
+  //   );
+  // };
 
   render() {
     if (this.props.exerciseNumber > Exercises.length) {
@@ -39,6 +41,7 @@ class Deducer extends Component {
       return "chargement de l'exo";
     } else {
       const arrayTotalInferences = [...this.state.totalInferences];
+      const arrayRenderRules = [];
       // for (let i = 0; i < this.state.totalInferences.length; i++) {
       // this
       //   .updateTotalInferences(
@@ -109,9 +112,9 @@ class Deducer extends Component {
                 exerciseSent={this.state.currentExercise}
               /> */}
               <ul className="setOfRules">
-                {() => {
-                  this.ruleMaker();
-                }}
+                <ButtonRuleMaker
+                  rulesSent={this.state.currentExercise.rulesImplied}
+                />
               </ul>
             </section>
           </div>

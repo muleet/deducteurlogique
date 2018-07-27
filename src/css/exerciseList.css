@@ -12,14 +12,10 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-flow: wrap;
   margin: 10px;
   padding: 10px;
   border: 1px white solid;
-}
-
-ul > a {
-  height: 0px;
 }
 
 .single-exercise {

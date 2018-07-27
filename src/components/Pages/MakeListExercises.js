@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import CalculDesPropositions from "./CalculDesPropositions";
 
 // MakeListExercises génère sur une page, une liste d'exercices à partir des fichiers json contenant les exercices.
-// MakeListExercises peut recevoir différents paramètres, et doit pouvoir s'adapter au fichier json qu'il reçoit (calcul des props, des preds, etc.)
-// On accède à cette page depuis "/calcul-prop-exo" ou "/fde-exo" ou "/calcul-pred-exo".
+// MakeListExercises peut recevoir des props différentes, et doit pouvoir s'adapter au fichier json qu'il reçoit (calcul des props, des preds, etc.)
+// Le composant MakeListExercises est appelé depuis "/calcul-prop-exo" ou "/fde-exo" ou "/calcul-pred-exo".
 
 class MakeListExercises extends Component {
   state = {

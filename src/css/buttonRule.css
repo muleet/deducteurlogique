@@ -1,29 +1,36 @@
-.setOfRules > ul {
+.setOfRules {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   align-content: center;
-  margin: 0 10px;
+  padding: 10px;
 }
 
-.pairOfRules {
+/* .pairOfRules { // Les "pairOfRules" sont les règles d'introduction et d'élimination d'un même symbole (etc : ~i et ~e). Je voulais les regrouper mais c'est trop trop trop le bordel de faire ça. Je le ferai sans doute pas. (Ca aurait été dans ButtonRuleMaker.)
   display: flex;
-  flex-direction: space-between;
-  margin: 5px;
-}
+  padding: 30px;
+  flex-direction: row;
+} */
 
 .singleRule {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 36px;
-  width: 36px;
   border: 1px white solid;
-}
-
-.singleRule:first-child {
-  margin-right: 5px;
 }
 
 .singleRule:hover {
   border-color: red;
+}
+
+.tinyRule {
+  height: 36px;
+  width: 36px;
+  margin-bottom: 6px;
+}
+
+.fatRule {
+  height: 36px;
+  width: 50px;
 }

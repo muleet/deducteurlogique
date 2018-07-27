@@ -1,23 +1,58 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 
-const arrayRulesTotal = ["~", "∧", "∨", "∨", "⊃", "≡", "↓", "→", "↔"];
-let arrayFragmentRules = [];
+// ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
+// Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
 
-function ButtonRuleMaker(props) {
-  const arrayRules2 = [...props.rulesSent];
+class ButtonRuleMaker extends Component {
+  render() {
+    const arrayRulesTotal = [
+      "~i",
+      "~e",
+      "∧i",
+      "∧e",
+      "∨i",
+      "∨e",
+      "⊃i",
+      "⊃e",
+      "≡i",
+      "≡e",
+      "↓i",
+      "↓e",
+      "→i",
+      "→e",
+      "↔i",
+      "↔e"
+    ];
+    const arrayRulesSent = [...this.props.rulesSent];
+    let arrayRulesTwoCharacters = [];
+    let arrayAllOtherRules = [];
 
-  for (let i = 0; i < Number(arrayRulesTotal.length); i++) {
-    if (arrayRulesTotal[i].length == 2) {
-      console.log(arrayRulesTotal[i]);
-      arrayFragmentRules.push(
-        <li className="pairOfRules">
-          <div className="singleRule">{arrayRulesTotal[i]}</div>
-        </li>
-      );
+    if (arrayRulesSent === []) {
+      // Si le tableau de règle envoyé par Deducer est vide, cette fonction a pour but de renvoyer la totalité des règles possibles.
+      // arrayRulesSent = arrayRulesTotal; // commenté parce que j'arrive pas à faire marcher ce truc pour le moment
     }
-  }
+    for (let i = 0; i < Number(arrayRulesSent.length); i++) {
+      console.log(arrayRulesSent[i]);
+      console.log(arrayRulesSent[i].length);
 
-  return <Fragment>{arrayFragmentRules}</Fragment>;
+      if (Number(arrayRulesSent[i].length) === 2) {
+        arrayRulesTwoCharacters.push(
+          <div className="singleRule tinyRule">{arrayRulesSent[i]}</div>
+        );
+      } else {
+        arrayAllOtherRules.push(
+          <div className="singleRule fatRule">{arrayRulesSent[i]}</div>
+        );
+      }
+    }
+    return (
+      <Fragment>
+        {arrayAllOtherRules}
+        <hr style={{ width: "20px" }} />
+        {arrayRulesTwoCharacters}
+      </Fragment>
+    );
+  }
 }
 
 export default ButtonRuleMaker;
