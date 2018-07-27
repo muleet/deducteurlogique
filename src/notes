@@ -1,5 +1,5 @@
 Choses à faire :
-- Gérer l'affichage des inférences dans une déduction, dans Deduction.js. Il faut que je fasse un bouton qui rajoute une ligne à chaque clic, avec un numéro à gauche sur cette ligne. Ce numéro s'incrémente à chaque nouvelle ligne.
+- Rajouter un modal pour les locutions latines et grecques.
 
 
 

@@ -42,21 +42,16 @@ class Header extends React.Component {
             <ButtonMenu className="header-button" name="Log in (optionnel)" />
           </NavLink>
           {this.renderNav()}
-
           <ButtonMenu className="header-button" name="Option" />
-          <ButtonMenu id="false-button" name="FalseButton" />
-          {/* <h1>
+          <h1>
             déducteur et<br />formaliseur logique
-          </h1> */}
+          </h1>
           <ButtonMenu
             className="header-button"
             id="author-button"
             name={"Auteurs \n& contact"}
           />
-          <title>Bonjour</title>
         </ul>
-
-        <hr />
       </header>
     );
   }

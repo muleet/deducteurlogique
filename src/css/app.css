@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  margin-top: 75px;
+  margin-top: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -54,8 +54,15 @@ h2 {
 }
 
 .nav-list {
+  margin-left: 200px;
   display: flex;
   justify-content: column;
+}
+
+.nav-list > li {
+  display: flex;
+  justify-content: row;
+  margin-left: 50px;
 }
 
 .setOfPropositionsButtons {

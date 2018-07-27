@@ -119,6 +119,8 @@ li {
 a {
   font-style: none;
   list-style: none;
+  height: none;
+  widows: none;
 }
 blockquote,
 q {

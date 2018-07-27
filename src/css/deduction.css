@@ -23,18 +23,25 @@
 .mini-header-deducer {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between center; */
+  justify-content: center;
+  justify-content: space-around;
   height: 100px;
   width: 50%;
   align-items: center;
-  justify-content: center;
   border: 1px rgb(153, 217, 234) solid;
+  font-size: 28px;
 }
 
-.mini-header-deducer:first-child {
+.setOfTextAndIcon {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 180px;
+}
+
+.mini-header-deducer > li {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 50px;
 }
 
 .infos-and-deduction-itself {

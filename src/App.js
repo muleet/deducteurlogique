@@ -24,6 +24,8 @@ import Tutoriels from "./components/Pages/Tutoriels";
 import LogIn from "./components/Users/LogIn";
 import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
+import ButtonMenu from "./components/ButtonMenu";
+import ButtonNav from "./components/ButtonNav";
 
 class App extends Component {
   // Code importé ci-dessous
@@ -65,21 +67,81 @@ class App extends Component {
           <div>
             {/* <Header user={user} logOut={this.logOut} /> */}
             {/* cette ligne hyper importante active le composant du Header, et ce avec des props spécifiques. Je la commente pour le moment.*/}
-            <ul className="list-link">
-              <Link to="/">Menu principal</Link>
-              <Link to="/tuto">Qu'est-ce que... que sont...</Link>
-              <Link to="/calcul-prop">Calcul des propositions</Link>
-              <Link to="/calcul-prop-exo">Exercices des propositions</Link>
-              <Link to="/fde">Formalisation des énoncés</Link>
-              <Link to="/calcul-pred">Calcul des prédicats</Link>
-              <Link to="/calcul-pred-exo">Exercices des prédicats</Link>
+            <ul className="nav-list">
+              <li>
+                <Link to="/">
+                  <ButtonNav
+                    name={<i className="fas fa-home" />}
+                    exact={true}
+                  />
+                </Link>
+
+                <Link to="/tuto">
+                  <ButtonNav
+                    className="tuto-color"
+                    name={<i className="fas fa-question" />}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link to="/calcul-prop">
+                  <ButtonNav
+                    className="prop-color"
+                    name={<i className="fas fa-calculator" />}
+                  />
+                </Link>
+                <Link to="/calcul-prop-exo">
+                  <ButtonNav
+                    className="prop-color"
+                    name={<i className="fas fa-th" />}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link to="/forma">
+                  <ButtonNav
+                    className="forma-color"
+                    name={<i className="fas fa-calculator" />}
+                  />
+                </Link>
+                <Link to="/forma-exo">
+                  <ButtonNav
+                    className="forma-color"
+                    name={<i className="fas fa-th" />}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link to="/calcul-pred">
+                  <ButtonNav
+                    className="pred-color"
+                    name={<i className="fas fa-calculator" />}
+                  />
+                </Link>
+                <Link to="/calcul-pred-exo">
+                  <ButtonNav
+                    className="pred-color"
+                    name={<i className="fas fa-th" />}
+                  />
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              {/* <Link to="/calcul-prop">Calcul des propositions</Link> */}
+              {/* <Link to="/forma">Formalisation des énoncés</Link> */}
+              {/* <Link to="/calcul-pred">Calcul des prédicats</Link> */}
             </ul>
             <Route exact={true} path="/" component={Home} />
             <Route path="/tuto" component={Tutoriels} />
-            <Route path="/calcul-prop" component={CalculDesPropositions} />
+            <Route
+              path="/calcul-prop/:num"
+              component={CalculDesPropositions}
+              render={props => <CalculDesPropositions {...props} user={user} />}
+            />
             <Route path="/calcul-prop-exo" component={MakeListExercises} />
-            <Route path="/fde" component={FormalisationEnonces} />
-            <Route path="/calcul-pred" component={CalculDesPredicats} />
+            <Route path="/forma/:num" component={FormalisationEnonces} />
+            <Route path="/forma-exo" component={MakeListExercises} />
+            <Route path="/calcul-pred/:num" component={CalculDesPredicats} />
             <Route path="/calcul-pred-exo" component={MakeListExercises} />
             <Route
               path="/sign_up"

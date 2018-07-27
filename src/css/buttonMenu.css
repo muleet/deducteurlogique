@@ -14,14 +14,23 @@
 
 .header-button {
   color: #606060;
-  height: 25px;
+  height: 30px;
   background-color: #272727;
-  border-radius: 0px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
 }
 
-#false-button {
-  border-style: none;
-  background-color: rgba(0, 0, 0, 0);
+.nav-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 30px;
+  color: white;
+  height: 35px;
+  width: 35px;
+  border: solid 1px white;
 }
 
 /* #author-button {

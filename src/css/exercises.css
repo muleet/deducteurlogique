@@ -1,36 +1,46 @@
 .main-exercises {
   display: flex;
   flex-direction: row;
-  /* margin-left: 276px; */
-  /* margin-right: 276px; */
+  justify-content: center;
+  align-content: center;
+  margin-left: 276px;
+  margin-right: 276px;
 }
 
-.listExercises {
+.list-exercises {
   width: 400px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
-  margin: auto;
-  padding: auto;
+  margin: 10px;
+  padding: 10px;
+  border: 1px white solid;
 }
 
-.singleExercise {
+ul > a {
+  height: 0px;
+}
+
+.single-exercise {
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px white solid;
   font-style: 30px;
+  color: white;
   font-weight: bold;
   width: 35px;
   height: 35px;
   margin: 8px 8px 0 0;
 }
 
-.singleExercise:hover {
+.single-exercise:hover {
+  color: red;
   border: 1px red solid;
 }
 
-.disabledExercise {
+.disabled-exercise {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,15 +54,20 @@
   margin: 8px 8px 0 0;
 }
 
+.disabled-exercise:hover {
+  color: darkred;
+  border: 1px darkred solid;
+}
+
 .box-info-exercise {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   height: 300px;
   width: 200px;
   border: 1px white solid;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .box-info-exercise {

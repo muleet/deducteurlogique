@@ -27,21 +27,14 @@ class Deducer extends Component {
     });
   };
 
-  changeExercise = num => {
-    const newNumber = this.state.currentExercise.Number + num;
-    if (newNumber > 0 && newNumber < Exercises.length) {
-      this.setState({
-        currentExercise: Exercises[newNumber - 1]
-      });
-    }
-  };
-
   ruleMaker = () => {
     <ButtonRuleMaker rulesSent={this.state.currentExercise.rulesImplied} />;
   };
 
   render() {
-    if (Object.keys(this.state.currentExercise).length === 0) {
+    if (this.props.exerciseNumber > Exercises.length) {
+      return "exercice invalide";
+    } else if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
@@ -63,7 +56,7 @@ class Deducer extends Component {
       return (
         <Fragment>
           <ul className="mini-header-deducer">
-            <li>
+            <li className="setOfTextAndIcon">
               <Link to="/">
                 <i className="icon fas fa-arrow-circle-left" />
               </Link>
@@ -75,25 +68,18 @@ class Deducer extends Component {
               <h2>{this.props.pageName}</h2>
             </li>
             <li>
-              <span
-                style={{
-                  display: "flex",
-                  alignItems: "center"
-                }}
-              >
-                <i
-                  className="icon fas fa-arrow-left"
-                  onClick={() => {
-                    this.changeExercise(-1);
-                  }}
-                />
+              <span className="setOfTextAndIcon">
+                <Link
+                  to={"/calcul-prop/" + Number(this.props.exerciseNumber - 1)}
+                >
+                  <i className="icon fas fa-arrow-left" />
+                </Link>
                 Ex. {this.state.currentExercise.Number}
-                <i
-                  className="icon fas fa-arrow-right"
-                  onClick={() => {
-                    this.changeExercise(1);
-                  }}
-                />
+                <Link
+                  to={"/calcul-prop/" + Number(this.props.exerciseNumber + 1)}
+                >
+                  <i className="icon fas fa-arrow-right" />
+                </Link>
               </span>
             </li>
           </ul>
@@ -122,9 +108,11 @@ class Deducer extends Component {
               {/* <DetermineTruthOfPropositions
                 exerciseSent={this.state.currentExercise}
               /> */}
-              {() => {
-                this.ruleMaker();
-              }}
+              <ul className="setOfRules">
+                {() => {
+                  this.ruleMaker();
+                }}
+              </ul>
             </section>
           </div>
         </Fragment>
@@ -132,11 +120,17 @@ class Deducer extends Component {
     }
   }
   componentDidMount() {
-    // On récupère un exo. [TEMP] POUR LE MOMENT c'est fixé à l'exo "0", mais plus tard il faudra que ce soit déterminé par le bouton d'un exercice sur lequel l'utilisateur à cliqué dans une fenêtre précédente. [TEMP]
     this.setState(
-      { currentExercise: Exercises[0] }
-      // () => console.log("currentexercices", this.state.currentExercise) // j'ai mis un console.log juste après (avec une fonction avec fat arrow)
+      { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
+      // () => console.log("currentexercices", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
     );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
+    this.setState({
+      currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
+    });
   }
 }
 

@@ -6,10 +6,18 @@ import ButAAtteindre from "../../img/repere.png"; //Image temporaire à supprime
 
 // Ce fichier gère la page de calcul des propositions.
 
-const CalculDesPropositions = () => {
+const CalculDesPropositions = props => {
+  let exerciseParamNumber = 0;
+  if (props.match.params.num) {
+    // Paramètre dont l'existence est rendue possible dans App.js ; son contenu est fixé par MakeListExercises ; elle est renvoyée vers Deducer
+    exerciseParamNumber = props.match.params.num;
+  }
   return (
     <main className="main-calcul">
-      <Deducer pageName="Calcul des propositions" />
+      <Deducer
+        pageName="Calcul des propositions"
+        exerciseNumber={Number(exerciseParamNumber)}
+      />
       <Linker
         link="/"
         path="/"

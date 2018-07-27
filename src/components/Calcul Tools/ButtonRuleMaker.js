@@ -1,28 +1,23 @@
 import React, { Fragment } from "react";
 
-const arrayRules = ["~", "∧", "∨", "∨", "⊃", "≡", "↓", "→", "↔"];
+const arrayRulesTotal = ["~", "∧", "∨", "∨", "⊃", "≡", "↓", "→", "↔"];
 let arrayFragmentRules = [];
 
 function ButtonRuleMaker(props) {
   const arrayRules2 = [...props.rulesSent];
-  console.log(arrayRules2);
 
-  for (let i = 0; i < Number(arrayRules2.length); i++) {
-    if (arrayRules2[i].length == 2) {
-      console.log(arrayRules2[i]);
+  for (let i = 0; i < Number(arrayRulesTotal.length); i++) {
+    if (arrayRulesTotal[i].length == 2) {
+      console.log(arrayRulesTotal[i]);
       arrayFragmentRules.push(
         <li className="pairOfRules">
-          <div className="singleRule">{arrayRules2[i]}</div>
+          <div className="singleRule">{arrayRulesTotal[i]}</div>
         </li>
       );
     }
   }
 
-  return (
-    <Fragment>
-      <ul className="setOfRules">{arrayFragmentRules}</ul>
-    </Fragment>
-  );
+  return <Fragment>{arrayFragmentRules}</Fragment>;
 }
 
 export default ButtonRuleMaker;

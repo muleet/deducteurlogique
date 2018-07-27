@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Exercises from "../../data/Exercises";
+import Exercises from "../../data/ExercisesTest";
 import { Link } from "react-router-dom";
 import CalculDesPropositions from "./CalculDesPropositions";
 
@@ -16,19 +16,25 @@ class MakeListExercises extends Component {
   renderListExercises() {
     let renderedListExercises = [];
     for (let i = 0; i < Exercises.length; i++) {
-      let classNameToRender = "singleExercise";
+      let classNameToRender = "single-exercise";
       if (Object.keys(Exercises[i]).length !== 8) {
-        classNameToRender = "disabledExercise";
+        classNameToRender = "disabled-exercise";
       }
       renderedListExercises.push(
-        <li
-          className={classNameToRender}
-          onMouseOver={() => {
-            this.renderInfoExercises(i);
-          }}
+        <Link
+          to={"/calcul-prop/" + Exercises[i].Number}
+          path="/calcul-prop"
+          components={CalculDesPropositions}
         >
-          {Exercises[i].Number}
-        </li>
+          <li
+            className={classNameToRender}
+            onMouseOver={() => {
+              this.renderInfoExercises(i);
+            }}
+          >
+            {Exercises[i].Number}
+          </li>
+        </Link>
       );
     }
     return renderedListExercises;
@@ -48,7 +54,12 @@ class MakeListExercises extends Component {
     this.setState({
       numberExercise: (
         <div
-          style={{ display: "flex", textAlign: "start", fontWeight: "bold" }}
+          style={{
+            display: "flex",
+            textAlign: "start",
+            fontWeight: "bold",
+            marginBottom: "10px"
+          }}
         >
           Exercice {Number(Exercises[numExercise].Number)}
         </div>
@@ -96,8 +107,6 @@ class MakeListExercises extends Component {
             {TitleToRender}
             Prémisses : <li>{PremissesToRender}</li>
             Conclusion : <li>{Exercises[numExercise].conclusion}</li>
-            {/* Signification :
-            (J'ai retiré la signification possible des propositions dans la partie des infos de l'exo puisqu'osef) */}
             Règles à utiliser : {RulesImpliedToRender}
             Nombre minimal de lignes :{" "}
             <li>{Exercises[numExercise].minimalLine}</li>
@@ -109,24 +118,14 @@ class MakeListExercises extends Component {
         arrayInfoExercise: <li>"Exercice vide, pour tester la page"</li>
       });
     }
-    return (
-      <Fragment>
-        <Link
-          to="/calcul-prop"
-          path="/calcul-prop"
-          components={CalculDesPropositions}
-        >
-          {this.state.arrayInfoExercise}
-        </Link>
-      </Fragment>
-    );
+    return <Fragment>{this.state.arrayInfoExercise}</Fragment>;
   };
 
   render() {
     return (
       <main className="main-exercises">
         {this.setState.numberExercise}
-        <ul className="listExercises">{this.renderListExercises()}</ul>
+        <ul className="list-exercises">{this.renderListExercises()}</ul>
         <ul className="box-info-exercise">
           {this.state.numberExercise}
           {this.state.arrayInfoExercise}
