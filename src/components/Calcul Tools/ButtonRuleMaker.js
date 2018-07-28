@@ -6,6 +6,9 @@ import React, { Fragment, Component } from "react";
 class ButtonRuleMaker extends Component {
   render() {
     const arrayRulesTotal = [
+      "reit",
+      "hyp",
+      "ex falso",
       "~i",
       "~e",
       "∧i",

@@ -19,7 +19,7 @@ class Home extends Component {
             name={
               <ButtonMenu
                 className="tuto-color main-button"
-                name="Qu'est-ce que... Que sont..."
+                name={"Tuto & infos"}
               />
             }
           />

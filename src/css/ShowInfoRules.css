@@ -1,0 +1,79 @@
+.main-rules-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-left: 276px;
+  margin-right: 276px;
+}
+
+.list-rules {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+  margin: 10px;
+  padding: 10px;
+  border: 1px white solid;
+}
+
+.single-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px white solid;
+  font-style: 30px;
+  color: white;
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  margin: 8px 8px 0 0;
+}
+
+.single-rule:hover {
+  color: red;
+  border: 1px red solid;
+}
+
+.disabled-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px grey solid;
+  background-color: rgb(56, 56, 56);
+  color: grey;
+  font-style: 30px;
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  margin: 8px 8px 0 0;
+}
+
+.disabled-rule:hover {
+  color: darkred;
+  border: 1px darkred solid;
+}
+
+.box-info-rule {
+  /* display: flex; */
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 200px;
+  border: 1px white solid;
+  font-size: 16px;
+}
+
+.box-info-rule {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-info-rule li {
+  color: rgb(186, 174, 255);
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+}

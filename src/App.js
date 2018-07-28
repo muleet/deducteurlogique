@@ -8,6 +8,7 @@ import "./css/color.css";
 import "./css/deduction.css";
 import "./css/inference.css";
 import "./css/exerciseList.css";
+import "./css/ShowInfoRules.css";
 // Importation de fonts
 import "./font/stylesheet.css";
 // // Importation de mes composants
@@ -78,7 +79,7 @@ class App extends Component {
 
                 <Link to="/tuto">
                   <ButtonNav
-                    className="tuto-color"
+                    // className="tuto-color"
                     name={<i className="fas fa-question" />}
                   />
                 </Link>

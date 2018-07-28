@@ -35,16 +35,26 @@
   },
   {
     "Number": 4,
+    "titleForSpecificExercise": "Entraînement à l'élimination du conditionnel",
+    "premisses": ["p⊃q"],
+    "conclusion": "~q⊃~p",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["hyp", "reit", "~i", "⊃i", "⊃e"],
+    "minimalLine": 7
+  },
+  {
+    "Number": 5,
     "titleForSpecificExercise": "Exo du tier exclu",
     "premisses": ["~(p^q)"],
     "conclusion": "q⊃~p",
-    "meaning": [""],
+    "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["reit", "hyp", "~i", "∧i", "⊃i"],
     "minimalLine": 7
   },
   {
-    "Number": 5,
+    "Number": 6,
     "titleForSpecificExercise": [
       "Stratégie du fer à cheval pour une tautologie"
     ],

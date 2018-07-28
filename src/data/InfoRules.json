@@ -1,0 +1,242 @@
+[
+  {
+    "name": "rep",
+    "verbalName": "Règle de répétition",
+    "verbalDescription":
+      "Si A était dans les prémisses, alors on peut répéter A dans la déduction.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "reit",
+    "verbalName": "Règle de réitération",
+    "verbalDescription":
+      "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "hyp",
+    "verbalName": "Hypothèse",
+    "verbalDescription":
+      "A tout moment d'une déduction, on peut faire une hypothèse A, qui a un certain contenu. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant grâce à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "ex falso",
+    "verbalName": "Règle ex falso",
+    "verbalDescription":
+      "A partir du faux, on peut conclure ce que l'on veut. [à reformuler et développer]",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "~i",
+    "verbalName": "Règle d'introduction de la négation",
+    "verbalDescription":
+      "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "~e",
+    "verbalName": "Règle d'élimination de la négation, dérivée de ~i",
+    "verbalDescription":
+      "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique des propositions considérée par ce site). On peut donc inférer A.",
+    "arrayShowingTheUtilisation": "",
+    "available": "",
+    "notaBene":
+      "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
+  },
+  {
+    "name": "∧i",
+    "verbalName": "Règle d'introduction de la conjonction",
+    "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∧e",
+    "verbalName": "Règle d'élimination de la conjonction",
+    "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∨i",
+    "verbalName": "Règle d'introduction de la disjonction inclusive",
+    "verbalDescription": "Si A et/ou B a été posé, on peut inférer A∨B.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∨e",
+    "verbalName": "Règle d'élimination de la disjonction inclusive",
+    "verbalDescription":
+      "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∨2i",
+    "verbalName": "Règle d'introduction de la disjonction exclusive",
+    "verbalDescription":
+      "Si A a été posé, et que B n'a pas été posé (ou inversement) on peut inférer A∨2B.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∨2e",
+    "verbalName": "Règle d'élimination de la disjonction exclusive",
+    "verbalDescription":
+      "Si A∨2B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "⊃i",
+    "verbalName": "Règle d'introduction du conditionnel (modus ponens)",
+    "verbalDescription":
+      "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "⊃e",
+    "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
+    "verbalDescription":
+      "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "≡i",
+    "verbalName": "Règle d'introduction de l'équivalence",
+    "verbalDescription":
+      "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B. A et B sont alors dits équivalents.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "≡e",
+    "verbalName": "Règle d'élimination de l'équivalence",
+    "verbalDescription":
+      "Activable pour A et B si l’un des deux a été montré vrai.",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "↓i",
+    "verbalName": "Règle d'introduction de la contraposée du conditionnel",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "↓e",
+    "verbalName": "Règle d'élimination de la contraposée du conditionnel",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "→i",
+    "verbalName": "Règle d'introduction de l'implication",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "→e",
+    "verbalName": "Règle d'élimination de l'implication",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "↔i",
+    "verbalName": "Règle d'introduction de l'implication réciproque",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "↔e",
+    "verbalName": "Règle d'introduction de l'implication réciproque",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∀i",
+    "verbalName": "Règle d'introduction du quantificateur universel",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "∀e",
+    "verbalName": "Règle d'élimination du quantificateur universel",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "Ǝi",
+    "verbalName": "Règle d'introduction de quantificateur existentiel",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "Ǝe",
+    "verbalName": "Règle d'élimination de quantificateur universel",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "=i",
+    "verbalName": "Règle d'introduction de l'identité",
+    "verbalDescription":
+      "Il est toujours possible de dire A = A, lorsque l'on a A. [à développer]",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "=e",
+    "verbalName": "Règle d'élimination de l'identité",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "□i",
+    "verbalName": "Règle d'introduction de la nécessité",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "□e",
+    "verbalName": "Règle d'élimination de la nécessité",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "◊i",
+    "verbalName": "Règle d'introduction de la possibilité",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  },
+  {
+    "name": "◊e",
+    "verbalName": "Règle d'élimination de la possibilité",
+    "verbalDescription": "",
+    "arrayShowingTheUtilisation": "",
+    "available": ""
+  }
+]

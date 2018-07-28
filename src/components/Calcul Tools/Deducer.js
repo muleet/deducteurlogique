@@ -35,7 +35,7 @@ class Deducer extends Component {
 
   render() {
     if (this.props.exerciseNumber > Exercises.length) {
-      return "exercice invalide";
+      return "ce nombre ne correspond pas à un exercice";
     } else if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
