@@ -7,10 +7,11 @@
 }
 
 .list-rules {
-  width: 500px;
+  width: 440px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  text-align: center;
   flex-flow: wrap;
   margin: 10px;
   padding: 10px;
@@ -27,7 +28,7 @@
   font-weight: bold;
   width: 45px;
   height: 45px;
-  margin: 8px 8px 0 0;
+  margin: 4px;
 }
 
 .single-rule:hover {
@@ -81,27 +82,29 @@
 }
 
 .soon-available-rule {
-  color: blue;
+  color: rgb(58, 127, 255);
 }
 .later-available-rule {
-  color: orange;
+  color: rgb(238, 155, 0);
 }
 .maybenever-available-rule {
-  color: rgba(70, 70, 70, 0.555);
+  color: rgba(70, 70, 70, 0.972);
 }
 
 .legend-about-colors {
+  font-size: 12px;
   display: flex;
   flex-direction: column;
+  align-content: center;
   text-align: center;
-  margin-bottom: 10px;
-  height: 100px;
-  width: 50px;
-  font-size: 10px;
 }
 
 .legend-about-colors .legend-example {
   margin-bottom: 10px;
-  height: 10px;
-  width: 10px;
+}
+
+.how-to-use-that-rule {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }

@@ -32,15 +32,13 @@ class ShowInfoRules extends Component {
   makeLegendAboutColorRule() {
     const LegendAboutColorRule = (
       <Fragment>
-        <li className="yes-available-rule legend-example">
-          {"Déjà disponible"}
-        </li>
+        <li className="yes-available-rule legend-example">{"Disponible"}</li>
         <li className="soon-available-rule legend-example">
           {"Bientôt disponible"}
         </li>
         <li className="later-available-rule legend-example">{"Plus tard"}</li>
         <li className="maybenever-available-rule legend-example">
-          {"Beaucoup plus tard"}
+          {"Bien plus tard"}
         </li>
       </Fragment>
     );
@@ -64,8 +62,7 @@ class ShowInfoRules extends Component {
           style={{
             display: "flex",
             textAlign: "start",
-            fontWeight: "bold",
-            marginBottom: "10px"
+            fontWeight: "bold"
           }}
         >
           Rule {numRule + 1} : {Rules[numRule].name}
@@ -79,12 +76,34 @@ class ShowInfoRules extends Component {
       <Fragment>{Rules[numRule].verbalDescription}</Fragment>
     );
 
+    let arrayTemporary = [];
+    if (!Rules[numRule].arrayShowingTheUtilization) {
+      arrayTemporary.push("Pas d'explication pour le moment");
+    } else {
+      for (
+        let i = 0;
+        i < Rules[numRule].arrayShowingTheUtilization.length;
+        i++
+      ) {
+        arrayTemporary.push(
+          <Fragment>
+            {Number(i + 1) +
+              ". " +
+              Rules[numRule].arrayShowingTheUtilization[i]}
+          </Fragment>
+        );
+      }
+    }
+    const strShowingTheUtilization = arrayTemporary;
+
     // Compilation de toutes les données en une seule variable, qui est l'état arrayInfoRule
     this.setState({
       arrayInfoRule: (
         <Fragment>
           <li>{verbalNameToRender}</li>
           Description : <li>{verbalDescriptionToRender}</li>
+          Comment l'utiliser :{" "}
+          <li className="how-to-use-that-rule">{strShowingTheUtilization}</li>
         </Fragment>
       )
     });

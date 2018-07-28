@@ -131,9 +131,15 @@ class Deducer extends Component {
 
   componentWillReceiveProps(nextProps) {
     // fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
-    this.setState({
-      currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
-    });
+    // Elle permet de changer de numéro d'exercice (sans recharger la page)
+    if (
+      this.props.exerciseNumber > 1 ||
+      this.props.exerciseNumber < Exercises.length
+    ) {
+      this.setState({
+        currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
+      });
+    }
   }
 }
 

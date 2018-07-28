@@ -15,6 +15,8 @@ class ButtonRuleMaker extends Component {
       "∧e",
       "∨i",
       "∨e",
+      "⊻i",
+      "⊻e",
       "⊃i",
       "⊃e",
       "≡i",
