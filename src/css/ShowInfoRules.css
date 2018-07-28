@@ -1,14 +1,13 @@
 .main-rules-info {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  margin-left: 276px;
-  margin-right: 276px;
+  align-items: center;
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 .list-rules {
-  width: 400px;
+  width: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -26,8 +25,8 @@
   font-style: 30px;
   color: white;
   font-weight: bold;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   margin: 8px 8px 0 0;
 }
 
@@ -45,8 +44,8 @@
   color: grey;
   font-style: 30px;
   font-weight: bold;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   margin: 8px 8px 0 0;
 }
 
@@ -56,24 +55,53 @@
 }
 
 .box-info-rule {
-  /* display: flex; */
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
   height: 300px;
-  width: 200px;
-  border: 1px white solid;
-  font-size: 16px;
-}
-
-.box-info-rule {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+  width: 300px;
+  border: 1px white solid;
+  font-size: 16px;
 }
 
 .box-info-rule li {
   color: rgb(186, 174, 255);
   margin: 5px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: row;
+  text-align: justify;
+  padding: 10px;
+}
+
+.yes-available-rule {
+  color: rgb(0, 179, 0);
+}
+
+.soon-available-rule {
+  color: blue;
+}
+.later-available-rule {
+  color: orange;
+}
+.maybenever-available-rule {
+  color: rgba(70, 70, 70, 0.555);
+}
+
+.legend-about-colors {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 10px;
+  height: 100px;
+  width: 50px;
+  font-size: 10px;
+}
+
+.legend-about-colors .legend-example {
+  margin-bottom: 10px;
+  height: 10px;
+  width: 10px;
 }

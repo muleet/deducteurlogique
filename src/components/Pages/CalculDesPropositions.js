@@ -26,7 +26,7 @@ const CalculDesPropositions = props => {
         exactness="true"
       />
       <img
-        style={{ width: "450px", height: "300px" }}
+        style={{ width: "300px", height: "150px" }}
         src={ButAAtteindre}
         alt=""
       />

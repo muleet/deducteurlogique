@@ -124,7 +124,6 @@ class MakeListExercises extends Component {
   render() {
     return (
       <main className="main-exercises">
-        {this.setState.numberExercise}
         <ul className="list-exercises">{this.renderListExercises()}</ul>
         <ul className="box-info-exercise">
           {this.state.numberExercise}

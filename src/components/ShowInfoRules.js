@@ -7,16 +7,19 @@ class ShowInfoRules extends Component {
     arrayInfoRule: []
   };
 
+  // On crée la liste des li qui contiennent chacun une règle, et on l'organise.
   renderListRules() {
     let renderedListRules = [];
     for (let i = 0; i < Rules.length; i++) {
-      let classNameToRender = "single-rule";
+      let classNameToRender =
+        "single-rule " + Rules[i].available + "-available-rule";
       renderedListRules.push(
         <li
           className={classNameToRender}
-          // onMouseOver={() => {
-          //   this.renderInfoRules(i);
-          // }}
+          onMouseOver={() => {
+            this.renderInfoRule(i);
+            // On appelle la fonction renderInfoRule() qui va permettre de donner à chaque li contenant une règle, la propriété de pouvoir afficher (quand on met sa souris sur le li) des infos dans une box à droite
+          }}
         >
           {Rules[i].name}
         </li>
@@ -25,14 +28,33 @@ class ShowInfoRules extends Component {
     return renderedListRules;
   }
 
+  // On crée une légende expliquant les couleurs des règles (en gros les couleurs décrivent le moment où elles seront disponibles)
+  makeLegendAboutColorRule() {
+    const LegendAboutColorRule = (
+      <Fragment>
+        <li className="yes-available-rule legend-example">
+          {"Déjà disponible"}
+        </li>
+        <li className="soon-available-rule legend-example">
+          {"Bientôt disponible"}
+        </li>
+        <li className="later-available-rule legend-example">{"Plus tard"}</li>
+        <li className="maybenever-available-rule legend-example">
+          {"Beaucoup plus tard"}
+        </li>
+      </Fragment>
+    );
+    return LegendAboutColorRule;
+  }
+
   // Fonction méga importante qui permet de créer une str pour chaque ensemble spécifique de données, d'une règle
   renderLiInformationRule = array => {
-    // let arrayTemporary = [];
-    // for (let i = 0; i < array.length; i++) {
-    //   arrayTemporary.push(array[i]);
-    // }
-    // const strToReturn = arrayTemporary.join(", ");
-    // return <li>{strToReturn}</li>;
+    let arrayTemporary = [];
+    for (let i = 0; i < array.length; i++) {
+      arrayTemporary.push(array[i]);
+    }
+    const strToReturn = arrayTemporary.join(", ");
+    return <li>{strToReturn}</li>;
   };
 
   renderInfoRule = numRule => {
@@ -46,25 +68,26 @@ class ShowInfoRules extends Component {
             marginBottom: "10px"
           }}
         >
-          Rule {Number(Rules[numRule])}
+          Rule {numRule + 1} : {Rules[numRule].name}
         </div>
       )
     });
 
-    // let DescriptionToRender = (
-    //   <Fragment>
-    //     {this.renderLiInformationRules * Rules[numRule].description}
-    //   </Fragment>
-    // );
+    const verbalNameToRender = <Fragment>{Rules[numRule].verbalName}</Fragment>;
+
+    const verbalDescriptionToRender = (
+      <Fragment>{Rules[numRule].verbalDescription}</Fragment>
+    );
 
     // Compilation de toutes les données en une seule variable, qui est l'état arrayInfoRule
-    // this.setState({
-    //   arrayInfoRule: (
-    //     <Fragment>
-    //       Description : <li>{DescriptionToRender}</li>
-    //     </Fragment>
-    //   )
-    // });
+    this.setState({
+      arrayInfoRule: (
+        <Fragment>
+          <li>{verbalNameToRender}</li>
+          Description : <li>{verbalDescriptionToRender}</li>
+        </Fragment>
+      )
+    });
 
     return <Fragment>{this.state.arrayInfoRule}</Fragment>;
   };
@@ -73,6 +96,13 @@ class ShowInfoRules extends Component {
     return (
       <main className="main-rules-info">
         <ul className="list-rules">{this.renderListRules()}</ul>
+        <ul className="box-info-rule">
+          {this.state.numberRule}
+          {this.state.arrayInfoRule}
+        </ul>
+        <ul className="legend-about-colors">
+          {this.makeLegendAboutColorRule()}
+        </ul>
       </main>
     );
   }
