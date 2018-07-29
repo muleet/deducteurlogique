@@ -12,7 +12,7 @@
     "verbalName": "Règle de réitération",
     "verbalDescription":
       "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
-    "arrayShowingTheUtilization": ["A", "...", "A"],
+    "arrayShowingTheUtilization": ["A", "...", "A reit"],
     "available": "soon"
   },
   {
@@ -27,7 +27,7 @@
     "name": "ex falso",
     "verbalName": "Règle ex falso, ou principe d'explosion",
     "verbalDescription":
-      "A partir du faux, on peut conclure ce que l'on veut. [à reformuler et développer]",
+      "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
     "arrayShowingTheUtilization": "",
     "available": "maybenever"
   },

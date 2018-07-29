@@ -86,11 +86,11 @@ class ShowInfoRules extends Component {
         i++
       ) {
         arrayTemporary.push(
-          <Fragment>
+          <ol>
             {Number(i + 1) +
               ". " +
               Rules[numRule].arrayShowingTheUtilization[i]}
-          </Fragment>
+          </ol>
         );
       }
     }
@@ -100,10 +100,20 @@ class ShowInfoRules extends Component {
     this.setState({
       arrayInfoRule: (
         <Fragment>
-          <li>{verbalNameToRender}</li>
-          Description : <li>{verbalDescriptionToRender}</li>
-          Comment l'utiliser :{" "}
-          <li className="how-to-use-that-rule">{strShowingTheUtilization}</li>
+          <div class="title-rule">{verbalNameToRender}</div>
+          <section style={{ display: "flex", flexDirection: "row" }}>
+            <div className="semi-box-info-rule">
+              <p className="category-name">Description : </p>
+              <li>{verbalDescriptionToRender}</li>
+            </div>
+            <hr />
+            <div className="semi-box-info-rule">
+              <p className="category-name">Comment l'utiliser : </p>
+              <li className="how-to-use-that-rule">
+                {strShowingTheUtilization}
+              </li>
+            </div>
+          </section>
         </Fragment>
       )
     });

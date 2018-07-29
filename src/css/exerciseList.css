@@ -3,15 +3,18 @@
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  align-items: center;
   margin-left: 276px;
   margin-right: 276px;
 }
 
 .list-exercises {
-  width: 400px;
+  width: 360px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  align-content: center;
   flex-flow: wrap;
   margin: 10px;
   padding: 10px;
@@ -56,19 +59,14 @@
 }
 
 .box-info-exercise {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 300px;
   width: 200px;
   border: 1px white solid;
   font-size: 16px;
-}
-
-.box-info-exercise {
-  display: flex;
-  flex-direction: column;
 }
 
 .box-info-exercise li {

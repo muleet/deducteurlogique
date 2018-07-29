@@ -130,7 +130,7 @@ class Deducer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
+    // Fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
     // Elle permet de changer de numéro d'exercice (sans recharger la page)
     if (
       this.props.exerciseNumber > 1 ||
