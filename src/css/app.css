@@ -36,6 +36,10 @@ footer {
 }
 
 .main-auteurs-contact {
+  margin: 0px 276px;
+}
+
+.auteur {
   font-size: 32px;
   display: flex;
   justify-content: center;
