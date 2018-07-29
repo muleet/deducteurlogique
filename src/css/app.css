@@ -54,9 +54,9 @@ h2 {
 }
 
 .nav-list {
-  margin-left: 200px;
   display: flex;
   justify-content: column;
+  justify-content: center;
 }
 
 .nav-list > li {

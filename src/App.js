@@ -15,18 +15,22 @@ import "./font/stylesheet.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import MakeLocution from "./components/MakeLocution";
-import Header from "./components/Header";
+// import Header from "./components/Header"; // commenté pour le moment
 // Importation des pages
 import Home from "./components/Pages/Home";
 import CalculDesPropositions from "./components/Pages/CalculDesPropositions";
 import FormalisationEnonces from "./components/Pages/FormalisationEnonces";
 import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
-import Tutoriels from "./components/Pages/Tutoriels";
+import InfoRules from "./components/Pages/InfoRules.js";
+import Questions from "./components/Pages/Questions.js";
+// Importations d'autres trucs
 import LogIn from "./components/Users/LogIn";
 import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
-import ButtonMenu from "./components/ButtonMenu";
 import ButtonNav from "./components/ButtonNav";
+import ShowInfoRules from "./components/ShowInfoRules";
+// Images
+import anarchyflag from "./img/anarchyflag.png";
 
 class App extends Component {
   // Code importé ci-dessous
@@ -73,11 +77,19 @@ class App extends Component {
                 <Link to="/">
                   <ButtonNav
                     name={<i className="fas fa-home" />}
+                    className="flag-anarchy"
                     exact={true}
                   />
                 </Link>
 
-                <Link to="/tuto">
+                <Link to="/questions">
+                  <ButtonNav
+                    // className="tuto-color"
+                    name={<i className="fas fa-question" />}
+                  />
+                </Link>
+
+                <Link to="/list-regles">
                   <ButtonNav
                     // className="tuto-color"
                     name={<i className="fas fa-question" />}
@@ -88,7 +100,7 @@ class App extends Component {
                 <Link to="/calcul-prop">
                   <ButtonNav
                     className="prop-color"
-                    name={<i className="fas fa-calculator" />}
+                    name={<i className="fas fa-terminal" />}
                   />
                 </Link>
                 <Link to="/calcul-prop-exo">
@@ -102,7 +114,7 @@ class App extends Component {
                 <Link to="/forma">
                   <ButtonNav
                     className="forma-color"
-                    name={<i className="fas fa-calculator" />}
+                    name={<i className="fas fa-terminal" />}
                   />
                 </Link>
                 <Link to="/forma-exo">
@@ -116,7 +128,7 @@ class App extends Component {
                 <Link to="/calcul-pred">
                   <ButtonNav
                     className="pred-color"
-                    name={<i className="fas fa-calculator" />}
+                    name={<i className="fas fa-terminal" />}
                   />
                 </Link>
                 <Link to="/calcul-pred-exo">
@@ -133,7 +145,8 @@ class App extends Component {
               {/* <Link to="/calcul-pred">Calcul des prédicats</Link> */}
             </ul>
             <Route exact={true} path="/" component={Home} />
-            <Route path="/tuto" component={Tutoriels} />
+            <Route path="/questions" component={Questions} />
+            <Route path="/list-regles" component={InfoRules} />
             <Route
               path="/calcul-prop/:num"
               render={props => <CalculDesPropositions {...props} user={user} />}

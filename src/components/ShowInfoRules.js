@@ -15,6 +15,7 @@ class ShowInfoRules extends Component {
         "single-rule " + Rules[i].available + "-available-rule";
       renderedListRules.push(
         <li
+          key={i}
           className={classNameToRender}
           onMouseOver={() => {
             this.renderInfoRule(i);
@@ -65,7 +66,7 @@ class ShowInfoRules extends Component {
             fontWeight: "bold"
           }}
         >
-          Rule {numRule + 1} : {Rules[numRule].name}
+          Règle {numRule + 1} : {Rules[numRule].name}
         </div>
       )
     });
@@ -76,31 +77,24 @@ class ShowInfoRules extends Component {
       <Fragment>{Rules[numRule].verbalDescription}</Fragment>
     );
 
-    let arrayTemporary = [];
-    if (!Rules[numRule].arrayShowingTheUtilization) {
-      arrayTemporary.push("Pas d'explication pour le moment");
+    let arrayUtilizationFormalized = [];
+    if (!Rules[numRule].arrayUtilization) {
+      arrayUtilizationFormalized.push("Pas d'explication pour le moment");
     } else {
-      for (
-        let i = 0;
-        i < Rules[numRule].arrayShowingTheUtilization.length;
-        i++
-      ) {
-        arrayTemporary.push(
-          <ol>
-            {Number(i + 1) +
-              ". " +
-              Rules[numRule].arrayShowingTheUtilization[i]}
+      for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
+        arrayUtilizationFormalized.push(
+          <ol key={i}>
+            {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
           </ol>
         );
       }
     }
-    const strShowingTheUtilization = arrayTemporary;
 
     // Compilation de toutes les données en une seule variable, qui est l'état arrayInfoRule
     this.setState({
       arrayInfoRule: (
         <Fragment>
-          <div class="title-rule">{verbalNameToRender}</div>
+          <div className="title-rule">{verbalNameToRender}</div>
           <section style={{ display: "flex", flexDirection: "row" }}>
             <div className="semi-box-info-rule">
               <p className="category-name">Description : </p>
@@ -109,9 +103,9 @@ class ShowInfoRules extends Component {
             <hr />
             <div className="semi-box-info-rule">
               <p className="category-name">Comment l'utiliser : </p>
-              <li className="how-to-use-that-rule">
-                {strShowingTheUtilization}
-              </li>
+              <ul className="how-to-use-that-rule">
+                {arrayUtilizationFormalized}
+              </ul>
             </div>
           </section>
         </Fragment>

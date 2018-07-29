@@ -5,29 +5,6 @@ import React, { Fragment, Component } from "react";
 
 class ButtonRuleMaker extends Component {
   render() {
-    const arrayRulesTotal = [
-      "reit",
-      "hyp",
-      "ex falso",
-      "~i",
-      "~e",
-      "∧i",
-      "∧e",
-      "∨i",
-      "∨e",
-      "⊻i",
-      "⊻e",
-      "⊃i",
-      "⊃e",
-      "≡i",
-      "≡e",
-      "↓i",
-      "↓e",
-      "→i",
-      "→e",
-      "↔i",
-      "↔e"
-    ];
     const arrayRulesSent = [...this.props.rulesSent];
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];

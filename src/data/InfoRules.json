@@ -4,7 +4,7 @@
     "verbalName": "Règle de répétition",
     "verbalDescription":
       "Si A était dans les prémisses, alors on peut répéter A dans la déduction.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "yes"
   },
   {
@@ -12,7 +12,7 @@
     "verbalName": "Règle de réitération",
     "verbalDescription":
       "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
-    "arrayShowingTheUtilization": ["A", "...", "A reit"],
+    "arrayUtilization": ["A", "...", "A reit"],
     "available": "soon"
   },
   {
@@ -20,7 +20,7 @@
     "verbalName": "Hypothèse",
     "verbalDescription":
       "A tout moment d'une déduction, on peut faire une hypothèse A, qui a un certain contenu. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant grâce à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later"
   },
   {
@@ -28,7 +28,7 @@
     "verbalName": "Règle ex falso, ou principe d'explosion",
     "verbalDescription":
       "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever"
   },
   {
@@ -36,7 +36,7 @@
     "verbalName": "Règle d'introduction de la négation",
     "verbalDescription":
       "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
-    "arrayShowingTheUtilization": ["hyp A", "contradiction", "~A"],
+    "arrayUtilization": ["hyp A", "contradiction", "~A"],
     "available": "later",
     "binomial": "i"
   },
@@ -45,7 +45,7 @@
     "verbalName": "Règle d'élimination de la négation, dérivée de ~i",
     "verbalDescription":
       "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique des propositions considérée par ce site). On peut donc inférer A.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "e",
     "notaBene":
@@ -55,7 +55,7 @@
     "name": "∧i",
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
-    "arrayShowingTheUtilization": ["A", "B", "A∧B"],
+    "arrayUtilization": ["A", "B", "A∧B"],
     "available": "soon",
     "binomial": "i"
   },
@@ -63,7 +63,7 @@
     "name": "∧e",
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "soon",
     "binomial": "e"
   },
@@ -71,7 +71,7 @@
     "name": "∨i",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
     "verbalDescription": "Si A et/ou B a été posé, on peut inférer A∨B.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "i"
   },
@@ -80,7 +80,7 @@
     "verbalName": "Règle d'élimination de la disjonction inclusive",
     "verbalDescription":
       "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "e"
   },
@@ -89,7 +89,7 @@
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription":
       "Si A a été posé, et que B n'a pas été posé (ou inversement) on peut inférer A⊻B.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "i"
   },
@@ -98,7 +98,7 @@
     "verbalName": "Règle d'élimination de la disjonction exclusive",
     "verbalDescription":
       "Si A⊻B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "e"
   },
@@ -107,7 +107,7 @@
     "verbalName": "Règle d'introduction du conditionnel (modus ponens)",
     "verbalDescription":
       "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "i"
   },
@@ -116,7 +116,7 @@
     "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
     "verbalDescription":
       "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "soon",
     "binomial": "e"
   },
@@ -125,7 +125,7 @@
     "verbalName": "Règle d'introduction de l'équivalence",
     "verbalDescription":
       "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B. A et B sont alors dits équivalents.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "i"
   },
@@ -134,7 +134,7 @@
     "verbalName": "Règle d'élimination de l'équivalence",
     "verbalDescription":
       "Activable pour A et B si l’un des deux a été montré vrai.",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "e"
   },
@@ -142,7 +142,7 @@
     "name": "↓i",
     "verbalName": "Règle d'introduction de la contraposée du conditionnel",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "i"
   },
@@ -150,7 +150,7 @@
     "name": "↓e",
     "verbalName": "Règle d'élimination de la contraposée du conditionnel",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "later",
     "binomial": "e"
   },
@@ -158,7 +158,7 @@
     "name": "→i",
     "verbalName": "Règle d'introduction de l'implication",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -166,7 +166,7 @@
     "name": "→e",
     "verbalName": "Règle d'élimination de l'implication",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   },
@@ -174,7 +174,7 @@
     "name": "↔i",
     "verbalName": "Règle d'introduction de l'implication réciproque",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -182,7 +182,7 @@
     "name": "↔e",
     "verbalName": "Règle d'introduction de l'implication réciproque",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   },
@@ -190,7 +190,7 @@
     "name": "∀i",
     "verbalName": "Règle d'introduction du quantificateur universel",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -198,7 +198,7 @@
     "name": "∀e",
     "verbalName": "Règle d'élimination du quantificateur universel",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   },
@@ -206,7 +206,7 @@
     "name": "Ǝi",
     "verbalName": "Règle d'introduction de quantificateur existentiel",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -214,7 +214,7 @@
     "name": "Ǝe",
     "verbalName": "Règle d'élimination de quantificateur universel",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   },
@@ -223,7 +223,7 @@
     "verbalName": "Règle d'introduction de l'identité",
     "verbalDescription":
       "Il est toujours possible de dire A = A, lorsque l'on a A. [à développer]",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -231,7 +231,7 @@
     "name": "=e",
     "verbalName": "Règle d'élimination de l'identité",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   },
@@ -239,7 +239,7 @@
     "name": "□i",
     "verbalName": "Règle d'introduction de la nécessité",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -247,7 +247,7 @@
     "name": "□e",
     "verbalName": "Règle d'élimination de la nécessité",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   },
@@ -255,7 +255,7 @@
     "name": "◊i",
     "verbalName": "Règle d'introduction de la possibilité",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "i"
   },
@@ -263,7 +263,7 @@
     "name": "◊e",
     "verbalName": "Règle d'élimination de la possibilité",
     "verbalDescription": "",
-    "arrayShowingTheUtilization": "",
+    "arrayUtilization": "",
     "available": "maybenever",
     "binomial": "e"
   }

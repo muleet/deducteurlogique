@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
-import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
+// import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 import TesteurTemporaire from "./TesteurTemporaire";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 
@@ -41,7 +41,6 @@ class Deducer extends Component {
       return "chargement de l'exo";
     } else {
       const arrayTotalInferences = [...this.state.totalInferences];
-      const arrayRenderRules = [];
       // for (let i = 0; i < this.state.totalInferences.length; i++) {
       // this
       //   .updateTotalInferences(
