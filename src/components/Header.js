@@ -57,10 +57,10 @@ class Header extends React.Component {
               id="author-button"
               name={<i class="fas fa-address-book" />}
             />
-            <h1>
-              déducteur et<br />formaliseur logique
-            </h1>
           </NavLink>
+          <h1>
+            déducteur et<br />formaliseur logique
+          </h1>
         </ul>
       </header>
     );
