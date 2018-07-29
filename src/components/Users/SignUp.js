@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import axios from "axios";
 
 // Fichier pratiquement copié/collé d'un autre projet (tout comme LogIn)
@@ -53,33 +53,38 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="form form-signup">
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="text"
-          value={this.state.email}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="email">password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="username">username</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <input type="submit" value="Valider" />
-      </form>
+      <Fragment>
+        <div>
+          y'a pas de base de données donc ça sert à rien d'essayer de s'inscrire
+        </div>
+        <form onSubmit={this.onSubmit} className="form form-signup">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="email">password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="username">username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Valider" />
+        </form>
+      </Fragment>
     );
   }
 }

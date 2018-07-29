@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import ButtonMenu from "./ButtonMenu";
+import ButtonNav from "./ButtonNav";
 
 class Header extends React.Component {
   onLogOut = event => {
@@ -18,7 +18,9 @@ class Header extends React.Component {
             </NavLink>
           </li>
           <li>
-            <button onClick={this.onLogOut}>Déconnexion</button>
+            <button onClick={this.onLogOut}>
+              <i class="fas fa-sign-out-alt" />
+            </button>
           </li>
         </React.Fragment>
       );
@@ -26,9 +28,9 @@ class Header extends React.Component {
     return (
       <Fragment>
         <NavLink to="/sign_up">
-          <ButtonMenu
+          <ButtonNav
             className="header-button"
-            name="Créer un compte (optionnel)"
+            name={<i class="fas fa-globe" />} // je savais pas quelle icône prendre pour signifier "créer un compte"
           />
         </NavLink>
       </Fragment>
@@ -39,18 +41,26 @@ class Header extends React.Component {
       <header>
         <ul className="nav-list">
           <NavLink to="/log_in">
-            <ButtonMenu className="header-button" name="Log in (optionnel)" />
+            <ButtonNav
+              className="header-button"
+              name={<i class="fas fa-sign-in-alt" />}
+            />
           </NavLink>
           {this.renderNav()}
-          <ButtonMenu className="header-button" name="Option" />
-          <h1>
-            déducteur et<br />formaliseur logique
-          </h1>
-          <ButtonMenu
+          <ButtonNav
             className="header-button"
-            id="author-button"
-            name={"Auteurs \n& contact"}
+            name={<i class="fas fa-wrench" />}
           />
+          <NavLink to="/auteurs_contact">
+            <ButtonNav
+              className="header-button"
+              id="author-button"
+              name={<i class="fas fa-address-book" />}
+            />
+            <h1>
+              déducteur et<br />formaliseur logique
+            </h1>
+          </NavLink>
         </ul>
       </header>
     );
