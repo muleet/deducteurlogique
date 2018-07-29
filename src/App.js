@@ -9,6 +9,7 @@ import "./css/deduction.css";
 import "./css/inference.css";
 import "./css/exerciseList.css";
 import "./css/ShowInfoRules.css";
+import "./css/id.css";
 // Importation de fonts
 import "./font/stylesheet.css";
 // // Importation de mes composants
@@ -84,18 +85,27 @@ class App extends Component {
                     exact={true}
                   />
                 </Link>
-
                 <Link to="/questions">
                   <ButtonNav
                     // className="tuto-color"
-                    name={<i className="fas fa-question" />}
+                    name={
+                      <i
+                        className="fas fa-question"
+                        id="interrogation-mark-1"
+                      />
+                    }
                   />
                 </Link>
 
                 <Link to="/list-regles">
                   <ButtonNav
                     // className="tuto-color"
-                    name={<i className="fas fa-question" />}
+                    name={
+                      <i
+                        className="fas fa-question"
+                        id="interrogation-mark-2"
+                      />
+                    }
                   />
                 </Link>
               </li>
