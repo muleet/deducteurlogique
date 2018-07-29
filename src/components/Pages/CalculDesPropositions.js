@@ -18,13 +18,6 @@ const CalculDesPropositions = props => {
         pageName="Calcul des propositions"
         exerciseNumber={Number(exerciseParamNumber)}
       />
-      <Linker
-        link="/"
-        path="/"
-        components={Home}
-        name="Retour au menu"
-        exactness="true"
-      />
       <img
         style={{ width: "300px", height: "150px" }}
         src={ButAAtteindre}

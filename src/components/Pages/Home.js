@@ -6,6 +6,7 @@ import CalculDesPropositions from "./CalculDesPropositions.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 // import CalculDesPredicats from "./CalculDesPredicats";
 import Linker from "../Linker";
+import MakeListExercises from "./MakeListExercises";
 
 class Home extends Component {
   render() {
@@ -13,8 +14,8 @@ class Home extends Component {
       <Fragment>
         <main className="main-menu">
           <Linker
-            link="/tuto"
-            path="/tuto"
+            link="/list-regles"
+            path="/list-regles"
             components={InfoRules}
             name={
               <ButtonMenu
@@ -24,9 +25,9 @@ class Home extends Component {
             }
           />
           <Linker
-            link="/calcul-prop"
-            path="/calcul-prop"
-            components={CalculDesPropositions}
+            link="/calcul-prop-exo"
+            path="/calcul-prop-exo"
+            components={MakeListExercises}
             name={
               <ButtonMenu
                 className="prop-color main-button"

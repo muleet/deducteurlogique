@@ -6,7 +6,6 @@ const AuthorsAndContact = () => {
     // className="main-auteurs-contact"
     >
       <h2>Auteur(s) et contact</h2>
-
       <div
         style={{
           display: "flex",
