@@ -1,0 +1,26 @@
+.my-popover-button {
+  position: relative;
+}
+
+.my-popover-button:hover .my-popover {
+  display: block;
+}
+
+.my-popover {
+  background-color: aliceblue;
+  color: black;
+  font-size: 16px;
+  border: solid 1px blue;
+  width: 300px;
+  position: absolute;
+  left: 103%;
+  height: 150px;
+  display: none;
+  padding: 10px;
+  overflow: auto;
+}
+
+.my-popover-content {
+  background-blend-mode: color;
+  margin-right: 50px;
+}

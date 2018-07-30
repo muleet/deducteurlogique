@@ -15,10 +15,15 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-content: center;
 }
 
 footer {
   margin-top: 20px;
+}
+
+.nav-list {
+  margin-bottom: 20px;
 }
 
 .main-menu {
@@ -49,14 +54,13 @@ footer {
   width: 558px;
   height: 350px;
   border: 1px solid white;
+  margin-bottom: 30px;
 }
 
 h1 {
   font-size: 26px;
-  font-weight: 1;
   font-style: italic;
-  text-align: center;
-  line-height: 27px;
+  /* line-height: 27px; */
   color: white;
 }
 

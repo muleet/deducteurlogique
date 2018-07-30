@@ -3,5 +3,6 @@
 }
 #interrogation-mark-2 {
   color: black;
-  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.671);
+  text-shadow: 0px 0px 2px white;
+  /* text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.178); */
 }

@@ -9,6 +9,7 @@ import "./css/deduction.css";
 import "./css/inference.css";
 import "./css/exerciseList.css";
 import "./css/ShowInfoRules.css";
+import "./css/myPopover.css";
 import "./css/id.css";
 // Importation de fonts
 import "./font/stylesheet.css";
@@ -152,11 +153,7 @@ class App extends Component {
                 </Link>
               </li>
             </ul>
-            <ul>
-              {/* <Link to="/calcul-prop">Calcul des propositions</Link> */}
-              {/* <Link to="/forma">Formalisation des énoncés</Link> */}
-              {/* <Link to="/calcul-pred">Calcul des prédicats</Link> */}
-            </ul>
+            <ul />
             <Route exact={true} path="/" component={Home} />
             <Route path="/questions" component={Questions} />
             <Route path="/list-regles" component={InfoRules} />

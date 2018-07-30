@@ -49,13 +49,13 @@ class Header extends React.Component {
           {this.renderNav()}
           <ButtonNav
             className="header-button"
-            name={<i class="fas fa-wrench" />}
+            name={<i class="fas fa-cog" />}
           />
           <NavLink to="/auteurs_contact">
             <ButtonNav
               className="header-button"
               id="author-button"
-              name={<i class="fas fa-address-book" />}
+              name={<i class="far fa-hand-rock" />}
             />
           </NavLink>
           <h1>

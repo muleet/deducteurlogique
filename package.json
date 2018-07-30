@@ -5,10 +5,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "js-cookie": "^2.2.0",
+    "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-modal": "^3.5.1",
+    "react-overlays": "^0.8.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-simple-popover": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 // Importation de mes composants
 import ButtonMenu from "../ButtonMenu";
 import InfoRules from "./InfoRules";
-import CalculDesPropositions from "./CalculDesPropositions.js";
+import MakeListExercises from "./MakeListExercises.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 // import CalculDesPredicats from "./CalculDesPredicats";
 import Linker from "../Linker";
-import MakeListExercises from "./MakeListExercises";
+import CalculDesPredicats from "./CalculDesPredicats";
 
 class Home extends Component {
   render() {
@@ -46,40 +46,17 @@ class Home extends Component {
               />
             }
           />
-          <div className="three-options-menu">
-            <ButtonMenu
-              className="option-color main-button"
-              link={
-                <Linker
-                  link="/"
-                  path="/"
-                  components={Home}
-                  name="Infos menu 1"
-                />
-              }
-            />
-            {/* <ButtonMenu
-              className="option-color main-button"
-              link={
-                <Linker
-                  link="/"
-                  path="/"
-                  components={Home}
-                  name="Infos menu 2"
-                />
-              }
-            />{" "}
-            <ButtonMenu
-              className="option-color main-button"
-              link={
-                <Linker
-                  link="/"
-                  path="/"
-                  components={Home}
-                  name="Infos menu 3"
-                />
-            } /> */}
-          </div>
+          <Linker
+            link="/calcul-pred"
+            path="/calcul-pred"
+            components={CalculDesPredicats}
+            name={
+              <ButtonMenu
+                className="pred-color main-button"
+                name="Calcul des prédicats"
+              />
+            }
+          />
         </main>
       </Fragment>
     );

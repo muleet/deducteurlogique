@@ -1,7 +1,8 @@
 Choses à faire :
 - Rajouter un modal pour les locutions latines et grecques.
-
-
+- Pour les calculs il faudra pouvoir passer sa souris sur n'importe quelle entité réitérable, et voir que c'est bien elle qui est sélectionnée. Que ce soit une simple proposition, une parenthèse petite comme "(p∧q)" ou une parenthèse grande comme (p∧q∧(p∧~p))
+- Désactiver le lien de la flèche de gauche (et griser son icône) de changement d'exercice, depuis l'html.
+- a) Rajouter un affichage pour les significations possibles des prémisses. b) Rajouter 2 flèches (gauche & droite) pour switcher de signification possible.
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state
