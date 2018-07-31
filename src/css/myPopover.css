@@ -1,26 +1,41 @@
 .my-popover-button {
   position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .my-popover-button:hover .my-popover {
-  display: block;
+  display: flex;
+  flex-direction: row;
 }
 
 .my-popover {
-  background-color: aliceblue;
+  background-color: rgb(182, 182, 255);
   color: black;
   font-size: 16px;
-  border: solid 1px blue;
+  border: solid 4px blue;
   width: 300px;
   position: absolute;
   left: 103%;
   height: 150px;
   display: none;
-  padding: 10px;
   overflow: auto;
 }
 
-.my-popover-content {
+.my-popover-desc {
+  padding: 10px;
+}
+
+.my-popover-array {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 182, 182);
+  border-left: solid 4px black;
+  width: 300px;
+  padding: 10px;
+}
+
+/* .my-popover-content {
   background-blend-mode: color;
   margin-right: 50px;
-}
+} */

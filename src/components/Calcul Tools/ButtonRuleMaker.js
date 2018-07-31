@@ -17,15 +17,26 @@ class ButtonRuleMaker extends Component {
       // arrayRulesSent = arrayRulesTotal; // commenté parce que j'arrive pas à faire marcher ce truc pour le moment
     }
     for (let i = 0; i < Number(arrayRulesSent.length); i++) {
+      let organizedUtilization = [];
+      for (let j = 0; j < InfoRules[i].arrayUtilization.length; j++) {
+        console.log(typeof InfoRules[i].arrayUtilization[j]);
+        if (typeof InfoRules[i].arrayUtilization[j] === "object") {
+          console.log("wesh");
+          organizedUtilization.push(
+            <ol key={j}>{InfoRules[i].arrayUtilization[j]}</ol>
+          );
+        }
+      }
       if (Number(arrayRulesSent[i].length) === 2) {
         arrayRulesTwoCharacters.push(
           <MyPopover
             myPopoverClassName="singleRule tinyRule"
             name={arrayRulesSent[i]}
-            content={InfoRules[i].verbalDescription}
-            onClick={() => {
-              new Popper("Wesh");
-            }}
+            Description={InfoRules[i].verbalDescription}
+            HowToUse={InfoRules[i].arrayUtilization}
+            // onClick={() => {
+            //   new Popper("Wesh");
+            // }}
           />
         );
       } else {
@@ -33,10 +44,11 @@ class ButtonRuleMaker extends Component {
           <MyPopover
             myPopoverClassName="singleRule fatRule"
             name={arrayRulesSent[i]}
-            content={InfoRules[i].verbalDescription}
-            onClick={() => {
-              new Popper("Wesh");
-            }}
+            Description={InfoRules[i].verbalDescription}
+            HowToUse={organizedUtilization}
+            // onClick={() => {
+            //   new Popper("Wesh");
+            // }}
           />
         );
       }

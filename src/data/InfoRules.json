@@ -20,7 +20,10 @@
     "verbalName": "Hypothèse",
     "verbalDescription":
       "A tout moment d'une déduction, on peut faire une hypothèse A, qui a un certain contenu. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant grâce à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse.",
-    "arrayUtilization": "",
+    "arrayUtilization": [
+      [">A hyp", ">B", "A⊃B ⊃i"],
+      [">A hyp", ">B", ">~B", "A ~i"]
+    ],
     "available": "later"
   },
   {
@@ -36,7 +39,7 @@
     "verbalName": "Règle d'introduction de la négation",
     "verbalDescription":
       "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
-    "arrayUtilization": ["hyp A", "contradiction", "~A"],
+    "arrayUtilization": ["hyp A", "contradiction", "~A ~i"],
     "available": "later",
     "binomial": "i"
   },
@@ -55,7 +58,7 @@
     "name": "∧i",
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
-    "arrayUtilization": ["A", "B", "A∧B"],
+    "arrayUtilization": ["A", "B", "A∧B ∧i"],
     "available": "soon",
     "binomial": "i"
   },
@@ -63,7 +66,7 @@
     "name": "∧e",
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
-    "arrayUtilization": "",
+    "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "available": "soon",
     "binomial": "e"
   },
@@ -71,7 +74,11 @@
     "name": "∨i",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
     "verbalDescription": "Si A et/ou B a été posé, on peut inférer A∨B.",
-    "arrayUtilization": "",
+    "arrayUtilization": [
+      ["A", "A∨B ∨i"],
+      ["B", "A∨B ∨i"],
+      ["A", "B", "A∨B ∨i"]
+    ],
     "available": "later",
     "binomial": "i"
   },
@@ -79,7 +86,7 @@
     "name": "∨e",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
     "verbalDescription":
-      "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
+      "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et ça c'est pas évident wesh [à développer]].",
     "arrayUtilization": "",
     "available": "later",
     "binomial": "e"
@@ -88,8 +95,8 @@
     "name": "⊻i",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription":
-      "Si A a été posé, et que B n'a pas été posé (ou inversement) on peut inférer A⊻B.",
-    "arrayUtilization": "",
+      "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
+    "arrayUtilization": [["A", "~B", "A⊻B ⊻i"], ["B", "~A", "A⊻B ⊻i"]],
     "available": "later",
     "binomial": "i"
   },

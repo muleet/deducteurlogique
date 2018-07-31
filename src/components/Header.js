@@ -19,7 +19,7 @@ class Header extends React.Component {
           </li>
           <li>
             <button onClick={this.onLogOut}>
-              <i class="fas fa-sign-out-alt" />
+              <i className="fas fa-sign-out-alt" />
             </button>
           </li>
         </React.Fragment>
@@ -30,7 +30,7 @@ class Header extends React.Component {
         <NavLink to="/sign_up">
           <ButtonNav
             className="header-button"
-            name={<i class="fas fa-globe" />} // je savais pas quelle icône prendre pour signifier "créer un compte"
+            name={<i className="fas fa-globe" />} // je savais pas quelle icône prendre pour signifier "créer un compte"
           />
         </NavLink>
       </Fragment>
@@ -43,19 +43,19 @@ class Header extends React.Component {
           <NavLink to="/log_in">
             <ButtonNav
               className="header-button"
-              name={<i class="fas fa-sign-in-alt" />}
+              name={<i className="fas fa-sign-in-alt" />}
             />
           </NavLink>
           {this.renderNav()}
           <ButtonNav
             className="header-button"
-            name={<i class="fas fa-cog" />}
+            name={<i className="fas fa-cog" />}
           />
           <NavLink to="/auteurs_contact">
             <ButtonNav
               className="header-button"
               id="author-button"
-              name={<i class="far fa-hand-rock" />}
+              name={<i className="far fa-hand-rock" />}
             />
           </NavLink>
           <h1>

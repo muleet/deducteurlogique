@@ -26,6 +26,7 @@ class ShowInformationsExercise extends Component {
       const newLetter = numberOfPremisses.toString(36).toLowerCase();
       setOfPremisses.push(
         <ButtonReit
+          key={i}
           className={"premisses"}
           NumberButton={newLetter}
           NameButton={this.props.exerciseSent.premisses[i]}
