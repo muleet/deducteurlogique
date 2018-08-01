@@ -82,7 +82,7 @@
     "alphabetlatin": "Thnêtà phroneî",
     "traduction": "Souviens-toi que tu vas mourir",
     "note":
-      "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs"
+      "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs, durant les célébrations de leur victoire"
   },
   {
     "grec": "Ἰχθὺν νηχέσθαι διδάσκεις",
@@ -158,5 +158,47 @@
     "grec": "Ὤδινεν ὄρος καὶ ἔτεκεν μῦν",
     "alphabetlatin": "Ốdinen óros kaì éteken mŷn",
     "traduction": "La montagne a accouché d’une souris."
+  },
+  {
+    "grec": "Ἀγεωμέτρητος μηδεὶς εἰσίτω",
+    "alphabetlatin": "Ἀgeōmétrētos mēdeìs eisítō",
+    "traduction": "Que nul n'entre ici s'il n'est géomètre",
+    "note":
+      "Phrase qui aurait été gravée à l'entrée de l'Académie, école fondée à Athènes par Platon."
+  },
+  {
+    "grec": "θάνατος οὐδὲν διαφέρει τοῦ ζῆν",
+    "alphabetlatin": "Thánatos oudèn diaphérei tou zên",
+    "traduction": "La mort n'est pas différente de la vie",
+    "auteur": "Thalès"
+  },
+  {
+    "grec": "Κρῆτες ἀεὶ ψεῦσται",
+    "alphabetlatin": "Krêtes aeì pseûstai",
+    "traduction": "Les crétois mentent toujours",
+    "note":
+      "Locution attribuée à Épiménide de Knossos (~6ème siècle av. J-C.) qui désigne un paradoxe logique. Puisqu'Épiménide est lui-même crétois, son énoncé mène à la conclusion qu'il ment et que son énoncé est faux, d'où le paradoxe."
+  },
+  {
+    "grec": "Τί δύσκολον; Τὸ ἑαυτὸν γνῶναι / τί εὔκολον; Τὸ ἄλλῳ ὑποτίθεσθαι",
+    "alphabetlatin":
+      "Tí dýskolon? Tò heautòn gnônai / Tí eúkolon? Tò állōi hypotíthesthai",
+    "traduction":
+      "Qu'est-ce qui est difficile ? De se connaître soi-même / Qu'est-ce qui est facile ? De conseiller son prochain",
+    "auteur": "Attribuées à Thalès, par Pausanias"
+  },
+  {
+    "grec": "τί καινὸν εἴη τεθεαμένος; Γέροντα τύραννον.",
+    "alphabetlatin": "Tí kainòn eiē tetheaménos? Géronta týrannon.",
+    "traduction": "Quelle est la chose la plus étrange à voir ? Un tyran âgé",
+    "auteur": "Attribuée à Thalès, par Plutarque"
+  },
+  {
+    "grec": "Τί κοινότατον; Ἐλπίς. Καὶ γὰρ οἷς ἄλλο μηδέν, αὔτη παρέστη.",
+    "alphabetlatin":
+      "Tí koinótaton? Elpís. Kaì gàr hoîs állo mēdén, aútē paréstē.",
+    "traduction":
+      "Qu'est-ce qui est le plus commun ? L'espoir. Parce que même à ceux à qui il ne reste rien, il est toujours là.",
+    "auteur": "Attribuée à Thalès"
   }
 ]

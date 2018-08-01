@@ -10,6 +10,7 @@ import "./css/inference.css";
 import "./css/exerciseList.css";
 import "./css/ShowInfoRules.css";
 import "./css/myPopover.css";
+import "./css/questions.css";
 import "./css/id.css";
 // Importation de fonts
 import "./font/stylesheet.css";

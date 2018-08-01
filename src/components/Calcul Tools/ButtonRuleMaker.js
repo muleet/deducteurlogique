@@ -20,12 +20,12 @@ class ButtonRuleMaker extends Component {
       let organizedUtilization = [];
       for (let j = 0; j < InfoRules[i].arrayUtilization.length; j++) {
         console.log(typeof InfoRules[i].arrayUtilization[j]);
-        if (typeof InfoRules[i].arrayUtilization[j] === "object") {
-          console.log("wesh");
-          organizedUtilization.push(
-            <ol key={j}>{InfoRules[i].arrayUtilization[j]}</ol>
-          );
-        }
+        // if (typeof InfoRules[i].arrayUtilization[j] === "object") {
+        console.log("wesh");
+        organizedUtilization.push(
+          <ol key={j}>{InfoRules[i].arrayUtilization[j]}</ol>
+        );
+        // }
       }
       if (Number(arrayRulesSent[i].length) === 2) {
         arrayRulesTwoCharacters.push(

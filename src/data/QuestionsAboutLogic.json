@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Qu'est-ce que la logique ?",
+    "answer":
+      "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Sur ce site, j'utiliserai le mot de logique dans un sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides."
+  },
+  {
+    "name": "Qu'est-ce qu'une proposition ?",
+    "answer": "Une proposition est un énoncé qui est soit vrai soit faux.",
+    "example":
+      "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. La pollution de l'air est responsable de 9% de la mortalité en France et cela est du au diesel, à l'émission des particules fines."
+  },
+  {
+    "name": "Qu'est-ce qu'une inférence ?",
+    "answer":
+      "Wikipédia parce qu'écrire c'est relou des fois : \"L'inférence est un mouvement de la pensée allant des principes à la conclusion. C'est une opération qui permet de passer d'une ou plusieurs assertions, des énoncés ou propositions affirmés comme vrais, appelés prémisses, à une nouvelle assertion qui en est la conclusion.\" (Cela dit une inférence n'est pas toujours une conclusion.)"
+  },
+  {
+    "name": "Que sont la vérité et la validité ?",
+    "answer": ""
+  },
+  {
+    "name": "Qu'est-ce qu'une déduction ?",
+    "answer": ""
+  },
+  {
+    "name": "Que sont les connecteurs propositionnels ?",
+    "answer": ""
+  },
+  {
+    "name": "Que sont les connecteurs prédicatifs ?",
+    "answer": ""
+  },
+  {
+    "name": "Que sont le théorème et la contradiction ?",
+    "answer": ""
+  },
+  {
+    "name": "Que sont l'hypothèse, et le raisonnement par l'absurde ?",
+    "answer": ""
+  },
+  {
+    "name": "Qu'est-ce qu'une modalité ?",
+    "answer": ""
+  }
+]

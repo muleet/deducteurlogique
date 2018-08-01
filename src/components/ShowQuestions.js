@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import QuestionsContent from "../data/QuestionsContent";
+import QuestionsAboutLogic from "../data/QuestionsAboutLogic";
 
 class ShowQuestions extends Component {
   state = {
@@ -8,20 +8,21 @@ class ShowQuestions extends Component {
 
   renderInformations() {
     let arrayQuestions = [];
-    for (let i = 0; i < QuestionsContent.length; i++) {
+    for (let i = 0; i < QuestionsAboutLogic.length; i++) {
       arrayQuestions.push(
-        <Fragment>
-          <li>{QuestionsContent[1].name}</li>
-          <li>{QuestionsContent[1].answer}</li>
-        </Fragment>
+        <li className="question-answer-example-together">
+          <p className="question-alone">{QuestionsAboutLogic[i].name}</p>
+          <p className="answer-alone">{QuestionsAboutLogic[i].answer}</p>
+          <p className="example-alone">{QuestionsAboutLogic[i].example}</p>
+        </li>
       );
     }
 
-    this.setState({ arrayQuestionsState: arrayQuestions });
+    return arrayQuestions;
   }
 
   render() {
-    return <ul>{this.state.arrayQuestionsState}</ul>;
+    return <ul className="set-of-questions">{this.renderInformations()}</ul>;
   }
 }
 

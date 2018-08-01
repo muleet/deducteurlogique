@@ -1,0 +1,17 @@
+.set-of-questions {
+  font-size: 18px;
+}
+.question-answer-example-together {
+  margin-bottom: 30px;
+}
+.question-alone {
+  margin: 10px;
+}
+.answer-alone {
+  font-size: 16px;
+}
+.example-alone {
+  font-style: italic;
+  font-size: 16px;
+  color: rgb(192, 192, 192);
+}

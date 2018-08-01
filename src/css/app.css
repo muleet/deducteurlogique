@@ -29,7 +29,7 @@ footer {
 .main-menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   height: 500px;
   border: 3px white solid;
@@ -86,7 +86,11 @@ h2 {
 .nav-list > li {
   display: flex;
   justify-content: row;
-  margin-left: 50px;
+  margin-left: 35px;
+}
+
+.nav-list > li a {
+  margin-right: 30px;
 }
 
 .setOfPropositionsButtons {
