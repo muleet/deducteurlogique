@@ -1,5 +1,6 @@
 .set-of-questions {
   font-size: 18px;
+  line-height: 18px;
 }
 .question-answer-example-together {
   margin-bottom: 30px;
@@ -11,6 +12,7 @@
   font-size: 16px;
 }
 .example-alone {
+  margin-top: 5px;
   font-style: italic;
   font-size: 16px;
   color: rgb(192, 192, 192);

@@ -75,7 +75,7 @@ class App extends Component {
         <Router>
           <div>
             <Header user={user} logOut={this.logOut} />
-            {/* cette ligne hyper importante active le composant du Header, et ce avec des props spécifiques. Je la commente pour le moment.*/}
+            {/* cette ligne hyper importante active le composant du Header, et ce avec des props spécifiques.*/}
             <ul className="nav-list">
               <li>
                 <Link to="/">

@@ -1,10 +1,15 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, createContext } from "react";
 import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 // import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 import TesteurTemporaire from "./TesteurTemporaire";
 import ButtonRuleMaker from "./ButtonRuleMaker";
+
+// Création d'une variable contextuelle qui contiendra la nouvelle inférence, formée dans différentes classes
+export const InferenceContext = createContext({
+  name: ""
+});
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.

@@ -11,29 +11,51 @@ body {
 }
 
 header {
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-content: center;
 }
 
+.nav-list {
+  display: flex;
+  justify-content: column;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.nav-list > li {
+  display: flex;
+  justify-content: row;
+  margin-left: 35px;
+}
+
+.nav-list > li a {
+  margin-right: 30px;
+}
+
+.header-nav-list {
+  margin: 15px 0px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.header-nav-list a {
+  margin-right: 30px;
+}
+
 footer {
   margin-top: 20px;
 }
 
-.nav-list {
-  margin-bottom: 20px;
-}
-
 .main-menu {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   height: 500px;
-  border: 3px white solid;
-  box-sizing: border-box;
 }
 
 .anarchy {
@@ -75,22 +97,6 @@ h2 {
 
 .icon:hover {
   color: red;
-}
-
-.nav-list {
-  display: flex;
-  justify-content: column;
-  justify-content: center;
-}
-
-.nav-list > li {
-  display: flex;
-  justify-content: row;
-  margin-left: 35px;
-}
-
-.nav-list > li a {
-  margin-right: 30px;
 }
 
 .setOfPropositionsButtons {

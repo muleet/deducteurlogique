@@ -13,7 +13,9 @@ const AuthorsAndContact = () => {
           alignContent: "center"
         }}
       >
-        <div className="auteur anarchy">un mystérieux anticapitaliste</div>
+        <div className="auteur anarchy">
+          un·e mystérieu·x·se anticapitaliste, nommé·e Camille Dupont
+        </div>
       </div>
     </main>
   );

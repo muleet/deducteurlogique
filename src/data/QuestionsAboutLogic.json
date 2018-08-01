@@ -2,7 +2,7 @@
   {
     "name": "Qu'est-ce que la logique ?",
     "answer":
-      "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Sur ce site, j'utiliserai le mot de logique dans un sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides."
+      "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Cet usage du mot logique existe bien, bien qu'il soit très indéterminé et synonymique d'autres mots. Cependant sur ce site, j'utiliserai le mot de logique dans un sens qui remonte à la Grèce Antique, je m'intéresserai à son sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides. Cette définition sera développée dans les questions suivantes."
   },
   {
     "name": "Qu'est-ce qu'une proposition ?",
@@ -13,11 +13,16 @@
   {
     "name": "Qu'est-ce qu'une inférence ?",
     "answer":
-      "Wikipédia parce qu'écrire c'est relou des fois : \"L'inférence est un mouvement de la pensée allant des principes à la conclusion. C'est une opération qui permet de passer d'une ou plusieurs assertions, des énoncés ou propositions affirmés comme vrais, appelés prémisses, à une nouvelle assertion qui en est la conclusion.\" (Cela dit une inférence n'est pas toujours une conclusion.)"
+      "Une inférence est un énoncé que l'on prononce sur la base d'un raisonnement logique, à partir d'autres énoncés admis comme vrais (prémisses). La dernière inférence d'une déduction valide est sa conclusion.",
+    "example":
+      "Si j'admets que \"Socrate est un homme\", que \"Tous les hommes sont mortels\", alors je peux inférer que \"Socrate est mortel\".\nSi j'admets que \"Toute action est politique\", que \"Faire ce site est une action\", alors je peux inférer que \"Faire ce site est politique\". "
   },
   {
     "name": "Que sont la vérité et la validité ?",
-    "answer": ""
+    "answer":
+      "Un raisonnement logique ne peut pas être vrai ou faux, seulement valide ou invalide. Un raisonnement valide n'est pas un raisonnement vrai, c'est un raisonnement qui conserve la valeur de vérité des prémisses qu'il manipule. La logique ne concerne que la conservation de la valeur de vérité, donc si une veut produire des raisonnements valides et vrais, c'est à elle de faire l'effort de trouver des prémisses vraies, en observant le monde.",
+    "example":
+      "\"Tous les chats sont bleus, tous les bleus sont du sable, tous les chats sont du sable\" est un raisonnement valide, bien qu'il ne soit pas basé sur prémisses qui soient vraies."
   },
   {
     "name": "Qu'est-ce qu'une déduction ?",

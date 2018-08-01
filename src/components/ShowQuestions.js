@@ -10,11 +10,14 @@ class ShowQuestions extends Component {
     let arrayQuestions = [];
     for (let i = 0; i < QuestionsAboutLogic.length; i++) {
       arrayQuestions.push(
-        <li className="question-answer-example-together">
-          <p className="question-alone">{QuestionsAboutLogic[i].name}</p>
-          <p className="answer-alone">{QuestionsAboutLogic[i].answer}</p>
-          <p className="example-alone">{QuestionsAboutLogic[i].example}</p>
-        </li>
+        <Fragment>
+          <li className="question-answer-example-together">
+            <p className="question-alone">{QuestionsAboutLogic[i].name}</p>
+            <p className="answer-alone">{QuestionsAboutLogic[i].answer}</p>
+            <p className="example-alone">{QuestionsAboutLogic[i].example}</p>
+          </li>
+          <hr style={{ width: "10%", marginLeft: "40px" }} />
+        </Fragment>
       );
     }
 

@@ -11,7 +11,7 @@ class Header extends React.Component {
   renderNav() {
     if (this.props.user._id) {
       return (
-        <React.Fragment>
+        <Fragment>
           <li>
             <NavLink to={"/profile/" + this.props.user._id}>
               {this.props.user.username}
@@ -22,7 +22,7 @@ class Header extends React.Component {
               <i className="fas fa-sign-out-alt" />
             </button>
           </li>
-        </React.Fragment>
+        </Fragment>
       );
     }
     return (
@@ -39,7 +39,7 @@ class Header extends React.Component {
   render() {
     return (
       <header>
-        <ul className="nav-list">
+        <ul className="header-nav-list">
           <NavLink to="/log_in">
             <ButtonNav
               className="header-button"
@@ -47,10 +47,12 @@ class Header extends React.Component {
             />
           </NavLink>
           {this.renderNav()}
-          <ButtonNav
-            className="header-button"
-            name={<i className="fas fa-cog" />}
-          />
+          <NavLink to="/options">
+            <ButtonNav
+              className="header-button"
+              name={<i className="fas fa-cog" />}
+            />
+          </NavLink>
           <NavLink to="/auteurs_contact">
             <ButtonNav
               className="header-button"

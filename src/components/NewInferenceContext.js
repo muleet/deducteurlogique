@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import { render } from "react-dom";
 
 // Cette classe est méga importante. Elle va contenir la variable globale contenant la nouvelle inférence, laquelle sera construite
