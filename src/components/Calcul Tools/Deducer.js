@@ -6,9 +6,11 @@ import ShowInformationsExercise from "./ShowInformationsExercise";
 import TesteurTemporaire from "./TesteurTemporaire";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 
-// Création d'une variable contextuelle qui contiendra la nouvelle inférence, formée dans différentes classes
+// Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
 export const InferenceContext = createContext({
-  name: ""
+  number: [],
+  content: [],
+  commentary: []
 });
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
@@ -31,12 +33,6 @@ class Deducer extends Component {
       totalInferences: copyArray // 4. pour finir, on dit que le state d'origine est égal à la copie modifiée (on ne peut rien faire de plus)
     });
   };
-
-  // ruleMaker = () => {
-  //   return (
-  //     <ButtonRuleMaker rulesSent={this.state.currentExercise.rulesImplied} />
-  //   );
-  // };
 
   render() {
     if (this.props.exerciseNumber > Exercises.length) {
@@ -100,21 +96,26 @@ class Deducer extends Component {
                   type="button"
                   className="deduction-button"
                   onClick={() => {
-                    this.updateTotalInferences();
+                    this.updateTotalInferences(
+                      <div>Ceci est une inférence</div>
+                    );
                   }}
                 >
                   inférer
                 </button>
-                <ul className="deduction">
-                  {this.props.arrayUpdated}
-                  <TesteurTemporaire />
-                </ul>
+                <button
+                  type="button"
+                  className="deduction-button"
+                  onClick={() => {
+                    this.updateTotalInferences(<TesteurTemporaire />);
+                  }}
+                >
+                  voir exemples
+                </button>
+                <ul className="deduction">{this.state.totalInferences}</ul>
               </Fragment>
             </section>
             <section className="usablesRules">
-              {/* <DetermineTruthOfPropositions
-                exerciseSent={this.state.currentExercise}
-              /> */}
               <ul className="setOfRules">
                 <ButtonRuleMaker
                   rulesSent={this.state.currentExercise.rulesImplied}

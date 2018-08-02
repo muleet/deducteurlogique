@@ -14,7 +14,7 @@ const AuthorsAndContact = () => {
         }}
       >
         <div className="auteur anarchy">
-          un·e mystérieu·x·se anticapitaliste, nommé·e Camille Dupont
+          un·e mystérieu·x·se anticapitaliste,<br />nommé·e Camille Dupont
         </div>
       </div>
     </main>
