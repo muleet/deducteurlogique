@@ -20,7 +20,7 @@
   {
     "name": "Que sont la vérité et la validité ?",
     "answer":
-      "Un raisonnement logique ne peut pas être vrai ou faux, seulement valide ou invalide. Un raisonnement valide n'est pas un raisonnement vrai, c'est un raisonnement qui conserve la valeur de vérité des prémisses qu'il manipule. La logique ne concerne que la conservation de la valeur de vérité, donc si une veut produire des raisonnements valides et vrais, c'est à elle de faire l'effort de trouver des prémisses vraies, en observant le monde.",
+      "Un raisonnement logique ne peut pas être vrai ou faux, seulement valide ou invalide. Un raisonnement valide n'est pas un raisonnement vrai, c'est un raisonnement qui conserve la valeur de vérité des prémisses qu'il manipule. La logique ne concerne que la conservation de la valeur de vérité, donc si une personne veut produire des raisonnements valides et vrais, c'est à elle de faire l'effort de trouver des prémisses vraies, en observant le monde.",
     "example":
       "\"Tous les chats sont bleus, tous les bleus sont du sable, tous les chats sont du sable\" est un raisonnement valide, bien qu'il ne soit pas basé sur des prémisses vraies."
   },
