@@ -9,11 +9,11 @@ class ShowInformationsExercise extends Component {
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
 
-    <ListContext.Provider value={this.state.items}>
-      {this.setState({
-        items: [...this.state.items, [infNum, infItself, infComm]]
-      })}}
-    </ListContext.Provider>;
+    // <ListContext.Provider value={this.state.items}>
+    //   {this.setState({
+    //     items: [...this.state.items, [infNum, infItself, infComm]]
+    //   })}}
+    // </ListContext.Provider>;
     return (
       <MakeInference
         inferenceNumber={infNum}

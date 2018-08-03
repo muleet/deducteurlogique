@@ -15,7 +15,7 @@ class ButtonRuleMaker extends Component {
 
     if (arrayRulesSent === []) {
       // Si le tableau de règle envoyé par Deducer est vide, cette fonction a pour but de renvoyer la totalité des règles possibles.
-      // arrayRulesSent = arrayRulesTotal; // commenté parce que j'arrive pas à faire marcher ce truc pour le moment
+      // arrayRulesSent = arrayRulesTotal; // commenté parce que j'arrive pas à faire marcher ce truc pour le moment, en gros il servait à vérifier s'il n'y a pas de règles spécifiques pour un exo (si c'est le cas le programme doit retourner la totalité des règles, à disposition de l'utilisateur)
     }
     for (let i = 0; i < Number(arrayRulesSent.length); i++) {
       let organizedUtilization = [];
