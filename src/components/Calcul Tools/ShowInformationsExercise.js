@@ -8,10 +8,15 @@ class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
-    <InferenceContext.Provider value={[infNum, infItself, infComm]} />;
+
+    <ListContext.Provider value={this.state.items}>
+      {this.setState({
+        items: [...this.state.items, [infNum, infItself, infComm]]
+      })}}
+    </ListContext.Provider>;
     return (
       <MakeInference
-        inferenceNumber={"1"}
+        inferenceNumber={infNum}
         inferenceItself={infItself}
         inferenceCommentary={(infNum, infComm)}
       />
