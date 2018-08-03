@@ -5,21 +5,25 @@ import ShowInformationsExercise from "./ShowInformationsExercise";
 // import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 import TesteurTemporaire from "./TesteurTemporaire";
 import ButtonRuleMaker from "./ButtonRuleMaker";
-
-// Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
-export const InferenceContext = createContext({
-  number: [],
-  content: [],
-  commentary: []
-});
+import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
+// Elle réceptionne InferenceContext, qui va véhiculer les infos de chaque nouvelle inférence.
 class Deducer extends Component {
   state = {
     // inferenceNumber: 1,
     totalInferences: [],
     currentExercise: {}
+  };
+
+  updateTotalInferencesContext = NewInference => {
+    const copyArray = [...this.state.totalInferences];
+    copyArray.push(<InferenceContext.Consumer />);
+    console.log(copyArray);
+    this.setState({
+      totalInferences: copyArray
+    });
   };
 
   updateTotalInferences = NewInference => {
@@ -30,7 +34,7 @@ class Deducer extends Component {
       // 2. ensuite on modifie cette copie comme on le souhaite [note entre crochets à suppr : sachant que cette fonction devrait recevoir pour props le contenu d'une nouvelle inférence et de ses règles]
     );
     this.setState({
-      totalInferences: copyArray // 4. pour finir, on dit que le state d'origine est égal à la copie modifiée (on ne peut rien faire de plus)
+      totalInferences: copyArray // 3. pour finir, on dit que le state d'origine est égal à la copie modifiée
     });
   };
 
@@ -41,21 +45,10 @@ class Deducer extends Component {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
-      const arrayTotalInferences = [...this.state.totalInferences];
-      // for (let i = 0; i < this.state.totalInferences.length; i++) {
-      // this
-      //   .updateTotalInferences(
-      //   <MakeInference
-      //     key={i}
-      //     inferenceNumber={Number(i + 1) + "."}
-      //     inferenceItself={this.state.currentExercise.premisses[1]}
-      //     inferenceCommentary={
-      //       this.state.currentExercise.commentarysaufqu'iln'existepaswesh (faut que je change totalement comment ça fonctionne, ici)
-      //     }
-      //   />
-      //   );
-      // }
-
+      <InferenceContext.Provider>{number => "wesh"}</InferenceContext.Provider>;
+      // <InferenceContext.Consumer>
+      //   {value => this.updateTotalInferences}
+      // </InferenceContext.Consumer>;
       return (
         <Fragment>
           <ul className="mini-header-deducer">
@@ -97,7 +90,9 @@ class Deducer extends Component {
                   className="deduction-button"
                   onClick={() => {
                     this.updateTotalInferences(
-                      <div>Ceci est une inférence</div>
+                      <div>
+                        <InferenceProvider />
+                      </div>
                     );
                   }}
                 >

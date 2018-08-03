@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 
 // Classe qui est instanciée par Deducer, au sein d'une instanciation de ShowInformationExercice.
-// [TEMP] Plus tard, elle devrait aussi être instanciée
+// Elle n'est utile que pour les prémisses. Une version plutôt similaire de cette classe doit être ButtonReit.
 
-class ButtonReit extends Component {
+class ButtonRep extends Component {
   render() {
     return (
       <div
-        className={"button-reit " + this.props.className}
-        onClick={() => this.props.useOfMakeInference()}
+        className={"button-rep " + this.props.className}
+        onClick={() => this.props.useOfMakeInference}
       >
         {this.props.NumberButton + ". " + this.props.NameButton}
-        {/* <InferenceContext /> */}
         {/*que cette inférence soit issue des prémisses ou de la déduction ne change rien*/}
       </div>
     );
   }
 }
 
-export default ButtonReit;
+export default ButtonRep;
