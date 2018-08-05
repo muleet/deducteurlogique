@@ -79,8 +79,12 @@ class ShowInfoRules extends Component {
 
     let arrayUtilizationFormalized = [];
     if (!Rules[numRule].arrayUtilization) {
-      arrayUtilizationFormalized.push("Pas d'explication pour le moment");
+      arrayUtilizationFormalized.push(
+        "Pas d'explication sur son utilisation, pour le moment"
+      );
     } else {
+      // if (typeof Rules[numRule].arrayUtilization === "array") {
+      // console.log(typeof Rules[numRule].arrayUtilization);
       for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
         arrayUtilizationFormalized.push(
           <ol key={i}>
@@ -88,6 +92,8 @@ class ShowInfoRules extends Component {
           </ol>
         );
       }
+      // } else if (typeof Rules[numRule].arrayUtilization === "array") {
+      // }
     }
 
     // Compilation de toutes les données en une seule variable, qui est l'état arrayInfoRule
