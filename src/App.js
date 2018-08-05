@@ -28,13 +28,12 @@ import InfoRules from "./components/Pages/InfoRules.js";
 import Questions from "./components/Pages/Questions.js";
 import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndContact";
 // Importations d'autres trucs
-import LogIn from "./components/Users/LogIn";
-import SignUp from "./components/Users/SignUp";
+// import LogIn from "./components/Users/LogIn";
+// import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
 import ButtonNav from "./components/ButtonNav";
-import ShowInfoRules from "./components/ShowInfoRules";
 // Images
-import athens from "./img/athens.svg";
+// import athens from "./img/athens.svg";
 
 class App extends Component {
   // Code importé ci-dessous

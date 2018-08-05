@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from "react";
 import MyPopover from "../MyPopover";
 import InfoRules from "../../data/InfoRules.json";
-import Popper from "popper.js";
 import { InferenceContext } from "./Deducer";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.

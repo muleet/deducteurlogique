@@ -1,6 +1,4 @@
 import React from "react";
-import Linker from "../Linker";
-import Home from "./Home";
 import Deducer from "../Calcul Tools/Deducer";
 import ButAAtteindre from "../../img/repere.png"; //Image temporaire à supprimer plus tard
 

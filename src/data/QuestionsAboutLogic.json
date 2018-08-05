@@ -6,9 +6,17 @@
   },
   {
     "name": "Qu'est-ce qu'une proposition ?",
-    "answer": "Une proposition est un énoncé qui est soit vrai soit faux.",
+    "answer":
+      "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet.",
     "example":
-      "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. Il fera 50 à 55 degré en été, dans certaines régions de l'Europe en 2050."
+      "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. Il fera 50 à 55 degré en été, dans certaines régions de l'Europe en 2050.\n(\"La Terre.\" ou \"Socrate\", à l'inverse, ne sont pas des propositions.)"
+  },
+  {
+    "name": "Qu'est-ce qu'un prédicat ?",
+    "answer":
+      "La logique des propositions reste impuissante lorsqu'il s'agit d'analyser le contenu des propositions. C'est là que la logique des prédicats intervient. Elle permet d'analyser les propositions comme étant composées d'un sujet, d'un copule, et d'un prédicat (au moins un de chaque). En isolant le copule et le prédicat on peut former une fonction prédicative.",
+    "example":
+      "Hippathie est une femme : \"Hippathie\" est le sujet, \"est\" le copule, \"femme\" le prédicat. \"x est une femme\" est la fonction prédicative de cette proposition."
   },
   {
     "name": "Qu'est-ce qu'une inférence ?",
@@ -26,11 +34,13 @@
   },
   {
     "name": "Qu'est-ce qu'une déduction ?",
-    "answer": ""
+    "answer":
+      "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit suivre les règles de logique. Ce site propose à l'utilisateur de faire des déductions."
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer": ""
+    "answer":
+      "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓ → ↔."
   },
   {
     "name": "Que sont les connecteurs prédicatifs ?",
@@ -45,7 +55,15 @@
     "answer": ""
   },
   {
+    "name": "Qu'est-ce qu'une table de vérité ?",
+    "answer": ""
+  },
+  {
     "name": "Qu'est-ce qu'une modalité ?",
+    "answer": ""
+  },
+  {
+    "name": "Que sont les diagrammes de Venn ?",
     "answer": ""
   }
 ]

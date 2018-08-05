@@ -83,16 +83,36 @@ class ShowInfoRules extends Component {
         "Pas d'explication sur son utilisation, pour le moment"
       );
     } else {
-      // if (typeof Rules[numRule].arrayUtilization === "array") {
-      // console.log(typeof Rules[numRule].arrayUtilization);
       for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
-        arrayUtilizationFormalized.push(
-          <ol key={i}>
-            {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
-          </ol>
-        );
+        if (typeof Rules[numRule].arrayUtilization[i] === "string") {
+          arrayUtilizationFormalized.push(
+            <ol key={i}>
+              {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
+            </ol>
+          );
+        } else if (typeof Rules[numRule].arrayUtilization[i] === "object") {
+          let subArrayUtilizationFormalized = [];
+          for (let j = 0; j < Rules[numRule].arrayUtilization[i].length; j++) {
+            console.log(typeof Rules[numRule].arrayUtilization[i]);
+            subArrayUtilizationFormalized.push(
+              <ol key={j}>
+                {Number(j + 1) + ". " + Rules[numRule].arrayUtilization[i][j]}
+              </ol>
+            );
+          }
+          arrayUtilizationFormalized.push(
+            <li key={i} className="sub-use-of-that-rule">
+              {subArrayUtilizationFormalized}
+            </li>
+          );
+        }
       }
-      // } else if (typeof Rules[numRule].arrayUtilization === "array") {
+      // for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
+      //   arrayUtilizationFormalized.push(
+      //     <ol key={i}>
+      //       {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
+      //     </ol>
+      //   );
       // }
     }
 
