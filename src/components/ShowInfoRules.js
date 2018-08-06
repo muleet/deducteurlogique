@@ -86,24 +86,23 @@ class ShowInfoRules extends Component {
       for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
         if (typeof Rules[numRule].arrayUtilization[i] === "string") {
           arrayUtilizationFormalized.push(
-            <ol key={i}>
+            <ol className="inference-example-rule" key={i}>
               {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
             </ol>
           );
         } else if (typeof Rules[numRule].arrayUtilization[i] === "object") {
           let subArrayUtilizationFormalized = [];
           for (let j = 0; j < Rules[numRule].arrayUtilization[i].length; j++) {
-            console.log(typeof Rules[numRule].arrayUtilization[i]);
             subArrayUtilizationFormalized.push(
-              <ol key={j}>
+              <ol className="inference-example-rule" key={j}>
                 {Number(j + 1) + ". " + Rules[numRule].arrayUtilization[i][j]}
               </ol>
             );
           }
           arrayUtilizationFormalized.push(
-            <li key={i} className="sub-use-of-that-rule">
+            <ul key={i} className="sub-use-of-that-rule">
               {subArrayUtilizationFormalized}
-            </li>
+            </ul>
           );
         }
       }
@@ -124,14 +123,14 @@ class ShowInfoRules extends Component {
           <section style={{ display: "flex", flexDirection: "row" }}>
             <div className="semi-box-info-rule">
               <p className="category-name">Description : </p>
-              <li>{verbalDescriptionToRender}</li>
+              <span>{verbalDescriptionToRender}</span>
             </div>
             <hr />
             <div className="semi-box-info-rule">
               <p className="category-name">Comment l'utiliser : </p>
-              <ul className="how-to-use-that-rule">
+              <div className="how-to-use-that-rule">
                 {arrayUtilizationFormalized}
-              </ul>
+              </div>
             </div>
           </section>
         </Fragment>
