@@ -90,25 +90,27 @@
   display: flex;
   flex-direction: row;
   /* background-color: rgba(255, 0, 0, 0.972); */
-  margin-left: 25px;
-  padding: 12px;
+  margin-left: 15px;
+  padding: 8px;
 }
 .how-to-use-that-rule > .inference-example-rule {
   /* background-color: rgba(38, 0, 255, 0.335); */
   display: flex;
   flex-direction: column;
+  width: 200px;
 }
 
-.how-to-use-that-rule > .sub-use-of-that-rule {
-  /* background-color: rgba(0, 255, 0, 0.335); */
+.sub-use-of-that-rule {
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap; */
+  width: 200px;
 }
 .sub-use-of-that-rule {
   margin: 2px;
-  border-right: 1px white solid;
 }
 
 .sub-use-of-that-rule > .inference-example-rule {
-  /* background-color: rgba(238, 255, 0, 0.335); */
   display: flex;
   flex-direction: row;
 }
