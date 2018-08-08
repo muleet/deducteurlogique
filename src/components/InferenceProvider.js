@@ -3,14 +3,7 @@ import React, { createContext, Component } from "react"; // on importe createCon
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
 // Pour importer cette variable contextuelle :
 // import { InferenceContext } from "./InferenceContext";
-export const InferenceContext = createContext({
-  NewInference: ""
-  // state = {
-  // number : []
-  // content: ["p∧q", "q"],
-  // commentary: []
-  // }
-});
+export const InferenceContext = createContext();
 
 /*la classe UserProvider fera office de... Provider (!) en englobant son enfant direct dans le composant éponyme. De cette façon, ses values
  seront accessibles de manière globale via le `Consumer`*/
@@ -32,7 +25,7 @@ class InferenceProvider extends Component {
         value={this.state}
         addInference={this.addInference}
       >
-        {this.props.children}{" "}
+        {this.props.children}
         {/* quand j'utilise le provider, ce sont les enfants que je lui donne */}
       </InferenceContext.Provider>
     );

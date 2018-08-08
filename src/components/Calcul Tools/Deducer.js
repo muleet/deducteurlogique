@@ -89,11 +89,7 @@ class Deducer extends Component {
                   type="button"
                   className="deduction-button"
                   onClick={() => {
-                    this.updateTotalInferences(
-                      <div>
-                        <InferenceProvider />
-                      </div>
-                    );
+                    this.updateTotalInferences("nouvelle inférence");
                   }}
                 >
                   inférer

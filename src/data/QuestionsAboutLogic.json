@@ -35,7 +35,7 @@
   {
     "name": "Qu'est-ce qu'une déduction ?",
     "answer":
-      "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit suivre les règles de logique. Ce site propose à l'utilisateur de faire des déductions."
+      "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit être composée d'inférences en accord les règles de logique. Ce site propose à l'utilisateur de faire des déductions."
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
