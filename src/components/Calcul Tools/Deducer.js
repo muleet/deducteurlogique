@@ -1,4 +1,4 @@
-import React, { Component, Fragment, createContext } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
@@ -45,10 +45,6 @@ class Deducer extends Component {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
-      <InferenceContext.Provider>{number => "wesh"}</InferenceContext.Provider>;
-      // <InferenceContext.Consumer>
-      //   {value => this.updateTotalInferences}
-      // </InferenceContext.Consumer>;
       return (
         <Fragment>
           <ul className="mini-header-deducer">
@@ -81,9 +77,12 @@ class Deducer extends Component {
           </ul>
           <div className="deducer">
             <section className="infos-and-deduction-itself">
-              <ShowInformationsExercise
-                exerciseSent={this.state.currentExercise}
-              />
+              <InferenceProvider>
+                <ShowInformationsExercise
+                  exerciseSent={this.state.currentExercise}
+                />
+              </InferenceProvider>
+
               <Fragment>
                 <button
                   type="button"
@@ -104,6 +103,16 @@ class Deducer extends Component {
                   voir exemples
                 </button>
                 <ul className="deduction">{this.state.totalInferences}</ul>
+                <InferenceContext.Consumer>
+                  {allInferences => (
+                    <ul>
+                      {allInferences.map(item => {
+                        return <li>{item.test}</li>;
+                      })}
+                    </ul>
+                  )}
+                  {/* {value => this.allInferences*/}
+                </InferenceContext.Consumer>
               </Fragment>
             </section>
             <section className="usablesRules">

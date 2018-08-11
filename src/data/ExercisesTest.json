@@ -2,11 +2,11 @@
   {
     "Number": 1,
     "titleForSpecificExercise": "",
-    "premisses": ["p", "p⊃q"],
+    "premisses": ["q", "p⊃q"],
     "conclusion": "q",
     "meaning": ["p : Il y a une table", "q : Une table existe"],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "⊃e"],
+    "rulesImplied": ["rep", "⊃e"],
     "minimalLine": 3
   },
   {
@@ -20,7 +20,7 @@
       "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
     ],
     "propositionsImplied": 3,
-    "rulesImplied": ["reit", "∧e", "⊃e"],
+    "rulesImplied": ["rep", "∧e", "⊃e"],
     "minimalLine": 4
   },
   {

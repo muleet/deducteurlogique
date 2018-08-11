@@ -9,13 +9,13 @@ export const InferenceContext = createContext();
  seront accessibles de manière globale via le `Consumer`*/
 class InferenceProvider extends Component {
   state = {
-    number: [],
-    content: [],
-    commentary: []
+    allInferences: []
   };
 
   addInference = newInference => {
-    this.setState({ content: [...this.state.content, newInference] });
+    this.setState({
+      allInferences: [...this.state.allInferences, newInference]
+    });
   };
 
   render() {

@@ -7,7 +7,7 @@ function TesteurTemporaire() {
       <MakeInference
         inferenceNumber={"1."}
         inferenceItself={"p∧q"}
-        inferenceCommentary={"a, reit"}
+        inferenceCommentary={"a, rep"}
       />
       <MakeInference
         inferenceNumber={"2."}
@@ -17,7 +17,7 @@ function TesteurTemporaire() {
       <MakeInference
         inferenceNumber={"3."}
         inferenceItself={"q⊃~r"}
-        inferenceCommentary={"b, reit"}
+        inferenceCommentary={"b, rep"}
       />
       <MakeInference
         inferenceNumber={"4."}

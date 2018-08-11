@@ -7,20 +7,24 @@ import InferenceProvider from "../InferenceProvider";
 class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
   useOfMakeInference = (infNum, infItself, infComm) => {
+    console.log("truc");
     console.log(infNum, infItself, infComm);
 
-    <InferenceProvider value={this.state.content}>
+    <InferenceProvider value={this.state.allInferences}>
       {this.setState({
-        content: [...this.state.content, [infNum, infItself, infComm]]
-      })}}
+        allInferences: [
+          ...this.state.allInferences,
+          [infNum, infItself, infComm]
+        ]
+      })}
+      }
     </InferenceProvider>;
-    return (
-      <MakeInference
-        inferenceNumber={infNum}
-        inferenceItself={infItself}
-        inferenceCommentary={(infNum, infComm)}
-      />
-    );
+
+    // return (<MakeInference
+    //   inferenceNumber={infNum}
+    //   inferenceItself={infItself}
+    //   inferenceCommentary={(infNum, infComm)}a
+    // />);
   };
 
   // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
@@ -37,11 +41,11 @@ class ShowInformationsExercise extends Component {
           className={"premisses"}
           NumberButton={newLetter}
           NameButton={this.props.exerciseSent.premisses[i]}
-          useOfMakeInference={() =>
+          useOfMakeInferenceSent={() =>
             this.useOfMakeInference(
               newLetter + " ",
               this.props.exerciseSent.premisses[i],
-              "reit"
+              "rep"
             )
           }
         />
@@ -49,7 +53,7 @@ class ShowInformationsExercise extends Component {
     }
     return (
       <ul className="setPremissesConclusion">
-        <li>Prémisses : {setOfPremisses}</li>
+        <div>Prémisses : {setOfPremisses}</div>
         <li>
           Conclusion :
           <div id="conclusion">{this.props.exerciseSent.conclusion}</div>
