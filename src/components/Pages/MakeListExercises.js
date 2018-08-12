@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Exercises from "../../data/ExercisesTest";
 import { Link } from "react-router-dom";
-import CalculDesPropositions from "./CalculDesPropositions";
 
 // MakeListExercises génère sur une page, une liste d'exercices à partir des fichiers json contenant les exercices.
 // MakeListExercises peut recevoir des props différentes, et doit pouvoir s'adapter au fichier json qu'il reçoit (calcul des props, des preds, etc.)
@@ -22,9 +21,10 @@ class MakeListExercises extends Component {
       }
       renderedListExercises.push(
         <Link
+          key={i}
           to={"/calcul-prop/" + Exercises[i].Number}
           path="/calcul-prop"
-          components={CalculDesPropositions}
+          // component={CalculDesPropositions} // ce truc-là ne sert à rien je crois (le composant de cette url est déjà défini dans App, il me semble)
         >
           <li
             className={classNameToRender}

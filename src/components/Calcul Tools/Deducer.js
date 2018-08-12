@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 // import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
-import TesteurTemporaire from "./TesteurTemporaire";
+import TesteurTemporaire from "./Temporary Components/TesteurExo2";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 import MakeInference from "./MakeInference";
@@ -105,7 +105,7 @@ class Deducer extends Component {
                       this.updateTotalInferences(<TesteurTemporaire />);
                     }}
                   >
-                    voir exemples
+                    exo2
                   </button>
                   <button
                     type="button"

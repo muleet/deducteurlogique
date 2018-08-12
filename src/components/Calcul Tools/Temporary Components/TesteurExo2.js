@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import MakeInference from "./MakeInference";
+import MakeInference from "../MakeInference";
 
 function TesteurTemporaire() {
   return (

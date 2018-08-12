@@ -29,6 +29,7 @@ class ButtonRuleMaker extends Component {
       if (Number(arrayRulesSent[i].length) === 2) {
         arrayRulesTwoCharacters.push(
           <MyPopover
+            key={i}
             myPopoverClassName="singleRule tinyRule"
             name={arrayRulesSent[i]}
             Description={InfoRules[i].verbalDescription}
@@ -41,6 +42,7 @@ class ButtonRuleMaker extends Component {
       } else {
         arrayAllOtherRules.push(
           <MyPopover
+            key={i}
             myPopoverClassName="singleRule fatRule"
             name={arrayRulesSent[i]}
             Description={InfoRules[i].verbalDescription}

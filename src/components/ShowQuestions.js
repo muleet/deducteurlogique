@@ -10,7 +10,7 @@ class ShowQuestions extends Component {
     let arrayQuestions = [];
     for (let i = 0; i < QuestionsAboutLogic.length; i++) {
       arrayQuestions.push(
-        <Fragment>
+        <Fragment key={i}>
           <li className="question-answer-example-together">
             <p className="question-alone">{QuestionsAboutLogic[i].name}</p>
             <p className="answer-alone">{QuestionsAboutLogic[i].answer}</p>
