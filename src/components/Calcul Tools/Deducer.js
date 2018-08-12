@@ -6,6 +6,7 @@ import ShowInformationsExercise from "./ShowInformationsExercise";
 import TesteurTemporaire from "./TesteurTemporaire";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
+import MakeInference from "./MakeInference";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -17,10 +18,16 @@ class Deducer extends Component {
     currentExercise: {}
   };
 
-  updateTotalInferencesContext = NewInference => {
+  updateTotalInferencesContext = (NewInfNum, NewInfItself, NewInfComm) => {
     const copyArray = [...this.state.totalInferences];
-    copyArray.push(<InferenceContext.Consumer />);
-    console.log(copyArray);
+    console.log(NewInfNum, NewInfItself, NewInfComm);
+    copyArray.push(
+      <MakeInference
+        inferenceNumber={NewInfNum}
+        inferenceItself={NewInfItself}
+        inferenceCommentary={NewInfComm}
+      />
+    );
     this.setState({
       totalInferences: copyArray
     });
@@ -46,84 +53,86 @@ class Deducer extends Component {
       return "chargement de l'exo";
     } else {
       return (
-        <Fragment>
-          <ul className="mini-header-deducer">
-            <li className="setOfTextAndIcon">
-              <Link to="/">
-                <i className="icon fas fa-arrow-circle-left" />
-              </Link>
-              <Link to="/calcul-prop-exo">
-                <i className="icon fas fa-th" />
-              </Link>
-            </li>
-            <li>
-              <h2>{this.props.pageName}</h2>
-            </li>
-            <li>
-              <span className="setOfTextAndIcon">
-                <Link
-                  to={"/calcul-prop/" + Number(this.props.exerciseNumber - 1)}
-                >
-                  <i className="icon fas fa-arrow-left" />
+        <InferenceProvider>
+          <Fragment>
+            <ul className="mini-header-deducer">
+              <li className="setOfTextAndIcon">
+                <Link to="/">
+                  <i className="icon fas fa-arrow-circle-left" />
                 </Link>
-                Ex. {this.state.currentExercise.Number}
-                <Link
-                  to={"/calcul-prop/" + Number(this.props.exerciseNumber + 1)}
-                >
-                  <i className="icon fas fa-arrow-right" />
+                <Link to="/calcul-prop-exo">
+                  <i className="icon fas fa-th" />
                 </Link>
-              </span>
-            </li>
-          </ul>
-          <div className="deducer">
-            <section className="infos-and-deduction-itself">
-              <InferenceProvider>
+              </li>
+              <li>
+                <h2>{this.props.pageName}</h2>
+              </li>
+              <li>
+                <span className="setOfTextAndIcon">
+                  <Link
+                    to={"/calcul-prop/" + Number(this.props.exerciseNumber - 1)}
+                  >
+                    <i className="icon fas fa-arrow-left" />
+                  </Link>
+                  Ex. {this.state.currentExercise.Number}
+                  <Link
+                    to={"/calcul-prop/" + Number(this.props.exerciseNumber + 1)}
+                  >
+                    <i className="icon fas fa-arrow-right" />
+                  </Link>
+                </span>
+              </li>
+            </ul>
+            <div className="deducer">
+              <section className="infos-and-deduction-itself">
                 <ShowInformationsExercise
                   exerciseSent={this.state.currentExercise}
                 />
-              </InferenceProvider>
-
-              <Fragment>
-                <button
-                  type="button"
-                  className="deduction-button"
-                  onClick={() => {
-                    this.updateTotalInferences("nouvelle inférence");
-                  }}
-                >
-                  inférer
-                </button>
-                <button
-                  type="button"
-                  className="deduction-button"
-                  onClick={() => {
-                    this.updateTotalInferences(<TesteurTemporaire />);
-                  }}
-                >
-                  voir exemples
-                </button>
-                <ul className="deduction">{this.state.totalInferences}</ul>
-                <InferenceContext.Consumer>
-                  {allInferences => (
-                    <ul>
-                      {allInferences.map(item => {
-                        return <li>{item.test}</li>;
-                      })}
-                    </ul>
-                  )}
-                  {/* {value => this.allInferences*/}
-                </InferenceContext.Consumer>
-              </Fragment>
-            </section>
-            <section className="usablesRules">
-              <ul className="setOfRules">
-                <ButtonRuleMaker
-                  rulesSent={this.state.currentExercise.rulesImplied}
-                />
-              </ul>
-            </section>
-          </div>
-        </Fragment>
+                <Fragment>
+                  <button
+                    type="button"
+                    className="deduction-button"
+                    onClick={() => {
+                      this.updateTotalInferences("nouvelle inférence");
+                    }}
+                  >
+                    inférer
+                  </button>
+                  <button
+                    type="button"
+                    className="deduction-button"
+                    onClick={() => {
+                      this.updateTotalInferences(<TesteurTemporaire />);
+                    }}
+                  >
+                    voir exemples
+                  </button>
+                  <button
+                    type="button"
+                    className="deduction-button"
+                    onClick={() => {
+                      this.updateTotalInferencesContext(
+                        <InferenceContext.Consumer>
+                          {value => value.allInferences[0]}
+                        </InferenceContext.Consumer>
+                      );
+                    }}
+                  >
+                    maj inférence
+                  </button>
+                  <ul className="deduction">{this.state.totalInferences}</ul>
+                </Fragment>
+              </section>
+              <section className="usablesRules">
+                <ul className="setOfRules">
+                  <ButtonRuleMaker
+                    rulesSent={this.state.currentExercise.rulesImplied}
+                  />
+                </ul>
+              </section>
+            </div>
+          </Fragment>
+        </InferenceProvider>
       );
     }
   }
