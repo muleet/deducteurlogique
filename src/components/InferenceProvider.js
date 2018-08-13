@@ -11,14 +11,19 @@ class InferenceProvider extends Component {
     allInferences: []
   };
 
-  addInference = newInference => {
-    console.log(newInference);
+  addInference(newInference) {
     this.setState({
       allInferences: [...this.state.allInferences, newInference]
     });
-  };
+  }
 
   render() {
+    if (this.props.inferenceSent === true) {
+      this.addInference(this.props.inferenceSent);
+      this.props.inferenceSent = false;
+    }
+
+    console.log("inferenceSet est ", this.props.inferenceSent);
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider

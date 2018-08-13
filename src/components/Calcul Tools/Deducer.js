@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 // import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
-import TesteurTemporaire from "./Temporary Components/TesteurExo2";
+import TesteurExo2 from "./Temporary Components/TesteurExo2";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 import MakeInference from "./MakeInference";
@@ -20,9 +20,15 @@ class Deducer extends Component {
 
   updateTotalInferencesContext = (NewInfNum, NewInfItself, NewInfComm) => {
     const copyArray = [...this.state.totalInferences];
-    console.log(NewInfNum, NewInfItself, NewInfComm);
+    console.log(
+      "les trois variables sont ",
+      NewInfNum,
+      NewInfItself,
+      NewInfComm
+    );
     copyArray.push(
       <MakeInference
+        key={NewInfNum}
         inferenceNumber={NewInfNum}
         inferenceItself={NewInfItself}
         inferenceCommentary={NewInfComm}
@@ -102,7 +108,7 @@ class Deducer extends Component {
                     type="button"
                     className="deduction-button"
                     onClick={() => {
-                      this.updateTotalInferences(<TesteurTemporaire />);
+                      this.updateTotalInferences(<TesteurExo2 />);
                     }}
                   >
                     exo2
@@ -111,11 +117,10 @@ class Deducer extends Component {
                     type="button"
                     className="deduction-button"
                     onClick={() => {
-                      this.updateTotalInferencesContext(
-                        <InferenceContext.Consumer>
-                          {value => value.allInferences[0]}
-                        </InferenceContext.Consumer>
-                      );
+                      this.updateTotalInferencesContext;
+                      // <InferenceContext.Consumer>
+                      //   {value => value.allInferences[0]}
+                      // </InferenceContext.Consumer>
                     }}
                   >
                     maj inférence

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import ButtonRep from "./ButtonRep";
-// import InferenceProvider from "../InferenceProvider";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 
 // fonction appelée par Deduction.js, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json)
@@ -9,14 +8,14 @@ class ShowInformationsExercise extends Component {
 
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
-    <Fragment>
-      <InferenceProvider>
-        <InferenceContext.Consumer>
-          {value => value.addInference([infNum, infItself, infComm])}
-        </InferenceContext.Consumer>
-      </InferenceProvider>
-    </Fragment>;
-    return;
+    <InferenceProvider inferenceSent={[infNum, infItself, infComm]} />;
+
+    // InferenceProvider.props.addInference([infNum, infItself, infComm]);
+    // return (
+    //   <InferenceProvider>
+    //     {value => value.addInference([infNum, infItself, infComm])}
+    //   </InferenceProvider>
+    // );
 
     // return (<MakeInference
     //   inferenceNumber={infNum}
