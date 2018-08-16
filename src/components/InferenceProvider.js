@@ -10,14 +10,15 @@ export const InferenceContext = createContext();
 class InferenceProvider extends Component {
   state = {
     allInferences: "dzaoazijz", // contient les données "brutes" des inférences
-    allInferencesRendered: "zkdozqhehfziodposk" // contient les données htmlisées des inférences
+    allInferencesRendered: [["inf1"], ["inf2"], ["inf3"]] // contient les données htmlisées des inférences
   };
 
   addInference = newInference => {
-    console.log("addInference fonctionne", newInference);
-    return newInference;
+    console.log("addInference fonctionne");
 
-    // this.setState({ allInference: newInference });
+    this.setState({
+      allInferencesRendered: [...this.state.allInferencesRendered, newInference]
+    });
 
     // this.setState({
     //   allInferences: [...this.state.allInferences, newInference],
@@ -42,22 +43,16 @@ class InferenceProvider extends Component {
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider
-        value={
-          (this.state.allInferences,
-          this.state.allInferencesRendered,
-          this.addInference("ce texte provient d'InferenceProvider !"))
-        }
+        value={(this.state.allInferences, this.state.allInferencesRendered)}
       >
         <button
           onClick={() => {
             // item => {
-            this.setState({
-              allInferences: [...this.state.allInferences, "inférence"]
-            });
+            this.addInference("bon ben ça marche un peu");
             // };
           }}
         >
-          Click here
+          Provider
         </button>
         {this.props.children}
         {/* quand j'utilise le provider, ce sont les enfants que je lui donne */}

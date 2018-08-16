@@ -103,9 +103,7 @@ class Deducer extends Component {
                   <ul className="deduction">
                     {this.state.totalInferences}
                     <InferenceContext.Consumer>
-                      {allInferencesRendered => (
-                        <div>{allInferencesRendered}</div>
-                      )}
+                      {allInferences => <div>{allInferences}</div>}
                     </InferenceContext.Consumer>
                   </ul>
                 </Fragment>

@@ -9,11 +9,11 @@ class ShowInformationsExercise extends Component {
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
 
-    return (
-      <InferenceProvider inferenceSent={[infNum, infItself, infComm]}>
-        {allInferences => allInferences}
-      </InferenceProvider>
-    );
+    // return (
+    //   <InferenceProvider inferenceSent={[infNum, infItself, infComm]}>
+    //     {allInferences => allInferences}
+    //   </InferenceProvider>
+    // );
 
     // <InferenceProvider inferenceSent={[infNum, infItself, infComm]}>
     //   {addInference => addInference([infNum, infItself, infComm])}
