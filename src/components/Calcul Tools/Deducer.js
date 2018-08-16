@@ -14,29 +14,16 @@ import MakeInference from "./MakeInference";
 class Deducer extends Component {
   state = {
     // inferenceNumber: 1,
-    totalInferences: [],
+    totalInferences: [], // IL FAUT MIGRER CE PUTAIN DE STATE VERS INFERENCEPROVIDER
     currentExercise: {}
   };
 
-  updateTotalInferencesContext = (NewInfNum, NewInfItself, NewInfComm) => {
-    const copyArray = [...this.state.totalInferences];
-    console.log(
-      "les trois variables sont ",
-      NewInfNum,
-      NewInfItself,
-      NewInfComm
-    );
-    copyArray.push(
-      <MakeInference
-        key={NewInfNum}
-        inferenceNumber={NewInfNum}
-        inferenceItself={NewInfItself}
-        inferenceCommentary={NewInfComm}
-      />
-    );
-    this.setState({
-      totalInferences: copyArray
-    });
+  updateTotalInferences2 = NewInference => {
+    // On ajoute une nouvelle inférence à la déduction
+    console.log(NewInference);
+    <InferenceProvider>
+      {addInference => addInference("bon ça marche ou pas")}
+    </InferenceProvider>;
   };
 
   updateTotalInferences = NewInference => {
@@ -99,15 +86,6 @@ class Deducer extends Component {
                     type="button"
                     className="deduction-button"
                     onClick={() => {
-                      this.updateTotalInferences("nouvelle inférence");
-                    }}
-                  >
-                    inférer
-                  </button>
-                  <button
-                    type="button"
-                    className="deduction-button"
-                    onClick={() => {
                       this.updateTotalInferences(<TesteurExo2 />);
                     }}
                   >
@@ -117,15 +95,19 @@ class Deducer extends Component {
                     type="button"
                     className="deduction-button"
                     onClick={() => {
-                      this.updateTotalInferencesContext;
-                      // <InferenceContext.Consumer>
-                      //   {value => value.allInferences[0]}
-                      // </InferenceContext.Consumer>
+                      this.updateTotalInferences2("boarf");
                     }}
                   >
-                    maj inférence
+                    context
                   </button>
-                  <ul className="deduction">{this.state.totalInferences}</ul>
+                  <ul className="deduction">
+                    {this.state.totalInferences}
+                    <InferenceContext.Consumer>
+                      {allInferencesRendered => (
+                        <div>{allInferencesRendered}</div>
+                      )}
+                    </InferenceContext.Consumer>
+                  </ul>
                 </Fragment>
               </section>
               <section className="usablesRules">
