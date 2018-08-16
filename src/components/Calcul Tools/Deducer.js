@@ -14,16 +14,8 @@ import MakeInference from "./MakeInference";
 class Deducer extends Component {
   state = {
     // inferenceNumber: 1,
-    totalInferences: [], // IL FAUT MIGRER CE PUTAIN DE STATE VERS INFERENCEPROVIDER
+    totalInferences: [], // IL FAUT MIGRER CE PUTAIN DE STATE VERS INFERENCEPROVIDER (il doit s'appeler allInferences & allInferencesRendered)
     currentExercise: {}
-  };
-
-  updateTotalInferences2 = NewInference => {
-    // On ajoute une nouvelle inférence à la déduction
-    console.log(NewInference);
-    <InferenceProvider>
-      {addInference => addInference("bon ça marche ou pas")}
-    </InferenceProvider>;
   };
 
   updateTotalInferences = NewInference => {
@@ -91,22 +83,19 @@ class Deducer extends Component {
                   >
                     exo2
                   </button>
-                  <button
-                    type="button"
-                    className="deduction-button"
-                    onClick={() => {
-                      this.updateTotalInferences2("boarf");
-                    }}
-                  >
-                    context
-                  </button>
                   <ul className="deduction">
                     {this.state.totalInferences}
                     <InferenceContext.Consumer>
                       {value => (
-                        <div style={{ color: "red" }}>
+                        <Fragment>
+                          <button
+                            onClick={() => value.addInference("a. p∧q rep")}
+                            style={{ color: "green" }}
+                          >
+                            addInference
+                          </button>
                           {value.allInferences}
-                        </div>
+                        </Fragment>
                       )}
                     </InferenceContext.Consumer>
                   </ul>

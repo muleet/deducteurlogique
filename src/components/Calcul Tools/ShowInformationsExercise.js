@@ -8,12 +8,12 @@ class ShowInformationsExercise extends Component {
 
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
-    <InferenceProvider inferenceSent={"wesh"} />;
-    return (
-      <InferenceContext.Consumer>
-        {addInference => addInference(infItself)}
-      </InferenceContext.Consumer>
-    );
+    <InferenceContext.Consumer>
+      {value => {
+        // value.addInference([infNum + infItself + infComm]);
+        () => value.addInference("a. p∧q rep");
+      }}
+    </InferenceContext.Consumer>;
   };
 
   // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
@@ -32,7 +32,7 @@ class ShowInformationsExercise extends Component {
           NameButton={this.props.exerciseSent.premisses[i]}
           useOfMakeInferenceSent={() =>
             this.useOfMakeInference(
-              newLetter + " ",
+              newLetter + ".",
               this.props.exerciseSent.premisses[i],
               "rep"
             )

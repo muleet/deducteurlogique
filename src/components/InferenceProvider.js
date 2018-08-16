@@ -8,34 +8,44 @@ export const InferenceContext = createContext();
 
 /*la classe UserProvider fera office de... Provider (!) en englobant son enfant direct dans le composant éponyme. De cette façon, ses values seront accessibles de manière globale via le `Consumer`*/
 class InferenceProvider extends Component {
-  state = {
-    allInferences: "dzaoazijz", // contient les données "brutes" des inférences
-    allInferencesRendered: [["inf1"], ["inf2"], ["inf3"]] // contient les données htmlisées des inférences
-  };
+  constructor(props) {
+    super(props);
 
-  addInference = newInference => {
-    console.log("addInference activé avec ", newInference);
+    this.addInference = newInference => {
+      console.log("la nouvelle inférence est ", newInference);
+      this.setState(state => ({
+        allInferences: [...this.state.allInferences, newInference],
+        allInferencesRendered: [
+          ...this.state.allInferences,
+          <div style={{ color: "blue" }}>{newInference}</div>
+        ]
+      }));
+    };
 
-    this.setState({
-      allInferencesRendered: [
-        ...this.state.allInferencesRendered,
-        <div>{newInference}</div>
-      ]
-      // allInferences: [...this.state.allInferences, newInference]
-    });
+    // State also contains the updater function so it will
+    // be passed down into the context provider
+    this.state = {
+      allInferences: "dzaoazijz", // contient les données "brutes" des inférences
+      allInferencesRendered: [["inf1"], ["inf2"], ["inf3"]], // contient les données htmlisées des inférences
+      addInference: this.addInference
+    };
+  }
 
-    // this.setState({
-    //   allInferences: [...this.state.allInferences, newInference],
-    //   allInferencesRendered: [
-    //     ...this.allInferencesRendered,
-    //     <MakeInference
-    //       inferenceNumber={newInference[0]}
-    //       inferenceItself={newInference[1]}
-    //       inferenceCommentary={newInference[2]}
-    //     />
-    //   ]
-    // });
-  };
+  // state = {
+  //   allInferences: "dzaoazijz", // contient les données "brutes" des inférences
+  //   allInferencesRendered: [["inf1"], ["inf2"], ["inf3"]] // contient les données htmlisées des inférences
+  // };
+
+  // addInference = newInference => {
+  //   console.log("addInference activé avec ", newInference);
+
+  //   this.setState({
+  //     allInferencesRendered: [
+  //       ...this.state.allInferencesRendered,
+  //       <div>{newInference}</div>
+  //     ]
+  //   });
+  // };
 
   render() {
     if (this.props.inferenceSent === true) {
@@ -47,15 +57,7 @@ class InferenceProvider extends Component {
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider value={this.state}>
-        <button
-          onClick={() => {
-            // item => {
-            this.addInference("ajout : ", this.props.inferenceSent);
-            // };
-          }}
-        >
-          Provider
-        </button>
+        {/* <button onClick={() => { this.addInference("ajout : ", this.props.inferenceSent); }} > addInference() </button> */}
         {this.props.children}
         {/* quand j'utilise le provider, ce sont les enfants que je lui donne */}
       </InferenceContext.Provider>
