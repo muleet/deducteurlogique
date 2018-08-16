@@ -8,22 +8,12 @@ class ShowInformationsExercise extends Component {
 
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
-
-    // return (
-    //   <InferenceProvider inferenceSent={[infNum, infItself, infComm]}>
-    //     {allInferences => allInferences}
-    //   </InferenceProvider>
-    // );
-
-    // <InferenceProvider inferenceSent={[infNum, infItself, infComm]}>
-    //   {addInference => addInference([infNum, infItself, infComm])}
-    // </InferenceProvider>;
-
-    // return (
-    //   <InferenceProvider>
-    //     {value => value.addInference([infNum, infItself, infComm])}
-    //   </InferenceProvider>
-    // );
+    <InferenceProvider inferenceSent={"wesh"} />;
+    return (
+      <InferenceContext.Consumer>
+        {addInference => addInference(infItself)}
+      </InferenceContext.Consumer>
+    );
   };
 
   // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout

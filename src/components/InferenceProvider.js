@@ -14,10 +14,14 @@ class InferenceProvider extends Component {
   };
 
   addInference = newInference => {
-    console.log("addInference fonctionne");
+    console.log("addInference activé avec ", newInference);
 
     this.setState({
-      allInferencesRendered: [...this.state.allInferencesRendered, newInference]
+      allInferencesRendered: [
+        ...this.state.allInferencesRendered,
+        <div>{newInference}</div>
+      ]
+      // allInferences: [...this.state.allInferences, newInference]
     });
 
     // this.setState({
@@ -42,13 +46,11 @@ class InferenceProvider extends Component {
     console.log("inferenceSet est ", this.props.inferenceSent);
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
-      <InferenceContext.Provider
-        value={(this.state.allInferences, this.state.allInferencesRendered)}
-      >
+      <InferenceContext.Provider value={this.state}>
         <button
           onClick={() => {
             // item => {
-            this.addInference("bon ben ça marche un peu");
+            this.addInference("ajout : ", this.props.inferenceSent);
             // };
           }}
         >
