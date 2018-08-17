@@ -63,7 +63,8 @@ class ShowInfoRules extends Component {
           style={{
             display: "flex",
             textAlign: "start",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            fontSize: 20
           }}
         >
           Règle {numRule + 1} : {Rules[numRule].name}

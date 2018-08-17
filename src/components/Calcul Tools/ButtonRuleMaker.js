@@ -8,50 +8,62 @@ import InfoRules from "../../data/InfoRules.json";
 
 class ButtonRuleMaker extends Component {
   render() {
-    const arrayRulesSent = [...this.props.rulesSent];
+    const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
 
-    if (arrayRulesSent === []) {
-      // Si le tableau de règle envoyé par Deducer est vide, cette fonction a pour but de renvoyer la totalité des règles possibles.
-      // arrayRulesSent = arrayRulesTotal; // commenté parce que j'arrive pas à faire marcher ce truc pour le moment, en gros il servait à vérifier s'il n'y a pas de règles spécifiques pour un exo (si c'est le cas le programme doit retourner la totalité des règles, à disposition de l'utilisateur)
-    }
-    for (let i = 0; i < Number(arrayRulesSent.length); i++) {
-      let organizedUtilization = [];
-      for (let j = 0; j < InfoRules[i].arrayUtilization.length; j++) {
-        // console.log(typeof InfoRules[i].arrayUtilization[j]);
-        // if (typeof InfoRules[i].arrayUtilization[j] === "object") {
-        organizedUtilization.push(
-          <ol key={j}>{InfoRules[i].arrayUtilization[j]}</ol>
-        );
-        // }
+    if (arrayRulesSent.length === 0) {
+      // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doitde renvoyer la totalité des règles possibles.)
+    } else if (arrayRulesSent.length > 0) {
+      // On commence par créer un tableau qui va contenir toutes les infos des règles de l'exo. C'est lui qui sera la source de toutes les autres infos.
+      let arrayCurrentRules = [];
+      for (let i = 0; i < arrayRulesSent.length; i++) {
+        for (let j = 0; j < InfoRules.length; j++) {
+          if (arrayRulesSent[i] === InfoRules[j].name) {
+            arrayCurrentRules.push(InfoRules[j]);
+          }
+        }
       }
-      if (Number(arrayRulesSent[i].length) === 2) {
-        arrayRulesTwoCharacters.push(
-          <MyPopover
-            key={i}
-            myPopoverClassName="singleRule tinyRule"
-            name={arrayRulesSent[i]}
-            Description={InfoRules[i].verbalDescription}
-            HowToUse={InfoRules[i].arrayUtilization}
-            // onClick={() => {
-            //   new Popper("Wesh");
-            // }}
-          />
-        );
-      } else {
-        arrayAllOtherRules.push(
-          <MyPopover
-            key={i}
-            myPopoverClassName="singleRule fatRule"
-            name={arrayRulesSent[i]}
-            Description={InfoRules[i].verbalDescription}
-            HowToUse={organizedUtilization}
-            // onClick={() => {
-            //   new Popper("Wesh");
-            // }}
-          />
-        );
+      // On va maintenant créer le popover tout en organisant ses données.
+      for (let i = 0; i < Number(arrayCurrentRules.length); i++) {
+        let organizedUtilization = [];
+        for (let j = 0; j < arrayCurrentRules[i].arrayUtilization.length; j++) {
+          // console.log(typeof InfoRules[i].arrayUtilization[j]);
+          // if (typeof InfoRules[i].arrayUtilization[j] === "object") {
+          organizedUtilization.push(
+            <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
+          );
+          // }
+        }
+        if (Number(arrayRulesSent[i].length) === 2) {
+          arrayRulesTwoCharacters.push(
+            <MyPopover
+              key={i}
+              myPopoverClassName="singleRule tinyRule"
+              name={arrayCurrentRules[i].name}
+              verbalName={arrayCurrentRules[i].verbalName}
+              Description={arrayCurrentRules[i].verbalDescription}
+              HowToUse={organizedUtilization}
+              onClick={() => {
+                // new Popper("Wesh");
+              }}
+            />
+          );
+        } else {
+          arrayAllOtherRules.push(
+            <MyPopover
+              key={i}
+              myPopoverClassName="singleRule fatRule"
+              name={arrayRulesSent[i]}
+              verbalName={arrayCurrentRules[i].verbalName}
+              Description={arrayCurrentRules[i].verbalDescription}
+              HowToUse={organizedUtilization}
+              // onClick={() => {
+              //   new Popper("Wesh");
+              // }}
+            />
+          );
+        }
       }
     }
     return (

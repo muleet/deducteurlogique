@@ -5,10 +5,13 @@ class MyPopover extends Component {
     return (
       <div className={"my-popover-button " + this.props.myPopoverClassName}>
         {this.props.name}
-        <ul className="my-popover">
-          <li className="my-popover-desc">{this.props.Description}</li>
-          <li className="my-popover-array">{this.props.HowToUse}</li>
-        </ul>
+        <div className="my-popover">
+          {this.props.verbalName}
+          <ul className="my-popover-content">
+            <li className="my-popover-desc">{this.props.Description}</li>
+            <li className="my-popover-array">{this.props.HowToUse}</li>
+          </ul>
+        </div>
       </div>
     );
   }

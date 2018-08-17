@@ -6,20 +6,27 @@
 
 .my-popover-button:hover .my-popover {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .my-popover {
-  background-color: rgb(182, 182, 255);
+  background-color: white;
   color: black;
   font-size: 16px;
   border: solid 4px blue;
   width: 300px;
   position: absolute;
   left: 103%;
-  height: 150px;
   display: none;
   overflow: auto;
+  flex-direction: column;
+  text-align: center;
+}
+
+.my-popover-content{
+  background-color: rgb(182, 182, 255);
+  display: flex;
+  flex-direction: row;
 }
 
 .my-popover-desc {
@@ -35,7 +42,3 @@
   padding: 10px;
 }
 
-/* .my-popover-content {
-  background-blend-mode: color;
-  margin-right: 50px;
-} */
