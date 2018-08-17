@@ -13,20 +13,33 @@ class InferenceProvider extends Component {
 
     this.addInference = newInference => {
       console.log("la nouvelle inférence est ", newInference);
+      let copyArray = [...this.state.allInferences];
+      let copyArrayRendered = [...this.state.allInferencesRendered];
+
+      copyArray.push(newInference);
+      copyArrayRendered.push(
+        <li>
+          <MakeInference
+            inferenceNumber={copyArray.length}
+            inferenceItself={newInference.itself}
+            inferenceCommentary={
+              newInference.numberCommentary + ", " + newInference.commentary
+            }
+          />
+        </li>
+      );
       this.setState(state => ({
-        allInferences: [...this.state.allInferences, newInference],
-        allInferencesRendered: [
-          ...this.state.allInferences,
-          <div style={{ color: "blue" }}>{newInference}</div>
-        ]
+        // allInferences: [...this.state.allInferences, newInference],
+        allInferences: copyArray,
+        allInferencesRendered: copyArrayRendered
       }));
     };
 
     // State also contains the updater function so it will
     // be passed down into the context provider
     this.state = {
-      allInferences: "dzaoazijz", // contient les données "brutes" des inférences
-      allInferencesRendered: [["inf1"], ["inf2"], ["inf3"]], // contient les données htmlisées des inférences
+      allInferences: [], // contient les données "brutes" des inférences
+      allInferencesRendered: [], // contient les données htmlisées des inférences
       addInference: this.addInference
     };
   }

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
-// import DetermineTruthOfPropositions from "./DetermineTruthOfPropositions";
 import TesteurExo2 from "./Temporary Components/TesteurExo2";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
@@ -14,7 +13,7 @@ import MakeInference from "./MakeInference";
 class Deducer extends Component {
   state = {
     // inferenceNumber: 1,
-    totalInferences: [], // IL FAUT MIGRER CE PUTAIN DE STATE VERS INFERENCEPROVIDER (il doit s'appeler allInferences & allInferencesRendered)
+    totalInferences: [], // state qui pour le moment n'a pour rôle que de contenir les bonnes solutions des exercices
     currentExercise: {}
   };
 
@@ -91,17 +90,14 @@ class Deducer extends Component {
                   <ul className="deduction">
                     {this.state.totalInferences}
                     <InferenceContext.Consumer>
-                      {value => (
-                        <Fragment>
-                          <button
+                      {value => value.allInferencesRendered
+                      /* <button
                             onClick={() => value.addInference("bonjour")}
                             style={{ color: "green" }}
                           >
                             addInference
-                          </button>
-                          {value.allInferences}
-                        </Fragment>
-                      )}
+                          </button> */
+                      }
                     </InferenceContext.Consumer>
                   </ul>
                 </Fragment>

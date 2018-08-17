@@ -6,9 +6,15 @@ import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
 
-  useOfMakeInference = (infNum, infItself, infComm) => {
-    console.log(infNum, infItself, infComm);
-    return this.props.valueSent.addInference(infNum + infItself + infComm);
+  useOfMakeInference = (infNumCom, infItself, infComm) => {
+    console.log(infNumCom, infItself, infComm);
+    const inference = {
+      itself: infItself,
+      numberCommentary: infNumCom,
+      commentary: infComm
+    };
+
+    return this.props.valueSent.addInference(inference);
   };
 
   // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
@@ -27,7 +33,7 @@ class ShowInformationsExercise extends Component {
           NameButton={this.props.exerciseSent.premisses[i]}
           useOfMakeInferenceSent={() =>
             this.useOfMakeInference(
-              newLetter + ".",
+              newLetter,
               this.props.exerciseSent.premisses[i],
               "rep"
             )
