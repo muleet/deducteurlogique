@@ -29,7 +29,7 @@ class Header extends React.Component {
       <Fragment>
         <NavLink to="/sign_up">
           <ButtonNav
-            className="header-button"
+            className="header-button unavailable-yet"
             name={<i className="fas fa-globe" />} // je savais pas quelle icône prendre pour signifier "créer un compte"
           />
         </NavLink>
@@ -42,14 +42,14 @@ class Header extends React.Component {
         <ul className="header-nav-list">
           <NavLink to="/log_in">
             <ButtonNav
-              className="header-button"
+              className="header-button unavailable-yet"
               name={<i className="fas fa-sign-in-alt" />}
             />
           </NavLink>
           {this.renderNav()}
           <NavLink to="/options">
             <ButtonNav
-              className="header-button"
+              className="header-button unavailable-yet"
               name={<i className="fas fa-cog" />}
             />
           </NavLink>
@@ -61,7 +61,9 @@ class Header extends React.Component {
             />
           </NavLink>
           <h1>
-            déducteur et<br />formaliseur logique
+            déducteur et
+            <br />
+            formaliseur logique
           </h1>
         </ul>
       </header>

@@ -28,8 +28,6 @@ class ButtonRuleMaker extends Component {
       for (let i = 0; i < Number(arrayCurrentRules.length); i++) {
         let organizedUtilization = [];
         for (let j = 0; j < arrayCurrentRules[i].arrayUtilization.length; j++) {
-          // console.log(typeof InfoRules[i].arrayUtilization[j]);
-          // if (typeof InfoRules[i].arrayUtilization[j] === "object") {
           organizedUtilization.push(
             <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
           );

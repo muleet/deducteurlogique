@@ -113,7 +113,7 @@ class App extends Component {
               <li>
                 <Link to="/calcul-prop">
                   <ButtonNav
-                    className="prop-color"
+                    className="prop-color unavailable-yet"
                     name={<i className="fas fa-terminal" />}
                   />
                 </Link>
@@ -127,13 +127,13 @@ class App extends Component {
               <li>
                 <Link to="/forma">
                   <ButtonNav
-                    className="forma-color"
+                    className="forma-color unavailable-yet"
                     name={<i className="fas fa-terminal" />}
                   />
                 </Link>
                 <Link to="/forma-exo">
                   <ButtonNav
-                    className="forma-color"
+                    className="forma-color unavailable-yet"
                     name={<i className="fas fa-th" />}
                   />
                 </Link>
@@ -141,13 +141,13 @@ class App extends Component {
               <li>
                 <Link to="/calcul-pred">
                   <ButtonNav
-                    className="pred-color"
+                    className="pred-color unavailable-yet"
                     name={<i className="fas fa-terminal" />}
                   />
                 </Link>
                 <Link to="/calcul-pred-exo">
                   <ButtonNav
-                    className="pred-color"
+                    className="pred-color unavailable-yet"
                     name={<i className="fas fa-th" />}
                   />
                 </Link>

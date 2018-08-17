@@ -17,6 +17,7 @@
   width: 300px;
   position: absolute;
   left: 103%;
+  max-height: 150px;
   display: none;
   overflow: auto;
   flex-direction: column;

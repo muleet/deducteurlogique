@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 
 // Classe qui est instanciée par Deducer, au sein d'une instanciation de ShowInformationExercice.
 // Elle n'est utile que pour les prémisses. Une version plutôt similaire de cette classe doit être ButtonReit.
 
-class ButtonRep extends Component {
+class ButtonRuleRep extends Component {
   render() {
     return (
       <div
@@ -18,4 +17,4 @@ class ButtonRep extends Component {
   }
 }
 
-export default ButtonRep;
+export default ButtonRuleRep;

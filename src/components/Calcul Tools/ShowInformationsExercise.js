@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
-import ButtonRep from "./ButtonRep";
-import InferenceProvider, { InferenceContext } from "../InferenceProvider";
+import React, { Component } from "react";
+import ButtonRuleRep from "./Rules/ButtonRuleRep";
 
 // fonction appelée par Deduction.js, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json)
 class ShowInformationsExercise extends Component {
@@ -26,7 +25,7 @@ class ShowInformationsExercise extends Component {
       numberOfPremisses = numberOfPremisses + i;
       const newLetter = numberOfPremisses.toString(36).toLowerCase();
       setOfPremisses.push(
-        <ButtonRep
+        <ButtonRuleRep
           key={i}
           className={"premisses"}
           NumberButton={newLetter}
