@@ -31,29 +31,7 @@ class InferenceProvider extends Component {
     };
   }
 
-  // state = {
-  //   allInferences: "dzaoazijz", // contient les données "brutes" des inférences
-  //   allInferencesRendered: [["inf1"], ["inf2"], ["inf3"]] // contient les données htmlisées des inférences
-  // };
-
-  // addInference = newInference => {
-  //   console.log("addInference activé avec ", newInference);
-
-  //   this.setState({
-  //     allInferencesRendered: [
-  //       ...this.state.allInferencesRendered,
-  //       <div>{newInference}</div>
-  //     ]
-  //   });
-  // };
-
   render() {
-    if (this.props.inferenceSent === true) {
-      this.addInference(this.props.inferenceSent);
-      this.props.inferenceSent = false;
-    }
-
-    console.log("inferenceSet est ", this.props.inferenceSent);
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider value={this.state}>

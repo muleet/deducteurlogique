@@ -8,12 +8,7 @@ class ShowInformationsExercise extends Component {
 
   useOfMakeInference = (infNum, infItself, infComm) => {
     console.log(infNum, infItself, infComm);
-    <InferenceContext.Consumer>
-      {value => {
-        // value.addInference([infNum + infItself + infComm]);
-        () => value.addInference("a. p∧q rep");
-      }}
-    </InferenceContext.Consumer>;
+    return this.props.valueSent.addInference(infNum + infItself + infComm);
   };
 
   // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout

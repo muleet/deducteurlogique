@@ -70,9 +70,14 @@ class Deducer extends Component {
             </ul>
             <div className="deducer">
               <section className="infos-and-deduction-itself">
-                <ShowInformationsExercise
-                  exerciseSent={this.state.currentExercise}
-                />
+                <InferenceContext.Consumer>
+                  {value => (
+                    <ShowInformationsExercise
+                      valueSent={value}
+                      exerciseSent={this.state.currentExercise}
+                    />
+                  )}
+                </InferenceContext.Consumer>
                 <Fragment>
                   <button
                     type="button"
@@ -89,7 +94,7 @@ class Deducer extends Component {
                       {value => (
                         <Fragment>
                           <button
-                            onClick={() => value.addInference("a. p∧q rep")}
+                            onClick={() => value.addInference("bonjour")}
                             style={{ color: "green" }}
                           >
                             addInference
