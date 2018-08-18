@@ -12,24 +12,23 @@ class InferenceProvider extends Component {
     super(props);
 
     this.addInference = newInference => {
-      console.log("la nouvelle inférence est ", newInference);
+      // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
+      // console.log("la nouvelle inférence est ", newInference);
       let copyArray = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
 
       copyArray.push(newInference);
       copyArrayRendered.push(
-        <li>
-          <MakeInference
-            inferenceNumber={copyArray.length}
-            inferenceItself={newInference.itself}
-            inferenceCommentary={
-              newInference.numberCommentary + ", " + newInference.commentary
-            }
-          />
-        </li>
+        <MakeInference
+          key={copyArray.length}
+          inferenceNumber={copyArray.length}
+          inferenceItself={newInference.itself}
+          inferenceCommentary={
+            newInference.numberCommentary + ", " + newInference.commentary
+          }
+        />
       );
       this.setState(state => ({
-        // allInferences: [...this.state.allInferences, newInference],
         allInferences: copyArray,
         allInferencesRendered: copyArrayRendered
       }));
@@ -37,7 +36,6 @@ class InferenceProvider extends Component {
 
     this.resetDeduction = () => {
       this.setState(state => ({
-        // allInferences: [...this.state.allInferences, newInference],
         allInferences: [],
         allInferencesRendered: []
       }));
@@ -48,7 +46,8 @@ class InferenceProvider extends Component {
     this.state = {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
-      addInference: this.addInference
+      addInference: this.addInference,
+      resetDeduction: this.resetDeduction
     };
   }
 
@@ -56,7 +55,6 @@ class InferenceProvider extends Component {
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider value={this.state}>
-        {/* <button onClick={() => { this.addInference("ajout : ", this.props.inferenceSent); }} > addInference() </button> */}
         {this.props.children}
         {/* quand j'utilise le provider, ce sont les enfants que je lui donne */}
       </InferenceContext.Provider>

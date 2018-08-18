@@ -5,18 +5,19 @@ import ButtonRuleRep from "./Rules/ButtonRuleRep";
 class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
 
-  useOfMakeInference = (infNumCom, infItself, infComm) => {
-    console.log(infNumCom, infItself, infComm);
+  useOfMakeInference = (infItself, infNumCom, infComm) => {
+    // console.log(infNumCom, infItself, infComm);
+    // cette méthode va créer une inférence à partir de données envoyées par Deducer (au moment d'un clic sur la prémisse). D'abord on crée un objet contenant toutes les bonnes données.
     const inference = {
       itself: infItself,
       numberCommentary: infNumCom,
       commentary: infComm
     };
-
-    return this.props.valueSent.addInference(inference);
+    // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
+    this.props.valueSent.addInference(inference);
   };
 
-  // on retourne l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
+  // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
   render() {
     let setOfPremisses = [];
     let numberOfPremisses = 10; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
@@ -32,8 +33,8 @@ class ShowInformationsExercise extends Component {
           NameButton={this.props.exerciseSent.premisses[i]}
           useOfMakeInferenceSent={() =>
             this.useOfMakeInference(
-              newLetter,
               this.props.exerciseSent.premisses[i],
+              newLetter,
               "rep"
             )
           }

@@ -6,7 +6,6 @@ import TesteurExo2 from "./Temporary Components/TesteurExo2";
 import TesteurExo3 from "./Temporary Components/TesteurExo3";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
-import MakeInference from "./MakeInference";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -22,7 +21,9 @@ class Deducer extends Component {
     // On ajoute une nouvelle inférence à la déduction
     const copyArray = [...this.state.totalInferences]; // 1. pour modifier un state il faut commencer par en faire une copie
     copyArray.push(
-      NewInference
+      <Fragment key={this.state.totalInferences.length}>
+        {NewInference}
+      </Fragment>
       // 2. ensuite on modifie cette copie comme on le souhaite [note entre crochets à suppr : sachant que cette fonction devrait recevoir pour props le contenu d'une nouvelle inférence et de ses règles]
     );
     this.setState({
@@ -134,21 +135,20 @@ class Deducer extends Component {
 
   componentWillReceiveProps(nextProps) {
     // Fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
-    // Elle permet de changer de numéro d'exercice (sans recharger la page)
+    // ici on remet à zéro les inférences que l'utilisateur a produit, il ne doit pas avoir les mêmes d'un exo à l'autre
+    // <InferenceContext.Consumer>
+    //   {value => value.resetDeduction()}
+    // </InferenceContext.Consumer>;
+    // ici on change de numéro d'exercice (sans recharger la page)
     if (
       this.props.exerciseNumber > 1 ||
       this.props.exerciseNumber < Exercises.length
     ) {
       this.setState({
-        currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
+        currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)],
+        totalInferences: []
       });
     }
-    // ici on remet à zéro les inférences que l'utilisateur a produit
-    <InferenceContext.Consumer>
-      {value => {
-        () => value.resetDeduction();
-      }}
-    </InferenceContext.Consumer>;
   }
 }
 

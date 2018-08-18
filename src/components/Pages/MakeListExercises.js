@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Exercises from "../../data/ExercisesTest";
+import Exercises from "../../data/Exercises";
 import { Link } from "react-router-dom";
 
 // MakeListExercises génère sur une page, une liste d'exercices à partir des fichiers json contenant les exercices.
@@ -47,7 +47,7 @@ class MakeListExercises extends Component {
       arrayTemporary.push(array[i]);
     }
     const strToReturn = arrayTemporary.join(", ");
-    return <li>{strToReturn}</li>;
+    return <Fragment>{strToReturn}</Fragment>;
   };
 
   renderInfoExercises = numExercise => {
@@ -107,8 +107,8 @@ class MakeListExercises extends Component {
             {TitleToRender}
             Prémisses : <li>{PremissesToRender}</li>
             Conclusion : <li>{Exercises[numExercise].conclusion}</li>
-            Règles à utiliser : {RulesImpliedToRender}
-            Nombre minimal de lignes :{" "}
+            Règles à utiliser : <li>{RulesImpliedToRender}</li>
+            Nombre minimal de lignes :
             <li>{Exercises[numExercise].minimalLine}</li>
           </Fragment>
         )

@@ -3,7 +3,10 @@ import React, { Component } from "react";
 class MyPopover extends Component {
   render() {
     return (
-      <div className={"my-popover-button " + this.props.myPopoverClassName}>
+      <div
+        className={"my-popover-button " + this.props.myPopoverClassName}
+        onClick={this.props.onClick}
+      >
         {this.props.name}
         <div className="my-popover">
           {this.props.verbalName}

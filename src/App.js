@@ -1,17 +1,17 @@
 import React, { Component, Fragment } from "react";
 // Importation de mon css
-import "./css/reset.css"; // Reset de tout le css
+import "./reset.css"; // Reset de tout le css
 import "./css/app.css";
 import "./css/buttonMenu.css";
 import "./css/buttonRule.css";
 import "./css/color.css";
 import "./css/deduction.css";
-import "./css/inference.css";
 import "./css/exerciseList.css";
-import "./css/ShowInfoRules.css";
+import "./css/id.css";
+import "./css/inference.css";
 import "./css/myPopover.css";
 import "./css/questions.css";
-import "./css/id.css";
+import "./css/ShowInfoRules.css";
 // Importation de fonts
 import "./font/stylesheet.css";
 // // Importation de mes composants

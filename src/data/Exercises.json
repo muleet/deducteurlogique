@@ -30,7 +30,7 @@
     "conclusion": "p∧(q∧r)",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "∧i", "∧e"],
+    "rulesImplied": ["rep", "∧i", "∧e"],
     "minimalLine": 8
   },
   {
@@ -40,7 +40,7 @@
     "conclusion": "~q⊃~p",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["hyp", "reit", "~i", "⊃i", "⊃e"],
+    "rulesImplied": ["rep", "hyp", "~i", "⊃i", "⊃e"],
     "minimalLine": 7
   },
   {
@@ -50,7 +50,7 @@
     "conclusion": "q⊃~p",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "hyp", "~i", "∧i", "⊃i"],
+    "rulesImplied": ["rep", "hyp", "~i", "∧i", "⊃i"],
     "minimalLine": 7
   },
   {
@@ -62,7 +62,7 @@
     "conclusion": "(pvq)⊃(qvp)",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "hyp", "~i", "∧i", "⊃i"],
+    "rulesImplied": ["rep", "hyp", "~i", "∧i", "⊃i"],
     "minimalLine": 7
   }
 ]
