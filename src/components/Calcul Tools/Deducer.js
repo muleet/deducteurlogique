@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import TesteurExo2 from "./Temporary Components/TesteurExo2";
+import TesteurExo3 from "./Temporary Components/TesteurExo3";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 import MakeInference from "./MakeInference";
@@ -87,6 +88,15 @@ class Deducer extends Component {
                   >
                     exo2
                   </button>
+                  <button
+                    type="button"
+                    className="deduction-button"
+                    onClick={() => {
+                      this.updateTotalInferences(<TesteurExo3 />);
+                    }}
+                  >
+                    exo3
+                  </button>
                   <ul className="deduction">
                     {this.state.totalInferences}
                     <InferenceContext.Consumer>
@@ -133,6 +143,12 @@ class Deducer extends Component {
         currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
       });
     }
+    // ici on remet à zéro les inférences que l'utilisateur a produit
+    <InferenceContext.Consumer>
+      {value => {
+        () => value.resetDeduction();
+      }}
+    </InferenceContext.Consumer>;
   }
 }
 

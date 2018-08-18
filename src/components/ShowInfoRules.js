@@ -35,7 +35,7 @@ class ShowInfoRules extends Component {
       <Fragment>
         <li className="yes-available-rule legend-example">{"Disponible"}</li>
         <li className="soon-available-rule legend-example">
-          {"Bientôt disponible"}
+          {"Prochains ajouts"}
         </li>
         <li className="later-available-rule legend-example">{"Plus tard"}</li>
         <li className="maybenever-available-rule legend-example">
@@ -107,13 +107,6 @@ class ShowInfoRules extends Component {
           );
         }
       }
-      // for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
-      //   arrayUtilizationFormalized.push(
-      //     <ol key={i}>
-      //       {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
-      //     </ol>
-      //   );
-      // }
     }
 
     // Compilation de toutes les données en une seule variable, qui est l'état arrayInfoRule
@@ -144,13 +137,13 @@ class ShowInfoRules extends Component {
   render() {
     return (
       <main className="main-rules-info">
+        <ul className="legend-about-colors">
+          {this.makeLegendAboutColorRule()}
+        </ul>
         <ul className="list-rules">{this.renderListRules()}</ul>
         <ul className="box-info-rule">
           {this.state.numberRule}
           {this.state.arrayInfoRule}
-        </ul>
-        <ul className="legend-about-colors">
-          {this.makeLegendAboutColorRule()}
         </ul>
       </main>
     );

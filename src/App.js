@@ -163,9 +163,9 @@ class App extends Component {
             />
             <Route path="/calcul-prop-exo" component={MakeListExercises} />
             <Route path="/forma/:num" component={FormalisationEnonces} />
-            <Route path="/forma-exo" component={MakeListExercises} />
+            <Route path="/forma-exo" />
             <Route path="/calcul-pred/:num" component={CalculDesPredicats} />
-            <Route path="/calcul-pred-exo" component={MakeListExercises} />
+            <Route path="/calcul-pred-exo" />
             <Route
               path="/sign_up"
               // render={props => (

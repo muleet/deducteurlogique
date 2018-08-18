@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import MyPopover from "../MyPopover";
 import InfoRules from "../../data/InfoRules.json";
-// import { InferenceContext } from "./Deducer";
+import SelectRule from "./SelectRule";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
@@ -43,7 +43,7 @@ class ButtonRuleMaker extends Component {
               Description={arrayCurrentRules[i].verbalDescription}
               HowToUse={organizedUtilization}
               onClick={() => {
-                // new Popper("Wesh");
+                <SelectRule selectedRule={arrayCurrentRules[i].name} />;
               }}
             />
           );

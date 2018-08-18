@@ -35,6 +35,14 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.resetDeduction = () => {
+      this.setState(state => ({
+        // allInferences: [...this.state.allInferences, newInference],
+        allInferences: [],
+        allInferencesRendered: []
+      }));
+    };
+
     // State also contains the updater function so it will
     // be passed down into the context provider
     this.state = {
