@@ -1,27 +1,27 @@
 .main-calcul {
+  /* border: 3px white solid; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 800px;
-  border: 3px white solid;
+  /* height: 800px; */
   margin: 2px;
   flex: 1;
   align-items: center;
 }
 
 .deducer {
+  /* border: 1px red solid; */
   display: flex;
   flex-direction: row;
-
-  border: 1px red solid;
   flex: 1;
   margin: 2px;
-  width: 600px;
+  /* width: 600px; */
   justify-content: center;
 }
 
 .mini-header-deducer {
+  /* border: 1px rgb(153, 217, 234) solid; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -29,7 +29,6 @@
   height: 100px;
   width: 50%;
   align-items: center;
-  border: 1px rgb(153, 217, 234) solid;
   font-size: 28px;
 }
 
@@ -43,16 +42,17 @@
 .mini-header-deducer > li {
   display: flex;
   justify-content: space-evenly;
+  text-align: center;
 }
 
 .infos-and-deduction-itself {
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   margin: 2px;
   width: 400px;
 }
 
 .deduction {
-  border: 1px #00a2e8 solid;
+  /* border: 1px #00a2e8 solid; */
   display: flex;
   flex-direction: column;
   height: 280px;
@@ -62,40 +62,40 @@
 
 .usablesRules {
   /*style de l'ensemble des infos de l'exo en cours quand on est dans la page d'une déduction*/
+  /* border: 1px purple solid; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border: 1px purple solid;
   margin: 2px;
 }
 
 .setPremissesConclusion {
-  /* Concerne la box qui contient toutes les données d'un exo. Aussi bien les termes introductifs, que les boutons de prémisses, que la conclusion, ou autre.*/
+  /* Concerne la box qui contient toutes les infos d'un exo. Aussi bien les termes introductifs, que les boutons de prémisses, que la conclusion, ou autre.*/
+  /* border: 1px green solid; */
   font-style: italic;
   display: flex;
-  justify-content: row;
-  border: 1px green solid;
+  align-content: flex-start;
   margin: 2px;
 }
 
 .setPremissesConclusion > li {
-  margin: 20px;
+  margin: 0 20px;
 }
 
 .premisses {
   /*style des prémisses et conclusion dans les exos, spécifiquement*/
-  font-style: none;
+  border: 1px transparent solid;
+  font-style: normal;
   display: "flex";
   flex-direction: "column";
   align-content: center;
-  border: 1px white solid;
   padding: 4px;
   margin-bottom: 5px;
 }
 
 .premisses:hover {
   border: 1px red solid;
-  text-shadow: 0 0 20px rgb(255, 0, 0, 0.5);
+  text-shadow: 2px 2px 2px 3px rgb(255, 0, 0);
 }
 .premisses:click {
   background-color: red;
@@ -104,9 +104,25 @@
 
 #conclusion {
   /*style des prémisses et conclusion dans les exos, spécifiquement*/
+  /* border: 1px white solid; */
   display: "flex";
+  font-style: normal;
   flex-direction: "column";
   align-content: center;
-  border: 1px white solid;
   padding: 4px;
+}
+
+.solution-button {
+  border:1px solid white;
+  width: 5px;
+  display: inline-flex;
+  margin-right: 8px;
+  padding : 3px 8px;
+  justify-content: center;
+  /* justify-content: center; */
+}
+
+.solution-button:hover {
+  border:1px solid green;
+  color: green;
 }

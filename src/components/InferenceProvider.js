@@ -1,4 +1,4 @@
-import React, { createContext, Component } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
+import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
 import MakeInference from "./Calcul Tools/MakeInference";
 
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
@@ -21,7 +21,7 @@ class InferenceProvider extends Component {
       copyArrayRendered.push(
         <MakeInference
           key={copyArray.length}
-          inferenceNumber={copyArray.length}
+          inferenceNumber={copyArray.length + "."}
           inferenceItself={newInference.itself}
           inferenceCommentary={
             newInference.numberCommentary + ", " + newInference.commentary
@@ -31,6 +31,15 @@ class InferenceProvider extends Component {
       this.setState(state => ({
         allInferences: copyArray,
         allInferencesRendered: copyArrayRendered
+      }));
+    };
+
+    this.giveSolution = solution => {
+      // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
+      // console.log("la nouvelle inférence est ", solution);
+      this.setState(state => ({
+        allInferences: [],
+        allInferencesRendered: <Fragment>{solution}</Fragment>
       }));
     };
 
@@ -47,6 +56,7 @@ class InferenceProvider extends Component {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
       addInference: this.addInference,
+      giveSolution: this.giveSolution,
       resetDeduction: this.resetDeduction
     };
   }

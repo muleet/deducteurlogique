@@ -1,17 +1,35 @@
 import React, { Component } from "react";
+import SelectRule from "./Calcul Tools/SelectRule";
+import ReactModal from "react-modal";
 
 class MyPopover extends Component {
+  onPopoverClick = () => {
+    console.log("onPopoverClick");
+    return this.props.onClickContent;
+  };
+
+  longDescription = () => {
+    console.log(this.props.Description.length);
+    if (this.props.Description.length > 200) {
+      return "my-popover-longDescription";
+    }
+  };
+
   render() {
     return (
       <div
         className={"my-popover-button " + this.props.myPopoverClassName}
-        onClick={this.props.onClick}
+        onClick={() => {
+          this.onPopoverClick();
+        }}
       >
         {this.props.name}
         <div className="my-popover">
-          {this.props.verbalName}
+          <div className="my-popover-rulename">{this.props.verbalName}</div>
           <ul className="my-popover-content">
-            <li className="my-popover-desc">{this.props.Description}</li>
+            <li className={"my-popover-description " + this.longDescription()}>
+              {this.props.Description}
+            </li>
             <li className="my-popover-array">{this.props.HowToUse}</li>
           </ul>
         </div>

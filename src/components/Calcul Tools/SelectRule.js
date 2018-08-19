@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 
-// Ce composant sert seulement à rediriger une page vers une certaine règle. C'est pour simplifier le code.
+// Ce composant sert seulement à rediriger vers une certaine règle, juste après un clic de l'utilisateur sur un bouton qui avait pour nom cette règle.
+// C'est pour simplifier le code.
 
 class SelectRule extends Component {
+  putaindesamere = () => {
+    console.log("connard");
+  };
+
   render() {
-    console.log("SelectRule", this.props.selectedRule);
-    return console.log("SelectRule", this.props.selectedRule);
+    // console.log(this.props.selectedRule);
+    this.putaindesamere();
+    console.log("SelectRule");
+    return this.putaindesamere();
   }
 }
 

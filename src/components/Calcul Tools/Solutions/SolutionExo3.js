@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import MakeInference from "../MakeInference";
 
-function TesteurTemporaire() {
+function SolutionExo3() {
   return (
     <Fragment>
       <MakeInference
@@ -36,16 +36,16 @@ function TesteurTemporaire() {
       />
       <MakeInference
         inferenceNumber={"7."}
-        inferenceItself={"q∧r"}
+        inferenceItself={"p"}
         inferenceCommentary={"2, ∧e"}
       />
       <MakeInference
         inferenceNumber={"8."}
-        inferenceItself={"p∧q∧r"}
+        inferenceItself={"p∧(q∧r)"}
         inferenceCommentary={"7, 6, ∧i"}
       />
     </Fragment>
   );
 }
 
-export default TesteurTemporaire;
+export default SolutionExo3;

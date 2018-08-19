@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 
 class MakeListExercises extends Component {
   state = {
-    numberExercise: "Aucun exercice sélectionné",
+    numberExercise: (
+      <div style={{ textAlign: "center" }}>Aucun exercice sélectionné</div>
+    ),
     arrayInfoExercise: []
   };
 
@@ -75,7 +77,7 @@ class MakeListExercises extends Component {
       if (Exercises[numExercise].titleForSpecificExercise) {
         TitleToRender = (
           <Fragment>
-            Title : <li>{Exercises[numExercise].titleForSpecificExercise}</li>
+            Titre : <li>{Exercises[numExercise].titleForSpecificExercise}</li>
           </Fragment>
         );
       }

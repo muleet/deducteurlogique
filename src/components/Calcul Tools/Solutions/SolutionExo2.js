@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import MakeInference from "../MakeInference";
 
-function TesteurTemporaire() {
+function SolutionExo2() {
   return (
     <Fragment>
       <MakeInference
@@ -28,4 +28,4 @@ function TesteurTemporaire() {
   );
 }
 
-export default TesteurTemporaire;
+export default SolutionExo2;

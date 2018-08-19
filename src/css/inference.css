@@ -1,5 +1,6 @@
 .inferenceGlobal {
-  border: 1px #880015 solid;
+  border: 1px transparent solid;
+  color : red;
   display: flex;
   flex-direction: row;
   margin: 2px;
@@ -7,28 +8,27 @@
 }
 
 .inferenceNumber {
-  border: 1px #22b14c solid;
+  color: #86ffab;
   display: flex;
   justify-content: column;
   margin-right: 10px;
 }
 
 .inferenceItself {
-  border: 1px #3f48cc solid;
+  color: #93b5ff;
   display: flex;
+  width: 150px;
   justify-content: column;
   margin-right: 10px;
 }
 
-.inferenceItself:hover {
-}
 
 .inferenceCommentary {
-  border: 1px #ff7f27 solid;
+  color: #ffb58e;
   display: flex;
   justify-content: column;
 }
 
-.inferenceItself:hover {
-  border-color: red;
+.inferenceGlobal:hover {
+  border:1px red solid;
 }

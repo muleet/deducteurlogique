@@ -42,9 +42,11 @@ class ButtonRuleMaker extends Component {
               verbalName={arrayCurrentRules[i].verbalName}
               Description={arrayCurrentRules[i].verbalDescription}
               HowToUse={organizedUtilization}
-              onClick={() => (
-                <SelectRule selectedRule={arrayCurrentRules[i].name} />
-              )}
+              onClickContent={
+                "bonjour"
+                // <SelectRule selectedRule={"arrayCurrentRules[i].name"} />
+                // <SelectRule selectedRule={arrayCurrentRules[i].name} />
+              }
             />
           );
         } else {

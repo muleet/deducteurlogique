@@ -1,6 +1,6 @@
 import React from "react";
 import Deducer from "../Calcul Tools/Deducer";
-import ButAAtteindre from "../../img/repere.png"; //Image temporaire à supprimer plus tard
+// import ButAAtteindre from "../../img/repere.png"; //Image temporaire à supprimer plus tard
 
 // Ce fichier gère la page de calcul des propositions.
 
@@ -16,11 +16,11 @@ const CalculDesPropositions = props => {
         pageName="Calcul des propositions"
         exerciseNumber={Number(exerciseParamNumber)}
       />
-      <img
+      {/* <img
         style={{ width: "300px", height: "150px" }}
         src={ButAAtteindre}
         alt=""
-      />
+      /> */}
     </main>
   );
 };
