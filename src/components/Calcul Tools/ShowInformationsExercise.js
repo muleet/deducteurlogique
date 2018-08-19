@@ -21,25 +21,30 @@ class ShowInformationsExercise extends Component {
   render() {
     let setOfPremisses = [];
     let numberOfPremisses = 10; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
-
-    for (let i = 0; i < this.props.exerciseSent.premisses.length; i++) {
-      numberOfPremisses = numberOfPremisses + i;
-      const newLetter = numberOfPremisses.toString(36).toLowerCase();
-      setOfPremisses.push(
-        <ButtonRuleRep
-          key={i}
-          className={"premisses"}
-          NumberButton={newLetter}
-          NameButton={this.props.exerciseSent.premisses[i]}
-          useOfMakeInferenceSent={() =>
-            this.useOfMakeInference(
-              this.props.exerciseSent.premisses[i],
-              newLetter,
-              "rep"
-            )
-          }
-        />
+    if (this.props.exerciseSent.premisses.length === 0) {
+      setOfPremisses = (
+        <div style={{ fontStyle: "normal", padding: "4px" }}>(théorème)</div>
       );
+    } else {
+      for (let i = 0; i < this.props.exerciseSent.premisses.length; i++) {
+        numberOfPremisses = numberOfPremisses + i;
+        const newLetter = numberOfPremisses.toString(36).toLowerCase();
+        setOfPremisses.push(
+          <ButtonRuleRep
+            key={i}
+            className={"premisses"}
+            NumberButton={newLetter}
+            NameButton={this.props.exerciseSent.premisses[i]}
+            useOfMakeInferenceSent={() =>
+              this.useOfMakeInference(
+                this.props.exerciseSent.premisses[i],
+                newLetter,
+                "rep"
+              )
+            }
+          />
+        );
+      }
     }
     return (
       <ul className="setPremissesConclusion">

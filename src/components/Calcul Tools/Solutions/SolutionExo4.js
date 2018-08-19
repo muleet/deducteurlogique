@@ -38,6 +38,7 @@ function SolutionExo4() {
         inferenceNumber={"7."}
         inferenceItself={"~q⊃~p"}
         inferenceCommentary={"1-6, ⊃i"}
+        lastInference={true}
       />
     </Fragment>
   );

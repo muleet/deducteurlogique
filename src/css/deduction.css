@@ -112,6 +112,17 @@
   padding: 4px;
 }
 
+.possible-meaning {
+  /* border:1px solid rgb(255, 173, 186); */
+  font-size: 13px;
+  display: flex;
+  flex-direction : column;
+}
+
+.possible-meaning > li {
+  margin-bottom : 2px;
+}
+
 .solution-button {
   border:1px solid white;
   width: 5px;

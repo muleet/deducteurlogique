@@ -18,6 +18,7 @@ function SolutionExo1() {
         inferenceNumber={"3."}
         inferenceItself={"q"}
         inferenceCommentary={"1, 2, ⊃e"}
+        lastInference={true}
       />
     </Fragment>
   );

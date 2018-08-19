@@ -30,5 +30,9 @@
 }
 
 .inferenceGlobal:hover {
-  border:1px red solid;
+  border:1px solid red;
+}
+
+.concluding-inference {
+  font-weight:bold;
 }

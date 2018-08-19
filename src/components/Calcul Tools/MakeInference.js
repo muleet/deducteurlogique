@@ -6,10 +6,16 @@ import React, { Component, Fragment } from "react";
 // A côté du résultat de cette fonction, doit se trouver le résultat d'une fonction MakeInferenceCommentary, elle sera appelée dans Deduction.
 
 class MakeInference extends Component {
+  isItTheLastInference() {
+    if (this.props.lastInference) {
+      return "concluding-inference";
+    }
+  }
+
   render() {
     return (
       <Fragment>
-        <li className="inferenceGlobal">
+        <li className={"inferenceGlobal " + this.isItTheLastInference()}>
           <div className="inferenceNumber">{this.props.inferenceNumber}</div>
           <div className="inferenceItself">{this.props.inferenceItself}</div>
           <div className="inferenceCommentary">

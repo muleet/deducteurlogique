@@ -9,7 +9,6 @@ class MyPopover extends Component {
   };
 
   longDescription = () => {
-    console.log(this.props.Description.length);
     if (this.props.Description.length > 200) {
       return "my-popover-longDescription";
     }

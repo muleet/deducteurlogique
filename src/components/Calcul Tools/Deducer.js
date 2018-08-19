@@ -6,6 +6,7 @@ import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 import ReactModal from "react-modal";
 import ShowPossibleSolutions from "./ShowPossibleSolutions";
+import ShowInferencePossibleMeaning from "./ShowInferencePossibleMeaning";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -30,9 +31,7 @@ class Deducer extends Component {
   // };
 
   render() {
-    if (this.props.exerciseNumber > Exercises.length) {
-      return "ce nombre ne correspond pas à un exercice";
-    } else if (Object.keys(this.state.currentExercise).length === 0) {
+    if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
@@ -91,9 +90,12 @@ class Deducer extends Component {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
                       </ul>
+                      <ShowInferencePossibleMeaning
+                        exerciseSent={this.state.currentExercise}
+                      />
                       <div style={{ fontSize: 16 }}>
-                        Solutions possibles :{" "}
-                        <ShowPossibleSolutions valueSent={value} /> <br />
+                        Solutions : <ShowPossibleSolutions valueSent={value} />{" "}
+                        <br />
                         Test :{" "}
                         <button
                           type="button"

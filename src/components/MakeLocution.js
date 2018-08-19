@@ -3,6 +3,20 @@ import LocutionsLatines from "../data/LocutionsLatines.json";
 import LocutionsGrecques from "../data/LocutionsGrecques.json";
 
 function MakeLocution() {
+  function NoteOuAuteur(totalSentence, random) {
+    let noteOuAuteur = "";
+    if (totalSentence[random].note) {
+      noteOuAuteur = (
+        <div id="auteur-et-note">{"(" + totalSentence[random].note + ")"}</div>
+      );
+    } else if (totalSentence[random].auteur) {
+      noteOuAuteur = (
+        <div id="auteur-et-note">{totalSentence[random].auteur}</div>
+      );
+    }
+    return noteOuAuteur;
+  }
+
   let random = Math.floor(
     Math.random() * Number(LocutionsLatines.length + LocutionsGrecques.length)
   );
@@ -14,39 +28,42 @@ function MakeLocution() {
   }
   if (totalSentence[random].latin) {
     finalLocution = (
-      <div>
-        <div id="locution">{totalSentence[random].latin}</div>
+      <ul>
+        <li id="locution">{totalSentence[random].latin}</li>
         {NoteOuAuteur(totalSentence, random)}
-        <div id="traduction-locution">{totalSentence[random].traduction}</div>
-      </div>
+        <li id="traduction-locution">{totalSentence[random].traduction}</li>
+      </ul>
     );
   } else if (totalSentence[random].grec) {
     finalLocution = (
-      <Fragment>
-        <div id="locution">{totalSentence[random].grec}</div>
-        <div id="alphabetlatin">
+      <ul>
+        <li id="locution">{totalSentence[random].grec}</li>
+        <li id="alphabetlatin">
           {"[" + totalSentence[random].alphabetlatin + "]"}
-        </div>
+        </li>
         {NoteOuAuteur(totalSentence, random)}
-        <div id="traduction-locution">{totalSentence[random].traduction}</div>
-      </Fragment>
+        <li id="traduction-locution">{totalSentence[random].traduction}</li>
+      </ul>
     );
+  }
+
+  // <div
+  //   style={{
+  //     display: "flex",
+  //     flexDirection: "column"
+  //   }}
+  // >
+  {
+    /* <i
+        id="feather"
+        class="fas fa-feather-alt icon"
+        onClick={() => {
+          MakeLocution();
+        }}
+      /> */
   }
   return finalLocution;
-}
-
-function NoteOuAuteur(totalSentence, random) {
-  let noteOuAuteur = "";
-  if (totalSentence[random].note) {
-    noteOuAuteur = (
-      <div id="auteur-et-note">{"(" + totalSentence[random].note + ")"}</div>
-    );
-  } else if (totalSentence[random].auteur) {
-    noteOuAuteur = (
-      <div id="auteur-et-note">{totalSentence[random].auteur}</div>
-    );
-  }
-  return noteOuAuteur;
+  // </div>
 }
 
 export default MakeLocution;
