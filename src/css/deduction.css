@@ -1,10 +1,10 @@
 .main-calcul {
   /* border: 3px white solid; */
+  /* height: 800px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* height: 800px; */
   margin: 2px;
   flex: 1;
   align-items: center;
@@ -12,31 +12,31 @@
 
 .deducer {
   /* border: 1px red solid; */
+  /* width: 600px; */
   display: flex;
   flex-direction: row;
   flex: 1;
   margin: 2px;
-  /* width: 600px; */
   justify-content: center;
 }
 
 .mini-header-deducer {
   /* border: 1px rgb(153, 217, 234) solid; */
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   justify-content: space-around;
-  height: 100px;
   width: 50%;
   align-items: center;
   font-size: 28px;
 }
 
 .setOfTextAndIcon {
+  width: 180px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 180px;
 }
 
 .mini-header-deducer > li {
@@ -112,11 +112,40 @@
   padding: 4px;
 }
 
-.possible-meaning {
-  /* border:1px solid rgb(255, 173, 186); */
-  font-size: 13px;
+.set-meaning{
+  border:1px solid green;
+  display: "flex";
+  align-items: "center";
+  align-content: "center";
+}
+
+.meaning-button {
+  border:1px solid blue;
+  position: relative;
   display: flex;
-  flex-direction : column;
+  flex-direction: row;
+}
+
+.no-meaning-shown {
+  border:1px solid red;
+  display: flex;
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+.meaning-button:hover .no-meaning-shown {
+  display:none;
+}
+
+.meaning-button:hover .possible-meaning {
+  display: flex;
+  flex-direction: column;
+}
+
+.possible-meaning {
+  border:1px solid rgb(255, 173, 186);
+  font-size: 13px;
+  display: none;
 }
 
 .possible-meaning > li {

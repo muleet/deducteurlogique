@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import LocutionsLatines from "../data/LocutionsLatines.json";
 import LocutionsGrecques from "../data/LocutionsGrecques.json";
 
@@ -47,23 +47,7 @@ function MakeLocution() {
     );
   }
 
-  // <div
-  //   style={{
-  //     display: "flex",
-  //     flexDirection: "column"
-  //   }}
-  // >
-  {
-    /* <i
-        id="feather"
-        class="fas fa-feather-alt icon"
-        onClick={() => {
-          MakeLocution();
-        }}
-      /> */
-  }
   return finalLocution;
-  // </div>
 }
 
 export default MakeLocution;

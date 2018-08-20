@@ -19,8 +19,8 @@ class Home extends Component {
             components={InfoRules}
             name={
               <ButtonMenu
-                className="tuto-color main-button"
-                name={"Tuto & infos"}
+                className="info-color main-button"
+                name={"Informations sur la logique"}
               />
             }
           />
@@ -41,7 +41,7 @@ class Home extends Component {
             components={FormalisationEnonces}
             name={
               <ButtonMenu
-                className="forma-color main-button"
+                className="forma-color main-button unavailable-yet"
                 name="Formalisation des énoncés"
               />
             }
@@ -52,7 +52,7 @@ class Home extends Component {
             components={CalculDesPredicats}
             name={
               <ButtonMenu
-                className="pred-color main-button"
+                className="pred-color main-button unavailable-yet"
                 name="Calcul des prédicats"
               />
             }

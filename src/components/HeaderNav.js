@@ -57,7 +57,7 @@
 //       <Fragment>
 //         <ul className="list-link">
 //           <Link to="/">Menu principal</Link>
-//           <Link to="/tuto">Tuto {"&"} info</Link>
+//           <Link to="/info">Informations</Link>
 //           <Link to="/calcul-prop">Calcul des propositions</Link>
 //           <Link to="/calcul-prop-exo">Exercices des propositions</Link>
 //           <Link to="/fde">Formalisation des énoncés</Link>
@@ -65,7 +65,7 @@
 //           <Link to="/calcul-pred-exo">Exercices des prédicats</Link>
 //         </ul>
 //         <Route exact={true} path="/" component={Home} />
-//         <Route path="/tuto" component={Tutoriels} />
+//         <Route path="/info" component={Tutoriels} />
 //         <Route path="/calcul-prop" component={CalculDesPropositions} />
 //         <Route path="/calcul-prop-exo" component={MakeListExercises} />
 //         <Route path="/fde" component={FormalisationEnonces} />

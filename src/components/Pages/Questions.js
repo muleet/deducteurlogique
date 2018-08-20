@@ -3,7 +3,7 @@ import ShowQuestions from "../ShowQuestions";
 
 const Questions = () => {
   return (
-    <main className="main-tuto">
+    <main className="main-info">
       <div>
         <h2>Questions sur la logique</h2>
         <ShowQuestions />

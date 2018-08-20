@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import SelectRule from "./Calcul Tools/SelectRule";
-import ReactModal from "react-modal";
 
 class MyPopover extends Component {
   onPopoverClick = () => {

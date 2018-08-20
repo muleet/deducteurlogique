@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import MyPopover from "../MyPopover";
 import InfoRules from "../../data/InfoRules.json";
-import SelectRule from "./SelectRule";
+// import SelectRule from "./SelectRule";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.

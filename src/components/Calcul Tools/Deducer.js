@@ -4,9 +4,9 @@ import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
-import ReactModal from "react-modal";
 import ShowPossibleSolutions from "./ShowPossibleSolutions";
 import ShowInferencePossibleMeaning from "./ShowInferencePossibleMeaning";
+import MyModal from "../MyModal";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -94,30 +94,9 @@ class Deducer extends Component {
                         exerciseSent={this.state.currentExercise}
                       />
                       <div style={{ fontSize: 16 }}>
-                        Solutions : <ShowPossibleSolutions valueSent={value} />{" "}
+                        Solutions : <ShowPossibleSolutions valueSent={value} />
                         <br />
-                        Test :{" "}
-                        <button
-                          type="button"
-                          className=""
-                          onClick={() => (
-                            <ReactModal
-                              isOpen={false}
-                              // onAfterOpen={handleAfterOpenFunc}
-                              // onRequestClose={handleRequestCloseFunc}
-                              portalClassName="ReactModalPortal"
-                              overlayClassName="ReactModal__Overlay"
-                              className="ReactModal__Content"
-                              shouldFocusAfterRender={true}
-                              shouldCloseOnEsc={true}
-                              shouldReturnFocusAfterClose={true}
-                            >
-                              Modal affiché
-                            </ReactModal>
-                          )}
-                        >
-                          Modal
-                        </button>
+                        Test : <MyModal />
                       </div>
                     </Fragment>
                   </section>

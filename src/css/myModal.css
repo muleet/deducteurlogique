@@ -1,0 +1,24 @@
+/* .my-modal-button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.my-modal-button:hover .my-modal {
+  display: flex;
+  flex-direction: column;
+} */
+
+.my-modal {
+  background-color: black;
+  color: white;
+  display: flex;
+  align-content: center;
+}
+
+.my-modal-portal {
+  background-color :blue;
+}
+.my-modal-overlay {
+  background-color :red;
+}

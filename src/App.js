@@ -10,6 +10,7 @@ import "./css/exerciseList.css";
 import "./css/id.css";
 import "./css/inference.css";
 import "./css/myPopover.css";
+import "./css/myModal.css";
 import "./css/questions.css";
 import "./css/ShowInfoRules.css";
 // Importation de fonts
@@ -88,7 +89,7 @@ class App extends Component {
                 </Link>
                 <Link to="/questions">
                   <ButtonNav
-                    // className="tuto-color"
+                    // className="info-color"
                     name={
                       <i
                         className="fas fa-question"
@@ -100,7 +101,7 @@ class App extends Component {
 
                 <Link to="/list-regles">
                   <ButtonNav
-                    // className="tuto-color"
+                    // className="info-color"
                     name={
                       <i
                         className="fas fa-question"
