@@ -105,52 +105,46 @@
 #conclusion {
   /*style des prémisses et conclusion dans les exos, spécifiquement*/
   /* border: 1px white solid; */
-  display: "flex";
+  display: flex;
   font-style: normal;
   flex-direction: "column";
   align-content: center;
   padding: 4px;
 }
 
-.set-meaning{
-  border:1px solid green;
-  display: "flex";
-  align-items: "center";
-  align-content: "center";
-}
+/* Style des significations possibles */
 
-.meaning-button {
-  border:1px solid blue;
-  position: relative;
+.set-meaning {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  margin-bottom:3px;
 }
 
 .no-meaning-shown {
-  border:1px solid red;
-  display: flex;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 5px;
+}
+
+.possible-meaning {
+  /* border:1px solid rgb(255, 173, 186); */
   font-size: 13px;
   margin-left: 5px;
 }
 
-.meaning-button:hover .no-meaning-shown {
-  display:none;
-}
-
-.meaning-button:hover .possible-meaning {
-  display: flex;
-  flex-direction: column;
-}
-
-.possible-meaning {
-  border:1px solid rgb(255, 173, 186);
-  font-size: 13px;
-  display: none;
-}
-
 .possible-meaning > li {
-  margin-bottom : 2px;
+  margin-bottom: 2px;
 }
+
+#feather-meaning {
+  text-align: center;
+  font-size:20px;
+}
+
+/* Style des boutons des solutions des exercices */
 
 .solution-button {
   border:1px solid white;
@@ -159,7 +153,6 @@
   margin-right: 8px;
   padding : 3px 8px;
   justify-content: center;
-  /* justify-content: center; */
 }
 
 .solution-button:hover {

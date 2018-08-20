@@ -22,3 +22,7 @@
 .unavailable-yet {
   opacity: 0.2;
 }
+
+.deactivated {
+  color : rgb(75, 75, 75)
+}

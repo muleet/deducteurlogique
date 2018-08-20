@@ -14,10 +14,10 @@
     "titleForSpecificExercise": "",
     "premisses": ["p∧q", "q⊃~r"],
     "conclusion": "~r",
-    "meaning": [
+    "meaning": [[
       "p : Pierre Joray est professeur de logique",
       "q : Pierre Joray est directeur de l'UFR de philosophie",
-      "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
+      "r : Les assemblées générales sont souveraines à l'UFR de philosophie"]
     ],
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "∧e", "⊃e"],

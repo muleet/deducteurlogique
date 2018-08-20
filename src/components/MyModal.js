@@ -41,7 +41,7 @@ class MyModal extends React.Component {
           shouldCloseOnEsc={true}
           shouldReturnFocusAfterClose={true}
         >
-          <p>Modal text!</p>
+          <p>Modal text</p>
           <button onClick={this.handleCloseModal}>Close Modal</button>{" "}
         </ReactModal>
       </div>

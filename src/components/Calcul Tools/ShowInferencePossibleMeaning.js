@@ -2,60 +2,96 @@ import React, { Component } from "react";
 
 class ShowInferencePossibleMeaning extends Component {
   state = {
-    meaningNumberChosen: 0 // nombre de la signification choisie actuellement par l'utilisateur/le programme
-  };
-
-  changeState = length => {
-    // if (this.state.meaningNumberChosen > length) {
-    //   this.setState({ meaningNumberChosen: 0 });
-    // } else {
-    //   this.setState({
-    //     meaningNumberChosen: this.state.meaningNumberChosen + 1
-    //   });
-    // }
+    currentMeaningNumber: "rien", // nombre de la signification choisie actuellement par l'utilisateur ou le programme. Il est par défaut vide, et est déterminé aléatoirement au premier clic de l'utilisateur sur l'icône de plume.
+    myContent: (
+      <p className={"no-meaning-shown"}>afficher une signification possible</p>
+    ),
+    myFeather: (
+      <i
+        id="feather-meaning"
+        className="fas fa-feather-alt icon"
+        onClick={() => this.handleClick()}
+      />
+    )
   };
 
   randomMeaning = length => {
     return Math.floor(Math.random() * length);
   };
 
+  initialLaunch() {}
+
   render() {
     const meanings = this.props.exerciseSent.meaning;
-    let possibleMeaning = [[], [], [], [], [], [], [], [], [], [], [], [], []];
-    let meaningNumber = 1;
-    if (!(meanings[0] === undefined)) {
-      if (typeof meanings[0] === "string") {
-        for (let i = 0; i < meanings.length; i++) {
-          possibleMeaning[0].push(<li key={i}>{meanings[i]}</li>);
-        }
-      } else if (typeof meanings[0] === "object") {
-        meaningNumber = meanings.length;
-        for (let i = 0; i < meanings.length; i++) {
-          for (let j = 0; j < meanings[i].length; j++) {
-            possibleMeaning[i].push(<li key={j}>{meanings[i][j]}</li>);
-          }
+    let possibleMeaning = [[], [], [], [], [], [], [], [], [], [], [], [], []]; // flemme de faire un code qui crée un nombre de case cohérent avec le nombre d'exemples
+    if (!(meanings === undefined)) {
+      for (let i = 0; i < meanings.length; i++) {
+        for (let j = 0; j < meanings[i].length; j++) {
+          possibleMeaning[i].push(<li key={j}>{meanings[i][j]}</li>);
         }
       }
     }
 
+    this.handleClick = () => {
+      console.log("handleclick");
+      if (this.state.currentMeaningNumber === "rien") {
+        // on vérifie que currentMeaningNumber n'est pas juste "rien"
+        let isTheNumberDifferent = false;
+        while (isTheNumberDifferent !== true) {
+          const newNumber = this.randomMeaning(meanings.length);
+          if (this.state.currentMeaningNumber !== newNumber) {
+            isTheNumberDifferent = true;
+            this.setState({
+              currentMeaningNumber: newNumber,
+              myContent: (
+                <ul className="possible-meaning">
+                  {possibleMeaning[newNumber]}
+                </ul>
+              )
+            });
+          }
+        }
+      } else {
+        this.setState({
+          currentMeaningNumber: "rien",
+          myContent: (
+            <p className={"no-meaning-shown"}>
+              afficher une signification possible
+            </p>
+          )
+        });
+      }
+    };
+
     return (
       <div className="set-meaning">
-        <i
-          id="feather"
-          className="fas fa-feather-alt icon meaning-button"
-          // onClick={() => {
-          //   this.changeState(meanings.length);
-          // }}
-        >
+        {this.state.myFeather}
+        {this.state.myContent}
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    if (!(this.props.exerciseSent.meaning[0] === undefined)) {
+      this.setState({
+        myContent: (
           <p className={"no-meaning-shown"}>
             afficher une signification possible
           </p>
-          <ul className="possible-meaning">
-            {possibleMeaning[this.randomMeaning(meaningNumber)]}
-          </ul>
-        </i>
-      </div>
-    );
+        )
+      });
+    } else {
+      this.setState({
+        myContent: (
+          <p className="no-meaning-shown deactivated">
+            pas de signification prévue pour cet exercice
+          </p>
+        ),
+        myFeather: (
+          <i id="feather-meaning" className="fas fa-feather-alt deactivated" />
+        )
+      });
+    }
   }
 }
 export default ShowInferencePossibleMeaning;
