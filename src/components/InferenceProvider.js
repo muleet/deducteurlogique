@@ -34,6 +34,12 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.storeInferenceForRule = inferenceToStore => {
+      this.setState(state => ({
+        storedInference: inferenceToStore
+      }));
+    };
+
     this.giveSolution = solution => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       // console.log("la nouvelle inférence est ", solution);
@@ -55,7 +61,9 @@ class InferenceProvider extends Component {
     this.state = {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
+      storedInference: [],
       addInference: this.addInference,
+      storeInferenceForRule: this.storeInferenceForRule,
       giveSolution: this.giveSolution,
       resetDeduction: this.resetDeduction
     };

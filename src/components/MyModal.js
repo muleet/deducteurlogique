@@ -25,15 +25,15 @@ class MyModal extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleOpenModal}>Trigger Modal</button>
+        <element onClick={this.handleOpenModal}>
+          {this.props.modalButton}
+        </element>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="onRequestClose Example"
           // onAfterOpen={handleAfterOpenFunc}
           onRequestClose={this.handleCloseModal}
           shouldCloseOnOverlayClick={false}
-          // portalClassName="ReactModalPortal"
-          // overlayClassName="ReactModal__Overlay"
           portalClassName="my-modal-portal"
           overlayClassName="my-modal-overlay"
           className="my-modal"
@@ -41,8 +41,19 @@ class MyModal extends React.Component {
           shouldCloseOnEsc={true}
           shouldReturnFocusAfterClose={true}
         >
-          <p>Modal text</p>
-          <button onClick={this.handleCloseModal}>Close Modal</button>{" "}
+          {/* on affiche d'abord l'instruction décrivant ce que doit faire l'utilisateur pour se servir de cette règle */}
+          <p className="my-modal-instruction-rule">{this.props.instruction}</p>
+          {/* puis on affiche les inférences stockées, celles qui permettront de vérifier si la règle est bien utilisée */}
+          <p>{this.props.storedInference}</p>
+          {/* puis on affiche le contenu du modal */}
+          <p>{this.props.modalContent}</p>
+          {/* enfin, on affiche le bouton qui ferme le modal si l'utilisateur ne veut finalement pas utiliser cette règle */}
+          <p
+            className={"my-modal-close-button"}
+            onClick={this.handleCloseModal}
+          >
+            <i className="far fa-window-close" />
+          </p>
         </ReactModal>
       </div>
     );

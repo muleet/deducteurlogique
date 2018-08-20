@@ -124,6 +124,7 @@
     "verbalDescription":
       "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
     "arrayUtilization": "",
+    "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "available": "soon",
     "binomial": "e"
   },

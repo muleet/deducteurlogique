@@ -1,24 +1,48 @@
-/* .my-modal-button {
+.my-modal-button {
   position: relative;
   display: flex;
-  flex-direction: row;
 }
 
-.my-modal-button:hover .my-modal {
-  display: flex;
-  flex-direction: column;
-} */
-
 .my-modal {
-  background-color: black;
-  color: white;
-  display: flex;
-  align-content: center;
+  position: absolute;
+  display:flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  /* top: 250px;
+  left: 500px;
+  right: 40px;
+  bottom: 40px;*/
+  height:100px;
+  width:200px; 
+  border: 1px solid white;
+  border-radius: 10px;
+  /* -webkit-overflow-scrolling: touch; */
+  padding: 4px;
 }
 
 .my-modal-portal {
-  background-color :blue;
+  /* background-color :greenyellow;
+  color : greenyellow; */
 }
+
 .my-modal-overlay {
-  background-color :red;
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(255, 255, 255, 0.75); */
+}
+
+.my-modal-instruction-rule{
+  font-size:14px;
+}
+
+.my-modal-close-button {
+  color : red;
+}
+
+.my-modal > .my-modal-close-button {
+  justify-content: flex-end;
 }

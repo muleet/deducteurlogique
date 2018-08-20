@@ -3,8 +3,8 @@
   color : red;
   display: flex;
   flex-direction: row;
-  margin: 2px;
-  padding: 2px;
+  /* margin: 2px; */
+  padding: 4px;
 }
 
 .inferenceNumber {

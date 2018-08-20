@@ -94,6 +94,7 @@ popover {
   text-decoration: none;
   height: none;
   width: none;
+  outline: none;
 }
 /* HTML5 display-role reset for older browsers */
 article,

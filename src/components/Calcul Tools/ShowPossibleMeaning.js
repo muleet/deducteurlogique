@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ShowInferencePossibleMeaning extends Component {
+class ShowPossibleMeaning extends Component {
   state = {
     currentMeaningNumber: "rien", // nombre de la signification choisie actuellement par l'utilisateur ou le programme. Il est par défaut vide, et est déterminé aléatoirement au premier clic de l'utilisateur sur l'icône de plume.
     myContent: (
@@ -94,4 +94,4 @@ class ShowInferencePossibleMeaning extends Component {
     }
   }
 }
-export default ShowInferencePossibleMeaning;
+export default ShowPossibleMeaning;

@@ -5,15 +5,15 @@ import ShowInformationsExercise from "./ShowInformationsExercise";
 import ButtonRuleMaker from "./ButtonRuleMaker";
 import InferenceProvider, { InferenceContext } from "../InferenceProvider";
 import ShowPossibleSolutions from "./ShowPossibleSolutions";
-import ShowInferencePossibleMeaning from "./ShowInferencePossibleMeaning";
-import MyModal from "../MyModal";
+import ShowPossibleMeaning from "./ShowPossibleMeaning";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
 // Elle réceptionne InferenceContext, qui va véhiculer les infos de chaque nouvelle inférence.
 class Deducer extends Component {
   state = {
-    currentExercise: {}
+    currentExercise: {},
+    currentMeaning: {}
   };
 
   // updateTotalInferences = NewInference => {
@@ -90,13 +90,11 @@ class Deducer extends Component {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
                       </ul>
-                      <ShowInferencePossibleMeaning
+                      <ShowPossibleMeaning
                         exerciseSent={this.state.currentExercise}
                       />
                       <div style={{ fontSize: 16 }}>
                         Solutions : <ShowPossibleSolutions valueSent={value} />
-                        <br />
-                        Test : <MyModal />
                       </div>
                     </Fragment>
                   </section>
@@ -104,6 +102,7 @@ class Deducer extends Component {
                     <ul className="setOfRules">
                       <ButtonRuleMaker
                         rulesSent={this.state.currentExercise.rulesImplied}
+                        valueSent={value}
                       />
                     </ul>
                   </section>

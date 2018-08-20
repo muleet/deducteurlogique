@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-
+import MyModal from "./MyModal";
 class MyPopover extends Component {
-  onPopoverClick = () => {
-    console.log("onPopoverClick");
-    return this.props.onClickContent;
-  };
-
   longDescription = () => {
     if (this.props.Description.length > 200) {
       return "my-popover-longDescription";
@@ -14,12 +9,7 @@ class MyPopover extends Component {
 
   render() {
     return (
-      <div
-        className={"my-popover-button " + this.props.myPopoverClassName}
-        onClick={() => {
-          this.onPopoverClick();
-        }}
-      >
+      <div className={"my-popover-button " + this.props.myPopoverClassName}>
         {this.props.name}
         <div className="my-popover">
           <div className="my-popover-rulename">{this.props.verbalName}</div>
