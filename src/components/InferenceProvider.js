@@ -54,7 +54,10 @@ class InferenceProvider extends Component {
       if (!this.state.canInferenceBeStored) {
         this.setState({ canInferenceBeStored: true });
       } else {
-        this.setState({ canInferenceBeStored: false });
+        this.setState({
+          canInferenceBeStored: false,
+          storedInference: [] // on vide les inférences stockées durant le court temps où storedInference était pushable
+        });
       }
     };
 
@@ -79,8 +82,8 @@ class InferenceProvider extends Component {
     this.state = {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
-      storedInference: [],
-      canInferenceBeStored: false,
+      storedInference: [], // contient les inférences stockées pour la validation d'une règle
+      canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storeInferenceForRule: this.storeInferenceForRule,

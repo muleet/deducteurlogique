@@ -61,6 +61,7 @@ class Deducer extends Component {
                           "/calcul-prop/" +
                           Number(this.props.exerciseNumber - 1)
                         }
+                        onClick={() => value.resetDeduction()}
                       >
                         <i className="icon fas fa-arrow-left" />
                       </Link>
@@ -70,6 +71,7 @@ class Deducer extends Component {
                           "/calcul-prop/" +
                           Number(this.props.exerciseNumber + 1)
                         }
+                        onClick={() => value.resetDeduction()}
                       >
                         <i className="icon fas fa-arrow-right" />
                       </Link>
@@ -124,9 +126,6 @@ class Deducer extends Component {
   componentWillReceiveProps(nextProps) {
     // Fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
     // ici on remet à zéro les inférences que l'utilisateur a produit, il ne doit pas avoir les mêmes d'un exo à l'autre
-    /* <InferenceContext.Consumer>
-      {value => value.resetDeduction()}
-     </InferenceContext.Consumer> */
 
     // ici on change de numéro d'exercice (sans recharger la page)
     if (

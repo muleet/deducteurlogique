@@ -15,10 +15,12 @@ class MyModal extends React.Component {
   }
 
   handleOpenModal() {
+    this.props.valueSent.changeStorageBoolean(); // il est possible de pusher dans storedInference
     this.setState({ showModal: true });
   }
 
   handleCloseModal() {
+    this.props.valueSent.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInference
     this.setState({ showModal: false });
   }
 
@@ -39,14 +41,16 @@ class MyModal extends React.Component {
           shouldCloseOnEsc={true}
           shouldReturnFocusAfterClose={true}
         >
-          {/* on affiche d'abord l'instruction décrivant ce que doit fthisaire l'utilisateur pour se servir de cette règle */}
           <p className="my-modal-instruction-rule">{this.props.instruction}</p>
           <p>{"" + this.props.valueSent.canInferenceBeStored}</p>
-          {/* puis on affiche les inférences stockées, celles qui permettront de vérifier si la règle est bien utilisée */}
-          <p>{this.props.valueSent.storedInference}</p>
-          {/* puis on affiche le contenu du modal */}
-          <p>{this.props.modalContent}</p>
-          {/* enfin, on affiche le bouton qui ferme le modal si l'utilisateur ne veut finalement pas utiliser cette règle */}
+          <ul className="my-modal-arguments">
+            <li className="infNum-color">
+              {"A. " + this.props.valueSent.storedInference[0]}
+            </li>
+            <li className="infItself-color">
+              {"A⊃B. " + this.props.valueSent.storedInference[1]}
+            </li>
+          </ul>
           <p
             className={"my-modal-close-button"}
             onClick={this.handleCloseModal}

@@ -46,3 +46,7 @@
 .my-modal > .my-modal-close-button {
   justify-content: flex-end;
 }
+
+.my-modal-arguments-color {
+  color : #ff9393
+}
