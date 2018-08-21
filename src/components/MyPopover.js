@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MyModal from "./MyModal";
+
 class MyPopover extends Component {
   longDescription = () => {
     if (this.props.Description.length > 200) {

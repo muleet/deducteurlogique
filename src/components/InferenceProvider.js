@@ -13,7 +13,6 @@ class InferenceProvider extends Component {
 
     this.addInference = newInference => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
-      // console.log("la nouvelle inférence est ", newInference);
       let copyArray = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
 
@@ -26,6 +25,11 @@ class InferenceProvider extends Component {
           inferenceCommentary={
             newInference.numberCommentary + ", " + newInference.commentary
           }
+          onClickSent={() => {
+            if (this.state.canInferenceBeStored === true) {
+              this.storeInferenceForRule(copyArray.length, newInference.itself);
+            }
+          }}
         />
       );
       this.setState(state => ({
@@ -34,10 +38,24 @@ class InferenceProvider extends Component {
       }));
     };
 
-    this.storeInferenceForRule = inferenceToStore => {
-      this.setState(state => ({
-        storedInference: inferenceToStore
-      }));
+    this.storeInferenceForRule = (numInference, inferenceItself) => {
+      console.log("1", numInference, inferenceItself);
+      let copyArrayStoredInference = [this.state.storedInference];
+      if (this.state.canInferenceBeStored === true) {
+        copyArrayStoredInference.push(numInference, inferenceItself);
+        console.log("2", copyArrayStoredInference);
+        this.setState(state => ({
+          storedInference: copyArrayStoredInference
+        }));
+      }
+    };
+
+    this.changeStorageBoolean = () => {
+      if (!this.state.canInferenceBeStored) {
+        this.setState({ canInferenceBeStored: true });
+      } else {
+        this.setState({ canInferenceBeStored: false });
+      }
     };
 
     this.giveSolution = solution => {
@@ -62,7 +80,9 @@ class InferenceProvider extends Component {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [],
+      canInferenceBeStored: false,
       addInference: this.addInference,
+      changeStorageBoolean: this.changeStorageBoolean,
       storeInferenceForRule: this.storeInferenceForRule,
       giveSolution: this.giveSolution,
       resetDeduction: this.resetDeduction

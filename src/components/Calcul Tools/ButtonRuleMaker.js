@@ -2,7 +2,6 @@ import React, { Fragment, Component } from "react";
 import MyPopover from "../MyPopover";
 import InfoRules from "../../data/InfoRules.json";
 import MyModal from "../MyModal";
-// import SelectRule from "./SelectRule";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
@@ -32,11 +31,11 @@ class ButtonRuleMaker extends Component {
           organizedUtilization.push(
             <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
           );
-          // }
         }
         if (Number(arrayRulesSent[i].length) === 2) {
           arrayRulesTwoCharacters.push(
             <MyModal
+              key={i}
               modalButton={
                 <MyPopover
                   key={i}
@@ -48,12 +47,13 @@ class ButtonRuleMaker extends Component {
                 />
               }
               instruction={arrayCurrentRules[i].instruction}
-              storedInference={this.props.valueSent}
+              valueSent={this.props.valueSent}
             />
           );
         } else {
           arrayAllOtherRules.push(
             <MyModal
+              key={i}
               modalButton={
                 <MyPopover
                   key={i}
@@ -65,7 +65,7 @@ class ButtonRuleMaker extends Component {
                 />
               }
               instruction={arrayCurrentRules[i].instruction}
-              storedInference={this.props.valueSent}
+              valueSent={this.props.valueSent}
             />
           );
         }

@@ -12,10 +12,15 @@ class MakeInference extends Component {
     }
   }
 
+  isThisInferenceStored() {}
+
   render() {
     return (
       <Fragment>
-        <li className={"inferenceGlobal " + this.isItTheLastInference()}>
+        <li
+          className={"inferenceGlobal " + this.isItTheLastInference()}
+          onClick={this.props.onClickSent}
+        >
           <div className="inferenceNumber">{this.props.inferenceNumber}</div>
           <div className="inferenceItself">{this.props.inferenceItself}</div>
           <div className="inferenceCommentary">
