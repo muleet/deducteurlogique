@@ -62,9 +62,8 @@ class MyModal extends React.Component {
           ariaHideApp={false}
         >
           <section className="my-modal-window">
-            <p className="my-modal-instruction-rule">
-              {this.props.instruction}
-            </p>
+            <p className="my-modal-ruleName">{this.props.ruleName}</p>
+            <p className="my-modal-ruleInstruction">{this.props.instruction}</p>
             <p>{"" + this.props.valueSent.canInferenceBeStored}</p>
             <ul className="my-modal-all-arguments">
               <li className="my-modal-single-argument">

@@ -9,10 +9,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center; 
-  /* top: 250px;
-  left: 500px;
-  right: 40px;
-  bottom: 40px;*/
+  top: 250px;
+  left: 400px;
+  /* right: 100px; */
+  /* bottom: 40px; */
   height:150px;
   width:250px; 
   border: 1px solid white;
@@ -28,24 +28,31 @@
 
 .my-modal-overlay {
   /* position: fixed; */
-  top: 10;
+  /* top: 10;
   left: 10;
   right: 10;
-  bottom: 10;
-  background-color: rgba(255, 255, 255, 0.75);
+  bottom: 10; */
+  /* background-color: rgba(255, 255, 255, 0.75); */
 }
 
 .my-modal-window {
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
 }
 
-.my-modal-instruction-rule{
+.my-modal-ruleInstruction {
   font-size:14px;
+}
+
+.my-modal-ruleName{
+  font-size:20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom : 10px;
 }
 
 .my-modal-all-buttons {
   display:flex;
-  margin-left : 200px;
+  justify-content: center;
 }
 
 .my-modal-button {
@@ -56,15 +63,13 @@
 
 .my-modal-all-arguments {
   color : #ff9393;
-  border: 1px solid green;
-  margin: 1px;
+    margin: 1px;
   padding: 1px;
 }
 
 .my-modal-single-argument {
   display: flex;
   flex-direction: row;
-  border: 1px solid blue;
   margin: 1px;
   padding: 1px;
 }

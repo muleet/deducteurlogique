@@ -40,13 +40,14 @@ class ButtonRuleMaker extends Component {
                 <MyPopover
                   key={i}
                   myPopoverClassName="singleRule tinyRule"
-                  name={arrayCurrentRules[i].name}
+                  ruleName={arrayCurrentRules[i].name}
                   verbalName={arrayCurrentRules[i].verbalName}
                   Description={arrayCurrentRules[i].verbalDescription}
                   HowToUse={organizedUtilization}
                 />
               }
               instruction={arrayCurrentRules[i].instruction}
+              ruleName={arrayCurrentRules[i].name}
               valueSent={this.props.valueSent}
             />
           );
@@ -58,13 +59,14 @@ class ButtonRuleMaker extends Component {
                 <MyPopover
                   key={i}
                   myPopoverClassName="singleRule fatRule"
-                  name={arrayRulesSent[i]}
+                  ruleName={arrayRulesSent[i]}
                   verbalName={arrayCurrentRules[i].verbalName}
                   Description={arrayCurrentRules[i].verbalDescription}
                   HowToUse={organizedUtilization}
                 />
               }
               instruction={arrayCurrentRules[i].instruction}
+              ruleName={arrayCurrentRules[i].name}
               valueSent={this.props.valueSent}
             />
           );

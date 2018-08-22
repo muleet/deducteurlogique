@@ -10,7 +10,7 @@ class MyPopover extends Component {
   render() {
     return (
       <div className={"my-popover-button " + this.props.myPopoverClassName}>
-        {this.props.name}
+        {this.props.ruleName}
         <div className="my-popover">
           <div className="my-popover-rulename">{this.props.verbalName}</div>
           <ul className="my-popover-content">
