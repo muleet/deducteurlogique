@@ -1,5 +1,5 @@
 import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
-import MakeInference from "./Calcul Tools/MakeInference";
+import MakeInference from "../Calcul Tools/MakeInference";
 
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
 // Pour importer cette variable contextuelle :
@@ -13,9 +13,9 @@ class InferenceProvider extends Component {
 
     this.addInference = newInference => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
+      console.log("bonjour c'est addInference");
       let copyArray = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
-
       copyArray.push(newInference);
       copyArrayRendered.push(
         <MakeInference
@@ -43,20 +43,26 @@ class InferenceProvider extends Component {
 
     this.storeInferenceForRule = (numInference, inferenceItself) => {
       let copyArrayStoredInference = [...this.state.storedInference];
+      let copyArrayStoredInferenceRendered = [
+        ...this.state.storedInferenceRendered
+      ];
       if (this.state.canInferenceBeStored === true) {
-        copyArrayStoredInference.push(
-          <Fragment key={copyArrayStoredInference.length}>
+        copyArrayStoredInference.push(inferenceItself);
+        copyArrayStoredInferenceRendered.push(
+          <Fragment key={copyArrayStoredInferenceRendered.length}>
             <p className="infNum-color">{numInference}</p>
             <p className="infItself-color">{inferenceItself}</p>
           </Fragment>
         );
         this.setState(state => ({
-          storedInference: copyArrayStoredInference
+          storedInference: copyArrayStoredInference,
+          storedInferenceRendered: copyArrayStoredInferenceRendered
         }));
       }
     };
 
     this.changeStorageBoolean = redo => {
+      // sert à désactiver le tableau storedInference quand un modal n'est pas activé
       if (redo === "redo") {
         this.setState({
           storedInference: []
@@ -66,7 +72,8 @@ class InferenceProvider extends Component {
       } else {
         this.setState({
           canInferenceBeStored: false,
-          storedInference: [] // on vide les inférences stockées durant le court temps où storedInference était pushable
+          storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
+          storedInferenceRendered: []
         });
       }
     };
@@ -92,7 +99,8 @@ class InferenceProvider extends Component {
     this.state = {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
-      storedInference: [], // contient les inférences stockées pour la validation d'une règle
+      storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
+      storedInferenceRendered: [], // contient les données htmlisées des inférences stockées pour la validation d'une règle
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
@@ -103,7 +111,6 @@ class InferenceProvider extends Component {
   }
 
   render() {
-    console.log("bonjour");
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider value={this.state}>

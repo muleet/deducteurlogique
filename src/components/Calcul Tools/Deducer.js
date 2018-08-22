@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ShowInformationsExercise from "./ShowInformationsExercise";
 import ButtonRuleMaker from "./ButtonRuleMaker";
-import InferenceProvider, { InferenceContext } from "../InferenceProvider";
+import InferenceProvider, {
+  InferenceContext
+} from "../Context/InferenceProvider";
 import ShowPossibleSolutions from "./ShowPossibleSolutions";
 import ShowPossibleMeaning from "./ShowPossibleMeaning";
 

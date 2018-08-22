@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ReactModal from "react-modal";
-import RuleProvider, { RuleContext } from "./Calcul Tools/RuleProvider";
+import RuleProvider, { RuleContext } from "./Context/RuleProvider";
 // import ReactDOM from "react-dom";
 
 // ReactModal.setAppElement("#main");
@@ -30,17 +30,34 @@ class MyModal extends Component {
     this.setState({ showModal: false });
   }
 
-  verifyRule(value) {
+  verifyRule(valueRuleContext) {
+    console.log("verifyRule");
     if (this.props.valueSent.storedInference[1] !== undefined) {
-      console.log("verifyRule");
-      <Fragment>
-        {value.conditionalElimination(
-          this.props.valueSent.storedInference[0],
-          this.props.valueSent.storedInference[1]
-        )}
-        {console.log("state", value.machin)}
-      </Fragment>;
+      valueRuleContext.conditionalElimination(
+        this.props.valueSent.storedInference[0],
+        this.props.valueSent.storedInference[1]
+      );
     }
+    // if (result !== "error" || result !== "") {
+    //   return (
+    //     <InferenceProvider>
+    //       <InferenceContext.Consumer>
+    //         {value => {
+    //           const inference = {
+    //             itself: result,
+    //             numberCommentary: "num",
+    //             commentary: "⊃e"
+    //           };
+    //           // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
+    //           value.addInference(inference);
+    //           console.log(value.allInferences);
+    //         }}
+    //       </InferenceContext.Consumer>
+    //     </InferenceProvider>
+    //   );
+    // } else {
+    //   console.log("erreur dans la vérification de la règle");
+    // }
   }
 
   render() {
@@ -61,13 +78,6 @@ class MyModal extends Component {
                   portalClassName="my-modal-portal"
                   overlayClassName="my-modal-overlay"
                   className="my-modal"
-                  bodyOpenClassName="my-modal-Body--open"
-                  htmlOpenClassName="my-modal-Html--open"
-                  // portalClassName="A"
-                  // overlayClassName="B"
-                  // className="C"
-                  // bodyOpenClassName="D"
-                  // htmlOpenClassName="E"
                   shouldFocusAfterRender={true}
                   shouldCloseOnOverlayClick={false}
                   shouldCloseOnEsc={true}
@@ -82,11 +92,11 @@ class MyModal extends Component {
                     <ul className="my-modal-all-arguments">
                       <li className="my-modal-single-argument">
                         <p>A : </p>
-                        {this.props.valueSent.storedInference[0]}
+                        {this.props.valueSent.storedInferenceRendered[0]}
                       </li>
                       <li className="my-modal-single-argument">
                         <p>A⊃B : </p>
-                        {this.props.valueSent.storedInference[1]}
+                        {this.props.valueSent.storedInferenceRendered[1]}
                       </li>
                     </ul>
                     <div className="my-modal-all-buttons">

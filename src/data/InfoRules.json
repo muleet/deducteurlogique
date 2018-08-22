@@ -67,6 +67,7 @@
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
+    "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
     "available": "soon",
     "binomial": "e"
   },

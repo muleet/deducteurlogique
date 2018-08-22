@@ -9,14 +9,17 @@
   /* left: 400px; */
   /* right: 100px; */
   /* bottom: 250px; */
-  max-height:150px;
-  max-width:250px; 
+  display: inline-block;
+  /* max-height:150px; */
+  /* min-width: 100px; */
+  /* max-width:250px;  */
   border: 1px solid rgba(255, 255, 255, 0.137);
   box-shadow: -5px 5px 50px rgba(255, 255, 255, 0.137);
   /* box-shadow: -5px 5px 10px rgb(43, 43, 43); */
   border-radius: 10px;
   /* -webkit-overflow-scrolling: touch; */
   padding: 10px;
+  outline:none;
 }
 
 .my-modal-portal {
@@ -42,6 +45,8 @@
 
 .my-modal-ruleInstruction {
   font-size:14px;
+  max-width: 220px;
+  text-align: center;
 }
 
 .my-modal-ruleName{
