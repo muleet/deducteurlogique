@@ -13,12 +13,12 @@
   left: 500px;
   right: 40px;
   bottom: 40px;*/
-  height:100px;
-  width:200px; 
+  height:150px;
+  width:250px; 
   border: 1px solid white;
   border-radius: 10px;
   /* -webkit-overflow-scrolling: touch; */
-  padding: 4px;
+  padding: 10px;
 }
 
 .my-modal-portal {
@@ -28,25 +28,43 @@
 
 .my-modal-overlay {
   /* position: fixed; */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* background-color: rgba(255, 255, 255, 0.75); */
+  top: 10;
+  left: 10;
+  right: 10;
+  bottom: 10;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.my-modal-window {
+  border: 1px solid purple;
 }
 
 .my-modal-instruction-rule{
   font-size:14px;
 }
 
-.my-modal-close-button {
-  color : red;
+.my-modal-all-buttons {
+  display:flex;
+  margin-left : 200px;
 }
 
-.my-modal > .my-modal-close-button {
-  justify-content: flex-end;
+.my-modal-button {
+  color : white;
+  margin-right:10px;
 }
 
-.my-modal-arguments-color {
-  color : #ff9393
+
+.my-modal-all-arguments {
+  color : #ff9393;
+  border: 1px solid green;
+  margin: 1px;
+  padding: 1px;
+}
+
+.my-modal-single-argument {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid blue;
+  margin: 1px;
+  padding: 1px;
 }

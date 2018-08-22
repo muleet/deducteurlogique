@@ -12,23 +12,8 @@ import ShowPossibleMeaning from "./ShowPossibleMeaning";
 // Elle réceptionne InferenceContext, qui va véhiculer les infos de chaque nouvelle inférence.
 class Deducer extends Component {
   state = {
-    currentExercise: {},
-    currentMeaning: {}
+    currentExercise: {}
   };
-
-  // updateTotalInferences = NewInference => {
-  //   // On ajoute une nouvelle inférence à la déduction
-  //   const copyArray = [...this.state.totalInferences]; // 1. pour modifier un state il faut commencer par en faire une copie
-  //   copyArray.push(
-  //     <Fragment key={this.state.totalInferences.length}>
-  //       {NewInference}
-  //     </Fragment>
-  //     // 2. ensuite on modifie cette copie comme on le souhaite [note entre crochets à suppr : sachant que cette fonction devrait recevoir pour props le contenu d'une nouvelle inférence et de ses règles]
-  //   );
-  //   this.setState({
-  //     totalInferences: copyArray // 3. pour finir, on dit que le state d'origine est égal à la copie modifiée
-  //   });
-  // };
 
   render() {
     if (Object.keys(this.state.currentExercise).length === 0) {

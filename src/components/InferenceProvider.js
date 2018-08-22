@@ -27,7 +27,10 @@ class InferenceProvider extends Component {
           }
           onClickSent={() => {
             if (this.state.canInferenceBeStored === true) {
-              this.storeInferenceForRule(copyArray.length, newInference.itself);
+              this.storeInferenceForRule(
+                copyArray.length + " ",
+                newInference.itself
+              );
             }
           }}
         />
@@ -39,19 +42,26 @@ class InferenceProvider extends Component {
     };
 
     this.storeInferenceForRule = (numInference, inferenceItself) => {
-      console.log("1", numInference, inferenceItself);
-      let copyArrayStoredInference = [this.state.storedInference];
+      let copyArrayStoredInference = [...this.state.storedInference];
       if (this.state.canInferenceBeStored === true) {
-        copyArrayStoredInference.push(numInference, inferenceItself);
-        console.log("2", copyArrayStoredInference);
+        copyArrayStoredInference.push(
+          <Fragment key={copyArrayStoredInference.length}>
+            <p className="infNum-color">{numInference}</p>
+            <p className="infItself-color">{inferenceItself}</p>
+          </Fragment>
+        );
         this.setState(state => ({
           storedInference: copyArrayStoredInference
         }));
       }
     };
 
-    this.changeStorageBoolean = () => {
-      if (!this.state.canInferenceBeStored) {
+    this.changeStorageBoolean = redo => {
+      if (redo === "redo") {
+        this.setState({
+          storedInference: []
+        });
+      } else if (!this.state.canInferenceBeStored) {
         this.setState({ canInferenceBeStored: true });
       } else {
         this.setState({

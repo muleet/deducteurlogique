@@ -6,7 +6,6 @@ class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
 
   useOfMakeInference = (infItself, infNumCom, infComm) => {
-    // console.log(infNumCom, infItself, infComm);
     // cette méthode va créer une inférence à partir de données envoyées par Deducer (au moment d'un clic sur la prémisse). D'abord on crée un objet contenant toutes les bonnes données.
     const inference = {
       itself: infItself,
