@@ -103,6 +103,7 @@ class InferenceProvider extends Component {
   }
 
   render() {
+    console.log("bonjour");
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <InferenceContext.Provider value={this.state}>

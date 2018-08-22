@@ -6,8 +6,8 @@ class RuleProvider extends Component {
   constructor(props) {
     super(props);
 
-    this.conjonditionalElimination = (A, ifAthenB) => {
-      console.log(ifAthenB.indexOf("⊃"));
+    this.conditionalElimination = (A, ifAthenB) => {
+      console.log("⊃e", ifAthenB.indexOf("⊃"));
       if (ifAthenB.indexOf("⊃") !== -1) {
       }
     };
@@ -15,12 +15,14 @@ class RuleProvider extends Component {
     this.conjonditionalElimination = (A, AandB) => {};
 
     this.state = {
-      conjonditionalElimination: this.conjonditionalElimination,
+      machin: "le state machin s'affiche",
+      conditionalElimination: this.conditionalElimination,
       conjonctionElimination: this.conjonctionElimination
     };
   }
 
   render() {
+    console.log("le render de rule provider fonctionne");
     return (
       /*la propriété value est très importante ici, elle rend le contenu du state disponible aux `Consumers` de l'application*/
       <RuleContext.Provider value={this.state}>

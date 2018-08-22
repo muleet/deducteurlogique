@@ -45,13 +45,13 @@
   },
   {
     "Number": 5,
-    "titleForSpecificExercise": "Exo du tier exclu",
-    "premisses": ["~(p^q)"],
-    "conclusion": "q⊃~p",
+    "titleForSpecificExercise": "Loi du tier exclu",
+    "premisses": [],
+    "conclusion": "p∨~p",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["rep", "hyp", "~i", "∧i", "⊃i"],
-    "minimalLine": 7
+    "rulesImplied": ["reit", "hyp", "∨i", "~i", "~e"],
+    "minimalLine": 9
   },
   {
     "Number": 6,
@@ -62,7 +62,7 @@
     "conclusion": "(pvq)⊃(qvp)",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["rep", "hyp", "~i", "∧i", "⊃i"],
+    "rulesImplied": ["hyp", "~i", "∨i", "⊃i"],
     "minimalLine": 7
   }
 ]

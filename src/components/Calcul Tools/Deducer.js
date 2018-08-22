@@ -101,6 +101,7 @@ class Deducer extends Component {
       );
     }
   }
+
   componentDidMount() {
     this.setState(
       { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
