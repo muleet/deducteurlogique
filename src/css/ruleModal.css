@@ -1,9 +1,9 @@
-.my-modal-button {
+.rule-modal-button {
   position: relative;
   /* display: flex; */
 }
 
-.my-modal {
+.rule-modal {
   /* position: absolute; */
   /* top: 250px; */
   /* left: 400px; */
@@ -22,13 +22,13 @@
   outline:none;
 }
 
-.my-modal-portal {
+.rule-modal-portal {
   /* margin :300px; */
   /* background-color :greenyellow; */
   /* color : greenyellow; */
 }
 
-.my-modal-overlay {
+.rule-modal-overlay {
   margin-top:-500px;
   margin-left:40px;
   /* position: fixed; */
@@ -39,41 +39,44 @@
   /* background-color: rgba(255, 255, 255, 0.75); */
 }
 
-.my-modal-window {
+.rule-modal-window {
   /* border: 1px solid purple; */
 }
 
-.my-modal-ruleInstruction {
+.rule-modal-ruleInstruction {
   font-size:14px;
   max-width: 220px;
   text-align: center;
 }
 
-.my-modal-ruleName{
+.rule-modal-ruleName{
   font-size:20px;
   display: flex;
   justify-content: center;
   margin-bottom : 10px;
 }
 
-.my-modal-all-buttons {
+.rule-modal-all-buttons {
   display:flex;
   justify-content: center;
 }
 
-.my-modal-button {
+.rule-modal-button {
   color : white;
   margin-right:10px;
 }
 
+.rule-modal-button:hover {
+  color : red;
+}
 
-.my-modal-all-arguments {
+.rule-modal-all-arguments {
   color : #ff9393;
     margin: 1px;
   padding: 1px;
 }
 
-.my-modal-single-argument {
+.rule-modal-single-argument {
   display: flex;
   flex-direction: row;
   margin: 1px;

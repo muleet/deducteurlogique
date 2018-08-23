@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
-import MyPopover from "../MyPopover";
+import RulePopover from "../RulePopover";
 import InfoRules from "../../data/InfoRules.json";
-import MyModal from "../MyModal";
+import RuleModal from "../RuleModal";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
@@ -11,7 +11,6 @@ class ButtonRuleMaker extends Component {
     const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
-
     if (arrayRulesSent.length === 0) {
       // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doitde renvoyer la totalité des règles possibles.)
     } else if (arrayRulesSent.length > 0) {
@@ -34,12 +33,12 @@ class ButtonRuleMaker extends Component {
         }
         if (Number(arrayRulesSent[i].length) === 2) {
           arrayRulesTwoCharacters.push(
-            <MyModal
+            <RuleModal
               key={i}
               modalButton={
-                <MyPopover
+                <RulePopover
                   key={i}
-                  myPopoverClassName="singleRule tinyRule"
+                  RulePopoverClassName="singleRule tinyRule"
                   ruleName={arrayCurrentRules[i].name}
                   verbalName={arrayCurrentRules[i].verbalName}
                   Description={arrayCurrentRules[i].verbalDescription}
@@ -47,18 +46,19 @@ class ButtonRuleMaker extends Component {
                 />
               }
               instruction={arrayCurrentRules[i].instruction}
+              expectedArguments={arrayCurrentRules[i].expectedArguments}
               ruleName={arrayCurrentRules[i].name}
               valueSent={this.props.valueSent}
             />
           );
         } else {
           arrayAllOtherRules.push(
-            <MyModal
+            <RuleModal
               key={i}
               modalButton={
-                <MyPopover
+                <RulePopover
                   key={i}
-                  myPopoverClassName="singleRule fatRule"
+                  RulePopoverClassName="singleRule fatRule"
                   ruleName={arrayRulesSent[i]}
                   verbalName={arrayCurrentRules[i].verbalName}
                   Description={arrayCurrentRules[i].verbalDescription}
@@ -66,6 +66,7 @@ class ButtonRuleMaker extends Component {
                 />
               }
               instruction={arrayCurrentRules[i].instruction}
+              expectedArguments={arrayCurrentRules[i].expectedArguments}
               ruleName={arrayCurrentRules[i].name}
               valueSent={this.props.valueSent}
             />

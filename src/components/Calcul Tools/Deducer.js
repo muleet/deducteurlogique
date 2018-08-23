@@ -17,6 +17,57 @@ class Deducer extends Component {
     currentExercise: {}
   };
 
+  n;
+
+  showMiniHeaderDeducer(value) {
+    let currentExerciseParamNumber = this.props.exerciseNumber;
+    let leftArrow = (
+      <Link
+        to={"/calcul-prop/" + Number(currentExerciseParamNumber - 1)}
+        onClick={() => value.resetDeduction()}
+      >
+        <i className={"icon fas fa-arrow-left"} />
+      </Link>
+    );
+    let rightArrow = (
+      <Link
+        to={"/calcul-prop/" + Number(currentExerciseParamNumber + 1)}
+        onClick={() => value.resetDeduction()}
+      >
+        <i className={"icon fas fa-arrow-right"} />
+      </Link>
+    );
+    if (currentExerciseParamNumber === 1) {
+      leftArrow = <i className={"icon fas fa-arrow-left deactivated"} />;
+    }
+    if (currentExerciseParamNumber === Exercises.length) {
+      rightArrow = <i className={"icon fas fa-arrow-right deactivated"} />;
+    }
+
+    return (
+      <Fragment>
+        <li className="setOfTextAndIcon">
+          <Link to="/">
+            <i className="icon fas fa-arrow-circle-left" />
+          </Link>
+          <Link to="/calcul-prop-exo">
+            <i className="icon fas fa-th" />
+          </Link>
+        </li>
+        <li>
+          <h2>{this.props.pageName}</h2>
+        </li>
+        <li>
+          <span className="setOfTextAndIcon">
+            {leftArrow}
+            Ex. {this.state.currentExercise.Number}
+            {rightArrow}
+          </span>
+        </li>
+      </Fragment>
+    );
+  }
+
   render() {
     if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
@@ -30,40 +81,7 @@ class Deducer extends Component {
             ) => (
               <Fragment>
                 <ul className="mini-header-deducer">
-                  <li className="setOfTextAndIcon">
-                    <Link to="/">
-                      <i className="icon fas fa-arrow-circle-left" />
-                    </Link>
-                    <Link to="/calcul-prop-exo">
-                      <i className="icon fas fa-th" />
-                    </Link>
-                  </li>
-                  <li>
-                    <h2>{this.props.pageName}</h2>
-                  </li>
-                  <li>
-                    <span className="setOfTextAndIcon">
-                      <Link
-                        to={
-                          "/calcul-prop/" +
-                          Number(this.props.exerciseNumber - 1)
-                        }
-                        onClick={() => value.resetDeduction()}
-                      >
-                        <i className="icon fas fa-arrow-left" />
-                      </Link>
-                      Ex. {this.state.currentExercise.Number}
-                      <Link
-                        to={
-                          "/calcul-prop/" +
-                          Number(this.props.exerciseNumber + 1)
-                        }
-                        onClick={() => value.resetDeduction()}
-                      >
-                        <i className="icon fas fa-arrow-right" />
-                      </Link>
-                    </span>
-                  </li>
+                  {this.showMiniHeaderDeducer(value)}
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
@@ -107,7 +125,7 @@ class Deducer extends Component {
   componentDidMount() {
     this.setState(
       { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
-      // () => console.log("currentexercices", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
+      // () => console.log("currentExercice", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
     );
   }
 

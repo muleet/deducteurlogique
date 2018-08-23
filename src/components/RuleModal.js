@@ -4,7 +4,7 @@ import RuleProvider, { RuleContext } from "./Context/RuleProvider";
 // import ReactDOM from "react-dom";
 
 // ReactModal.setAppElement("#main");
-class MyModal extends Component {
+class RuleModal extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,6 +30,19 @@ class MyModal extends Component {
     this.setState({ showModal: false });
   }
 
+  showExpectedArguments(expectedArguments) {
+    let arrayExpectedArguments = [];
+    for (let i = 0; i < expectedArguments.length; i++) {
+      arrayExpectedArguments.push(
+        <li key={i} className="rule-modal-single-argument">
+          <p>{expectedArguments[i]}</p>
+          {this.props.valueSent.storedInferenceRendered[i]}
+        </li>
+      );
+    }
+    return arrayExpectedArguments;
+  }
+
   verifyRule(valueRuleContext) {
     console.log("verifyRule");
     if (this.props.valueSent.storedInference[1] !== undefined) {
@@ -38,26 +51,6 @@ class MyModal extends Component {
         this.props.valueSent.storedInference[1]
       );
     }
-    // if (result !== "error" || result !== "") {
-    //   return (
-    //     <InferenceProvider>
-    //       <InferenceContext.Consumer>
-    //         {value => {
-    //           const inference = {
-    //             itself: result,
-    //             numberCommentary: "num",
-    //             commentary: "⊃e"
-    //           };
-    //           // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
-    //           value.addInference(inference);
-    //           console.log(value.allInferences);
-    //         }}
-    //       </InferenceContext.Consumer>
-    //     </InferenceProvider>
-    //   );
-    // } else {
-    //   console.log("erreur dans la vérification de la règle");
-    // }
   }
 
   render() {
@@ -75,33 +68,26 @@ class MyModal extends Component {
                   contentLabel="onRequestClose Example"
                   // onAfterOpen={handleAfterOpenFunc}
                   onRequestClose={this.handleCloseModal}
-                  portalClassName="my-modal-portal"
-                  overlayClassName="my-modal-overlay"
-                  className="my-modal"
+                  portalClassName="rule-modal-portal"
+                  overlayClassName="rule-modal-overlay"
+                  className="rule-modal"
                   shouldFocusAfterRender={true}
                   shouldCloseOnOverlayClick={false}
                   shouldCloseOnEsc={true}
                   shouldReturnFocusAfterClose={true}
                   ariaHideApp={false}
                 >
-                  <section className="my-modal-window">
-                    <p className="my-modal-ruleName">{this.props.ruleName}</p>
-                    <p className="my-modal-ruleInstruction">
+                  <section className="rule-modal-window">
+                    <p className="rule-modal-ruleName">{this.props.ruleName}</p>
+                    <p className="rule-modal-ruleInstruction">
                       {this.props.instruction}
                     </p>
-                    <ul className="my-modal-all-arguments">
-                      <li className="my-modal-single-argument">
-                        <p>A : </p>
-                        {this.props.valueSent.storedInferenceRendered[0]}
-                      </li>
-                      <li className="my-modal-single-argument">
-                        <p>A⊃B : </p>
-                        {this.props.valueSent.storedInferenceRendered[1]}
-                      </li>
+                    <ul className="rule-modal-all-arguments">
+                      {this.showExpectedArguments(this.props.expectedArguments)}
                     </ul>
-                    <div className="my-modal-all-buttons">
+                    <div className="rule-modal-all-buttons">
                       <p
-                        className="my-modal-button"
+                        className="rule-modal-button"
                         onClick={() => {
                           this.verifyRule(value);
                         }}
@@ -109,7 +95,7 @@ class MyModal extends Component {
                         <i className="fas fa-check-square" />
                       </p>
                       <p
-                        className="my-modal-button"
+                        className="rule-modal-button"
                         onClick={() => {
                           this.props.valueSent.changeStorageBoolean("redo");
                         }}
@@ -117,7 +103,7 @@ class MyModal extends Component {
                         <i className="fas fa-eraser" />
                       </p>
                       <p
-                        className="my-modal-button"
+                        className="rule-modal-button"
                         onClick={this.handleCloseModal}
                       >
                         <i className="fas fa-times-circle" />
@@ -136,5 +122,5 @@ class MyModal extends Component {
 
 // const props = {};
 
-// ReactDOM.render(<MyModal {...props} />, document.getElementById("main"));
-export default MyModal;
+// ReactDOM.render(<RuleModal {...props} />, document.getElementById("main"));
+export default RuleModal;

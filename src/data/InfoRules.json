@@ -5,6 +5,8 @@
     "verbalDescription":
       "Si A était dans les prémisses, alors on peut répéter A dans la déduction.",
     "arrayUtilization": "",
+    "instruction": "Cliquez directement sur une prémisse, sans passer par cette fenêtre.",
+    "expectedArguments": [],
     "available": "yes"
   },
   {
@@ -13,6 +15,8 @@
     "verbalDescription":
       "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
     "arrayUtilization": ["A", "...", "A reit"],
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "soon"
   },
   {
@@ -24,6 +28,8 @@
       [">A hyp", ">B", "A⊃B ⊃i"],
       [">A hyp", ">B", ">~B", "A ~i"]
     ],
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later"
   },
   {
@@ -32,6 +38,8 @@
     "verbalDescription":
       "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever"
   },
   {
@@ -40,6 +48,8 @@
     "verbalDescription":
       "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": ["hyp A", "contradiction", "~A ~i"],
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "i"
   },
@@ -49,6 +59,8 @@
     "verbalDescription":
       "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique des propositions considérée par ce site). On peut donc inférer A.",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "e",
     "notaBene":
@@ -59,6 +71,8 @@
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
     "arrayUtilization": ["A", "B", "A∧B ∧i"],
+    "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
+    "expectedArguments": ["A :", "B :"],
     "available": "soon",
     "binomial": "i"
   },
@@ -68,6 +82,7 @@
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
+    "expectedArguments": ["A∧B :", "Choisir :"],
     "available": "soon",
     "binomial": "e"
   },
@@ -80,6 +95,8 @@
       ["B", "A∨B ∨i"],
       ["A", "B", "A∨B ∨i"]
     ],
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "i"
   },
@@ -89,6 +106,8 @@
     "verbalDescription":
       "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et ça c'est pas évident wesh [à développer]].",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "e"
   },
@@ -98,6 +117,8 @@
     "verbalDescription":
       "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
     "arrayUtilization": [["A", "~B", "A⊻B ⊻i"], ["B", "~A", "A⊻B ⊻i"]],
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "i"
   },
@@ -107,6 +128,8 @@
     "verbalDescription":
       "Si A⊻B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "e"
   },
@@ -116,6 +139,8 @@
     "verbalDescription":
       "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "i"
   },
@@ -126,6 +151,7 @@
       "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
     "arrayUtilization": "",
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
+    "expectedArguments": ["A", "A⊃B"],
     "available": "soon",
     "binomial": "e"
   },
@@ -135,6 +161,8 @@
     "verbalDescription":
       "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B. A et B sont alors dits équivalents.",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "i"
   },
@@ -144,6 +172,8 @@
     "verbalDescription":
       "Activable pour A et B si l’un des deux a été montré vrai.",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "e"
   },
@@ -152,6 +182,8 @@
     "verbalName": "Règle d'introduction de la contraposée du conditionnel",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "i"
   },
@@ -160,6 +192,8 @@
     "verbalName": "Règle d'élimination de la contraposée du conditionnel",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "later",
     "binomial": "e"
   },
@@ -168,6 +202,8 @@
     "verbalName": "Règle d'introduction de l'implication",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "i"
   },
@@ -176,6 +212,8 @@
     "verbalName": "Règle d'élimination de l'implication",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   },
@@ -184,6 +222,8 @@
     "verbalName": "Règle d'introduction de l'implication réciproque",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "i"
   },
@@ -192,6 +232,8 @@
     "verbalName": "Règle d'introduction de l'implication réciproque",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   },
@@ -208,6 +250,8 @@
     "verbalName": "Règle d'élimination du quantificateur universel",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   },
@@ -216,6 +260,8 @@
     "verbalName": "Règle d'introduction de quantificateur existentiel",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "i"
   },
@@ -224,6 +270,8 @@
     "verbalName": "Règle d'élimination de quantificateur universel",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   },
@@ -233,6 +281,8 @@
     "verbalDescription":
       "Il est toujours possible de dire A = A, lorsque l'on a A. [à développer]",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "i"
   },
@@ -241,6 +291,8 @@
     "verbalName": "Règle d'élimination de l'identité",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   },
@@ -249,6 +301,8 @@
     "verbalName": "Règle d'introduction de la nécessité",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "i"
   },
@@ -257,6 +311,8 @@
     "verbalName": "Règle d'élimination de la nécessité",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   },
@@ -265,6 +321,8 @@
     "verbalName": "Règle d'introduction de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "i"
   },
@@ -273,6 +331,8 @@
     "verbalName": "Règle d'élimination de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
     "available": "maybenever",
     "binomial": "e"
   }

@@ -1,15 +1,15 @@
-.my-popover-button {
+.rule-popover-button {
   position: relative;
   display: flex;
   flex-direction: row;
 }
 
-.my-popover-button:hover .my-popover {
+.rule-popover-button:hover .rule-popover {
   display: flex;
   flex-direction: column;
 }
 
-.my-popover {
+.rule-popover {
   /* background-color: white; */
   color: white;
   font-size: 16px;
@@ -22,27 +22,27 @@
   text-align: center;
 }
 
-.my-popover-rulename {
+.rule-popover-rulename {
   margin-bottom: 10px;
 }
 
-.my-popover-content{
+.rule-popover-content{
   background-color: rgb(49, 49, 71);
   display: flex;
   flex-direction: row;
   color : white;
 }
 
-.my-popover-description {
+.rule-popover-description {
   padding: 8px;
   justify-content: justify;
 }
 
-.my-popover-longDescription{
+.rule-popover-longDescription{
   font-size : 14px;
 }
 
-.my-popover-array {
+.rule-popover-array {
   /* display: flex; */
   flex-direction: column;
   text-align: flex-start justify;

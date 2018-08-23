@@ -9,8 +9,8 @@ import "./css/deduction.css";
 import "./css/exerciseList.css";
 import "./css/id.css";
 import "./css/inference.css";
-import "./css/myPopover.css";
-import "./css/myModal.css";
+import "./css/rulePopover.css";
+import "./css/ruleModal.css";
 import "./css/questions.css";
 import "./css/ShowInfoRules.css";
 // Importation de fonts
