@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
-import ShowInformationsExercise from "./ShowInformationsExercise";
-import ButtonRuleMaker from "./ButtonRuleMaker";
+import ShowInformationsExercise from "./Deducer Tools/ShowInformationsExercise";
+import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
 import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";
-import ShowPossibleSolutions from "./ShowPossibleSolutions";
-import ShowPossibleMeaning from "./ShowPossibleMeaning";
+import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
+import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -66,22 +66,23 @@ class Deducer extends Component {
   }
 
   render() {
-    console.log("3this.state.currentExercise", this.state.currentExercise);
     if (
       isNaN(this.props.exerciseNumber) ||
       this.props.exerciseNumber < 1 ||
       this.props.exerciseNumber > Exercises.length
     ) {
       return (
-        "Erreur du paramètre dans la barre d'adresse (entrez un nombre positif, inférieur à " +
-        Number(Exercises.length + 1) +
-        ")"
+        <Fragment>
+          Erreur du paramètre dans la barre d'adresse
+          <br />
+          (entrez un nombre entier positif, inférieur ou égal au nombre total
+          d'exercices, c'est-à-dire {Number(Exercises.length)})
+        </Fragment>
       );
     } else if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
-      console.log("3this.state.currentExercise", this.state.currentExercise);
       return (
         <InferenceProvider>
           <InferenceContext.Consumer>
@@ -132,10 +133,8 @@ class Deducer extends Component {
   }
 
   componentDidMount() {
-    console.log("1this.props.exerciseNumber", this.props.exerciseNumber);
     this.setState(
       {
-        currentExerciceNumber: this.props.exerciseNumber,
         currentExercise: Exercises[Number(this.props.exerciseNumber - 1)]
       }
       // () => console.log("currentExercice", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
@@ -151,7 +150,6 @@ class Deducer extends Component {
       this.props.exerciseNumber > 1 ||
       this.props.exerciseNumber < Exercises.length
     ) {
-      console.log("2currentExerciseNumber", this.props.exerciseNumber);
       this.setState({
         currentExercise: Exercises[Number(this.props.exerciseNumber - 1)]
       });

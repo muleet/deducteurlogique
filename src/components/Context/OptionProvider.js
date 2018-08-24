@@ -1,4 +1,5 @@
-/* Ici il pourrait y avoir :
+/*
+Ici il pourrait y avoir :
 - [Langue] la langue du site (français, anglais, voire plus vu qu'il y a peu de choses à traduire)
 - [Compte] Par défaut les exercices après le dernier exercice résolu, seront lockés. Dans les options il y aura donc une case à cocher nommée 'Débloquer les exercices après le dernier exercice non résolu' accessible dès le départ.
 - [Compte] Effacer toutes les données de l’utilisateur pour différentes catégories (exercices de calcul des props; exos de formalisation des énoncés ; exos de calcul des préds ; brouillons d’exos).

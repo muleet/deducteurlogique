@@ -1,6 +1,5 @@
 [
   {
-    "Number": 1,
     "titleForSpecificExercise": "",
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
@@ -10,7 +9,6 @@
     "minimalLine": 3
   },
   {
-    "Number": 2,
     "titleForSpecificExercise": "",
     "premisses": ["p∧q", "q⊃~r"],
     "conclusion": "~r",
@@ -24,7 +22,6 @@
     "minimalLine": 4
   },
   {
-    "Number": 3,
     "titleForSpecificExercise": "Exo pour s'entraîner avec les conjonctions",
     "premisses": ["(p∧q)∧(p∧r)"],
     "conclusion": "p∧(q∧r)",
@@ -34,7 +31,6 @@
     "minimalLine": 8
   },
   {
-    "Number": 4,
     "titleForSpecificExercise": "Entraînement à l'élimination du conditionnel",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
@@ -44,7 +40,6 @@
     "minimalLine": 7
   },
   {
-    "Number": 5,
     "titleForSpecificExercise": "Loi du tier exclu",
     "premisses": [],
     "conclusion": "p∨~p",
@@ -54,7 +49,6 @@
     "minimalLine": 9
   },
   {
-    "Number": 6,
     "titleForSpecificExercise": [
       "Stratégie du fer à cheval pour une tautologie"
     ],

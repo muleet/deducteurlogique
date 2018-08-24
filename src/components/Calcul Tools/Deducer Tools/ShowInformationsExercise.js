@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ButtonRuleRep from "./Rules/ButtonRuleRep";
+import ButtonRuleRep from "../ButtonRuleRep";
 
 // fonction appelée par Deduction.js, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json)
 class ShowInformationsExercise extends Component {

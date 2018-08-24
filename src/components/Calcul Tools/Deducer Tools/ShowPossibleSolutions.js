@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
-import SolutionExo1 from "./Solutions/SolutionExo1";
-import SolutionExo2 from "./Solutions/SolutionExo2";
-import SolutionExo3 from "./Solutions/SolutionExo3";
-import SolutionExo4 from "./Solutions/SolutionExo4";
-import SolutionExo5 from "./Solutions/SolutionExo5";
-import SolutionExo6 from "./Solutions/SolutionExo6";
+import SolutionExo1 from "../Solutions/SolutionExo1";
+import SolutionExo2 from "../Solutions/SolutionExo2";
+import SolutionExo3 from "../Solutions/SolutionExo3";
+import SolutionExo4 from "../Solutions/SolutionExo4";
+import SolutionExo5 from "../Solutions/SolutionExo5";
+import SolutionExo6 from "../Solutions/SolutionExo6";
 
 class ShowPossibleSolutions extends Component {
   render() {

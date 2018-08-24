@@ -18,13 +18,13 @@ class MakeListExercises extends Component {
     let renderedListExercises = [];
     for (let i = 0; i < Exercises.length; i++) {
       let classNameToRender = "single-exercise";
-      if (Object.keys(Exercises[i]).length !== 8) {
+      if (Object.keys(Exercises[i]).length !== 7) {
         classNameToRender = "disabled-exercise";
       }
       renderedListExercises.push(
         <Link
           key={i}
-          to={"/calcul-prop/" + Exercises[i].Number}
+          to={"/calcul-prop/" + Number(i + 1)}
           path="/calcul-prop"
           // component={CalculDesPropositions} // ce truc-là ne sert à rien je crois (le composant de cette url est déjà défini dans App, il me semble)
         >
@@ -34,7 +34,7 @@ class MakeListExercises extends Component {
               this.renderInfoExercises(i);
             }}
           >
-            {Exercises[i].Number}
+            {Number(i + 1)}
           </li>
         </Link>
       );
@@ -63,12 +63,12 @@ class MakeListExercises extends Component {
             marginBottom: "10px"
           }}
         >
-          Exercice {Number(Exercises[numExercise].Number)}
+          Exercice {numExercise + 1}
         </div>
       )
     });
 
-    if (Object.keys(Exercises[numExercise]).length === 8) {
+    if (Object.keys(Exercises[numExercise]).length === 7) {
       let TitleToRender = "";
       let PremissesToRender = "(Pas de prémisses, c'est une tautologie.)";
       let RulesImpliedToRender = "(Pas de règles prédéterminées.)";
