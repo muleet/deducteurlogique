@@ -17,10 +17,13 @@ class Deducer extends Component {
     currentExercise: {}
   };
 
+  n;
+
   showMiniHeaderDeducer(value) {
+    let currentExerciseParamNumber = this.props.exerciseNumber;
     let leftArrow = (
       <Link
-        to={"/calcul-prop/" + Number(this.props.exerciseNumber - 1)}
+        to={"/calcul-prop/" + Number(currentExerciseParamNumber - 1)}
         onClick={() => value.resetDeduction()}
       >
         <i className={"icon fas fa-arrow-left"} />
@@ -28,16 +31,16 @@ class Deducer extends Component {
     );
     let rightArrow = (
       <Link
-        to={"/calcul-prop/" + Number(this.props.exerciseNumber + 1)}
+        to={"/calcul-prop/" + Number(currentExerciseParamNumber + 1)}
         onClick={() => value.resetDeduction()}
       >
         <i className={"icon fas fa-arrow-right"} />
       </Link>
     );
-    if (this.props.exerciseNumber === 1) {
+    if (currentExerciseParamNumber === 1) {
       leftArrow = <i className={"icon fas fa-arrow-left deactivated"} />;
     }
-    if (this.props.exerciseNumber === Exercises.length) {
+    if (currentExerciseParamNumber === Exercises.length) {
       rightArrow = <i className={"icon fas fa-arrow-right deactivated"} />;
     }
 
@@ -57,7 +60,7 @@ class Deducer extends Component {
         <li>
           <span className="setOfTextAndIcon">
             {leftArrow}
-            Ex. {this.props.exerciseNumber}
+            Ex. {this.state.currentExercise.Number}
             {rightArrow}
           </span>
         </li>
@@ -66,22 +69,10 @@ class Deducer extends Component {
   }
 
   render() {
-    console.log("3this.state.currentExercise", this.state.currentExercise);
-    if (
-      isNaN(this.props.exerciseNumber) ||
-      this.props.exerciseNumber < 1 ||
-      this.props.exerciseNumber > Exercises.length
-    ) {
-      return (
-        "Erreur du paramètre dans la barre d'adresse (entrez un nombre positif, inférieur à " +
-        Number(Exercises.length + 1) +
-        ")"
-      );
-    } else if (Object.keys(this.state.currentExercise).length === 0) {
+    if (Object.keys(this.state.currentExercise).length === 0) {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "chargement de l'exo";
     } else {
-      console.log("3this.state.currentExercise", this.state.currentExercise);
       return (
         <InferenceProvider>
           <InferenceContext.Consumer>
@@ -132,12 +123,8 @@ class Deducer extends Component {
   }
 
   componentDidMount() {
-    console.log("1this.props.exerciseNumber", this.props.exerciseNumber);
     this.setState(
-      {
-        currentExerciceNumber: this.props.exerciseNumber,
-        currentExercise: Exercises[Number(this.props.exerciseNumber - 1)]
-      }
+      { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
       // () => console.log("currentExercice", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
     );
   }
@@ -151,9 +138,8 @@ class Deducer extends Component {
       this.props.exerciseNumber > 1 ||
       this.props.exerciseNumber < Exercises.length
     ) {
-      console.log("2currentExerciseNumber", this.props.exerciseNumber);
       this.setState({
-        currentExercise: Exercises[Number(this.props.exerciseNumber - 1)]
+        currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
       });
     }
   }
