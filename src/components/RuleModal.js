@@ -48,14 +48,18 @@ class RuleModal extends Component {
     if (this.props.valueSent.storedInference[1] !== undefined) {
       valueRuleContext.conditionalElimination(
         this.props.valueSent.storedInference[0],
-        this.props.valueSent.storedInference[1]
+        this.props.valueSent.storedInference[1],
+        this.props.valueSent.storedNumbers
       );
     }
   }
 
   render() {
     return (
-      <RuleProvider>
+      <RuleProvider
+        valueSent={this.props.valueSent}
+        // Deducer le reçoit puis l'envoie à ButtonRuleMaker, qui l'envoie à RuleModal, qui l'envoie à RuleProvider
+      >
         <RuleContext.Consumer>
           {value => (
             <Fragment>
@@ -97,7 +101,7 @@ class RuleModal extends Component {
                       <p
                         className="rule-modal-button"
                         onClick={() => {
-                          this.props.valueSent.changeStorageBoolean("redo");
+                          this.props.valueSent.changeStorageBoolean("erase");
                         }}
                       >
                         <i className="fas fa-eraser" />

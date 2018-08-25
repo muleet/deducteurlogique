@@ -27,8 +27,8 @@ class InferenceProvider extends Component {
           }
           onClickSent={() => {
             if (this.state.canInferenceBeStored === true) {
-              this.storeInferenceForRule(
-                copyArray.length + " ",
+              this.storageForRuleVerification(
+                copyArray.length,
                 newInference.itself
               );
             }
@@ -41,13 +41,15 @@ class InferenceProvider extends Component {
       }));
     };
 
-    this.storeInferenceForRule = (numInference, inferenceItself) => {
+    this.storageForRuleVerification = (numInference, inferenceItself) => {
       let copyArrayStoredInference = [...this.state.storedInference];
       let copyArrayStoredInferenceRendered = [
         ...this.state.storedInferenceRendered
       ];
+      let copyStoredNumbers = [...this.state.storedNumbers];
       if (this.state.canInferenceBeStored === true) {
         copyArrayStoredInference.push(inferenceItself);
+        copyStoredNumbers.push(" " + numInference);
         copyArrayStoredInferenceRendered.push(
           <Fragment key={copyArrayStoredInferenceRendered.length}>
             <p className="infNum-color">{numInference}</p>
@@ -56,16 +58,21 @@ class InferenceProvider extends Component {
         );
         this.setState(state => ({
           storedInference: copyArrayStoredInference,
+          storedNumbers: copyStoredNumbers,
           storedInferenceRendered: copyArrayStoredInferenceRendered
         }));
       }
     };
 
-    this.changeStorageBoolean = redo => {
+    this.changeStorageBoolean = erase => {
+      console.log("ChangeStorageBoolean");
       // sert à désactiver le tableau storedInference quand un modal n'est pas activé
-      if (redo === "redo") {
+      if (erase === "erase") {
         this.setState({
-          storedInference: []
+          // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
+          storedInference: [],
+          storedInferenceRendered: [],
+          storedNumbers: []
         });
       } else if (!this.state.canInferenceBeStored) {
         this.setState({ canInferenceBeStored: true });
@@ -87,6 +94,17 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.removeLastInference = () => {
+      let copyArray = [...this.state.allInferences];
+      let copyArrayRendered = [...this.state.allInferencesRendered];
+      copyArray = copyArray.splice(-1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+      copyArray = copyArrayRendered.splice(-1);
+      this.setState(state => ({
+        allInferences: copyArray,
+        allInferencesRendered: copyArrayRendered
+      }));
+    };
+
     this.resetDeduction = () => {
       this.setState(state => ({
         allInferences: [],
@@ -100,12 +118,14 @@ class InferenceProvider extends Component {
       allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
+      storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedInferenceRendered: [], // contient les données htmlisées des inférences stockées pour la validation d'une règle
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
-      storeInferenceForRule: this.storeInferenceForRule,
+      storageForRuleVerification: this.storageForRuleVerification,
       giveSolution: this.giveSolution,
+      removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction
     };
   }

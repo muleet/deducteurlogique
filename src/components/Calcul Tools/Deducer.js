@@ -24,7 +24,7 @@ class Deducer extends Component {
         to={"/calcul-prop/" + Number(currentExerciseParamNumber - 1)}
         onClick={() => value.resetDeduction()}
       >
-        <i className={"icon fas fa-arrow-left"} />
+        <i className={"icon icon-menu fas fa-arrow-left"} />
       </Link>
     );
     let rightArrow = (
@@ -32,24 +32,28 @@ class Deducer extends Component {
         to={"/calcul-prop/" + Number(currentExerciseParamNumber + 1)}
         onClick={() => value.resetDeduction()}
       >
-        <i className={"icon fas fa-arrow-right"} />
+        <i className={"icon icon-menu fas fa-arrow-right"} />
       </Link>
     );
     if (currentExerciseParamNumber === 1) {
-      leftArrow = <i className={"icon fas fa-arrow-left deactivated"} />;
+      leftArrow = (
+        <i className={"icon icon-menu fas fa-arrow-left deactivated"} />
+      );
     }
     if (currentExerciseParamNumber === Exercises.length) {
-      rightArrow = <i className={"icon fas fa-arrow-right deactivated"} />;
+      rightArrow = (
+        <i className={"icon icon-menu fas fa-arrow-right deactivated"} />
+      );
     }
 
     return (
       <Fragment>
         <li className="setOfTextAndIcon">
           <Link to="/">
-            <i className="icon fas fa-arrow-circle-left" />
+            <i className="icon icon-menu fas fa-arrow-circle-left" />
           </Link>
           <Link to="/calcul-prop-exo">
-            <i className="icon fas fa-th" />
+            <i className="icon icon-menu fas fa-th" />
           </Link>
         </li>
         <li>
@@ -85,7 +89,6 @@ class Deducer extends Component {
       // On regarde si l'objet contient des clés, grâce à Object.keys (qui renvoie les clés sous forme de tableau). C'est plus fiable de le faire comme ça que de vérifier si c'est un tableau vide.
       return "Cet exercice a mal été chargé.";
     } else {
-      console.log("currentExercise", this.state.currentExercise);
       return (
         <InferenceProvider>
           <InferenceContext.Consumer>
@@ -150,7 +153,7 @@ class Deducer extends Component {
       this.props.exerciseNumber <= Exercises.length
     ) {
       this.setState({
-        currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)]
+        currentExercise: Exercises[Number(nextProps.exerciseNumber - 1)] // nextProps contient les données du futur rechargement de la page, c'est hyper important
       });
     }
   }

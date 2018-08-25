@@ -1,3 +1,5 @@
+// Ancienne version de Show Possible Meaning, je tente de virer le state dans l'autre (pour régler le problème de maj de la page)
+
 import React, { Component } from "react";
 
 class ShowPossibleMeaning extends Component {
@@ -15,13 +17,16 @@ class ShowPossibleMeaning extends Component {
     )
   };
 
-  randomMeaning = length => {
+  randomFromLength = length => {
     return Math.floor(Math.random() * length);
   };
 
-  initialLaunch() {}
-
   render() {
+    if (this.props.reload === true) {
+      this.componentDidMount();
+      this.props.reload = false;
+    }
+
     const meanings = this.props.exerciseSent.meaning;
     let possibleMeaning = [[], [], [], [], [], [], [], [], [], [], [], [], []]; // flemme de faire un code qui crée un nombre de case cohérent avec le nombre d'exemples
     if (!(meanings === undefined)) {
@@ -38,7 +43,7 @@ class ShowPossibleMeaning extends Component {
         // on vérifie que currentMeaningNumber n'est pas juste "rien"
         let isTheNumberDifferent = false;
         while (isTheNumberDifferent !== true) {
-          const newNumber = this.randomMeaning(meanings.length);
+          const newNumber = this.randomFromLength(meanings.length);
           if (this.state.currentMeaningNumber !== newNumber) {
             isTheNumberDifferent = true;
             this.setState({
@@ -78,12 +83,19 @@ class ShowPossibleMeaning extends Component {
           <p className={"no-meaning-shown"}>
             afficher une signification possible
           </p>
+        ),
+        myFeather: (
+          <i
+            id="feather-meaning"
+            className="fas fa-feather-alt icon"
+            onClick={() => this.handleClick()}
+          />
         )
       });
     } else {
       this.setState({
         myContent: (
-          <p className="no-meaning-shown deactivated">
+          <p className="no-meaning-shown">
             pas de signification prévue pour cet exercice
           </p>
         ),

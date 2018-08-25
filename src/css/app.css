@@ -92,8 +92,11 @@ h2 {
 }
 
 .icon {
-  font-size: 35px;
   color: white;
+}
+
+.icon-menu {
+  font-size: 35px;
 }
 
 .icon:hover {

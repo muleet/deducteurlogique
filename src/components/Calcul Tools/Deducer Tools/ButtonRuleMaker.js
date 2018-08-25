@@ -76,6 +76,20 @@ class ButtonRuleMaker extends Component {
     }
     return (
       <Fragment>
+        <div className="all-button-about-inferences">
+          <i
+            className="fas fa-long-arrow-alt-left icon"
+            onClick={() => {
+              this.props.valueSent.removeLastInference();
+            }}
+          />
+          <i
+            className="fas fa-eraser icon"
+            onClick={() => {
+              this.props.valueSent.resetDeduction();
+            }}
+          />
+        </div>
         {arrayAllOtherRules}
         <hr style={{ width: "20px" }} />
         {arrayRulesTwoCharacters}
