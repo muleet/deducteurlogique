@@ -28,7 +28,9 @@ class RuleProvider extends Component {
       }
     };
 
-    this.conjonctionElimination = (A, AandB) => {};
+    this.conjonctionElimination = (AandB, number) => {};
+
+    this.conjonctionIntroduction = (A, B, numbers) => {};
 
     this.addInferenceFromRule = InferenceItself => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur

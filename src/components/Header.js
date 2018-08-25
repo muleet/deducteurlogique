@@ -53,6 +53,13 @@ class Header extends React.Component {
               name={<i className="fas fa-cog" />}
             />
           </NavLink>
+          {/* <NavLink to="/futur">
+            <ButtonNav
+              className="header-button"
+              id="author-button"
+              name={<i className="fas fa-flask" />}
+            />
+          </NavLink> */}
           <NavLink to="/auteurs_contact">
             <ButtonNav
               className="header-button"

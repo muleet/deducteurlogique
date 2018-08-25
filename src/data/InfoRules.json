@@ -152,7 +152,7 @@
     "arrayUtilization": "",
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "e"
   },
   {

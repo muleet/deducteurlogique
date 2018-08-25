@@ -82,3 +82,16 @@
   margin: 1px;
   padding: 1px;
 }
+
+.rule-modal-single-argument > p:first-child {
+  margin-right : 10px;
+}
+
+.infNum-modal {
+  color: #86ffab;
+  margin-right : 10px;
+}
+
+.infItself-modal {
+  color: #93b5ff;
+}

@@ -52,8 +52,8 @@ class InferenceProvider extends Component {
         copyStoredNumbers.push(" " + numInference);
         copyArrayStoredInferenceRendered.push(
           <Fragment key={copyArrayStoredInferenceRendered.length}>
-            <p className="infNum-color">{numInference}</p>
-            <p className="infItself-color">{inferenceItself}</p>
+            <p className="infNum-modal">{numInference + "."}</p>
+            <p className="infItself-modal">{inferenceItself}</p>
           </Fragment>
         );
         this.setState(state => ({

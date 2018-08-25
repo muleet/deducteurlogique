@@ -28,6 +28,7 @@ import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
 import InfoRules from "./components/Pages/InfoRules.js";
 import Questions from "./components/Pages/Questions.js";
 import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndContact";
+import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 // Importations d'autres trucs
 // import LogIn from "./components/Users/LogIn";
 // import SignUp from "./components/Users/SignUp";
@@ -180,6 +181,7 @@ class App extends Component {
               // )}
             />
             <Route path="/auteurs_contact" component={AuthorsAndContact} />
+            <Route path="/futur" component={TheFuture} />
 
             <footer>
               <MakeLocution />

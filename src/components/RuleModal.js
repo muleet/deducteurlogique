@@ -35,7 +35,7 @@ class RuleModal extends Component {
     for (let i = 0; i < expectedArguments.length; i++) {
       arrayExpectedArguments.push(
         <li key={i} className="rule-modal-single-argument">
-          <p>{expectedArguments[i]}</p>
+          <p>{expectedArguments[i] + " :"}</p>
           {this.props.valueSent.storedInferenceRendered[i]}
         </li>
       );
