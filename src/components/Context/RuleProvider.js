@@ -86,16 +86,26 @@ class RuleProvider extends Component {
         commentary: ruleName
       };
       const choiceContent2 = (
-        <div className="rule-modal-choice">
-          <p onClick={() => this.addInferenceFromRule(leftInferenceToAdd)}>
+        <div className="rule-modal-all-choices">
+          <p
+            className="rule-modal-one-choice"
+            onClick={() => this.addInferenceFromRule(leftInferenceToAdd)}
+          >
             {leftChoice}
           </p>
-          <p onClick={() => this.addInferenceFromRule(rightInferenceToAdd)}>
+          <p
+            className="rule-modal-one-choice"
+            onClick={() => this.addInferenceFromRule(rightInferenceToAdd)}
+          >
             {rightChoice}
           </p>
         </div>
       );
       this.setState({ choiceContent: choiceContent2 });
+    };
+
+    this.manageParenthesis = str => {
+      console.log("manageParenthesis");
     };
 
     this.state = {
@@ -104,6 +114,7 @@ class RuleProvider extends Component {
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       showChoiceOnTheModal: this.showChoiceOnTheModal,
+      manageParenthesis: this.manageParenthesis,
       choiceContent: "",
       fautvérifierquelinferencenestcomposeequedepropositionsetdeparenthèses:
         "et il faudra une fonction dans la classe RuleProvider pour ça"

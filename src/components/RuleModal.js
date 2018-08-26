@@ -46,7 +46,7 @@ class RuleModal extends Component {
   verifyRule(valueRuleContext) {
     console.log("verifyRule, pour la règle ", this.props.ruleName);
 
-    if (this.props.valueSent.storedInference[0] !== undefined) {
+    if (this.props.valueSent.storedInference !== undefined) {
       valueRuleContext.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les autres arguments.
         this.props.valueSent.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).

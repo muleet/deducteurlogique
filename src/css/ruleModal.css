@@ -96,6 +96,15 @@
   color: #93b5ff;
 }
 
-.rule-modal-choice {
+.rule-modal-all-choices {
   display: flex;
+}
+
+.rule-modal-one-choice {
+  border: 1px solid white;
+  padding :10px
+}
+
+.rule-modal-one-choice:hover {
+  border: 1px solid red;
 }

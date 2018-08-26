@@ -83,7 +83,7 @@
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "e"
   },
   {
