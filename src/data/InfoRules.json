@@ -72,7 +72,7 @@
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
     "arrayUtilization": ["A", "B", "A∧B ∧i"],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
-    "expectedArguments": ["A :", "B :"],
+    "expectedArguments": ["A", "B"],
     "available": "soon",
     "binomial": "i"
   },
@@ -82,7 +82,7 @@
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
-    "expectedArguments": ["A∧B :", "Choisir :"],
+    "expectedArguments": ["A∧B", "Choisir"],
     "available": "soon",
     "binomial": "e"
   },
