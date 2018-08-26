@@ -44,14 +44,13 @@ class RuleModal extends Component {
   }
 
   verifyRule(valueRuleContext) {
-    console.log("verifyRule");
+    console.log("verifyRule, pour la règle ", this.props.ruleName);
 
-    if (this.props.valueSent.storedInference[1] !== undefined) {
+    if (this.props.valueSent.storedInference[0] !== undefined) {
       valueRuleContext.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les autres arguments.
-        this.props.valueSent.storedInference[0], // storedInference contient les inférences qui permettront de valider la règle (c'est tout le but du site).
-        this.props.valueSent.storedInference[1],
-        this.props.valueSent.storedNumbers // storedNumbers contient les numéros des inférences citées juste avant.
+        this.props.valueSent.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
+        this.props.valueSent.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );
     }
   }
@@ -90,6 +89,8 @@ class RuleModal extends Component {
                     </p>
                     <ul className="rule-modal-all-arguments">
                       {this.showExpectedArguments(this.props.expectedArguments)}
+                      {value.choiceContent}
+                      {/* cette variable, valueRuleContext.choice, est vide la plupart du temps */}
                     </ul>
                     <div className="rule-modal-all-buttons">
                       <p

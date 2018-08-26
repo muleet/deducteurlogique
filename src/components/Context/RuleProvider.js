@@ -31,22 +31,17 @@ class RuleProvider extends Component {
     };
 
     this.conjonctionElimination = (AandB, number) => {
+      console.log("conjonctionElimination");
       const positionConditional = AandB.indexOf("∧");
       let choice = "";
       if (positionConditional !== -1) {
-        const leftProposition = AandB.slice(0, AandB.indexOf("∧"));
-        const rightProposition = AandB.slice(
+        const leftChoice = AandB.slice(0, AandB.indexOf("∧"));
+        const rightChoice = AandB.slice(
           Number(AandB.indexOf("∧")) + 1,
           AandB.length
         );
-        this.secondStepOfARule();
-        // si on arrive ici, c'est que la règle est validée
-        const inferenceToAdd = {
-          itself: choice,
-          numberCommentary: number,
-          commentary: "∧e"
-        };
-        this.addInferenceFromRule(inferenceToAdd);
+        // dans la fonction ci-dessous
+        return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "∧e");
       } else {
         return "error";
       }
@@ -65,26 +60,51 @@ class RuleProvider extends Component {
       }
     };
 
-    this.redirectToTheRightRule = (ruleName, a, b, c, d, e) => {
+    this.redirectToTheRightRule = (ruleName, arrInf, numbers) => {
+      console.log("redirectToTheRightRule");
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
-      // Parmi les arguments a b c d e, se trouve "number", qui est le dernier d'entre eux.
+      // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
       if (ruleName === "⊃e") {
-        this.conditionalElimination(a, b, c); // A, A⊃B, numbers
+        this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B
       } else if (ruleName === "∧e") {
-        this.conjonctionElimination(a, b); //  A∧B, number
+        this.conjonctionElimination(arrInf[0], numbers); //  A∧B
       } else if (ruleName === "∧i") {
-        this.conjonctionIntroduction(a, b, c); // A, B, numbers
+        this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B
       }
     };
 
-    this.secondStepOfARule = () => {};
+    this.showChoiceOnTheModal = (leftChoice, rightChoice, number, ruleName) => {
+      console.log("showChoiceOnTheModal");
+      const leftInferenceToAdd = {
+        itself: leftChoice,
+        numberCommentary: number,
+        commentary: ruleName
+      };
+      const rightInferenceToAdd = {
+        itself: rightChoice,
+        numberCommentary: number,
+        commentary: ruleName
+      };
+      const choiceContent2 = (
+        <div className="rule-modal-choice">
+          <p onClick={() => this.addInferenceFromRule(leftInferenceToAdd)}>
+            {leftChoice}
+          </p>
+          <p onClick={() => this.addInferenceFromRule(rightInferenceToAdd)}>
+            {rightChoice}
+          </p>
+        </div>
+      );
+      this.setState({ choiceContent: choiceContent2 });
+    };
 
     this.state = {
       conditionalElimination: this.conditionalElimination,
       conjonctionElimination: this.conjonctionElimination,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
-      secondStepOfARule: this.secondStepOfARule,
+      showChoiceOnTheModal: this.showChoiceOnTheModal,
+      choiceContent: "",
       fautvérifierquelinferencenestcomposeequedepropositionsetdeparenthèses:
         "et il faudra une fonction dans la classe RuleProvider pour ça"
     };

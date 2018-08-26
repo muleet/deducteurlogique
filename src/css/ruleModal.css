@@ -95,3 +95,7 @@
 .infItself-modal {
   color: #93b5ff;
 }
+
+.rule-modal-choice {
+  display: flex;
+}
