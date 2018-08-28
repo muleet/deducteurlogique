@@ -139,6 +139,13 @@ class Deducer extends Component {
   }
 
   componentDidMount() {
+    // const str = "(p∧q)∧((p∧r)∧(q∧r))";
+    // const s = str.replace(
+    //   /((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g,
+    //   "Math.pow($1, $2)"
+    // );
+    // console.log(s);
+
     this.setState(
       { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
       // () => console.log("currentExercice", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe

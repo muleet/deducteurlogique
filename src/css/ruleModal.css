@@ -58,7 +58,10 @@
 
 .rule-modal-all-buttons {
   display:flex;
+  align-self: center;
+  align-content: center;
   justify-content: center;
+  text-align: center;
 }
 
 .rule-modal-button {

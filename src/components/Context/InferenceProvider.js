@@ -20,7 +20,7 @@ class InferenceProvider extends Component {
       copyArrayRendered.push(
         <MakeInference
           key={copyArray.length}
-          inferenceNumber={copyArray.length + "."}
+          inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
           inferenceItself={newInference.itself}
           inferenceCommentary={
             newInference.numberCommentary + ", " + newInference.commentary
@@ -28,7 +28,7 @@ class InferenceProvider extends Component {
           onClickSent={() => {
             if (this.state.canInferenceBeStored === true) {
               this.storageForRuleVerification(
-                copyArray.length,
+                copyArrayRendered.length,
                 newInference.itself
               );
             }
@@ -80,7 +80,8 @@ class InferenceProvider extends Component {
         this.setState({
           canInferenceBeStored: false,
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
-          storedInferenceRendered: []
+          storedInferenceRendered: [],
+          storedNumbers: ""
         });
       }
     };
