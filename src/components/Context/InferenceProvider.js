@@ -14,12 +14,12 @@ class InferenceProvider extends Component {
     this.addInference = newInference => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference");
-      let copyArray = [...this.state.allInferences];
+      // let copyArray = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
-      copyArray.push(newInference);
+      // copyArray.push(newInference);
       copyArrayRendered.push(
         <MakeInference
-          key={copyArray.length}
+          key={Number(copyArrayRendered.length + 1)}
           inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
           inferenceItself={newInference.itself}
           inferenceCommentary={
@@ -36,7 +36,7 @@ class InferenceProvider extends Component {
         />
       );
       this.setState(state => ({
-        allInferences: copyArray,
+        // allInferences: copyArray,
         allInferencesRendered: copyArrayRendered
       }));
     };
@@ -90,33 +90,34 @@ class InferenceProvider extends Component {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       // console.log("la nouvelle inférence est ", solution);
       this.setState(state => ({
-        allInferences: [],
+        // allInferences: [],
         allInferencesRendered: <Fragment>{solution}</Fragment>
       }));
     };
 
     this.removeLastInference = () => {
-      let copyArray = [...this.state.allInferences];
+      // let copyArray = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
-      copyArray = copyArray.splice(-1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
-      copyArray = copyArrayRendered.splice(-1);
+      // copyArray = copyArray.splice(-1);
+      copyArrayRendered = copyArrayRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
       this.setState(state => ({
-        allInferences: copyArray,
+        // allInferences: copyArray,
         allInferencesRendered: copyArrayRendered
       }));
     };
 
     this.resetDeduction = () => {
       this.setState(state => ({
-        allInferences: [],
-        allInferencesRendered: []
+        // allInferences: [],
+        allInferencesRendered: [],
+        storedInference: [],
+        storedNumbers: "",
+        storedInferenceRendered: []
       }));
     };
 
-    // State also contains the updater function so it will
-    // be passed down into the context provider
     this.state = {
-      allInferences: [], // contient les données "brutes" des inférences
+      // allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)

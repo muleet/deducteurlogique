@@ -1,8 +1,8 @@
 Choses à faire :
-- Rajouter un modal pour les locutions latines et grecques.
-- Pour les calculs il faudra pouvoir passer sa souris sur n'importe quelle entité réitérable, et voir que c'est bien elle qui est sélectionnée. Que ce soit une simple proposition, une parenthèse petite comme "(p∧q)" ou une parenthèse grande comme (p∧q∧(p∧~p))
-- Désactiver le lien de la flèche de gauche (et griser son icône) de changement d'exercice, depuis l'html.
-- a) Rajouter un affichage pour les significations possibles des prémisses. b) Rajouter 2 flèches (gauche & droite) pour switcher de signification possible.
+- Rajouter des options pour désactiver diverses choses des locutions latines.
+- Mettre en gras l'inférence d'une déduction qui est similaire à la conclusion attendue (pour valider l'exercice).
+- Activer automatiquement la fonction du modal si le nombre d'inférence qu'il attendait, ont été entrées.
+- Rendre responsive le site.
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state
@@ -16,7 +16,3 @@ Modifications/ajouts au sujet des citations grecques et latines :
 - Rajouter la citation d'Euclide dans les locutions grecques "ce qui peut être affirmé sans preuve peut être nié sans preuves"
 - Rajouter dans les locutions grecques "l'accès à la connaissance se fait dans la douleur"
 - Rajouter cet extrait de la Métaphysique d'Aristote, (source : "Métaphysique, A, 2, 982 b 10") (le texte d'origine est là http://remacle.org/bloodwolf/philosophes/Aristote/metaphysique1.htm ) "A l'origine comme aujourd'hui, c'est l’étonnement qui poussa les premiers penseurs aux spéculations philosophiques. Au début, leur étonnement porta sur les difficultés qui se présentaient les premières à l'esprit ; puis, s'avançant ainsi peu à peu, ils étendirent leur exploration à des problèmes plus importants, tels que les phénomènes de la Lune, ceux du Soleil et des Étoiles, enfin la genèse de l'Univers. Or, douter et s’étonner, c’est reconnaître sa propre ignorance [...].",
-
-
-A faire pour mieux maîtriser le code :
-- Refaire l'exo "bodyparser" pour bien comprendre ce que c'est

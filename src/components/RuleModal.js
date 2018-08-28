@@ -8,7 +8,8 @@ class RuleModal extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false
+      showModal: false,
+      modalColor: ""
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -46,12 +47,19 @@ class RuleModal extends Component {
   verifyRule(valueRuleContext) {
     console.log("verifyRule, pour la règle ", this.props.ruleName);
 
-    if (this.props.valueSent.storedInference !== undefined) {
+    if (
+      this.props.valueSent.storedInference !== undefined &&
+      this.props.expectedArguments.length ===
+        this.props.valueSent.storedInference.length
+    ) {
       valueRuleContext.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les autres arguments.
         this.props.valueSent.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
         this.props.valueSent.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );
+      this.setState({ modalColor: "rule-modal-ended-well" });
+    } else {
+      this.setState({ modalColor: "rule-modal-ended-badly" });
     }
   }
 
@@ -75,7 +83,7 @@ class RuleModal extends Component {
                   onRequestClose={this.handleCloseModal}
                   portalClassName="rule-modal-portal"
                   overlayClassName="rule-modal-overlay"
-                  className="rule-modal"
+                  className={"rule-modal " + this.state.modalColor}
                   shouldFocusAfterRender={true}
                   shouldCloseOnOverlayClick={false}
                   shouldCloseOnEsc={true}

@@ -14,12 +14,30 @@
   /* min-width: 100px; */
   /* max-width:250px;  */
   border: 1px solid rgba(255, 255, 255, 0.137);
-  box-shadow: -5px 5px 50px rgba(255, 255, 255, 0.137);
+  box-shadow: -5px 5px 50px rgba(255, 255, 255, 0.237);
   /* box-shadow: -5px 5px 10px rgb(43, 43, 43); */
+  background-color: black;
+
   border-radius: 10px;
   /* -webkit-overflow-scrolling: touch; */
   padding: 10px;
   outline:none;
+  transition:opacity 1s linear;
+}
+
+.rule-modal-ended-well {
+ background-color: rgb(0, 255, 0, 0.150);
+ border: 1px solid rgba(0, 255, 0, 0.150);
+
+ box-shadow: -5px 5px 50px rgba(0, 255, 0,0.237);
+
+}
+
+.rule-modal-ended-badly {
+  background-color: rgba(255, 0, 0, 0.150);
+  border: 1px solid rgba(255, 0, 0, 0.150);
+  box-shadow: -5px 5px 50px rgba(255, 0, 0,0.237);
+  opacity: 0s;
 }
 
 .rule-modal-portal {
@@ -100,14 +118,17 @@
 }
 
 .rule-modal-all-choices {
-  display: flex;
+  display:flex;
+  justify-content: space-evenly;
 }
 
 .rule-modal-one-choice {
-  border: 1px solid white;
-  padding :10px
+  border: 1px solid transparent;
+  padding :6px;
+  color: #93b5ff;
 }
 
 .rule-modal-one-choice:hover {
   border: 1px solid red;
+  color: #93b5ff;
 }

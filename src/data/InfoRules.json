@@ -30,7 +30,7 @@
     ],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later"
+    "available": "soon"
   },
   {
     "name": "ex falso",
@@ -50,7 +50,7 @@
     "arrayUtilization": ["hyp A", "contradiction", "~A ~i"],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "i"
   },
   {
@@ -73,7 +73,7 @@
     "arrayUtilization": ["A", "B", "A∧B ∧i"],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
     "expectedArguments": ["A", "B"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "i"
   },
   {
@@ -141,7 +141,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "i"
   },
   {
