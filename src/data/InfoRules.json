@@ -28,8 +28,8 @@
       ["|A hyp", "(...)", "|B", "A⊃B ⊃i"],
       ["|A hyp", "(...)", "|B", "|~B", "A ~i"]
     ],
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
+    "instruction": "Formulez une hypothèse pour ensuite tenter de la valider ou de la réfuter.",
+    "expectedArguments": ["hyp"],
     "available": "soon"
   },
   {

@@ -5,8 +5,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 2px;
-  flex: 1;
+  /* margin: 2px; */
+  /* flex: 1; */
   align-items: center;
 }
 
@@ -15,8 +15,8 @@
   /* width: 600px; */
   display: flex;
   flex-direction: row;
-  flex: 1;
-  margin: 2px;
+  /* flex: 1; */
+  /* margin: 2px; */
   justify-content: center;
 }
 
@@ -47,7 +47,6 @@
 
 .infos-and-deduction-itself {
   /* border: 1px solid yellow; */
-  margin: 2px;
   width: 400px;
 }
 
@@ -55,10 +54,9 @@
   /* border: 1px #00a2e8 solid; */
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: 290px;
   overflow: auto;
-  margin: 2px;
-  padding: 2px;
+  /* max-height:380px; */
 }
 
 .usablesRules {
@@ -76,16 +74,18 @@
   font-style: italic;
   display: flex;
   align-content: flex-start;
-  margin: 2px;
+  /* margin: 2px 0px 2px 0px; */
 }
 
 .setPremissesConclusion > li {
-  margin: 0 10px;
+  /* margin: 0 10px; */
+  padding: 4px;
 }
 
 .premisses {
   /*style des prémisses dans les exos, spécifiquement*/
   border: 1px transparent solid;
+  /* border: 1px red solid; */
   font-style: normal;
   display: "flex";
   flex-direction: "column";
@@ -95,6 +95,7 @@
 
 .premisses:hover {
   border: 1px red solid;
+  /* padding: 4px; */
   text-shadow: 2px 2px 2px 3px rgb(255, 0, 0);
 }
 .premisses:click {
@@ -105,7 +106,7 @@
 #conclusion {
   /* border: 1px white solid; */
   font-style: normal;
-  padding: 4px;
+  /* padding: 4px; */
 }
 
 #minimal-line-number {

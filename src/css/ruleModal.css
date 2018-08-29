@@ -85,7 +85,7 @@
   display:flex;
   align-self: center;
   align-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
 }
 
@@ -100,8 +100,6 @@
 
 .rule-modal-all-arguments {
   color : #ff9393;
-    margin: 1px;
-  padding: 1px;
 }
 
 .rule-modal-single-argument {

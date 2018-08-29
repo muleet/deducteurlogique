@@ -3,7 +3,7 @@
     "titleForSpecificExercise": "Élimination du conditionnel",
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
-    "meaning": [["p : Il y a une table", "q : Une table existe"], ["p : Les politiciens sont irresponsables politiquement", "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"]],
+    "meaning": [["p : Il y a une table", "q : Une table existe"], ["p : La Terre est ronde", "q : La Terre n'est pas plate"], ["p : Les politiciens sont irresponsables politiquement", "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"]],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "⊃e"],
     "minimalLine": 3

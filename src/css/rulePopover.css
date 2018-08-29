@@ -19,7 +19,6 @@
   display: none;
   overflow: auto;
   flex-direction: column;
-  text-align: center;
 }
 
 .rule-popover-rulename {
@@ -35,7 +34,7 @@
 
 .rule-popover-description {
   padding: 8px;
-  justify-content: justify;
+  text-align: center;
 }
 
 .rule-popover-longDescription{
@@ -43,13 +42,12 @@
 }
 
 .rule-popover-array {
-  /* display: flex; */
-  flex-direction: column;
-  text-align: flex-start justify;
-  justify-content: flex-start;
+  /* flex-direction: column;
   background-color: rgb(82, 50, 50);
   border-left: solid 4px black;
   width: 300px;
-  padding: 10px;
+  padding: 10px; */
+  display: none;
+  /* désactivé pour le moment puisque flemme d'afficher correctement l'array d'info */
 }
 

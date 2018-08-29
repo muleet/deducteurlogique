@@ -70,7 +70,7 @@ class RuleModal extends Component {
     return (
       <RuleProvider
         valueSent={this.props.valueSent}
-        // Deducer le reçoit puis l'envoie à ButtonRuleMaker, qui l'envoie à RuleModal, qui l'envoie à RuleProvider
+        // Deducer reçoit le value d'InferenceProvider puis l'envoie à ButtonRuleMaker, qui l'envoie à RuleModal, qui l'envoie à RuleProvider
       >
         <RuleContext.Consumer>
           {value => (
@@ -102,7 +102,8 @@ class RuleModal extends Component {
                     <ul className="rule-modal-all-arguments">
                       {this.showExpectedArguments(this.props.expectedArguments)}
                       {value.choiceContent}
-                      {/* cette variable, valueRuleContext.choice, est vide la plupart du temps */}
+                      {value.possibleHypothesis}
+                      {/* cette variable, value.choiceContent, est vide la plupart du temps */}
                     </ul>
                     <div className="rule-modal-all-buttons">
                       <p

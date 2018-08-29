@@ -1,4 +1,4 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, Component, Fragment } from "react";
 
 export const RuleContext = createContext();
 
@@ -7,6 +7,32 @@ class RuleProvider extends Component {
     super(props);
 
     // SECTION DES REGLES ELLES-MEMES
+
+    this.hypothesis = () => {
+      console.log("nique ta race");
+      // let arrayPropositionalSymbol = ["~", "∧","∨","⊻","⊃","≡", "↓", "→", "↔"] // je mets de côté la totalité des symboles de calcul des propositions pour le moment
+      let arrayPropositionalSymbol = ["~", "∧", "∨", "⊃"];
+      let propositions = ["p", "q", "r"];
+      let parenthesis = ["(", ")"];
+      let interfaceToMakeAnHypothesis = [];
+      for (let i = 0; i < arrayPropositionalSymbol.length; i++) {
+        interfaceToMakeAnHypothesis.push(
+          <Fragment>
+            {arrayPropositionalSymbol[i]}
+            {this.props.valueSent.possibleHypothesis}
+            <div className="empty-hypothesis">entrez une hypothèse</div>
+          </Fragment>
+        );
+      }
+
+      return (
+        <div>
+          wesh
+          {this.props.valueSent.possibleHypothesis}
+          {interfaceToMakeAnHypothesis}
+        </div>
+      );
+    };
 
     this.conditionalElimination = (A, ifAthenB, numbers) => {
       const positionConditional = ifAthenB.indexOf("⊃");
@@ -72,12 +98,14 @@ class RuleProvider extends Component {
       console.log("redirectToTheRightRule");
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
-      if (ruleName === "⊃e") {
-        this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B
+      if (ruleName === "hyp") {
+        this.hypothesis();
       } else if (ruleName === "∧e") {
         this.conjonctionElimination(arrInf[0], numbers); //  A∧B
       } else if (ruleName === "∧i") {
         this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B
+      } else if (ruleName === "⊃e") {
+        this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B
       }
     };
 
@@ -93,7 +121,7 @@ class RuleProvider extends Component {
         numberCommentary: number,
         commentary: ruleName
       };
-      const choiceContent2 = (
+      const choiceContent = (
         <div className="rule-modal-all-choices">
           <p
             className="rule-modal-one-choice"
@@ -109,7 +137,7 @@ class RuleProvider extends Component {
           </p>
         </div>
       );
-      this.setState({ choiceContent: choiceContent2 });
+      this.setState({ choiceContent: choiceContent });
       // this.props.valueSent.showChoice(choiceContent2)
     };
 
@@ -163,7 +191,19 @@ class RuleProvider extends Component {
       return AoperatorB;
     };
 
+    // SECTION DE L'HYPOTHESE
+
+    this.addToPossibleHypothesis = content => {
+      let copyPossibleHypothesis = [...this.state.possibleHypothesis];
+      copyPossibleHypothesis.push(content);
+      this.setState({
+        possibleHypothesis: copyPossibleHypothesis
+        // possibleHypothesis: <div className="hypothesis-content">{content}</div>
+      });
+    };
+
     this.state = {
+      hypothesis: this.hypothesis,
       conditionalElimination: this.conditionalElimination,
       conjonctionIntroduction: this.conjonctionIntroduction,
       conjonctionElimination: this.conjonctionElimination,
@@ -175,8 +215,9 @@ class RuleProvider extends Component {
       returnAnInferenceOutOfTwoInferences: this
         .returnAnInferenceOutOfTwoInferences,
       choiceContent: "",
-      fautvérifierquelinferencenestcomposeequedepropositionsetdeparenthèses:
-        "et il faudra une fonction dans la classe RuleProvider pour ça"
+      // section de l'hypothèse
+      possibleHypothesis: "",
+      addToPossibleHypothesis: this.addToPossibleHypothesis
     };
   }
 
