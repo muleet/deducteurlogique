@@ -6,7 +6,7 @@ function SolutionExo6() {
     <Fragment>
       <MakeInference
         inferenceNumber={"1."}
-        inferenceItself={"|p∨q"}
+        inferenceItself={"|~q"}
         inferenceCommentary={"hyp"}
       />
       <MakeInference
@@ -16,27 +16,27 @@ function SolutionExo6() {
       />
       <MakeInference
         inferenceNumber={"3."}
-        inferenceItself={"||q∨p"}
-        inferenceCommentary={"2, ∨i"}
+        inferenceItself={"||p⊃q"}
+        inferenceCommentary={"a, rep"}
       />
       <MakeInference
         inferenceNumber={"4."}
-        inferenceItself={"||q"}
-        inferenceCommentary={"hyp"}
+        inferenceItself={"||~q"}
+        inferenceCommentary={"1, reit"}
       />
       <MakeInference
         inferenceNumber={"5."}
-        inferenceItself={"||q∨p"}
-        inferenceCommentary={"4, ∨i"}
+        inferenceItself={"||q"}
+        inferenceCommentary={"2, 3, ⊃e"}
       />
       <MakeInference
         inferenceNumber={"6."}
-        inferenceItself={"|q∨p"}
-        inferenceCommentary={"1, 2-3, 4-5, ∨e "}
+        inferenceItself={"|~p"}
+        inferenceCommentary={"2, 4, 5, ~i"}
       />
       <MakeInference
         inferenceNumber={"7."}
-        inferenceItself={"(pvq)⊃(qvp)"}
+        inferenceItself={"~q⊃~p"}
         inferenceCommentary={"1-6, ⊃i"}
         lastInference={true}
       />

@@ -110,6 +110,7 @@ class RuleProvider extends Component {
         </div>
       );
       this.setState({ choiceContent: choiceContent2 });
+      // this.props.valueSent.showChoice(choiceContent2)
     };
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {

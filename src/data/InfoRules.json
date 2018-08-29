@@ -14,7 +14,7 @@
     "verbalName": "Règle de réitération",
     "verbalDescription":
       "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
-    "arrayUtilization": ["A", "...", "A reit"],
+    "arrayUtilization": [["A", "...", "A reit"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "soon"
@@ -25,8 +25,8 @@
     "verbalDescription":
       "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant grâce à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse.",
     "arrayUtilization": [
-      [">A hyp", ">B", "A⊃B ⊃i"],
-      [">A hyp", ">B", ">~B", "A ~i"]
+      ["|A hyp", "(...)", "|B", "A⊃B ⊃i"],
+      ["|A hyp", "(...)", "|B", "|~B", "A ~i"]
     ],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -47,7 +47,7 @@
     "verbalName": "Règle d'introduction de la négation",
     "verbalDescription":
       "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
-    "arrayUtilization": ["hyp A", "contradiction", "~A ~i"],
+    "arrayUtilization": [["hyp A", "contradiction", "~A ~i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "soon",
@@ -70,7 +70,7 @@
     "name": "∧i",
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
-    "arrayUtilization": ["A", "B", "A∧B ∧i"],
+    "arrayUtilization": [["A", "B", "A∧B ∧i"]],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
     "expectedArguments": ["A", "B"],
     "available": "yes",

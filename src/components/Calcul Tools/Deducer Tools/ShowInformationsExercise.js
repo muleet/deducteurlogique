@@ -47,10 +47,18 @@ class ShowInformationsExercise extends Component {
     }
     return (
       <ul className="setPremissesConclusion">
-        <div>Prémisses : {setOfPremisses}</div>
         <li>
-          Conclusion :
+          Prémisses
+          {setOfPremisses}
+        </li>
+        <li>
+          Conclusion
           <div id="conclusion">{this.props.exerciseSent.conclusion}</div>
+        </li>
+        <li id="minimal-line-number">
+          Nombre minimal
+          <br />
+          de ligne : {this.props.exerciseSent.minimalLine}
         </li>
       </ul>
     );

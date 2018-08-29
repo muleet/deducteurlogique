@@ -1,6 +1,6 @@
 [
   {
-    "titleForSpecificExercise": "",
+    "titleForSpecificExercise": "Élimination du conditionnel",
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
     "meaning": [["p : Il y a une table", "q : Une table existe"], ["p : Les politiciens sont irresponsables politiquement", "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"]],
@@ -9,7 +9,7 @@
     "minimalLine": 3
   },
   {
-    "titleForSpecificExercise": "",
+    "titleForSpecificExercise": "Élimination de la conjonction",
     "premisses": ["p∧q", "q⊃~r"],
     "conclusion": "~r",
     "meaning": [[
@@ -22,7 +22,7 @@
     "minimalLine": 4
   },
   {
-    "titleForSpecificExercise": "Exo pour s'entraîner avec les conjonctions",
+    "titleForSpecificExercise": "Introduction & élimination de la conjonction",
     "premisses": ["(p∧q)∧(p∧r)"],
     "conclusion": "p∧(q∧r)",
     "meaning": [],
@@ -31,7 +31,25 @@
     "minimalLine": 8
   },
   {
-    "titleForSpecificExercise": "Entraînement à l'élimination du conditionnel",
+    "titleForSpecificExercise": "Hypothèse",
+    "premisses": ["p", "~(p∧q)"],
+    "conclusion": "~q",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "∧i"],
+    "minimalLine": 7
+  },
+  {
+    "titleForSpecificExercise": "Hypothèse (2)",
+    "premisses": ["p∧q"],
+    "conclusion": "~(q∧~p)",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "∧i", "∧e"],
+    "minimalLine": 6
+  },
+  {
+    "titleForSpecificExercise": "Hypothèse (3)",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
     "meaning": [],

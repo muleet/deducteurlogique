@@ -9,7 +9,7 @@ class RuleModal extends Component {
     super();
     this.state = {
       showModal: false,
-      modalColor: ""
+      modalClassName: ""
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -19,7 +19,10 @@ class RuleModal extends Component {
   handleOpenModal() {
     if (this.state.showModal === false) {
       this.props.valueSent.changeStorageBoolean(); // il est possible de pusher dans storedInference
-      this.setState({ showModal: true });
+      this.setState({
+        showModal: true,
+        modalClassName: ""
+      });
     } else {
       // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
       this.handleCloseModal();
@@ -57,9 +60,9 @@ class RuleModal extends Component {
         this.props.valueSent.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
         this.props.valueSent.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );
-      this.setState({ modalColor: "rule-modal-ended-well" });
+      this.setState({ modalClassName: "rule-modal-ended-well modal-ending" });
     } else {
-      this.setState({ modalColor: "rule-modal-ended-badly" });
+      this.setState({ modalClassName: "rule-modal-ended-badly modal-ending" });
     }
   }
 
@@ -83,12 +86,13 @@ class RuleModal extends Component {
                   onRequestClose={this.handleCloseModal}
                   portalClassName="rule-modal-portal"
                   overlayClassName="rule-modal-overlay"
-                  className={"rule-modal " + this.state.modalColor}
+                  className={"rule-modal fade " + this.state.modalClassName}
                   shouldFocusAfterRender={true}
                   shouldCloseOnOverlayClick={false}
                   shouldCloseOnEsc={true}
                   shouldReturnFocusAfterClose={true}
                   ariaHideApp={false}
+                  closeTimeoutMS={400}
                 >
                   <section className="rule-modal-window">
                     <p className="rule-modal-ruleName">{this.props.ruleName}</p>

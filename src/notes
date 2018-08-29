@@ -2,7 +2,12 @@ Choses à faire :
 - Rajouter des options pour désactiver diverses choses des locutions latines.
 - Mettre en gras l'inférence d'une déduction qui est similaire à la conclusion attendue (pour valider l'exercice).
 - Activer automatiquement la fonction du modal si le nombre d'inférence qu'il attendait, ont été entrées.
-- Rendre responsive le site.
+- (J) Rendre responsive le site.
+- (J) Faire que le site fonctionne sur smartphone.
+- (J) Créer une base de donnée utilisateur.
+- Faire apparaître une ligne transparente pour le prochain emplacement d'inférence, ligne transparente disant "< prochaine inférence >" ou quelque chose du genre. Et cette ligne n'apparaît plus lorsque la conclusion a été trouvée.
+- Améliorer l'affichage des arrays affichant l'utilisation des règles.
+- Régler le problème du rechargement du state pour les significations possibles des propositions.
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state

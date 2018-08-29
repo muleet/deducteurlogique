@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import MakeInference from "../MakeInference";
 
-function SolutionExo5() {
+function SolutionExo7() {
   return (
     <Fragment>
       <MakeInference
@@ -54,4 +54,4 @@ function SolutionExo5() {
   );
 }
 
-export default SolutionExo5;
+export default SolutionExo7;
