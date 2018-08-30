@@ -137,3 +137,18 @@ h2 {
   text-align: center;
 }
 
+.selectable {
+  border: 1px transparent solid;
+}
+
+.selectable:hover {
+  border:1px solid red;
+}
+
+.blinking {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {  
+  80% { opacity: 0; }
+}

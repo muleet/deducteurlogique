@@ -15,6 +15,14 @@ class InferenceProvider extends Component {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference");
       // let copyArray = [...this.state.allInferences];
+      let commentary;
+      if (newInference.numberCommentary !== "") {
+        commentary =
+          newInference.numberCommentary + ", " + newInference.commentary;
+      } else {
+        commentary = newInference.commentary;
+      }
+
       let copyArrayRendered = [...this.state.allInferencesRendered];
       // copyArray.push(newInference);
       copyArrayRendered.push(
@@ -22,9 +30,7 @@ class InferenceProvider extends Component {
           key={Number(copyArrayRendered.length + 1)}
           inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
           inferenceItself={newInference.itself}
-          inferenceCommentary={
-            newInference.numberCommentary + ", " + newInference.commentary
-          }
+          inferenceCommentary={commentary}
           onClickSent={() => {
             if (this.state.canInferenceBeStored === true) {
               this.storageForRuleVerification(

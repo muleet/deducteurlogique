@@ -31,7 +31,7 @@ class ShowInformationsExercise extends Component {
         setOfPremisses.push(
           <ButtonRuleRep
             key={i}
-            className={"premisses"}
+            className={"premisse selectable"}
             NumberButton={newLetter}
             NameButton={this.props.exerciseSent.premisses[i]}
             useOfMakeInferenceSent={() =>

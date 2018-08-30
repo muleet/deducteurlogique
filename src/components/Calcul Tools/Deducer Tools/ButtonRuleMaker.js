@@ -2,6 +2,7 @@ import React, { Fragment, Component } from "react";
 import RulePopover from "../../RulePopover";
 import InfoRules from "../../../data/InfoRules.json";
 import RuleModal from "../../RuleModal";
+import RuleHypothesisModal from "../../RuleHypothesisModal";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
@@ -31,14 +32,34 @@ class ButtonRuleMaker extends Component {
             <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
           );
         }
-        if (Number(arrayRulesSent[i].length) === 2) {
+        if (arrayRulesSent[i] === "hyp") {
+          arrayAllOtherRules.push(
+            <RuleHypothesisModal
+              key={i}
+              modalButton={
+                <RulePopover
+                  key={i}
+                  RulePopoverClassName="singleRule fatRule selectable"
+                  ruleName={arrayRulesSent[i]}
+                  verbalName={arrayCurrentRules[i].verbalName}
+                  Description={arrayCurrentRules[i].verbalDescription}
+                  HowToUse={organizedUtilization}
+                />
+              }
+              instruction={arrayCurrentRules[i].instruction}
+              expectedArguments={arrayCurrentRules[i].expectedArguments} // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
+              ruleName={arrayCurrentRules[i].name}
+              valueSent={this.props.valueSent}
+            />
+          );
+        } else if (Number(arrayRulesSent[i].length) === 2) {
           arrayRulesTwoCharacters.push(
             <RuleModal
               key={i}
               modalButton={
                 <RulePopover
                   key={i}
-                  RulePopoverClassName="singleRule tinyRule"
+                  RulePopoverClassName="singleRule tinyRule selectable"
                   ruleName={arrayCurrentRules[i].name}
                   verbalName={arrayCurrentRules[i].verbalName}
                   Description={arrayCurrentRules[i].verbalDescription}
@@ -51,14 +72,15 @@ class ButtonRuleMaker extends Component {
               valueSent={this.props.valueSent}
             />
           );
-        } else {
+        } else if (Number(arrayRulesSent[i].length) > 2) {
+          // sauf l'hypothèse
           arrayAllOtherRules.push(
             <RuleModal
               key={i}
               modalButton={
                 <RulePopover
                   key={i}
-                  RulePopoverClassName="singleRule fatRule"
+                  RulePopoverClassName="singleRule fatRule selectable"
                   ruleName={arrayRulesSent[i]}
                   verbalName={arrayCurrentRules[i].verbalName}
                   Description={arrayCurrentRules[i].verbalDescription}

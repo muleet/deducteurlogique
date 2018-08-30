@@ -10,28 +10,34 @@
   /* right: 100px; */
   /* bottom: 250px; */
   display: inline-block;
+  /* align-items: center;  
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  align-self: center; */
   /* max-height:150px; */
   /* min-width: 100px; */
-  /* max-width:250px;  */
+  max-width:250px; 
   border: 1px solid rgba(255, 255, 255, 0.137);
   box-shadow: -5px 5px 50px rgba(255, 255, 255, 0.237);
-  background-color: black;
+  /* background-color: rgba(0, 0, 0, 0.150); */
   border-radius: 10px;
   /* -webkit-overflow-scrolling: touch; */
   padding: 10px;
   outline:none;
+
 }
 
 .rule-modal-ended-well {
- background-color: rgb(0, 255, 0, 0.150);
- border: 1px solid rgba(0, 255, 0, 0.150);
+ background-color: rgba(0, 255, 0, 0.150);
+ border: 1px solid transparent;
  box-shadow: -5px 5px 50px rgba(0, 255, 0,0.237);
  opacity: 0;
 }
 
 .rule-modal-ended-badly {
   background-color: rgba(255, 0, 0, 0.150);
-  border: 1px solid rgba(255, 0, 0, 0.150);
+  border: 1px solid transparent;
   box-shadow: -5px 5px 50px rgba(255, 0, 0,0.237);
   opacity: 0;
 }
@@ -49,10 +55,10 @@
   opacity: 0;
 }
 .rule-modal-portal {
-  /* margin :300px; */
+  /* margin:300px; */
   margin-top:-500px;
   /* margin-left:40px; */
-  /* background-color :greenyellow; */
+  /* background-color:greenyellow; */
 }
 
 .rule-modal-overlay {
@@ -70,7 +76,6 @@
 
 .rule-modal-ruleInstruction {
   font-size:14px;
-  max-width: 220px;
   text-align: center;
 }
 
@@ -78,7 +83,7 @@
   font-size:20px;
   display: flex;
   justify-content: center;
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 }
 
 .rule-modal-all-buttons {
@@ -90,7 +95,7 @@
 }
 
 .rule-modal-button {
-  color : white;
+  color: white;
   margin-right:10px;
 }
 
@@ -99,7 +104,7 @@
 }
 
 .rule-modal-all-arguments {
-  color : #ff9393;
+  color: #ff9393;
 }
 
 .rule-modal-single-argument {
@@ -110,12 +115,12 @@
 }
 
 .rule-modal-single-argument > p:first-child {
-  margin-right : 10px;
+  margin-right: 10px;
 }
 
 .infNum-modal {
   color: #86ffab;
-  margin-right : 10px;
+  margin-right: 10px;
 }
 
 .infItself-modal {
@@ -129,11 +134,50 @@
 
 .rule-modal-one-choice {
   border: 1px solid transparent;
-  padding :6px;
+  padding:6px;
   color: #93b5ff;
 }
 
-.rule-modal-one-choice:hover {
-  border: 1px solid red;
-  color: #93b5ff;
+
+/* SECTION DE LA RULE-MODAL HYPOTHETIQUE */
+
+.rule-modal-hypothesis{
+  display: inline-block;
+  /* text-align: center; */
+  max-width : 280px;
+  background-color: rgba(0, 0, 255, 0.150);
+  box-shadow: -5px 5px 50px rgba(0, 89, 255, 0.237);
+  border-radius: 10px;
+  padding: 10px;
+  outline:none;
+  /* border : 1px solid red; */
+  
+}
+
+.rule-modal-all-button-hypothesis {
+  display: flex;
+  /* justify-content: space-around; */
+  /* text-align :center; */
+  /* align-content: center; */
+  /* align-items:center; */
+}
+
+.rule-modal-hypothesis-button-character {
+  display: flex;
+  padding : 4px;
+  width: 20px;
+  justify-content: center;
+}
+
+.rule-modal-empty-hypothesis {
+  color : rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  font-size: 16px;
+}
+
+.possible-hypothesis-itself {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
 }

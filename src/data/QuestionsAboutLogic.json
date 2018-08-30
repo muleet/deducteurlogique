@@ -5,9 +5,14 @@
       "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Cet usage du mot logique existe bien, bien qu'il soit très indéterminé et synonymique d'autres mots. Cependant sur ce site, j'utiliserai le mot de logique dans un sens qui remonte à la Grèce Antique, je m'intéresserai à son sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides. Cette définition sera développée dans les questions suivantes."
   },
   {
+    "name": "Quel lien peut-on faire entre le langage et la logique ?",
+    "answer": "Lorsque nous parlons, argumentons, décrivons le monde, etc, nous émettons des propositions souvent complexes. Celles-ci peuvent être décomposées en des propositions plus élementaires, lesquels peuvent aussi être décomposées. Au bout du compte, nous pouvons arriver à des éléments premiers, indécomposables, irréductibles à d'autres choses. Les calculs de logique ne sont donc ni plus ni moins qu'un outil pour analyser les discours en général, et ce site se propose de faciliter l'accès à cet outil. Comme pour tout outil, chacun est libre ensuite d'en avoir l'usage qu'il souhaite. Ce site ne défend aucunement l'idée qu'il serait important de tout aborder par la logique.",
+    "example": ""
+  },
+  {
     "name": "Qu'est-ce qu'une proposition ?",
     "answer":
-      "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet.",
+      "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet. Une proposition affirme quelque chose au sujet du monde et de ce qui le compose.",
     "example":
       "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. Il fera 50 à 55 degré en été, dans certaines régions de l'Europe en 2050.\n(\"La Terre.\" ou \"Socrate\", à l'inverse, ne sont pas des propositions.)"
   },

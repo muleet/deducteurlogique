@@ -82,9 +82,9 @@
   padding: 4px;
 }
 
-.premisses {
+.premisse {
   /*style des prémisses dans les exos, spécifiquement*/
-  border: 1px transparent solid;
+  /* border: 1px transparent solid; */
   /* border: 1px red solid; */
   font-style: normal;
   display: "flex";
@@ -93,20 +93,10 @@
   padding: 4px;
 }
 
-.premisses:hover {
-  border: 1px red solid;
-  /* padding: 4px; */
-  text-shadow: 2px 2px 2px 3px rgb(255, 0, 0);
-}
-.premisses:click {
-  background-color: red;
-  text-shadow: 0 0 20px rgb(255, 0, 0, 0.9);
-}
-
 #conclusion {
   /* border: 1px white solid; */
   font-style: normal;
-  /* padding: 4px; */
+  padding: 4px;
 }
 
 #minimal-line-number {

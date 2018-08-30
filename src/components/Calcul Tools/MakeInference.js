@@ -18,7 +18,9 @@ class MakeInference extends Component {
     return (
       <Fragment>
         <li
-          className={"inferenceGlobal " + this.isItTheLastInference()}
+          className={
+            "inferenceGlobal selectable " + this.isItTheLastInference()
+          }
           onClick={this.props.onClickSent}
         >
           <div className="inferenceNumber">{this.props.inferenceNumber}</div>

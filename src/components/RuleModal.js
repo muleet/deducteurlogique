@@ -102,8 +102,7 @@ class RuleModal extends Component {
                     <ul className="rule-modal-all-arguments">
                       {this.showExpectedArguments(this.props.expectedArguments)}
                       {value.choiceContent}
-                      {value.possibleHypothesis}
-                      {/* cette variable, value.choiceContent, est vide la plupart du temps */}
+                      {/* cette variable, valueRuleContext.choice, est vide la plupart du temps */}
                     </ul>
                     <div className="rule-modal-all-buttons">
                       <p

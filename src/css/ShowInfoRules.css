@@ -5,7 +5,8 @@
 }
 
 .list-rules {
-  width: 520px;
+  min-width: 330px;
+  width: 480px;
   display: flex;
   flex-direction: row;
   justify-content: center;

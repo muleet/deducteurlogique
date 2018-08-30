@@ -9,6 +9,7 @@ Choses à faire :
 - Faire apparaître en transparence une prévisualisation de l'inférence qu'on va produire en cliquant sur une prémisse, sur une règle, etc.
 - Améliorer l'affichage des arrays affichant l'utilisation des règles.
 - Régler le problème du rechargement du state pour les significations possibles des propositions.
+- Faire une page de tutoriel pour l'exercice 4 (par exemple). Cette page afficherait des popovers qui diraient à l'utilisateur où il doit cliquer et quand.
 
 
 Codes à utiliser plus souvent :

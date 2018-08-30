@@ -8,32 +8,6 @@ class RuleProvider extends Component {
 
     // SECTION DES REGLES ELLES-MEMES
 
-    this.hypothesis = () => {
-      console.log("nique ta race");
-      // let arrayPropositionalSymbol = ["~", "∧","∨","⊻","⊃","≡", "↓", "→", "↔"] // je mets de côté la totalité des symboles de calcul des propositions pour le moment
-      let arrayPropositionalSymbol = ["~", "∧", "∨", "⊃"];
-      let propositions = ["p", "q", "r"];
-      let parenthesis = ["(", ")"];
-      let interfaceToMakeAnHypothesis = [];
-      for (let i = 0; i < arrayPropositionalSymbol.length; i++) {
-        interfaceToMakeAnHypothesis.push(
-          <Fragment>
-            {arrayPropositionalSymbol[i]}
-            {this.props.valueSent.possibleHypothesis}
-            <div className="empty-hypothesis">entrez une hypothèse</div>
-          </Fragment>
-        );
-      }
-
-      return (
-        <div>
-          wesh
-          {this.props.valueSent.possibleHypothesis}
-          {interfaceToMakeAnHypothesis}
-        </div>
-      );
-    };
-
     this.conditionalElimination = (A, ifAthenB, numbers) => {
       const positionConditional = ifAthenB.indexOf("⊃");
       if (positionConditional !== -1) {
@@ -124,13 +98,13 @@ class RuleProvider extends Component {
       const choiceContent = (
         <div className="rule-modal-all-choices">
           <p
-            className="rule-modal-one-choice"
+            className="rule-modal-one-choice selectable"
             onClick={() => this.addInferenceFromRule(leftInferenceToAdd)}
           >
             {leftChoice}
           </p>
           <p
-            className="rule-modal-one-choice"
+            className="rule-modal-one-choice selectable"
             onClick={() => this.addInferenceFromRule(rightInferenceToAdd)}
           >
             {rightChoice}
@@ -181,28 +155,18 @@ class RuleProvider extends Component {
     };
 
     this.returnAnInferenceOutOfTwoInferences = (A, B, operator) => {
-      if (A.length > 1) {
+      if (A.length > 1 && A[0] !== "~") {
         A = "(" + A + ")";
       }
-      if (B.length > 1) {
+      if (B.length > 1 && B[0] !== "~") {
         B = "(" + B + ")";
       }
       let AoperatorB = A + operator + B;
       return AoperatorB;
     };
 
-    // SECTION DE L'HYPOTHESE
-
-    this.addToPossibleHypothesis = content => {
-      let copyPossibleHypothesis = [...this.state.possibleHypothesis];
-      copyPossibleHypothesis.push(content);
-      this.setState({
-        possibleHypothesis: copyPossibleHypothesis
-        // possibleHypothesis: <div className="hypothesis-content">{content}</div>
-      });
-    };
-
     this.state = {
+      wesh: "wesh",
       hypothesis: this.hypothesis,
       conditionalElimination: this.conditionalElimination,
       conjonctionIntroduction: this.conjonctionIntroduction,
