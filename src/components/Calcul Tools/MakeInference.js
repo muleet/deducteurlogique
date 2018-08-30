@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import InferenceProvider from "../Context/InferenceProvider";
 
 // Cette fonction est appelée par Deducer.
 // Cette fonction doit générer : le contenu de l'inférence, et le commentaire de l'inférence.
@@ -12,7 +13,7 @@ class MakeInference extends Component {
     }
   }
 
-  isThisInferenceStored() {}
+  levelHypothesis()
 
   render() {
     return (
@@ -24,6 +25,7 @@ class MakeInference extends Component {
           onClick={this.props.onClickSent}
         >
           <div className="inferenceNumber">{this.props.inferenceNumber}</div>
+          <div className={hypothesisLevel} />
           <div className="inferenceItself">{this.props.inferenceItself}</div>
           <div className="inferenceCommentary">
             {this.props.inferenceCommentary}

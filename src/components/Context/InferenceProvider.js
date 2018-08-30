@@ -122,6 +122,10 @@ class InferenceProvider extends Component {
       }));
     };
 
+    // SECTION DE l'HYPOTHÈSE
+
+    this.modifyHypothesisLevel = increaseOrDecrease => {};
+
     this.state = {
       // allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
@@ -129,14 +133,16 @@ class InferenceProvider extends Component {
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedInferenceRendered: [], // contient les données htmlisées des inférences stockées pour la validation d'une règle
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle
-      hypothesisCurrentLevel: "",
-      contentOfEachHypothesis: [],
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
-      resetDeduction: this.resetDeduction
+      resetDeduction: this.resetDeduction,
+      // section de l'hypothèse
+      hypothesisCurrentLevel: "",
+      contentOfEachHypothesis: [],
+      modifyHypothesisLevel: this.modifyHypothesisLevel
     };
   }
 

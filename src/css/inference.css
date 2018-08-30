@@ -13,11 +13,9 @@
 
 .inferenceItself {
   color: #93b5ff;
-  width: 150px;
+  width: 180px;
   margin-right: 10px;
 }
-
-
 
 .inferenceCommentary {
   color: #ffb58e;
@@ -30,4 +28,9 @@
 
 .concluding-inference {
   font-weight:bold;
+}
+
+.hypothesis-level {
+  margin-right:20px;
+  background-color: red;
 }

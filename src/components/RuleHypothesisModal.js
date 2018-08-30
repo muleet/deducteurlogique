@@ -91,7 +91,7 @@ class RuleModal extends Component {
       numberCommentary: "",
       commentary: "hyp"
     };
-    valueRuleContext.addInferenceFromRule(inferenceToAdd);
+    valueRuleContext.addInferenceFromRule(inferenceToAdd, "hyp");
   };
 
   removeLastCharacter = () => {

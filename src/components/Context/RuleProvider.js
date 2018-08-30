@@ -59,9 +59,12 @@ class RuleProvider extends Component {
 
     // SECTION DES AUTRES METHODES, PERMETTANT AUX METHODES DES REGLES DE FONCTIONNER
 
-    this.addInferenceFromRule = InferenceItself => {
+    this.addInferenceFromRule = (InferenceItself, hyp) => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur
-      if (InferenceItself !== "error" || InferenceItself !== "") {
+      if (hyp === "hyp") {
+        this.props.valueSent.addInference(InferenceItself);
+        this.props.valueSent.increaseHypothesisLevel();
+      } else if (InferenceItself !== "error" || InferenceItself !== "") {
         this.props.valueSent.addInference(InferenceItself);
       } else {
         console.log("erreur dans la vérification de la règle");
@@ -155,10 +158,10 @@ class RuleProvider extends Component {
     };
 
     this.returnAnInferenceOutOfTwoInferences = (A, B, operator) => {
-      if (A.length > 1 && A[0] !== "~") {
+      if (A.length > 1 && A[0] !== "~" && A[A.length - 1] !== /[pqrs]/) {
         A = "(" + A + ")";
       }
-      if (B.length > 1 && B[0] !== "~") {
+      if (B.length > 1 && B[0] !== "~" && B[B.length - 1] !== /[pqrs]/) {
         B = "(" + B + ")";
       }
       let AoperatorB = A + operator + B;
