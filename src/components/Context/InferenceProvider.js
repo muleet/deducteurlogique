@@ -129,6 +129,8 @@ class InferenceProvider extends Component {
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedInferenceRendered: [], // contient les données htmlisées des inférences stockées pour la validation d'une règle
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle
+      hypothesisCurrentLevel: "",
+      contentOfEachHypothesis: [],
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,

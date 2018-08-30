@@ -4,14 +4,16 @@ const TheFuture = () => {
   return (
     <main className="main-auteurs-contact">
       <h2 style={{ marginBottom: "20px" }}>
-        Qu'apporteront les futures mises à jour ? <br />
+        Qu'apporteront les plus proches mises à jour ? <br />
       </h2>
       <p style={{ fontSize: 16, marginBottom: "10px" }}>
-        - Pleins de nouvelles règles.
-        <br />- Pleins de nouveaux exercices.
-        <br />- La possibilité de créer des comptes, pour stocker les exercices
-        résolus et pour créer de nouveaux exercices.
-        <br />- Un tutoriel pour apprendre l'interface du site.
+        - La possibilité de faire des hypothèses. (Et les règles ~i et ⊃i
+        arriveront juste après.)
+        <br />- Rendre responsive le site (au point qu'on puisse l'utiliser sur
+        smartphone, c'est pas le cas actuellement).
+        {/* <br />- La possibilité de créer des comptes, pour stocker les exercices
+        résolus et pour créer de nouveaux exercices. */}
+        {/* <br />- Un tutoriel pour apprendre l'interface du site. */}
       </p>
     </main>
   );
