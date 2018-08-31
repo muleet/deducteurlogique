@@ -61,13 +61,13 @@ class RuleProvider extends Component {
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur
-      if (hyp === "hyp") {
-        this.props.valueSent.addInference(InferenceItself);
-        this.props.valueSent.increaseHypothesisLevel();
+      if (hyp === "nouvelle hypothèse") {
+        let i = 0;
+        this.props.valueSent.addInference(InferenceItself, hyp);
       } else if (InferenceItself !== "error" || InferenceItself !== "") {
         this.props.valueSent.addInference(InferenceItself);
       } else {
-        console.log("erreur dans la vérification de la règle");
+        console.log("erreur dans la redirection de la règle");
       }
     };
 
@@ -76,7 +76,7 @@ class RuleProvider extends Component {
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
       if (ruleName === "hyp") {
-        this.hypothesis();
+        console.log("normalement ça n'arrive jamais ici je crois");
       } else if (ruleName === "∧e") {
         this.conjonctionElimination(arrInf[0], numbers); //  A∧B
       } else if (ruleName === "∧i") {
@@ -170,7 +170,6 @@ class RuleProvider extends Component {
 
     this.state = {
       wesh: "wesh",
-      hypothesis: this.hypothesis,
       conditionalElimination: this.conditionalElimination,
       conjonctionIntroduction: this.conjonctionIntroduction,
       conjonctionElimination: this.conjonctionElimination,

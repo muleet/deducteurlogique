@@ -11,9 +11,23 @@ class InferenceProvider extends Component {
   constructor(props) {
     super(props);
 
-    this.addInference = newInference => {
+    this.addInference = (newInference, hyp) => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference");
+      let hypNumber = 0;
+      if (hyp === "nouvelle hypothèse") {
+        console.log("bonjour on augmente le niveau d'hypothèse");
+        this.changeHypothesisLevel("increase");
+        hypNumber = 1;
+      } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
+        this.changeHypothesisLevel("decrease");
+        hypNumber = -1;
+      }
+
+      console.log(
+        "le niveau d'hypothèse est ",
+        this.state.hypothesisCurrentLevel
+      );
       // let copyArray = [...this.state.allInferences];
       let commentary;
       if (newInference.numberCommentary !== "") {
@@ -29,6 +43,7 @@ class InferenceProvider extends Component {
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
           inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
+          hypothesisCurrentLevel={this.state.hypothesisCurrentLevel + hypNumber}
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}
           onClickSent={() => {
@@ -124,7 +139,21 @@ class InferenceProvider extends Component {
 
     // SECTION DE l'HYPOTHÈSE
 
-    this.modifyHypothesisLevel = increaseOrDecrease => {};
+    this.changeHypothesisLevel = change => {
+      console.log("changeHypothesisLevel");
+      let copyHypothesisCurrentLevel = this.state.hypothesisCurrentLevel;
+      if (change === "increase") {
+        console.log("increase");
+        copyHypothesisCurrentLevel++;
+      } else if (change === "decrease") {
+        copyHypothesisCurrentLevel--;
+      }
+      console.log("la copie est à ", copyHypothesisCurrentLevel);
+      this.setState(state => ({
+        hypothesisCurrentLevel: copyHypothesisCurrentLevel
+      }));
+      console.log("et le résultat est à ", copyHypothesisCurrentLevel);
+    };
 
     this.state = {
       // allInferences: [], // contient les données "brutes" des inférences
@@ -132,7 +161,7 @@ class InferenceProvider extends Component {
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedInferenceRendered: [], // contient les données htmlisées des inférences stockées pour la validation d'une règle
-      canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle
+      canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,
@@ -140,9 +169,8 @@ class InferenceProvider extends Component {
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
       // section de l'hypothèse
-      hypothesisCurrentLevel: "",
-      contentOfEachHypothesis: [],
-      modifyHypothesisLevel: this.modifyHypothesisLevel
+      hypothesisCurrentLevel: 0,
+      changeHypothesisLevel: this.changeHypothesisLevel
     };
   }
 

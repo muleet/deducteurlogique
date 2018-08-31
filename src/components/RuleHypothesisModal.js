@@ -82,16 +82,21 @@ class RuleModal extends Component {
   };
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
-    const strHypothesis = hypothesisItself.join("");
-    const stringHypothesis = hypothesisItself.toString();
-    console.log(strHypothesis);
-    console.log(stringHypothesis);
     const inferenceToAdd = {
-      itself: hypothesisItself,
+      itself: (
+        <u
+          style={{
+            textDecoration: "underline"
+          }}
+        >
+          {hypothesisItself}
+        </u>
+      ),
       numberCommentary: "",
       commentary: "hyp"
     };
-    valueRuleContext.addInferenceFromRule(inferenceToAdd, "hyp");
+    valueRuleContext.addInferenceFromRule(inferenceToAdd, "nouvelle hypothèse");
+    // pour être créée, l'hypothèse part d'ici, puis va à addInferenceFromRule de RuleProvider, puis va à addInference de InferenceProvider
   };
 
   removeLastCharacter = () => {
@@ -112,7 +117,7 @@ class RuleModal extends Component {
     return (
       <RuleProvider
         valueSent={this.props.valueSent}
-        // Deducer reçoit le value de RuleProvider puis l'envoie à ButtonRuleMaker, qui l'envoie à RuleHypothesisModal, qui l'envoie à RuleProvider
+        // Deducer reçoit le value de InferenceProvider puis l'envoie à ButtonRuleMaker, qui l'envoie à RuleHypothesisModal, qui l'envoie à RuleProvider
       >
         <RuleContext.Consumer>
           {value => (
