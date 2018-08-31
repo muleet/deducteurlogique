@@ -28,7 +28,8 @@ class InferenceProvider extends Component {
         "le niveau d'hypothèse est ",
         this.state.hypothesisCurrentLevel
       );
-      // let copyArray = [...this.state.allInferences];
+
+      //
       let commentary;
       if (newInference.numberCommentary !== "") {
         commentary =
@@ -37,8 +38,14 @@ class InferenceProvider extends Component {
         commentary = newInference.commentary;
       }
 
+      // On vérifie si la nouvelle inférence sera égale à la conclusion. C'est Deducer qui envoie 'conclusionSent' à InferenceProvider.
+      let answerLastInference = false;
+      if (this.props.conclusionSent === newInference.itself) {
+        answerLastInference = true;
+      }
+
+      // Maj du tableau lui-même, avec la nouvelle inférence
       let copyArrayRendered = [...this.state.allInferencesRendered];
-      // copyArray.push(newInference);
       copyArrayRendered.push(
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
@@ -54,8 +61,10 @@ class InferenceProvider extends Component {
               );
             }
           }}
+          lastInference={answerLastInference}
         />
       );
+
       this.setState(state => ({
         // allInferences: copyArray,
         allInferencesRendered: copyArrayRendered

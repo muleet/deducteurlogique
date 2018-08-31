@@ -83,15 +83,7 @@ class RuleModal extends Component {
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
     const inferenceToAdd = {
-      itself: (
-        <u
-          style={{
-            textDecoration: "underline"
-          }}
-        >
-          {hypothesisItself}
-        </u>
-      ),
+      itself: <u className="hypothesisItself">{hypothesisItself}</u>,
       numberCommentary: "",
       commentary: "hyp"
     };
@@ -108,8 +100,9 @@ class RuleModal extends Component {
   };
 
   resetHypothesis = () => {
+    const empty = [];
     this.setState(state => ({
-      possibleHypothesis: []
+      possibleHypothesis: empty
     }));
   };
 

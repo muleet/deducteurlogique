@@ -90,7 +90,9 @@ class Deducer extends Component {
       return "Cet exercice a mal été chargé.";
     } else {
       return (
-        <InferenceProvider>
+        <InferenceProvider
+          conclusionSent={this.state.currentExercise.conclusion}
+        >
           <InferenceContext.Consumer>
             {(
               value // (méga important) on permet à tout ce qui est dans la balise InferenceContext.Consumer, d'avoir accès au state déclaré dans InferenceProvider (pour cela il faut employer la variable value)
