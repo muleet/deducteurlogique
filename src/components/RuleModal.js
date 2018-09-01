@@ -61,6 +61,7 @@ class RuleModal extends Component {
         this.props.valueSent.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );
       this.setState({ modalClassName: "rule-modal-ended-well modal-ending" });
+      // this.handleCloseModal();
     } else {
       this.setState({ modalClassName: "rule-modal-ended-badly modal-ending" });
     }

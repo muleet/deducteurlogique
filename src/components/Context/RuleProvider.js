@@ -8,6 +8,27 @@ class RuleProvider extends Component {
 
     // SECTION DES REGLES ELLES-MEMES
 
+    this.reiteration = (A, numbers) => {
+      // si on arrive dans ce if, c'est que la règle est validée
+      const inferenceToAdd = {
+        itself: A,
+        numberCommentary: numbers,
+        commentary: "reit"
+      };
+      this.addInferenceFromRule(inferenceToAdd);
+    };
+
+    this.conditionalIntroduction = (A, B, numbers) => {
+      let ifAthenB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
+      const hyp = "hypothèse validée";
+      const inferenceToAdd = {
+        itself: ifAthenB,
+        numberCommentary: numbers,
+        commentary: "⊃i"
+      };
+      this.props.valueSent.addInference(inferenceToAdd, hyp);
+    };
+
     this.conditionalElimination = (A, ifAthenB, numbers) => {
       const positionConditional = ifAthenB.indexOf("⊃");
       if (positionConditional !== -1) {
@@ -31,7 +52,6 @@ class RuleProvider extends Component {
     };
 
     this.conjonctionIntroduction = (A, B, numbers) => {
-      // si on arrive dans ce if, c'est que la règle est validée
       let AandB = this.returnAnInferenceOutOfTwoInferences(A, B, "∧");
       const inferenceToAdd = {
         itself: AandB,
@@ -75,12 +95,16 @@ class RuleProvider extends Component {
       console.log("redirectToTheRightRule");
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
-      if (ruleName === "hyp") {
+      if (ruleName === "reit") {
+        this.reiteration(arrInf[0], numbers); //  A∧B
+      } else if (ruleName === "hyp") {
         console.log("normalement ça n'arrive jamais ici je crois");
-      } else if (ruleName === "∧e") {
-        this.conjonctionElimination(arrInf[0], numbers); //  A∧B
       } else if (ruleName === "∧i") {
         this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B
+      } else if (ruleName === "∧e") {
+        this.conjonctionElimination(arrInf[0], numbers); //  A∧B
+      } else if (ruleName === "⊃i") {
+        this.conditionalIntroduction(arrInf[0], arrInf[1], numbers); // A, A⊃B
       } else if (ruleName === "⊃e") {
         this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B
       }
@@ -169,7 +193,7 @@ class RuleProvider extends Component {
     };
 
     this.state = {
-      wesh: "wesh",
+      reiteration: this.reiteration,
       conditionalElimination: this.conditionalElimination,
       conjonctionIntroduction: this.conjonctionIntroduction,
       conjonctionElimination: this.conjonctionElimination,
@@ -180,10 +204,10 @@ class RuleProvider extends Component {
         .returnWhatIsBeforeAndAfterTheOperator,
       returnAnInferenceOutOfTwoInferences: this
         .returnAnInferenceOutOfTwoInferences,
-      choiceContent: "",
+      choiceContent: ""
       // section de l'hypothèse
-      possibleHypothesis: "",
-      addToPossibleHypothesis: this.addToPossibleHypothesis
+      // possibleHypothesis: "",
+      // addToPossibleHypothesis: this.addToPossibleHypothesis
     };
   }
 

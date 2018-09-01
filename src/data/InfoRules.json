@@ -15,9 +15,9 @@
     "verbalDescription":
       "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
     "arrayUtilization": [["A", "...", "A reit"]],
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "soon"
+    "instruction": "Cliquez sur l'inférence à réitérer.",
+    "expectedArguments": ["A"],
+    "available": "yes"
   },
   {
     "name": "hyp",
@@ -116,7 +116,7 @@
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription":
       "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
-    "arrayUtilization": [["A", "~B", "A⊻B ⊻i"], ["B", "~A", "A⊻B ⊻i"]],
+    "arrayUtilization": [["A", "~B", "A⊻B ⊻i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "later",
@@ -138,9 +138,9 @@
     "verbalName": "Règle d'introduction du conditionnel (modus ponens)",
     "verbalDescription":
       "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
+    "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
+    "instruction": "Cliquez sur l'hypothèse A, qui est en cours, puis cliquez sur sa dernière inférence, B, pour inférer A⊃B.",
+    "expectedArguments": ["A", "B"],
     "available": "soon",
     "binomial": "i"
   },

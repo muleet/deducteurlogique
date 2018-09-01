@@ -9,30 +9,30 @@ import InferenceProvider, {
 // A côté du résultat de cette fonction, doit se trouver le résultat d'une fonction MakeInferenceCommentary, elle sera appelée dans Deduction.
 
 class MakeInference extends Component {
-  lastInference(isIt) {
-    if (isIt === true) {
-      return "concluding-inference";
-    }
-  }
+  // lastInference(isIt) {
+  //   if (isIt === true) {
+  //     return "concluding-inference";
+  //   }
+  // }
 
   render() {
     const isIt = this.props.lastInference;
     return (
       <Fragment>
         <li
-          className={"inferenceGlobal selectable " + this.lastInference(isIt)}
+          className={"inferenceGlobal selectable " + this.props.inferenceType}
           onClick={this.props.onClickSent}
         >
-          <div className={"inferenceNumber " + this.lastInference(isIt)}>
+          <div className={"inferenceNumber " + this.props.inferenceType}>
             {this.props.inferenceNumber}
           </div>
-          <div className={"hypothesis-level " + this.lastInference(isIt)}>
+          <div className={"hypothesis-level " + this.props.inferenceType}>
             {this.props.hypothesisCurrentLevel}
           </div>
-          <div className={"inferenceItself " + this.lastInference(isIt)}>
+          <div className={"inferenceItself " + this.props.inferenceType}>
             {this.props.inferenceItself}
           </div>
-          <div className={"inferenceCommentary " + this.lastInference(isIt)}>
+          <div className={"inferenceCommentary " + this.props.inferenceType}>
             {this.props.inferenceCommentary}
           </div>
         </li>

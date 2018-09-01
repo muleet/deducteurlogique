@@ -15,13 +15,17 @@ class InferenceProvider extends Component {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference");
       let hypNumber = 0;
+      let inferenceType = "";
       if (hyp === "nouvelle hypothèse") {
         console.log("bonjour on augmente le niveau d'hypothèse");
         this.changeHypothesisLevel("increase");
         hypNumber = 1;
+        inferenceType = "hypothesisItself";
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         this.changeHypothesisLevel("decrease");
         hypNumber = -1;
+      } else if (this.props.conclusionSent === newInference.itself) {
+        inferenceType = "concluding-inference-blinking";
       }
 
       console.log(
@@ -29,7 +33,6 @@ class InferenceProvider extends Component {
         this.state.hypothesisCurrentLevel
       );
 
-      //
       let commentary;
       if (newInference.numberCommentary !== "") {
         commentary =
@@ -38,13 +41,7 @@ class InferenceProvider extends Component {
         commentary = newInference.commentary;
       }
 
-      // On vérifie si la nouvelle inférence sera égale à la conclusion. C'est Deducer qui envoie 'conclusionSent' à InferenceProvider.
-      let answerLastInference = false;
-      if (this.props.conclusionSent === newInference.itself) {
-        answerLastInference = true;
-      }
-
-      // Maj du tableau lui-même, avec la nouvelle inférence
+      // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
       let copyArrayRendered = [...this.state.allInferencesRendered];
       copyArrayRendered.push(
         <MakeInference
@@ -61,12 +58,11 @@ class InferenceProvider extends Component {
               );
             }
           }}
-          lastInference={answerLastInference}
+          inferenceType={inferenceType}
         />
       );
 
       this.setState(state => ({
-        // allInferences: copyArray,
         allInferencesRendered: copyArrayRendered
       }));
     };
@@ -118,27 +114,21 @@ class InferenceProvider extends Component {
 
     this.giveSolution = solution => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
-      // console.log("la nouvelle inférence est ", solution);
       this.setState(state => ({
-        // allInferences: [],
         allInferencesRendered: <Fragment>{solution}</Fragment>
       }));
     };
 
     this.removeLastInference = () => {
-      // let copyArray = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
-      // copyArray = copyArray.splice(-1);
       copyArrayRendered = copyArrayRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
       this.setState(state => ({
-        // allInferences: copyArray,
         allInferencesRendered: copyArrayRendered
       }));
     };
 
     this.resetDeduction = () => {
       this.setState(state => ({
-        // allInferences: [],
         allInferencesRendered: [],
         storedInference: [],
         storedNumbers: "",
@@ -149,10 +139,10 @@ class InferenceProvider extends Component {
     // SECTION DE l'HYPOTHÈSE
 
     this.changeHypothesisLevel = change => {
+      // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
       console.log("changeHypothesisLevel");
       let copyHypothesisCurrentLevel = this.state.hypothesisCurrentLevel;
       if (change === "increase") {
-        console.log("increase");
         copyHypothesisCurrentLevel++;
       } else if (change === "decrease") {
         copyHypothesisCurrentLevel--;
@@ -165,7 +155,6 @@ class InferenceProvider extends Component {
     };
 
     this.state = {
-      // allInferences: [], // contient les données "brutes" des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)

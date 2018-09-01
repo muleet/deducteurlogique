@@ -12,7 +12,6 @@ class RuleModal extends Component {
       modalClassName: "",
       possibleHypothesis: []
     };
-
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
@@ -83,12 +82,13 @@ class RuleModal extends Component {
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
     const inferenceToAdd = {
-      itself: <u className="hypothesisItself">{hypothesisItself}</u>,
+      itself: hypothesisItself,
       numberCommentary: "",
       commentary: "hyp"
     };
     valueRuleContext.addInferenceFromRule(inferenceToAdd, "nouvelle hypothèse");
     // pour être créée, l'hypothèse part d'ici, puis va à addInferenceFromRule de RuleProvider, puis va à addInference de InferenceProvider
+    this.handleCloseModal();
   };
 
   removeLastCharacter = () => {
@@ -161,10 +161,11 @@ class RuleModal extends Component {
                       <p
                         className="rule-modal-button"
                         onClick={() => {
-                          this.makeHypothesis(
-                            value,
-                            this.state.possibleHypothesis
-                          );
+                          if (this.state.possibleHypothesis.length > 0)
+                            this.makeHypothesis(
+                              value,
+                              this.state.possibleHypothesis
+                            );
                         }}
                       >
                         <i className="fas fa-check-square" />
@@ -172,7 +173,7 @@ class RuleModal extends Component {
                       <p
                         className="rule-modal-button"
                         onClick={() => {
-                          this.props.valueSent.changeStorageBoolean("erase");
+                          this.resetHypothesis();
                         }}
                       >
                         <i className="fas fa-eraser" />

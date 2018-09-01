@@ -38,15 +38,21 @@
   background-color : white;
 }
 
-.hypothesisItslef {
-    text-decoration: "underline";
+.hypothesisItself {
+  /* text-decoration: underline; */
+  color : rgb(0, 140, 255);
 }
 
-.concluding-inference {
+.concluding-inference-blinking {
+  color :rgb(0, 180, 0);
+  animation: slow-blinker 2s linear infinite;
   /* font-weight:bold; */
   /* font-size:24px; */
-  color :green;
   /* border:3px solid green; */
   /* font-style: italic; */
   /* text-decoration: underline; */
+}
+
+@keyframes slow-blinker {  
+  50% { opacity: 0.75; }
 }
