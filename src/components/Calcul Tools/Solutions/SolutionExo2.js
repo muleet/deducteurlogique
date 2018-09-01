@@ -23,7 +23,7 @@ function SolutionExo2() {
         inferenceNumber={"4."}
         inferenceItself={"~r"}
         inferenceCommentary={"2, 3, ⊃e"}
-        lastInference={true}
+        inferenceType={"concluding-inference-blinking"}
       />
     </Fragment>
   );

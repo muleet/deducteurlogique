@@ -13,6 +13,7 @@ function SolutionExo5() {
         inferenceNumber={"2."}
         inferenceItself={"|q∧~p"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"3."}
@@ -33,6 +34,7 @@ function SolutionExo5() {
         inferenceNumber={"6."}
         inferenceItself={"~(q∧~p)"}
         inferenceCommentary={"2, 4, 5, ∧i"}
+        inferenceType={"concluding-inference-blinking"}
       />
     </Fragment>
   );

@@ -43,7 +43,7 @@ function SolutionExo3() {
         inferenceNumber={"8."}
         inferenceItself={"p∧(q∧r)"}
         inferenceCommentary={"7, 6, ∧i"}
-        lastInference={true}
+        inferenceType={"concluding-inference-blinking"}
       />
     </Fragment>
   );

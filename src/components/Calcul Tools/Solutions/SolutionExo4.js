@@ -18,6 +18,7 @@ function SolutionExo4() {
         inferenceNumber={"3."}
         inferenceItself={"|q"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"4."}
@@ -38,6 +39,7 @@ function SolutionExo4() {
         inferenceNumber={"7."}
         inferenceItself={"~q"}
         inferenceCommentary={"3, 5, 6 ,∧i"}
+        inferenceType={"concluding-inference-blinking"}
       />
     </Fragment>
   );

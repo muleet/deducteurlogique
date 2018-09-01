@@ -8,11 +8,13 @@ function SolutionExo6() {
         inferenceNumber={"1."}
         inferenceItself={"|~q"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"2."}
         inferenceItself={"||p"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"3."}
@@ -38,7 +40,7 @@ function SolutionExo6() {
         inferenceNumber={"7."}
         inferenceItself={"~q⊃~p"}
         inferenceCommentary={"1-6, ⊃i"}
-        lastInference={true}
+        inferenceType={"concluding-inference-blinking"}
       />
     </Fragment>
   );

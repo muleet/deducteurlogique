@@ -8,11 +8,13 @@ function SolutionExo8() {
         inferenceNumber={"1."}
         inferenceItself={"|p∨q"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"2."}
         inferenceItself={"||p"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"3."}
@@ -23,6 +25,7 @@ function SolutionExo8() {
         inferenceNumber={"4."}
         inferenceItself={"||q"}
         inferenceCommentary={"hyp"}
+        inferenceType={"hypothesisItself"}
       />
       <MakeInference
         inferenceNumber={"5."}
@@ -38,7 +41,7 @@ function SolutionExo8() {
         inferenceNumber={"7."}
         inferenceItself={"(pvq)⊃(qvp)"}
         inferenceCommentary={"1-6, ⊃i"}
-        lastInference={true}
+        inferenceType={"concluding-inference-blinking"}
       />
     </Fragment>
   );

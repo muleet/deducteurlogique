@@ -31,25 +31,25 @@
     "minimalLine": 8
   },
   {
-    "titleForSpecificExercise": "Hypothèse",
+    "titleForSpecificExercise": "Réfutation d'hypothèse",
     "premisses": ["p", "~(p∧q)"],
     "conclusion": "~q",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["rep", "reit", "hyp", "∧i"],
+    "rulesImplied": ["rep", "reit", "hyp", "∧i", "~i"],
     "minimalLine": 7
   },
   {
-    "titleForSpecificExercise": "Hypothèse (2)",
+    "titleForSpecificExercise": "Réfutation d'hypothèse (2)",
     "premisses": ["p∧q"],
     "conclusion": "~(q∧~p)",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["rep", "reit", "hyp", "∧i", "∧e"],
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "∧e"],
     "minimalLine": 6
   },
   {
-    "titleForSpecificExercise": "Hypothèse (3)",
+    "titleForSpecificExercise": "Validation d'hypothèse",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
     "meaning": [],
@@ -74,7 +74,7 @@
     "conclusion": "(pvq)⊃(qvp)",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["hyp", "~i", "∨i", "⊃i"],
+    "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],
     "minimalLine": 7
   }
 ]
