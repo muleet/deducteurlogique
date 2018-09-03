@@ -18,15 +18,24 @@ class RuleProvider extends Component {
       this.addInferenceFromRule(inferenceToAdd);
     };
 
-    this.conditionalIntroduction = (A, B, numbers) => {
-      let ifAthenB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
+    this.conditionalIntroduction = (B, numbers) => {
+      console.log("⊃i, y a-t-il une hypothèse", this.props);
+      // this.conditionalIntroduction = (A, B, numbers) => {
+      // A n'est pas fixé par l'utilisateur, c'est toujours la dernière hypothèse faite qui y vient. Et normalement, B est toujours la dernière ligne de l'hypothèse, donc l'utilisateur n'a pas à choisir non plus.
+      // note perso : en fait peut-être que ⊃i et ~i n'ont pas besoin de
+      let ifAthenB = this.returnAnInferenceOutOfTwoInferences(
+        this.props.allHypotheticalInferences[0],
+        this.props.allInference[this.props.allInference.length - 1],
+        "⊃"
+      );
+      console.log("ifAthenB", ifAthenB);
       const hyp = "hypothèse validée";
       const inferenceToAdd = {
         itself: ifAthenB,
         numberCommentary: numbers,
         commentary: "⊃i"
       };
-      this.props.valueSent.addInference(inferenceToAdd, hyp);
+      this.props.valueInference.addInference(inferenceToAdd, hyp);
     };
 
     this.conditionalElimination = (A, ifAthenB, numbers) => {
@@ -81,11 +90,10 @@ class RuleProvider extends Component {
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur
-      if (hyp === "nouvelle hypothèse") {
-        let i = 0;
-        this.props.valueSent.addInference(InferenceItself, hyp);
-      } else if (InferenceItself !== "error" || InferenceItself !== "") {
-        this.props.valueSent.addInference(InferenceItself);
+      if (hyp) {
+        this.props.valueInference.addInference(InferenceItself, hyp);
+      } else if (InferenceItself !== "error" && InferenceItself !== "") {
+        this.props.valueInference.addInference(InferenceItself);
       } else {
         console.log("erreur dans la redirection de la règle");
       }
@@ -139,7 +147,7 @@ class RuleProvider extends Component {
         </div>
       );
       this.setState({ choiceContent: choiceContent });
-      // this.props.valueSent.showChoice(choiceContent2)
+      // this.props.valueInference.showChoice(choiceContent2)
     };
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {
@@ -193,10 +201,11 @@ class RuleProvider extends Component {
     };
 
     this.state = {
-      reiteration: this.reiteration,
-      conditionalElimination: this.conditionalElimination,
-      conjonctionIntroduction: this.conjonctionIntroduction,
-      conjonctionElimination: this.conjonctionElimination,
+      reiteration: this.reiteration, // reit
+      conditionalIntroduction: this.conditionalIntroduction, // ⊃i
+      conditionalElimination: this.conditionalElimination, // ⊃e
+      conjonctionIntroduction: this.conjonctionIntroduction, // ∧i
+      conjonctionElimination: this.conjonctionElimination, // ∧e
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       showChoiceOnTheModal: this.showChoiceOnTheModal,
@@ -205,9 +214,6 @@ class RuleProvider extends Component {
       returnAnInferenceOutOfTwoInferences: this
         .returnAnInferenceOutOfTwoInferences,
       choiceContent: ""
-      // section de l'hypothèse
-      // possibleHypothesis: "",
-      // addToPossibleHypothesis: this.addToPossibleHypothesis
     };
   }
 

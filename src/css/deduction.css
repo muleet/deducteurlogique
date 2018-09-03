@@ -68,12 +68,19 @@
   margin: 2px;
 }
 
+.exercise-title {
+  font-size:16px;
+  text-align: center;
+  /* text-decoration: underline; */
+}
+
 .setPremissesConclusion {
   /* Concerne la box qui contient toutes les infos d'un exo. Aussi bien les termes introductifs, que les boutons de prémisses, que la conclusion, ou autre.*/
   /* border: 1px green solid; */
   font-style: italic;
   display: flex;
   align-content: flex-start;
+  justify-content: space-between;
   /* margin: 2px 0px 2px 0px; */
 }
 

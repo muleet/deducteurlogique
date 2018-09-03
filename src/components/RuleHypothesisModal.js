@@ -10,7 +10,7 @@ class RuleModal extends Component {
     this.state = {
       showModal: false,
       modalClassName: "",
-      possibleHypothesis: []
+      futureHypothesis: ""
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -18,7 +18,7 @@ class RuleModal extends Component {
 
   handleOpenModal() {
     if (this.state.showModal === false) {
-      // this.props.valueSent.changeStorageBoolean(); // il est possible de pusher dans storedInference
+      // this.props.valueInference.changeStorageBoolean(); // il est possible de pusher dans storedInference
       this.setState({
         showModal: true,
         modalClassName: ""
@@ -30,14 +30,14 @@ class RuleModal extends Component {
   }
 
   handleCloseModal() {
-    this.props.valueSent.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInference + storedInference est vidé
     this.setState({ showModal: false });
+    this.resetHypothesis();
   }
 
-  addToPossibleHypothesis = newCharacter => {
-    let copyPossibleHypothesis = [...this.state.possibleHypothesis];
-    copyPossibleHypothesis.push(newCharacter);
-    this.setState({ possibleHypothesis: copyPossibleHypothesis });
+  addToFutureHypothesis = newChar => {
+    let copyFutureHypothesis = this.state.futureHypothesis;
+    copyFutureHypothesis += newChar;
+    this.setState({ futureHypothesis: copyFutureHypothesis });
   };
 
   showCharacters = value => {
@@ -48,21 +48,24 @@ class RuleModal extends Component {
       ["(", ")"]
     ];
     let interfaceToMakeAnHypothesis = [];
-
     for (let i = 0; i < everyPossibleCharacter.length; i++) {
+      let subInterface = [];
       for (let j = 0; j < everyPossibleCharacter[i].length; j++) {
-        interfaceToMakeAnHypothesis.push(
+        subInterface.push(
           <li
-            key={interfaceToMakeAnHypothesis.length}
+            key={subInterface.length}
             className="rule-modal-hypothesis-button-character selectable"
             onClick={() => {
-              this.addToPossibleHypothesis(everyPossibleCharacter[i][j]);
+              this.addToFutureHypothesis(everyPossibleCharacter[i][j]);
             }}
           >
             {everyPossibleCharacter[i][j]}
           </li>
         );
       }
+      interfaceToMakeAnHypothesis.push(
+        <ul key={interfaceToMakeAnHypothesis.length}>{subInterface}</ul>
+      );
     }
 
     return (
@@ -72,15 +75,8 @@ class RuleModal extends Component {
     );
   };
 
-  addToPossibleHypothesis = content => {
-    let copyPossibleHypothesis = [...this.state.possibleHypothesis];
-    copyPossibleHypothesis.push(content);
-    this.setState({
-      possibleHypothesis: copyPossibleHypothesis
-    });
-  };
-
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
+    console.log("y'a un problème dans makeHypothesis non ?");
     const inferenceToAdd = {
       itself: hypothesisItself,
       numberCommentary: "",
@@ -92,24 +88,24 @@ class RuleModal extends Component {
   };
 
   removeLastCharacter = () => {
-    let copyPossibleHypothesis = [...this.state.possibleHypothesis];
-    copyPossibleHypothesis = copyPossibleHypothesis.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+    let copyFutureHypothesis = [...this.state.futureHypothesis];
+    copyFutureHypothesis = copyFutureHypothesis.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
     this.setState(state => ({
-      possibleHypothesis: copyPossibleHypothesis
+      futureHypothesis: copyFutureHypothesis
     }));
   };
 
   resetHypothesis = () => {
     const empty = [];
     this.setState(state => ({
-      possibleHypothesis: empty
+      futureHypothesis: empty
     }));
   };
 
   render() {
     return (
       <RuleProvider
-        valueSent={this.props.valueSent}
+        valueInference={this.props.valueInference}
         // Deducer reçoit le value de InferenceProvider puis l'envoie à ButtonRuleMaker, qui l'envoie à RuleHypothesisModal, qui l'envoie à RuleProvider
       >
         <RuleContext.Consumer>
@@ -142,7 +138,7 @@ class RuleModal extends Component {
                       {this.props.instruction}
                     </p>
                     <ul className="possible-hypothesis-itself">
-                      {this.state.possibleHypothesis}
+                      {this.state.futureHypothesis}
                       <p className="blinking">_</p>
                     </ul>
                     {this.showCharacters(value)}
@@ -152,7 +148,7 @@ class RuleModal extends Component {
                         onClick={() => {
                           this.removeLastCharacter(
                             value,
-                            this.state.possibleHypothesis
+                            this.state.futureHypothesis
                           );
                         }}
                       >
@@ -161,10 +157,10 @@ class RuleModal extends Component {
                       <p
                         className="rule-modal-button"
                         onClick={() => {
-                          if (this.state.possibleHypothesis.length > 0)
+                          if (this.state.futureHypothesis.length > 0)
                             this.makeHypothesis(
                               value,
-                              this.state.possibleHypothesis
+                              this.state.futureHypothesis
                             );
                         }}
                       >

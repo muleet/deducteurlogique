@@ -13,16 +13,18 @@ class InferenceProvider extends Component {
 
     this.addInference = (newInference, hyp) => {
       // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
-      console.log("bonjour c'est addInference");
+      console.log("bonjour c'est addInference, voici le hyp : ", hyp);
       let hypNumber = 0;
       let inferenceType = "";
       if (hyp === "nouvelle hypothèse") {
-        console.log("bonjour on augmente le niveau d'hypothèse");
+        console.log("on augmente le niveau d'hypothèse");
         this.changeHypothesisLevel("increase");
+        this.updateHypotheticalInferences(newInference, hyp);
         hypNumber = 1;
         inferenceType = "hypothesisItself";
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         this.changeHypothesisLevel("decrease");
+        this.updateHypotheticalInferences(newInference, hyp);
         hypNumber = -1;
       } else if (this.props.conclusionSent === newInference.itself) {
         inferenceType = "concluding-inference-blinking";
@@ -40,6 +42,10 @@ class InferenceProvider extends Component {
       } else {
         commentary = newInference.commentary;
       }
+
+      // maj du tableau des inférences non htmlizées
+      let copyArrayAllInferences = [...this.state.allInferences];
+      copyArrayAllInferences.push(newInference);
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
       let copyArrayRendered = [...this.state.allInferencesRendered];
@@ -63,6 +69,7 @@ class InferenceProvider extends Component {
       );
 
       this.setState(state => ({
+        allInferences: copyArrayAllInferences,
         allInferencesRendered: copyArrayRendered
       }));
     };
@@ -120,19 +127,27 @@ class InferenceProvider extends Component {
     };
 
     this.removeLastInference = () => {
-      let copyArrayRendered = [...this.state.allInferencesRendered];
-      copyArrayRendered = copyArrayRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+      let copyAllInferences = [...this.state.allInferences];
+      let copyAllInferencesRendered = [...this.state.allInferencesRendered];
+      copyAllInferences = copyAllInferences.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+      copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+      // A FAIRE : faut que je vire la dernière hypothèse, si c'était elle la dernière action au moment du clic sur le bouton de removeLastInference
+      console.log("nota bene : y'a un truc à coder dans removeLastInference");
       this.setState(state => ({
-        allInferencesRendered: copyArrayRendered
+        allInferences: copyAllInferences,
+        allInferencesRendered: copyAllInferencesRendered
       }));
     };
 
     this.resetDeduction = () => {
       this.setState(state => ({
+        allInferences: [],
         allInferencesRendered: [],
         storedInference: [],
         storedNumbers: "",
-        storedInferenceRendered: []
+        storedInferenceRendered: [],
+        hypothesisCurrentLevel: 0,
+        allHypotheticalInferences: []
       }));
     };
 
@@ -154,7 +169,22 @@ class InferenceProvider extends Component {
       console.log("et le résultat est à ", copyHypothesisCurrentLevel);
     };
 
+    this.updateHypotheticalInferences = (inference, hyp) => {
+      console.log("updateHypotheticalInferences", inference);
+      let copyAllHypotheticalInferences = this.state.allHypotheticalInferences;
+      copyAllHypotheticalInferences.unshift(inference);
+      if (1 === 1) {
+      } else {
+      }
+      //  faut rajouter le "nouvelle hypothèse" + "validation d'hypothèse" ou "réfutation d'hypothèse"
+      console.log("ce putain de state", this.state.allHypotheticalInferences);
+      this.setState({
+        allHypotheticalInferences: copyAllHypotheticalInferences
+      });
+    };
+
     this.state = {
+      allInferences: [],
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
@@ -168,7 +198,10 @@ class InferenceProvider extends Component {
       resetDeduction: this.resetDeduction,
       // section de l'hypothèse
       hypothesisCurrentLevel: 0,
-      changeHypothesisLevel: this.changeHypothesisLevel
+      changeHypothesisLevel: this.changeHypothesisLevel,
+      allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      // "pas encore d'hypothèse"
+      updateHypotheticalInferences: this.updateHypotheticalInferences // cette méthode modifie la variable allHypotheticalInferences
     };
   }
 

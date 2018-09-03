@@ -49,7 +49,7 @@ class ButtonRuleMaker extends Component {
               instruction={arrayCurrentRules[i].instruction}
               expectedArguments={arrayCurrentRules[i].expectedArguments} // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
               ruleName={arrayCurrentRules[i].name}
-              valueSent={this.props.valueSent}
+              valueInference={this.props.valueInference}
             />
           );
         } else if (Number(arrayRulesSent[i].length) === 2) {
@@ -69,7 +69,7 @@ class ButtonRuleMaker extends Component {
               instruction={arrayCurrentRules[i].instruction}
               expectedArguments={arrayCurrentRules[i].expectedArguments}
               ruleName={arrayCurrentRules[i].name}
-              valueSent={this.props.valueSent}
+              valueInference={this.props.valueInference}
             />
           );
         } else if (Number(arrayRulesSent[i].length) > 2) {
@@ -90,7 +90,7 @@ class ButtonRuleMaker extends Component {
               instruction={arrayCurrentRules[i].instruction}
               expectedArguments={arrayCurrentRules[i].expectedArguments}
               ruleName={arrayCurrentRules[i].name}
-              valueSent={this.props.valueSent}
+              valueInference={this.props.valueInference}
             />
           );
         }
@@ -102,13 +102,13 @@ class ButtonRuleMaker extends Component {
           <i
             className="fas fa-long-arrow-alt-left icon"
             onClick={() => {
-              this.props.valueSent.removeLastInference();
+              this.props.valueInference.removeLastInference();
             }}
           />
           <i
             className="fas fa-eraser icon"
             onClick={() => {
-              this.props.valueSent.resetDeduction();
+              this.props.valueInference.resetDeduction();
             }}
           />
         </div>

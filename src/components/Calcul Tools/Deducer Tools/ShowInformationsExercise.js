@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ButtonRuleRep from "../ButtonRuleRep";
 
 // fonction appelée par Deduction.js, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json)
@@ -13,7 +13,7 @@ class ShowInformationsExercise extends Component {
       commentary: infComm
     };
     // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
-    this.props.valueSent.addInference(inference);
+    this.props.valueInference.addInference(inference);
   };
 
   // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
@@ -46,21 +46,24 @@ class ShowInformationsExercise extends Component {
       }
     }
     return (
-      <ul className="setPremissesConclusion">
-        <li>
-          Prémisses
-          {setOfPremisses}
-        </li>
-        <li>
-          Conclusion
-          <div id="conclusion">{this.props.exerciseSent.conclusion}</div>
-        </li>
-        <li id="minimal-line-number">
-          Nombre minimal
-          <br />
-          de ligne : {this.props.exerciseSent.minimalLine}
-        </li>
-      </ul>
+      <Fragment>
+        <p className="exercise-title">{this.props.exerciseSent.verbalName}</p>
+        <ul className="setPremissesConclusion">
+          <li>
+            Prémisses
+            {setOfPremisses}
+          </li>
+          <li>
+            Conclusion
+            <div id="conclusion">{this.props.exerciseSent.conclusion}</div>
+          </li>
+          <li id="minimal-line-number">
+            Nombre minimal
+            <br />
+            de ligne : {this.props.exerciseSent.minimalLine}
+          </li>
+        </ul>
+      </Fragment>
     );
   }
 }

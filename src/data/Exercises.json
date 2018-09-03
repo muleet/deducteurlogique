@@ -1,6 +1,6 @@
 [
   {
-    "titleForSpecificExercise": "Élimination du conditionnel",
+    "verbalName": "Élimination du conditionnel",
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
     "meaning": [["p : Il y a une table", "q : Une table existe"], ["p : La Terre est ronde", "q : La Terre n'est pas plate"], ["p : Les politiciens sont irresponsables politiquement", "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"]],
@@ -9,7 +9,7 @@
     "minimalLine": 3
   },
   {
-    "titleForSpecificExercise": "Élimination de la conjonction",
+    "verbalName": "Élimination de la conjonction",
     "premisses": ["p∧q", "q⊃~r"],
     "conclusion": "~r",
     "meaning": [[
@@ -22,7 +22,7 @@
     "minimalLine": 4
   },
   {
-    "titleForSpecificExercise": "Introduction & élimination de la conjonction",
+    "verbalName": "Introduction & élimination de la conjonction",
     "premisses": ["(p∧q)∧(p∧r)"],
     "conclusion": "p∧(q∧r)",
     "meaning": [],
@@ -31,7 +31,7 @@
     "minimalLine": 8
   },
   {
-    "titleForSpecificExercise": "Réfutation d'hypothèse",
+    "verbalName": "Réfutation d'hypothèse",
     "premisses": ["p", "~(p∧q)"],
     "conclusion": "~q",
     "meaning": [],
@@ -40,7 +40,7 @@
     "minimalLine": 7
   },
   {
-    "titleForSpecificExercise": "Réfutation d'hypothèse (2)",
+    "verbalName": "Réfutation d'hypothèse (2)",
     "premisses": ["p∧q"],
     "conclusion": "~(q∧~p)",
     "meaning": [],
@@ -49,7 +49,7 @@
     "minimalLine": 6
   },
   {
-    "titleForSpecificExercise": "Validation d'hypothèse",
+    "verbalName": "Validation d'hypothèse",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
     "meaning": [],
@@ -58,7 +58,7 @@
     "minimalLine": 7
   },
   {
-    "titleForSpecificExercise": "Loi du tier exclu",
+    "verbalName": "Loi du tier exclu",
     "premisses": [],
     "conclusion": "p∨~p",
     "meaning": [],
@@ -67,7 +67,7 @@
     "minimalLine": 9
   },
   {
-    "titleForSpecificExercise": [
+    "verbalName": [
       "Stratégie du fer à cheval pour une tautologie"
     ],
     "premisses": [],

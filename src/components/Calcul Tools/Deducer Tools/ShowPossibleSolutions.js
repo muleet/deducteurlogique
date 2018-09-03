@@ -15,7 +15,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo1 />);
+            this.props.valueInference.giveSolution(<SolutionExo1 />);
           }}
         >
           1
@@ -23,7 +23,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo2 />);
+            this.props.valueInference.giveSolution(<SolutionExo2 />);
           }}
         >
           2
@@ -31,7 +31,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo3 />);
+            this.props.valueInference.giveSolution(<SolutionExo3 />);
           }}
         >
           3
@@ -39,7 +39,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo4 />);
+            this.props.valueInference.giveSolution(<SolutionExo4 />);
           }}
         >
           4
@@ -47,7 +47,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo5 />);
+            this.props.valueInference.giveSolution(<SolutionExo5 />);
           }}
         >
           5
@@ -55,7 +55,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo6 />);
+            this.props.valueInference.giveSolution(<SolutionExo6 />);
           }}
         >
           6
@@ -63,7 +63,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo7 />);
+            this.props.valueInference.giveSolution(<SolutionExo7 />);
           }}
         >
           7
@@ -71,7 +71,7 @@ class ShowPossibleSolutions extends Component {
         <div
           className="solution-button"
           onClick={() => {
-            this.props.valueSent.giveSolution(<SolutionExo8 />);
+            this.props.valueInference.giveSolution(<SolutionExo8 />);
           }}
         >
           8

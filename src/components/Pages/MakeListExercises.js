@@ -74,10 +74,10 @@ class MakeListExercises extends Component {
       let RulesImpliedToRender = "(Pas de règles prédéterminées.)";
 
       // Si il y a un titre, on l'injecte dans les infos de l'exo
-      if (Exercises[numExercise].titleForSpecificExercise) {
+      if (Exercises[numExercise].verbalName) {
         TitleToRender = (
           <Fragment>
-            Titre : <li>{Exercises[numExercise].titleForSpecificExercise}</li>
+            Titre : <li>{Exercises[numExercise].verbalName}</li>
           </Fragment>
         );
       }

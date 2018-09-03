@@ -105,7 +105,7 @@ class Deducer extends Component {
                   <section className="infos-and-deduction-itself">
                     {
                       <ShowInformationsExercise
-                        valueSent={value} // on envoie le state déclaré dans InferenceProvider
+                        valueInference={value} // on envoie le state déclaré dans InferenceProvider
                         exerciseSent={this.state.currentExercise} // on envoie les données de l'exercice actuel
                       />
                     }
@@ -119,7 +119,8 @@ class Deducer extends Component {
                         exerciseSent={this.state.currentExercise}
                       />
                       <div style={{ fontSize: 16 }}>
-                        Solutions : <ShowPossibleSolutions valueSent={value} />
+                        Solutions :{" "}
+                        <ShowPossibleSolutions valueInference={value} />
                       </div>
                     </Fragment>
                   </section>
@@ -127,7 +128,7 @@ class Deducer extends Component {
                     <ul className="setOfRules">
                       <ButtonRuleMaker
                         rulesSent={this.state.currentExercise.rulesImplied}
-                        valueSent={value}
+                        valueInference={value}
                       />
                     </ul>
                   </section>

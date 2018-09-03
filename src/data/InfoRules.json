@@ -89,7 +89,7 @@
   {
     "name": "∨i",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
-    "verbalDescription": "Si A et/ou B a été posé, on peut inférer A∨B.",
+    "verbalDescription": "Si A et/ou B a été posé, on peut inférer A∨B. Si A a été posé et qu'on ne sait rien de B, on peut quand même inférer A∨B.",
     "arrayUtilization": [
       ["A", "A∨B ∨i"],
       ["B", "A∨B ∨i"],
@@ -139,8 +139,8 @@
     "verbalDescription":
       "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
-    "instruction": "Cliquez sur l'hypothèse A, qui est en cours, puis cliquez sur sa dernière inférence, B, pour inférer A⊃B.",
-    "expectedArguments": ["A", "B"],
+    "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, validez cette règle pour terminer l'hypothèse en inférant A⊃B.",
+    "expectedArguments": ["Hypothèse", "Fin d'hypothèse"],
     "available": "soon",
     "binomial": "i"
   },
