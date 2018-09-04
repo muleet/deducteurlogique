@@ -18,24 +18,20 @@ class InferenceProvider extends Component {
       let inferenceType = "";
       if (hyp === "nouvelle hypothèse") {
         console.log("on augmente le niveau d'hypothèse");
-        this.changeHypothesisLevel("increase");
-        this.updateInferencesOfCurrentHypotheses(newInference, hyp);
         hypNumber = 1;
+        this.changeHypothesisLevel("increase");
+        this.updateHypotheticalInferencesThemselves(newInference, hyp);
         inferenceType = "hypothesisItself";
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
+        hypNumber = -1;
         this.changeHypothesisLevel("decrease");
         this.updateHypotheticalInferencesThemselves(newInference, hyp);
-        hypNumber = -1;
       } else if (this.props.conclusionSent === newInference.itself) {
         inferenceType = "concluding-inference-blinking";
       }
 
       if (this.state.hypothesisCurrentLevel > 0) {
-        this.updateInferencesOfCurrentHypotheses(
-          newInference,
-          hyp,
-          this.state.hypothesisCurrentLevel
-        );
+        this.updateInferencesOfCurrentHypotheses(newInference, hyp);
       }
       console.log(
         "le niveau d'hypothèse est ",
@@ -190,22 +186,34 @@ class InferenceProvider extends Component {
       });
     };
 
-    this.updateInferencesOfCurrentHypotheses = (
-      inference,
-      hyp,
-      hypothesisCurrentLevel
-    ) => {
+    this.updateInferencesOfCurrentHypotheses = (inference, hyp) => {
       // Cette fonction hyper spécifique sert à gérer le contenu de toutes les hypothèses en cours, y compris lorsqu'elles s'imbriquent les unes les autres.
       // La première hypothèse sera dans array[0], la seconde array[1], la troisième array[2], etc.
       // Cette fonction sert donc à stocker des intitulés d'hypothèses, mais aussi des inférences qui en découlent, et aussi à supprimer des hypothèses validées/réfutées.
       // Elle est essentielle pour ⊃i et ~i.
       let copyAllInferencesCurrentHypotheses = this.state
         .allInferencesCurrentHypotheses;
+      console.log(
+        "AVANT : toutes les hypothèses en cours",
+        copyAllInferencesCurrentHypotheses
+      );
       if (hyp === "nouvelle hypothèse") {
-        copyAllInferencesCurrentHypotheses.push(inference);
+        copyAllInferencesCurrentHypotheses[
+          this.state.hypothesisCurrentLevel
+        ].unshift(inference);
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
+        copyAllInferencesCurrentHypotheses[
+          this.state.hypothesisCurrentLevel
+        ].unshift(inference);
       } else {
+        copyAllInferencesCurrentHypotheses[
+          this.state.hypothesisCurrentLevel
+        ].unshift(inference); // on ajoute simplement l'inférence au degré d'hypothèse en cours
       }
+      console.log(
+        "APRES : toutes les hypothèses en cours",
+        copyAllInferencesCurrentHypotheses
+      );
     };
 
     this.state = {
@@ -225,7 +233,7 @@ class InferenceProvider extends Component {
       changeHypothesisLevel: this.changeHypothesisLevel,
       allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
       // "pas encore d'hypothèse"
-      allInferencesCurrentHypotheses: [],
+      allInferencesCurrentHypotheses: [[], [], [], [], [], [], [], []], // le premier array est toujours vide, car le niveau 0 des hypothèses c'est l'absence d'hypothèse
       updateHypotheticalInferencesThemselves: this
         .updateHypotheticalInferencesThemselves, // cette méthode modifie la variable allHypotheticalInferences
       updateInferencesOfCurrentHypotheses: this

@@ -3,7 +3,14 @@
     "verbalName": "Élimination du conditionnel",
     "premisses": ["p", "p⊃q"],
     "conclusion": "q",
-    "meaning": [["p : Il y a une table", "q : Une table existe"], ["p : La Terre est ronde", "q : La Terre n'est pas plate"], ["p : Les politiciens sont irresponsables politiquement", "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"]],
+    "meaning": [
+      ["p : Il y a une table", "q : Une table existe"],
+      ["p : La Terre est ronde", "q : La Terre n'est pas plate"],
+      [
+        "p : Les politiciens sont irresponsables politiquement",
+        "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"
+      ]
+    ],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "⊃e"],
     "minimalLine": 3
@@ -12,10 +19,12 @@
     "verbalName": "Élimination de la conjonction",
     "premisses": ["p∧q", "q⊃~r"],
     "conclusion": "~r",
-    "meaning": [[
-      "p : Pierre Joray est professeur de logique",
-      "q : Pierre Joray est directeur de l'UFR de philosophie",
-      "r : Les assemblées générales sont souveraines à l'UFR de philosophie"]
+    "meaning": [
+      [
+        "p : Pierre Joray est professeur de logique",
+        "q : Pierre Joray est directeur de l'UFR de philosophie",
+        "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
+      ]
     ],
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "∧e", "⊃e"],
@@ -29,6 +38,15 @@
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "∧i", "∧e"],
     "minimalLine": 8
+  },
+  {
+    "verbalName": "Validation d'hypothèse",
+    "premisses": ["p⊃q", "q⊃r"],
+    "conclusion": "p⊃r",
+    "meaning": [],
+    "propositionsImplied": 3,
+    "rulesImplied": ["rep", "hyp", "⊃i", "⊃e"],
+    "minimalLine": 7
   },
   {
     "verbalName": "Réfutation d'hypothèse",
@@ -49,7 +67,7 @@
     "minimalLine": 6
   },
   {
-    "verbalName": "Validation d'hypothèse",
+    "verbalName": "Validation et réfutation d'hypothèse",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
     "meaning": [],
@@ -67,11 +85,9 @@
     "minimalLine": 9
   },
   {
-    "verbalName": [
-      "Stratégie du fer à cheval pour une tautologie"
-    ],
+    "verbalName": ["Stratégie du fer à cheval pour une tautologie"],
     "premisses": [],
-    "conclusion": "(pvq)⊃(qvp)",
+    "conclusion": "(p∨q)⊃(q∨p)",
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],

@@ -54,7 +54,8 @@
 
 .awaiting-an-inference-blinking {
   animation: very-slow-blinker 3s linear infinite;
-  font-size: 20px;
+  font-size: 12px;
+  text-align: center;
   color : white;
 }
 

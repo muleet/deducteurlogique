@@ -1,4 +1,4 @@
-import React, { createContext, Component, Fragment } from "react";
+import React, { createContext, Component } from "react";
 
 export const RuleContext = createContext();
 
@@ -18,14 +18,12 @@ class RuleProvider extends Component {
       this.addInferenceFromRule(inferenceToAdd);
     };
 
-    this.conditionalIntroduction = (B, numbers) => {
-      console.log("⊃i, y a-t-il une hypothèse", this.props);
-      // this.conditionalIntroduction = (A, B, numbers) => {
-      // A n'est pas fixé par l'utilisateur, c'est toujours la dernière hypothèse faite qui y vient. Et normalement, B est toujours la dernière ligne de l'hypothèse, donc l'utilisateur n'a pas à choisir non plus.
-      // note perso : en fait peut-être que ⊃i et ~i n'ont pas besoin de
+    this.conditionalIntroduction = numbers => {
       let ifAthenB = this.returnAnInferenceOutOfTwoInferences(
-        this.props.allHypotheticalInferences[0],
-        this.props.allInference[this.props.allInference.length - 1],
+        this.props.valueInference.allHypotheticalInferences[0].itself,
+        this.props.valueInference.allInferencesCurrentHypotheses[
+          this.props.valueInference.hypothesisCurrentLevel
+        ][0].itself,
         "⊃"
       );
       console.log("ifAthenB", ifAthenB);
@@ -100,19 +98,19 @@ class RuleProvider extends Component {
     };
 
     this.redirectToTheRightRule = (ruleName, arrInf, numbers) => {
-      console.log("redirectToTheRightRule");
+      console.log("redirectToTheRightRule, pour la règle", ruleName);
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
       if (ruleName === "reit") {
         this.reiteration(arrInf[0], numbers); //  A∧B
-      } else if (ruleName === "hyp") {
-        console.log("normalement ça n'arrive jamais ici je crois");
+        // } else if (ruleName === "hyp") {
+        // console.log("normalement ça n'arrive jamais ici je crois");
       } else if (ruleName === "∧i") {
         this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B
       } else if (ruleName === "∧e") {
         this.conjonctionElimination(arrInf[0], numbers); //  A∧B
       } else if (ruleName === "⊃i") {
-        this.conditionalIntroduction(arrInf[0], arrInf[1], numbers); // A, A⊃B
+        this.conditionalIntroduction(numbers); // A, A⊃B
       } else if (ruleName === "⊃e") {
         this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B
       }

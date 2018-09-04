@@ -76,7 +76,6 @@ class RuleModal extends Component {
   };
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
-    console.log("y'a un problème dans makeHypothesis non ?");
     const inferenceToAdd = {
       itself: hypothesisItself,
       numberCommentary: "",

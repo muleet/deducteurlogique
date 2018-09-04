@@ -37,7 +37,6 @@ class RuleModal extends Component {
 
   showExpectedArguments(expectedArguments, ruleName) {
     let arrayExpectedArguments = [];
-    console.log("bonjour ruleName est égal à " + ruleName);
     if (ruleName !== "⊃i" && ruleName !== "~i") {
       for (let i = 0; i < expectedArguments.length; i++) {
         arrayExpectedArguments.push(
@@ -68,11 +67,11 @@ class RuleModal extends Component {
             {this.props.valueInference.allHypotheticalInferences[0].itself}
           </p>
         );
-        if (this.props.valueInference.allInference) {
-          console.log("il y a bien une dernière inférence blablabla");
-          lastInference = this.props.valueInference.allInference[
-            this.props.allInference.length - 1
-          ];
+        if (this.props.valueInference.allInferencesCurrentHypotheses[1][0]) {
+          lastInference = this.props.valueInference
+            .allInferencesCurrentHypotheses[
+            this.props.valueInference.hypothesisCurrentLevel
+          ].itself;
         }
       }
 
@@ -101,9 +100,10 @@ class RuleModal extends Component {
     console.log("verifyRule, pour la règle ", this.props.ruleName);
 
     if (
-      this.props.valueInference.storedInference !== undefined &&
-      this.props.expectedArguments.length ===
-        this.props.valueInference.storedInference.length
+      (this.props.valueInference.storedInference !== undefined &&
+        this.props.expectedArguments.length ===
+          this.props.valueInference.storedInference.length) ||
+      this.props.ruleName === "⊃i"
     ) {
       valueRuleContext.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les autres arguments.

@@ -113,6 +113,9 @@
   flex-direction: row;
   margin: 1px;
   padding: 1px;
+  /* flex-wrap: nowrap; */
+  /* word-wrap: nowrap; */
+  /* line-break: loose; */
   /* font-size:20px; */
 }
 
@@ -139,7 +142,6 @@
   padding:6px;
   color: #93b5ff;
 }
-
 
 /* SECTION DE LA RULE-MODAL HYPOTHETIQUE */
 

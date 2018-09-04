@@ -1,14 +1,10 @@
 import React, { Component, Fragment } from "react";
-import InferenceProvider, {
-  InferenceContext
-} from "../Context/InferenceProvider";
 
 // Cette fonction est appelée par Deducer.
 // Cette fonction génère le numéro de l'inférence, le contenu de l'inférence, et le commentaire de l'inférence.
 
 class MakeInference extends Component {
   render() {
-    const isIt = this.props.lastInference;
     return (
       <Fragment>
         <li
