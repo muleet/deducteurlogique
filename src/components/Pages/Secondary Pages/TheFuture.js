@@ -15,7 +15,11 @@ const TheFuture = () => {
         résolus et pour créer de nouveaux exercices. */}
         {/* <br />- Un tutoriel pour apprendre l'interface du site. */}
       </p>
-      <p>Dernière maj : 05/09/2018</p>
+      <p>
+        Dernière maj : 05/09/2018 (la règle ⊃i fonctionne mais autour de
+        beaucoup de bugs + ajout d'un nouvel exercice 4, "Validation
+        d'hypothèse")
+      </p>
     </main>
   );
 };

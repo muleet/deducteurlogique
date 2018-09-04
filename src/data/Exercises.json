@@ -81,7 +81,7 @@
     "conclusion": "p∨~p",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "hyp", "∨i", "~i", "~e"],
+    "rulesImplied": ["reit", "hyp", "∨i", "~i", "~~e"],
     "minimalLine": 9
   },
   {

@@ -1,8 +1,7 @@
 [
   {
     "name": "Qu'est-ce que la logique ?",
-    "answer":
-      "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Cet usage du mot logique existe bien, bien qu'il soit très indéterminé et synonymique d'autres mots. Cependant sur ce site, j'utiliserai le mot de logique dans un sens qui remonte à la Grèce Antique, je m'intéresserai à son sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides. Cette définition sera développée dans les questions suivantes."
+    "answer": "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Cet usage du mot logique existe bien, bien qu'il soit très indéterminé et synonymique d'autres mots. Cependant sur ce site, j'utiliserai le mot de logique dans un sens qui remonte à la Grèce Antique, je m'intéresserai à son sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides. Cette définition sera développée dans les questions suivantes."
   },
   {
     "name": "Quel lien peut-on faire entre le langage et la logique ?",
@@ -11,41 +10,35 @@
   },
   {
     "name": "Qu'est-ce qu'une proposition ?",
-    "answer":
-      "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet. Une proposition affirme quelque chose au sujet du monde et de ce qui le compose.",
-    "example":
-      "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. Il fera 50 à 55 degré en été, dans certaines régions de l'Europe en 2050.\n(\"La Terre.\" ou \"Socrate\", à l'inverse, ne sont pas des propositions.)"
+    "answer": "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet. Une proposition affirme quelque chose au sujet du monde et de ce qui le compose.",
+    "example": "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. Il fera 50 à 55 degré en été, dans certaines régions de l'Europe en 2050.\n(\"La Terre.\" ou \"Socrate\", à l'inverse, ne sont pas des propositions.)"
   },
   {
     "name": "Qu'est-ce qu'un prédicat ?",
-    "answer":
-      "La logique des propositions reste impuissante lorsqu'il s'agit d'analyser le contenu des propositions. C'est là que la logique des prédicats intervient. Elle permet d'analyser les propositions comme étant composées d'un sujet, d'un copule, et d'un prédicat (au moins un de chaque). En isolant le copule et le prédicat on peut former une fonction prédicative.",
-    "example":
-      "Hippathie est une femme : \"Hippathie\" est le sujet, \"est\" le copule, \"femme\" le prédicat. \"x est une femme\" est la fonction prédicative de cette proposition."
+    "answer": "La logique des propositions reste impuissante lorsqu'il s'agit d'analyser le contenu des propositions. C'est là que la logique des prédicats intervient. Elle permet d'analyser les propositions comme étant composées d'un sujet, d'un copule, et d'un prédicat (au moins un de chaque). En isolant le copule et le prédicat on peut former une fonction prédicative.",
+    "example": "Hippathie est une femme : \"Hippathie\" est le sujet, \"est\" le copule, \"femme\" le prédicat. \"x est une femme\" est la fonction prédicative de cette proposition."
   },
   {
     "name": "Qu'est-ce qu'une inférence ?",
-    "answer":
-      "Une inférence est un énoncé que l'on prononce sur la base d'un raisonnement logique, à partir d'autres énoncés admis comme vrais (prémisses). La dernière inférence d'une déduction valide est sa conclusion.",
-    "example":
-      "Si j'admets que \"Socrate est un homme\", que \"Tous les hommes sont mortels\", alors je peux inférer que \"Socrate est mortel\".\nSi j'admets que \"Toute action est politique\", que \"Faire ce site est une action\", alors je peux inférer que \"Faire ce site est politique\". "
+    "answer": "Une inférence est un énoncé que l'on prononce sur la base d'un raisonnement logique, à partir d'autres énoncés admis comme vrais (prémisses). La dernière inférence d'une déduction valide est sa conclusion.",
+    "example": "Si j'admets que \"Socrate est un homme\", que \"Tous les hommes sont mortels\", alors je peux inférer que \"Socrate est mortel\".\nSi j'admets que \"Toute action est politique\", que \"Faire ce site est une action\", alors je peux inférer que \"Faire ce site est politique\". "
   },
   {
     "name": "Que sont la vérité et la validité ?",
-    "answer":
-      "Un raisonnement logique ne peut pas être vrai ou faux, seulement valide ou invalide. Un raisonnement valide n'est pas un raisonnement vrai, c'est un raisonnement qui conserve la valeur de vérité des prémisses qu'il manipule. La logique ne concerne que la conservation de la valeur de vérité, donc si une personne veut produire des raisonnements valides et vrais, c'est à elle de faire l'effort de trouver des prémisses vraies, en observant le monde.",
-    "example":
-      "\"Tous les chats sont bleus, tous les bleus sont du sable, tous les chats sont du sable\" est un raisonnement valide, bien qu'il ne soit pas basé sur des prémisses vraies."
+    "answer": "Un raisonnement logique ne peut pas être vrai ou faux, seulement valide ou invalide. Un raisonnement valide n'est pas un raisonnement vrai, c'est un raisonnement qui conserve la valeur de vérité des prémisses qu'il manipule. La logique ne concerne que la conservation de la valeur de vérité, donc si une personne veut produire des raisonnements valides et vrais, c'est à elle de faire l'effort de trouver des prémisses vraies, en observant le monde.",
+    "example": "\"Tous les chats sont bleus, tous les bleus sont du sable, tous les chats sont du sable\" est un raisonnement valide, bien qu'il ne soit pas basé sur des prémisses vraies."
   },
   {
     "name": "Qu'est-ce qu'une déduction ?",
-    "answer":
-      "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit être composée d'inférences en accord les règles de logique. Ce site propose à l'utilisateur de faire des déductions."
+    "answer": "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit être composée d'inférences en accord les règles de logique. Ce site propose à l'utilisateur de faire des déductions."
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer":
-      "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓ → ↔."
+    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓ → ↔."
+  },
+  {
+    "name": "Qu'appelle-t-on \"connecteur dominant\" ?",
+    "answer": "Dans une formule logique telle que \"~(q∧~p)\" ou \"(p∧q)∧(p∧r)\", on a plusieurs symboles de logique, et même des parenthèses. En débutant la logique on peut douter de la manière dont il faut lire ces formules. La notion de connecteur dominant résoud le problème : c'est le connecteur principal qui relie une partie de la formule à une autre, et il y en a un et un seul par formule, de même qu'il n'y a qu'un seul ensemble à sa droite et un seul à sa gauche (sauf pour \"~\" qui n'interprète rien à sa gauche). Ainsi une formule comme \"p∧q∧r\" n'apparaîtra jamais sur ce site."
   },
   {
     "name": "Que sont les connecteurs prédicatifs ?",

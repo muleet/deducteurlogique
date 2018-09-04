@@ -2,8 +2,7 @@
   {
     "name": "rep",
     "verbalName": "Règle de répétition",
-    "verbalDescription":
-      "Si A était dans les prémisses, alors on peut répéter A dans la déduction.",
+    "verbalDescription": "Si A était dans les prémisses, alors on peut répéter A dans la déduction.",
     "arrayUtilization": "",
     "instruction": "Cliquez directement sur une prémisse, sans passer par cette fenêtre.",
     "expectedArguments": [],
@@ -12,8 +11,7 @@
   {
     "name": "reit",
     "verbalName": "Règle de réitération",
-    "verbalDescription":
-      "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
+    "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
     "arrayUtilization": [["A", "...", "A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer.",
     "expectedArguments": ["A"],
@@ -22,8 +20,7 @@
   {
     "name": "hyp",
     "verbalName": "Hypothèse",
-    "verbalDescription":
-      "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les utiliser.",
+    "verbalDescription": "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les utiliser.",
     "arrayUtilization": [
       ["|A hyp", "(...)", "|B", "A⊃B ⊃i"],
       ["|A hyp", "(...)", "|B", "|~B", "A ~i"]
@@ -35,8 +32,7 @@
   {
     "name": "ex falso",
     "verbalName": "Règle ex falso, ou principe d'explosion",
-    "verbalDescription":
-      "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
+    "verbalDescription": "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -45,8 +41,7 @@
   {
     "name": "~i",
     "verbalName": "Règle d'introduction de la négation",
-    "verbalDescription":
-      "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
+    "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": [["hyp A", "contradiction", "~A ~i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -54,17 +49,15 @@
     "binomial": "i"
   },
   {
-    "name": "~e",
-    "verbalName": "Règle d'élimination de la négation, dérivée de ~i",
-    "verbalDescription":
-      "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique des propositions considérée par ce site). On peut donc inférer A.",
+    "name": "~~e",
+    "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
+    "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique des propositions considérée par ce site). On peut donc inférer A.",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "later",
     "binomial": "e",
-    "notaBene":
-      "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
+    "notaBene": "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
   },
   {
     "name": "∧i",
@@ -103,8 +96,7 @@
   {
     "name": "∨e",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
-    "verbalDescription":
-      "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et ça c'est pas évident wesh [à développer]].",
+    "verbalDescription": "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et ça c'est pas évident wesh [à développer]].",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -114,8 +106,7 @@
   {
     "name": "⊻i",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
-    "verbalDescription":
-      "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
+    "verbalDescription": "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
     "arrayUtilization": [["A", "~B", "A⊻B ⊻i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -125,8 +116,7 @@
   {
     "name": "⊻e",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
-    "verbalDescription":
-      "Si A⊻B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
+    "verbalDescription": "Si A⊻B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -136,8 +126,7 @@
   {
     "name": "⊃i",
     "verbalName": "Règle d'introduction du conditionnel (modus ponens)",
-    "verbalDescription":
-      "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
+    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, validez cette règle pour terminer l'hypothèse en inférant A⊃B.",
     "expectedArguments": ["A", "B"],
@@ -147,8 +136,7 @@
   {
     "name": "⊃e",
     "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
-    "verbalDescription":
-      "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
+    "verbalDescription": "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
     "arrayUtilization": "",
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
@@ -158,8 +146,7 @@
   {
     "name": "≡i",
     "verbalName": "Règle d'introduction de l'équivalence",
-    "verbalDescription":
-      "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B. A et B sont alors dits équivalents.",
+    "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B. A et B sont alors dits équivalents.",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -169,8 +156,7 @@
   {
     "name": "≡e",
     "verbalName": "Règle d'élimination de l'équivalence",
-    "verbalDescription":
-      "Activable pour A et B si l’un des deux a été montré vrai.",
+    "verbalDescription": "Activable pour A et B si l’un des deux a été montré vrai.",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -278,8 +264,7 @@
   {
     "name": "=i",
     "verbalName": "Règle d'introduction de l'identité",
-    "verbalDescription":
-      "Il est toujours possible de dire A = A, lorsque l'on a A. [à développer]",
+    "verbalDescription": "Il est toujours possible de dire A = A, lorsque l'on a A. [à développer]",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],

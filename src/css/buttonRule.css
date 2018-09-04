@@ -32,14 +32,14 @@
   margin-top: 6px;
 }
 
-.all-button-about-inferences {
+.all-button-about-inferences  {
   display: flex;
-  width : 1000px;
-  border:1px solid blue;
+  width: 1000px;
+  border: 1px solid blue;
   justify-content: space-around;
 }
 
 .all-button-about-inferences > .icon {
-  font-size:26px;
+  font-size: 26px;
   margin-bottom: 10px;
 }

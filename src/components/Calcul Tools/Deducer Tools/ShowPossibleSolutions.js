@@ -7,8 +7,13 @@ class ShowPossibleSolutions extends Component {
     let arrayButtonSolutions = [];
     for (let i = 0; i < ExercisesSolution.length; i++) {
       let arraySolutionContent = [];
+
       for (let j = 0; j < ExercisesSolution[i].possibleSolution.length; j++) {
         console.log("j");
+        let comma = ", ";
+        if (ExercisesSolution[i].possibleSolution[j].commentary === "hyp") {
+          comma = "";
+        }
         arraySolutionContent.push(
           <MakeInference
             key={arraySolutionContent.length}
@@ -16,7 +21,7 @@ class ShowPossibleSolutions extends Component {
             inferenceItself={ExercisesSolution[i].possibleSolution[j].itself}
             inferenceCommentary={
               ExercisesSolution[i].possibleSolution[j].numberCommentary +
-              ", " +
+              comma +
               ExercisesSolution[i].possibleSolution[j].commentary
             }
           />

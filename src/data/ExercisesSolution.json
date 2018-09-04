@@ -32,11 +32,11 @@
   {
     "verbalName": "Validation d'hypothèse",
     "possibleSolution": [
-      { "itself": "p", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "p⊃q", "numberCommentary": "a", "commentary": "rep" },
-      { "itself": "q", "numberCommentary": "1, 2", "commentary": "⊃e" },
-      { "itself": "q⊃r", "numberCommentary": "b", "commentary": "rep" },
-      { "itself": "r", "numberCommentary": "3, 4", "commentary": "⊃e" },
+      { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|q", "numberCommentary": "1, 2", "commentary": "⊃e" },
+      { "itself": "|q⊃r", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "|r", "numberCommentary": "3, 4", "commentary": "⊃e" },
       { "itself": "r", "numberCommentary": "1, 5", "commentary": "⊃i" }
     ]
   },
@@ -87,7 +87,7 @@
         "numberCommentary": "1, 6, 7",
         "commentary": "~i"
       },
-      { "itself": "p∨~p", "numberCommentary": "5", "commentary": "~e" }
+      { "itself": "p∨~p", "numberCommentary": "5", "commentary": "~~e" }
     ]
   },
   {
