@@ -15,6 +15,7 @@ const TheFuture = () => {
         résolus et pour créer de nouveaux exercices. */}
         {/* <br />- Un tutoriel pour apprendre l'interface du site. */}
       </p>
+      <p>Dernière maj : 04/09/2018</p>
     </main>
   );
 };

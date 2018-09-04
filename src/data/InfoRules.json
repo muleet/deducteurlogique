@@ -140,7 +140,7 @@
       "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, validez cette règle pour terminer l'hypothèse en inférant A⊃B.",
-    "expectedArguments": ["Hypothèse", "Fin d'hypothèse"],
+    "expectedArguments": ["A", "B"],
     "available": "soon",
     "binomial": "i"
   },

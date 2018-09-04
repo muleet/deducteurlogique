@@ -53,20 +53,27 @@ class RuleModal extends Component {
           {"<pas encore d'hypothèse>"}
         </p>
       );
-      let lastInference = "(Il faut au moins une inférence après l'hypothèse)";
+      let lastInference = (
+        <p className="awaiting-an-inference-blinking">
+          {"<Il faut au moins une inférence après l'hypothèse>"}
+        </p>
+      );
       console.log(
         "RuleModal, y'a-t-il une hypothèse",
         this.props.valueInference.allHypotheticalInferences
       );
       if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
-        hypContent = this.props.valueInference.allHypotheticalInferences[0]
-          .itself;
-      }
-
-      if (this.props.valueInference.allInference) {
-        lastInference = this.props.valueInference.allInference[
-          this.props.allInference.length - 1
-        ];
+        hypContent = (
+          <p className="hypothesisItself">
+            {this.props.valueInference.allHypotheticalInferences[0].itself}
+          </p>
+        );
+        if (this.props.valueInference.allInference) {
+          console.log("il y a bien une dernière inférence blablabla");
+          lastInference = this.props.valueInference.allInference[
+            this.props.allInference.length - 1
+          ];
+        }
       }
 
       arrayExpectedArguments.push(
@@ -78,7 +85,10 @@ class RuleModal extends Component {
             {expectedArguments[0] + " : "}
             {hypContent}
           </div>
-          <p>{expectedArguments[1] + " : " + lastInference}</p>
+          <div>
+            {expectedArguments[1] + " : "}
+            {lastInference}
+          </div>
         </li>
       );
     } else if (ruleName === "~i") {

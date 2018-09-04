@@ -105,6 +105,7 @@
 
 .rule-modal-all-arguments {
   color: #ff9393;
+  /* font-size:18px; */
 }
 
 .rule-modal-single-argument {
@@ -112,6 +113,7 @@
   flex-direction: row;
   margin: 1px;
   padding: 1px;
+  /* font-size:20px; */
 }
 
 .rule-modal-single-argument > p:first-child {
