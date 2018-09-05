@@ -17,8 +17,8 @@ const TheFuture = () => {
       </p>
       <p>
         Dernière maj : 05/09/2018 (la règle ⊃i fonctionne mais autour de
-        beaucoup de bugs + ajout d'un nouvel exercice 4, "Validation
-        d'hypothèse")
+        plusieurs bugs + ajout d'un nouvel exercice 4, "Validation d'hypothèse",
+        qui peut être terminé avec les règles actuelles)
       </p>
     </main>
   );

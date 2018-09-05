@@ -1,5 +1,5 @@
 import React from "react";
-import ShowQuestions from "../ShowQuestions";
+import ShowQuestions from "./Components/ShowQuestions";
 
 const Questions = () => {
   return (

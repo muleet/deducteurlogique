@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
 // Importation de mes composants
-import ButtonMenu from "../ButtonMenu";
+import ButtonMenu from "../Navigation Components/ButtonMenu";
 import InfoRules from "./InfoRules";
 import MakeListExercises from "./MakeListExercises.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 // import CalculDesPredicats from "./CalculDesPredicats";
-import Linker from "../Linker";
+import Linker from "../Navigation Components/Linker";
 import CalculDesPredicats from "./CalculDesPredicats";
 
 class Home extends Component {

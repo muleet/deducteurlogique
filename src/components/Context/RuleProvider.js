@@ -18,21 +18,42 @@ class RuleProvider extends Component {
       this.addInferenceFromRule(inferenceToAdd);
     };
 
+    this.negationIntroduction = numbers => {
+      let noA =
+        "~" + this.props.valueInference.allHypotheticalInferences[0].itself;
+      const hyp = "hypothèse réfutée";
+      const inferenceToAdd = {
+        itself: noA,
+        numberCommentary: numbers,
+        commentary: "~i"
+      };
+      this.props.valueInference.addInference(inferenceToAdd, hyp);
+    };
+
+    this.doubleNegationElimination = numbers => {
+      // pas encore fait
+    };
+
     this.conditionalIntroduction = numbers => {
+      console.log(
+        "c'est ce truc",
+        this.props.valueInference.storedInferenceRendered
+      );
       let ifAthenB = this.returnAnInferenceOutOfTwoInferences(
         this.props.valueInference.allHypotheticalInferences[0].itself,
-        this.props.valueInference.allInferencesCurrentHypotheses[
-          this.props.valueInference.hypothesisCurrentLevel
-        ][0].itself,
+        this.props.valueInference.storedInference[0],
+        // this.props.valueInference.allInferencesCurrentHypotheses[
+        //   this.props.valueInference.hypothesisCurrentLevel
+        // ][0].itself,
         "⊃"
       );
       console.log("ifAthenB", ifAthenB);
-      const hyp = "hypothèse validée";
       const inferenceToAdd = {
         itself: ifAthenB,
         numberCommentary: numbers,
         commentary: "⊃i"
       };
+      const hyp = "hypothèse validée";
       this.props.valueInference.addInference(inferenceToAdd, hyp);
     };
 

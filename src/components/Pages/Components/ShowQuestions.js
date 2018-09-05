@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import QuestionsAboutLogic from "../data/QuestionsAboutLogic";
+import QuestionsAboutLogic from "../../../data/QuestionsAboutLogic";
 
 class ShowQuestions extends Component {
   state = {

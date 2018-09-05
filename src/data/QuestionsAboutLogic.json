@@ -38,7 +38,7 @@
   },
   {
     "name": "Qu'appelle-t-on \"connecteur dominant\" ?",
-    "answer": "Dans une formule logique telle que \"~(q∧~p)\" ou \"(p∧q)∧(p∧r)\", on a plusieurs symboles de logique, et même des parenthèses. En débutant la logique on peut douter de la manière dont il faut lire ces formules. La notion de connecteur dominant résoud le problème : c'est le connecteur principal qui relie une partie de la formule à une autre, et il y en a un et un seul par formule, de même qu'il n'y a qu'un seul ensemble à sa droite et un seul à sa gauche (sauf pour \"~\" qui n'interprète rien à sa gauche). Ainsi une formule comme \"p∧q∧r\" n'apparaîtra jamais sur ce site."
+    "answer": "Dans une formule logique telle que \"~(q∧~p)\" ou \"(p∧q)∧(p∧r)\", on a plusieurs symboles de logique, et même des parenthèses. En débutant la logique on peut avoir un doute sur la manière dont il faut lire ces formules. La notion de connecteur dominant résout le problème : c'est le connecteur principal qui relie une partie de la formule à une autre, et il y en a un et un seul par formule, de même qu'il n'y a qu'un seul ensemble à sa droite et un seul à sa gauche (sauf pour \"~\" qui n'interprète rien à sa gauche). Ainsi une formule comme \"p∧q∧r\" n'apparaîtra jamais sur ce site, ni dans aucun calcul de logique (à ma connaissance)."
   },
   {
     "name": "Que sont les connecteurs prédicatifs ?",

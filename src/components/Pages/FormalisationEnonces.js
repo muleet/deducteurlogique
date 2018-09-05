@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./Home";
-import Linker from "../Linker";
+import Linker from "../Navigation Components/Linker";
 
 const FormalisationsEnonces = () => {
   return (

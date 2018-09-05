@@ -55,7 +55,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "e",
     "notaBene": "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
   },

@@ -46,7 +46,7 @@
     "meaning": [],
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "⊃i", "⊃e"],
-    "minimalLine": 7
+    "minimalLine": 6
   },
   {
     "verbalName": "Réfutation d'hypothèse",

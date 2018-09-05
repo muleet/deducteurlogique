@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ReactModal from "react-modal";
-import RuleProvider, { RuleContext } from "./Context/RuleProvider";
+import RuleProvider, { RuleContext } from "../Context/RuleProvider";
 // import ReactDOM from "react-dom";
 
 // ReactModal.setAppElement("#main");

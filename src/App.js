@@ -19,7 +19,7 @@ import "./font/stylesheet.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import MakeLocution from "./components/MakeLocution";
-import Header from "./components/Header"; // commenté pour le moment
+import Header from "./components/Navigation Components/Header"; // commenté pour le moment
 // Importation des pages
 import Home from "./components/Pages/Home";
 import CalculDesPropositions from "./components/Pages/CalculDesPropositions";
@@ -33,7 +33,7 @@ import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 // import LogIn from "./components/Users/LogIn";
 // import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
-import ButtonNav from "./components/ButtonNav";
+import ButtonNav from "./components/Navigation Components/ButtonNav";
 // Images
 // import athens from "./img/athens.svg";
 

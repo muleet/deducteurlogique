@@ -9,7 +9,6 @@ class ShowPossibleSolutions extends Component {
       let arraySolutionContent = [];
 
       for (let j = 0; j < ExercisesSolution[i].possibleSolution.length; j++) {
-        console.log("j");
         let comma = ", ";
         if (ExercisesSolution[i].possibleSolution[j].commentary === "hyp") {
           comma = "";
@@ -27,7 +26,6 @@ class ShowPossibleSolutions extends Component {
           />
         );
       }
-      console.log(arraySolutionContent);
       arrayButtonSolutions.push(
         <div
           key={arrayButtonSolutions.length}

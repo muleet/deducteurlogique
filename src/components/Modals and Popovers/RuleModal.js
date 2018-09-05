@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import ReactModal from "react-modal";
-import RuleProvider, { RuleContext } from "./Context/RuleProvider";
+import RuleProvider, { RuleContext } from "../Context/RuleProvider";
+import ShowExpectedArguments from "./Components/ShowExpectedArguments";
 // import ReactDOM from "react-dom";
 
 // ReactModal.setAppElement("#main");
@@ -36,67 +37,18 @@ class RuleModal extends Component {
   }
 
   showExpectedArguments(expectedArguments, ruleName) {
-    let arrayExpectedArguments = [];
-    if (ruleName !== "⊃i" && ruleName !== "~i") {
-      for (let i = 0; i < expectedArguments.length; i++) {
-        arrayExpectedArguments.push(
-          <li key={i} className="rule-modal-single-argument">
-            <p>{expectedArguments[i] + " :"}</p>
-            {this.props.valueInference.storedInferenceRendered[i]}
-          </li>
-        );
-      }
-    } else if (ruleName === "⊃i") {
-      let hypContent = (
-        <p className="awaiting-an-inference-blinking">
-          {"<pas encore d'hypothèse>"}
-        </p>
-      );
-      let lastInference = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Il faut au moins une inférence après l'hypothèse>"}
-        </p>
-      );
-      console.log(
-        "RuleModal, y'a-t-il une hypothèse",
-        this.props.valueInference.allHypotheticalInferences
-      );
-      if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
-        hypContent = (
-          <p className="hypothesisItself">
-            {this.props.valueInference.allHypotheticalInferences[0].itself}
-          </p>
-        );
-        if (this.props.valueInference.allInferencesCurrentHypotheses[1][0]) {
-          lastInference = this.props.valueInference
-            .allInferencesCurrentHypotheses[
-            this.props.valueInference.hypothesisCurrentLevel
-          ].itself;
-        }
-      }
-
-      arrayExpectedArguments.push(
-        <li
-          key={arrayExpectedArguments.length}
-          className="rule-modal-all-arguments"
-        >
-          <div>
-            {expectedArguments[0] + " : "}
-            {hypContent}
-          </div>
-          <div>
-            {expectedArguments[1] + " : "}
-            {lastInference}
-          </div>
-        </li>
-      );
-    } else if (ruleName === "~i") {
-      // RIEN POUR LE MOMENT
-    }
-    return arrayExpectedArguments;
+    return (
+      <ShowExpectedArguments
+        valueInference={this.props.valueInference}
+        ruleName={ruleName}
+        expectedArguments={expectedArguments}
+      />
+    );
   }
 
   verifyRule(valueRuleContext) {
+    // "VerifyRule", puis "ShowExpectedArguments", puis "redirectToTheRightRule", puis "la règle en question", puis "addInference"
+    // puis dans le cas des hypothèses, changeHypothesisLevel, puis updateHypotheticalInferencesThemselves puis RIEN (pas d'updateInferencesOfCurrentHypotheses)
     console.log("verifyRule, pour la règle ", this.props.ruleName);
 
     if (
@@ -106,7 +58,7 @@ class RuleModal extends Component {
       this.props.ruleName === "⊃i"
     ) {
       valueRuleContext.redirectToTheRightRule(
-        this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les autres arguments.
+        this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
         this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
         this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );

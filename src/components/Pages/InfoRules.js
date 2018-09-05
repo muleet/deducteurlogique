@@ -1,5 +1,5 @@
 import React from "react";
-import ShowInfoRules from "../ShowInfoRules";
+import ShowInfoRules from "./Components/ShowInfoRules";
 
 const InfoRules = () => {
   return (
