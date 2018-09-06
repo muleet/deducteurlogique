@@ -61,6 +61,16 @@ footer {
   background: -moz-linear-gradient(0% 100% 122deg, #000000, #ff0000 0%);
 }
 
+#interrogation-mark-1 {
+  color: red;
+}
+
+#interrogation-mark-2 {
+  color: black;
+  text-shadow: 0px 0px 2px white;
+  /* text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.178); */
+}
+
 .main-auteurs-contact {
   margin: 0px 276px;
 }
@@ -86,9 +96,9 @@ h1 {
 
 h2 {
   color: white;
-  font-size:24px;
-  margin:0px;
-  padding:0px;
+  font-size: 24px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .icon {
@@ -142,14 +152,15 @@ h2 {
 }
 
 .selectable:hover {
-  border:1px solid red;
+  border: 1px solid red;
 }
 
 .blinking {
   animation: blinker 1s linear infinite;
 }
 
-@keyframes blinker {  
-  80% { opacity: 0; }
+@keyframes blinker {
+  80% {
+    opacity: 0;
+  }
 }
-

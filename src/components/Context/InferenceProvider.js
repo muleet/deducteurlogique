@@ -1,5 +1,6 @@
 import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
 import MakeInference from "../Calcul Tools/MakeInference";
+import AdviceModal from "../Modals and Popovers/AdviceModal";
 
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
 // Pour importer cette variable contextuelle :
@@ -148,8 +149,10 @@ class InferenceProvider extends Component {
         storedInference: [],
         storedNumbers: "",
         storedInferenceRendered: [],
+        canInferenceBeStored: false,
         hypothesisCurrentLevel: 0,
-        allHypotheticalInferences: []
+        allHypotheticalInferences: [],
+        advice: ""
         // allInferencesCurrentHypotheses: []
       }));
     };
@@ -192,29 +195,38 @@ class InferenceProvider extends Component {
       // La première hypothèse sera dans array[0], la seconde array[1], la troisième array[2], etc.
       // Cette fonction sert donc à stocker des intitulés d'hypothèses, mais aussi des inférences qui en découlent, et aussi à supprimer des hypothèses validées/réfutées.
       // Elle est essentielle pour ⊃i et ~i.
-      let copyAllInferencesCurrentHypotheses = this.state
-        .allInferencesCurrentHypotheses;
-      console.log(
-        "AVANT : toutes les hypothèses en cours",
-        copyAllInferencesCurrentHypotheses
+      // let copyAllInferencesCurrentHypotheses = this.state
+      //   .allInferencesCurrentHypotheses;
+      // console.log(
+      //   "AVANT : toutes les hypothèses en cours",
+      //   copyAllInferencesCurrentHypotheses
+      // );
+      // if (hyp === "nouvelle hypothèse") {
+      //   copyAllInferencesCurrentHypotheses[
+      //     this.state.hypothesisCurrentLevel
+      //   ].unshift(inference);
+      // } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
+      //   copyAllInferencesCurrentHypotheses[
+      //     this.state.hypothesisCurrentLevel
+      //   ].unshift(inference);
+      // } else {
+      //   copyAllInferencesCurrentHypotheses[
+      //     this.state.hypothesisCurrentLevel
+      //   ].unshift(inference); // on ajoute simplement l'inférence au degré d'hypothèse en cours
+      // }
+      // console.log(
+      //   "APRES : toutes les hypothèses en cours",
+      //   copyAllInferencesCurrentHypotheses
+      // );
+    };
+
+    this.setAdvice = (advice, adviceClassName, specificContent) => {
+      // 3 types de conseils différents : 1) liste de ce qu'il est possible de faire au début de l'exo, 2) étapes sur l'utilisation d'une règle, 3) message d'erreur (l'utilisateur a cliqué là où il ne fallait pas)
+      // A chacun correspond une className 1) start-advice, rule-advice, error-advice
+      const adviceToReturn = (
+        <p className={"advice hideMe " + adviceClassName}>{advice}</p>
       );
-      if (hyp === "nouvelle hypothèse") {
-        copyAllInferencesCurrentHypotheses[
-          this.state.hypothesisCurrentLevel
-        ].unshift(inference);
-      } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
-        copyAllInferencesCurrentHypotheses[
-          this.state.hypothesisCurrentLevel
-        ].unshift(inference);
-      } else {
-        copyAllInferencesCurrentHypotheses[
-          this.state.hypothesisCurrentLevel
-        ].unshift(inference); // on ajoute simplement l'inférence au degré d'hypothèse en cours
-      }
-      console.log(
-        "APRES : toutes les hypothèses en cours",
-        copyAllInferencesCurrentHypotheses
-      );
+      this.setState({ advice: adviceToReturn });
     };
 
     this.state = {
@@ -230,6 +242,8 @@ class InferenceProvider extends Component {
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
+      advice: " ",
+      setAdvice: this.setAdvice,
       // section de l'hypothèse
       hypothesisCurrentLevel: 0,
       changeHypothesisLevel: this.changeHypothesisLevel,

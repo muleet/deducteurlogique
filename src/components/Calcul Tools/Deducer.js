@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
+import ExercisesSolution from "../../data/ExercisesSolution.json";
 import ShowInformationsExercise from "./Deducer Tools/ShowInformationsExercise";
 import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
 import InferenceProvider, {
@@ -103,12 +104,18 @@ class Deducer extends Component {
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
+                    {value.advice}
                     {
                       <ShowInformationsExercise
                         valueInference={value} // on envoie le state déclaré dans InferenceProvider
                         exerciseSent={this.state.currentExercise} // on envoie les données de l'exercice actuel
+                        minimalLineNumber={
+                          ExercisesSolution[this.props.exerciseNumber - 1]
+                            .possibleSolution.length
+                        }
                       />
                     }
+                    {/* Sert à afficher des infos à l'utilisateur */}
                     <Fragment>
                       <ul className="deduction">
                         {

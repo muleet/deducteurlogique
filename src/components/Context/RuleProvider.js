@@ -18,36 +18,33 @@ class RuleProvider extends Component {
       this.addInferenceFromRule(inferenceToAdd);
     };
 
-    this.negationIntroduction = numbers => {
-      let noA =
-        "~" + this.props.valueInference.allHypotheticalInferences[0].itself;
-      const hyp = "hypothèse réfutée";
-      const inferenceToAdd = {
-        itself: noA,
-        numberCommentary: numbers,
-        commentary: "~i"
-      };
-      this.props.valueInference.addInference(inferenceToAdd, hyp);
+    this.negationIntroduction = (B, noB, numbers) => {
+      // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
+      if (noB === "~" + B || noB === "~" + "(" + B + ")") {
+        let noA =
+          "~" + this.props.valueInference.allHypotheticalInferences[0].itself;
+        const hyp = "hypothèse réfutée";
+        const inferenceToAdd = {
+          itself: noA,
+          numberCommentary: numbers,
+          commentary: "~i"
+        };
+        this.props.valueInference.addInference(inferenceToAdd, hyp);
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour ~i devez créer une contradiction au sein de l'hypothèse, pour la rejeter",
+          "error-advice"
+        );
+      }
     };
 
     this.doubleNegationElimination = numbers => {
       // pas encore fait
     };
 
-    this.conditionalIntroduction = numbers => {
-      console.log(
-        "c'est ce truc",
-        this.props.valueInference.storedInferenceRendered
-      );
-      let ifAthenB = this.returnAnInferenceOutOfTwoInferences(
-        this.props.valueInference.allHypotheticalInferences[0].itself,
-        this.props.valueInference.storedInference[0],
-        // this.props.valueInference.allInferencesCurrentHypotheses[
-        //   this.props.valueInference.hypothesisCurrentLevel
-        // ][0].itself,
-        "⊃"
-      );
-      console.log("ifAthenB", ifAthenB);
+    this.conditionalIntroduction = (B, numbers) => {
+      const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
+      let ifAthenB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
       const inferenceToAdd = {
         itself: ifAthenB,
         numberCommentary: numbers,
@@ -126,14 +123,18 @@ class RuleProvider extends Component {
         this.reiteration(arrInf[0], numbers); //  A∧B
         // } else if (ruleName === "hyp") {
         // console.log("normalement ça n'arrive jamais ici je crois");
+      } else if (ruleName === "~i") {
+        this.negationIntroduction(arrInf[0], arrInf[1], numbers); // B, ~B, pour réfuter l'hypothèse (A)
+      } else if (ruleName === "~~e") {
+        this.doubleNegationElimination(arrInf[0], numbers); // ~~A pour A
       } else if (ruleName === "∧i") {
-        this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B
+        this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B pour A∧B
       } else if (ruleName === "∧e") {
-        this.conjonctionElimination(arrInf[0], numbers); //  A∧B
+        this.conjonctionElimination(arrInf[0], numbers); //  A∧B pour A ou b
       } else if (ruleName === "⊃i") {
-        this.conditionalIntroduction(numbers); // A, A⊃B
+        this.conditionalIntroduction(arrInf[0], numbers); // (A), B pour A⊃B
       } else if (ruleName === "⊃e") {
-        this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B
+        this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B pour B
       }
     };
 
@@ -220,11 +221,11 @@ class RuleProvider extends Component {
     };
 
     this.state = {
-      reiteration: this.reiteration, // reit
-      conditionalIntroduction: this.conditionalIntroduction, // ⊃i
-      conditionalElimination: this.conditionalElimination, // ⊃e
-      conjonctionIntroduction: this.conjonctionIntroduction, // ∧i
-      conjonctionElimination: this.conjonctionElimination, // ∧e
+      // reiteration: this.reiteration, // reit
+      // conditionalIntroduction: this.conditionalIntroduction, // ⊃i
+      // conditionalElimination: this.conditionalElimination, // ⊃e
+      // conjonctionIntroduction: this.conjonctionIntroduction, // ∧i
+      // conjonctionElimination: this.conjonctionElimination, // ∧e
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       showChoiceOnTheModal: this.showChoiceOnTheModal,

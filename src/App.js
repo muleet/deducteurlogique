@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 // Importation de mon css
 import "./reset.css"; // Reset de tout le css
+import "./css/advice.css";
 import "./css/app.css";
 import "./css/buttonMenu.css";
 import "./css/buttonRule.css";
 import "./css/deduction.css";
 import "./css/exerciseList.css";
-import "./css/id.css";
 import "./css/inference.css";
 import "./css/rulePopover.css";
 import "./css/ruleModal.css";

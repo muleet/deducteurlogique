@@ -5,6 +5,23 @@ class ShowExpectedArguments extends Component {
     let arrayExpectedArguments = [];
     const ruleName = this.props.ruleName;
     const expectedArguments = this.props.expectedArguments;
+    let hypContent = (
+      <p className="awaiting-an-inference-blinking">
+        {"<pas encore d'hypothèse>"}
+      </p>
+    );
+    let firstArgument = (
+      <p className="awaiting-an-inference-blinking">
+        {"<Cliquez sur une inférence qui suit l'hypothèse>"}
+      </p>
+    );
+    let secondArgument = (
+      <p className="awaiting-an-inference-blinking">
+        {
+          "<Cliquez sur une inférence qui suit l'hypothèse, niant la précédente>"
+        }
+      </p>
+    );
 
     if (ruleName !== "⊃i" && ruleName !== "~i") {
       for (let i = 0; i < expectedArguments.length; i++) {
@@ -16,20 +33,6 @@ class ShowExpectedArguments extends Component {
         );
       }
     } else if (ruleName === "⊃i") {
-      let hypContent = (
-        <p className="awaiting-an-inference-blinking">
-          {"<pas encore d'hypothèse>"}
-        </p>
-      );
-      let lastInference = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Cliquez sur une inférence qui suit l'hypothèse>"}
-        </p>
-      );
-      console.log(
-        "RuleModal, y'a-t-il une hypothèse",
-        this.props.valueInference.allHypotheticalInferences
-      );
       if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
         hypContent = (
           <p className="inferenceItself">
@@ -38,7 +41,7 @@ class ShowExpectedArguments extends Component {
         );
       }
       if (this.props.valueInference.storedInference[0]) {
-        lastInference = (
+        firstArgument = (
           <p className="inferenceItself">
             {this.props.valueInference.storedInference[0]}
           </p>
@@ -56,11 +59,52 @@ class ShowExpectedArguments extends Component {
           </div>
           <div className="rule-modal-single-argument">
             {expectedArguments[1] + " : "}
-            {lastInference}
+            {firstArgument}
           </div>
         </li>
       );
     } else if (ruleName === "~i") {
+      if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
+        hypContent = (
+          <p className="inferenceItself">
+            {this.props.valueInference.allHypotheticalInferences[0].itself}
+          </p>
+        );
+      }
+      if (this.props.valueInference.storedInference[0]) {
+        firstArgument = (
+          <p className="inferenceItself">
+            {this.props.valueInference.storedInference[0]}
+          </p>
+        );
+      }
+      if (this.props.valueInference.storedInference[1]) {
+        secondArgument = (
+          <p className="inferenceItself">
+            {this.props.valueInference.storedInference[1]}
+          </p>
+        );
+      }
+
+      arrayExpectedArguments.push(
+        <li
+          key={arrayExpectedArguments.length}
+          className="rule-modal-all-arguments"
+        >
+          <div className="rule-modal-single-argument">
+            {expectedArguments[0] + " : "}
+            {hypContent}
+          </div>
+          <div className="rule-modal-single-argument">
+            {expectedArguments[1] + " : "}
+            {firstArgument}
+          </div>
+          <div className="rule-modal-single-argument">
+            {expectedArguments[2] + " : "}
+            {secondArgument}
+          </div>
+        </li>
+      );
       // RIEN POUR LE MOMENT
     }
     return arrayExpectedArguments;

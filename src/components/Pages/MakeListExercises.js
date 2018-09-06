@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Exercises from "../../data/Exercises";
+import ExercisesSolution from "../../data/ExercisesSolution.json";
 import { Link } from "react-router-dom";
 
 // MakeListExercises génère sur une page, une liste d'exercices à partir des fichiers json contenant les exercices.
@@ -111,7 +112,7 @@ class MakeListExercises extends Component {
             Conclusion : <li>{Exercises[numExercise].conclusion}</li>
             Règles à utiliser : <li>{RulesImpliedToRender}</li>
             Nombre minimal de lignes :
-            <li>{Exercises[numExercise].minimalLine}</li>
+            <li>{ExercisesSolution[numExercise].possibleSolution.length}</li>
           </Fragment>
         )
       });

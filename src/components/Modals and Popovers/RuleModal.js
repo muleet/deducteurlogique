@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import ReactModal from "react-modal";
 import RuleProvider, { RuleContext } from "../Context/RuleProvider";
 import ShowExpectedArguments from "./Components/ShowExpectedArguments";
+// import ShowModalButtons from "./Components/ShowModalButtons";
 // import ReactDOM from "react-dom";
 
 // ReactModal.setAppElement("#main");
@@ -46,18 +47,19 @@ class RuleModal extends Component {
     );
   }
 
-  verifyRule(valueRuleContext) {
-    // "VerifyRule", puis "ShowExpectedArguments", puis "redirectToTheRightRule", puis "la règle en question", puis "addInference"
+  // ShowModalButtons(valueRule, valueInference) {}
+
+  verifyRule(valueRule) {
+    // "RuleModal", puis "ShowExpectedArguments", puis "VerifyRule", puis "redirectToTheRightRule", puis "[la règle en question]", puis "addInference"
     // puis dans le cas des hypothèses, changeHypothesisLevel, puis updateHypotheticalInferencesThemselves puis RIEN (pas d'updateInferencesOfCurrentHypotheses)
     console.log("verifyRule, pour la règle ", this.props.ruleName);
 
     if (
-      (this.props.valueInference.storedInference !== undefined &&
-        this.props.expectedArguments.length ===
-          this.props.valueInference.storedInference.length) ||
-      this.props.ruleName === "⊃i"
+      this.props.valueInference.storedInference !== undefined &&
+      this.props.expectedArguments.length ===
+        this.props.valueInference.storedInference.length
     ) {
-      valueRuleContext.redirectToTheRightRule(
+      valueRule.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
         this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
         this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
@@ -65,6 +67,28 @@ class RuleModal extends Component {
       this.setState({ modalClassName: "rule-modal-ended-well modal-ending" });
       // this.handleCloseModal();
     } else {
+      this.props.valueInference.setAdvice(
+        "Tous les arguments n'étaient pas entrés",
+        "error-advice"
+      );
+      this.setState({ modalClassName: "rule-modal-ended-badly modal-ending" });
+    }
+  }
+
+  verifySpecificRule(valueRule) {
+    if (this.props.valueInference.hypothesisCurrentLevel !== 0) {
+      valueRule.redirectToTheRightRule(
+        this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
+        this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
+        this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
+      );
+      this.setState({ modalClassName: "rule-modal-ended-well modal-ending" });
+      // this.handleCloseModal();
+    } else {
+      this.props.valueInference.setAdvice(
+        "Entrez tous les arguments avant de valider",
+        "error-advice"
+      );
       this.setState({ modalClassName: "rule-modal-ended-badly modal-ending" });
     }
   }
@@ -108,13 +132,21 @@ class RuleModal extends Component {
                         this.props.ruleName
                       )}
                       {value.choiceContent}
-                      {/* cette variable, valueRuleContext.choice, est vide la plupart du temps */}
+                      {/* cette variable, valueRule.choice, est vide la plupart du temps */}
                     </ul>
                     <div className="rule-modal-all-buttons">
+                      {/* {this.ShowModalButtons(value, this.props.valueInference)} */}
                       <p
                         className="rule-modal-button"
                         onClick={() => {
-                          this.verifyRule(value);
+                          if (
+                            this.props.ruleName !== "⊃i" &&
+                            this.props.ruleName !== "~i"
+                          ) {
+                            this.verifyRule(value);
+                          } else {
+                            this.verifySpecificRule(value);
+                          }
                         }}
                       >
                         <i className="fas fa-check-square" />

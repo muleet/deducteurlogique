@@ -60,7 +60,7 @@ class ShowInformationsExercise extends Component {
           <li id="minimal-line-number">
             Nombre minimal
             <br />
-            de ligne : {this.props.exerciseSent.minimalLine}
+            de ligne : {this.props.minimalLineNumber}
           </li>
         </ul>
       </Fragment>
