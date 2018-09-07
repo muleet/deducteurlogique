@@ -11,6 +11,8 @@ const TheFuture = () => {
         situationnels guidant l'utilisateur.
         <br />- Rendre responsive le site (au point qu'on puisse l'utiliser sur
         smartphone, c'est pas le cas actuellement).
+        <br />- Faire un affichage cohérent du niveau d'hypothèse, avec des
+        traits plus ou moins longs.
         {/* <br />- La possibilité de créer des comptes, pour stocker les exercices
         résolus et pour créer de nouveaux exercices. */}
       </p>
@@ -27,8 +29,8 @@ const TheFuture = () => {
         cours).
         <br />- 07/09/2018 : les hypothèses fonctionnent, il est maintenant
         impossible d'utiliser dans une règle, une inférence qui se situe en
-        dehors de l'hypothèse en cours (en tout cas dans la plupart des cas).
-        Mais il faut que j'améliore le rendu de ~i, et que j'ajoute ~~e.
+        dehors de l'hypothèse en cours (en tout cas dans les cas que j'ai
+        testé). Mais il faut que j'améliore le rendu de ~i, et que j'ajoute ~~e.
       </p>
     </main>
   );

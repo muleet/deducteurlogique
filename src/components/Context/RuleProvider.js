@@ -18,9 +18,9 @@ class RuleProvider extends Component {
       this.addInferenceFromRule(inferenceToAdd);
     };
 
-    this.negationIntroduction = (B, noB, numbers) => {
+    this.negationIntroduction = (B, notB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
-      if (B[0] !== /pqrs\(/ || noB[0] !== "~") {
+      if (B[0] !== /[pqrs(]\(/ || notB[0] !== "~") {
         this.props.valueInference.setAdvice(
           'Problème formel : B doit commencer par une proposition ou une parenthèse, et ~B par le caractère "~".',
           "error-advice"
@@ -37,14 +37,27 @@ class RuleProvider extends Component {
         this.props.valueInference.addInference(inferenceToAdd, hyp);
       } else {
         this.props.valueInference.setAdvice(
-          "Pour ~i devez créer une contradiction au sein de l'hypothèse, pour la rejeter",
+          "Pour utiliser ~i, vous devez créer une contradiction au sein de l'hypothèse, pour la rejeter",
           "error-advice"
         );
       }
     };
 
-    this.doubleNegationElimination = numbers => {
-      // pas encore fait
+    this.doubleNegationElimination = (notnotA, numbers) => {
+      if (notnotA[0] === "~" && notnotA[1] === "~") {
+        let i = 0;
+        let A = "";
+        while (i < notnotA.length) {
+          i++;
+          A = A + notnotA[i + 2];
+        }
+        return A;
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ~~e, ~~A doit commencer par '~~'.",
+          "error-advice"
+        );
+      }
     };
 
     this.conditionalIntroduction = (B, numbers) => {

@@ -41,12 +41,20 @@
     "answer": "Dans une formule logique telle que \"~(q∧~p)\" ou \"(p∧q)∧(p∧r)\", on a plusieurs symboles de logique, et même des parenthèses. En débutant la logique on peut avoir un doute sur la manière dont il faut lire ces formules. La notion de connecteur dominant résout le problème : c'est le connecteur principal qui relie une partie de la formule à une autre, et il y en a un et un seul par formule, de même qu'il n'y a qu'un seul ensemble à sa droite et un seul à sa gauche (sauf pour \"~\" qui n'interprète rien à sa gauche). Ainsi une formule comme \"p∧q∧r\" n'apparaîtra jamais sur ce site, ni dans aucun calcul de logique (à ma connaissance)."
   },
   {
+    "name": "La règle d'élimination de la double négation, ~~e, est-elle juste ? Une double négation d'une proposition est-elle toujours égale à l'affirmation de cette proposition ?",
+    "answer": "Non, ce n'est le cas dans les calculs de logique de ce site que parce que ceux-ci sont basés sur des tables de vérités qui empêchent toute autre possibilité d'interprétation de ce que signifie une double négation. Au contraire, dans les dialogues de la vie courante, il peut exister des doubles négations ayant toutes sortes d'autres significations, la règle ~~e ne saurait être invoquée dans de tels cas."
+  },
+  {
     "name": "Que sont les connecteurs prédicatifs ?",
     "answer": ""
   },
   {
     "name": "Que sont le théorème et la contradiction ?",
     "answer": ""
+  },
+  {
+    "name": "Y a-t-il différents genres de règles ?",
+    "answer": "On peut distinguer 3 genres de règles : les règles structurelles (rep, reit, hyp...), les règles de connecteurs (∧i, ...), et les règles dérivées (~~e, ...). Les deux premières sont des règles acceptées par défaut, sans démonstration ; les règles dérivées sont au contraire démontrables à partir des précédentes. Il est possible de déduire toutes les règles des connecteurs propositionnels en ayant pour base ~ et ∧."
   },
   {
     "name": "Que sont l'hypothèse, et le raisonnement par l'absurde ?",
