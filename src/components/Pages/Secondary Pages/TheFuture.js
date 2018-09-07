@@ -7,11 +7,8 @@ const TheFuture = () => {
         Qu'apporteront les plus proches mises à jour ? <br />
       </h2>
       <p style={{ fontSize: 16, marginBottom: "10px" }}>
-        - La possibilité de faire des hypothèses. (Et les règles ~i et ⊃i
-        arriveront juste après.) (Edit : c'est presque terminé mais il faut
-        encore que j'empêche l'utilisateur d'utiliser des prémisses en dehors de
-        l'hypothèse en cours.)
-        <br />- Rendre le site plus user-friendly.
+        <br />- Rendre le site plus user-friendly, avec des messages
+        situationnels guidant l'utilisateur.
         <br />- Rendre responsive le site (au point qu'on puisse l'utiliser sur
         smartphone, c'est pas le cas actuellement).
         {/* <br />- La possibilité de créer des comptes, pour stocker les exercices
@@ -28,6 +25,10 @@ const TheFuture = () => {
         logique, mais aussi en trichant via un bug que je dois régler :
         l'utilisation pour ~i et ⊃i des inférences hors de l'hypothèse en
         cours).
+        <br />- 07/09/2018 : les hypothèses fonctionnent, il est maintenant
+        impossible d'utiliser dans une règle, une inférence qui se situe en
+        dehors de l'hypothèse en cours (en tout cas dans la plupart des cas).
+        Mais il faut que j'améliore le rendu de ~i, et que j'ajoute ~~e.
       </p>
     </main>
   );

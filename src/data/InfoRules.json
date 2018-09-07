@@ -27,7 +27,7 @@
     ],
     "instruction": "Formulez une hypothèse pour ensuite tenter de la valider ou de la réfuter.",
     "expectedArguments": ["hyp"],
-    "available": "soon"
+    "available": "yes"
   },
   {
     "name": "ex falso",
@@ -45,7 +45,7 @@
     "arrayUtilization": [["hyp A", "contradiction", "~A ~i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
     "expectedArguments": ["A", "B", "~B"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "i"
   },
   {
@@ -110,7 +110,7 @@
     "arrayUtilization": [["A", "~B", "A⊻B ⊻i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "i"
   },
   {
@@ -120,7 +120,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "e"
   },
   {
@@ -130,7 +130,7 @@
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, confirmez cette règle pour valider l'hypothèse, en inférant A⊃B.",
     "expectedArguments": ["A", "B"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "i"
   },
   {
@@ -170,7 +170,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "i"
   },
   {
@@ -180,7 +180,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "e"
   },
   {
@@ -190,7 +190,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
+    "available": "later",
     "binomial": "i"
   },
   {
@@ -200,7 +200,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
+    "available": "later",
     "binomial": "e"
   },
   {
@@ -264,7 +264,7 @@
   {
     "name": "=i",
     "verbalName": "Règle d'introduction de l'identité",
-    "verbalDescription": "Il est toujours possible de dire A = A, lorsque l'on a A. [à développer]",
+    "verbalDescription": "Il est toujours possible de dire A = A, lorsque l'on a A. Pour A=B, il faut [à développer]",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],

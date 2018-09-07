@@ -19,16 +19,11 @@ class MakeListExercises extends Component {
     let renderedListExercises = [];
     for (let i = 0; i < Exercises.length; i++) {
       let classNameToRender = "single-exercise";
-      if (Object.keys(Exercises[i]).length !== 7) {
+      if (Exercises[i].doable === false) {
         classNameToRender = "disabled-exercise";
       }
       renderedListExercises.push(
-        <Link
-          key={i}
-          to={"/calcul-prop/" + Number(i + 1)}
-          path="/calcul-prop"
-          // component={CalculDesPropositions} // ce truc-là ne sert à rien je crois (le composant de cette url est déjà défini dans App, il me semble)
-        >
+        <Link key={i} to={"/calcul-prop/" + Number(i + 1)} path="/calcul-prop">
           <li
             className={classNameToRender}
             onMouseOver={() => {

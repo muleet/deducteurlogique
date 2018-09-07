@@ -99,12 +99,12 @@ class ButtonRuleMaker extends Component {
     return (
       <Fragment>
         <div className="all-button-about-inferences">
-          <i
+          {/* <i
             className="fas fa-long-arrow-alt-left icon"
             onClick={() => {
-              this.props.valueInference.removeLastInference();
+              this.props.valueInference.removeLastInference(); // cette fonction est un nid à bug donc je l'ai virée pour le moment
             }}
-          />
+          /> */}
           <i
             className="fas fa-eraser icon"
             onClick={() => {

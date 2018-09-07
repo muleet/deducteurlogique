@@ -20,7 +20,12 @@ class RuleProvider extends Component {
 
     this.negationIntroduction = (B, noB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
-      if (noB === "~" + B || noB === "~" + "(" + B + ")") {
+      if (B[0] !== /pqrs\(/ || noB[0] !== "~") {
+        this.props.valueInference.setAdvice(
+          'Problème formel : B doit commencer par une proposition ou une parenthèse, et ~B par le caractère "~".',
+          "error-advice"
+        );
+      } else if (2 === 1 + 1) {
         let noA =
           "~" + this.props.valueInference.allHypotheticalInferences[0].itself;
         const hyp = "hypothèse réfutée";

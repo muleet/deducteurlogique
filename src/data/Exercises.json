@@ -13,7 +13,7 @@
     ],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "⊃e"],
-    "minimalLine": 3
+    "doable": true
   },
   {
     "verbalName": "Élimination de la conjonction",
@@ -28,7 +28,7 @@
     ],
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "∧e", "⊃e"],
-    "minimalLine": 4
+    "doable": true
   },
   {
     "verbalName": "Introduction & élimination de la conjonction",
@@ -37,7 +37,7 @@
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "∧i", "∧e"],
-    "minimalLine": 8
+    "doable": true
   },
   {
     "verbalName": "Validation d'hypothèse",
@@ -46,7 +46,7 @@
     "meaning": [],
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "⊃i", "⊃e"],
-    "minimalLine": 6
+    "doable": true
   },
   {
     "verbalName": "Réfutation d'hypothèse",
@@ -55,7 +55,7 @@
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "∧i", "~i"],
-    "minimalLine": 7
+    "doable": true
   },
   {
     "verbalName": "Réfutation d'hypothèse (2)",
@@ -64,7 +64,7 @@
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧e"],
-    "minimalLine": 6
+    "doable": true
   },
   {
     "verbalName": "Validation et réfutation d'hypothèse",
@@ -73,7 +73,7 @@
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "~i", "⊃i", "⊃e"],
-    "minimalLine": 7
+    "doable": true
   },
   {
     "verbalName": "Loi du tier exclu",
@@ -82,7 +82,7 @@
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["reit", "hyp", "∨i", "~i", "~~e"],
-    "minimalLine": 9
+    "doable": false
   },
   {
     "verbalName": ["Stratégie du fer à cheval pour une tautologie"],
@@ -91,6 +91,6 @@
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],
-    "minimalLine": 7
+    "doable": false
   }
 ]

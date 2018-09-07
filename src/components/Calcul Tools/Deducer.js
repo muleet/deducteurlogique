@@ -46,7 +46,6 @@ class Deducer extends Component {
         <i className={"icon icon-menu fas fa-arrow-right deactivated"} />
       );
     }
-
     return (
       <Fragment>
         <li className="setOfTextAndIcon">

@@ -24,15 +24,19 @@ class ShowExpectedArguments extends Component {
     );
 
     if (ruleName !== "⊃i" && ruleName !== "~i") {
+      // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
         arrayExpectedArguments.push(
           <li key={i} className="rule-modal-single-argument">
             <p>{expectedArguments[i] + " :"}</p>
-            {this.props.valueInference.storedInferenceRendered[i]}
+            <p className="inferenceItself">
+              {this.props.valueInference.storedInference[i]}
+            </p>
           </li>
         );
       }
     } else if (ruleName === "⊃i") {
+      // introduction du conditionnel
       if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
         hypContent = (
           <p className="inferenceItself">
@@ -47,7 +51,6 @@ class ShowExpectedArguments extends Component {
           </p>
         );
       }
-
       arrayExpectedArguments.push(
         <li
           key={arrayExpectedArguments.length}
@@ -64,6 +67,7 @@ class ShowExpectedArguments extends Component {
         </li>
       );
     } else if (ruleName === "~i") {
+      // introduction de la négation
       if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
         hypContent = (
           <p className="inferenceItself">

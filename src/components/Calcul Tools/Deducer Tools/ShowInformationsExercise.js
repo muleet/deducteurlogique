@@ -20,6 +20,11 @@ class ShowInformationsExercise extends Component {
   render() {
     let setOfPremisses = [];
     let numberOfPremisses = 10; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
+    let textCanItBeDone;
+    if (this.props.exerciseSent.doable === false) {
+      textCanItBeDone =
+        "(Cet exercice ne peut pas être terminé pour le moment, puisqu'au moins une de ses règles n'a pas été codée.)";
+    }
     if (this.props.exerciseSent.premisses.length === 0) {
       setOfPremisses = (
         <div style={{ fontStyle: "normal", padding: "4px" }}>(théorème)</div>
@@ -47,7 +52,10 @@ class ShowInformationsExercise extends Component {
     }
     return (
       <Fragment>
-        <p className="exercise-title">{this.props.exerciseSent.verbalName}</p>
+        <p className={"exercise-title "}>
+          {this.props.exerciseSent.verbalName}
+        </p>
+        {<p style={{ fontSize: "12px" }}>{textCanItBeDone}</p>}
         <ul className="setPremissesConclusion">
           <li>
             Prémisses

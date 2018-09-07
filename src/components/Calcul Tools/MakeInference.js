@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 
-// Cette fonction est appelée par Deducer.
-// Cette fonction génère le numéro de l'inférence, le contenu de l'inférence, et le commentaire de l'inférence.
+// Cette fonction est appelée par InferenceProvider.
+// Cette fonction affiche le numéro de l'inférence, le contenu de l'inférence, et le commentaire de l'inférence.
+// (A FAIRE) Elle doit aussi afficher le niveau d'hypothèse par un ou trait ou plus.
 
 class MakeInference extends Component {
   render() {
@@ -16,6 +17,7 @@ class MakeInference extends Component {
           </div>
           <div className={"hypothesis-level " + this.props.inferenceType}>
             {this.props.hypothesisCurrentLevel}
+            {this.props.hypothesisCurrentID}
           </div>
           <div className={"inferenceItself " + this.props.inferenceType}>
             {this.props.inferenceItself}

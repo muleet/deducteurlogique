@@ -76,7 +76,7 @@ class RuleModal extends Component {
   }
 
   verifySpecificRule(valueRule) {
-    if (this.props.valueInference.hypothesisCurrentLevel !== 0) {
+    if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
       valueRule.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
         this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
