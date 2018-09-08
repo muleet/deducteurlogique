@@ -12,8 +12,8 @@
     "name": "reit",
     "verbalName": "Règle de réitération",
     "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
-    "arrayUtilization": [["A", "...", "A reit"]],
-    "instruction": "Cliquez sur l'inférence à réitérer.",
+    "arrayUtilization": [["A", "|B", "|A reit"]],
+    "instruction": "Cliquez sur l'inférence à réitérer dans l'hypothèse en cours.",
     "expectedArguments": ["A"],
     "available": "yes"
   },

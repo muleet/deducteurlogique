@@ -1,6 +1,6 @@
 .inferenceGlobal {
   border: 1px transparent solid;
-  color : red;
+  color: red;
   display: flex;
   flex-direction: row;
   padding: 4px;
@@ -9,7 +9,7 @@
 
 .inferenceNumber {
   color: #86ffab;
-  width:32px;
+  width: 32px;
 }
 
 .inferenceItself {
@@ -18,32 +18,36 @@
   margin-right: 10px;
 }
 
+.inferenceItself-color {
+  color: #93b5ff;
+}
+
 .inferenceCommentary {
   color: #ffb58e;
 }
 
 .inferenceGlobal:hover {
-  border:1px solid red;
+  border: 1px solid red;
 }
 
 /* SECTION DE L'HYPOTHESE */
 .hypothesis-level {
-  width : 22px;
-  margin-right:6px;
+  width: 22px;
+  margin-right: 6px;
   /* background-color: white; */
 }
 
 .hypothesis-line {
-  background-color : white;
+  background-color: white;
 }
 
 .hypothesisItself {
   /* text-decoration: underline; */
-  color : rgb(0, 140, 255);
+  color: rgb(0, 140, 255);
 }
 
 .concluding-inference-blinking {
-  color :rgb(0, 209, 0);
+  color: rgb(0, 209, 0);
   animation: slow-blinker 3s linear infinite;
   /* font-weight:bold; */
   /* font-size:24px; */
@@ -54,15 +58,22 @@
 
 .awaiting-an-inference-blinking {
   animation: very-slow-blinker 3s linear infinite;
-  font-size: 12px;
+  font-size: 13px;
+  align-self: center;
   text-align: center;
-  color : white;
+  color: white;
+  /* min-width: 160px; */
+  width: 180px;
 }
 
-@keyframes slow-blinker {  
-  50% { opacity: 0.75; }
+@keyframes slow-blinker {
+  50% {
+    opacity: 0.75;
+  }
 }
 
-@keyframes very-slow-blinker {  
-  50% { opacity: 0.3; }
+@keyframes very-slow-blinker {
+  50% {
+    opacity: 0.3;
+  }
 }

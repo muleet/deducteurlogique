@@ -12,28 +12,27 @@ class InferenceProvider extends Component {
   constructor(props) {
     super(props);
 
-    this.addInference = (newInference, hyp) => {
+    this.addInference = (newInference, hyp, reit) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
-      console.log("bonjour c'est addInference, voici le hyp : ", hyp);
+      console.log(
+        "bonjour c'est addInference, voici le hyp : ",
+        hyp,
+        "et reit",
+        reit
+      );
       let hypNumber = 0;
       let inferenceType = "";
       if (hyp === "nouvelle hypothèse") {
-        console.log("on augmente le niveau d'hypothèse");
         hypNumber = 1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
-
         inferenceType = "hypothesisItself";
-      } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
-        hypNumber = -1;
-        this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       } else if (this.props.conclusionSent === newInference.itself) {
         inferenceType = "concluding-inference-blinking";
       }
-
-      console.log(
-        "le niveau d'hypothèse est ",
-        this.state.hypothesisCurrentLevelAndId
-      );
+      if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
+        hypNumber = -1;
+        this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
+      }
 
       let commentary;
       if (newInference.numberCommentary !== "") {
@@ -48,10 +47,6 @@ class InferenceProvider extends Component {
       let copyArrayRendered = [...this.state.allInferencesRendered];
       let copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.id + hypNumber;
-      console.log(
-        "verif de 'state l'hypID + hypNumber'",
-        this.state.hypothesisCurrentLevelAndId.id + hypNumber
-      );
       copyArrayRendered.push(
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
@@ -65,14 +60,12 @@ class InferenceProvider extends Component {
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}
           onClickSent={() => {
-            if (
-              this.state.canInferenceBeStored === true
-              // && hypothesisCurrentID === this.state.allHypotheticalInferences.ID
-            ) {
+            if (this.state.canInferenceBeStored === true) {
               this.storageForRuleVerification(
-                copyArrayRendered.length,
-                newInference.itself,
-                copyStoredHypId
+                copyArrayRendered.length, // on stocke le futur numéro d'inférence
+                newInference.itself, // on stocke l'inférence elle-même
+                copyStoredHypId, // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
+                reit // variable qui est true si la règle reit est activée
               );
             }
           }}
@@ -81,7 +74,6 @@ class InferenceProvider extends Component {
       );
 
       this.setState(state => ({
-        // allInferences: copyAllInferences,
         allInferencesRendered: copyArrayRendered
       }));
     };
@@ -89,8 +81,10 @@ class InferenceProvider extends Component {
     this.storageForRuleVerification = (
       numInference,
       inferenceItself,
-      hypID
+      hypID,
+      reit
     ) => {
+      console.log("reit", reit);
       let copyArrayStoredInference = [...this.state.storedInference]; // inférence elle-même
       let copyStoredNumbers = [...this.state.storedNumbers]; // nombre de l'inférence
       let copyStoredHypId = [...this.state.storedHypID]; // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
@@ -99,9 +93,15 @@ class InferenceProvider extends Component {
           "faut que ce soit égal",
           this.state.hypothesisCurrentLevelAndId.id,
           "===",
-          hypID
+          hypID,
+          "sauf si reit est true, et il est",
+          reit
         );
-        if (this.state.hypothesisCurrentLevelAndId.id === hypID) {
+        if (
+          this.state.hypothesisCurrentLevelAndId.id === hypID ||
+          (reit && 2 === 1 + 1)
+          // && this.state.hypothesisCurrentLevelAndId.level < machin (y'a une règle supplémentaire à rajouter à reit mais là je vois pas laquelle)
+        ) {
           copyArrayStoredInference.push(inferenceItself);
           copyStoredNumbers.push(" " + numInference);
           copyStoredHypId.push(hypID);
@@ -126,7 +126,6 @@ class InferenceProvider extends Component {
         this.setState({
           // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
           storedInference: [],
-          // storedInferenceRendered: [],
           storedNumbers: []
         });
       } else if (!this.state.canInferenceBeStored) {
@@ -135,7 +134,6 @@ class InferenceProvider extends Component {
         this.setState({
           canInferenceBeStored: false,
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
-          // storedInferenceRendered: [],
           storedNumbers: "",
           storedHypID: 0
         });
@@ -143,46 +141,38 @@ class InferenceProvider extends Component {
     };
 
     this.giveSolution = solution => {
-      // la méthode étatique addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       this.setState(state => ({
         allInferencesRendered: <Fragment>{solution}</Fragment>
       }));
     };
 
     this.removeLastInference = () => {
-      // let copyAllInferences = [...this.state.allInferences];
       let copyAllInferencesRendered = [...this.state.allInferencesRendered];
-      // copyAllInferences = copyAllInferences.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
       copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
       // A FAIRE : faut que je vire la dernière hypothèse, si c'était elle la dernière action au moment du clic sur le bouton de removeLastInference
       console.log("nota bene : y'a un truc à coder dans removeLastInference");
       this.setState(state => ({
-        // allInferences: copyAllInferences,
         allInferencesRendered: copyAllInferencesRendered
       }));
     };
 
     this.resetDeduction = () => {
       this.setState(state => ({
-        // allInferences: [],
         allInferencesRendered: [],
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
-        // storedInferenceRendered: [],
         canInferenceBeStored: false,
         hypothesisCurrentLevelAndId: { level: 0, id: 0 },
         allHypotheticalInferences: [],
         advice: ""
-        // allInferencesCurrentHypotheses: []
       }));
     };
 
     // SECTION DE l'HYPOTHÈSE
 
     this.manageLotsOfStuffAboutHypothesis = (inference, hyp, change) => {
-      // change
-      // Cette partie gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
+      // (section 1 : change) Cette section gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
       // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
       let copyHypothesisCurrentLevelAndID = {
         ...this.state.hypothesisCurrentLevelAndId
@@ -193,14 +183,16 @@ class InferenceProvider extends Component {
       } else if (change === "decrease") {
         copyHypothesisCurrentLevelAndID.level--;
       }
-      // inference, hyp
-      // Cette partie gère les intitulés d'inférence isolément, et leur ID.
+
+      // (section 2 : inference, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
       let copyAllHypotheticalInferences = this.state.allHypotheticalInferences;
       if (hyp === "nouvelle hypothèse") {
         copyAllHypotheticalInferences.unshift(inference);
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         // (A FAIRE) faut rajouter le "nouvelle hypothèse" + "validation d'hypothèse" ou "réfutation d'hypothèse"
       }
+
+      // (section 3 : setState)
       this.setState({
         allHypotheticalInferences: copyAllHypotheticalInferences,
         hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID
@@ -212,7 +204,8 @@ class InferenceProvider extends Component {
       // 3 types de conseils différents : 1) liste de ce qu'il est possible de faire au début de l'exo, 2) étapes sur l'utilisation d'une règle, 3) message d'erreur (l'utilisateur a cliqué là où il ne fallait pas)
       // A chacun correspond une className 1) start-advice, rule-advice, error-advice
       const adviceToReturn = (
-        <p className={"advice hideMe " + adviceClassName}>{advice}</p>
+        <AdviceModal advice={advice} adviceClassName={adviceClassName} />
+        // <p className={"advice hideMe " + adviceClassName}>{advice}</p>
       );
       this.setState({ advice: adviceToReturn });
     };
@@ -223,12 +216,10 @@ class InferenceProvider extends Component {
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0,
-      // storedInferenceRendered: [], // contient les données htmlisées des inférences stockées pour la validation d'une règle
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,
-      giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
       advice: "",

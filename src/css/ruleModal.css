@@ -105,22 +105,23 @@
 
 .rule-modal-all-arguments {
   color: #ff9393;
-  /* font-size:18px; */
+  font-size: 20px;
 }
 
 .rule-modal-single-argument {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
+  /* flex-direction: row;  */
   margin: 1px;
   padding: 1px;
   /* flex-wrap: nowrap; */
-  /* word-wrap: nowrap; */
+  word-wrap: nowrap;
   /* line-break: loose; */
   /* font-size:20px; */
 }
 
 .rule-modal-single-argument > p:first-child {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .infNum-modal {

@@ -12,6 +12,7 @@ class ButtonRuleMaker extends Component {
     const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
+    let arrayUnclickableRule = [];
     if (arrayRulesSent.length === 0) {
       // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doitde renvoyer la totalité des règles possibles.)
     } else if (arrayRulesSent.length > 0) {
@@ -32,7 +33,22 @@ class ButtonRuleMaker extends Component {
             <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
           );
         }
-        if (arrayRulesSent[i] === "hyp") {
+        if (arrayRulesSent[i] === "reit" || arrayRulesSent[i] === "rep") {
+          arrayUnclickableRule.push(
+            <li key={i}>
+              {arrayRulesSent[i].name}
+              {/* {arrayCurrentRules[i].verbalName} */}
+              <RulePopover
+                key={i}
+                RulePopoverClassName="fatRule unclickableRule"
+                ruleName={arrayRulesSent[i]}
+                verbalName={arrayCurrentRules[i].verbalName}
+                Description={arrayCurrentRules[i].verbalDescription}
+                HowToUse={organizedUtilization}
+              />
+            </li>
+          );
+        } else if (arrayRulesSent[i] === "hyp") {
           arrayAllOtherRules.push(
             <RuleHypothesisModal
               key={i}
@@ -112,6 +128,11 @@ class ButtonRuleMaker extends Component {
             }}
           />
         </div>
+        <ul
+        // style={{ display: "flex", width  }}
+        >
+          {arrayUnclickableRule}
+        </ul>
         {arrayAllOtherRules}
         <hr style={{ width: "20px" }} />
         {arrayRulesTwoCharacters}

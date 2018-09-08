@@ -76,6 +76,7 @@ class RuleModal extends Component {
   }
 
   verifySpecificRule(valueRule) {
+    console.log("on vient jusque là avec la règle", this.props.ruleName);
     if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
       valueRule.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.

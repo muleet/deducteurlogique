@@ -3,11 +3,16 @@ import React, { Component } from "react";
 class ShowExpectedArguments extends Component {
   render() {
     let arrayExpectedArguments = [];
+    let arrayEmptyArgument = [];
     const ruleName = this.props.ruleName;
     const expectedArguments = this.props.expectedArguments;
+    const storedInference = this.props.valueInference.storedInference;
+    const allHypotheticalInferences = this.props.valueInference
+      .allHypotheticalInferences;
+
     let hypContent = (
       <p className="awaiting-an-inference-blinking">
-        {"<pas encore d'hypothèse>"}
+        {"<Pas d'hypothèse créée>"}
       </p>
     );
     let firstArgument = (
@@ -17,39 +22,42 @@ class ShowExpectedArguments extends Component {
     );
     let secondArgument = (
       <p className="awaiting-an-inference-blinking">
-        {
-          "<Cliquez sur une inférence qui suit l'hypothèse, niant la précédente>"
-        }
+        {"<Cliquez sur une inférence qui suit l'hypothèse, niant B>"}
       </p>
     );
 
     if (ruleName !== "⊃i" && ruleName !== "~i") {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
+        arrayEmptyArgument.push(
+          <p className="awaiting-an-inference-blinking">
+            {"<Cliquez sur une inférence adéquate>"}
+          </p>
+        );
+        if (storedInference[i]) {
+          arrayEmptyArgument[i] = (
+            <p className="infItself-modal">{storedInference[i]} </p>
+          );
+        }
         arrayExpectedArguments.push(
           <li key={i} className="rule-modal-single-argument">
             <p>{expectedArguments[i] + " :"}</p>
-            <p className="inferenceItself">
-              {this.props.valueInference.storedInference[i]}
-            </p>
+            {arrayEmptyArgument[i]}
+            {/* {storedInference[i]} */}
           </li>
         );
       }
     } else if (ruleName === "⊃i") {
       // introduction du conditionnel
-      if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
+      if (allHypotheticalInferences.length >= 1) {
         hypContent = (
-          <p className="inferenceItself">
-            {this.props.valueInference.allHypotheticalInferences[0].itself}
+          <p className="infItself-modal">
+            {allHypotheticalInferences[0].itself}
           </p>
         );
       }
-      if (this.props.valueInference.storedInference[0]) {
-        firstArgument = (
-          <p className="inferenceItself">
-            {this.props.valueInference.storedInference[0]}
-          </p>
-        );
+      if (storedInference[0]) {
+        firstArgument = <p className="infItself-modal">{storedInference[0]}</p>;
       }
       arrayExpectedArguments.push(
         <li
@@ -68,25 +76,19 @@ class ShowExpectedArguments extends Component {
       );
     } else if (ruleName === "~i") {
       // introduction de la négation
-      if (this.props.valueInference.allHypotheticalInferences.length >= 1) {
+      if (allHypotheticalInferences.length >= 1) {
         hypContent = (
-          <p className="inferenceItself">
-            {this.props.valueInference.allHypotheticalInferences[0].itself}
+          <p className="infItself-modal">
+            {allHypotheticalInferences[0].itself}
           </p>
         );
       }
-      if (this.props.valueInference.storedInference[0]) {
-        firstArgument = (
-          <p className="inferenceItself">
-            {this.props.valueInference.storedInference[0]}
-          </p>
-        );
+      if (storedInference[0]) {
+        firstArgument = <p className="infItself-modal">{storedInference[0]}</p>;
       }
-      if (this.props.valueInference.storedInference[1]) {
+      if (storedInference[1]) {
         secondArgument = (
-          <p className="inferenceItself">
-            {this.props.valueInference.storedInference[1]}
-          </p>
+          <p className="infItself-modal">{storedInference[1]}</p>
         );
       }
 

@@ -7,8 +7,7 @@ class RuleModal extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false,
-      modalClassName: ""
+      showModal: false
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -18,8 +17,7 @@ class RuleModal extends Component {
   handleOpenModal() {
     if (this.state.showModal === false) {
       this.setState({
-        showModal: true,
-        modalClassName: ""
+        showModal: true
       });
     } else {
       // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
@@ -32,10 +30,16 @@ class RuleModal extends Component {
   }
 
   render() {
+    if (!this.state.showModal) {
+      this.handleOpenModal();
+      setTimeout(() => {
+        this.handleCloseModal();
+      }, 6000);
+    }
     return (
       <Fragment>
         <div>
-          <div onClick={this.handleOpenModal}>{this.props.modalButton}</div>
+          <div onClick={this.handleOpenModal} />
           <ReactModal
             isOpen={this.state.showModal}
             contentLabel="onRequestClose Example"
@@ -43,7 +47,7 @@ class RuleModal extends Component {
             onRequestClose={this.handleCloseModal}
             portalClassName="advice-modal-portal"
             overlayClassName="advice-modal-overlay"
-            className={"advice-modal fade " + this.state.modalClassName}
+            className={"advice-modal fade " + this.props.adviceClassName}
             shouldFocusAfterRender={true}
             shouldCloseOnOverlayClick={false}
             shouldCloseOnEsc={true}

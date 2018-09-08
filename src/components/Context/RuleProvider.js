@@ -9,31 +9,44 @@ class RuleProvider extends Component {
     // SECTION DES REGLES ELLES-MEMES
 
     this.reiteration = (A, numbers) => {
-      // si on arrive dans ce if, c'est que la règle est validée
-      const inferenceToAdd = {
-        itself: A,
-        numberCommentary: numbers,
-        commentary: "reit"
-      };
-      this.addInferenceFromRule(inferenceToAdd);
+      // const reit = "reit";
+      // const inferenceToAdd = {
+      //   itself: A,
+      //   numberCommentary: numbers,
+      //   commentary: "reit"
+      // };
+      // console.log(reit);
+      // console.log("reit", reit);
+      // console.log("bonjour fils de pute");
+      // this.addInferenceFromRule(inferenceToAdd, "", reit);
     };
 
     this.negationIntroduction = (B, notB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
-      if (B[0] !== /[pqrs(]\(/ || notB[0] !== "~") {
+      const A = this.props.valueInference.allHypotheticalInferences[0].itself;
+      let notA;
+      if (B[0] !== /[pqrs]/ && B[0] !== /\(\)/ && notB[0] !== "~") {
         this.props.valueInference.setAdvice(
           'Problème formel : B doit commencer par une proposition ou une parenthèse, et ~B par le caractère "~".',
           "error-advice"
         );
       } else if (2 === 1 + 1) {
-        let noA =
-          "~" + this.props.valueInference.allHypotheticalInferences[0].itself;
+        if (A.length > 2) {
+          notA = "~(" + A + ")";
+        } else {
+          notA = "~" + A;
+        }
         const hyp = "hypothèse réfutée";
         const inferenceToAdd = {
-          itself: noA,
+          itself: notA,
           numberCommentary: numbers,
           commentary: "~i"
         };
+        this.props.valueInference.setAdvice(
+          "Hypothèse réfutée par la règle ~i, inférence produite : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
         this.props.valueInference.addInference(inferenceToAdd, hyp);
       } else {
         this.props.valueInference.setAdvice(
@@ -48,10 +61,20 @@ class RuleProvider extends Component {
         let i = 0;
         let A = "";
         while (i < notnotA.length) {
-          i++;
           A = A + notnotA[i + 2];
+          i++;
         }
-        return A;
+        const inferenceToAdd = {
+          itself: A,
+          numberCommentary: numbers,
+          commentary: "~~e"
+        };
+        this.props.valueInference.setAdvice(
+          "Double négation éliminée, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+        this.props.valueInference.addInference(inferenceToAdd);
       } else {
         this.props.valueInference.setAdvice(
           "Pour utiliser ~~e, ~~A doit commencer par '~~'.",
@@ -68,6 +91,10 @@ class RuleProvider extends Component {
         numberCommentary: numbers,
         commentary: "⊃i"
       };
+      this.props.valueInference.setAdvice(
+        "Conditionnel introduit, nouvelle inférence : " + inferenceToAdd.itself,
+        "rule-advice"
+      );
       const hyp = "hypothèse validée";
       this.props.valueInference.addInference(inferenceToAdd, hyp);
     };
@@ -87,9 +114,17 @@ class RuleProvider extends Component {
             numberCommentary: numbers,
             commentary: "⊃e"
           };
+          this.props.valueInference.setAdvice(
+            "Conditionnel éliminé, nouvelle inférence : " +
+              inferenceToAdd.itself,
+            "rule-advice"
+          );
           this.addInferenceFromRule(inferenceToAdd);
         } else {
-          console.log("erreur dans la fonction conditionalElimination");
+          this.props.valueInference.setAdvice(
+            "Pour utiliser ⊃e, A doit être identique dans les propositions A et A⊃B.",
+            "error-advice"
+          );
         }
       }
     };
@@ -105,7 +140,6 @@ class RuleProvider extends Component {
     };
 
     this.conjonctionElimination = (AandB, number) => {
-      console.log("conjonctionElimination");
       const arrayTwoChoices = this.returnWhatIsBeforeAndAfterTheOperator(
         AandB,
         "∧"
@@ -116,7 +150,10 @@ class RuleProvider extends Component {
         // dans la fonction ci-dessous
         return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "∧e");
       } else {
-        console.log("erreur dans la fonction conjonctionElimination");
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ∧e, il faut sélectionnez une inférence de forme A∧B.",
+          "error-advice"
+        );
       }
     };
 
@@ -137,11 +174,10 @@ class RuleProvider extends Component {
       console.log("redirectToTheRightRule, pour la règle", ruleName);
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
-      if (ruleName === "reit") {
-        this.reiteration(arrInf[0], numbers); //  A∧B
-        // } else if (ruleName === "hyp") {
-        // console.log("normalement ça n'arrive jamais ici je crois");
-      } else if (ruleName === "~i") {
+      // if (ruleName === "reit") {
+      // this.reiteration(arrInf[0], numbers); //  A
+      // } else
+      if (ruleName === "~i") {
         this.negationIntroduction(arrInf[0], arrInf[1], numbers); // B, ~B, pour réfuter l'hypothèse (A)
       } else if (ruleName === "~~e") {
         this.doubleNegationElimination(arrInf[0], numbers); // ~~A pour A
@@ -240,6 +276,8 @@ class RuleProvider extends Component {
 
     this.state = {
       // reiteration: this.reiteration, // reit
+      // negationIntroduction: this.negationIntroduction, // ~i
+      // negationElimination: this.negationElimination, // ~~e
       // conditionalIntroduction: this.conditionalIntroduction, // ⊃i
       // conditionalElimination: this.conditionalElimination, // ⊃e
       // conjonctionIntroduction: this.conjonctionIntroduction, // ∧i
