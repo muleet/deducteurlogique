@@ -76,21 +76,34 @@ class RuleModal extends Component {
   }
 
   verifySpecificRule(valueRule) {
-    console.log("on vient jusque là avec la règle", this.props.ruleName);
+    console.log("verifySpecificRule", this.props.ruleName);
     if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
-      valueRule.redirectToTheRightRule(
-        this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
-        this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
-        this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
-      );
-      this.setState({ modalClassName: "rule-modal-ended-well modal-ending" });
-      // this.handleCloseModal();
+      if (
+        this.props.valueInference.storedInference !== undefined &&
+        this.props.expectedArguments.length - 1 === // on fait -1 puisque l'hypothèse n'est pas comptée à ce moment
+          this.props.valueInference.storedInference.length
+      ) {
+        valueRule.redirectToTheRightRule(
+          this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
+          this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
+          this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
+        );
+        this.setState({ modalClassName: "rule-modal-ended-well modal-ending" });
+        // this.handleCloseModal();
+      } else {
+        this.props.valueInference.setAdvice(
+          "Entrez tous les arguments avant de valider",
+          "error-advice"
+        );
+        this.setState({
+          modalClassName: "rule-modal-ended-badly modal-ending"
+        });
+      }
     } else {
       this.props.valueInference.setAdvice(
-        "Entrez tous les arguments avant de valider",
+        "Créez d'abord une hypothèse avant de valider",
         "error-advice"
       );
-      this.setState({ modalClassName: "rule-modal-ended-badly modal-ending" });
     }
   }
 

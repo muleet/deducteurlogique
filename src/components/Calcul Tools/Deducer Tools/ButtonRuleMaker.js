@@ -37,14 +37,12 @@ class ButtonRuleMaker extends Component {
           arrayUnclickableRule.push(
             <li key={i}>
               {arrayRulesSent[i].name}
-              {/* {arrayCurrentRules[i].verbalName} */}
               <RulePopover
                 key={i}
                 RulePopoverClassName="fatRule unclickableRule"
                 ruleName={arrayRulesSent[i]}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
-                HowToUse={organizedUtilization}
               />
             </li>
           );

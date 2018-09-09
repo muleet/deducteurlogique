@@ -2,7 +2,7 @@
   {
     "name": "rep",
     "verbalName": "Règle de répétition",
-    "verbalDescription": "Si A était dans les prémisses, alors on peut répéter A dans la déduction.",
+    "verbalDescription": "Si A était dans les prémisses, alors on peut répéter A dans la déduction. (Cliquez sur la prémisse à répéter.)",
     "arrayUtilization": "",
     "instruction": "Cliquez directement sur une prémisse, sans passer par cette fenêtre.",
     "expectedArguments": [],
@@ -11,7 +11,7 @@
   {
     "name": "reit",
     "verbalName": "Règle de réitération",
-    "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction.",
+    "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. (Cliquez sur l'inférence à réitérer.",
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer dans l'hypothèse en cours.",
     "expectedArguments": ["A"],

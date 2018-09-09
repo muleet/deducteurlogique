@@ -12,14 +12,9 @@ class InferenceProvider extends Component {
   constructor(props) {
     super(props);
 
-    this.addInference = (newInference, hyp, reit) => {
+    this.addInference = (newInference, hyp) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
-      console.log(
-        "bonjour c'est addInference, voici le hyp : ",
-        hyp,
-        "et reit",
-        reit
-      );
+      console.log("bonjour c'est addInference, voici le hyp : ", hyp);
       let hypNumber = 0;
       let inferenceType = "";
       if (hyp === "nouvelle hypothèse") {
@@ -46,7 +41,7 @@ class InferenceProvider extends Component {
       // let copyAllInferences = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
       let copyStoredHypId =
-        this.state.hypothesisCurrentLevelAndId.id + hypNumber;
+        this.state.hypothesisCurrentLevelAndId.maxID + hypNumber;
       copyArrayRendered.push(
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
@@ -55,7 +50,7 @@ class InferenceProvider extends Component {
             this.state.hypothesisCurrentLevelAndId.level + hypNumber
           }
           hypothesisCurrentID={
-            this.state.hypothesisCurrentLevelAndId.id + hypNumber
+            this.state.hypothesisCurrentLevelAndId.maxID + hypNumber
           }
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}
@@ -64,8 +59,13 @@ class InferenceProvider extends Component {
               this.storageForRuleVerification(
                 copyArrayRendered.length, // on stocke le futur numéro d'inférence
                 newInference.itself, // on stocke l'inférence elle-même
-                copyStoredHypId, // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
-                reit // variable qui est true si la règle reit est activée
+                copyStoredHypId // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
+              );
+            } else {
+              this.addInferenceViaReit(
+                copyArrayRendered.length,
+                newInference,
+                hypNumber
               );
             }
           }}
@@ -78,30 +78,59 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.addInferenceViaReit = (numberInference, newInference, hypNumber) => {
+      console.log("addInferenceViaReit");
+      let copyArrayRendered = [...this.state.allInferencesRendered];
+      // const commentary = numberInference +
+      let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.maxID;
+      copyArrayRendered.push(
+        <MakeInference
+          key={Number(copyArrayRendered.length + 1)}
+          inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
+          hypothesisCurrentLevel={this.state.hypothesisCurrentLevelAndId.level}
+          hypothesisCurrentID={this.state.hypothesisCurrentLevelAndId.maxID}
+          inferenceItself={newInference.itself}
+          inferenceCommentary={numberInference + ", reit"}
+          onClickSent={() => {
+            if (this.state.canInferenceBeStored === true) {
+              this.storageForRuleVerification(
+                copyArrayRendered.length, // on restocke le futur numéro d'inférence
+                newInference.itself, // on restocke l'inférence elle-même
+                copyStoredHypId // on réenvoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
+              );
+            } else {
+              this.addInferenceViaReit(
+                copyArrayRendered.length,
+                newInference,
+                hypNumber
+              );
+            }
+          }}
+          // inferenceType={inferenceType}
+        />
+      );
+
+      this.setState(state => ({
+        allInferencesRendered: copyArrayRendered
+      }));
+    };
+
     this.storageForRuleVerification = (
       numInference,
       inferenceItself,
-      hypID,
-      reit
+      hypID
     ) => {
-      console.log("reit", reit);
       let copyArrayStoredInference = [...this.state.storedInference]; // inférence elle-même
       let copyStoredNumbers = [...this.state.storedNumbers]; // nombre de l'inférence
       let copyStoredHypId = [...this.state.storedHypID]; // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
       if (this.state.canInferenceBeStored === true) {
         console.log(
           "faut que ce soit égal",
-          this.state.hypothesisCurrentLevelAndId.id,
+          this.state.hypothesisCurrentLevelAndId.actualID,
           "===",
-          hypID,
-          "sauf si reit est true, et il est",
-          reit
+          hypID
         );
-        if (
-          this.state.hypothesisCurrentLevelAndId.id === hypID ||
-          (reit && 2 === 1 + 1)
-          // && this.state.hypothesisCurrentLevelAndId.level < machin (y'a une règle supplémentaire à rajouter à reit mais là je vois pas laquelle)
-        ) {
+        if (this.state.hypothesisCurrentLevelAndId.actualID === hypID) {
           copyArrayStoredInference.push(inferenceItself);
           copyStoredNumbers.push(" " + numInference);
           copyStoredHypId.push(hypID);
@@ -172,42 +201,49 @@ class InferenceProvider extends Component {
     // SECTION DE l'HYPOTHÈSE
 
     this.manageLotsOfStuffAboutHypothesis = (inference, hyp, change) => {
+      console.log("manageLotsOfStuffAboutHypothesis");
       // (section 1 : change) Cette section gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
       // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
       let copyHypothesisCurrentLevelAndID = {
         ...this.state.hypothesisCurrentLevelAndId
       };
-      copyHypothesisCurrentLevelAndID.id++;
       if (change === "increase") {
+        copyHypothesisCurrentLevelAndID.maxID++;
         copyHypothesisCurrentLevelAndID.level++;
+        copyHypothesisCurrentLevelAndID.actualID++;
       } else if (change === "decrease") {
+        copyHypothesisCurrentLevelAndID.actualID--;
         copyHypothesisCurrentLevelAndID.level--;
       }
-
       // (section 2 : inference, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
-      let copyAllHypotheticalInferences = this.state.allHypotheticalInferences;
+      let copyAllHypotheticalInferences = [
+        ...this.state.allHypotheticalInferences
+      ];
       if (hyp === "nouvelle hypothèse") {
+        // On rajoute une hypothèse dans le tableau qui ne contient que les hypothèses
         copyAllHypotheticalInferences.unshift(inference);
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
-        // (A FAIRE) faut rajouter le "nouvelle hypothèse" + "validation d'hypothèse" ou "réfutation d'hypothèse"
+        // On retire une hypothèse dans le tableau qui ne contient que les hypothèses
+        console.log("on arrive bien là");
+        copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1);
       }
-
       // (section 3 : setState)
+      console.log("AVANT", this.state.allHypotheticalInferences);
       this.setState({
         allHypotheticalInferences: copyAllHypotheticalInferences,
         hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID
       });
+      console.log("APRES", this.state.allHypotheticalInferences);
       console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
     this.setAdvice = (advice, adviceClassName, specificContent) => {
       // 3 types de conseils différents : 1) liste de ce qu'il est possible de faire au début de l'exo, 2) étapes sur l'utilisation d'une règle, 3) message d'erreur (l'utilisateur a cliqué là où il ne fallait pas)
       // A chacun correspond une className 1) start-advice, rule-advice, error-advice
-      const adviceToReturn = (
-        <AdviceModal advice={advice} adviceClassName={adviceClassName} />
-        // <p className={"advice hideMe " + adviceClassName}>{advice}</p>
-      );
-      this.setState({ advice: adviceToReturn });
+      // const adviceToReturn = (
+      //   <AdviceModal advice={advice} adviceClassName={adviceClassName} />
+      // );
+      // this.setState({ advice: adviceToReturn });
     };
 
     this.state = {
@@ -220,12 +256,13 @@ class InferenceProvider extends Component {
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,
+      giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
       advice: "",
       setAdvice: this.setAdvice,
       // section de l'hypothèse
-      hypothesisCurrentLevelAndId: { level: 0, id: 0 },
+      hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
       changeHypothesisLevelAndId: this.changeHypothesisLevelAndId,
       allHypotheticalInferences: [] // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
     };
