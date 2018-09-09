@@ -24,6 +24,16 @@
         "p : Pierre Joray est professeur de logique",
         "q : Pierre Joray est directeur de l'UFR de philosophie",
         "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
+      ],
+      [
+        "p : Les moustaches rigides des loutres sont sensibles aux vibrations.",
+        "q : Les loutres nagent bien.",
+        "r : Les loutres se noient souvent."
+      ],
+      [
+        "p : Le soleil est chaud.",
+        "q : Le soleil éclaire.",
+        "r : Le soleil assombrit."
       ]
     ],
     "propositionsImplied": 3,
@@ -34,7 +44,13 @@
     "verbalName": "Introduction & élimination de la conjonction",
     "premisses": ["(p∧q)∧(p∧r)"],
     "conclusion": "p∧(q∧r)",
-    "meaning": [],
+    "meaning": [
+      [
+        "p : Il y a une table.",
+        "q : Il y a un fauteuil.",
+        "r : Il y a une commode."
+      ]
+    ],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "∧i", "∧e"],
     "doable": true
@@ -43,7 +59,18 @@
     "verbalName": "Validation d'hypothèse",
     "premisses": ["p⊃q", "q⊃r"],
     "conclusion": "p⊃r",
-    "meaning": [],
+    "meaning": [
+      [
+        "p : Je sais manier ce site.",
+        "q : Manier ce site revient à manier la logique.",
+        "r : Je sais manier la logique."
+      ],
+      [
+        "p : Le capitalisme est le fondement du droit d'exploitation de l'humain par l'humain.",
+        "q : Personne ayant du recul sur soi, ne souhaite pouvoir être exploité.",
+        "r : Personne ne veut vivre en système capitaliste."
+      ]
+    ],
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "⊃i", "⊃e"],
     "doable": true
@@ -52,7 +79,16 @@
     "verbalName": "Réfutation d'hypothèse",
     "premisses": ["p", "~(p∧q)"],
     "conclusion": "~q",
-    "meaning": [],
+    "meaning": [
+      [
+        "p : Macron fait partie de la classe dominante.",
+        "q : Macron peut être un bon président."
+      ],
+      [
+        "p : Comme professeur d'université, Pierre Joray a une bonne situation sociale.",
+        "q : Il est probable que Pierre Joray voit par son propre mode de vie la pertinence du concept de lutte des classes."
+      ]
+    ],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "∧i", "~i"],
     "doable": true
@@ -62,16 +98,72 @@
     "premisses": ["p∧q"],
     "conclusion": "~(q∧~p)",
     "meaning": [
-      ["p : Je vois l'océan.", "q : Je vois l'océan sous la tempête."]
+      ["p : Je vois l'océan.", "q : Je vois l'océan sous la tempête."],
+      [
+        "p : L'anarchisme est pluriel.",
+        "q : L'anarchisme est difficile à définir."
+      ]
     ],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "~i", "∧e"],
     "doable": true
   },
   {
+    "verbalName": "Réfutation d'hypothèse et élimination de double négation",
+    "premisses": ["~(p∧~q)", "p"],
+    "conclusion": "q",
+    "meaning": [
+      [
+        "p : Le capitalisme dit d'aller toujours plus vite.",
+        "q : Le capitalisme nous fait aller droit dans le mur du réchauffement climatique."
+      ]
+    ],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "~~e", "∧i"],
+    "doable": true
+  },
+  {
+    "verbalName": "Réfutation d'hypothèse contradictoire",
+    "premisses": ["p"],
+    "conclusion": "~(q∧~(p∧q))",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "∧i", "∧e"],
+    "doable": true
+  },
+  {
     "verbalName": "Validation et réfutation d'hypothèse",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],
+    "doable": true
+  },
+  {
+    "verbalName": "Un premier théorème",
+    "premisses": ["q"],
+    "conclusion": "p∧~p",
+    "meaning": [
+      ["p : La neige est blanche.", "q : Il fait beau à Rennes aujourd'hui."]
+    ],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "∧e"],
+    "doable": true
+  },
+  {
+    "verbalName": "Un deuxième théorème",
+    "premisses": [],
+    "conclusion": "p⊃(q⊃p)",
+    "meaning": [],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "⊃i"],
+    "doable": true
+  },
+  {
+    "verbalName": "Un troisième théorème",
+    "premisses": [],
+    "conclusion": "(p⊃q)⊃(~q⊃~p)",
     "meaning": [],
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],

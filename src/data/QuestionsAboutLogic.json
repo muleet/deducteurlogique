@@ -50,16 +50,21 @@
   },
   {
     "name": "Que sont le théorème et la contradiction ?",
-    "answer": ""
+    "answer": "Un théorème logique est la conclusion d'une déduction qui est toujours vraie quelles que soient les prémisses qu'on lui donne [à développer]. Les théorèmes existent en fonction des règles de logique qu'on adopte. Si A est un théorème, on peut écrire ⊢ A.",
+    "example": "La terre est une planète ou n'est pas une planète. ⊢p⊃p. ⊢~(p∧~p)"
   },
   {
     "name": "Y a-t-il différents genres de règles ?",
-    "answer": "On peut distinguer 3 genres de règles : les règles structurelles (rep, reit, hyp...), les règles de connecteurs (∧i, ...), et les règles dérivées (~~e, ...). Les deux premières sont des règles acceptées par défaut, sans démonstration ; les règles dérivées sont au contraire démontrables à partir des précédentes. Elles sont comme des raccourcis. Il est possible de déduire toutes les règles des connecteurs propositionnels en ayant pour base ~ et ∧ (ces deux connecteurs forment donc ce qu'on appelle un \"système complet\"."
+    "answer": "On peut distinguer 3 genres de règles : les règles structurelles (rep, reit, hyp...), les règles de connecteurs (∧i, ...), et les règles dérivées (~~e, ...). Les deux premières sont des règles acceptées par défaut, sans démonstration ; les règles dérivées sont au contraire démontrables à partir des précédentes. Elles sont comme des raccourcis. Il est possible de déduire toutes les règles des connecteurs propositionnels en ayant pour base ~ et ∧ (ces deux connecteurs forment donc ce qu'on appelle un \"système complet\"), par exemple A⊃B peut s'écrire ~(A∧~B)."
   },
   {
     "name": "Que sont l'hypothèse et le raisonnement par l'absurde ?",
     "answer": "Faire une hypothèse a deux utilités : d'abord, \"voir ce qui s'en suit\" (⊃i), et ensuite, faire un raisonnement par l'absurde (~i).",
     "example": "Exemple pour le premier cas : un climatologue peut faire des hypothèses sur l'avenir du climat en admettant certaines propositions comme totalement irréfutable. S'il admet qu'en 2100 il fera 3 degrés de plus (appelons cette proposition \"p\"), il peut établir un raisonnement scientifique sur la base de ses connaissances, et arriver à la conclusion irréfutable selon ces connaissances, que, par exemple, le niveau de la mer montera alors de 2 mètres (appelons cette proposition \"q\"). Ou dit formellement : 1. si p, 2. (raisonnement) 3. alors q."
+  },
+  {
+    "name": "Quelle différence entre le conditionnel, ⊃, et l'implication, → ?",
+    "answer": "Le conditionnel désigne une condition particulière, là où il s'agit d'une condition généralisable pour l'implication [à développer]."
   },
   {
     "name": "Qu'est-ce qu'une table de vérité ?",
@@ -79,6 +84,6 @@
   },
   {
     "name": "Faut-il dépasser l'analyse logique ?",
-    "answer": "L'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle."
+    "answer": "Oui, pour deux raisons : d'abord, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Ensuite, l'analyse logique interprète la vérité des propositions de manière binaire (1 ou 0), or les interprétations que nous faisons du réel peuvent rarement être réduits à des descriptions aussi strictes."
   }
 ]

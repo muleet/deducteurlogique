@@ -1,8 +1,7 @@
 [
   {
     "latin": "A posse ad esse non valet consequentia",
-    "traduction":
-      "De la possibilité d'une chose on ne doit pas conclure à son existence"
+    "traduction": "De la possibilité d'une chose on ne doit pas conclure à son existence"
   },
   {
     "latin": "Ab uno disce omnes",
@@ -66,8 +65,7 @@
   },
   {
     "latin": "Contra vim mortis non est medicamen in hortis",
-    "traduction":
-      "Il n'y a dans le jardin aucun remède à la puissance de la mort"
+    "traduction": "Il n'y a dans le jardin aucun remède à la puissance de la mort"
   },
   {
     "latin": "Deus sive natura",
@@ -106,8 +104,7 @@
   {
     "latin": "Hinc sunt leones \\ Hic sunt dracones",
     "traduction": "Ici sont les lions \\ Ici sont les dragons",
-    "note":
-      "Désigne dans la cartographie latine et médiévale des territoires dangereux ou inconnus."
+    "note": "Désigne dans la cartographie latine et médiévale des territoires dangereux ou inconnus."
   },
   {
     "latin": "Hortum cum bibliotheca habes, nihil deerit",
@@ -143,8 +140,7 @@
   {
     "latin": "Omnia mea mecum porto",
     "traduction": "Je transporte avec moi tous mes biens",
-    "note":
-      "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, eut un jour à fuir sa ville Priène prise par l'ennemi. A ceux qui s'étonnaient qu'il n'emporte aucun bien avec lui, ni meubles ni argent,\n il répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
+    "note": "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, eut un jour à fuir sa ville Priène prise par l'ennemi. A ceux qui s'étonnaient qu'il n'emporte aucun bien avec lui, ni meubles ni argent,\n il répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
   },
   {
     "latin": "Pericula ludus",
@@ -157,8 +153,7 @@
   {
     "latin": "Perinde ac cadaver",
     "traduction": "[litt.] à la manière d’un cadavre",
-    "note":
-      "Désigne l’idéal ascétique d’obéissance parfaite et aveugle du moine."
+    "note": "Désigne l’idéal ascétique d’obéissance parfaite et aveugle du moine."
   },
   {
     "latin": "Post mortem nihil est ipsaque mors nihil",
@@ -175,26 +170,22 @@
   },
   {
     "latin": "Quidquid luce fuit, tenebris agit",
-    "traduction":
-      "Tout ce qui est dans la lumière provient d'abord des ténèbres",
+    "traduction": "Tout ce qui est dans la lumière provient d'abord des ténèbres",
     "auteur": "Vers d’un fragment attribué à Pétrone"
   },
   {
     "latin": "Quis custodiet ipsos custodes ?",
-    "traduction":
-      "Qui garde les gardiens eux-mêmes ? / Who watches the watchmen [themselves] ?",
+    "traduction": "Qui garde les gardiens eux-mêmes ? / Who watches the watchmen [themselves] ?",
     "auteur": "Juvénal"
   },
   {
     "latin": "Satis sunt mihi pauci, satis est unus, satis est nullus",
-    "traduction":
-      "Ce m’est assez de quelques-uns, assez d’un seul, assez d’aucun",
+    "traduction": "Ce m’est assez de quelques-uns, assez d’un seul, assez d’aucun",
     "note": "Anonyme, citée et latinisée par Sénèque"
   },
   {
     "latin": "Satius est supervacua scire quam nihil",
-    "traduction":
-      "Encore vaut-il mieux savoir des choses inutiles que rien du tout"
+    "traduction": "Encore vaut-il mieux savoir des choses inutiles que rien du tout"
   },
   {
     "latin": "Sero sed serio",
@@ -202,8 +193,7 @@
   },
   {
     "latin": "Serpens nisi serpentem comederit, non fit draco",
-    "traduction":
-      "Le serpent, s'il ne dévore pas un autre serpent, ne deviendra jamais un dragon",
+    "traduction": "Le serpent, s'il ne dévore pas un autre serpent, ne deviendra jamais un dragon",
     "auteur": "Citation de Bacon reprise par Schopenhauer et Nietzsche."
   },
   {
@@ -241,8 +231,7 @@
   },
   {
     "latin": "Summum jus, summa injuria",
-    "traduction":
-      "[Paraphr.] L'application excessive du droit conduit à l'injustice"
+    "traduction": "[Paraphr.] L'application excessive du droit conduit à l'injustice"
   },
   {
     "latin": "Tarde venientibus ossa",
@@ -346,8 +335,7 @@
   {
     "latin": "Ultima ratio regum",
     "traduction": "Le dernier argument des rois",
-    "note":
-      "La violence, Louis XIV faisait graver ces mots latins sur ses canons"
+    "note": "La violence, Louis XIV faisait graver ces mots latins sur ses canons"
   },
   {
     "latin": "Natura non facit saltus",
@@ -374,13 +362,11 @@
   {
     "latin": "Memento mori",
     "traduction": "Souviens-toi que tu vas mourir",
-    "note":
-      "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs, durant les célébrations de leur victoire"
+    "note": "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs, durant les célébrations de leur victoire"
   },
   {
     "latin": "Respice post te, hominem te esse memento!",
-    "traduction":
-      "Regarde autour de toi, et souviens-toi que tu n'es qu'un homme !"
+    "traduction": "Regarde autour de toi, et souviens-toi que tu n'es qu'un homme !"
   },
   {
     "latin": "Quod erat demonstrandum",
@@ -389,14 +375,11 @@
   {
     "latin": "O Melibœ, Deus nobis hæc otia fecit. ",
     "traduction": "Ô Mélibée, un Dieu nous a donné cette oisiveté",
-    "note":
-      "Virgile, dans les Bucoliques (Locution reprise par Paul Lafargue dans son texte \"Le droit à la paresse\")"
+    "note": "Virgile, dans les Bucoliques (Locution reprise par Paul Lafargue dans son texte \"Le droit à la paresse\")"
   },
   {
     "latin": "Pluralitas non est ponenda sine necessitate",
-    "traduction": "Les multiples ne doivent pas être utilisés sans nécessité. ([Paraphr] Pourquoi faire compliqué quand on peut faire simple ?)",
-    "note":
-      "Formulation possible du Rasoir d'Ockham"
+    "traduction": "Les multiples ne doivent pas être utilisés sans nécessité. ([Paraphr.] Pourquoi faire compliqué quand on peut faire simple ?)",
+    "note": "Formulation possible du Rasoir d'Ockham"
   }
-
 ]

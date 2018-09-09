@@ -58,11 +58,15 @@ class RuleProvider extends Component {
 
     this.doubleNegationElimination = (notnotA, numbers) => {
       if (notnotA[0] === "~" && notnotA[1] === "~") {
-        let i = 0;
         let A = "";
-        while (i < notnotA.length) {
-          A = A + notnotA[i + 2];
-          i++;
+        if (notnotA.length > 2) {
+          let i = 2;
+          while (i < notnotA.length) {
+            A = A + notnotA[i];
+            i++;
+          }
+        } else {
+          A = notnotA[2];
         }
         const inferenceToAdd = {
           itself: A,

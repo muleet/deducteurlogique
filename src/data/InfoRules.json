@@ -53,8 +53,8 @@
     "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
     "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique des propositions considérée par ce site). On peut donc inférer A.",
     "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
+    "instruction": "Cliquez sur ~~A, pour inférer A.",
+    "expectedArguments": ["~~A"],
     "available": "soon",
     "binomial": "e",
     "notaBene": "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
@@ -126,7 +126,7 @@
   {
     "name": "⊃i",
     "verbalName": "Règle d'introduction du conditionnel (modus ponens)",
-    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B).",
+    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux. (A noter que A⊃B signifie exactement la même chose que ~(A∧~B).)",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, confirmez cette règle pour valider l'hypothèse, en inférant A⊃B.",
     "expectedArguments": ["A", "B"],

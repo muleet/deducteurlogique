@@ -62,6 +62,7 @@ class InferenceProvider extends Component {
                 copyStoredHypId // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
               );
             } else {
+              // A FAIRE : faut que j'empêche d'utiliser reit sur une inférence issue d'une hypothèse terminée
               this.addInferenceViaReit(
                 copyArrayRendered.length,
                 newInference,

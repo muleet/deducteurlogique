@@ -13,24 +13,12 @@ const TheFuture = () => {
         smartphone, c'est pas le cas actuellement).
         <br />- Faire un affichage cohérent du niveau d'hypothèse, avec des
         traits plus ou moins longs.
+        <br />- Laisser la possibilité à l'utilisateur d'écrire les dernières
+        lignes d'une déduction (avec un "?" à la place de leur nombre), dès le
+        début (pour qu'il puisse établir à l'avance le but visé dans sa
+        déduction).
         {/* <br />- La possibilité de créer des comptes, pour stocker les exercices
         résolus et pour créer de nouveaux exercices. */}
-      </p>
-      <p style={{ fontSize: 16, marginBottom: "10px" }}>
-        Dernières majs :<br />- 05/09/2018 : la règle ⊃i fonctionne mais autour
-        de plusieurs bugs + ajout d'un nouvel exercice 4, "Validation
-        d'hypothèse", qui peut être terminé avec les règles actuelles.
-        <br />- 06/09/2018 : ajout de la règle ~i et d'un début d'informations
-        pour l'utilisateur, qui apparaissent dans certaines situations
-        (notamment s'il y a une erreur dans l'utilisation d'une règle). Les
-        exercices 5, 6, 7 peuvent être terminés (en respectant les règles de
-        logique, mais aussi en trichant via un bug que je dois régler :
-        l'utilisation pour ~i et ⊃i des inférences hors de l'hypothèse en
-        cours).
-        <br />- 07/09/2018 : les hypothèses fonctionnent, il est maintenant
-        impossible d'utiliser dans une règle, une inférence qui se situe en
-        dehors de l'hypothèse en cours (en tout cas dans les cas que j'ai
-        testé). Mais il faut que j'améliore le rendu de ~i, et que j'ajoute ~~e.
       </p>
     </main>
   );

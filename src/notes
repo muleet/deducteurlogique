@@ -3,7 +3,6 @@ Choses à faire :
 0) Bug de storedInference quand on change d'exercice.
 0) Bug de ChoiceContent qui reste affiché dans beaucoup trop de situations.
 0) Bug du rechargement du state pour les significations possibles des propositions.
-0) Bug de la validation de ~i.
 1) (J) Rendre responsive le site. Faire que le site fonctionne sur smartphone.
 1,5) (J) Créer une base de donnée utilisateur. Elle sauvegardera les exos résolus + permettra à l'utilisateur de créer ses propres exercices.
 1,5) Faut que je vire la dernière hypothèse, si c'était elle la dernière action au moment du clic sur le bouton de removeLastInference. De même pour resetDeduction, faut que tout soit remis à 0.
@@ -11,8 +10,9 @@ Choses à faire :
 2) Faire apparaître en transparence une prévisualisation de l'inférence qu'on va produire en cliquant sur une prémisse, sur une règle, etc.
 2) Activer automatiquement la fonction du modal si le nombre d'inférence qu'il attendait, ont été entrées. (+ Faire qu'elle devienne verte si les inférences correspondaient à ce que la règle attende, et qu'elle devienne rouge si c'est pas le cas.)
 2) Faire une page de tutoriel pour l'exercice 5 (par exemple). Cette page afficherait des popovers qui diraient à l'utilisateur où il doit cliquer et quand.
-3) Rajouter des options pour désactiver diverses choses des locutions latines.
+3) Rajouter des options pour désactiver diverses choses des locutions grecques et latines.
 3) Améliorer l'affichage des arrays affichant l'utilisation des règles.
+4) Faire que les numéros des commentaires de la règle ⊃i ne soient pas séparés par une virgule et un espace, mais par un trait d'union.
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state
