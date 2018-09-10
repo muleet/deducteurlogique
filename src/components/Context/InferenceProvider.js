@@ -279,7 +279,7 @@ class InferenceProvider extends Component {
       advice: "",
       setAdvice: this.setAdvice,
       setPossibleMeaning: this.setPossibleMeaning,
-      possibleMeaning: { zeroMeaning: true, currentlyShown: false }
+      possibleMeaning: { zeroMeaning: false, currentlyShown: false }
     };
   }
 

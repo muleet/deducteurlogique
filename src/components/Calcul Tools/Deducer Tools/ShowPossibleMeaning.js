@@ -9,6 +9,26 @@ class ShowPossibleMeaning extends Component {
 
   render() {
     const meanings = this.props.exerciseSent.meaning;
+    let feather;
+    let possibleMeaningShown;
+    if (meanings.length > 0) {
+      feather = (
+        <i
+          id="feather-meaning"
+          className="fas fa-feather-alt icon"
+          onClick={() => this.props.valueInference.setPossibleMeaning(meanings)}
+        />
+      );
+    } else {
+      feather = (
+        <i id="feather-meaning" className="fas fa-feather-alt deactivated" />
+      );
+      possibleMeaningShown = (
+        <p className={"no-meaning-shown"}>
+          pas de signification pour cette exercice
+        </p>
+      );
+    }
     let possibleMeaning = [];
     if (!(meanings === undefined)) {
       for (let i = 0; i < meanings.length; i++) {
@@ -18,30 +38,27 @@ class ShowPossibleMeaning extends Component {
         }
       }
     }
-    let possibleMeaningShown;
-    if (this.props.valueInference.possibleMeaning.currentlyShown === true) {
-      possibleMeaningShown = (
-        <p className={"possible-meaning"}>
-          {possibleMeaning[this.randomFromCurrentLength()]}
-        </p>
-      );
-    } else if (
-      this.props.valueInference.possibleMeaning.currentlyShown === false
-    ) {
-      possibleMeaningShown = (
-        <p className={"no-meaning-shown"}>
-          afficher une signification possible
-        </p>
-      );
+    if (meanings.length > 0) {
+      if (this.props.valueInference.possibleMeaning.currentlyShown === true) {
+        possibleMeaningShown = (
+          <p className={"possible-meaning"}>
+            {possibleMeaning[this.randomFromCurrentLength()]}
+          </p>
+        );
+      } else if (
+        this.props.valueInference.possibleMeaning.currentlyShown === false
+      ) {
+        possibleMeaningShown = (
+          <p className={"no-meaning-shown"}>
+            afficher une signification possible
+          </p>
+        );
+      }
     }
 
     return (
       <div className="set-meaning">
-        <i
-          id="feather-meaning"
-          className="fas fa-feather-alt icon"
-          onClick={() => this.props.valueInference.setPossibleMeaning(meanings)}
-        />
+        {feather}
         {possibleMeaningShown}
       </div>
     );
