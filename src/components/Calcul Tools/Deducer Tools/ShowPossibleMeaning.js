@@ -71,6 +71,7 @@ class ShowPossibleMeaning extends Component {
     return (
       <div className="set-meaning">
         {this.state.myFeather}
+        {this.props.exerciseSent.meaning.length}
         {this.state.myContent}
       </div>
     );

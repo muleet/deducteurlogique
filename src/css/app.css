@@ -20,7 +20,7 @@ header {
   display: flex;
   justify-content: column;
   justify-content: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 1 0px; */
 }
 
 .nav-list > li {
@@ -34,7 +34,7 @@ header {
 }
 
 .header-nav-list {
-  margin: 15px 0px;
+  margin: 10px 0px;
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -95,9 +95,17 @@ h1 {
 }
 
 h2 {
+  margin-top: 15px;
   color: white;
   font-size: 24px;
-  margin: 0px;
+  /* margin: 0px; */
+  padding: 0px;
+}
+
+h3 {
+  color: white;
+  font-size: 24px;
+  /* margin: 0px; */
   padding: 0px;
 }
 

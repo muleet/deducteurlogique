@@ -5,6 +5,7 @@ import AdviceModal from "../Modals and Popovers/AdviceModal";
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
 // Pour importer cette variable contextuelle :
 // import { InferenceContext } from "./InferenceContext";
+// Note : actuellement, InferenceProvider a deux props, qu'elle hérite de Deducer : conclusionSent et meaningSent.
 export const InferenceContext = createContext();
 
 /*la classe UserProvider fera office de... Provider (!) en englobant son enfant direct dans le composant éponyme. De cette façon, ses values seront accessibles de manière globale via le `Consumer`*/
@@ -192,14 +193,13 @@ class InferenceProvider extends Component {
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
-        canInferenceBeStored: false,
-        hypothesisCurrentLevelAndId: { level: 0, id: 0 },
+        canInferenceBeStored: false, //  il devient false mais les rule-modal ne disparaissent pas, c'est un problème
+        hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
         allHypotheticalInferences: [],
-        advice: ""
+        advice: "",
+        possibleMeaning: { zeroMeaning: true, currentlyShown: false }
       }));
     };
-
-    // SECTION DE l'HYPOTHÈSE
 
     this.manageLotsOfStuffAboutHypothesis = (inference, hyp, change) => {
       console.log("manageLotsOfStuffAboutHypothesis");
@@ -247,6 +247,18 @@ class InferenceProvider extends Component {
       // this.setState({ advice: adviceToReturn });
     };
 
+    this.setPossibleMeaning = data => {
+      if (this.state.possibleMeaning.currentlyShown === false) {
+        this.setState({
+          possibleMeaning: { zeroMeaning: false, currentlyShown: true }
+        });
+      } else if (this.state.possibleMeaning.currentlyShown === true) {
+        this.setState({
+          possibleMeaning: { zeroMeaning: false, currentlyShown: false }
+        });
+      }
+    };
+
     this.state = {
       // allInferences: [], // contient les données non htmlisées des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
@@ -260,12 +272,14 @@ class InferenceProvider extends Component {
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
-      advice: "",
-      setAdvice: this.setAdvice,
       // section de l'hypothèse
       hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
-      changeHypothesisLevelAndId: this.changeHypothesisLevelAndId,
-      allHypotheticalInferences: [] // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      // section autres trucs
+      advice: "",
+      setAdvice: this.setAdvice,
+      setPossibleMeaning: this.setPossibleMeaning,
+      possibleMeaning: { zeroMeaning: true, currentlyShown: false }
     };
   }
 

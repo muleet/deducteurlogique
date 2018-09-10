@@ -9,6 +9,7 @@ import InferenceProvider, {
 } from "../Context/InferenceProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
+import ShowPossibleMeaningNoState from "./Deducer Tools/ShowPossibleMeaningNoState";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -23,7 +24,10 @@ class Deducer extends Component {
     let leftArrow = (
       <Link
         to={"/calcul-prop/" + Number(currentExerciseParamNumber - 1)}
-        onClick={() => value.resetDeduction()}
+        onClick={() => {
+          console.log(value.canInferenceBeStored);
+          value.resetDeduction();
+        }}
       >
         <i className={"icon icon-menu fas fa-arrow-left"} />
       </Link>
@@ -31,7 +35,10 @@ class Deducer extends Component {
     let rightArrow = (
       <Link
         to={"/calcul-prop/" + Number(currentExerciseParamNumber + 1)}
-        onClick={() => value.resetDeduction()}
+        onClick={() => {
+          console.log(value.canInferenceBeStored);
+          value.resetDeduction();
+        }}
       >
         <i className={"icon icon-menu fas fa-arrow-right"} />
       </Link>
@@ -57,7 +64,7 @@ class Deducer extends Component {
           </Link>
         </li>
         <li>
-          <h2>{this.props.pageName}</h2>
+          <h3>{this.props.pageName}</h3>
         </li>
         <li>
           <span className="setOfTextAndIcon">
@@ -92,6 +99,7 @@ class Deducer extends Component {
       return (
         <InferenceProvider
           conclusionSent={this.state.currentExercise.conclusion}
+          meaningSent={this.state.currentExercise.meaning}
         >
           <InferenceContext.Consumer>
             {(
@@ -121,8 +129,9 @@ class Deducer extends Component {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
                       </ul>
-                      <ShowPossibleMeaning
+                      <ShowPossibleMeaningNoState
                         exerciseSent={this.state.currentExercise}
+                        valueInference={value}
                       />
                       <div style={{ fontSize: 16 }}>
                         Solutions :{" "}
@@ -148,13 +157,6 @@ class Deducer extends Component {
   }
 
   componentDidMount() {
-    // const str = "(p∧q)∧((p∧r)∧(q∧r))";
-    // const s = str.replace(
-    //   /((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g,
-    //   "Math.pow($1, $2)"
-    // );
-    // console.log(s);
-
     this.setState(
       { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
       // () => console.log("currentExercice", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
