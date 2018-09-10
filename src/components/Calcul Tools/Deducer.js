@@ -9,7 +9,6 @@ import InferenceProvider, {
 } from "../Context/InferenceProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
-import ShowPossibleMeaningNoState from "./Deducer Tools/ShowPossibleMeaningNoState";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -129,7 +128,7 @@ class Deducer extends Component {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
                       </ul>
-                      <ShowPossibleMeaningNoState
+                      <ShowPossibleMeaning
                         exerciseSent={this.state.currentExercise}
                         valueInference={value}
                       />
