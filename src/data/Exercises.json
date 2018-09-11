@@ -62,8 +62,8 @@
     "meaning": [
       [
         "p : Je sais manier ce site.",
-        "q : Manier ce site revient à manier la logique.",
-        "r : Je sais manier la logique."
+        "q : Je sais manier la logique.",
+        "r : Je sais analyser tous mes propos comme étant composés de propositions prises dans des relations logiques."
       ],
       [
         "p : Le capitalisme est le fondement du droit d'exploitation de l'humain par l'humain.",
@@ -87,6 +87,10 @@
       [
         "p : Comme professeur d'université, Pierre Joray a une bonne situation sociale.",
         "q : Il est probable que Pierre Joray voit par son propre mode de vie la pertinence du concept de lutte des classes."
+      ],
+      [
+        "p : La profession politique déconnecte des citoyens.",
+        "q : La profession politique est possible dans un bon système politique."
       ]
     ],
     "propositionsImplied": 2,

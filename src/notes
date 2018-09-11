@@ -2,14 +2,16 @@ Choses à faire :
 
 0) Bug de storedInference quand on change d'exercice.
 0) Bug de ChoiceContent qui reste affiché dans beaucoup trop de situations.
-0) Bug du rechargement du state pour les significations possibles des propositions.
+0) Bug de la triple hypothèse.
 1) (J) Rendre responsive le site. Faire que le site fonctionne sur smartphone.
 1,5) (J) Créer une base de donnée utilisateur. Elle sauvegardera les exos résolus + permettra à l'utilisateur de créer ses propres exercices.
-1,5) Faut que je vire la dernière hypothèse, si c'était elle la dernière action au moment du clic sur le bouton de removeLastInference. De même pour resetDeduction, faut que tout soit remis à 0.
+1,5) Adapter removeLastInference aux hypothèses.
+2) Mettre des raccourcis claviers pour les règles. (Par exemple la première règle (outre rep et reit) serait 1/&, la seconde 2/é, la troisième 3/", etc.)
 2) Faire apparaître une ligne transparente pour le prochain emplacement d'inférence, ligne transparente (qui blink) disant "< prochaine inférence >" ou quelque chose du genre. Et cette ligne n'apparaît plus lorsque la conclusion a été trouvée.
 2) Faire apparaître en transparence une prévisualisation de l'inférence qu'on va produire en cliquant sur une prémisse, sur une règle, etc.
 2) Activer automatiquement la fonction du modal si le nombre d'inférence qu'il attendait, ont été entrées. (+ Faire qu'elle devienne verte si les inférences correspondaient à ce que la règle attende, et qu'elle devienne rouge si c'est pas le cas.)
 2) Faire une page de tutoriel pour l'exercice 5 (par exemple). Cette page afficherait des popovers qui diraient à l'utilisateur où il doit cliquer et quand.
+3) Empêcher d'utiliser reit sur une inférence issue d'une hypothèse terminée
 3) Rajouter des options pour désactiver diverses choses des locutions grecques et latines.
 3) Améliorer l'affichage des arrays affichant l'utilisation des règles.
 4) Faire que les numéros des commentaires de la règle ⊃i ne soient pas séparés par une virgule et un espace, mais par un trait d'union.
@@ -23,6 +25,5 @@ Codes à utiliser plus souvent :
 - "Objet.keys(exempleTableau)" permet de renvoyer les clés d'un objet sous forme de tableau.
 
 Modifications/ajouts au sujet des citations grecques et latines :
-- Rajouter la citation d'Euclide dans les locutions grecques "ce qui peut être affirmé sans preuve peut être nié sans preuves"
 - Rajouter dans les locutions grecques "l'accès à la connaissance se fait dans la douleur"
 - Rajouter cet extrait de la Métaphysique d'Aristote, (source : "Métaphysique, A, 2, 982 b 10") (le texte d'origine est là http://remacle.org/bloodwolf/philosophes/Aristote/metaphysique1.htm ) "A l'origine comme aujourd'hui, c'est l’étonnement qui poussa les premiers penseurs aux spéculations philosophiques. Au début, leur étonnement porta sur les difficultés qui se présentaient les premières à l'esprit ; puis, s'avançant ainsi peu à peu, ils étendirent leur exploration à des problèmes plus importants, tels que les phénomènes de la Lune, ceux du Soleil et des Étoiles, enfin la genèse de l'Univers. Or, douter et s’étonner, c’est reconnaître sa propre ignorance [...].",

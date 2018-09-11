@@ -10,22 +10,25 @@
 
 .list-exercises {
   min-width: 270px;
-  width: 400px;
+  max-width: 400px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: space-evenly; */
   align-items: center;
   align-content: center;
   flex-flow: wrap;
-  margin: 10px;
-  padding: 10px;
 }
 
 .single-exercise {
   display: flex;
+  /* grid-template-columns: 60px;
+  grid-template-rows: 60px;
+  grid-column-gap: 20px;
+  grid-row-gap: 15px; */
   align-items: center;
   justify-content: center;
   border: 1px white solid;
+  justify-items: center;
   font-style: 30px;
   color: white;
   font-weight: bold;

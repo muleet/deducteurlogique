@@ -352,10 +352,6 @@
     "traduction": "La force de l'habitude est grande"
   },
   {
-    "latin": "Tempori servire",
-    "traduction": "S'adapter aux circonstances "
-  },
-  {
     "latin": "Primum vivere dein de philosophare",
     "traduction": "Vivre d'abord, philosopher ensuite"
   },
@@ -373,7 +369,7 @@
     "traduction": "Ce qu'il fallait démontrer"
   },
   {
-    "latin": "O Melibœ, Deus nobis hæc otia fecit. ",
+    "latin": "O Melibœ, Deus nobis hæc otia fecit",
     "traduction": "Ô Mélibée, un Dieu nous a donné cette oisiveté",
     "note": "Virgile, dans les Bucoliques (Locution reprise par Paul Lafargue dans son texte \"Le droit à la paresse\")"
   },
@@ -381,5 +377,23 @@
     "latin": "Pluralitas non est ponenda sine necessitate",
     "traduction": "Les multiples ne doivent pas être utilisés sans nécessité. ([Paraphr.] Pourquoi faire compliqué quand on peut faire simple ?)",
     "note": "Formulation possible du Rasoir d'Ockham"
+  },
+  {
+    "latin": "Quod gratis asseritur, gratis negatur",
+    "traduction": "Ce qui est affirmé sans preuve peut être nié sans preuve",
+    "note": "Locution originaire d'Euclide, et très commune au 19ème siècle."
+  },
+  {
+    "latin": "Quam bene vivas refert, non quam diu",
+    "traduction": "La manière dont vous vivez importe, non la durée de votre vie",
+    "note": "Sénèque"
+  },
+  {
+    "latin": "Qui non est hodie, cras minus aptus erit",
+    "traduction": "Celui qui n'est pas prêt aujourd'hui, le sera moins demain"
+  },
+  {
+    "latin": "Qui vult dare parva non debet magna rogare",
+    "traduction": "Celui qui souhaite donner peu, ne devrait pas demander beaucoup"
   }
 ]

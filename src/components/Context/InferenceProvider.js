@@ -39,7 +39,6 @@ class InferenceProvider extends Component {
       }
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
-      // let copyAllInferences = [...this.state.allInferences];
       let copyArrayRendered = [...this.state.allInferencesRendered];
       let copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.maxID + hypNumber;
@@ -197,7 +196,8 @@ class InferenceProvider extends Component {
         hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
         allHypotheticalInferences: [],
         advice: "",
-        possibleMeaning: { zeroMeaning: true, currentlyShown: false }
+        possibleMeaningShown: false,
+        ruleModalShown: false
       }));
     };
 
@@ -248,19 +248,20 @@ class InferenceProvider extends Component {
     };
 
     this.setPossibleMeaning = data => {
-      if (this.state.possibleMeaning.currentlyShown === false) {
+      if (this.state.possibleMeaningShown === false) {
         this.setState({
-          possibleMeaning: { zeroMeaning: false, currentlyShown: true }
+          possibleMeaningShown: true
         });
-      } else if (this.state.possibleMeaning.currentlyShown === true) {
+      } else if (this.state.possibleMeaningShown === true) {
         this.setState({
-          possibleMeaning: { zeroMeaning: false, currentlyShown: false }
+          possibleMeaningShown: false
         });
       }
     };
 
+    this.setRuleModal = data => {};
+
     this.state = {
-      // allInferences: [], // contient les données non htmlisées des inférences
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
@@ -279,7 +280,9 @@ class InferenceProvider extends Component {
       advice: "",
       setAdvice: this.setAdvice,
       setPossibleMeaning: this.setPossibleMeaning,
-      possibleMeaning: { zeroMeaning: false, currentlyShown: false }
+      possibleMeaningShown: false,
+      setRuleModal: this.setRuleModal,
+      ruleModalShown: false
     };
   }
 

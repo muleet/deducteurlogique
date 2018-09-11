@@ -39,15 +39,13 @@ class ShowPossibleMeaning extends Component {
       }
     }
     if (meanings.length > 0) {
-      if (this.props.valueInference.possibleMeaning.currentlyShown === true) {
+      if (this.props.valueInference.possibleMeaningShown === true) {
         possibleMeaningShown = (
           <p className={"possible-meaning"}>
             {possibleMeaning[this.randomFromCurrentLength()]}
           </p>
         );
-      } else if (
-        this.props.valueInference.possibleMeaning.currentlyShown === false
-      ) {
+      } else if (this.props.valueInference.possibleMeaningShown === false) {
         possibleMeaningShown = (
           <p className={"no-meaning-shown"}>
             afficher une signification possible
