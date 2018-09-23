@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ExercisesSolution from "../../data/ExercisesSolution.json";
 import ShowInformationsExercise from "./Deducer Tools/ShowInformationsExercise";
-import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
+// import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
+import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMakerDifferent";
 import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";
+// import RuleModalProvider, {
+//   RuleModalContext
+// } from "../Modals and Popovers/RuleModalProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
 
@@ -18,14 +22,15 @@ class Deducer extends Component {
     currentExercise: {}
   };
 
-  showMiniHeaderDeducer(value) {
+  showMiniHeaderDeducer(value, valueRuleModal) {
     const currentExerciseParamNumber = this.props.exerciseNumber;
     let leftArrow = (
       <Link
         to={"/calcul-prop/" + Number(currentExerciseParamNumber - 1)}
         onClick={() => {
-          console.log(value.canInferenceBeStored);
+          console.log("deducer", value);
           value.resetDeduction();
+          value.setRuleModal(false);
         }}
       >
         <i className={"icon icon-menu fas fa-arrow-left"} />
@@ -35,8 +40,9 @@ class Deducer extends Component {
       <Link
         to={"/calcul-prop/" + Number(currentExerciseParamNumber + 1)}
         onClick={() => {
-          console.log(value.canInferenceBeStored);
+          console.log("deducer", value);
           value.resetDeduction();
+          value.setRuleModal(false);
         }}
       >
         <i className={"icon icon-menu fas fa-arrow-right"} />
@@ -96,6 +102,9 @@ class Deducer extends Component {
       return "Cet exercice a mal été chargé.";
     } else {
       return (
+        // <RuleModalProvider>
+        //   <RuleModalContext.Consumer>
+        //     {valueRuleModal => (
         <InferenceProvider
           conclusionSent={this.state.currentExercise.conclusion}
           meaningSent={this.state.currentExercise.meaning}
@@ -106,7 +115,11 @@ class Deducer extends Component {
             ) => (
               <Fragment>
                 <ul className="mini-header-deducer">
-                  {this.showMiniHeaderDeducer(value)}
+                  {/* {console.log("valueRuleModal", valueRuleModal)} */}
+                  {this.showMiniHeaderDeducer(
+                    value
+                    // valueRuleModal
+                  )}
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
@@ -151,6 +164,9 @@ class Deducer extends Component {
             )}
           </InferenceContext.Consumer>
         </InferenceProvider>
+        //     )}
+        //   </RuleModalContext.Consumer>
+        // </RuleModalProvider>
       );
     }
   }

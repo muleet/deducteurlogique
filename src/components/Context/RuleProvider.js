@@ -224,8 +224,7 @@ class RuleProvider extends Component {
           </p>
         </div>
       );
-      this.setState({ choiceContent: choiceContent });
-      // this.props.valueInference.showChoice(choiceContent2)
+      this.props.valueInference.setChoiceContent(choiceContent);
     };
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {
@@ -292,8 +291,7 @@ class RuleProvider extends Component {
       returnWhatIsBeforeAndAfterTheOperator: this
         .returnWhatIsBeforeAndAfterTheOperator,
       returnAnInferenceOutOfTwoInferences: this
-        .returnAnInferenceOutOfTwoInferences,
-      choiceContent: ""
+        .returnAnInferenceOutOfTwoInferences
     };
   }
 

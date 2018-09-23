@@ -148,7 +148,8 @@
   },
   {
     "latin": "Philosophum barba non facit",
-    "traduction": "La barbe ne fait pas le philosophe"
+    "traduction": "La barbe ne fait pas le philosophe",
+    "auteur": "Plutarque"
   },
   {
     "latin": "Perinde ac cadaver",
@@ -157,7 +158,7 @@
   },
   {
     "latin": "Post mortem nihil est ipsaque mors nihil",
-    "traduction": "Après la mort il n'y a rien ; la mort elle-même n'est rien",
+    "traduction": "Après la mort il n'y a rien, la mort elle-même n'est rien",
     "auteur": "Sénèque"
   },
   {

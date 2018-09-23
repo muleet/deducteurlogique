@@ -53,7 +53,11 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="form form-signup">
+      <form
+        onSubmit={this.onSubmit}
+        className="form form-signup"
+        style={{ display: "flex", flexDirection: "column", width: "200px" }}
+      >
         <label htmlFor="email">Email</label>
         <input
           id="email"

@@ -57,7 +57,11 @@ class SignUp extends React.Component {
         <div>
           y'a pas de base de données donc ça sert à rien d'essayer de s'inscrire
         </div>
-        <form onSubmit={this.onSubmit} className="form form-signup">
+        <form
+          onSubmit={this.onSubmit}
+          className="form form-signup"
+          style={{ display: "flex", flexDirection: "column", width: "200px" }}
+        >
           <label htmlFor="email">Email</label>
           <input
             id="email"

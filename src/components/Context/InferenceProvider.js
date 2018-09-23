@@ -1,6 +1,6 @@
 import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
 import MakeInference from "../Calcul Tools/MakeInference";
-import AdviceModal from "../Modals and Popovers/AdviceModal";
+// import AdviceModal from "../Modals and Popovers/AdviceModal";
 
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
 // Pour importer cette variable contextuelle :
@@ -156,7 +156,9 @@ class InferenceProvider extends Component {
         this.setState({
           // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
           storedInference: [],
-          storedNumbers: []
+          storedNumbers: [],
+          ruleModalChoiceContent: "",
+          canInferenceBeStored: true
         });
       } else if (!this.state.canInferenceBeStored) {
         this.setState({ canInferenceBeStored: true });
@@ -195,9 +197,18 @@ class InferenceProvider extends Component {
         canInferenceBeStored: false, //  il devient false mais les rule-modal ne disparaissent pas, c'est un problème
         hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
         allHypotheticalInferences: [],
+        // section ruleModal
+        ruleModalShown: false,
+        ruleModalClassName: "",
+        ruleModalContent: {
+          instruction: "",
+          expectedArguments: [],
+          ruleName: ""
+        },
+        ruleModalChoiceContent: "",
+        // autre
         advice: "",
-        possibleMeaningShown: false,
-        ruleModalShown: false
+        possibleMeaningShown: false
       }));
     };
 
@@ -238,6 +249,42 @@ class InferenceProvider extends Component {
       console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
+    this.setRuleModal = (str, strClassName, ruleModalContent) => {
+      console.log("setRuleModal");
+      // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "reverse", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
+      let newRuleModalShown = false;
+      let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
+      let newRuleModalContent;
+      if (ruleModalContent) {
+        newRuleModalContent = ruleModalContent;
+      } else {
+        newRuleModalContent = this.state.ruleModalContent;
+      }
+      if (str === true) {
+        newRuleModalShown = true;
+      } else if (str === "reverse") {
+        if (!this.state.ruleModalShown) {
+          newRuleModalShown = true;
+        }
+      }
+      if (strClassName === "ended-well") {
+        newClassName = "rule-modal-ended-well";
+      } else if (strClassName === "ended-badly") {
+        newClassName = "rule-modal-ended-badly";
+      }
+      this.setState({
+        ruleModalShown: newRuleModalShown,
+        ruleModalClassName: newClassName,
+        ruleModalContent: newRuleModalContent
+      });
+    };
+
+    this.setChoiceContent = choiceContent => {
+      this.setState({
+        ruleModalChoiceContent: choiceContent
+      });
+    };
+
     this.setAdvice = (advice, adviceClassName, specificContent) => {
       // 3 types de conseils différents : 1) liste de ce qu'il est possible de faire au début de l'exo, 2) étapes sur l'utilisation d'une règle, 3) message d'erreur (l'utilisateur a cliqué là où il ne fallait pas)
       // A chacun correspond une className 1) start-advice, rule-advice, error-advice
@@ -247,7 +294,7 @@ class InferenceProvider extends Component {
       // this.setState({ advice: adviceToReturn });
     };
 
-    this.setPossibleMeaning = data => {
+    this.setPossibleMeaning = () => {
       if (this.state.possibleMeaningShown === false) {
         this.setState({
           possibleMeaningShown: true
@@ -258,8 +305,6 @@ class InferenceProvider extends Component {
         });
       }
     };
-
-    this.setRuleModal = data => {};
 
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
@@ -276,13 +321,22 @@ class InferenceProvider extends Component {
       // section de l'hypothèse
       hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
       allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      // section ruleModal
+      ruleModalShown: false,
+      ruleModalClassName: "",
+      ruleModalContent: {
+        instruction: "",
+        expectedArguments: [],
+        ruleName: ""
+      },
+      ruleModalChoiceContent: "",
+      setChoiceContent: this.setChoiceContent,
+      setRuleModal: this.setRuleModal,
       // section autres trucs
       advice: "",
       setAdvice: this.setAdvice,
-      setPossibleMeaning: this.setPossibleMeaning,
       possibleMeaningShown: false,
-      setRuleModal: this.setRuleModal,
-      ruleModalShown: false
+      setPossibleMeaning: this.setPossibleMeaning
     };
   }
 

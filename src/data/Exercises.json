@@ -46,9 +46,9 @@
     "conclusion": "p∧(q∧r)",
     "meaning": [
       [
-        "p : Il y a une table.",
-        "q : Il y a un fauteuil.",
-        "r : Il y a une commode."
+        "p : Cette table est en bois.",
+        "q : La Terre est ronde.",
+        "r : C'est une feuille de papier.."
       ]
     ],
     "propositionsImplied": 2,
