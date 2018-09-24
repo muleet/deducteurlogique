@@ -113,6 +113,16 @@
     "doable": true
   },
   {
+    "verbalName": "Validation d'hypothèse (2)",
+    "premisses": ["p⊃(q⊃r)"],
+    "conclusion": "(p∧q)⊃r",
+    "meaning": [],
+    "comment": "",
+    "propositionsImplied": 3,
+    "rulesImplied": ["rep", "hyp", "∧e", "⊃i", "⊃e"],
+    "doable": true
+  },
+  {
     "verbalName": "Réfutation d'hypothèse (3)",
     "premisses": ["p∧q"],
     "conclusion": "~(q∧~p)",

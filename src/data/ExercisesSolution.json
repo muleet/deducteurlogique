@@ -59,6 +59,18 @@
     ]
   },
   {
+    "verbalName": "Validation d'hypothèse (2)",
+    "possibleSolution": [
+      { "itself": "|p∧q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p", "numberCommentary": "1", "commentary": "∧" },
+      { "itself": "|q", "numberCommentary": "1", "commentary": "∧e" },
+      { "itself": "|p⊃(q⊃r)", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|q⊃r", "numberCommentary": "2, 4", "commentary": "⊃e" },
+      { "itself": "|r", "numberCommentary": "3, 5", "commentary": "⊃e" },
+      { "itself": "(p∧q)⊃r", "numberCommentary": "1, 5", "commentary": "⊃i" }
+    ]
+  },
+  {
     "verbalName": "Réfutation d'hypothèse (3)",
     "possibleSolution": [
       { "itself": "|q∧~p", "numberCommentary": "", "commentary": "hyp" },
