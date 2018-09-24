@@ -34,7 +34,7 @@
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓."
+    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs des langues naturelles, comme \"parce que\" ou \"car\"."
   },
   {
     "name": "Qu'appelle-t-on \"connecteur dominant\" ?",
@@ -76,7 +76,7 @@
   },
   {
     "name": "Qu'est-ce qu'une table de vérité ?",
-    "answer": ""
+    "answer": "Une table de vérité est la signification d'un connecteur vérifonctionnel. [à développer]"
   },
   {
     "name": "Qu'est-ce qu'une modalité ?",
@@ -92,7 +92,7 @@
   },
   {
     "name": "Faut-il dépasser l'analyse logique ?",
-    "answer": "Oui, pour deux raisons. D'abord, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Ensuite, l'analyse logique interprète la vérité des propositions de manière binaire (1 ou 0), or les interprétations que nous faisons du réel peuvent rarement être réduits à des descriptions aussi strictes."
+    "answer": "Oui, pour deux raisons. D'abord, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Ensuite, l'analyse logique interprète la vérité des propositions de manière binaire (elles sont soient vraies soit fausses, on appelle cela la bivalence), or les interprétations que nous faisons du réel (ou la manière d'en parler : les métaphores, les probabilités...) peuvent rarement être réduits à des descriptions aussi strictes."
   },
   {
     "name": "Quels auteurs antiques abordent la logique ?",
