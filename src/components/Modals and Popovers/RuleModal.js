@@ -18,7 +18,6 @@ class RuleModalProvider extends Component {
 
     this.state = {
       // showModal: false,
-      // modalClassName: ""
       // handleCloseModal: this.handleCloseModal
     };
   }
