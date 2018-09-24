@@ -14,8 +14,8 @@ class Home extends Component {
       <Fragment>
         <main className="main-menu">
           <Linker
-            link="/list-regles"
-            path="/list-regles"
+            link="/regles"
+            path="/regles"
             components={InfoRules}
             name={
               <ButtonMenu

@@ -132,6 +132,15 @@
     ]
   },
   {
+    "verbalName": "Introduction de la disjonction inclusive",
+    "possibleSolution": [
+      { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|~p∨q", "numberCommentary": "", "commentary": "reit" },
+      { "itself": "|p∨q", "numberCommentary": "2", "commentary": "∨i" },
+      { "itself": "~p", "numberCommentary": "1", "commentary": "reit" }
+    ]
+  },
+  {
     "verbalName": "Loi du tier exclu",
     "possibleSolution": [
       { "itself": "|~(p∨~p)", "numberCommentary": "", "commentary": "hyp" },
@@ -147,6 +156,18 @@
         "commentary": "~i"
       },
       { "itself": "p∨~p", "numberCommentary": "5", "commentary": "~~e" }
+    ]
+  },
+  {
+    "verbalName": "Elimination de la disjonction inclusive",
+    "possibleSolution": [
+      { "itself": "p∨q", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|q", "numberCommentary": "2, 3", "commentary": "⊃e" },
+      { "itself": "|q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|q", "numberCommentary": "5", "commentary": "reit" },
+      { "itself": "q", "numberCommentary": "1, 2-4, 5-6", "commentary": "ve" }
     ]
   },
   {

@@ -90,27 +90,43 @@ class App extends Component {
                 </Link>
                 <Link to="/questions">
                   <ButtonNav
+                    className="tutorial-button"
                     // className="info-color"
                     name={
-                      <i
-                        className="fas fa-question"
-                        id="interrogation-mark-1"
-                      />
+                      "Q"
+                      // <i
+                      //   className="fas fa-question"
+                      //   id="interrogation-mark-1"
+                      // />
                     }
                   />
                 </Link>
-
-                <Link to="/list-regles">
+                <Link to="/regles">
                   <ButtonNav
+                    className="tutorial-button"
                     // className="info-color"
                     name={
-                      <i
-                        className="fas fa-question"
-                        id="interrogation-mark-2"
-                      />
+                      "R"
+                      // <i
+                      //   className="fas fa-question"
+                      //   id="interrogation-mark-2"
+                      // />
                     }
                   />
                 </Link>
+                {/* <Link to="/tutoriel">
+                  <ButtonNav
+                    className="tutorial-button unavailable-yet"
+                    // className="info-color"
+                    name={
+                      "T"
+                      // <i
+                      //   className="fas fa-question"
+                      //   id="interrogation-mark-2"
+                      // />
+                    }
+                  />
+                </Link> */}
               </li>
               <li>
                 <Link to="/calcul-prop">
@@ -158,7 +174,8 @@ class App extends Component {
             <ul />
             <Route exact={true} path="/" component={Home} />
             <Route path="/questions" component={Questions} />
-            <Route path="/list-regles" component={InfoRules} />
+            <Route path="/regles" component={InfoRules} />
+            {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"
               render={props => <CalculDesPropositions {...props} user={user} />}

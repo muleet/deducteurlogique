@@ -34,7 +34,7 @@
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓ → ↔."
+    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓."
   },
   {
     "name": "Qu'appelle-t-on \"connecteur dominant\" ?",
@@ -49,6 +49,10 @@
     "answer": ""
   },
   {
+    "name": "Quelle différence entre un connecteur logique et une relation logique ?",
+    "answer": "Les connecteurs logiques permettent de faire des opérations de logique, là où les relations logiques parlent de la logique elle-même, à la manière d'un méta-langage. (Cette opposition existe aussi dans les mathématiques : + - * / sont des opérateurs, alors que = > < sont des relations. \"Un et un font deux\" n'est un propos de la même nature que de \"un est égal à un\" : le premier exemple est une opération, et l'autre un simple constat de vérité.) En logique, ~ ∧ ∨ ⊻ ⊃ ≡ sont des opérateurs, et → ↔ des relations."
+  },
+  {
     "name": "Y a-t-il différents genres de règles ?",
     "answer": "On peut distinguer 3 genres de règles : les règles structurelles (rep, reit, hyp...), les règles de connecteurs (∧i, ...), et les règles dérivées (~~e, ...). Les deux premières sont des règles acceptées par défaut, sans démonstration ; les règles dérivées sont au contraire démontrables à partir des précédentes. Elles sont comme des raccourcis. Il est possible de déduire toutes les règles des connecteurs propositionnels en ayant pour base ~ et ∧ (ces deux connecteurs forment donc ce qu'on appelle un \"système complet\"), par exemple A⊃B peut s'écrire ~(A∧~B)."
   },
@@ -58,8 +62,8 @@
     "example": "La terre est une planète ou n'est pas une planète. ⊢~(p∧~p). ⊨~(p∧~p)."
   },
   {
-    "name": "Qu'est-ce qu'une contradiction ?",
-    "answer": ""
+    "name": "Que sont la contradiction et la contrariété ?",
+    "answer": "Une contradiction revient à admettre vraie deux propositions ou ensembles de propositions, qui ne peuvent l'être ensemble. Elles peuvent être fausses ensembles, en revanche. Une contrariété est"
   },
   {
     "name": "Que sont l'hypothèse et le raisonnement par l'absurde ?",

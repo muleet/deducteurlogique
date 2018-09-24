@@ -63,7 +63,7 @@
       [
         "p : Je sais manier ce site.",
         "q : Je sais manier la logique.",
-        "r : Je sais analyser tous mes propos comme étant composés de propositions prises dans des relations logiques."
+        "r : Je sais analyser tous mes propos comme étant composés de propositions prises dans des connexions logiques."
       ],
       [
         "p : Le capitalisme est le fondement du droit d'exploitation de l'humain par l'humain.",
@@ -174,12 +174,33 @@
     "doable": true
   },
   {
+    "verbalName": "Introduction de la disjonction inclusive",
+    "premisses": ["~(p∨q)"],
+    "conclusion": "~p",
+    "meaning": [
+      "p : J'ai rendez-vous à quatre heure.",
+      "q : J'attends un appel à huit heures."
+    ],
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "∨i"],
+    "doable": false
+  },
+  {
     "verbalName": "Loi du tier exclu",
     "premisses": [],
     "conclusion": "p∨~p",
+    "meaning": ["p : La lune éclaire la nuit."],
+    "propositionsImplied": 1,
+    "rulesImplied": ["reit", "hyp", "~i", "~~e", "∨i"],
+    "doable": false
+  },
+  {
+    "verbalName": "Elimination de la disjonction inclusive",
+    "premisses": ["p⊃q", "p∨q"],
+    "conclusion": "q",
     "meaning": [],
     "propositionsImplied": 2,
-    "rulesImplied": ["reit", "hyp", "∨i", "~i", "~~e"],
+    "rulesImplied": ["rep", "reit", "hyp", "⊃e", "∨e"],
     "doable": false
   },
   {

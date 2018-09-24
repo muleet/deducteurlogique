@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Exercises from "../../data/Exercises.json";
 import ExercisesSolution from "../../data/ExercisesSolution.json";
 import ShowInformationsExercise from "./Deducer Tools/ShowInformationsExercise";
-// import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
-import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMakerDifferent";
+import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
+// import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMakerDifferent";
 import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";

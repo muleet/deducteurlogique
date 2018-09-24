@@ -30,6 +30,10 @@
   border: 1px solid red;
 }
 
+.inferenceGlobal:hover .hypothesis-level {
+  color: purple;
+}
+
 /* SECTION DE L'HYPOTHESE */
 .hypothesis-level {
   width: 22px;
@@ -37,9 +41,8 @@
   /* background-color: white; */
 }
 
-.hypothesis-line {
-  background-color: white;
-}
+/* .hypothesis-line {
+} */
 
 .hypothesisItself {
   /* text-decoration: underline; */

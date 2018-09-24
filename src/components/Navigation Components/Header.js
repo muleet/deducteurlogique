@@ -43,7 +43,7 @@ class Header extends React.Component {
           <NavLink to="/log_in">
             <ButtonNav
               className="header-button unavailable-yet"
-              name={<i className="fas fa-sign-in-alt unavailable-yet" />}
+              name={<i className="fas fa-sign-in-alt" />}
             />
           </NavLink>
           {this.renderNav()}

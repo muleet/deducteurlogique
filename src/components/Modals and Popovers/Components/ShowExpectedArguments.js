@@ -12,7 +12,7 @@ class ShowExpectedArguments extends Component {
 
     let hypContent = (
       <p className="awaiting-an-inference-blinking">
-        {"<Pas d'hypothèse créée>"}
+        {"<Créez d'abord une hypothèse>"}
       </p>
     );
     let firstArgument = (

@@ -55,7 +55,7 @@
     "arrayUtilization": "",
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "e",
     "notaBene": "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
   },
@@ -82,7 +82,7 @@
   {
     "name": "∨i",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
-    "verbalDescription": "Si A et/ou B a été posé, on peut inférer A∨B. Si A a été posé et qu'on ne sait rien de B, on peut quand même inférer A∨B.",
+    "verbalDescription": "Si A a été posé, on peut inférer A∨B.",
     "arrayUtilization": [
       ["A", "A∨B ∨i"],
       ["B", "A∨B ∨i"],
@@ -90,17 +90,21 @@
     ],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "i"
   },
   {
     "name": "∨e",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
-    "verbalDescription": "Si A∨B a été posé, [il faut trouver lequel des deux est vrai et ça c'est pas évident wesh [à développer]].",
-    "arrayUtilization": "",
+    "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, B a été trouvé, et que depuis l'hypothèse B, B a été trouvé, alors on peut inférer B.",
+    "arrayUtilization": [
+      ["A∨B", "|A hyp", "|B", "|B hyp", "|B", "B 1, 2-3, 4-5, ∨e"],
+      ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"],
+      ["A∨B", "|A hyp", "|C", "|B hyp", "|C", "C 1, 2-3, 4-5, ∨e"]
+    ],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "e"
   },
   {
@@ -110,7 +114,7 @@
     "arrayUtilization": [["A", "~B", "A⊻B ⊻i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon",
+    "available": "later",
     "binomial": "i"
   },
   {
@@ -120,7 +124,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon",
+    "available": "later",
     "binomial": "e"
   },
   {
@@ -136,7 +140,7 @@
   {
     "name": "⊃e",
     "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
-    "verbalDescription": "Si l'on a posé A⊃B, et que l'on a posé A, on peut poser B isolément.",
+    "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊃B, on peut poser B isolément.",
     "arrayUtilization": "",
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
@@ -190,7 +194,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "i"
   },
   {
@@ -200,7 +204,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "soon",
     "binomial": "e"
   },
   {
@@ -210,7 +214,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
+    "available": "later",
     "binomial": "i"
   },
   {
@@ -220,7 +224,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
+    "available": "later",
     "binomial": "e"
   },
   {

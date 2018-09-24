@@ -1,19 +1,61 @@
 import React, { Fragment, Component } from "react";
 import RulePopover from "../../Modals and Popovers/RulePopover";
 import InfoRules from "../../../data/InfoRules.json";
-import RuleModalProvider from "../../Modals and Popovers/RuleModal";
+// import RuleModal from "../../Modals and Popovers/RuleModal";
+import RuleModal from "../../Modals and Popovers/RuleModal";
 import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
 
 class ButtonRuleMaker extends Component {
+  renderModal(ruleModalContent) {
+    console.log(this.props.valueInference);
+    return (
+      <RuleModal
+        modalButton={""}
+        instruction={this.props.valueInference.ruleModalContent.instruction}
+        expectedArguments={
+          this.props.valueInference.ruleModalContent.expectedArguments
+        }
+        ruleName={this.props.valueInference.ruleModalContent.ruleName}
+        valueInference={this.props.valueInference}
+      />
+    );
+  }
+
+  handleClick(instruction, expectedArguments, ruleName, valueInference) {
+    const objectForTheRuleModal = {
+      instruction: instruction,
+      expectedArguments: expectedArguments,
+      ruleName: ruleName
+      // valueInference: this.props.valueInference
+    };
+    valueInference.changeStorageBoolean();
+    valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
+  }
+
   render() {
     const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
+    let arrayRuleModal;
+    // let theOneAndOnlyRuleModal = (
+    //   <RuleModal
+    //     // isOpen={isOpen}
+    //     modalButton={"theOneAndOnlyRuleModal"}
+    //     instruction={"vide"}
+    //     expectedArguments={["vide"]}
+    //     ruleName={"vide"}
+    //     valueInference={this.props.valueInference}
+    //   />
+    // );
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
     let arrayUnclickableRule = [];
-    let modalAlreadyOpen = false;
+    let objectForTheRuleModal = {
+      instruction: "",
+      expectedArguments: [],
+      ruleName: ""
+    };
     if (arrayRulesSent.length === 0) {
       // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doit renvoyer la totalité des règles possibles.)
     } else if (arrayRulesSent.length > 0) {
@@ -69,44 +111,52 @@ class ButtonRuleMaker extends Component {
           );
         } else if (Number(arrayRulesSent[i].length) === 2) {
           arrayRulesTwoCharacters.push(
-            <RuleModalProvider
+            <li
               key={i}
-              modalButton={
-                <RulePopover
-                  key={i}
-                  RulePopoverClassName="singleRule tinyRule selectable"
-                  ruleName={arrayCurrentRules[i].name}
-                  verbalName={arrayCurrentRules[i].verbalName}
-                  Description={arrayCurrentRules[i].verbalDescription}
-                  HowToUse={organizedUtilization}
-                />
-              }
-              instruction={arrayCurrentRules[i].instruction}
-              expectedArguments={arrayCurrentRules[i].expectedArguments}
-              ruleName={arrayCurrentRules[i].name}
-              valueInference={this.props.valueInference}
-            />
+              onClick={() => {
+                this.handleClick(
+                  arrayCurrentRules[i].instruction,
+                  arrayCurrentRules[i].expectedArguments,
+                  arrayCurrentRules[i].name,
+                  this.props.valueInference
+                );
+              }}
+            >
+              {arrayRulesSent[i].name}
+              <RulePopover
+                key={i}
+                RulePopoverClassName="singleRule tinyRule selectable"
+                ruleName={arrayCurrentRules[i].name}
+                verbalName={arrayCurrentRules[i].verbalName}
+                Description={arrayCurrentRules[i].verbalDescription}
+                HowToUse={organizedUtilization}
+              />
+            </li>
           );
         } else if (Number(arrayRulesSent[i].length) > 2) {
           // sauf l'hypothèse
           arrayAllOtherRules.push(
-            <RuleModalProvider
+            <li
               key={i}
-              modalButton={
-                <RulePopover
-                  key={i}
-                  RulePopoverClassName="singleRule fatRule selectable"
-                  ruleName={arrayRulesSent[i]}
-                  verbalName={arrayCurrentRules[i].verbalName}
-                  Description={arrayCurrentRules[i].verbalDescription}
-                  HowToUse={organizedUtilization}
-                />
-              }
-              instruction={arrayCurrentRules[i].instruction}
-              expectedArguments={arrayCurrentRules[i].expectedArguments}
-              ruleName={arrayCurrentRules[i].name}
-              valueInference={this.props.valueInference}
-            />
+              onClick={() => {
+                this.handleClick(
+                  arrayCurrentRules[i].instruction,
+                  arrayCurrentRules[i].expectedArguments,
+                  arrayCurrentRules[i].name,
+                  this.props.valueInference
+                );
+              }}
+            >
+              {arrayRulesSent[i].name}
+              <RulePopover
+                key={i}
+                RulePopoverClassName="singleRule fatRule selectable"
+                ruleName={arrayCurrentRules[i].name}
+                verbalName={arrayCurrentRules[i].verbalName}
+                Description={arrayCurrentRules[i].verbalDescription}
+                HowToUse={organizedUtilization}
+              />
+            </li>
           );
         }
       }
@@ -132,6 +182,10 @@ class ButtonRuleMaker extends Component {
         >
           {arrayUnclickableRule}
         </ul>
+        {/* {theOneAndOnlyRuleModal} */}
+        {/* {this.renderModal(this.props.valueInference.ruleModalContent)} */}
+        {this.renderModal(this.props.valueInference.ruleModalContent)}
+        {arrayRuleModal}
         {arrayAllOtherRules}
         <hr style={{ width: "20px" }} />
         {arrayRulesTwoCharacters}

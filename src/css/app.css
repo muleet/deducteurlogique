@@ -61,6 +61,10 @@ footer {
   background: -moz-linear-gradient(0% 100% 122deg, #000000, #ff0000 0%);
 }
 
+.anarchy-square {
+  background: -moz-linear-gradient(0% 100% 135deg, #000000, #ff0000 0%);
+}
+
 #interrogation-mark-1 {
   color: red;
 }
