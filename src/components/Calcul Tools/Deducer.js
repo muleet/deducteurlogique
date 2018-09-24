@@ -102,9 +102,6 @@ class Deducer extends Component {
       return "Cet exercice a mal été chargé.";
     } else {
       return (
-        // <RuleModalProvider>
-        //   <RuleModalContext.Consumer>
-        //     {valueRuleModal => (
         <InferenceProvider
           conclusionSent={this.state.currentExercise.conclusion}
           meaningSent={this.state.currentExercise.meaning}
@@ -115,11 +112,7 @@ class Deducer extends Component {
             ) => (
               <Fragment>
                 <ul className="mini-header-deducer">
-                  {/* {console.log("valueRuleModal", valueRuleModal)} */}
-                  {this.showMiniHeaderDeducer(
-                    value
-                    // valueRuleModal
-                  )}
+                  {this.showMiniHeaderDeducer(value)}
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
@@ -164,9 +157,6 @@ class Deducer extends Component {
             )}
           </InferenceContext.Consumer>
         </InferenceProvider>
-        //     )}
-        //   </RuleModalContext.Consumer>
-        // </RuleModalProvider>
       );
     }
   }

@@ -11,6 +11,7 @@
         "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"
       ]
     ],
+    "comment": "Salut fdp",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "⊃e"],
     "doable": true
@@ -36,6 +37,7 @@
         "r : Le soleil assombrit."
       ]
     ],
+    "comment": "",
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "∧e", "⊃e"],
     "doable": true
@@ -51,8 +53,19 @@
         "r : C'est une feuille de papier.."
       ]
     ],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "∧i", "∧e"],
+    "doable": true
+  },
+  {
+    "verbalName": "Réfutation d'hypothèse",
+    "premisses": ["p"],
+    "conclusion": "~~p",
+    "meaning": ["Aristote est un philosophe."],
+    "comment": "",
+    "propositionsImplied": 1,
+    "rulesImplied": ["rep", "hyp", "~i"],
     "doable": true
   },
   {
@@ -71,12 +84,13 @@
         "r : Personne n'ayant du recul sur soi, ne veut vivre en système capitaliste."
       ]
     ],
+    "comment": "",
     "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "⊃i", "⊃e"],
     "doable": true
   },
   {
-    "verbalName": "Réfutation d'hypothèse",
+    "verbalName": "Réfutation d'hypothèse (2)",
     "premisses": ["p", "~(p∧q)"],
     "conclusion": "~q",
     "meaning": [
@@ -93,12 +107,13 @@
         "q : La profession politique est possible dans un bon système politique."
       ]
     ],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "∧i", "~i"],
     "doable": true
   },
   {
-    "verbalName": "Réfutation d'hypothèse (2)",
+    "verbalName": "Réfutation d'hypothèse (3)",
     "premisses": ["p∧q"],
     "conclusion": "~(q∧~p)",
     "meaning": [
@@ -108,8 +123,19 @@
         "q : L'anarchisme est difficile à définir."
       ]
     ],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "~i", "∧e"],
+    "doable": true
+  },
+  {
+    "verbalName": "Réfutation d'hypothèse (4)",
+    "premisses": ["p∧q", "~(p∧r)"],
+    "conclusion": "~r",
+    "meaning": [],
+    "comment": "",
+    "propositionsImplied": 3,
+    "rulesImplied": ["rep", "hyp", "~i", "∧i", "∧e"],
     "doable": true
   },
   {
@@ -122,6 +148,7 @@
         "q : Le capitalisme nous fait aller droit dans le mur du réchauffement climatique."
       ]
     ],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "~~e", "∧i"],
     "doable": true
@@ -131,15 +158,37 @@
     "premisses": ["p"],
     "conclusion": "~(q∧~(p∧q))",
     "meaning": [],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧i", "∧e"],
     "doable": true
   },
   {
     "verbalName": "Validation et réfutation d'hypothèse",
+    "premisses": ["p"],
+    "conclusion": "~p⊃~q",
+    "meaning": [],
+    "comment": "",
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i"],
+    "doable": true
+  },
+  {
+    "verbalName": "Validation et réfutation d'hypothèse (2)",
+    "premisses": ["~(p∧q)"],
+    "conclusion": "~q⊃~p",
+    "meaning": [],
+    "comment": "",
+    "propositionsImplied": 2,
+    "rulesImplied": ["rep", "reit", "hyp", "~i", "∧i", "⊃i"],
+    "doable": true
+  },
+  {
+    "verbalName": "Validation et réfutation d'hypothèse (3)",
     "premisses": ["p⊃q"],
     "conclusion": "~q⊃~p",
     "meaning": [],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],
     "doable": true
@@ -151,6 +200,7 @@
     "meaning": [
       ["p : La neige est blanche.", "q : Il fait beau à Rennes aujourd'hui."]
     ],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧e"],
     "doable": true
@@ -160,6 +210,7 @@
     "premisses": [],
     "conclusion": "p⊃(q⊃p)",
     "meaning": [],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "⊃i"],
     "doable": true
@@ -169,6 +220,7 @@
     "premisses": [],
     "conclusion": "(p⊃q)⊃(~q⊃~p)",
     "meaning": [],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],
     "doable": true
@@ -181,6 +233,7 @@
       "p : J'ai rendez-vous à quatre heure.",
       "q : J'attends un appel à huit heures."
     ],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∨i"],
     "doable": false
@@ -190,6 +243,7 @@
     "premisses": [],
     "conclusion": "p∨~p",
     "meaning": ["p : La lune éclaire la nuit."],
+    "comment": "",
     "propositionsImplied": 1,
     "rulesImplied": ["reit", "hyp", "~i", "~~e", "∨i"],
     "doable": false
@@ -199,6 +253,7 @@
     "premisses": ["p⊃q", "p∨q"],
     "conclusion": "q",
     "meaning": [],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "⊃e", "∨e"],
     "doable": false
@@ -208,6 +263,7 @@
     "premisses": [],
     "conclusion": "(p∨q)⊃(q∨p)",
     "meaning": [],
+    "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],
     "doable": false

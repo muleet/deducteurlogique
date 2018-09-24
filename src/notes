@@ -12,6 +12,8 @@ Choses à faire :
 4) Faire apparaître une ligne transparente pour le prochain emplacement d'inférence, ligne transparente (qui blink) disant "< prochaine inférence >" ou quelque chose du genre. Et cette ligne n'apparaît plus lorsque la conclusion a été trouvée.
 4) Faire apparaître en transparence une prévisualisation de l'inférence qu'on va produire en cliquant sur une prémisse, sur une règle, etc.
 4) Faire que les numéros des commentaires de la règle ⊃i ne soient pas séparés par une virgule et un espace, mais par un trait d'union.
+4) Rajouter dans la page d'exercice, une petite icône de bulle à côté du titre : quand on met sa souris dessus (voire quand on clique dessus) on aura un commentaire de l'exercice. Il y a pas mal d'exos où ça peut être une info intéressante (et complémentaire de l'info apportée par les signification possible des prémisses).
+5) Pour la règle ∧i (et quelques autres), ce serait pas mal de mettre "&" pour séparer les numéros d'inférence qui justifient l'utilisation de la règle. Ca montrerait qu'il n'y avait que 2 inférences utilisés pour cette règle (ça clarifierait donc l'interface ET le fonctionnement de la règle de logique en question).
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state

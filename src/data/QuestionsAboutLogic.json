@@ -5,8 +5,7 @@
   },
   {
     "name": "Quel lien peut-on faire entre le langage et la logique ?",
-    "answer": "Lorsque nous parlons, argumentons, décrivons le monde, etc, nous émettons des propositions souvent complexes. Celles-ci peuvent être décomposées en des propositions plus élementaires, lesquels peuvent aussi être décomposées. Au bout du compte, nous pouvons arriver à des éléments premiers, indécomposables, irréductibles à d'autres choses. Les calculs de logique ne sont donc ni plus ni moins qu'un outil pour analyser les discours en général, et ce site se propose de faciliter l'accès à cet outil. Comme pour tout outil, chacun est libre ensuite d'en avoir l'usage qu'il souhaite. Ce site ne défend aucunement l'idée qu'il serait important de tout aborder par la logique.",
-    "example": ""
+    "answer": "Lorsque nous parlons, argumentons, décrivons le monde, etc, nous émettons des propositions souvent complexes. Celles-ci peuvent être décomposées en des propositions plus élementaires, lesquels peuvent aussi être décomposées. Au bout du compte, nous pouvons arriver à des éléments premiers, indécomposables, irréductibles à d'autres choses. Les calculs de logique ne sont donc ni plus ni moins qu'un outil pour analyser les discours en général, et ce site se propose de faciliter l'accès à cet outil. Comme pour tout outil, chacun est libre ensuite d'en avoir l'usage qu'il souhaite. Ce site ne défend aucunement l'idée qu'il serait important de tout aborder par la logique."
   },
   {
     "name": "Qu'est-ce qu'une proposition ?",
@@ -34,7 +33,7 @@
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs des langues naturelles, comme \"parce que\" ou \"car\"."
+    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs logiques des langues naturelles, comme \"parce que\" ou \"car\". Cet article de Wikipédia https://fr.wikipedia.org/wiki/Connecteur_logique#Linguistique recense bien les connecteurs logiques de la langue française."
   },
   {
     "name": "Qu'appelle-t-on \"connecteur dominant\" ?",
@@ -96,6 +95,6 @@
   },
   {
     "name": "Quels auteurs antiques abordent la logique ?",
-    "answer": "Aristote aborde la logique des prédicats dans les Premiers Analytiques (il est la première personne à écrire sur la logique, ou du moins la première dont on ait conservé des écrits), et de nombreux stoïciens, comme Chrysippe, abordent la logique des propositions. La question de savoir ce qu'est le conditionnel a fait de nombreux débats chez les stoïciens. Chrysippe avait aussi l'idée que lorsque nous raisonnons, il y a quelque chose qui semble être un guide a priori, qui justifie toute déduction valide avant même qu'elle soit posée."
+    "answer": "Aristote aborde la logique des prédicats dans les Premiers Analytiques (il est la première personne à écrire sur la logique, ou du moins la première dont on ait conservé des écrits), et de nombreux stoïciens, comme Chrysippe, abordent la logique des propositions. La question de savoir ce qu'est le conditionnel a d'ailleurs fait de nombreux débats chez les stoïciens. Chrysippe avait aussi l'idée que lorsque nous raisonnons, il y a quelque chose qui semble être un guide a priori, qui justifie toute déduction valide avant même qu'elle soit posée."
   }
 ]

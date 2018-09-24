@@ -51,11 +51,6 @@ class ButtonRuleMaker extends Component {
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
     let arrayUnclickableRule = [];
-    let objectForTheRuleModal = {
-      instruction: "",
-      expectedArguments: [],
-      ruleName: ""
-    };
     if (arrayRulesSent.length === 0) {
       // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doit renvoyer la totalité des règles possibles.)
     } else if (arrayRulesSent.length > 0) {
