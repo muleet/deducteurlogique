@@ -10,6 +10,7 @@ class ShowExpectedArguments extends Component {
     const allHypotheticalInferences = this.props.valueInference
       .allHypotheticalInferences;
 
+    // déclaration des arguments attendus
     let hypContent = (
       <p className="awaiting-an-inference-blinking">
         {"<Créez d'abord une hypothèse>"}

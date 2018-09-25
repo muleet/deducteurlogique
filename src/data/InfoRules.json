@@ -88,8 +88,8 @@
       ["B", "A∨B ∨i"],
       ["A", "B", "A∨B ∨i"]
     ],
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
+    "instruction": "Cliquez sur A, puis choisissez B, pour inférer A∨B.",
+    "expectedArguments": ["A"],
     "available": "soon",
     "binomial": "i"
   },

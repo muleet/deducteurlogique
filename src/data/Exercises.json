@@ -240,8 +240,10 @@
     "premisses": ["~(p∨q)"],
     "conclusion": "~p",
     "meaning": [
-      "p : J'ai rendez-vous à quatre heure.",
-      "q : J'attends un appel à huit heures."
+      [
+        "p : J'ai rendez-vous à quatre heure.",
+        "q : J'attends un appel à huit heures."
+      ]
     ],
     "comment": "",
     "propositionsImplied": 2,
