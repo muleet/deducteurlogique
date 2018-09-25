@@ -9,7 +9,7 @@ import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
 
 class ButtonRuleMaker extends Component {
-  renderModal(ruleModalContent) {
+  renderModal() {
     console.log(this.props.valueInference);
     return (
       <RuleModal
@@ -29,7 +29,6 @@ class ButtonRuleMaker extends Component {
       instruction: instruction,
       expectedArguments: expectedArguments,
       ruleName: ruleName
-      // valueInference: this.props.valueInference
     };
     valueInference.changeStorageBoolean();
     valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
@@ -38,16 +37,6 @@ class ButtonRuleMaker extends Component {
   render() {
     const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
     let arrayRuleModal;
-    // let theOneAndOnlyRuleModal = (
-    //   <RuleModal
-    //     // isOpen={isOpen}
-    //     modalButton={"theOneAndOnlyRuleModal"}
-    //     instruction={"vide"}
-    //     expectedArguments={["vide"]}
-    //     ruleName={"vide"}
-    //     valueInference={this.props.valueInference}
-    //   />
-    // );
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
     let arrayUnclickableRule = [];
@@ -172,11 +161,7 @@ class ButtonRuleMaker extends Component {
             }}
           />
         </div>
-        <ul
-        // style={{ display: "flex", width  }}
-        >
-          {arrayUnclickableRule}
-        </ul>
+        <ul>{arrayUnclickableRule}</ul>
         {/* {theOneAndOnlyRuleModal} */}
         {/* {this.renderModal(this.props.valueInference.ruleModalContent)} */}
         {this.renderModal(this.props.valueInference.ruleModalContent)}

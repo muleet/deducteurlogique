@@ -18,8 +18,12 @@ class InferenceProvider extends Component {
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
       let hypNumber = 0;
       let inferenceType = "";
+      let copyArrayRendered = [...this.state.allInferencesRendered];
+
+      // section de l'hypothèse (ignorée si hyp est undefined)
       if (hyp === "nouvelle hypothèse") {
         hypNumber = 1;
+        newInference.numberCommentaryHypothesis = copyArrayRendered.length + 1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
         inferenceType = "hypothesisItself";
       } else if (this.props.conclusionSent === newInference.itself) {
@@ -29,7 +33,10 @@ class InferenceProvider extends Component {
         hypNumber = -1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
+      let copyStoredHypId =
+        this.state.hypothesisCurrentLevelAndId.maxID + hypNumber;
 
+      // section du commentaire
       let commentary;
       if (newInference.numberCommentary !== "") {
         commentary =
@@ -39,9 +46,7 @@ class InferenceProvider extends Component {
       }
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
-      let copyArrayRendered = [...this.state.allInferencesRendered];
-      let copyStoredHypId =
-        this.state.hypothesisCurrentLevelAndId.maxID + hypNumber;
+      // let copyArrayRendered = [...this.state.allInferencesRendered];
       copyArrayRendered.push(
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
@@ -212,8 +217,11 @@ class InferenceProvider extends Component {
       }));
     };
 
-    this.manageLotsOfStuffAboutHypothesis = (inference, hyp, change) => {
-      console.log("manageLotsOfStuffAboutHypothesis");
+    this.manageLotsOfStuffAboutHypothesis = (hypothesisItself, hyp, change) => {
+      console.log(
+        "manageLotsOfStuffAboutHypothesis, l'hypothèse est ",
+        hypothesisItself
+      );
       // (section 1 : change) Cette section gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
       // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
       let copyHypothesisCurrentLevelAndID = {
@@ -227,13 +235,13 @@ class InferenceProvider extends Component {
         copyHypothesisCurrentLevelAndID.actualID--;
         copyHypothesisCurrentLevelAndID.level--;
       }
-      // (section 2 : inference, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
+      // (section 2 : hypothesisItself, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
       let copyAllHypotheticalInferences = [
         ...this.state.allHypotheticalInferences
       ];
       if (hyp === "nouvelle hypothèse") {
         // On rajoute une hypothèse dans le tableau qui ne contient que les hypothèses
-        copyAllHypotheticalInferences.unshift(inference);
+        copyAllHypotheticalInferences.unshift(hypothesisItself);
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         // On retire une hypothèse dans le tableau qui ne contient que les hypothèses
         console.log("on arrive bien là");

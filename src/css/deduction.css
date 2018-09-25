@@ -75,8 +75,8 @@
 }
 
 .exercise-title > i {
-  position: fixed;
-  margin-left: 20px;
+  /* position: fixed; */
+  /* margin-left: 20px; */
 }
 
 .setPremissesConclusion {

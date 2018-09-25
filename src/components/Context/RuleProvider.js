@@ -8,18 +8,8 @@ class RuleProvider extends Component {
 
     // SECTION DES REGLES ELLES-MEMES
 
-    this.reiteration = (A, numbers) => {
-      // const reit = "reit";
-      // const inferenceToAdd = {
-      //   itself: A,
-      //   numberCommentary: numbers,
-      //   commentary: "reit"
-      // };
-      // console.log(reit);
-      // console.log("reit", reit);
-      // console.log("bonjour fils de pute");
-      // this.addInferenceFromRule(inferenceToAdd, "", reit);
-    };
+    // this.reiteration = (A, numbers) => {
+    // };
 
     this.negationIntroduction = (B, notB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
@@ -36,6 +26,11 @@ class RuleProvider extends Component {
         } else {
           notA = "~" + A;
         }
+        numbers =
+          this.props.valueInference.allHypotheticalInferences[0]
+            .numberCommentaryHypothesis +
+          ", " +
+          numbers;
         const hyp = "hypothèse réfutée";
         const inferenceToAdd = {
           itself: notA,
@@ -90,6 +85,11 @@ class RuleProvider extends Component {
     this.conditionalIntroduction = (B, numbers) => {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
       let ifAthenB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
+      numbers =
+        this.props.valueInference.allHypotheticalInferences[0]
+          .numberCommentaryHypothesis +
+        "," +
+        numbers;
       const inferenceToAdd = {
         itself: ifAthenB,
         numberCommentary: numbers,
@@ -178,9 +178,6 @@ class RuleProvider extends Component {
       console.log("redirectToTheRightRule, pour la règle", ruleName);
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
-      // if (ruleName === "reit") {
-      // this.reiteration(arrInf[0], numbers); //  A
-      // } else
       if (ruleName === "~i") {
         this.negationIntroduction(arrInf[0], arrInf[1], numbers); // B, ~B, pour réfuter l'hypothèse (A)
       } else if (ruleName === "~~e") {
@@ -246,7 +243,6 @@ class RuleProvider extends Component {
           level--;
         }
         part = part + str[i];
-        // console.log(part);
         if (i === str.length - 1) {
           arrayToReturn.push(part);
         }
@@ -261,9 +257,8 @@ class RuleProvider extends Component {
           arrayToReturn[i] = noFirstParenthesis;
         }
       }
-      console.log("return final", arrayToReturn);
       return arrayToReturn;
-      // arrayToReturn[0] = "cequiprécède", arrayToReturn[1] = "cequisuccède".
+      // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
     };
 
     this.returnAnInferenceOutOfTwoInferences = (A, B, operator) => {

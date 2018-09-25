@@ -80,8 +80,8 @@ class RuleModalProvider extends Component {
     }
   }
 
-  verifySpecificRule(valueRule) {
-    console.log("verifySpecificRule", this.props.ruleName);
+  verifyBreakHypothesisRule(valueRule) {
+    console.log("verifyBreakHypothesisRule", this.props.ruleName);
     if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
       if (
         this.props.valueInference.storedInference !== undefined &&
@@ -90,8 +90,8 @@ class RuleModalProvider extends Component {
       ) {
         valueRule.redirectToTheRightRule(
           this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
-          this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
-          this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences citées juste avant.
+          this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle.
+          this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences qui permettront de valider la règle.
         );
         this.props.valueInference.setRuleModal("", "ended-well modal-ending");
         this.props.valueInference.changeStorageBoolean();
@@ -167,7 +167,7 @@ class RuleModalProvider extends Component {
                           ) {
                             this.verifyRule(value);
                           } else {
-                            this.verifySpecificRule(value);
+                            this.verifyBreakHypothesisRule(value);
                           }
                         }}
                       >
