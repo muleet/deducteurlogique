@@ -88,7 +88,7 @@
       ["B", "A∨B ∨i"],
       ["A", "B", "A∨B ∨i"]
     ],
-    "instruction": "Cliquez sur A, puis choisissez B, pour inférer A∨B.",
+    "instruction": "Cliquez sur A, pour inférer A∨B.",
     "expectedArguments": ["A"],
     "available": "soon",
     "binomial": "i"
@@ -149,8 +149,8 @@
   },
   {
     "name": "≡i",
-    "verbalName": "Règle d'introduction de l'équivalence",
-    "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B. A et B sont alors dits équivalents.",
+    "verbalName": "Règle d'introduction du biconditionnel",
+    "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B.",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -159,8 +159,8 @@
   },
   {
     "name": "≡e",
-    "verbalName": "Règle d'élimination de l'équivalence",
-    "verbalDescription": "Activable pour A et B si l’un des deux a été montré vrai.",
+    "verbalName": "Règle d'élimination du biconditionnel",
+    "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés. De plus, si A≡B a été posé, et que A a été posé, on peut inférer B (et inversement).",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
@@ -168,7 +168,7 @@
     "binomial": "e"
   },
   {
-    "name": "↓i",
+    "name": "←i",
     "verbalName": "Règle d'introduction de la contraposée du conditionnel",
     "verbalDescription": "",
     "arrayUtilization": "",
@@ -178,7 +178,7 @@
     "binomial": "i"
   },
   {
-    "name": "↓e",
+    "name": "←e",
     "verbalName": "Règle d'élimination de la contraposée du conditionnel",
     "verbalDescription": "",
     "arrayUtilization": "",
@@ -188,8 +188,8 @@
     "binomial": "e"
   },
   {
-    "name": "→i",
-    "verbalName": "Règle d'introduction de l'implication",
+    "name": "|i",
+    "verbalName": "Règle d'introduction de l'incompatibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
@@ -198,33 +198,13 @@
     "binomial": "i"
   },
   {
-    "name": "→e",
-    "verbalName": "Règle d'élimination de l'implication",
+    "name": "|e",
+    "verbalName": "Règle d'élimination de l'incompatibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "soon",
-    "binomial": "e"
-  },
-  {
-    "name": "↔i",
-    "verbalName": "Règle d'introduction de l'implication réciproque",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "later",
-    "binomial": "i"
-  },
-  {
-    "name": "↔e",
-    "verbalName": "Règle d'introduction de l'implication réciproque",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "later",
     "binomial": "e"
   },
   {

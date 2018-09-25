@@ -34,6 +34,7 @@ import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 // import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
 import ButtonNav from "./components/Navigation Components/ButtonNav";
+import TruthTable from "./components/Pages/TruthTable";
 // Images
 // import athens from "./img/athens.svg";
 
@@ -101,12 +102,25 @@ class App extends Component {
                     }
                   />
                 </Link>
-                <Link to="/regles">
+                <Link to="/règles">
                   <ButtonNav
                     className="tutorial-button"
                     // className="info-color"
                     name={
                       "R"
+                      // <i
+                      //   className="fas fa-question"
+                      //   id="interrogation-mark-2"
+                      // />
+                    }
+                  />
+                </Link>
+                <Link to="/tables-de-vérités">
+                  <ButtonNav
+                    className="tutorial-button"
+                    // className="info-color"
+                    name={
+                      "T"
                       // <i
                       //   className="fas fa-question"
                       //   id="interrogation-mark-2"
@@ -174,7 +188,8 @@ class App extends Component {
             <ul />
             <Route exact={true} path="/" component={Home} />
             <Route path="/questions" component={Questions} />
-            <Route path="/regles" component={InfoRules} />
+            <Route path="/règles" component={InfoRules} />
+            <Route path="/tables-de-vérités" component={TruthTable} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"

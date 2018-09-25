@@ -2,11 +2,7 @@ import React, { Component, Fragment } from "react";
 import QuestionsAboutLogic from "../../../data/QuestionsAboutLogic";
 
 class ShowQuestions extends Component {
-  state = {
-    arrayQuestionsState: []
-  };
-
-  renderInformations() {
+  renderQuestions() {
     let arrayQuestions = [];
     for (let i = 0; i < QuestionsAboutLogic.length; i++) {
       arrayQuestions.push(
@@ -25,7 +21,7 @@ class ShowQuestions extends Component {
   }
 
   render() {
-    return <ul className="set-of-questions">{this.renderInformations()}</ul>;
+    return <ul className="set-of-questions">{this.renderQuestions()}</ul>;
   }
 }
 

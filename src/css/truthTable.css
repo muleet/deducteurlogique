@@ -1,0 +1,13 @@
+.whole-truth-table {
+  display: flex;
+  flex-direction: row;
+}
+
+.truth-line {
+  display: flex;
+  flex-direction: column;
+}
+
+.part-of-truth-line {
+  border: 1px solid white;
+}

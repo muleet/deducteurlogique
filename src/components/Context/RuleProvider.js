@@ -6,7 +6,7 @@ class RuleProvider extends Component {
   constructor(props) {
     super(props);
 
-    // SECTION DES REGLES ELLES-MEMES
+    // SECTION DES RÈGLES ELLES-MEMES
 
     // this.reiteration = (A, numbers) => {
     // };
@@ -161,7 +161,21 @@ class RuleProvider extends Component {
       }
     };
 
-    // SECTION DES AUTRES METHODES, PERMETTANT AUX METHODES DES REGLES DE FONCTIONNER
+    this.inclusiveDisjonctionIntroduction = (A, number) => {
+      let normalChoice;
+      if (
+        this.props.valueInference.arraySimplePropositionsDemonstratedAsTrue
+          .length > 0
+      ) {
+      } else {
+        normalChoice = A + "∨p";
+      }
+      // const rightChoice = A + "∨" + "C";
+      return this.showChoiceOnTheModal(normalChoice, "", number, "∨i");
+    }; // ∨i
+    // this.inclusiveDisjonctionElimination = A => {}; // ∨e
+
+    // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur
@@ -185,11 +199,15 @@ class RuleProvider extends Component {
       } else if (ruleName === "∧i") {
         this.conjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A, B pour A∧B
       } else if (ruleName === "∧e") {
-        this.conjonctionElimination(arrInf[0], numbers); //  A∧B pour A ou b
+        this.conjonctionElimination(arrInf[0], numbers); //  A∧B pour A ou B
       } else if (ruleName === "⊃i") {
         this.conditionalIntroduction(arrInf[0], numbers); // (A), B pour A⊃B
       } else if (ruleName === "⊃e") {
         this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B pour B
+      } else if (ruleName === "∨i") {
+        this.inclusiveDisjonctionIntroduction(arrInf[0], numbers); // A pour A∨B
+      } else if (ruleName === "∨e") {
+        this.exclusiveDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A∨B, hyp A & conc de A, hyp B et conc de B, pour A ou B
       }
     };
 
@@ -273,13 +291,16 @@ class RuleProvider extends Component {
     };
 
     this.state = {
-      // reiteration: this.reiteration, // reit
       // negationIntroduction: this.negationIntroduction, // ~i
       // negationElimination: this.negationElimination, // ~~e
       // conditionalIntroduction: this.conditionalIntroduction, // ⊃i
       // conditionalElimination: this.conditionalElimination, // ⊃e
       // conjonctionIntroduction: this.conjonctionIntroduction, // ∧i
       // conjonctionElimination: this.conjonctionElimination, // ∧e
+      // inclusiveDisjonctionIntroduction: this.inclusiveDisjonctionIntroduction, // ∨i
+      // inclusiveDisjonctionElimination: this.inclusiveDisjonctionElimination, // ∨e
+      // exclusiveDisjonctionIntroduction: this.exclusiveDisjonctionIntroduction, // ⊻i
+      // exclusiveDisjonctionElimination: this.exclusiveDisjonctionElimination, // ⊻e
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       showChoiceOnTheModal: this.showChoiceOnTheModal,

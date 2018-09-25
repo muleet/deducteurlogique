@@ -61,7 +61,6 @@ class ShowModalButtons extends Component {
   }
 
   render() {
-    let arrayModalButton;
     return (
       <Fragment>
         <p
@@ -85,7 +84,7 @@ class ShowModalButtons extends Component {
         >
           <i className="fas fa-eraser" />
         </p>
-        <p className="rule-modal-button" onClick={this.handleCloseModal}>
+        <p className="rule-modal-button" onClick={this.props.handleCloseModal}>
           <i className="fas fa-times-circle" />
         </p>
       </Fragment>

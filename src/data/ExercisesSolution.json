@@ -189,7 +189,7 @@
     "verbalName": "Introduction de la disjonction inclusive",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|~p∨q", "numberCommentary": "", "commentary": "reit" },
+      { "itself": "|~(p∨q)", "numberCommentary": "", "commentary": "reit" },
       { "itself": "|p∨q", "numberCommentary": "2", "commentary": "∨i" },
       { "itself": "~p", "numberCommentary": "1", "commentary": "reit" }
     ]

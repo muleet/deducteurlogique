@@ -39,6 +39,7 @@ class RuleModalProvider extends Component {
         ruleName={ruleName}
         expectedArguments={expectedArguments}
         valueRule={valueRule}
+        handleCloseModal={this.handleCloseModal}
       />
     );
   }

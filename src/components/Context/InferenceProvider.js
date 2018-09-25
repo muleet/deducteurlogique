@@ -344,7 +344,10 @@ class InferenceProvider extends Component {
       advice: "",
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
-      setPossibleMeaning: this.setPossibleMeaning
+      setPossibleMeaning: this.setPossibleMeaning,
+      arraySimplePropositionsDemonstratedAsTrue: [],
+      updateSimplePropositionsDemonstratedAsTrue: this
+        .updateSimplePropositionsDemonstratedAsTrue
     };
   }
 

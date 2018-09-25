@@ -34,6 +34,7 @@
   font-stretch: ultra-expanded;
   font-weight: 900;
   color: red;
+  unicode-bidi: bidi-override;
 }
 
 .flag {
