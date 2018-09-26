@@ -41,7 +41,7 @@
   },
   {
     "name": "La règle d'élimination de la double négation, ~~e, (qui dit qu'une double négation d'une proposition est toujours égale à l'affirmation de cette proposition) est-elle juste, et toujours évocable pour les doubles négations de la vie courante ?",
-    "answer": "Non, ce n'est le cas dans les calculs de logique de ce site que parce que ceux-ci sont basés sur des tables de vérités qui empêchent toute autre possibilité d'interprétation de ce que signifie une double négation. Au contraire, dans les dialogues de la vie courante, il peut exister des doubles négations ayant toutes sortes d'autres significations, la règle ~~e ne saurait être invoquée dans de tels cas."
+    "answer": "Non, ce n'est le cas dans les calculs de logique de ce site que parce que ceux-ci sont basés sur des tables de vérité qui empêchent toute autre possibilité d'interprétation de ce que signifie une double négation. Au contraire, dans les dialogues de la vie courante, il peut exister des doubles négations ayant toutes sortes d'autres significations, la règle ~~e ne saurait être invoquée dans de tels cas."
   },
   {
     "name": "Que sont les connecteurs prédicatifs ?",

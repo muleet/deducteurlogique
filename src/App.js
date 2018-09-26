@@ -12,6 +12,7 @@ import "./css/rulePopover.css";
 import "./css/ruleModal.css";
 import "./css/questions.css";
 import "./css/ShowInfoRules.css";
+import "./css/truthTable.css";
 import "./css/color.css";
 // Importation de fonts
 import "./font/stylesheet.css";
@@ -115,7 +116,7 @@ class App extends Component {
                     }
                   />
                 </Link>
-                <Link to="/tables-de-vérités">
+                <Link to="/tables-de-vérité">
                   <ButtonNav
                     className="tutorial-button"
                     // className="info-color"
@@ -189,7 +190,7 @@ class App extends Component {
             <Route exact={true} path="/" component={Home} />
             <Route path="/questions" component={Questions} />
             <Route path="/règles" component={InfoRules} />
-            <Route path="/tables-de-vérités" component={TruthTable} />
+            <Route path="/tables-de-vérité" component={TruthTable} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"

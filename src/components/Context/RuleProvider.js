@@ -107,10 +107,19 @@ class RuleProvider extends Component {
       const positionConditional = ifAthenB.indexOf("⊃");
       if (positionConditional !== -1) {
         const antecedent = ifAthenB.slice(0, ifAthenB.indexOf("⊃"));
-        const consequent = ifAthenB.slice(
+        let consequent = ifAthenB.slice(
           Number(ifAthenB.indexOf("⊃")) + 1,
           ifAthenB.length
         );
+        if (consequent[0] === "(") {
+          let noFirstParenthesis = "";
+          for (let i = 1; i < consequent.length - 1; i++) {
+            console.log(i, noFirstParenthesis);
+            noFirstParenthesis = noFirstParenthesis + consequent[i];
+          }
+          consequent = noFirstParenthesis;
+        }
+
         if (antecedent === A) {
           // si on arrive dans ce if, c'est que la règle est validée
           const inferenceToAdd = {
@@ -162,16 +171,23 @@ class RuleProvider extends Component {
     };
 
     this.inclusiveDisjonctionIntroduction = (A, number) => {
-      let normalChoice;
+      // let normalChoice;
+      let AorB;
       if (
         this.props.valueInference.arraySimplePropositionsDemonstratedAsTrue
           .length > 0
       ) {
       } else {
-        normalChoice = A + "∨p";
+        AorB = A + "∨p";
       }
+      const inferenceToAdd = {
+        itself: AorB,
+        numberCommentary: number,
+        commentary: "∧i"
+      };
+      this.props.valueInference.addInference(inferenceToAdd);
       // const rightChoice = A + "∨" + "C";
-      return this.showChoiceOnTheModal(normalChoice, "", number, "∨i");
+      // return this.showChoiceOnTheModal(normalChoice, "", number, "∨i");
     }; // ∨i
     // this.inclusiveDisjonctionElimination = A => {}; // ∨e
 

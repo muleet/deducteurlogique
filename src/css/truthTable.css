@@ -1,13 +1,17 @@
 .whole-truth-table {
   display: flex;
   flex-direction: row;
+  /* border: 1px solid blue; */
 }
 
 .truth-line {
   display: flex;
   flex-direction: column;
+  border: 1px solid red;
+  padding: 5px;
 }
 
 .part-of-truth-line {
   border: 1px solid white;
+  padding: 5px;
 }

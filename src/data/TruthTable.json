@@ -4,16 +4,16 @@
     "name": "Tautologie",
     "Description": "",
     "lecture": "",
-    "truthTable": ["V", "V", "V", "V"],
+    "itself": ["V", "V", "V", "V"],
     "category": "always-true",
     "character": ""
   },
   {
     "number": 2,
-    "name": "Tautologie",
+    "name": "Conjonction",
     "Description": "",
     "lecture": "et",
-    "truthTable": ["V", "F", "F", "F"],
+    "itself": ["V", "F", "F", "F"],
     "category": "one-true",
     "character": "∧"
   },
@@ -22,7 +22,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "V", "F", "F"],
+    "itself": ["F", "V", "F", "F"],
     "category": "one-true",
     "character": ""
   },
@@ -31,7 +31,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "F", "V", "F"],
+    "itself": ["F", "F", "V", "F"],
     "category": "one-true",
     "character": ""
   },
@@ -40,7 +40,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "F", "F", "V"],
+    "itself": ["F", "F", "F", "V"],
     "category": "one-true",
     "character": "↓"
   },
@@ -49,7 +49,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["V", "V", "F", "F"],
+    "itself": ["V", "V", "F", "F"],
     "category": "true-and-false",
     "character": ""
   },
@@ -58,7 +58,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "V", "F", "V"],
+    "itself": ["F", "V", "F", "V"],
     "category": "true-and-false",
     "character": ""
   },
@@ -67,7 +67,7 @@
     "name": "Biconditionnel",
     "Description": "",
     "lecture": "si et seulement si",
-    "truthTable": ["V", "F", "F", "V"],
+    "itself": ["V", "F", "F", "V"],
     "category": "true-and-false",
     "character": "≡"
   },
@@ -76,7 +76,7 @@
     "name": "Disjonction exclusive",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "V", "V", "F"],
+    "itself": ["F", "V", "V", "F"],
     "category": "true-and-false",
     "character": "⊻w"
   },
@@ -85,7 +85,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["V", "F", "V", "F"],
+    "itself": ["V", "F", "V", "F"],
     "category": "true-and-false",
     "character": ""
   },
@@ -94,7 +94,7 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "F", "V", "V"],
+    "itself": ["F", "F", "V", "V"],
     "category": "true-and-false",
     "character": ""
   },
@@ -103,7 +103,7 @@
     "name": "Disjonction exclusive",
     "Description": "",
     "lecture": "ou/et",
-    "truthTable": ["V", "V", "V", "F"],
+    "itself": ["V", "V", "V", "F"],
     "category": "one-false",
     "character": "∨"
   },
@@ -112,16 +112,16 @@
     "name": "",
     "Description": "",
     "lecture": "",
-    "truthTable": ["V", "V", "F", "V"],
+    "itself": ["V", "V", "F", "V"],
     "category": "one-false",
-    "character": "←"
+    "character": "⊂←"
   },
   {
     "number": 14,
     "name": "Conditionnel",
     "Description": "",
     "lecture": "si ... alors ...",
-    "truthTable": ["V", "F", "V", "V"],
+    "itself": ["V", "F", "V", "V"],
     "category": "one-false",
     "character": "⊃→"
   },
@@ -130,7 +130,7 @@
     "name": "Incompatibilité",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "V", "V", "V"],
+    "itself": ["F", "V", "V", "V"],
     "category": "one-false",
     "character": "|"
   },
@@ -139,7 +139,7 @@
     "name": "Contradiction",
     "Description": "",
     "lecture": "",
-    "truthTable": ["F", "F", "F", "F"],
+    "itself": ["F", "F", "F", "F"],
     "category": "always-false",
     "character": ""
   }
