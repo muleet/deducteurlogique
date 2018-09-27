@@ -2,145 +2,165 @@
   {
     "number": 1,
     "name": "Tautologie",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["V", "V", "V", "V"],
     "category": "always-true",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 2,
     "name": "Conjonction",
-    "Description": "",
-    "lecture": "et",
+    "description": "",
+    "lecture": "A et B",
     "itself": ["V", "F", "F", "F"],
     "category": "one-true",
-    "character": "∧"
+    "character": "∧",
+    "example": ["Tu peux manger ce repas.", "Tu peux boire ce verre d'eau."]
   },
   {
     "number": 3,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["F", "V", "F", "F"],
     "category": "one-true",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 4,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["F", "F", "V", "F"],
     "category": "one-true",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 5,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["F", "F", "F", "V"],
     "category": "one-true",
-    "character": "↓"
+    "character": "↓",
+    "example": []
   },
   {
     "number": 6,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["V", "V", "F", "F"],
     "category": "true-and-false",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 7,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["F", "V", "F", "V"],
     "category": "true-and-false",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 8,
     "name": "Biconditionnel",
-    "Description": "",
-    "lecture": "si et seulement si",
+    "description": "",
+    "lecture": "A si et seulement si B",
     "itself": ["V", "F", "F", "V"],
     "category": "true-and-false",
-    "character": "≡"
+    "character": "≡",
+    "example": []
   },
   {
     "number": 9,
     "name": "Disjonction exclusive",
-    "Description": "",
-    "lecture": "",
+    "description": "A et B ne peuvent être ni vrais ensemble, ni faux ensembles.",
+    "example": "A : Ce vêtement est entièrement noir. B : Ce vêtement est partiellement noir.",
+    "lecture": "ou bien A, ou bien B",
     "itself": ["F", "V", "V", "F"],
     "category": "true-and-false",
-    "character": "⊻w"
+    "character": "⊻w",
+    "example": [
+      "Ce vêtement est entièrement noir.",
+      "Ce vêtement est partiellement noir."
+    ]
   },
   {
     "number": 10,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["V", "F", "V", "F"],
     "category": "true-and-false",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 11,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["F", "F", "V", "V"],
     "category": "true-and-false",
-    "character": ""
+    "character": "",
+    "example": []
   },
   {
     "number": 12,
-    "name": "Disjonction exclusive",
-    "Description": "",
-    "lecture": "ou/et",
+    "name": "Disjonction inclusive",
+    "description": "",
+    "lecture": "A et/ou B",
     "itself": ["V", "V", "V", "F"],
     "category": "one-false",
-    "character": "∨"
+    "character": "∨",
+    "example": []
   },
   {
     "number": 13,
     "name": "",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["V", "V", "F", "V"],
     "category": "one-false",
-    "character": "⊂←"
+    "character": "⊂←",
+    "example": []
   },
   {
     "number": 14,
     "name": "Conditionnel",
-    "Description": "",
-    "lecture": "si ... alors ...",
+    "description": "",
+    "lecture": "si A alors B",
     "itself": ["V", "F", "V", "V"],
     "category": "one-false",
-    "character": "⊃→"
+    "character": "⊃→",
+    "example": ["Je peux douter.", "Je suis."]
   },
   {
     "number": 15,
     "name": "Incompatibilité",
-    "Description": "",
-    "lecture": "",
+    "description": "",
+    "lecture": "A et B sont incompatibles",
     "itself": ["F", "V", "V", "V"],
     "category": "one-false",
-    "character": "|"
+    "character": "|",
+    "example": []
   },
   {
     "number": 16,
     "name": "Contradiction",
-    "Description": "",
+    "description": "",
     "lecture": "",
     "itself": ["F", "F", "F", "F"],
     "category": "always-false",
-    "character": ""
+    "character": "",
+    "example": []
   }
 ]

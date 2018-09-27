@@ -14,7 +14,7 @@
     "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. (Cliquez sur l'inférence à réitérer.",
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer dans l'hypothèse en cours.",
-    "expectedArguments": ["A"],
+    "expectedArguments": [],
     "available": "yes"
   },
   {
@@ -148,6 +148,26 @@
     "binomial": "e"
   },
   {
+    "name": "⊂i",
+    "verbalName": "Règle d'introduction de la contraposée du conditionnel",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
+    "available": "soon",
+    "binomial": "i"
+  },
+  {
+    "name": "⊂e",
+    "verbalName": "Règle d'élimination de la contraposée du conditionnel",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
+    "available": "soon",
+    "binomial": "e"
+  },
+  {
     "name": "≡i",
     "verbalName": "Règle d'introduction du biconditionnel",
     "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B.",
@@ -165,26 +185,6 @@
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "later",
-    "binomial": "e"
-  },
-  {
-    "name": "←i",
-    "verbalName": "Règle d'introduction de la contraposée du conditionnel",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "soon",
-    "binomial": "i"
-  },
-  {
-    "name": "←e",
-    "verbalName": "Règle d'élimination de la contraposée du conditionnel",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "soon",
     "binomial": "e"
   },
   {

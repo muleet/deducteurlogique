@@ -1,17 +1,67 @@
+.main-truth-table {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid green; */
+  align-items: center;
+}
+
 .whole-truth-table {
   display: flex;
   flex-direction: row;
   /* border: 1px solid blue; */
+  text-align: center;
+  color: black;
 }
 
 .truth-line {
   display: flex;
   flex-direction: column;
+  border: 1px solid transparent;
+  /* padding: 5px; */
+}
+
+.four-possibilities {
+  display: flex;
+  flex-direction: column;
+}
+
+.truth-line:hover {
   border: 1px solid red;
-  padding: 5px;
 }
 
 .part-of-truth-line {
-  border: 1px solid white;
+  /* width: 30px; */
+  border: 1px solid transparent;
   padding: 5px;
+}
+
+.box-info-truth-table {
+  margin-left: 10px;
+  /* justify-content: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center; */
+}
+
+/* Section des classname des catégories de lignes de la table de vérité */
+
+.always-true {
+  background-color: rgb(50, 50, 255);
+}
+
+.one-true {
+  background-color: #ff9999;
+}
+
+.true-and-false {
+  background-color: #8e7cc3;
+}
+
+.one-false {
+  background-color: #9999ff;
+}
+
+.always-false {
+  background-color: rgb(255, 50, 50);
 }
