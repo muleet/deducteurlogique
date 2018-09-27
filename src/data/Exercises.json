@@ -22,8 +22,8 @@
     "conclusion": "~r",
     "meaning": [
       [
-        "p : Pierre Joray est professeur de logique",
-        "q : Pierre Joray est directeur de l'UFR de philosophie",
+        "p : Pierre Jean est professeur de logique",
+        "q : Pierre Jean est directeur de l'UFR de philosophie",
         "r : Les assemblées générales sont souveraines à l'UFR de philosophie"
       ],
       [
@@ -99,8 +99,8 @@
         "q : Macron peut être un bon président."
       ],
       [
-        "p : Comme professeur d'université, Pierre Joray a une bonne situation sociale.",
-        "q : Il est probable que Pierre Joray voit par son propre mode de vie la pertinence du concept de lutte des classes."
+        "p : Comme professeur d'université, Pierre Jean a une bonne situation sociale.",
+        "q : Il est probable que Pierre Jean voit par son propre mode de vie la pertinence du concept de lutte des classes."
       ],
       [
         "p : La profession politique déconnecte des citoyens.",
