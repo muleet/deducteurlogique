@@ -88,6 +88,11 @@ class ShowTruthTable extends Component {
     arrayToReturn.push(
       <div className="part-of-truth-line">{character[0]}</div>
     );
+    if (character[1]) {
+      arrayToReturn.push(
+        <div className="part-of-truth-line">{character[1]}</div>
+      );
+    }
     return arrayToReturn;
   }
 
