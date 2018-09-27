@@ -64,12 +64,10 @@
 .box-info-exercise {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  /* margin-top: 20px; */
   justify-content: center;
   /* align-items: center; */
-  height: 350px;
-  min-width: 300px;
+  height: 300px;
+  width: 200px;
   font-size: 16px;
 }
 
