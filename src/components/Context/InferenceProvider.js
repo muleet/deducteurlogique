@@ -33,10 +33,10 @@ class InferenceProvider extends Component {
         hypNumber = -1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
-      console.log(
-        "bonjour c'est encore addInference, voici les niveau d'hyp",
-        this.state.hypothesisCurrentLevelAndId
-      );
+      // console.log(
+      //   "bonjour c'est encore addInference, voici les niveau d'hyp",
+      //   this.state.hypothesisCurrentLevelAndId
+      // );
       let copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
       const storedLevel =

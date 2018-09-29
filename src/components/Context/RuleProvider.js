@@ -14,7 +14,7 @@ class RuleProvider extends Component {
       let notA;
       if (B[0] !== /[pqrs]/ && B[0] !== /\(\)/ && notB[0] !== "~") {
         this.props.valueInference.setAdvice(
-          'Problème formel : B doit commencer par une proposition ou une parenthèse, et ~B par le caractère "~".',
+          'Pour utiliser ~i, B et ~B doivent être similaires, en dehors de la présence d\'un "~" devant ~B.',
           "error-advice"
         );
       } else {
@@ -151,12 +151,17 @@ class RuleProvider extends Component {
     }; // ⊃e
 
     this.conjonctionIntroduction = (A, B, numbers) => {
+      // ∧i
       let AandB = this.returnAnInferenceOutOfTwoInferences(A, B, "∧");
       const inferenceToAdd = {
         itself: AandB,
         numberCommentary: numbers,
         commentary: "∧i"
       };
+      this.props.valueInference.setAdvice(
+        "Conjonction introduite, nouvelle inférence : " + inferenceToAdd.itself,
+        "rule-advice"
+      );
       this.addInferenceFromRule(inferenceToAdd);
     }; // ∧i
 
@@ -247,17 +252,38 @@ class RuleProvider extends Component {
         numberCommentary: number,
         commentary: ruleName
       };
+      let verbalRuleName = "";
+      if (ruleName === "∧e") {
+        verbalRuleName = "Conjonction éliminée";
+      }
+
       const choiceContent = (
         <div className="rule-modal-all-choices">
           <p
             className="rule-modal-one-choice selectable"
-            onClick={() => this.addInferenceFromRule(leftInferenceToAdd)}
+            onClick={() => {
+              this.addInferenceFromRule(leftInferenceToAdd);
+              this.props.valueInference.setAdvice(
+                verbalRuleName +
+                  ", nouvelle inférence : " +
+                  leftInferenceToAdd.itself,
+                "rule-advice"
+              );
+            }}
           >
             {leftChoice}
           </p>
           <p
             className="rule-modal-one-choice selectable"
-            onClick={() => this.addInferenceFromRule(rightInferenceToAdd)}
+            onClick={() => {
+              this.addInferenceFromRule(rightInferenceToAdd);
+              this.props.valueInference.setAdvice(
+                verbalRuleName +
+                  ", nouvelle inférence : " +
+                  rightInferenceToAdd.itself,
+                "rule-advice"
+              );
+            }}
           >
             {rightChoice}
           </p>

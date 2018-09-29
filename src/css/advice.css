@@ -8,51 +8,19 @@
 }
 
 .advice {
+  margin-top: 8px;
   height: 28px;
   font-size: 14px;
 }
 
 .start-advice {
-  /* background-color: rgba(0, 0, 0, 0.4); */
   color: rgb(255, 192, 17);
-  /* color: #fff89c; */
 }
 
 .rule-advice {
-  /* background-color: rgba(48, 133, 48, 0.4); */
-  /* box-shadow: -5px 5px 50px rgba(48, 133, 48); */
   color: rgb(88, 196, 0);
 }
 
 .error-advice {
-  /* background-color: rgba(133, 48, 48, 0.4); */
-  /* box-shadow: -5px 5px 50px rgba(133, 48, 48); */
   color: rgb(255, 78, 46);
-}
-
-/* css importé ci-dessous */
-.hideMe {
-  -moz-animation: cssAnimation 0s ease-in 5s forwards;
-  /* Firefox */
-  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
-  /* Safari and Chrome */
-  -o-animation: cssAnimation 0s ease-in 5s forwards;
-  /* Opera */
-  animation: cssAnimation 0s ease-in 5s forwards;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-@keyframes cssAnimation {
-  to {
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  }
-}
-@-webkit-keyframes cssAnimation {
-  to {
-    width: 0;
-    height: 0;
-    visibility: hidden;
-  }
 }
