@@ -38,7 +38,7 @@ class InferenceProvider extends Component {
         this.state.hypothesisCurrentLevelAndId
       );
       let copyStoredHypId =
-        this.state.hypothesisCurrentLevelAndId.maxID + hypNumber;
+        this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
 
       // section du commentaire
       let commentary;
@@ -59,7 +59,7 @@ class InferenceProvider extends Component {
             this.state.hypothesisCurrentLevelAndId.level + hypNumber
           }
           hypothesisCurrentID={
-            this.state.hypothesisCurrentLevelAndId.maxID + hypNumber
+            this.state.hypothesisCurrentLevelAndId.actualID + hypNumber
           }
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}

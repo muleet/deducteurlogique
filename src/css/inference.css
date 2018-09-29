@@ -1,6 +1,5 @@
 .inferenceGlobal {
   border: 1px transparent solid;
-  /* color: red; */
   display: flex;
   flex-direction: row;
   padding: 4px;
@@ -38,6 +37,7 @@
 .hypothesis-level {
   width: 22px;
   margin-right: 6px;
+  color: red;
 }
 
 /* .hypothesis-line {

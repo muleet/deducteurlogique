@@ -20,6 +20,11 @@
   /* padding: 5px; */
 }
 
+.truth-line-info {
+  background-color: color;
+  color: black;
+}
+
 .four-possibilities {
   display: flex;
   flex-direction: column;

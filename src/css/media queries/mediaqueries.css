@@ -82,7 +82,7 @@
   }
 
   .infos-and-deduction-itself {
-    width: 270px;
+    width: 240px;
   }
 
   /* SECTION INFERENCE */
@@ -109,7 +109,7 @@
 
 @media screen and (min-width: 400px) and (max-width: 1300px) {
   body {
-    background-color: rgb(0, 0, 71);
+    /* background-color: rgb(0, 0, 71); */
     margin: 0 0;
     color: white;
     font-size: 16px;

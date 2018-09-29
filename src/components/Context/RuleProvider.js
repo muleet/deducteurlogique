@@ -295,7 +295,7 @@ class RuleProvider extends Component {
       if (A.length > 1 && A[0] !== "~" && A[A.length - 1] !== /[pqrs]/) {
         A = "(" + A + ")";
       }
-      if (B.length > 1 && B[0] !== "~" && B[B.length - 1] !== /[pqrs]/) {
+      if (B.length > 2 && B[B.length] !== /[pqrs]/) {
         B = "(" + B + ")";
       }
       let AoperatorB = A + operator + B;

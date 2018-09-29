@@ -1,6 +1,5 @@
 Choses à faire :
 
-0) Bug de la triple hypothèse.
 1) (J) Rendre responsive le site. Faire que le site fonctionne sur smartphone.
 1,5) (J) Créer une base de donnée utilisateur. Elle sauvegardera les exos résolus + permettra à l'utilisateur de créer ses propres exercices.
 1,5) Adapter removeLastInference aux hypothèses.
