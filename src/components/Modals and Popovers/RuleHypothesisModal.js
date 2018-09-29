@@ -41,9 +41,9 @@ class RuleModal extends Component {
   };
 
   showCharacters = value => {
-    // let arrayPropositionalSymbol = ["~", "∧","∨","⊻","⊃","≡", "↓", "→", "↔"] // je mets de côté la totalité des symboles de calcul des propositions pour le moment
+    // let arrayPropositionalSymbol = ["~", "∧","∨","⊻","⊃","≡", "↓"] // je mets de côté la totalité des symboles de calcul des propositions pour le moment
     let everyPossibleCharacter = [
-      ["~", "∧", "∨", "⊃"],
+      ["~", "∧", "∨", "⊃", "⊂", "≡"],
       ["p", "q", "r"],
       ["(", ")"]
     ];

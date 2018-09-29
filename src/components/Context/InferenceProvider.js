@@ -39,6 +39,8 @@ class InferenceProvider extends Component {
       );
       let copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
+      const storedLevel =
+        this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que conditionner la règle reit
 
       // section du commentaire
       let commentary;
@@ -71,13 +73,19 @@ class InferenceProvider extends Component {
                 copyStoredHypId // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
               );
             } else {
-              // A FAIRE : faut que j'empêche d'utiliser reit sur une inférence issue d'une hypothèse terminée
-              // if()
-              this.addInferenceViaReit(
-                copyArrayRendered.length,
-                newInference,
-                hypNumber
-              );
+              // ce if empêche l'utilisateur de reit une inférence qui provient d'une hyp terminée, et permet toujours de reit depuis une absence d'hyp
+              if (
+                storedLevel === 0 ||
+                this.state.hypothesisCurrentLevelAndId.hypIsStillOpen[
+                  copyStoredHypId - 1
+                ] === true
+              ) {
+                this.addInferenceViaReit(
+                  copyArrayRendered.length,
+                  newInference,
+                  hypNumber
+                );
+              }
             }
           }}
           inferenceType={inferenceType}
@@ -92,9 +100,8 @@ class InferenceProvider extends Component {
     this.addInferenceViaReit = (numberInference, newInference, hypNumber) => {
       console.log("addInferenceViaReit");
       let copyArrayRendered = [...this.state.allInferencesRendered];
-      // const commentary = numberInference +
-      // let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.maxID;
       let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
+      const storedLevel = this.state.hypothesisCurrentLevelAndId.level; // variable qui n'est utilisée que conditionner la règle reit
       copyArrayRendered.push(
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
@@ -111,11 +118,19 @@ class InferenceProvider extends Component {
                 copyStoredHypId // on réenvoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
               );
             } else {
-              this.addInferenceViaReit(
-                copyArrayRendered.length,
-                newInference,
-                hypNumber
-              );
+              // ce if empêche l'utilisateur de reit une inférence qui provient d'une hypothèse terminée
+              if (
+                storedLevel === 0 ||
+                this.state.hypothesisCurrentLevelAndId.hypIsStillOpen[
+                  copyStoredHypId - 1
+                ] === true
+              ) {
+                this.addInferenceViaReit(
+                  copyArrayRendered.length,
+                  newInference,
+                  hypNumber
+                );
+              }
             }
           }}
           // inferenceType={inferenceType}
@@ -206,7 +221,12 @@ class InferenceProvider extends Component {
         storedNumbers: "",
         storedHypID: 0,
         canInferenceBeStored: false, //  il devient false mais les rule-modal ne disparaissent pas, c'est un problème
-        hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
+        hypothesisCurrentLevelAndId: {
+          level: 0,
+          maxID: 0,
+          actualID: 0,
+          hypIsStillOpen: []
+        },
         allHypotheticalInferences: [],
         // section ruleModal
         ruleModalShown: false,
@@ -219,7 +239,8 @@ class InferenceProvider extends Component {
         ruleModalChoiceContent: "",
         // autre
         advice: "",
-        possibleMeaningShown: false
+        possibleMeaningShown: false,
+        arrayTrueAtomicPropositions: []
       }));
     };
 
@@ -237,9 +258,13 @@ class InferenceProvider extends Component {
         copyHypothesisCurrentLevelAndID.maxID++;
         copyHypothesisCurrentLevelAndID.level++;
         copyHypothesisCurrentLevelAndID.actualID++;
+        copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
       } else if (change === "decrease") {
         copyHypothesisCurrentLevelAndID.actualID--;
         copyHypothesisCurrentLevelAndID.level--;
+        copyHypothesisCurrentLevelAndID.hypIsStillOpen[
+          copyHypothesisCurrentLevelAndID.actualID
+        ] = false;
       }
       // (section 2 : hypothesisItself, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
       let copyAllHypotheticalInferences = [
@@ -348,7 +373,12 @@ class InferenceProvider extends Component {
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
       // section de l'hypothèse
-      hypothesisCurrentLevelAndId: { level: 0, maxID: 0, actualID: 0 },
+      hypothesisCurrentLevelAndId: {
+        level: 0,
+        maxID: 0,
+        actualID: 0,
+        hypIsStillOpen: []
+      },
       allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
       // section ruleModal
       ruleModalShown: false,
