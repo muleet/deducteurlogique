@@ -75,10 +75,16 @@ class ShowTruthTable extends Component {
   renderTruthLine(i, name, itself, character) {
     let arrayTableItself = [];
     let arrayToReturn = [];
-    arrayToReturn.push(<li className="part-of-truth-line">{i}</li>);
-    for (let i = 0; i < 4; i++) {
+    arrayToReturn.push(
+      <li key={i} className="part-of-truth-line">
+        {i}
+      </li>
+    );
+    for (let k = 0; k < 4; k++) {
       arrayTableItself.push(
-        <li className="four-possibilities">{itself[i]}</li>
+        <li key={k} className="four-possibilities">
+          {itself[k]}
+        </li>
       );
     }
     // arrayToReturn.push(name);
@@ -99,10 +105,10 @@ class ShowTruthTable extends Component {
   renderTruthTable() {
     let arrayTruthLine = [];
     for (let i = 0; i < 16; i++) {
-      // console.log(TruthTable[i]);
       arrayTruthLine.push(
         <Fragment key={i}>
           <li
+            key={i}
             className={"truth-line " + TruthTable[i].category}
             onMouseOver={() => {
               this.renderInfoTruthLine(

@@ -4,7 +4,7 @@ class ShowModalButtons extends Component {
   verifyRule(valueRule) {
     // "RuleModal", puis "ShowExpectedArguments", puis "VerifyRule", puis "redirectToTheRightRule", puis "[la règle en question]", puis "addInference"
     // puis dans le cas des hypothèses, changeHypothesisLevel, puis updateHypotheticalInferencesThemselves puis RIEN (pas d'updateInferencesOfCurrentHypotheses)
-    console.log("verifyRule, pour la règle ", this.props.ruleName);
+    // console.log("verifyRule, pour la règle ", this.props.ruleName);
 
     if (
       this.props.valueInference.storedInference !== undefined &&
@@ -31,7 +31,7 @@ class ShowModalButtons extends Component {
   }
 
   verifyBreakHypothesisRule(valueRule) {
-    console.log("verifyBreakHypothesisRule", this.props.ruleName);
+    // console.log("verifyBreakHypothesisRule", this.props.ruleName);
     if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
       if (
         this.props.valueInference.storedInference !== undefined &&

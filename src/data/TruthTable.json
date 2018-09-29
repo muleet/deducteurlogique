@@ -83,14 +83,13 @@
     "number": 9,
     "name": "Disjonction exclusive",
     "description": "A et B ne peuvent être ni vrais ensemble, ni faux ensembles.",
-    "example": "A : Ce vêtement est entièrement noir. B : Ce vêtement est partiellement noir.",
     "lecture": "ou bien A, ou bien B",
     "itself": ["F", "V", "V", "F"],
     "category": "true-and-false",
     "character": "⊻w",
     "example": [
       "Ce vêtement est entièrement noir.",
-      "Ce vêtement est partiellement noir."
+      "Ce vêtement n'est pas entièrement noir."
     ]
   },
   {
@@ -141,7 +140,7 @@
     "itself": ["V", "F", "V", "V"],
     "category": "one-false",
     "character": "⊃→",
-    "example": ["Je peux douter.", "Je suis."]
+    "example": ["Je doute.", "Je suis."]
   },
   {
     "number": 15,

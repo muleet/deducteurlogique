@@ -9,7 +9,7 @@
   },
   {
     "name": "Qu'est-ce qu'une proposition ?",
-    "answer": "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet. Une proposition affirme quelque chose au sujet du monde et de ce qui le compose.",
+    "answer": "Une proposition est un énoncé qui est soit vrai soit faux. La logique des propositions permet de faire des calculs dont elles sont l'objet. Une proposition affirme quelque chose au sujet du monde et de ce qui le compose. Il y a deux genres de propositions : les propositions atomiques (comme leur nom l'indique, elles sont indécomposables), et les propositions complexes, qui peuvent être décomposées en propositions atomiques.",
     "example": "Socrate est un homme. La Terre est ronde. La Terre est plate. Le sable est bleu. Macron a supprimé l'impôt sur la fortune. Il fera 50 à 55 degré en été, dans certaines régions de l'Europe en 2050.\n(\"La Terre.\" ou \"Socrate\", à l'inverse, ne sont pas des propositions.)"
   },
   {

@@ -33,6 +33,10 @@ class InferenceProvider extends Component {
         hypNumber = -1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
+      console.log(
+        "bonjour c'est encore addInference, voici les niveau d'hyp",
+        this.state.hypothesisCurrentLevelAndId
+      );
       let copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.maxID + hypNumber;
 
@@ -68,6 +72,7 @@ class InferenceProvider extends Component {
               );
             } else {
               // A FAIRE : faut que j'empêche d'utiliser reit sur une inférence issue d'une hypothèse terminée
+              // if()
               this.addInferenceViaReit(
                 copyArrayRendered.length,
                 newInference,
@@ -88,13 +93,14 @@ class InferenceProvider extends Component {
       console.log("addInferenceViaReit");
       let copyArrayRendered = [...this.state.allInferencesRendered];
       // const commentary = numberInference +
-      let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.maxID;
+      // let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.maxID;
+      let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
       copyArrayRendered.push(
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
           inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
           hypothesisCurrentLevel={this.state.hypothesisCurrentLevelAndId.level}
-          hypothesisCurrentID={this.state.hypothesisCurrentLevelAndId.maxID}
+          hypothesisCurrentID={this.state.hypothesisCurrentLevelAndId.actualID}
           inferenceItself={newInference.itself}
           inferenceCommentary={numberInference + ", reit"}
           onClickSent={() => {
@@ -248,17 +254,18 @@ class InferenceProvider extends Component {
         copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1);
       }
       // (section 3 : setState)
-      console.log("AVANT", this.state.allHypotheticalInferences);
+      console.log(
+        "le nouveau allHypotheticalInferences",
+        copyAllHypotheticalInferences
+      );
       this.setState({
         allHypotheticalInferences: copyAllHypotheticalInferences,
         hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID
       });
-      console.log("APRES", this.state.allHypotheticalInferences);
-      console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
+      // console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
     this.setRuleModal = (str, strClassName, ruleModalContent) => {
-      console.log("setRuleModal");
       // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "reverse", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
       let newRuleModalShown = false;
       let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
@@ -314,6 +321,20 @@ class InferenceProvider extends Component {
       }
     };
 
+    this.updateTrueAtomicPropositions = (str, proposition) => {
+      if (str === true) {
+        let copyArray = this.state.arrayTrueAtomicPropositions;
+        copyArray.push(proposition);
+        this.setState({
+          arrayTrueAtomicPropositions: copyArray
+        });
+      } else if (str === "erase") {
+        this.setState({
+          arrayTrueAtomicPropositions: []
+        });
+      }
+    };
+
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
@@ -345,9 +366,8 @@ class InferenceProvider extends Component {
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
-      arraySimplePropositionsDemonstratedAsTrue: [],
-      updateSimplePropositionsDemonstratedAsTrue: this
-        .updateSimplePropositionsDemonstratedAsTrue
+      arrayTrueAtomicPropositions: [],
+      updateTrueAtomicPropositions: this.updateTrueAtomicPropositions
     };
   }
 

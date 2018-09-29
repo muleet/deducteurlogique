@@ -1,0 +1,142 @@
+@media screen and (min-width: 0px) and (max-width: 400px) {
+  body {
+    /* background-color: rgb(94, 0, 0); */
+    margin: 0 0;
+    color: white;
+    font-size: 16px;
+  }
+
+  .unavailable-yet {
+    display: none;
+  }
+
+  .nav-list > li a {
+    margin-right: 5px;
+  }
+
+  .nav-list > li {
+    margin-left: 5px;
+  }
+
+  .header-nav-list a {
+    margin-right: 5px;
+  }
+
+  .main-menu {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .icon-menu {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-style: italic;
+    color: white;
+  }
+
+  h3 {
+    margin-top: 8px;
+    color: white;
+    font-size: 16px;
+  }
+
+  .button-menu {
+    width: 90px;
+    font-size: 14px;
+    border: solid 1px white;
+    /* color: white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 60px;
+    /* inline-size: 100%; */
+  }
+  /* SECTION LIST EXERCISES */
+  .list-exercises {
+    min-width: 140px;
+    max-width: 230px;
+  }
+
+  .box-info-exercise {
+    height: 300px;
+    min-width: 22 0px;
+    font-size: 16px;
+    margin-right: 70px;
+  }
+
+  /* SECTION DEDUCTION */
+
+  .mini-header-deducer {
+    height: 80px;
+    width: 80%;
+  }
+
+  .setOfTextAndIcon {
+    width: 120px;
+    font-size: 16px;
+  }
+
+  .infos-and-deduction-itself {
+    width: 270px;
+  }
+
+  /* SECTION INFERENCE */
+
+  .inferenceGlobal {
+    padding: 2px;
+    font-size: 16px;
+  }
+
+  .inferenceNumber {
+    width: 20px;
+  }
+
+  .inferenceItself {
+    width: 120px;
+    margin-right: 7px;
+  }
+
+  /* SECTION RULEMODAL */
+  .rule-modal-portal {
+    margin-top: -800px;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 1300px) {
+  body {
+    background-color: rgb(0, 0, 71);
+    margin: 0 0;
+    color: white;
+    font-size: 16px;
+  }
+
+  .nav-list > li a {
+    margin-right: 25px;
+  }
+
+  .nav-list > li {
+    margin-left: 25px;
+  }
+
+  .header-nav-list a {
+    margin-right: 25px;
+  }
+
+  .button-menu {
+    width: 180px;
+    font-size: 16px;
+    border: solid 1px white;
+    /* color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+    /* inline-size: 100%; */
+  }
+}

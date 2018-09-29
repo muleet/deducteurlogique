@@ -10,7 +10,6 @@ import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 
 class ButtonRuleMaker extends Component {
   renderModal() {
-    console.log(this.props.valueInference);
     return (
       <RuleModal
         modalButton={""}

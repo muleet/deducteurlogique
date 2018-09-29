@@ -14,6 +14,7 @@ import "./css/questions.css";
 import "./css/ShowInfoRules.css";
 import "./css/truthTable.css";
 import "./css/color.css";
+import "./css/media queries/mediaqueries.css";
 // Importation de fonts
 import "./font/stylesheet.css";
 // // Importation de mes composants

@@ -1,6 +1,6 @@
 .inferenceGlobal {
   border: 1px transparent solid;
-  color: red;
+  /* color: red; */
   display: flex;
   flex-direction: row;
   padding: 4px;
@@ -38,7 +38,6 @@
 .hypothesis-level {
   width: 22px;
   margin-right: 6px;
-  /* background-color: white; */
 }
 
 /* .hypothesis-line {
@@ -53,9 +52,7 @@
   color: rgb(0, 209, 0);
   animation: slow-blinker 3s linear infinite;
   /* font-weight:bold; */
-  /* font-size:24px; */
   /* border:3px solid green; */
-  /* font-style: italic; */
   /* text-decoration: underline; */
 }
 

@@ -114,7 +114,6 @@ class RuleProvider extends Component {
         if (consequent[0] === "(") {
           let noFirstParenthesis = "";
           for (let i = 1; i < consequent.length - 1; i++) {
-            console.log(i, noFirstParenthesis);
             noFirstParenthesis = noFirstParenthesis + consequent[i];
           }
           consequent = noFirstParenthesis;
@@ -228,7 +227,6 @@ class RuleProvider extends Component {
     };
 
     this.showChoiceOnTheModal = (leftChoice, rightChoice, number, ruleName) => {
-      console.log("showChoiceOnTheModal");
       const leftInferenceToAdd = {
         itself: leftChoice,
         numberCommentary: number,
@@ -259,7 +257,6 @@ class RuleProvider extends Component {
     };
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {
-      console.log("returnWhatIsBeforeAndAfterTheOperator");
       // Cette fonction a plusieurs intérêts. Elle n'est utilisée que dans certaines règles d'élimination d'opérateur. 1) D'abord, elle reçoit un str contenant une inférence dans sa totalité. 2) Elle vérifie ensuite où commence et où termine la première parenthèse. En faisant cela, elle repère le positionnement de l'opérateur principal (celui hors de toute parenthèse). 3) Elle ajoute alors tout ce qui précède cet opérateur, à un tableau à entrées. 4) Ensuite elle poursuit l'exploration de la string et finit par ajouter ce qui précède à l'opérateur à la deuxième entrée du tableau. 5) Finalement, returnWhatIsBeforeAndAfterTheOperator doit retourner un tableau contenant les deux parties, en retirant les premières parenthèses si elles en avaient.
       let arrayToReturn = [];
       let level = 0;
@@ -284,7 +281,6 @@ class RuleProvider extends Component {
       for (let i = 0; i < 2; i++) {
         let noFirstParenthesis = "";
         if (arrayToReturn[i][0] === "(") {
-          console.log(arrayToReturn[i][0]);
           for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
             noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
           }
