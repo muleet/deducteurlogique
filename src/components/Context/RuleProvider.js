@@ -35,7 +35,7 @@ class RuleProvider extends Component {
           commentary: "~i"
         };
         this.props.valueInference.setAdvice(
-          "Hypothèse réfutée par la règle ~i, inférence produite : " +
+          "Hypothèse réfutée, introduction de la négation, inférence produite : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
@@ -96,7 +96,8 @@ class RuleProvider extends Component {
         commentary: "⊃i"
       };
       this.props.valueInference.setAdvice(
-        "Conditionnel introduit, nouvelle inférence : " + inferenceToAdd.itself,
+        "Hypothèse validée, introduction du conditionnel, inférence produite : " +
+          inferenceToAdd.itself,
         "rule-advice"
       );
       const hyp = "hypothèse validée";

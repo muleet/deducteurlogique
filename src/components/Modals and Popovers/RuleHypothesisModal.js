@@ -76,14 +76,29 @@ class RuleModal extends Component {
   };
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
-    const inferenceToAdd = {
-      itself: hypothesisItself,
-      numberCommentary: "",
-      commentary: "hyp"
-    };
-    valueRuleContext.addInferenceFromRule(inferenceToAdd, "nouvelle hypothèse");
-    // pour être créée, l'hypothèse part d'ici, puis va à addInferenceFromRule de RuleProvider, puis va à addInference de InferenceProvider
-    this.handleCloseModal();
+    console.log(hypothesisItself);
+    if (hypothesisItself[0] !== ")" && hypothesisItself[0] !== "∧") {
+      const inferenceToAdd = {
+        itself: hypothesisItself,
+        numberCommentary: "",
+        commentary: "hyp"
+      };
+      this.props.valueInference.setAdvice(
+        "Hypothèsée créée : " + inferenceToAdd.itself,
+        "rule-advice"
+      );
+      valueRuleContext.addInferenceFromRule(
+        inferenceToAdd,
+        "nouvelle hypothèse"
+      );
+      // pour être créée, l'hypothèse part d'ici, puis va à addInferenceFromRule de RuleProvider, puis va à addInference de InferenceProvider
+      this.handleCloseModal();
+    } else {
+      this.props.valueInference.setAdvice(
+        "Hypothèse non cohérente",
+        "error-advice"
+      );
+    }
   };
 
   removeLastCharacter = () => {
