@@ -8,9 +8,6 @@ class RuleProvider extends Component {
 
     // SECTION DES RÈGLES ELLES-MEMES
 
-    // this.reiteration = (A, numbers) => {
-    // };
-
     this.negationIntroduction = (B, notB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
@@ -20,7 +17,7 @@ class RuleProvider extends Component {
           'Problème formel : B doit commencer par une proposition ou une parenthèse, et ~B par le caractère "~".',
           "error-advice"
         );
-      } else if (2 === 1 + 1) {
+      } else {
         if (A.length > 2) {
           notA = "~(" + A + ")";
         } else {
@@ -42,14 +39,17 @@ class RuleProvider extends Component {
             inferenceToAdd.itself,
           "rule-advice"
         );
+        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.changeStorageBoolean();
         this.props.valueInference.addInference(inferenceToAdd, hyp);
-      } else {
-        this.props.valueInference.setAdvice(
-          "Pour utiliser ~i, vous devez créer une contradiction au sein de l'hypothèse, pour la rejeter",
-          "error-advice"
-        );
       }
-    };
+      // else {
+      //   this.props.valueInference.setAdvice(
+      //     "Pour utiliser ~i, vous devez créer une contradiction au sein de l'hypothèse, pour la rejeter",
+      //     "error-advice"
+      //   );
+      // }
+    }; // ~i
 
     this.doubleNegationElimination = (notnotA, numbers) => {
       if (notnotA[0] === "~" && notnotA[1] === "~") {
@@ -80,7 +80,7 @@ class RuleProvider extends Component {
           "error-advice"
         );
       }
-    };
+    }; // ~~e
 
     this.conditionalIntroduction = (B, numbers) => {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
@@ -101,10 +101,14 @@ class RuleProvider extends Component {
       );
       const hyp = "hypothèse validée";
       this.props.valueInference.addInference(inferenceToAdd, hyp);
-    };
+      this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+      this.props.valueInference.changeStorageBoolean();
+    }; // ⊃i
 
     this.conditionalElimination = (A, ifAthenB, numbers) => {
+      // ⊃e
       const positionConditional = ifAthenB.indexOf("⊃");
+      console.log(positionConditional);
       if (positionConditional !== -1) {
         const antecedent = ifAthenB.slice(0, ifAthenB.indexOf("⊃"));
         let consequent = ifAthenB.slice(
@@ -117,6 +121,11 @@ class RuleProvider extends Component {
             noFirstParenthesis = noFirstParenthesis + consequent[i];
           }
           consequent = noFirstParenthesis;
+        } else {
+          this.props.valueInference.setAdvice(
+            "Pour utiliser ⊃e, il faut une inférence A et une inférence A⊃B.",
+            "error-advice"
+          );
         }
 
         if (antecedent === A) {
@@ -139,7 +148,7 @@ class RuleProvider extends Component {
           );
         }
       }
-    };
+    }; // ⊃e
 
     this.conjonctionIntroduction = (A, B, numbers) => {
       let AandB = this.returnAnInferenceOutOfTwoInferences(A, B, "∧");
@@ -149,25 +158,26 @@ class RuleProvider extends Component {
         commentary: "∧i"
       };
       this.addInferenceFromRule(inferenceToAdd);
-    };
+    }; // ∧i
 
     this.conjonctionElimination = (AandB, number) => {
-      const arrayTwoChoices = this.returnWhatIsBeforeAndAfterTheOperator(
-        AandB,
-        "∧"
-      );
-      if (arrayTwoChoices.length === 2) {
+      if (AandB.indexOf("∧") !== -1) {
+        const arrayTwoChoices = this.returnWhatIsBeforeAndAfterTheOperator(
+          AandB,
+          "∧"
+        );
+        // if (arrayTwoChoices.length === 2) {
         const leftChoice = arrayTwoChoices[0];
         const rightChoice = arrayTwoChoices[1];
-        // dans la fonction ci-dessous
         return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "∧e");
+        // }
       } else {
         this.props.valueInference.setAdvice(
           "Pour utiliser ∧e, il faut sélectionnez une inférence de forme A∧B.",
           "error-advice"
         );
       }
-    };
+    }; // ∧e
 
     this.inclusiveDisjonctionIntroduction = (A, number) => {
       // let normalChoice;

@@ -21,32 +21,32 @@ class ShowInformationsExercise extends Component {
     let setOfPremisses = [];
     let numberOfPremisses = 10; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
     let textCanItBeDone;
-    let exerciseComment = <i className="fas fa-comment deactivated" />;
+    // let exerciseComment = <i className="fas fa-comment deactivated" />;
     if (this.props.exerciseSent.doable === false) {
       textCanItBeDone =
         "(Cet exercice ne peut pas être terminé pour le moment, puisqu'au moins une de ses règles n'a pas été codée.)";
     }
     if (this.props.exerciseSent.comment.length > 0) {
-      exerciseComment = (
-        <i className="fas fa-comment">
-          <div
-            className={"rule-popover-button " + this.props.RulePopoverClassName}
-          >
-            {this.props.ruleName}
-            <div className="rule-popover">
-              <div className="rule-popover-rulename">
-                {this.props.verbalName}
-              </div>
-              <ul className="rule-popover-content">
-                <li className={"rule-popover-description "}>
-                  {this.props.Description}
-                </li>
-                <li className="rule-popover-array">{this.props.HowToUse}</li>
-              </ul>
-            </div>
-          </div>
-        </i>
-      );
+      // exerciseComment = (
+      //   <i className="fas fa-comment">
+      //     <div
+      //       className={"rule-popover-button " + this.props.RulePopoverClassName}
+      //     >
+      //       {this.props.ruleName}
+      //       <div className="rule-popover">
+      //         <div className="rule-popover-rulename">
+      //           {this.props.verbalName}
+      //         </div>
+      //         <ul className="rule-popover-content">
+      //           <li className={"rule-popover-description "}>
+      //             {this.props.Description}
+      //           </li>
+      //           <li className="rule-popover-array">{this.props.HowToUse}</li>
+      //         </ul>
+      //       </div>
+      //     </div>
+      //   </i>
+      // );
     }
     if (this.props.exerciseSent.premisses.length === 0) {
       setOfPremisses = (
@@ -77,7 +77,7 @@ class ShowInformationsExercise extends Component {
       <Fragment>
         <p className={"exercise-title "}>
           {this.props.exerciseSent.verbalName}
-          {exerciseComment}
+          {/* {exerciseComment} */}
         </p>
         {<p style={{ fontSize: "12px" }}>{textCanItBeDone}</p>}
         <ul className="setPremissesConclusion">

@@ -238,7 +238,7 @@ class InferenceProvider extends Component {
         },
         ruleModalChoiceContent: "",
         // autre
-        advice: "",
+        advice: <div className="advice" />,
         possibleMeaningShown: false,
         arrayTrueAtomicPropositions: []
       }));
@@ -275,14 +275,9 @@ class InferenceProvider extends Component {
         copyAllHypotheticalInferences.unshift(hypothesisItself);
       } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         // On retire une hypothèse dans le tableau qui ne contient que les hypothèses
-        console.log("on arrive bien là");
         copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1);
       }
       // (section 3 : setState)
-      console.log(
-        "le nouveau allHypotheticalInferences",
-        copyAllHypotheticalInferences
-      );
       this.setState({
         allHypotheticalInferences: copyAllHypotheticalInferences,
         hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID
@@ -327,11 +322,17 @@ class InferenceProvider extends Component {
 
     this.setAdvice = (advice, adviceClassName, specificContent) => {
       // 3 types de conseils différents : 1) liste de ce qu'il est possible de faire au début de l'exo, 2) étapes sur l'utilisation d'une règle, 3) message d'erreur (l'utilisateur a cliqué là où il ne fallait pas)
-      // A chacun correspond une className 1) start-advice, rule-advice, error-advice
+      // A chacun correspond une className 1) start-advice, 2) rule-advice, 3) error-advice
       // const adviceToReturn = (
       //   <AdviceModal advice={advice} adviceClassName={adviceClassName} />
       // );
-      // this.setState({ advice: adviceToReturn });
+      const adviceToReturn = (
+        <div className={"advice " + adviceClassName}>{advice}</div>
+      );
+      this.setState({ advice: adviceToReturn });
+      setTimeout(() => {
+        this.setState({ advice: <div className="advice" /> });
+      }, 4000);
     };
 
     this.setPossibleMeaning = () => {
@@ -392,7 +393,7 @@ class InferenceProvider extends Component {
       setChoiceContent: this.setChoiceContent,
       setRuleModal: this.setRuleModal,
       // section autres trucs
-      advice: "",
+      advice: <div className="advice" />,
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,

@@ -4,44 +4,44 @@ import ReactModal from "react-modal";
 
 class RuleModal extends Component {
   // dans les props de cette classe il y a "valueInference"
-  constructor() {
-    super();
-    this.state = {
-      showModal: false
-    };
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     showModal: false
+  //   };
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
+  //   this.handleOpenModal = this.handleOpenModal.bind(this);
+  //   this.handleCloseModal = this.handleCloseModal.bind(this);
+  // }
 
-  handleOpenModal() {
-    if (this.state.showModal === false) {
-      this.setState({
-        showModal: true
-      });
-    } else {
-      // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
-      this.handleCloseModal();
-    }
-  }
+  // handleOpenModal() {
+  //   if (this.state.showModal === false) {
+  //     this.setState({
+  //       showModal: true
+  //     });
+  //   } else {
+  //     // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
+  //     this.handleCloseModal();
+  //   }
+  // }
 
-  handleCloseModal() {
-    this.setState({ showModal: false });
-  }
+  // handleCloseModal() {
+  //   this.setState({ showModal: false });
+  // }
 
   render() {
-    if (!this.state.showModal) {
-      this.handleOpenModal();
-      setTimeout(() => {
-        this.handleCloseModal();
-      }, 6000);
-    }
+    // if (!this.state.showModal) {
+    //   this.handleOpenModal();
+    // setTimeout(() => {
+    //   this.handleCloseModal();
+    // }, 6000);
+    // }
     return (
       <Fragment>
         <div>
-          <div onClick={this.handleOpenModal} />
+          <div />
           <ReactModal
-            isOpen={this.state.showModal}
+            isOpen={true}
             contentLabel="onRequestClose Example"
             // onAfterOpen={handleAfterOpenFunc}
             onRequestClose={this.handleCloseModal}
@@ -53,7 +53,7 @@ class RuleModal extends Component {
             shouldCloseOnEsc={true}
             shouldReturnFocusAfterClose={true}
             ariaHideApp={false}
-            closeTimeoutMS={400}
+            // closeTimeoutMS={400}
           >
             <section className="rule-modal-window">
               {this.props.advice}

@@ -116,7 +116,6 @@ class Deducer extends Component {
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
-                    {value.advice}
                     {
                       <ShowInformationsExercise
                         valueInference={value} // on envoie le state déclaré dans InferenceProvider
@@ -134,6 +133,7 @@ class Deducer extends Component {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
                       </ul>
+                      {value.advice}
                       <ShowPossibleMeaning
                         exerciseSent={this.state.currentExercise}
                         valueInference={value}

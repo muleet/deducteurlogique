@@ -5,7 +5,6 @@ Choses à faire :
 1,5) Adapter removeLastInference aux hypothèses.
 2) Mettre des raccourcis claviers pour les règles. (Par exemple la première règle (outre rep et reit) serait 1/&, la seconde 2/é, la troisième 3/", etc.)
 2) Faire une page de tutoriel pour l'exercice 5 (par exemple). Cette page afficherait des popovers qui diraient à l'utilisateur où il doit cliquer et quand.
-3) Empêcher d'utiliser reit sur une inférence issue d'une hypothèse terminée
 3) Rajouter des options pour désactiver diverses choses des locutions grecques et latines.
 3) Améliorer l'affichage des arrays affichant l'utilisation des règles.
 4) Faire apparaître une ligne transparente pour le prochain emplacement d'inférence, ligne transparente (qui blink) disant "< prochaine inférence >" ou quelque chose du genre. Et cette ligne n'apparaît plus lorsque la conclusion a été trouvée.

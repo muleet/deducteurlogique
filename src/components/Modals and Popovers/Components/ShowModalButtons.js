@@ -43,14 +43,14 @@ class ShowModalButtons extends Component {
           this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle.
           this.props.valueInference.storedNumbers // storedNumbers contient (en str) les numéros des inférences qui permettront de valider la règle.
         );
-        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
-        this.props.valueInference.changeStorageBoolean();
+        // this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        // this.props.valueInference.changeStorageBoolean();
       } else {
         this.props.valueInference.setAdvice(
           "Entrez tous les arguments avant de valider",
           "error-advice"
         );
-        this.props.valueInference.setRuleModal("", "ended-badly");
+        // this.props.valueInference.setRuleModal("", "ended-badly");
       }
     } else {
       this.props.valueInference.setAdvice(
