@@ -1,16 +1,13 @@
 Choses à faire :
 
-1) (J) Rendre responsive le site. Faire que le site fonctionne sur smartphone.
-1,5) (J) Créer une base de donnée utilisateur. Elle sauvegardera les exos résolus + permettra à l'utilisateur de créer ses propres exercices.
+1) (J) Créer une base de donnée utilisateur. Elle sauvegardera les exos résolus + permettra à l'utilisateur de créer ses propres exercices.
 1,5) Adapter removeLastInference aux hypothèses.
 2) Mettre des raccourcis claviers pour les règles. (Par exemple la première règle (outre rep et reit) serait 1/&, la seconde 2/é, la troisième 3/", etc.)
-2) Faire une page de tutoriel pour l'exercice 5 (par exemple). Cette page afficherait des popovers qui diraient à l'utilisateur où il doit cliquer et quand.
 3) Rajouter des options pour désactiver diverses choses des locutions grecques et latines.
-3) Améliorer l'affichage des arrays affichant l'utilisation des règles.
+3) Rajouter dans la page d'exercice, une petite icône de bulle à côté du titre : quand on met sa souris dessus (voire quand on clique dessus) on aura un commentaire de l'exercice. Il y a pas mal d'exos où ça peut être une info intéressante (et complémentaire de l'info apportée par les signification possible des prémisses).
 4) Faire apparaître une ligne transparente pour le prochain emplacement d'inférence, ligne transparente (qui blink) disant "< prochaine inférence >" ou quelque chose du genre. Et cette ligne n'apparaît plus lorsque la conclusion a été trouvée.
 4) Faire apparaître en transparence une prévisualisation de l'inférence qu'on va produire en cliquant sur une prémisse, sur une règle, etc.
-4) Faire que les numéros des commentaires de la règle ⊃i ne soient pas séparés par une virgule et un espace, mais par un trait d'union.
-4) Rajouter dans la page d'exercice, une petite icône de bulle à côté du titre : quand on met sa souris dessus (voire quand on clique dessus) on aura un commentaire de l'exercice. Il y a pas mal d'exos où ça peut être une info intéressante (et complémentaire de l'info apportée par les signification possible des prémisses).
+5) Faire que les numéros des commentaires de la règle ⊃i ne soient pas séparés par une virgule et un espace, mais par un trait d'union.
 5) Pour la règle ∧i (et quelques autres), ce serait pas mal de mettre "&" pour séparer les numéros d'inférence qui justifient l'utilisation de la règle. Ca montrerait qu'il n'y avait que 2 inférences utilisés pour cette règle (ça clarifierait donc l'interface ET le fonctionnement de la règle de logique en question).
 5) Tant que l'utilisateur n'a pas rempli toutes les conditions requises pour une règle, le bouton de confirmation de la règle doit rester désactivé.
 

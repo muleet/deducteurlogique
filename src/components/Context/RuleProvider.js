@@ -186,19 +186,30 @@ class RuleProvider extends Component {
     }; // ∧e
 
     this.inclusiveDisjonctionIntroduction = (A, number) => {
-      // let normalChoice;
+      const actualID = this.props.valueInference.hypothesisCurrentLevelAndId
+        .actualID;
+      const arraySPDAT = this.props.valueInference.arrayTrueAtomicPropositions;
       let AorB;
+      let B;
+      console.log("arrayTrueAtomicPropositions", arraySPDAT);
       if (
-        this.props.valueInference.arraySimplePropositionsDemonstratedAsTrue
-          .length > 0
+        arraySPDAT[actualID].length > 1 &&
+        arraySPDAT[actualID][0].indexOf("p") !== -1
+        // cette condition dit : "Si il y a au moins une proposition atomique vraie dans l'hypothèse actuelle et que p en fait partie, alors ..."
       ) {
+        // charCode = values[i].charCodeAt(0);
+        // newCharCode = values[i].charCodeAt(0) + 13;
+        // String.fromCharCode(112+);
+        // B = arraySPDAT[actualID][0];
       } else {
-        AorB = A + "∨p";
+        B = "p";
       }
+      AorB = A + "∨" + B;
+
       const inferenceToAdd = {
         itself: AorB,
         numberCommentary: number,
-        commentary: "∧i"
+        commentary: "∨i"
       };
       this.props.valueInference.addInference(inferenceToAdd);
       // const rightChoice = A + "∨" + "C";

@@ -76,15 +76,16 @@ class RuleModal extends Component {
   };
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
-    console.log(hypothesisItself);
-    if (hypothesisItself[0] !== ")" && hypothesisItself[0] !== "∧") {
+    if (2 === 1 + 1) {
+      // if (hypothesisItself[0] === /p/g) {
+      // if (hypothesisItself[0] === /∧∨⊃⊂≡/) {
       const inferenceToAdd = {
         itself: hypothesisItself,
         numberCommentary: "",
         commentary: "hyp"
       };
       this.props.valueInference.setAdvice(
-        "Hypothèsée créée : " + inferenceToAdd.itself,
+        "Hypothèse créée : " + inferenceToAdd.itself,
         "rule-advice"
       );
       valueRuleContext.addInferenceFromRule(

@@ -208,6 +208,46 @@
     "binomial": "e"
   },
   {
+    "name": "□i",
+    "verbalName": "Règle d'introduction de la nécessité",
+    "verbalDescription": "Si l'on arrive à p depuis une hypothèse vide, on peut inférer □p.",
+    "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
+    "available": "maybenever",
+    "binomial": "i"
+  },
+  {
+    "name": "□e",
+    "verbalName": "Règle d'élimination de la nécessité",
+    "verbalDescription": "Si l'on a posé □p, alors on peut inférer que p.",
+    "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
+    "available": "maybenever",
+    "binomial": "e"
+  },
+  {
+    "name": "◊i",
+    "verbalName": "Règle d'introduction de la possibilité",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
+    "available": "maybenever",
+    "binomial": "i"
+  },
+  {
+    "name": "◊e",
+    "verbalName": "Règle d'élimination de la possibilité",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": [],
+    "available": "maybenever",
+    "binomial": "e"
+  },
+  {
     "name": "∀i",
     "verbalName": "Règle d'introduction du quantificateur universel",
     "verbalDescription": "",
@@ -258,46 +298,6 @@
   {
     "name": "=e",
     "verbalName": "Règle d'élimination de l'identité",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
-  },
-  {
-    "name": "□i",
-    "verbalName": "Règle d'introduction de la nécessité",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "i"
-  },
-  {
-    "name": "□e",
-    "verbalName": "Règle d'élimination de la nécessité",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
-  },
-  {
-    "name": "◊i",
-    "verbalName": "Règle d'introduction de la possibilité",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "i"
-  },
-  {
-    "name": "◊e",
-    "verbalName": "Règle d'élimination de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",

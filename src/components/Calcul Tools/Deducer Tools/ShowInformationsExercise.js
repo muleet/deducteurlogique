@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import ButtonRuleRep from "../ButtonRuleRep";
 
-// fonction appelée par Deduction.js, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json)
+// fonction appelée par Deducer, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json) ainsi que valueInference
 class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
 
@@ -13,6 +13,10 @@ class ShowInformationsExercise extends Component {
       commentary: infComm
     };
     // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
+    this.props.valueInference.setAdvice(
+      "Répétition de la prémisse " + inference.itself,
+      "rule-advice"
+    );
     this.props.valueInference.addInference(inference);
   };
 

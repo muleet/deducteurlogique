@@ -19,7 +19,7 @@
   },
   {
     "name": "Qu'est-ce qu'une inférence ?",
-    "answer": "Une inférence est un énoncé que l'on prononce sur la base d'un raisonnement logique, à partir d'autres énoncés admis comme vrais (prémisses). La dernière inférence d'une déduction valide est sa conclusion.",
+    "answer": "Une inférence est un énoncé que l'on tient pour vrai sur la base d'un raisonnement logique, à partir d'autres énoncés admis comme vrais (prémisses). La dernière inférence d'une déduction valide est sa conclusion.",
     "example": "Si j'admets que \"Socrate est un homme\", que \"Tous les hommes sont mortels\", alors je peux inférer que \"Socrate est mortel\".\nSi j'admets que \"Toute action est politique\", que \"Faire ce site est une action\", alors je peux inférer que \"Faire ce site est politique\". "
   },
   {
@@ -33,7 +33,7 @@
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer": "Ce sont les opérateurs de logique qui permettent de lier des propositions entre elles, de diverses manières. (Comme les opérateurs +, -, ×, ÷, dans les mathématiques, où ils ont pour rôle de lier des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ≡ ↓. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs logiques des langues naturelles, comme \"parce que\" ou \"car\". Cet article de Wikipédia https://fr.wikipedia.org/wiki/Connecteur_logique#Linguistique recense bien les connecteurs logiques de la langue française."
+    "answer": "Ce sont des outils permettant de faire des opérations logiques sur des propositions. (Tout comme les opérateurs +, -, ×, ÷, dans les mathématiques, permettent de faire des opérations sur des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ⊂ ≡ ↓ |. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par un emplacement dans une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs logiques des langues naturelles, comme \"parce que\" ou \"car\". Cet article de Wikipédia https://fr.wikipedia.org/wiki/Connecteur_logique#Linguistique recense bien les connecteurs logiques (associés à des connecteurs vérifonctionnels, ou non) de la langue française."
   },
   {
     "name": "Qu'appelle-t-on \"connecteur dominant\" ?",

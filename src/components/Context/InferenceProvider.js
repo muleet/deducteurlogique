@@ -26,6 +26,7 @@ class InferenceProvider extends Component {
         newInference.numberCommentaryHypothesis = copyArrayRendered.length + 1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
         inferenceType = "hypothesisItself";
+        this.updateTrueAtomicPropositions("new hyp");
       } else if (this.props.conclusionSent === newInference.itself) {
         inferenceType = "concluding-inference-blinking";
       }
@@ -33,10 +34,7 @@ class InferenceProvider extends Component {
         hypNumber = -1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
-      // console.log(
-      //   "bonjour c'est encore addInference, voici les niveau d'hyp",
-      //   this.state.hypothesisCurrentLevelAndId
-      // );
+
       let copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
       const storedLevel =
@@ -49,6 +47,27 @@ class InferenceProvider extends Component {
           newInference.numberCommentary + ", " + newInference.commentary;
       } else {
         commentary = newInference.commentary;
+      }
+
+      // section de vérification des propositions atomiques découvertes vraies jusqu'ici
+      console.log(
+        "pour les propositions atomiques",
+        this.state.hypothesisCurrentLevelAndId,
+        "l'hyp est ",
+        newInference
+      );
+      if (newInference.itself.length === 1) {
+        if (
+          this.state.arrayTrueAtomicPropositions.indexOf(
+            newInference.itself
+          ) === -1
+        ) {
+          this.updateTrueAtomicPropositions(
+            "add prop",
+            newInference.itself,
+            this.state.hypothesisCurrentLevelAndId.actualID
+          );
+        }
       }
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
@@ -137,6 +156,11 @@ class InferenceProvider extends Component {
         />
       );
 
+      this.setAdvice(
+        "Réitération de l'inférence " + newInference.itself,
+        "rule-advice"
+      );
+
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered
       }));
@@ -176,7 +200,6 @@ class InferenceProvider extends Component {
     };
 
     this.changeStorageBoolean = erase => {
-      console.log("ChangeStorageBoolean");
       // sert à désactiver le tableau storedInference quand un modal n'est pas activé
       if (erase === "erase") {
         this.setState({
@@ -260,8 +283,8 @@ class InferenceProvider extends Component {
         copyHypothesisCurrentLevelAndID.actualID++;
         copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
       } else if (change === "decrease") {
-        copyHypothesisCurrentLevelAndID.actualID--;
         copyHypothesisCurrentLevelAndID.level--;
+        copyHypothesisCurrentLevelAndID.actualID--;
         copyHypothesisCurrentLevelAndID.hypIsStillOpen[
           copyHypothesisCurrentLevelAndID.actualID
         ] = false;
@@ -347,10 +370,16 @@ class InferenceProvider extends Component {
       }
     };
 
-    this.updateTrueAtomicPropositions = (str, proposition) => {
-      if (str === true) {
-        let copyArray = this.state.arrayTrueAtomicPropositions;
-        copyArray.push(proposition);
+    this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
+      let copyArray = this.state.arrayTrueAtomicPropositions;
+      if (str === "new hyp") {
+        copyArray.push([]);
+        this.setState({
+          arrayTrueAtomicPropositions: copyArray
+        });
+      } else if (str === "add prop") {
+        console.log("add prop a fonctionné");
+        copyArray[hypLevel].unshift(itself);
         this.setState({
           arrayTrueAtomicPropositions: copyArray
         });
@@ -397,7 +426,7 @@ class InferenceProvider extends Component {
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
-      arrayTrueAtomicPropositions: [],
+      arrayTrueAtomicPropositions: [[]],
       updateTrueAtomicPropositions: this.updateTrueAtomicPropositions
     };
   }
