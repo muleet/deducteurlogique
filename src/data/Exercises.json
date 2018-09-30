@@ -186,7 +186,7 @@
   {
     "verbalName": "Validation et réfutation d'hypothèse (2)",
     "premisses": ["~(p∧q)"],
-    "conclusion": "~q⊃~p",
+    "conclusion": "q⊃~p",
     "meaning": [],
     "comment": "",
     "propositionsImplied": 2,

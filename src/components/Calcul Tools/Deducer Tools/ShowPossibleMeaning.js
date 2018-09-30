@@ -25,7 +25,7 @@ class ShowPossibleMeaning extends Component {
       );
       possibleMeaningShown = (
         <p className={"no-meaning-shown"}>
-          pas de signification pour cette exercice
+          pas de signification pour cet exercice
         </p>
       );
     }

@@ -104,6 +104,13 @@ class InferenceProvider extends Component {
                   newInference,
                   hypNumber
                 );
+              } else {
+                this.setAdvice(
+                  "L'inférence " +
+                    newInference.itself +
+                    " provient d'une inférence terminée, elle ne peut donc pas être réitérée.",
+                  "error-advice"
+                );
               }
             }
           }}
@@ -148,6 +155,13 @@ class InferenceProvider extends Component {
                   copyArrayRendered.length,
                   newInference,
                   hypNumber
+                );
+              } else {
+                this.setAdvice(
+                  "L'inférence " +
+                    newInference.itself +
+                    " provient d'une inférence terminée, elle ne peut donc pas être réitérée.",
+                  "error-advice"
                 );
               }
             }
@@ -373,12 +387,16 @@ class InferenceProvider extends Component {
     this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
       let copyArray = this.state.arrayTrueAtomicPropositions;
       if (str === "new hyp") {
+        console.log("UTAP crée bien le tableau");
         copyArray.push([]);
         this.setState({
           arrayTrueAtomicPropositions: copyArray
         });
       } else if (str === "add prop") {
-        console.log("add prop a fonctionné");
+        console.log(
+          "add prop a fonctionné, voici le tableau copyArray",
+          copyArray
+        );
         copyArray[hypLevel].unshift(itself);
         this.setState({
           arrayTrueAtomicPropositions: copyArray
