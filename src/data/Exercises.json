@@ -248,7 +248,7 @@
     "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∨i"],
-    "doable": false
+    "doable": true
   },
   {
     "verbalName": "Loi du tier exclu",

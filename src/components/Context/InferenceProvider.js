@@ -57,17 +57,17 @@ class InferenceProvider extends Component {
         newInference
       );
       if (newInference.itself.length === 1) {
-        // if (
-        //   this.state.arrayTrueAtomicPropositions.indexOf(
-        //     newInference.itself
-        //   ) === -1
-        // ) {
-        //   this.updateTrueAtomicPropositions(
-        //     "add prop",
-        //     newInference.itself,
-        //     this.state.hypothesisCurrentLevelAndId.actualID
-        //   );
-        // }
+        if (
+          this.state.arrayTrueAtomicPropositions.indexOf(
+            newInference.itself
+          ) === -1
+        ) {
+          this.updateTrueAtomicPropositions(
+            "add prop",
+            newInference.itself,
+            copyStoredHypId
+          );
+        }
       }
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
@@ -108,7 +108,7 @@ class InferenceProvider extends Component {
                 this.setAdvice(
                   "L'inférence " +
                     newInference.itself +
-                    " provient d'une inférence terminée, elle ne peut donc pas être réitérée.",
+                    " provient d'une hypothèse terminée, elle ne peut donc pas être réitérée.",
                   "error-advice"
                 );
               }
@@ -160,7 +160,7 @@ class InferenceProvider extends Component {
                 this.setAdvice(
                   "L'inférence " +
                     newInference.itself +
-                    " provient d'une inférence terminée, elle ne peut donc pas être réitérée.",
+                    " provient d'une hypothèse terminée, elle ne peut donc pas être réitérée.",
                   "error-advice"
                 );
               }
@@ -394,13 +394,17 @@ class InferenceProvider extends Component {
         });
       } else if (str === "add prop") {
         console.log(
-          "add prop a fonctionné, voici le tableau copyArray",
+          "add prop a fonctionné, voici le tableau copyArray avant...",
           copyArray
         );
         copyArray[hypLevel].unshift(itself);
         this.setState({
           arrayTrueAtomicPropositions: copyArray
         });
+        console.log(
+          "add prop a fonctionné, ... et voici copyArray après",
+          copyArray
+        );
       } else if (str === "erase") {
         this.setState({
           arrayTrueAtomicPropositions: []

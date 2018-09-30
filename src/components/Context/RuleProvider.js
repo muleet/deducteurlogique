@@ -189,33 +189,34 @@ class RuleProvider extends Component {
       const actualID = this.props.valueInference.hypothesisCurrentLevelAndId
         .actualID;
       const arraySPDAT = this.props.valueInference.arrayTrueAtomicPropositions;
-      let AorB;
       let B;
-      console.log("arrayTrueAtomicPropositions", arraySPDAT);
+      console.log(
+        "arrayTrueAtomicPropositions",
+        arraySPDAT,
+        "première condition",
+        arraySPDAT[actualID].length,
+        "deuxième condition",
+        arraySPDAT[actualID].indexOf("p")
+      );
       if (
-        arraySPDAT[actualID].length > 1 &&
-        arraySPDAT[actualID][0].indexOf("p") !== -1
-        // cette condition dit : "Si il y a au moins une proposition atomique vraie dans l'hypothèse actuelle et que p en fait partie, alors ..."
+        arraySPDAT[actualID].length > 0 &&
+        arraySPDAT[actualID].indexOf("p") !== -1
+        // cette condition dit : "Si il y a au moins une proposition atomique vraie dans l'hypothèse actuelle et que p en fait partie, alors [...]"
       ) {
-        // charCode = values[i].charCodeAt(0);
-        // newCharCode = values[i].charCodeAt(0) + 13;
-        // String.fromCharCode(112+);
-        // B = arraySPDAT[actualID][0];
+        B = String.fromCharCode(112 + actualID); // 112 est l'emplacement de "p" dans le tableau ASCII
       } else {
         B = "p";
       }
-      AorB = A + "∨" + B;
-
+      const AorB = this.returnAnInferenceOutOfTwoInferences(A, B, "∨");
       const inferenceToAdd = {
         itself: AorB,
         numberCommentary: number,
         commentary: "∨i"
       };
+
       this.props.valueInference.addInference(inferenceToAdd);
-      // const rightChoice = A + "∨" + "C";
-      // return this.showChoiceOnTheModal(normalChoice, "", number, "∨i");
+      // return this.showChoiceOnTheModal(AorB, "(non codée)", number, "∨i");
     }; // ∨i
-    // this.inclusiveDisjonctionElimination = A => {}; // ∨e
 
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
