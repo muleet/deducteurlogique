@@ -57,17 +57,17 @@ class InferenceProvider extends Component {
         newInference
       );
       if (newInference.itself.length === 1) {
-        if (
-          this.state.arrayTrueAtomicPropositions.indexOf(
-            newInference.itself
-          ) === -1
-        ) {
-          this.updateTrueAtomicPropositions(
-            "add prop",
-            newInference.itself,
-            this.state.hypothesisCurrentLevelAndId.actualID
-          );
-        }
+        // if (
+        //   this.state.arrayTrueAtomicPropositions.indexOf(
+        //     newInference.itself
+        //   ) === -1
+        // ) {
+        //   this.updateTrueAtomicPropositions(
+        //     "add prop",
+        //     newInference.itself,
+        //     this.state.hypothesisCurrentLevelAndId.actualID
+        //   );
+        // }
       }
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
@@ -355,7 +355,7 @@ class InferenceProvider extends Component {
       this.setState({ advice: adviceToReturn });
       setTimeout(() => {
         this.setState({ advice: <div className="advice" /> });
-      }, 4000);
+      }, 5000);
     };
 
     this.setPossibleMeaning = () => {
