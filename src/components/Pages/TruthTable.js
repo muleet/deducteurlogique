@@ -5,7 +5,7 @@ const TruthTable = () => {
   return (
     <main className="main-info">
       <div>
-        <h2>Tables de vérité</h2>
+        <h2>Table de vérité pour connecteurs binaires</h2>
         <ShowTruthTable />
       </div>
     </main>
