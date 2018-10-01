@@ -1,27 +1,20 @@
 .main-calcul {
-  /* border: 3px white solid; */
-  /* height: 800px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* margin: 2px; */
   /* flex: 1; */
   align-items: center;
 }
 
 .deducer {
-  /* border: 1px red solid; */
-  /* width: 600px; */
   display: flex;
   flex-direction: row;
   /* flex: 1; */
-  /* margin: 2px; */
   justify-content: center;
 }
 
 .mini-header-deducer {
-  /* border: 1px rgb(153, 217, 234) solid; */
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -46,22 +39,18 @@
 }
 
 .infos-and-deduction-itself {
-  /* border: 1px solid yellow; */
   width: 400px;
 }
 
 .deduction {
-  /* border: 1px #00a2e8 solid; */
   display: flex;
   flex-direction: column;
   height: 290px;
   overflow: auto;
-  /* max-height:380px; */
 }
 
 .usablesRules {
   /*style de l'ensemble des infos de l'exo en cours quand on est dans la page d'une déduction*/
-  /* border: 1px purple solid; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -71,7 +60,6 @@
 .exercise-title {
   font-size: 16px;
   text-align: center;
-  /* text-decoration: underline; */
 }
 
 .exercise-title > i {
@@ -81,7 +69,6 @@
 
 .setPremissesConclusion {
   /* Concerne la box qui contient toutes les infos d'un exo. Aussi bien les termes introductifs, que les boutons de prémisses, que la conclusion, ou autre.*/
-  /* border: 1px green solid; */
   font-style: italic;
   display: flex;
   align-content: flex-start;
@@ -97,7 +84,6 @@
 .premisse {
   /*style des prémisses dans les exos, spécifiquement*/
   /* border: 1px transparent solid; */
-  /* border: 1px red solid; */
   font-style: normal;
   display: "flex";
   flex-direction: "column";
@@ -106,7 +92,6 @@
 }
 
 #conclusion {
-  /* border: 1px white solid; */
   font-style: normal;
   padding: 4px;
 }
@@ -119,7 +104,6 @@
 /* Style des significations possibles */
 
 .set-meaning {
-  /* border:1px solid rgb(46, 46, 46); */
   display: flex;
   flex-direction: row;
   align-items: center;

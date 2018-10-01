@@ -6,4 +6,5 @@ Ici il pourrait y avoir :
 - [Compte] Permettre à l’utilisateur de supprimer son compte.
 - [Interface] Permettre à l'utilisateur de ne jamais afficher les AdviceModal.
 - [Locution] Permettre à l'utilisateur de n'afficher que la citation grecque ou latine, sans traduction ni note (à la limite l'auteur) + en fait de choisir tout ce qu'il veut afficher ou ne pas afficher.
- */
+- [Raccourcis] Permettre à l'utilisateur de désactiver les raccourcis et de les retirer de l'affichage.
+*/

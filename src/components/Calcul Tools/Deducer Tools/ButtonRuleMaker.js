@@ -4,10 +4,6 @@ import InfoRules from "../../../data/InfoRules.json";
 // import RuleModal from "../../Modals and Popovers/RuleModal";
 import RuleModal from "../../Modals and Popovers/RuleModal";
 import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
-// import keymap from "../../../data/keymap";
-// import { ShortcutManager } from "react-shortcuts";
-
-// const shortcutManager = new ShortcutManager(keymap);
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
@@ -36,41 +32,6 @@ class ButtonRuleMaker extends Component {
     valueInference.changeStorageBoolean();
     valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
   }
-
-  // _handleShortcuts = (action, event) => {
-  //   switch (action) {
-  //     case "ONE":
-  //       console.log("1key");
-  //       break;
-  //     case "TWO":
-  //       console.log("2key");
-  //       break;
-  //     case "THREE":
-  //       console.log("3key");
-  //       break;
-  //     case "FOUR":
-  //       console.log("4key");
-  //       break;
-  //     case "FIVE":
-  //       console.log("5key");
-  //       break;
-  //     case "SIX":
-  //       console.log("6key");
-  //       break;
-  //     case "SEVEN":
-  //       console.log("7key");
-  //       break;
-  //     case "EIGHT":
-  //       console.log("8key");
-  //       break;
-  //     case "NINE":
-  //       console.log("9key");
-  //       break;
-  //     case "ZERO":
-  //       console.log("0key");
-  //       break;
-  //   }
-  // };
 
   render() {
     const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées

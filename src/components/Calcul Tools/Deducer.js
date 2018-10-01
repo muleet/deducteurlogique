@@ -4,15 +4,14 @@ import Exercises from "../../data/Exercises.json";
 import ExercisesSolution from "../../data/ExercisesSolution.json";
 import ShowInformationsExercise from "./Deducer Tools/ShowInformationsExercise";
 import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMaker";
-// import ButtonRuleMaker from "./Deducer Tools/ButtonRuleMakerDifferent";
 import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";
-// import RuleModalProvider, {
-//   RuleModalContext
-// } from "../Modals and Popovers/RuleModalProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
+// import SetShortcuts from "../SetShortcuts";
+import AppShortcuts from "../AppShortcuts";
+// import { ShortcutManager } from "react-shortcuts";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
@@ -28,7 +27,6 @@ class Deducer extends Component {
       <Link
         to={"/calcul-prop/" + Number(currentExerciseParamNumber - 1)}
         onClick={() => {
-          console.log("deducer", value);
           value.resetDeduction();
           value.setRuleModal(false);
         }}
@@ -40,7 +38,6 @@ class Deducer extends Component {
       <Link
         to={"/calcul-prop/" + Number(currentExerciseParamNumber + 1)}
         onClick={() => {
-          console.log("deducer", value);
           value.resetDeduction();
           value.setRuleModal(false);
         }}
@@ -134,6 +131,7 @@ class Deducer extends Component {
                         }
                       </ul>
                       {value.advice}
+                      <AppShortcuts />
                       <ShowPossibleMeaning
                         exerciseSent={this.state.currentExercise}
                         valueInference={value}

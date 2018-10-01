@@ -257,7 +257,7 @@ class InferenceProvider extends Component {
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
-        canInferenceBeStored: false, //  il devient false mais les rule-modal ne disparaissent pas, c'est un problème
+        canInferenceBeStored: false,
         hypothesisCurrentLevelAndId: {
           level: 0,
           maxID: 0,
@@ -277,7 +277,7 @@ class InferenceProvider extends Component {
         // autre
         advice: <div className="advice" />,
         possibleMeaningShown: false,
-        arrayTrueAtomicPropositions: []
+        arrayTrueAtomicPropositions: [[]]
       }));
     };
 
