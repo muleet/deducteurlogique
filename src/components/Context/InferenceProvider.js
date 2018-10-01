@@ -344,7 +344,7 @@ class InferenceProvider extends Component {
         ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName
       ) {
         newRuleModalShown = true;
-        this.setChoiceContent("");
+        this.changeStorageBoolean("erase");
       } else if (str === "reverse") {
         if (!this.state.ruleModalShown) {
           newRuleModalShown = true;

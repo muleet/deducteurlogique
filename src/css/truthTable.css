@@ -20,6 +20,11 @@
   /* padding: 5px; */
 }
 
+.info-line {
+  background-color: black;
+  color: white;
+}
+
 .truth-line-info {
   background-color: color;
   color: black;

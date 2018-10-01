@@ -1,5 +1,15 @@
 [
   {
+    "number": 0,
+    "name": "p q",
+    "description": "",
+    "lecture": "",
+    "itself": ["VV", "VF", "FV", "FF"],
+    "category": "info-line",
+    "character": "",
+    "example": []
+  },
+  {
     "number": 1,
     "name": "Tautologie",
     "description": "",
@@ -87,10 +97,7 @@
     "itself": ["F", "V", "V", "F"],
     "category": "true-and-false",
     "character": "⊻w",
-    "example": [
-      "Ce vêtement est entièrement noir.",
-      "Ce vêtement n'est pas entièrement noir."
-    ]
+    "example": ["Je suis debout.", "Je ne suis pas debout."]
   },
   {
     "number": 10,

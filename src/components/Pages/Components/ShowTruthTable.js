@@ -58,17 +58,20 @@ class ShowTruthTable extends Component {
     category,
     example
   ) {
-    this.setState({
-      arrayInfoLine: {
-        number: number,
-        name: name,
-        character: character,
-        lecture: lecture,
-        description: description,
-        category: category,
-        example: example
-      }
-    });
+    if (!isNaN(number)) {
+      this.setState({
+        arrayInfoLine: {
+          number: number,
+          name: name,
+          character: character,
+          lecture: lecture,
+          description: description,
+          category: category,
+          example: example
+        }
+      });
+    } else {
+    }
     // return name;
   }
 
@@ -76,35 +79,75 @@ class ShowTruthTable extends Component {
     let arrayTableItself = [];
     let arrayToReturn = [];
     arrayToReturn.push(
-      <li key={i} className="part-of-truth-line">
+      <div key={i} className="part-of-truth-line">
         {i}
-      </li>
+      </div>
     );
     for (let k = 0; k < 4; k++) {
       arrayTableItself.push(
-        <li key={k} className="four-possibilities">
+        <div key={k} className="four-possibilities">
           {itself[k]}
-        </li>
+        </div>
       );
     }
     // arrayToReturn.push(name);
     arrayToReturn.push(
-      <div className="part-of-truth-line">{arrayTableItself}</div>
+      <div className="part-of-truth-line" key={i + 1}>
+        {arrayTableItself}
+      </div>
     );
     arrayToReturn.push(
-      <div className="part-of-truth-line">{character[0]}</div>
+      <div className="part-of-truth-line" key={i + 2}>
+        {character[0]}
+      </div>
     );
     if (character[1]) {
       arrayToReturn.push(
-        <div className="part-of-truth-line">{character[1]}</div>
+        <div className="part-of-truth-line" key={i + 3}>
+          {character[1]}
+        </div>
       );
     }
     return arrayToReturn;
   }
 
+  renderAllInformations() {
+    if (this.state.arrayInfoLine.number > 0) {
+      return (
+        <Fragment>
+          <li>{this.state.arrayInfoLine.number}</li>
+          <li>Nom : {this.state.arrayInfoLine.name}</li>
+          <li>{this.state.arrayInfoLine.description}</li>
+          <li>Caractère : {this.state.arrayInfoLine.character[0]}</li>
+          {this.renderLecture()}
+          <li>{this.renderExample()}</li>
+          {/* <li>{this.state.arrayInfoLine.category}</li> */}
+        </Fragment>
+      );
+    } else {
+      return this.state.numberLine;
+    }
+  }
+
   renderTruthTable() {
     let arrayTruthLine = [];
-    for (let i = 0; i < 16; i++) {
+    arrayTruthLine.push(
+      <li
+        key={0}
+        className={"truth-line info-line"}
+        onMouseOver={() => {
+          this.renderInfoTruthLine("", "", "", "", "", "", "");
+        }}
+      >
+        {this.renderTruthLine(
+          TruthTable[0].name,
+          "TruthTable[0].name",
+          TruthTable[0].itself,
+          TruthTable[0].character
+        )}
+      </li>
+    );
+    for (let i = 1; i < 17; i++) {
       arrayTruthLine.push(
         <Fragment key={i}>
           <li
@@ -123,7 +166,7 @@ class ShowTruthTable extends Component {
             }}
           >
             {this.renderTruthLine(
-              i + 1,
+              TruthTable[i].number,
               TruthTable[i].name,
               TruthTable[i].itself,
               TruthTable[i].character
@@ -139,15 +182,7 @@ class ShowTruthTable extends Component {
     return (
       <div className="main-truth-table">
         <ul className="whole-truth-table">{this.renderTruthTable()} </ul>
-        <ul className="box-info-truth-table">
-          <li>{this.state.arrayInfoLine.number}</li>
-          <li>Nom : {this.state.arrayInfoLine.name}</li>
-          <li>{this.state.arrayInfoLine.description}</li>
-          <li>Caractère : {this.state.arrayInfoLine.character[0]}</li>
-          {this.renderLecture()}
-          <li>{this.renderExample()}</li>
-          {/* <li>{this.state.arrayInfoLine.category}</li> */}
-        </ul>
+        <ul className="box-info-truth-table">{this.renderAllInformations()}</ul>
       </div>
     );
   }
