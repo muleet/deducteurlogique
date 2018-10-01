@@ -8,30 +8,32 @@ class RuleModal extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false,
+      // showModal: false,
       modalClassName: "",
       futureHypothesis: ""
     };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
+    // this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  handleOpenModal() {
-    if (this.state.showModal === false) {
-      // this.props.valueInference.changeStorageBoolean(); // il est possible de pusher dans storedInference
-      this.setState({
-        showModal: true,
-        modalClassName: ""
-      });
-    } else {
-      // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
-      this.handleCloseModal();
-    }
-  }
+  // handleOpenModal() {
+  //   if (this.state.showModal === false) {
+  //     // this.props.valueInference.changeStorageBoolean(); // il est possible de pusher dans storedInference
+  //     this.setState({
+  //       showModal: true,
+  //       modalClassName: ""
+  //     });
+  //   } else {
+  //     // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
+  //     this.handleCloseModal();
+  //   }
+  // }
 
   handleCloseModal() {
-    this.setState({ showModal: false });
+    // this.setState({ showModal: false });
     this.resetHypothesis();
+    this.props.valueInference.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInference + storedInference est vidé
+    this.props.valueInference.setRuleModal(false);
   }
 
   addToFutureHypothesis = newChar => {
@@ -118,6 +120,7 @@ class RuleModal extends Component {
   };
 
   render() {
+    console.log("putain de sa race la pute");
     return (
       <RuleProvider
         valueInference={this.props.valueInference}
@@ -127,18 +130,21 @@ class RuleModal extends Component {
           {value => (
             <Fragment>
               <div>
-                <div onClick={this.handleOpenModal}>
+                {/* <div onClick={this.handleOpenModal}>
                   {this.props.modalButton}
-                </div>
+                </div> */}
                 <ReactModal
-                  isOpen={this.state.showModal}
+                  // isOpen={this.state.showModal}
+                  isOpen={this.props.valueInference.ruleModalShown}
                   contentLabel="onRequestClose Example"
                   // onAfterOpen={handleAfterOpenFunc}
                   onRequestClose={this.handleCloseModal}
                   portalClassName="rule-modal-portal"
                   overlayClassName="rule-modal-overlay"
                   className={
-                    "rule-modal-hypothesis fade " + this.state.modalClassName
+                    // "rule-modal-hypothesis fade " + this.state.modalClassName
+                    "rule-modal-hypothesis fade " +
+                    this.props.valueInference.ruleModalClassName
                   }
                   shouldFocusAfterRender={true}
                   shouldCloseOnOverlayClick={false}
@@ -157,6 +163,7 @@ class RuleModal extends Component {
                       <p className="blinking">_</p>
                     </ul>
                     {this.showCharacters(value)}
+                    {/* {this.props.valueInference.ruleModalChoiceContent} */}
                     <div className="rule-modal-all-buttons">
                       <p
                         className="rule-modal-button"

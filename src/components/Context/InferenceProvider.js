@@ -32,6 +32,7 @@ class InferenceProvider extends Component {
       }
       if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         hypNumber = -1;
+        this.updateTrueAtomicPropositions("break hyp");
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
 
@@ -334,6 +335,11 @@ class InferenceProvider extends Component {
       }
       if (str === true) {
         newRuleModalShown = true;
+      } else if (
+        str === "reverse" &&
+        ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName
+      ) {
+        newRuleModalShown = true;
       } else if (str === "reverse") {
         if (!this.state.ruleModalShown) {
           newRuleModalShown = true;
@@ -389,27 +395,14 @@ class InferenceProvider extends Component {
       if (str === "new hyp") {
         console.log("UTAP crée bien le tableau");
         copyArray.push([]);
-        this.setState({
-          arrayTrueAtomicPropositions: copyArray
-        });
       } else if (str === "add prop") {
-        console.log(
-          "add prop a fonctionné, voici le tableau copyArray avant...",
-          copyArray
-        );
         copyArray[hypLevel].unshift(itself);
-        this.setState({
-          arrayTrueAtomicPropositions: copyArray
-        });
-        console.log(
-          "add prop a fonctionné, ... et voici copyArray après",
-          copyArray
-        );
-      } else if (str === "erase") {
-        this.setState({
-          arrayTrueAtomicPropositions: []
-        });
+      } else if (str === "break hyp") {
+        copyArray.splice(copyArray.length - 1);
       }
+      this.setState({
+        arrayTrueAtomicPropositions: copyArray
+      });
     };
 
     this.state = {

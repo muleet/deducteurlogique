@@ -10,20 +10,35 @@ import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 
 class ButtonRuleMaker extends Component {
   renderModal() {
-    return (
-      <RuleModal
-        modalButton={""}
-        instruction={this.props.valueInference.ruleModalContent.instruction}
-        expectedArguments={
-          this.props.valueInference.ruleModalContent.expectedArguments
-        }
-        ruleName={this.props.valueInference.ruleModalContent.ruleName}
-        valueInference={this.props.valueInference}
-      />
-    );
+    if (this.props.valueInference.ruleModalContent.ruleName === "hyp") {
+      return (
+        <RuleHypothesisModal
+          modalButton={""}
+          instruction={this.props.valueInference.ruleModalContent.instruction}
+          expectedArguments={
+            this.props.valueInference.ruleModalContent.expectedArguments
+          } // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
+          ruleName={this.props.valueInference.ruleModalContent.ruleName}
+          valueInference={this.props.valueInference}
+        />
+      );
+    } else {
+      return (
+        <RuleModal
+          modalButton={""}
+          instruction={this.props.valueInference.ruleModalContent.instruction}
+          expectedArguments={
+            this.props.valueInference.ruleModalContent.expectedArguments
+          }
+          ruleName={this.props.valueInference.ruleModalContent.ruleName}
+          valueInference={this.props.valueInference}
+        />
+      );
+    }
   }
 
   handleClick(instruction, expectedArguments, ruleName, valueInference) {
+    console.log("handleClick", ruleName);
     const objectForTheRuleModal = {
       instruction: instruction,
       expectedArguments: expectedArguments,
@@ -74,24 +89,52 @@ class ButtonRuleMaker extends Component {
           );
         } else if (arrayRulesSent[i] === "hyp") {
           arrayAllOtherRules.push(
-            <RuleHypothesisModal
+            <li
               key={i}
-              modalButton={
-                <RulePopover
-                  key={i}
-                  RulePopoverClassName="singleRule fatRule selectable"
-                  ruleName={arrayRulesSent[i]}
-                  verbalName={arrayCurrentRules[i].verbalName}
-                  Description={arrayCurrentRules[i].verbalDescription}
-                  HowToUse={organizedUtilization}
-                />
-              }
-              instruction={arrayCurrentRules[i].instruction}
-              expectedArguments={arrayCurrentRules[i].expectedArguments} // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
-              ruleName={arrayCurrentRules[i].name}
-              valueInference={this.props.valueInference}
-            />
+              onClick={() => {
+                this.handleClick(
+                  arrayCurrentRules[i].instruction,
+                  arrayCurrentRules[i].expectedArguments,
+                  // arrayCurrentRules[i].name,
+                  arrayRulesSent[i],
+                  this.props.valueInference
+                );
+              }}
+            >
+              {arrayRulesSent[i].name}
+              <RulePopover
+                key={i}
+                RulePopoverClassName="singleRule fatRule selectable"
+                ruleName={arrayCurrentRules[i].name}
+                // ruleName={arrayCurrentRules[i].name}
+                verbalName={arrayCurrentRules[i].verbalName}
+                Description={arrayCurrentRules[i].verbalDescription}
+                HowToUse={organizedUtilization}
+              />
+            </li>
           );
+          // arrayAllOtherRules.push(
+          //   <RuleHypothesisModal/>
+          // );
+          // arrayAllOtherRules.push(
+          //   <RuleHypothesisModal
+          //     key={i}
+          //     modalButton={
+          //       <RulePopover
+          //         key={i}
+          //         RulePopoverClassName="singleRule fatRule selectable"
+          //         ruleName={arrayRulesSent[i]}
+          //         verbalName={arrayCurrentRules[i].verbalName}
+          //         Description={arrayCurrentRules[i].verbalDescription}
+          //         HowToUse={organizedUtilization}
+          //       />
+          //     }
+          //     instruction={arrayCurrentRules[i].instruction}
+          //     expectedArguments={arrayCurrentRules[i].expectedArguments} // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
+          //     ruleName={arrayCurrentRules[i].name}
+          //     valueInference={this.props.valueInference}
+          //   />
+          // );
         } else if (Number(arrayRulesSent[i].length) === 2) {
           arrayRulesTwoCharacters.push(
             <li

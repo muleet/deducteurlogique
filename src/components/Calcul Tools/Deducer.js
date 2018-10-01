@@ -9,8 +9,7 @@ import InferenceProvider, {
 } from "../Context/InferenceProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
-// import SetShortcuts from "../SetShortcuts";
-import AppShortcuts from "../AppShortcuts";
+// import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
@@ -110,6 +109,7 @@ class Deducer extends Component {
               <Fragment>
                 <ul className="mini-header-deducer">
                   {this.showMiniHeaderDeducer(value)}
+                  {value.ruleModalShown}
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
@@ -131,7 +131,6 @@ class Deducer extends Component {
                         }
                       </ul>
                       {value.advice}
-                      <AppShortcuts />
                       <ShowPossibleMeaning
                         exerciseSent={this.state.currentExercise}
                         valueInference={value}
