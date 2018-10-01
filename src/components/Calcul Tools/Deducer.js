@@ -125,8 +125,6 @@ class Deducer extends Component {
                     {/* Sert à afficher des infos à l'utilisateur */}
                     <Fragment>
                       <ul className="deduction">
-                        {value.ruleModalShown + "RMS"}
-                        {value.canInferenceBeStored + "CIBS"}
                         {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
