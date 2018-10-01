@@ -8,32 +8,15 @@ class RuleModal extends Component {
   constructor() {
     super();
     this.state = {
-      // showModal: false,
-      modalClassName: "",
       futureHypothesis: ""
     };
-    // this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  // handleOpenModal() {
-  //   if (this.state.showModal === false) {
-  //     // this.props.valueInference.changeStorageBoolean(); // il est possible de pusher dans storedInference
-  //     this.setState({
-  //       showModal: true,
-  //       modalClassName: ""
-  //     });
-  //   } else {
-  //     // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
-  //     this.handleCloseModal();
-  //   }
-  // }
-
   handleCloseModal() {
-    // this.setState({ showModal: false });
-    this.resetHypothesis();
     this.props.valueInference.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInference + storedInference est vidé
     this.props.valueInference.setRuleModal(false);
+    this.resetHypothesis();
   }
 
   addToFutureHypothesis = newChar => {
@@ -130,11 +113,7 @@ class RuleModal extends Component {
           {value => (
             <Fragment>
               <div>
-                {/* <div onClick={this.handleOpenModal}>
-                  {this.props.modalButton}
-                </div> */}
                 <ReactModal
-                  // isOpen={this.state.showModal}
                   isOpen={this.props.valueInference.ruleModalShown}
                   contentLabel="onRequestClose Example"
                   // onAfterOpen={handleAfterOpenFunc}
@@ -142,7 +121,6 @@ class RuleModal extends Component {
                   portalClassName="rule-modal-portal"
                   overlayClassName="rule-modal-overlay"
                   className={
-                    // "rule-modal-hypothesis fade " + this.state.modalClassName
                     "rule-modal-hypothesis fade " +
                     this.props.valueInference.ruleModalClassName
                   }

@@ -38,13 +38,27 @@ class ButtonRuleMaker extends Component {
   }
 
   handleClick(instruction, expectedArguments, ruleName, valueInference) {
-    console.log("handleClick", ruleName);
     const objectForTheRuleModal = {
       instruction: instruction,
       expectedArguments: expectedArguments,
       ruleName: ruleName
     };
-    valueInference.changeStorageBoolean();
+    console.log(
+      "ruleName",
+      ruleName,
+      "valueInference.ruleName",
+      this.props.valueInference.ruleModalContent.ruleName
+    );
+    // les deux conditions ci-dessous permettent de vérifier si canInferenceBeStored doit être ouvert ou fermé
+    if (
+      this.props.valueInference.ruleModalShown === true &&
+      ruleName === this.props.valueInference.ruleModalContent.ruleName
+    ) {
+      valueInference.changeStorageBoolean(false);
+    }
+    if (this.props.valueInference.ruleModalShown === false) {
+      valueInference.changeStorageBoolean(true);
+    }
     valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
   }
 

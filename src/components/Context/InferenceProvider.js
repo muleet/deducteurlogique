@@ -214,9 +214,9 @@ class InferenceProvider extends Component {
       }
     };
 
-    this.changeStorageBoolean = erase => {
+    this.changeStorageBoolean = str => {
       // sert à désactiver le tableau storedInference quand un modal n'est pas activé
-      if (erase === "erase") {
+      if (str === "erase") {
         this.setState({
           // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
           storedInference: [],
@@ -224,6 +224,10 @@ class InferenceProvider extends Component {
           ruleModalChoiceContent: "",
           canInferenceBeStored: true
         });
+      } else if (str === true) {
+        this.setState({ canInferenceBeStored: true });
+      } else if (str === false) {
+        this.setState({ canInferenceBeStored: false });
       } else if (!this.state.canInferenceBeStored) {
         this.setState({ canInferenceBeStored: true });
       } else {
@@ -340,6 +344,7 @@ class InferenceProvider extends Component {
         ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName
       ) {
         newRuleModalShown = true;
+        this.setChoiceContent("");
       } else if (str === "reverse") {
         if (!this.state.ruleModalShown) {
           newRuleModalShown = true;

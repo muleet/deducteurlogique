@@ -109,7 +109,6 @@ class Deducer extends Component {
               <Fragment>
                 <ul className="mini-header-deducer">
                   {this.showMiniHeaderDeducer(value)}
-                  {value.ruleModalShown}
                 </ul>
                 <div className="deducer">
                   <section className="infos-and-deduction-itself">
@@ -126,6 +125,8 @@ class Deducer extends Component {
                     {/* Sert à afficher des infos à l'utilisateur */}
                     <Fragment>
                       <ul className="deduction">
+                        {value.ruleModalShown + "RMS"}
+                        {value.canInferenceBeStored + "CIBS"}
                         {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
