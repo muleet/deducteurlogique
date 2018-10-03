@@ -80,23 +80,22 @@ footer {
   margin: 0px 276px;
 }
 
-.auteur {
+.anarchy-flag {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d3/Anarchist_flag.svg);
   font-size: 26px;
   display: flex;
   justify-content: center;
-  text-align: center;
-  align-content: center;
   align-items: center;
-  width: 558px;
-  height: 350px;
+  width: 540px;
+  height: 360px;
   border: 1px solid white;
   margin-bottom: 30px;
+  background-size: cover;
 }
 
 h1 {
   font-size: 26px;
   font-style: italic;
-  /* color: white; */
 }
 
 h2 {

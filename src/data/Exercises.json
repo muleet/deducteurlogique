@@ -255,7 +255,7 @@
     "premisses": [],
     "conclusion": "p∨~p",
     "meaning": ["p : La lune éclaire la nuit."],
-    "comment": "",
+    "comment": "La loi du tier exclu (ou loi du milieu exclu) est un cas célèbre de logique, qui soutient que soit une proposition est vraie, soit sa négation est vraie (il n'y aurait aucune autre possibilité). Cet exercice est la démonstration de cette loi.",
     "propositionsImplied": 1,
     "rulesImplied": ["reit", "hyp", "~i", "~~e", "∨i"],
     "doable": false

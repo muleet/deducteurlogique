@@ -87,7 +87,10 @@
     "itself": ["V", "F", "F", "V"],
     "category": "true-and-false",
     "character": "≡",
-    "example": []
+    "example": [
+      "Ceux qui parlent ne savent pas",
+      "Ceux qui savent ne parlent pas"
+    ]
   },
   {
     "number": 9,

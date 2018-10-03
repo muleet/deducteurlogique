@@ -18,7 +18,7 @@ class InferenceProvider extends Component {
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
       let hypNumber = 0;
       let inferenceType = "";
-      let copyArrayRendered = [...this.state.allInferencesRendered];
+      const copyArrayRendered = [...this.state.allInferencesRendered];
 
       // section de l'hypothèse (ignorée si hyp est undefined)
       if (hyp === "nouvelle hypothèse") {
@@ -36,7 +36,7 @@ class InferenceProvider extends Component {
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
 
-      let copyStoredHypId =
+      const copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
       const storedLevel =
         this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que conditionner la règle reit
@@ -127,7 +127,7 @@ class InferenceProvider extends Component {
     this.addInferenceViaReit = (numberInference, newInference, hypNumber) => {
       console.log("addInferenceViaReit");
       let copyArrayRendered = [...this.state.allInferencesRendered];
-      let copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
+      const copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
       const storedLevel = this.state.hypothesisCurrentLevelAndId.level; // variable qui n'est utilisée que conditionner la règle reit
       copyArrayRendered.push(
         <MakeInference

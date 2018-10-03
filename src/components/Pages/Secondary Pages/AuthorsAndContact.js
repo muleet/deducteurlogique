@@ -1,4 +1,5 @@
 import React from "react";
+import FlagAnarchy from "../../../img/flag-anarchy.png";
 
 const AuthorsAndContact = () => {
   return (
@@ -9,16 +10,8 @@ const AuthorsAndContact = () => {
       <p style={{ fontSize: 16, marginBottom: "10px" }}>
         L'auteur du site est :{" "}
       </p>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center"
-        }}
-      >
-        <div className="auteur anarchy">
-          un·e mystérieu·x·se anticapitaliste
-        </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="anarchy-flag">un·e mystérieu·x·se anticapitaliste</div>
       </div>
     </main>
   );
