@@ -16,8 +16,9 @@
 .truth-line {
   display: flex;
   flex-direction: column;
-  border: 1px solid transparent;
-  /* padding: 5px; */
+  border: 1px solid black;
+  width: 30px;
+  align-items: center;
 }
 
 .info-line {
@@ -74,4 +75,10 @@
 
 .always-false {
   background-color: rgb(255, 50, 50);
+}
+
+.truth-table-possible-meaning {
+  margin-left: 6px;
+  font-style: italic;
+  width: 350px;
 }

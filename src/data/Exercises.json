@@ -62,7 +62,7 @@
     "verbalName": "Réfutation d'hypothèse",
     "premisses": ["p"],
     "conclusion": "~~p",
-    "meaning": ["Aristote est un philosophe."],
+    "meaning": [["p : Aristote est un philosophe."]],
     "comment": "",
     "propositionsImplied": 1,
     "rulesImplied": ["rep", "hyp", "~i"],

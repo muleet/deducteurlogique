@@ -5,7 +5,7 @@ class ShowTruthTable extends Component {
   state = {
     numberLine: (
       <div style={{ textAlign: "center" }}>
-        Séléctionnez une ligne pour avoir des informations dessus
+        Séléctionnez une colonne pour avoir des informations dessus
       </div>
     ),
     arrayInfoLine: {
@@ -20,7 +20,10 @@ class ShowTruthTable extends Component {
   };
 
   renderLecture() {
-    if (this.state.arrayInfoLine.character.length > 0) {
+    const character = this.state.arrayInfoLine.character;
+    if (character === "⊤" || character === "⊥") {
+      return "";
+    } else if (character.length > 0) {
       return (
         <li>
           A{this.state.arrayInfoLine.character[0]}B se lit :{" "}
@@ -37,11 +40,11 @@ class ShowTruthTable extends Component {
       return (
         <div style={{ display: "flex" }}>
           A :{" "}
-          <p style={{ marginLeft: "6px", fontStyle: "italic" }}>
+          <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[0]}
           </p>
           <div style={{ marginLeft: "6px" }} />B :{" "}
-          <p style={{ marginLeft: "6px", fontStyle: "italic" }}>
+          <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[1]}
           </p>
         </div>

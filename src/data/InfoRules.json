@@ -20,7 +20,7 @@
   {
     "name": "hyp",
     "verbalName": "Hypothèse",
-    "verbalDescription": "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les utiliser.",
+    "verbalDescription": "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les y utiliser.",
     "arrayUtilization": [
       ["|A hyp", "(...)", "|B", "A⊃B ⊃i"],
       ["|A hyp", "(...)", "|B", "|~B", "A ~i"]

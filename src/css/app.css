@@ -4,8 +4,9 @@ body {
   align-items: center;
   flex-direction: row;
   margin: 0 14%;
-  background-color: black;
-  color: white;
+  background-color: rgb(10, 10, 10);
+  /* background-color: black */
+  color: rgb(245, 245, 245);
   font-size: 20px;
 }
 
@@ -95,19 +96,19 @@ footer {
 h1 {
   font-size: 26px;
   font-style: italic;
-  color: white;
+  /* color: white; */
 }
 
 h2 {
   margin-top: 15px;
-  color: white;
+  /* color: white; */
   font-size: 24px;
   /* margin: 0px; */
   padding: 0px;
 }
 
 h3 {
-  color: white;
+  /* color: white; */
   font-size: 24px;
   /* margin: 0px; */
   padding: 0px;

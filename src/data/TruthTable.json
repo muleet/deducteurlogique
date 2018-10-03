@@ -16,7 +16,7 @@
     "lecture": "",
     "itself": ["V", "V", "V", "V"],
     "category": "always-true",
-    "character": "",
+    "character": "⊤",
     "example": []
   },
   {
@@ -127,17 +127,20 @@
     "itself": ["V", "V", "V", "F"],
     "category": "one-false",
     "character": "∨",
-    "example": []
+    "example": [
+      "Ludwig Wittgenstein est l'auteur du Tractatus logico-philosophicus.",
+      "Les fourmis ont six pattes."
+    ]
   },
   {
     "number": 13,
-    "name": "",
+    "name": "Contraposition",
     "description": "",
-    "lecture": "",
+    "lecture": "si non B alors non A",
     "itself": ["V", "V", "F", "V"],
     "category": "one-false",
     "character": "⊂←",
-    "example": []
+    "example": ["Il pleut.", "Le sol est mouillé."]
   },
   {
     "number": 14,
@@ -166,7 +169,10 @@
     "lecture": "",
     "itself": ["F", "F", "F", "F"],
     "category": "always-false",
-    "character": "",
-    "example": []
+    "character": "⊥",
+    "example": [
+      "Toute personne connaît la logique.",
+      "Au moins une personne ne connaît pas la logique."
+    ]
   }
 ]

@@ -203,13 +203,12 @@
       { "itself": "||~(p∨~p)", "numberCommentary": "1", "commentary": "reit" },
       { "itself": "|~p", "numberCommentary": "2, 3, 4", "commentary": "~i" },
       { "itself": "|p∨~p", "numberCommentary": "5", "commentary": "vi" },
-      { "itself": "|~(p∨~p)", "numberCommentary": "1", "commentary": "reit" },
       {
-        "itself": "|~~(p∨~p)",
-        "numberCommentary": "1, 6, 7",
+        "itself": "~~(p∨~p)",
+        "numberCommentary": "1, 1, 6",
         "commentary": "~i"
       },
-      { "itself": "p∨~p", "numberCommentary": "5", "commentary": "~~e" }
+      { "itself": "p∨~p", "numberCommentary": "7", "commentary": "~~e" }
     ]
   },
   {
