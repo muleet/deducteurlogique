@@ -187,8 +187,9 @@ class InferenceProvider extends Component {
       hypID
     ) => {
       let copyArrayStoredInference = [...this.state.storedInference]; // inférence elle-même
-      let copyStoredNumbers = [...this.state.storedNumbers]; // nombre de l'inférence
+      let copyStoredNumbers = [...this.state.storedNumbers]; // numéro(s) justifiant l'inférence (c'est une chaîne de caractères)
       let copyStoredHypId = [...this.state.storedHypID]; // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
+
       if (this.state.canInferenceBeStored === true) {
         console.log(
           "faut que ce soit égal",
@@ -197,9 +198,17 @@ class InferenceProvider extends Component {
           hypID
         );
         if (this.state.hypothesisCurrentLevelAndId.actualID === hypID) {
-          copyArrayStoredInference.push(inferenceItself);
-          copyStoredNumbers.push(" " + numInference);
-          copyStoredHypId.push(hypID);
+          if (
+            this.state.howManyInferenceToStore ===
+            copyArrayStoredInference.length
+          ) {
+            copyArrayStoredInference = []; // inférence elle-même
+            copyStoredNumbers = ""; // nombre de l'inférence
+          } else {
+            copyArrayStoredInference.push(inferenceItself);
+            copyStoredNumbers.push(" " + numInference);
+            copyStoredHypId.push(hypID);
+          }
           this.setState(state => ({
             storedInference: copyArrayStoredInference,
             storedNumbers: copyStoredNumbers,
@@ -214,25 +223,37 @@ class InferenceProvider extends Component {
       }
     };
 
-    this.changeStorageBoolean = str => {
+    this.changeStorageBoolean = (str, num) => {
       // sert à désactiver le tableau storedInference quand un modal n'est pas activé
-      if (str === "erase") {
+      console.log("changeStorageBoolean, le num reçu est à ", num);
+      if (str === "resetButStillTrue") {
         this.setState({
           // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
+          canInferenceBeStored: true,
+          howManyInferenceToStore: num,
           storedInference: [],
-          storedNumbers: [],
-          ruleModalChoiceContent: "",
-          canInferenceBeStored: true
+          storedNumbers: "",
+          ruleModalChoiceContent: ""
         });
       } else if (str === true) {
-        this.setState({ canInferenceBeStored: true });
+        this.setState({
+          canInferenceBeStored: true,
+          howManyInferenceToStore: num
+        });
       } else if (str === false) {
-        this.setState({ canInferenceBeStored: false });
+        this.setState({
+          canInferenceBeStored: false,
+          howManyInferenceToStore: "empty"
+        });
       } else if (!this.state.canInferenceBeStored) {
-        this.setState({ canInferenceBeStored: true });
+        this.setState({
+          canInferenceBeStored: true,
+          howManyInferenceToStore: num
+        });
       } else {
         this.setState({
           canInferenceBeStored: false,
+          howManyInferenceToStore: "empty",
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
           storedNumbers: "",
           storedHypID: 0
@@ -263,6 +284,7 @@ class InferenceProvider extends Component {
         storedNumbers: "",
         storedHypID: 0,
         canInferenceBeStored: false,
+        howManyInferenceToStore: "empty",
         hypothesisCurrentLevelAndId: {
           level: 0,
           maxID: 0,
@@ -303,7 +325,7 @@ class InferenceProvider extends Component {
         copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
       } else if (change === "decrease") {
         copyHypothesisCurrentLevelAndID.level--;
-        copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu d'être ... ?
+        copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
         copyHypothesisCurrentLevelAndID.hypIsStillOpen[
           copyHypothesisCurrentLevelAndID.actualID
         ] = false;
@@ -327,8 +349,9 @@ class InferenceProvider extends Component {
       // console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
-    this.setRuleModal = (str, strClassName, ruleModalContent) => {
+    this.setRuleModal = (str, strClassName, ruleModalContent, eal) => {
       // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "reverse", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
+      // "eal" contient expectedArguments.length
       let newRuleModalShown = false;
       let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
       let newRuleModalContent;
@@ -337,14 +360,16 @@ class InferenceProvider extends Component {
       } else {
         newRuleModalContent = this.state.ruleModalContent;
       }
-      if (str === true) {
+      if (str === "initial") {
+        newRuleModalShown = true;
+      } else if (str === true) {
         newRuleModalShown = true;
       } else if (
         str === "reverse" &&
         ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName
       ) {
         newRuleModalShown = true;
-        this.changeStorageBoolean("erase");
+        this.changeStorageBoolean("resetButStillTrue", eal);
       } else if (str === "reverse") {
         if (!this.state.ruleModalShown) {
           newRuleModalShown = true;
@@ -416,6 +441,7 @@ class InferenceProvider extends Component {
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0,
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
+      howManyInferenceToStore: 0,
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,

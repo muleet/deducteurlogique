@@ -231,7 +231,12 @@ class RuleProvider extends Component {
       }
     };
 
-    this.redirectToTheRightRule = (ruleName, arrInf, numbers) => {
+    this.redirectToTheRightRule = (
+      ruleName,
+      arrInf,
+      numbers,
+      expectedArgumentsLength
+    ) => {
       console.log("redirectToTheRightRule, pour la règle", ruleName);
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences

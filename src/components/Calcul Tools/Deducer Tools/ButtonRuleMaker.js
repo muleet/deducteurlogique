@@ -44,16 +44,37 @@ class ButtonRuleMaker extends Component {
       ruleName: ruleName
     };
     // les deux conditions ci-dessous permettent de vérifier si canInferenceBeStored doit être ouvert ou fermé
+    console.log(
+      "handleclick de ruleModal, son expectedArguments.length est à",
+      expectedArguments.length
+    );
     if (
       this.props.valueInference.ruleModalShown === true &&
       ruleName === this.props.valueInference.ruleModalContent.ruleName
     ) {
       valueInference.changeStorageBoolean(false);
+    } else {
     }
     if (this.props.valueInference.ruleModalShown === false) {
-      valueInference.changeStorageBoolean(true);
+      valueInference.changeStorageBoolean(true, expectedArguments.length);
     }
-    valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
+    if (this.props.valueInference.ruleModalShown === false) {
+      valueInference.setRuleModal(
+        "initial",
+        "",
+        objectForTheRuleModal,
+        expectedArguments.length
+      );
+    } else {
+      valueInference.setRuleModal(
+        "reverse",
+        "",
+        objectForTheRuleModal,
+        expectedArguments.length
+      );
+    }
+
+    // valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
   }
 
   render() {

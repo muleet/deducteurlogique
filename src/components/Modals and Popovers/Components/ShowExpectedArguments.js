@@ -23,7 +23,7 @@ class ShowExpectedArguments extends Component {
     );
     let secondArgument = (
       <p className="awaiting-an-inference-blinking">
-        {"<Cliquez sur une inférence qui suit l'hypothèse, niant B>"}
+        {"<Cliquez sur une inférence qui nie la précédente inférence>"}
       </p>
     );
 
@@ -44,7 +44,6 @@ class ShowExpectedArguments extends Component {
           <li key={i} className="rule-modal-single-argument">
             <p>{expectedArguments[i] + " :"}</p>
             {arrayEmptyArgument[i]}
-            {/* {storedInference[i]} */}
           </li>
         );
       }
