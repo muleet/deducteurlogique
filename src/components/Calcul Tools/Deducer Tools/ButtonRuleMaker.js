@@ -43,12 +43,6 @@ class ButtonRuleMaker extends Component {
       expectedArguments: expectedArguments,
       ruleName: ruleName
     };
-    console.log(
-      "ruleName",
-      ruleName,
-      "valueInference.ruleName",
-      this.props.valueInference.ruleModalContent.ruleName
-    );
     // les deux conditions ci-dessous permettent de vérifier si canInferenceBeStored doit être ouvert ou fermé
     if (
       this.props.valueInference.ruleModalShown === true &&

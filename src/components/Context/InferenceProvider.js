@@ -303,7 +303,7 @@ class InferenceProvider extends Component {
         copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
       } else if (change === "decrease") {
         copyHypothesisCurrentLevelAndID.level--;
-        copyHypothesisCurrentLevelAndID.actualID--;
+        copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu d'être ... ?
         copyHypothesisCurrentLevelAndID.hypIsStillOpen[
           copyHypothesisCurrentLevelAndID.actualID
         ] = false;

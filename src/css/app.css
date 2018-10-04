@@ -80,17 +80,25 @@ footer {
   margin: 0px 276px;
 }
 
-.anarchy-flag {
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d3/Anarchist_flag.svg);
-  font-size: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.blocAuteur {
   width: 540px;
   height: 360px;
+  font-size: 26px;
   border: 1px solid white;
-  margin-bottom: 30px;
-  background-size: cover;
+  position: relative;
+}
+
+.anarchy-flag {
+  width: 100%;
+  /* margin-bottom: 30px; */
+  position: absolute;
+}
+
+.blocAuteur p {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  line-height: 350px;
 }
 
 h1 {

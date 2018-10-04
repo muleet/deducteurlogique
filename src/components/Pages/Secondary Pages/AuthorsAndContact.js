@@ -10,8 +10,13 @@ const AuthorsAndContact = () => {
       <p style={{ fontSize: 16, marginBottom: "10px" }}>
         L'auteur du site est :{" "}
       </p>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div className="anarchy-flag">un·e mystérieu·x·se anticapitaliste</div>
+      <div className="blocAuteur">
+        <img
+          src={FlagAnarchy}
+          className="anarchy-flag"
+          alt="la propriété c'est le vol"
+        />
+        <p>un·e mystérieu·x·se anticapitaliste</p>
       </div>
     </main>
   );

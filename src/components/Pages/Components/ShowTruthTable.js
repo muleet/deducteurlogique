@@ -11,17 +11,27 @@ class ShowTruthTable extends Component {
     arrayInfoLine: {
       number: "",
       name: "",
-      character: "",
-      lecture: "",
       description: "",
+      lecture: "",
+      // link
+      reductibleTo: "",
+      // itself
       category: "",
+      character: "",
       example: ""
     }
   };
 
   renderLecture() {
     const character = this.state.arrayInfoLine.character;
-    if (character === "⊤" || character === "⊥") {
+    if (
+      character === "⊤" ||
+      character === "⊥" ||
+      character === "q" ||
+      character === "p" ||
+      character[0] === "~p" ||
+      character[0] === "~q"
+    ) {
       return "";
     } else if (character.length > 0) {
       return (
@@ -43,7 +53,7 @@ class ShowTruthTable extends Component {
           <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[0]}
           </p>
-          <div style={{ marginLeft: "6px" }} />B :{" "}
+          <div style={{ marginLeft: "6px" }}> B : </div>
           <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[1]}
           </p>
@@ -55,10 +65,13 @@ class ShowTruthTable extends Component {
   renderInfoTruthLine(
     number,
     name,
-    character,
-    lecture,
     description,
+    lecture,
+    // link
+    reductibleTo,
+    // itself
     category,
+    character,
     example
   ) {
     if (!isNaN(number)) {
@@ -66,10 +79,13 @@ class ShowTruthTable extends Component {
         arrayInfoLine: {
           number: number,
           name: name,
-          character: character,
-          lecture: lecture,
           description: description,
+          lecture: lecture,
+          // link
+          reductibleTo: reductibleTo,
+          // itself
           category: category,
+          character: character,
           example: example
         }
       });
@@ -123,6 +139,7 @@ class ShowTruthTable extends Component {
           <li>{this.state.arrayInfoLine.description}</li>
           <li>Caractère : {this.state.arrayInfoLine.character[0]}</li>
           {this.renderLecture()}
+          <li>Réductible à : {this.state.arrayInfoLine.reductibleTo}</li>
           <li>{this.renderExample()}</li>
           {/* <li>{this.state.arrayInfoLine.category}</li> */}
         </Fragment>
@@ -137,9 +154,9 @@ class ShowTruthTable extends Component {
     arrayTruthLine.push(
       <li
         key={0}
-        className={"truth-line info-line"}
+        className="truth-line info-line selectable"
         onMouseOver={() => {
-          this.renderInfoTruthLine("", "", "", "", "", "", "");
+          this.renderInfoTruthLine("", "", "", "", "", "", "", "");
         }}
       >
         {this.renderTruthLine(
@@ -155,15 +172,18 @@ class ShowTruthTable extends Component {
         <Fragment key={i}>
           <li
             key={i}
-            className={"truth-line " + TruthTable[i].category}
+            className={"truth-line selectable " + TruthTable[i].category}
             onMouseOver={() => {
               this.renderInfoTruthLine(
                 TruthTable[i].number,
                 TruthTable[i].name,
-                TruthTable[i].character,
-                TruthTable[i].lecture,
                 TruthTable[i].description,
+                TruthTable[i].lecture,
+                // link
+                TruthTable[i].reductibleTo,
+                // itself
                 TruthTable[i].category,
+                TruthTable[i].character,
                 TruthTable[i].example
               );
             }}

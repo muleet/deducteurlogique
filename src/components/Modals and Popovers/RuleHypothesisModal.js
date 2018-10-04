@@ -90,6 +90,7 @@ class RuleModal extends Component {
   removeLastCharacter = () => {
     let copyFutureHypothesis = [...this.state.futureHypothesis];
     copyFutureHypothesis = copyFutureHypothesis.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+    copyFutureHypothesis = copyFutureHypothesis.join("");
     this.setState(state => ({
       futureHypothesis: copyFutureHypothesis
     }));
@@ -103,7 +104,6 @@ class RuleModal extends Component {
   };
 
   render() {
-    console.log("putain de sa race la pute");
     return (
       <RuleProvider
         valueInference={this.props.valueInference}

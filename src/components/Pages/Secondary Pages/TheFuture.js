@@ -46,11 +46,11 @@ const TheFuture = () => {
             la contraposée du conditionnel. (Et des exercices associés pour
             chacun.)
           </p>
-          <p className="later-available-rule">
+          <p className="soon-available-rule">
             - Rendre le site plus user-friendly, avec des messages situationnels
             guidant l'utilisateur.
           </p>
-          <p className="later-available-rule">
+          <p className="soon-available-rule">
             - Rendre responsive le site (au point qu'on puisse l'utiliser
             facilement sur smartphone).
           </p>
@@ -59,17 +59,17 @@ const TheFuture = () => {
             des traits qui s'adaptent à la longueur des hypothèses.
           </p>
           <p className="maybenever-available-rule">
-            - Laisser la possibilité à l'utilisateur d'écrire les dernières
-            lignes d'une déduction (avec un "?" à la place de leur nombre), dès
-            le début (pour qu'il puisse établir à l'avance le but visé dans sa
-            déduction).
-          </p>
-          <p className="maybenever-available-rule">
             - La possibilité de créer des comptes utilisateurs, pour stocker les
             exercices résolus par un utilisateur et pour lui permettre de créer
             de nouveaux exercices (il pourra choisir les prémisses, les règles
             utilisées, la conclusion, une solution possible, et les
             significations possibles).
+          </p>
+          <p className="maybenever-available-rule">
+            - Laisser la possibilité à l'utilisateur d'écrire les dernières
+            lignes d'une déduction (avec un "?" à la place de leur nombre), dès
+            le début (pour qu'il puisse établir à l'avance le but visé dans sa
+            déduction).
           </p>
           <p className="maybenever-available-rule">
             - Des diagrammes de Venn dans la page de la table de vérité, un par
