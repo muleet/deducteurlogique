@@ -9,7 +9,7 @@ import InferenceProvider, {
 } from "../Context/InferenceProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
-import Debugger from "../Debugger";
+// import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
 

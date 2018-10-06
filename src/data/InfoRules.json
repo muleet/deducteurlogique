@@ -82,13 +82,13 @@
   {
     "name": "∨i",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
-    "verbalDescription": "Si A a été posé, on peut inférer A∨B.",
+    "verbalDescription": "Si A a été posé, on peut inférer A∨B, quel que soit B.",
     "arrayUtilization": [
       ["A", "A∨B ∨i"],
       ["B", "A∨B ∨i"],
       ["A", "B", "A∨B ∨i"]
     ],
-    "instruction": "Cliquez sur A, pour inférer A∨B.",
+    "instruction": "Cliquez sur A, puis décidez arbitrairement de B, pour inférer A∨B.",
     "expectedArguments": ["A"],
     "available": "soon",
     "binomial": "i"

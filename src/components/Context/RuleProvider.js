@@ -18,7 +18,7 @@ class RuleProvider extends Component {
           "error-advice"
         );
       } else {
-        if (A.length > 2) {
+        if (A.length > 2 && A[1] !== "(") {
           notA = "~(" + A + ")";
         } else {
           notA = "~" + A;
@@ -55,10 +55,18 @@ class RuleProvider extends Component {
       if (notnotA[0] === "~" && notnotA[1] === "~") {
         let A = "";
         if (notnotA.length > 2) {
-          let i = 2;
-          while (i < notnotA.length) {
-            A = A + notnotA[i];
-            i++;
+          if (notnotA[2] === "(") {
+            let i = 3;
+            while (i < notnotA.length - 1) {
+              A = A + notnotA[i];
+              i++;
+            }
+          } else {
+            let i = 2;
+            while (i < notnotA.length) {
+              A = A + notnotA[i];
+              i++;
+            }
           }
         } else {
           A = notnotA[2];
@@ -109,7 +117,6 @@ class RuleProvider extends Component {
     this.conditionalElimination = (A, ifAthenB, numbers) => {
       // ⊃e
       const positionConditional = ifAthenB.indexOf("⊃");
-      console.log(positionConditional);
       if (positionConditional !== -1) {
         const antecedent = ifAthenB.slice(0, ifAthenB.indexOf("⊃"));
         let consequent = ifAthenB.slice(
@@ -186,36 +193,48 @@ class RuleProvider extends Component {
     }; // ∧e
 
     this.inclusiveDisjonctionIntroduction = (A, number) => {
-      const actualID = this.props.valueInference.hypothesisCurrentLevelAndId
-        .actualID;
-      const arraySPDAT = this.props.valueInference.arrayTrueAtomicPropositions;
-      let B;
-      console.log(
-        "arrayTrueAtomicPropositions",
-        arraySPDAT,
-        "première condition",
-        arraySPDAT[actualID].length,
-        "deuxième condition",
-        arraySPDAT[actualID].indexOf("p")
-      );
-      if (
-        arraySPDAT[actualID].length > 0 &&
-        arraySPDAT[actualID].indexOf("p") !== -1
-        // cette condition dit : "Si il y a au moins une proposition atomique vraie dans l'hypothèse actuelle et que p en fait partie, alors [...]"
-      ) {
-        B = String.fromCharCode(112 + actualID); // 112 est l'emplacement de "p" dans le tableau ASCII
+      // const actualID = this.props.valueInference.hypothesisCurrentLevelAndId
+      //   .actualID;
+      // const arraySPDAT = this.props.valueInference.arrayTrueAtomicPropositions;
+      // console.log("arrayTrueAtomicPropositions",arraySPDAT,"première condition",arraySPDAT[actualID].length,"deuxième condition",arraySPDAT[actualID].indexOf("p"));
+      // let B;
+      // if (
+      //   arraySPDAT[actualID].length > 0 &&
+      //   arraySPDAT[actualID].indexOf("p") !== -1
+      //   // cette condition dit : "Si il y a au moins une proposition atomique vraie dans l'hypothèse actuelle et que p en fait partie, alors [...]"
+      // ) {
+      //   B = String.fromCharCode(112 + actualID); // 112 est l'emplacement de "p" dans le tableau ASCII
+      // } else {
+      //   B = "p";
+      // }
+      // const AutomaticAorB = this.returnAnInferenceOutOfTwoInferences(A, B, "∨");
+
+      const B = this.props.valueInference.futureInference;
+      let ArbitraryAorB;
+      if (this.props.valueInference.inversion === false) {
+        ArbitraryAorB = this.returnAnInferenceOutOfTwoInferences(A, B, "∨");
       } else {
-        B = "p";
+        ArbitraryAorB = this.returnAnInferenceOutOfTwoInferences(B, A, "∨");
       }
-      const AorB = this.returnAnInferenceOutOfTwoInferences(A, B, "∨");
       const inferenceToAdd = {
-        itself: AorB,
+        // itself: AutomaticAorB,
+        itself: ArbitraryAorB,
         numberCommentary: number,
         commentary: "∨i"
       };
-
-      this.props.valueInference.addInference(inferenceToAdd);
-      // return this.showChoiceOnTheModal(AorB, "(non codée)", number, "∨i");
+      if (B.length > 0 && A.length > 0) {
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Disjonction inclusive introduite, nouvelle inférence :" +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ∨i, sélectionnez une inférence A dans la déduction puis créez arbitrairement B.",
+          "error-advice"
+        );
+      }
     }; // ∨i
 
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
@@ -231,12 +250,7 @@ class RuleProvider extends Component {
       }
     };
 
-    this.redirectToTheRightRule = (
-      ruleName,
-      arrInf,
-      numbers,
-      expectedArgumentsLength
-    ) => {
+    this.redirectToTheRightRule = (ruleName, arrInf, numbers) => {
       console.log("redirectToTheRightRule, pour la règle", ruleName);
       // Méthode qui permet de rediréger le modal de RuleModal vers la bonne règle
       // ruleName contient le nom de la règle, arrInf est un tableau avec les inférences, number contient le(s) nombre(s) des inférences
@@ -260,12 +274,13 @@ class RuleProvider extends Component {
     };
 
     this.showChoiceOnTheModal = (leftChoice, rightChoice, number, ruleName) => {
-      const leftInferenceToAdd = {
+      let choiceContent;
+      let leftInferenceToAdd = {
         itself: leftChoice,
         numberCommentary: number,
         commentary: ruleName
       };
-      const rightInferenceToAdd = {
+      let rightInferenceToAdd = {
         itself: rightChoice,
         numberCommentary: number,
         commentary: ruleName
@@ -273,38 +288,49 @@ class RuleProvider extends Component {
       let verbalRuleName = "";
       if (ruleName === "∧e") {
         verbalRuleName = "Conjonction éliminée";
+      } else if (ruleName === "∨i") {
+        verbalRuleName = "Disjonction inclusive introduite";
       }
+      let leftSide = (
+        <div
+          className="rule-modal-one-choice selectable"
+          onClick={() => {
+            this.addInferenceFromRule(leftInferenceToAdd);
+            this.props.valueInference.setAdvice(
+              verbalRuleName +
+                ", nouvelle inférence : " +
+                leftInferenceToAdd.itself,
+              leftChoice,
+              "rule-advice"
+            );
+          }}
+        >
+          {leftChoice}
+        </div>
+      );
+      let rightSide = (
+        <div
+          className="rule-modal-one-choice selectable"
+          onClick={() => {
+            this.addInferenceFromRule(rightInferenceToAdd);
+            this.props.valueInference.setAdvice(
+              verbalRuleName +
+                ", nouvelle inférence : " +
+                rightInferenceToAdd.itself,
+              rightChoice,
+              "rule-advice"
+            );
+          }}
+        >
+          {rightChoice}
+        </div>
+      );
 
-      const choiceContent = (
+      choiceContent = (
         <div className="rule-modal-all-choices">
-          <p
-            className="rule-modal-one-choice selectable"
-            onClick={() => {
-              this.addInferenceFromRule(leftInferenceToAdd);
-              this.props.valueInference.setAdvice(
-                verbalRuleName +
-                  ", nouvelle inférence : " +
-                  leftInferenceToAdd.itself,
-                "rule-advice"
-              );
-            }}
-          >
-            {leftChoice}
-          </p>
-          <p
-            className="rule-modal-one-choice selectable"
-            onClick={() => {
-              this.addInferenceFromRule(rightInferenceToAdd);
-              this.props.valueInference.setAdvice(
-                verbalRuleName +
-                  ", nouvelle inférence : " +
-                  rightInferenceToAdd.itself,
-                "rule-advice"
-              );
-            }}
-          >
-            {rightChoice}
-          </p>
+          <p style={{ fontSize: "16px" }}>Choix :</p>
+          {leftSide}
+          {rightSide}
         </div>
       );
       this.props.valueInference.setChoiceContent(choiceContent);
@@ -345,12 +371,24 @@ class RuleProvider extends Component {
       // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
     };
 
+    this.removeFirstParenthesis = inference => {
+      // pas utilisé pour le moment
+      let noFirstParenthesis = "";
+      let inferenceToReturn = "";
+      if (inference[0] === "(") {
+        for (let i = 1; i < inference.length - 1; i++) {
+          noFirstParenthesis = noFirstParenthesis + inferenceToReturn[i];
+        }
+      }
+      return inferenceToReturn;
+    };
+
     this.returnAnInferenceOutOfTwoInferences = (A, B, operator) => {
-      if (A.length > 2 && A[A.length - 1] !== /[pqrs]/) {
+      if (A.length > 2 && A[0] === "(" && A[A.length - 1] !== /[pqrs]/) {
         // if (A.length > 2 && A[0] !== "~" && A[A.length - 1] !== /[pqrs]/) {
         A = "(" + A + ")";
       }
-      if (B.length > 2 && B[B.length - 1] !== /[pqrs]/) {
+      if (B.length > 2 && B[0] === "(" && B[B.length - 1] !== /[pqrs]/) {
         // if (B.length > 2 && B[0] !== "~" && B[B.length] !== /[pqrs]/) {
         B = "(" + B + ")";
       }
@@ -375,7 +413,8 @@ class RuleProvider extends Component {
       returnWhatIsBeforeAndAfterTheOperator: this
         .returnWhatIsBeforeAndAfterTheOperator,
       returnAnInferenceOutOfTwoInferences: this
-        .returnAnInferenceOutOfTwoInferences
+        .returnAnInferenceOutOfTwoInferences,
+      removeFirstParenthesis: this.removeFirstParenthesis
     };
   }
 

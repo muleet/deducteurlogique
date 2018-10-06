@@ -45,6 +45,15 @@ class RuleModalProvider extends Component {
   }
 
   render() {
+    let keyboard = "";
+    if (this.props.ruleName === "") {
+      keyboard = (
+        <ul className="typable-text">
+          {this.props.valueInference.futureInference}
+          <p className="blinking">_</p>
+        </ul>
+      );
+    }
     return (
       <RuleProvider
         valueInference={this.props.valueInference}
@@ -83,6 +92,7 @@ class RuleModalProvider extends Component {
                         this.props.expectedArguments,
                         this.props.ruleName
                       )}
+                      {keyboard}
                       {this.props.valueInference.ruleModalChoiceContent}
                       {/* cette variable, ruleModalChoiceContent, est vide la plupart du temps */}
                     </ul>

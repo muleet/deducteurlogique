@@ -1,6 +1,36 @@
 import React, { Component } from "react";
 
 class ShowExpectedArguments extends Component {
+  showKeyboard = () => {
+    let everyPossibleCharacter = [
+      ["~", "∧", "∨", "⊃", "⊂", "≡"],
+      ["p", "q", "r"],
+      ["(", ")"]
+    ];
+    let keyboard = [];
+    for (let i = 0; i < everyPossibleCharacter.length; i++) {
+      let subKeyboard = [];
+      for (let j = 0; j < everyPossibleCharacter[i].length; j++) {
+        subKeyboard.push(
+          <li
+            key={subKeyboard.length}
+            className="rule-modal-hypothesis-button-character selectable"
+            onClick={() => {
+              console.log("bonjour");
+              this.props.valueInference.addToFutureInference(
+                everyPossibleCharacter[i][j]
+              );
+            }}
+          >
+            {everyPossibleCharacter[i][j]}
+          </li>
+        );
+      }
+      keyboard.push(<ul key={keyboard.length}>{subKeyboard}</ul>);
+    }
+    return <div className="rule-modal-all-button-hypothesis">{keyboard}</div>;
+  };
+
   render() {
     let arrayExpectedArguments = [];
     let arrayEmptyArgument = [];
@@ -27,7 +57,7 @@ class ShowExpectedArguments extends Component {
       </p>
     );
 
-    if (ruleName !== "⊃i" && ruleName !== "~i") {
+    if (ruleName !== "⊃i" && ruleName !== "~i" && ruleName !== "∨i") {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
         arrayEmptyArgument.push(
@@ -75,7 +105,6 @@ class ShowExpectedArguments extends Component {
         </li>
       );
     } else if (ruleName === "~i") {
-      // introduction de la négation
       if (allHypotheticalInferences.length >= 1) {
         hypContent = (
           <p className="infItself-modal">
@@ -91,7 +120,6 @@ class ShowExpectedArguments extends Component {
           <p className="infItself-modal">{storedInference[1]}</p>
         );
       }
-
       arrayExpectedArguments.push(
         <li
           key={arrayExpectedArguments.length}
@@ -111,7 +139,48 @@ class ShowExpectedArguments extends Component {
           </div>
         </li>
       );
-      // RIEN POUR LE MOMENT
+    } else if (ruleName === "∨i") {
+      let disjonctionArgument = (
+        <p className="awaiting-an-inference-blinking">
+          {"<Cliquez sur une inférence adéquate>"}
+        </p>
+      );
+      let arbitraryArgument = (
+        <p className="awaiting-an-inference-blinking">
+          {"<Utilisez le clavier>"}
+        </p>
+      );
+
+      if (storedInference[0]) {
+        disjonctionArgument = (
+          <p className="infItself-modal">{storedInference[0]}</p>
+        );
+      }
+
+      if (this.props.valueInference.futureInference.length > 0) {
+        arbitraryArgument = this.props.valueInference.futureInference;
+      }
+
+      const keyboard = this.showKeyboard();
+
+      arrayExpectedArguments.push(
+        <li
+          key={arrayExpectedArguments.length}
+          className="rule-modal-all-arguments"
+        >
+          <div className="rule-modal-single-argument">
+            {expectedArguments[0] + " : "}
+            {disjonctionArgument}
+          </div>
+          <div className="rule-modal-single-argument">
+            {"B : "}
+            {arbitraryArgument}
+            {/* {this.props.valueInference.futureInference} */}
+          </div>
+          {keyboard}
+          {/* <div className="rule-modal-single-argument">{"B : "}</div> */}
+        </li>
+      );
     }
     return arrayExpectedArguments;
   }

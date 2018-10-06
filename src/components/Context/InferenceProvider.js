@@ -27,8 +27,6 @@ class InferenceProvider extends Component {
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
         inferenceType = "hypothesisItself";
         this.updateTrueAtomicPropositions("new hyp");
-      } else if (this.props.conclusionSent === newInference.itself) {
-        inferenceType = "concluding-inference-blinking";
       }
       if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         hypNumber = -1;
@@ -40,6 +38,14 @@ class InferenceProvider extends Component {
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
       const storedLevel =
         this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que conditionner la règle reit
+
+      // vérification de la conclusion
+      if (
+        copyStoredHypId === 0 &&
+        this.props.conclusionSent === newInference.itself
+      ) {
+        inferenceType = "concluding-inference-blinking";
+      }
 
       // section du commentaire
       let commentary;
@@ -202,8 +208,10 @@ class InferenceProvider extends Component {
             this.state.howManyInferenceToStore ===
             copyArrayStoredInference.length
           ) {
-            copyArrayStoredInference = []; // inférence elle-même
-            copyStoredNumbers = ""; // nombre de l'inférence
+            // copyArrayStoredInference = []; // inférence elle-même
+            // copyStoredNumbers = []; // nombre de l'inférence
+            copyArrayStoredInference = [inferenceItself]; // inférence el  le-même
+            copyStoredNumbers = [numInference]; // nombre de l'inférence
           } else {
             copyArrayStoredInference.push(inferenceItself);
             copyStoredNumbers.push(" " + numInference);
@@ -233,7 +241,8 @@ class InferenceProvider extends Component {
           howManyInferenceToStore: num,
           storedInference: [],
           storedNumbers: "",
-          ruleModalChoiceContent: ""
+          ruleModalChoiceContent: "",
+          futureInference: ""
         });
       } else if (str === true) {
         this.setState({
@@ -243,7 +252,8 @@ class InferenceProvider extends Component {
       } else if (str === false) {
         this.setState({
           canInferenceBeStored: false,
-          howManyInferenceToStore: "empty"
+          howManyInferenceToStore: "empty",
+          futureInference: ""
         });
       } else if (!this.state.canInferenceBeStored) {
         this.setState({
@@ -256,7 +266,8 @@ class InferenceProvider extends Component {
           howManyInferenceToStore: "empty",
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
           storedNumbers: "",
-          storedHypID: 0
+          storedHypID: 0,
+          futureInference: ""
         });
       }
     };
@@ -304,7 +315,9 @@ class InferenceProvider extends Component {
         // autre
         advice: <div className="advice" />,
         possibleMeaningShown: false,
-        arrayTrueAtomicPropositions: [[]]
+        arrayTrueAtomicPropositions: [[]],
+        inversion: false,
+        futureInference: ""
       }));
     };
 
@@ -420,6 +433,18 @@ class InferenceProvider extends Component {
       }
     };
 
+    this.setInversion = () => {
+      if (this.state.inversion === false) {
+        this.setState({
+          inversion: true
+        });
+      } else if (this.state.inversion === true) {
+        this.setState({
+          inversion: false
+        });
+      }
+    };
+
     this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
       let copyArray = this.state.arrayTrueAtomicPropositions;
       if (str === "new hyp") {
@@ -433,6 +458,21 @@ class InferenceProvider extends Component {
       this.setState({
         arrayTrueAtomicPropositions: copyArray
       });
+    };
+
+    this.addToFutureInference = newChar => {
+      let copyFutureInference = this.state.futureInference;
+      copyFutureInference += newChar;
+      this.setState({ futureInference: copyFutureInference });
+    };
+
+    this.removeLastCharacter = () => {
+      let copyFutureInference = [...this.state.futureInference];
+      copyFutureInference = copyFutureInference.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+      copyFutureInference = copyFutureInference.join("");
+      this.setState(state => ({
+        futureInference: copyFutureInference
+      }));
     };
 
     this.state = {
@@ -472,8 +512,14 @@ class InferenceProvider extends Component {
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
+      inversion: false,
+      setInversion: this.setInversion,
       arrayTrueAtomicPropositions: [[]],
-      updateTrueAtomicPropositions: this.updateTrueAtomicPropositions
+      updateTrueAtomicPropositions: this.updateTrueAtomicPropositions,
+      //section de la création d'inférence par l'utilisateur
+      futureInference: "",
+      addToFutureInference: this.addToFutureInference,
+      removeLastCharacter: this.removeLastCharacter
     };
   }
 

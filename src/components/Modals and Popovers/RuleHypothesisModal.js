@@ -136,7 +136,7 @@ class RuleModal extends Component {
                     <p className="rule-modal-ruleInstruction">
                       {this.props.instruction}
                     </p>
-                    <ul className="possible-hypothesis-itself">
+                    <ul className="typable-text">
                       {this.state.futureHypothesis}
                       <p className="blinking">_</p>
                     </ul>

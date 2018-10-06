@@ -19,8 +19,8 @@ class ShowModalButtons extends Component {
           this.props.expectedArguments.length
         ) // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );
-      if (this.props.ruleName !== "∧e" && this.props.ruleName !== "∨i") {
-        // ∧e et ∨i sont exclus parce qu'ils ne doivent pas s'arrêter juste après que l'utilisateur ait validé la règle
+      if (this.props.ruleName !== "∧e") {
+        // ∧e est exclus parce qu'il ne doit pas s'arrêter juste après que l'utilisateur ait validé la règle
         this.props.valueInference.setRuleModal("", "ended-well modal-ending");
         this.props.valueInference.changeStorageBoolean();
       }
@@ -38,7 +38,7 @@ class ShowModalButtons extends Component {
     if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
       if (
         this.props.valueInference.storedInference !== undefined &&
-        this.props.expectedArguments.length - 1 <= // on fait -1 puisque l'hypothèse n'est pas comptée à ce moment
+        this.props.expectedArguments.length - 1 === // on fait -1 puisque l'hypothèse n'est pas comptée à ce moment
           this.props.valueInference.storedInference.length
       ) {
         valueRule.redirectToTheRightRule(
@@ -56,6 +56,7 @@ class ShowModalButtons extends Component {
           "Entrez tous les arguments avant de valider",
           "error-advice"
         );
+        return;
         // this.props.valueInference.setRuleModal("", "ended-badly");
       }
     } else {
@@ -63,12 +64,50 @@ class ShowModalButtons extends Component {
         "Créez d'abord une hypothèse avant de valider",
         "error-advice"
       );
+      return;
     }
   }
 
+  handleClickReverseCharacter() {
+    this.props.valueInference.setInversion();
+  }
+
+  buttonReverseInference() {
+    let inferenceForm;
+    if (this.props.valueInference.inversion === false) {
+      inferenceForm = "A" + this.props.ruleName[0] + "B";
+    } else if (this.props.valueInference.inversion === true) {
+      inferenceForm = "B" + this.props.ruleName[0] + "A";
+    }
+    return inferenceForm;
+  }
+
   render() {
+    let buttonInverseInference = "";
+    let buttonRemoveLastCharacter = "";
+    if (this.props.ruleName === "∨i") {
+      buttonInverseInference = (
+        <p
+          className="rule-modal-button"
+          onClick={this.props.valueInference.setInversion}
+        >
+          {this.buttonReverseInference()}
+        </p>
+      );
+      buttonRemoveLastCharacter = (
+        <p
+          className="rule-modal-button"
+          onClick={this.props.valueInference.removeLastCharacter}
+        >
+          <i className="fas fa-long-arrow-alt-left icon" />
+        </p>
+      );
+    }
+
     return (
       <Fragment>
+        {buttonRemoveLastCharacter}
+        {buttonInverseInference}
         <p
           className="rule-modal-button"
           onClick={() => {

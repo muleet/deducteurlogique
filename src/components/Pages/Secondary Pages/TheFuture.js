@@ -75,6 +75,11 @@ const TheFuture = () => {
             - Des diagrammes de Venn dans la page de la table de vérité, un par
             possibilité.
           </p>
+          <p className="maybenever-available-rule">
+            - Au sein de la déduction, pouvoir inverser à tout moment A et B
+            dans des inférences ayant pour connecteur domination (∧, ∨, ⊻, ≡, ↓
+            ou |).
+          </p>
         </div>
       </div>
     </main>

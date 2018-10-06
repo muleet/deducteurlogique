@@ -137,6 +137,9 @@
 .rule-modal-all-choices {
   display: flex;
   justify-content: space-evenly;
+  /* text-align: center; */
+  /* text-justify: center; */
+  align-items: center;
 }
 
 .rule-modal-one-choice {
@@ -175,7 +178,7 @@
   font-size: 16px;
 }
 
-.possible-hypothesis-itself {
+.typable-text {
   display: flex;
   flex-direction: row;
   justify-content: center;
