@@ -77,8 +77,9 @@ const TheFuture = () => {
           </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
-            dans des inférences ayant pour connecteur domination (∧, ∨, ⊻, ≡, ↓
-            ou |).
+            dans des inférences ayant pour connecteur dominant un connecteur
+            dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant
+            dessus.
           </p>
         </div>
       </div>

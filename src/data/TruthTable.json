@@ -37,7 +37,7 @@
   },
   {
     "number": 3,
-    "name": "Abjonction",
+    "name": "Non-conditionnel (ou abjonction)",
     "description": "",
     "link": "",
     "reductibleTo": "A∧~B",
@@ -50,7 +50,7 @@
   {
     "number": 4,
     "name": "",
-    "description": "",
+    "description": "Non-conditionnel réciproque",
     "link": "",
     "reductibleTo": "~A∧B",
     "lecture": "",
@@ -61,7 +61,7 @@
   },
   {
     "number": 5,
-    "name": "",
+    "name": "Disjonction réciproque",
     "description": "",
     "link": "",
     "reductibleTo": "~A∧~B",

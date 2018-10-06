@@ -90,7 +90,7 @@
     ],
     "instruction": "Cliquez sur A, puis décidez arbitrairement de B, pour inférer A∨B.",
     "expectedArguments": ["A"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "i"
   },
   {
