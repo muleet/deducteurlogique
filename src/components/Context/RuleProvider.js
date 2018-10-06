@@ -384,11 +384,11 @@ class RuleProvider extends Component {
     };
 
     this.returnAnInferenceOutOfTwoInferences = (A, B, operator) => {
-      if (A.length > 2 && A[0] === "(" && A[A.length - 1] !== /[pqrs]/) {
+      if (A.length > 2 && A[0] !== "(" && A[A.length - 1] !== /[pqrs]/) {
         // if (A.length > 2 && A[0] !== "~" && A[A.length - 1] !== /[pqrs]/) {
         A = "(" + A + ")";
       }
-      if (B.length > 2 && B[0] === "(" && B[B.length - 1] !== /[pqrs]/) {
+      if (B.length > 2 && B[0] !== "(" && B[B.length - 1] !== /[pqrs]/) {
         // if (B.length > 2 && B[0] !== "~" && B[B.length] !== /[pqrs]/) {
         B = "(" + B + ")";
       }

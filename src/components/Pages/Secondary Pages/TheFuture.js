@@ -72,8 +72,8 @@ const TheFuture = () => {
             déduction).
           </p>
           <p className="maybenever-available-rule">
-            - Des diagrammes de Venn dans la page de la table de vérité, un par
-            possibilité.
+            - Des diagrammes de Venn dans la page de la table de vérité, un pour
+            chacune des 16 colonnes.
           </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B

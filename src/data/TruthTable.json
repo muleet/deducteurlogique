@@ -37,7 +37,7 @@
   },
   {
     "number": 3,
-    "name": "Non-conditionnel (ou abjonction)",
+    "name": "Négation du conditionnel, ou non-conditionnel, ou abjonction",
     "description": "",
     "link": "",
     "reductibleTo": "A∧~B",
@@ -50,7 +50,7 @@
   {
     "number": 4,
     "name": "",
-    "description": "Non-conditionnel réciproque",
+    "description": "Contraposée de la négation du conditionnel, ou non-conditionnel réciproque, ou contraposée de l'abjonction",
     "link": "",
     "reductibleTo": "~A∧B",
     "lecture": "",
