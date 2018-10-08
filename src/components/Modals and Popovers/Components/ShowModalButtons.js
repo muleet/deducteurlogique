@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
 
 class ShowModalButtons extends Component {
   verifyRule(valueRule) {
@@ -26,7 +27,9 @@ class ShowModalButtons extends Component {
       }
     } else {
       this.props.valueInference.setAdvice(
-        "Tous les arguments n'étaient pas entrés",
+        "Entrez tous les arguments requis pour la règle" +
+          this.props.ruleName +
+          ", avant la de valider.",
         "error-advice"
       );
       this.props.valueInference.setRuleModal(true, "ended-badly");
@@ -53,7 +56,7 @@ class ShowModalButtons extends Component {
         // this.props.valueInference.changeStorageBoolean();
       } else {
         this.props.valueInference.setAdvice(
-          "Entrez tous les arguments avant de valider",
+          "Entrez tous les arguments requis, avant de valider.",
           "error-advice"
         );
         return;
@@ -61,7 +64,9 @@ class ShowModalButtons extends Component {
       }
     } else {
       this.props.valueInference.setAdvice(
-        "Créez d'abord une hypothèse avant de valider",
+        "Pour utiliser " +
+          this.props.ruleName +
+          ", il faut d'abord créer une hypothèse.",
         "error-advice"
       );
       return;
@@ -85,6 +90,8 @@ class ShowModalButtons extends Component {
   render() {
     let buttonInverseInference = "";
     let buttonRemoveLastCharacter = "";
+    let buttonSpecificRule = "";
+    // let buttonDisjonctionEliminationHypothesis = "";
     if (this.props.ruleName === "∨i") {
       buttonInverseInference = (
         <p
@@ -103,11 +110,24 @@ class ShowModalButtons extends Component {
         </p>
       );
     }
+    if (this.props.ruleName === "∨e") {
+      buttonSpecificRule = (
+        <ShowDisjonctionEliminationArguments
+          whatToReturn="buttons"
+          // expectedArguments={expectedArguments}
+          valueRule={this.props.valueRule}
+          valueInference={this.props.valueInference}
+          // allHypotheticalInferences={allHypotheticalInferences}
+        />
+      );
+    }
 
     return (
       <Fragment>
         {buttonRemoveLastCharacter}
         {buttonInverseInference}
+        {buttonSpecificRule}
+        {/* {buttonDisjonctionEliminationHypothesis} */}
         <p
           className="rule-modal-button"
           onClick={() => {

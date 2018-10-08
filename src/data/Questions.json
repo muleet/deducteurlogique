@@ -28,8 +28,8 @@
     "example": "\"Tous les chats sont bleus, tous les bleus sont du sable, tous les chats sont du sable\" est un raisonnement valide, bien qu'il ne soit pas basé sur des prémisses vraies."
   },
   {
-    "name": "Qu'est-ce qu'une déduction ?",
-    "answer": "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit être composée d'inférences en accord les règles de logique. Ce site propose à l'utilisateur de faire des déductions."
+    "name": "Qu'est-ce qu'une déduction ? Et comment les distinguer des inductions ?",
+    "answer": "Une déduction est une série d'inférence menant à une conclusion. Pour être valide, cette déduction doit être composée d'inférences en accord les règles de logique. Ce site propose à l'utilisateur de faire des déductions. Et une induction est une généralisation faite sur la base de cas particulier(s), par conséquent les inductions n'ont pas la rigueur des déductions."
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",

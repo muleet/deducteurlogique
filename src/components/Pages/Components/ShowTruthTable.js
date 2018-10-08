@@ -25,8 +25,8 @@ class ShowTruthTable extends Component {
   renderLecture() {
     const character = this.state.arrayInfoLine.character;
     if (
-      character === "⊤" ||
-      character === "⊥" ||
+      character[0] === "⊤" ||
+      character[0] === "⊥" ||
       character === "q" ||
       character === "p" ||
       character[0] === "~p" ||
@@ -131,6 +131,18 @@ class ShowTruthTable extends Component {
   }
 
   renderAllInformations() {
+    let reductibleTo = "";
+    const char = this.state.arrayInfoLine.reductibleTo;
+    if (
+      char.length > 0 &&
+      char !== "q" &&
+      char !== "p" &&
+      char !== "~q" &&
+      char !== "~p"
+    ) {
+      reductibleTo = <li>Peut être réduit à : {char}</li>;
+    }
+
     if (this.state.arrayInfoLine.number > 0) {
       return (
         <Fragment>
@@ -139,7 +151,7 @@ class ShowTruthTable extends Component {
           <li>{this.state.arrayInfoLine.description}</li>
           <li>Caractère : {this.state.arrayInfoLine.character[0]}</li>
           {this.renderLecture()}
-          <li>Réductible à : {this.state.arrayInfoLine.reductibleTo}</li>
+          {reductibleTo}
           <li>{this.renderExample()}</li>
           {/* <li>{this.state.arrayInfoLine.category}</li> */}
         </Fragment>

@@ -99,11 +99,10 @@
     "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, B a été trouvé, et que depuis l'hypothèse B, B a été trouvé, alors on peut inférer B.",
     "arrayUtilization": [
       ["A∨B", "|A hyp", "|B", "|B hyp", "|B", "B 1, 2-3, 4-5, ∨e"],
-      ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"],
-      ["A∨B", "|A hyp", "|C", "|B hyp", "|C", "C 1, 2-3, 4-5, ∨e"]
+      ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"]
     ],
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
+    "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence B dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence B dans cette hypothèse, et enfin refermez-la. Tout cela permettra d'inférer B. (En inversant ce fonctionnement on peut aussi inférer A.)",
+    "expectedArguments": ["A∨B", "|A", "B", "|B", "B"],
     "available": "soon",
     "binomial": "e"
   },
@@ -129,7 +128,7 @@
   },
   {
     "name": "⊃i",
-    "verbalName": "Règle d'introduction du conditionnel (modus ponens)",
+    "verbalName": "Règle d'introduction du conditionnel",
     "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux. (A noter que A⊃B signifie exactement la même chose que ~(A∧~B).)",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, confirmez cette règle pour valider l'hypothèse, en inférant A⊃B.",
@@ -159,7 +158,7 @@
   },
   {
     "name": "⊂e",
-    "verbalName": "Règle d'élimination de la contraposée du conditionnel",
+    "verbalName": "Règle d'élimination de la contraposée du conditionnel (modus tollens)",
     "verbalDescription": "",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
@@ -199,9 +198,9 @@
   },
   {
     "name": "|e",
-    "verbalName": "Règle d'élimination de l'incompatibilité",
-    "verbalDescription": "",
-    "arrayUtilization": "",
+    "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
+    "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B.",
+    "arrayUtilization": ["A|B", "A", "~B |e"],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "soon",

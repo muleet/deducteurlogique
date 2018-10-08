@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
 
 class ShowExpectedArguments extends Component {
   showKeyboard = () => {
@@ -57,7 +58,12 @@ class ShowExpectedArguments extends Component {
       </p>
     );
 
-    if (ruleName !== "⊃i" && ruleName !== "~i" && ruleName !== "∨i") {
+    if (
+      ruleName !== "⊃i" &&
+      ruleName !== "~i" &&
+      ruleName !== "∨i" &&
+      ruleName !== "∨e"
+    ) {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
         arrayEmptyArgument.push(
@@ -147,7 +153,7 @@ class ShowExpectedArguments extends Component {
       );
       let arbitraryArgument = (
         <p className="awaiting-an-inference-blinking">
-          {"<Utilisez le clavier>"}
+          {"<Utilisez le clavier virtuel>"}
         </p>
       );
 
@@ -175,13 +181,22 @@ class ShowExpectedArguments extends Component {
           <div className="rule-modal-single-argument">
             {"B : "}
             {arbitraryArgument}
-            {/* {this.props.valueInference.futureInference} */}
           </div>
           {keyboard}
-          {/* <div className="rule-modal-single-argument">{"B : "}</div> */}
         </li>
       );
+    } else if (ruleName === "∨e") {
+      arrayExpectedArguments.push(
+        <ShowDisjonctionEliminationArguments
+          whatToReturn="arguments"
+          expectedArguments={expectedArguments}
+          valueInference={this.props.valueInference}
+          // valueRule={this.props.valueRule}
+          allHypotheticalInferences={allHypotheticalInferences}
+        />
+      );
     }
+
     return arrayExpectedArguments;
   }
 }

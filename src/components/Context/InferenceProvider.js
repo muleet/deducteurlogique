@@ -242,7 +242,8 @@ class InferenceProvider extends Component {
           storedInference: [],
           storedNumbers: "",
           ruleModalChoiceContent: "",
-          futureInference: ""
+          futureInference: "",
+          inversion: false
         });
       } else if (str === true) {
         this.setState({
@@ -253,7 +254,8 @@ class InferenceProvider extends Component {
         this.setState({
           canInferenceBeStored: false,
           howManyInferenceToStore: "empty",
-          futureInference: ""
+          futureInference: "",
+          inversion: false
         });
       } else if (!this.state.canInferenceBeStored) {
         this.setState({
@@ -267,7 +269,8 @@ class InferenceProvider extends Component {
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
           storedNumbers: "",
           storedHypID: 0,
-          futureInference: ""
+          futureInference: "",
+          inversion: false
         });
       }
     };
@@ -418,7 +421,7 @@ class InferenceProvider extends Component {
       this.setState({ advice: adviceToReturn });
       setTimeout(() => {
         this.setState({ advice: <div className="advice" /> });
-      }, 5000);
+      }, 8000);
     };
 
     this.setPossibleMeaning = () => {
@@ -446,18 +449,18 @@ class InferenceProvider extends Component {
     };
 
     this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
-      let copyArray = this.state.arrayTrueAtomicPropositions;
-      if (str === "new hyp") {
-        console.log("UTAP crée bien le tableau");
-        copyArray.push([]);
-      } else if (str === "add prop") {
-        copyArray[hypLevel].unshift(itself);
-      } else if (str === "break hyp") {
-        copyArray.splice(copyArray.length - 1);
-      }
-      this.setState({
-        arrayTrueAtomicPropositions: copyArray
-      });
+      // let copyArray = this.state.arrayTrueAtomicPropositions;
+      // if (str === "new hyp") {
+      //   console.log("UTAP crée bien le tableau");
+      //   copyArray.push([]);
+      // } else if (str === "add prop") {
+      //   copyArray[hypLevel].unshift(itself);
+      // } else if (str === "break hyp") {
+      //   copyArray.splice(copyArray.length - 1);
+      // }
+      // this.setState({
+      //   arrayTrueAtomicPropositions: copyArray
+      // });
     };
 
     this.addToFutureInference = newChar => {

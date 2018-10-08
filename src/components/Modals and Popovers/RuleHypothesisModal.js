@@ -62,6 +62,7 @@ class RuleModal extends Component {
 
   makeHypothesis = (valueRuleContext, hypothesisItself) => {
     if (2 === 1 + 1) {
+      // il faudrait des conditions pour vérifier que l'utilisateur n'a pas rentré n'importe quoi
       // if (hypothesisItself[0] === /p/g) {
       // if (hypothesisItself[0] === /∧∨⊃⊂≡/) {
       const inferenceToAdd = {
