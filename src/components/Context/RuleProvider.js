@@ -237,13 +237,43 @@ class RuleProvider extends Component {
       }
     }; // ∨i
 
+    this.inclusiveDisjonctionElimination = (arrInf, number) => {
+      let AorB = this.returnWhatIsBeforeAndAfterTheOperator(arrInf[0], "∨");
+      let hypA = arrInf[1];
+      let concA = arrInf[2];
+      let hypB = arrInf[3];
+      let concB = arrInf[4];
+
+      if (AorB[0] === hypA && AorB[1] === concA) {
+        if (AorB[1] === hypB && AorB[1] === concB) {
+          const inferenceToAdd = {
+            // itself: AutomaticAorB,
+            itself: AorB[1],
+            numberCommentary: number,
+            commentary: "∨e"
+          };
+          this.props.valueInference.addInference(inferenceToAdd);
+          this.props.valueInference.setAdvice(
+            "Disjonction inclusive éliminée, il reste la partie droite, nouvelle inférence :" +
+              inferenceToAdd.itself,
+            "rule-advice"
+          );
+        }
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ∨e, faut rentrer les 5 bons trucs.",
+          "error-advice"
+        );
+      }
+    }; // ∨e
+
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur
       if (hyp) {
         this.props.valueInference.addInference(InferenceItself, hyp);
-      } else if (InferenceItself !== "error" && InferenceItself !== "") {
+      } else if (InferenceItself !== "") {
         this.props.valueInference.addInference(InferenceItself);
       } else {
         console.log("erreur dans la redirection de la règle");
@@ -269,7 +299,7 @@ class RuleProvider extends Component {
       } else if (ruleName === "∨i") {
         this.inclusiveDisjonctionIntroduction(arrInf[0], numbers); // A pour A∨B
       } else if (ruleName === "∨e") {
-        this.exclusiveDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A∨B, hyp A & conc de A, hyp B et conc de B, pour A ou B
+        this.inclusiveDisjonctionElimination(arrInf, numbers); // A∨B + hyp A + conc de A + hyp B + conc de B, pour A ou B
       }
     };
 
@@ -412,9 +442,9 @@ class RuleProvider extends Component {
       showChoiceOnTheModal: this.showChoiceOnTheModal,
       returnWhatIsBeforeAndAfterTheOperator: this
         .returnWhatIsBeforeAndAfterTheOperator,
+      removeFirstParenthesis: this.removeFirstParenthesis,
       returnAnInferenceOutOfTwoInferences: this
-        .returnAnInferenceOutOfTwoInferences,
-      removeFirstParenthesis: this.removeFirstParenthesis
+        .returnAnInferenceOutOfTwoInferences
     };
   }
 

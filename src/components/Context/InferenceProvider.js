@@ -21,23 +21,23 @@ class InferenceProvider extends Component {
       const copyArrayRendered = [...this.state.allInferencesRendered];
 
       // section de l'hypothèse (ignorée si hyp est undefined)
-      if (hyp === "nouvelle hypothèse") {
+      if (hyp === "nouvelle hypothèse" || hyp === "nouvelle hyp ∨e") {
         hypNumber = 1;
         newInference.numberCommentaryHypothesis = copyArrayRendered.length + 1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
         inferenceType = "hypothesisItself";
-        this.updateTrueAtomicPropositions("new hyp");
+        // this.updateTrueAtomicPropositions("new hyp");
       }
       if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         hypNumber = -1;
-        this.updateTrueAtomicPropositions("break hyp");
+        // this.updateTrueAtomicPropositions("break hyp");
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
 
       const copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
       const storedLevel =
-        this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que conditionner la règle reit
+        this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que pour conditionner la règle reit
 
       // vérification de la conclusion
       if (
@@ -57,25 +57,19 @@ class InferenceProvider extends Component {
       }
 
       // section de vérification des propositions atomiques découvertes vraies jusqu'ici
-      console.log(
-        "pour les propositions atomiques",
-        this.state.hypothesisCurrentLevelAndId,
-        "l'hyp est ",
-        newInference
-      );
-      if (newInference.itself.length === 1) {
-        if (
-          this.state.arrayTrueAtomicPropositions.indexOf(
-            newInference.itself
-          ) === -1
-        ) {
-          this.updateTrueAtomicPropositions(
-            "add prop",
-            newInference.itself,
-            copyStoredHypId
-          );
-        }
-      }
+      // if (newInference.itself.length === 1) {
+      //   if (
+      //     this.state.arrayTrueAtomicPropositions.indexOf(
+      //       newInference.itself
+      //     ) === -1
+      //   ) {
+      //     this.updateTrueAtomicPropositions(
+      //       "add prop",
+      //       newInference.itself,
+      //       copyStoredHypId
+      //     );
+      //   }
+      // }
 
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
       // let copyArrayRendered = [...this.state.allInferencesRendered];
@@ -307,7 +301,7 @@ class InferenceProvider extends Component {
         },
         allHypotheticalInferences: [],
         // section ruleModal
-        ruleModalShown: false,
+        ruleModalShown: { normal: false },
         ruleModalClassName: "",
         ruleModalContent: {
           instruction: "",
@@ -320,7 +314,13 @@ class InferenceProvider extends Component {
         possibleMeaningShown: false,
         arrayTrueAtomicPropositions: [[]],
         inversion: false,
-        futureInference: ""
+        futureInference: "",
+        // stockage conditionnel
+        longStoredInferenceAndNumber: {
+          longStoredInference: [],
+          longStoredNumbers: "",
+          longStoredHypID: 0
+        } // EXPERIMENTAL
       }));
     };
 
@@ -350,10 +350,14 @@ class InferenceProvider extends Component {
       let copyAllHypotheticalInferences = [
         ...this.state.allHypotheticalInferences
       ];
-      if (hyp === "nouvelle hypothèse") {
+      if (hyp === "nouvelle hypothèse" || hyp === "nouvelle hyp ∨e") {
         // On rajoute une hypothèse dans le tableau qui ne contient que les hypothèses
         copyAllHypotheticalInferences.unshift(hypothesisItself);
-      } else if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
+      } else if (
+        hyp === "hypothèse validée" ||
+        hyp === "hypothèse réfutée" ||
+        hyp === "fin hyp ∨e"
+      ) {
         // On retire une hypothèse dans le tableau qui ne contient que les hypothèses
         copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1);
       }
@@ -368,7 +372,7 @@ class InferenceProvider extends Component {
     this.setRuleModal = (str, strClassName, ruleModalContent, eal) => {
       // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "reverse", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
       // "eal" contient expectedArguments.length
-      let newRuleModalShown = false;
+      let newRuleModalShown = { normal: false };
       let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
       let newRuleModalContent;
       if (ruleModalContent) {
@@ -377,18 +381,18 @@ class InferenceProvider extends Component {
         newRuleModalContent = this.state.ruleModalContent;
       }
       if (str === "initial") {
-        newRuleModalShown = true;
+        newRuleModalShown.normal = true;
       } else if (str === true) {
-        newRuleModalShown = true;
+        newRuleModalShown.normal = true;
       } else if (
         str === "reverse" &&
         ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName
       ) {
-        newRuleModalShown = true;
+        newRuleModalShown.normal = true;
         this.changeStorageBoolean("resetButStillTrue", eal);
       } else if (str === "reverse") {
-        if (!this.state.ruleModalShown) {
-          newRuleModalShown = true;
+        if (!this.state.ruleModalShown.normal) {
+          newRuleModalShown.normal = true;
         }
       }
       if (strClassName === "ended-well") {
@@ -448,20 +452,20 @@ class InferenceProvider extends Component {
       }
     };
 
-    this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
-      // let copyArray = this.state.arrayTrueAtomicPropositions;
-      // if (str === "new hyp") {
-      //   console.log("UTAP crée bien le tableau");
-      //   copyArray.push([]);
-      // } else if (str === "add prop") {
-      //   copyArray[hypLevel].unshift(itself);
-      // } else if (str === "break hyp") {
-      //   copyArray.splice(copyArray.length - 1);
-      // }
-      // this.setState({
-      //   arrayTrueAtomicPropositions: copyArray
-      // });
-    };
+    // this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
+    // let copyArray = this.state.arrayTrueAtomicPropositions;
+    // if (str === "new hyp") {
+    //   console.log("UTAP crée bien le tableau");
+    //   copyArray.push([]);
+    // } else if (str === "add prop") {
+    //   copyArray[hypLevel].unshift(itself);
+    // } else if (str === "break hyp") {
+    //   copyArray.splice(copyArray.length - 1);
+    // }
+    // this.setState({
+    //   arrayTrueAtomicPropositions: copyArray
+    // });
+    // };
 
     this.addToFutureInference = newChar => {
       let copyFutureInference = this.state.futureInference;
@@ -478,16 +482,37 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.longStorageForRuleVerification = (inference, str) => {
+      if (str === true) {
+        let newlongStoredInferenceAndNumber = {
+          longStoredInference: inference.itself,
+          longStoredNumbers: inference.numbers
+          // longStoredHypID: inference.hypId
+        };
+        this.setState({
+          longStoredInferenceAndNumber: newlongStoredInferenceAndNumber
+        });
+      }
+    };
+
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
-      storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
-      storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
-      storedHypID: 0,
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
-      howManyInferenceToStore: 0,
+      howManyInferenceToStore: 0, // contient la donnée expectedArguments.length concernant la règle en cours
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,
+      storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
+      storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
+      storedHypID: 0, // chaque inférence dans une hypothèse a un id d'hypothèse (qui est à 0 s'il n'y a pas d'hyp en cours), storedHypID permet de stocker cet id d'hypothèse, pour le comparer à celui de l'hypothèse en cours
+      // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
+      longStoredInferenceAndNumber: {
+        longStoredInference: [],
+        longStoredNumbers: "",
+        longStoredHypID: 0
+      },
+      longStorageForRuleVerification: this.longStorageForRuleVerification,
+      // sections de divers boutons de l'interface
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
@@ -500,7 +525,7 @@ class InferenceProvider extends Component {
       },
       allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
       // section ruleModal
-      ruleModalShown: false,
+      ruleModalShown: { normal: false },
       ruleModalClassName: "",
       ruleModalContent: {
         instruction: "",

@@ -124,8 +124,10 @@ class ShowModalButtons extends Component {
 
     return (
       <Fragment>
+        {/* les deux boutons ci-desous ne concernent que ∨i */}
         {buttonRemoveLastCharacter}
         {buttonInverseInference}
+        {/* le bouton ci-desous ne concernent que ∨e */}
         {buttonSpecificRule}
         {/* {buttonDisjonctionEliminationHypothesis} */}
         <p

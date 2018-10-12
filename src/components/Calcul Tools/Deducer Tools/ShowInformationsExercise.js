@@ -28,7 +28,7 @@ class ShowInformationsExercise extends Component {
     // let exerciseComment = <i className="fas fa-comment deactivated" />;
     if (this.props.exerciseSent.doable === false) {
       textCanItBeDone =
-        "(Cet exercice ne peut pas être terminé pour le moment, puisqu'au moins une de ses règles n'a pas été codée.)";
+        "(Cet exercice ne peut pas être terminé pour le moment, puisqu'au moins une de ses règles n'a pas été entièrement codée.)";
     }
     if (this.props.exerciseSent.comment.length > 0) {
       // exerciseComment = (
@@ -54,7 +54,16 @@ class ShowInformationsExercise extends Component {
     }
     if (this.props.exerciseSent.premisses.length === 0) {
       setOfPremisses = (
-        <div style={{ fontStyle: "normal", padding: "4px" }}>(théorème)</div>
+        <div
+          style={{
+            fontStyle: "normal",
+            padding: "4px",
+            fontSize: "12px",
+            width: "120px"
+          }}
+        >
+          (Cet exercice n'a pas de prémisses, c'est un théorème.)
+        </div>
       );
     } else {
       for (let i = 0; i < this.props.exerciseSent.premisses.length; i++) {

@@ -17,7 +17,6 @@ class ShowExpectedArguments extends Component {
             key={subKeyboard.length}
             className="rule-modal-hypothesis-button-character selectable"
             onClick={() => {
-              console.log("bonjour");
               this.props.valueInference.addToFutureInference(
                 everyPossibleCharacter[i][j]
               );
@@ -188,10 +187,11 @@ class ShowExpectedArguments extends Component {
     } else if (ruleName === "∨e") {
       arrayExpectedArguments.push(
         <ShowDisjonctionEliminationArguments
+          key={arrayExpectedArguments.length}
           whatToReturn="arguments"
           expectedArguments={expectedArguments}
           valueInference={this.props.valueInference}
-          // valueRule={this.props.valueRule}
+          valueRule={this.props.valueRule}
           allHypotheticalInferences={allHypotheticalInferences}
         />
       );

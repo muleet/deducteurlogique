@@ -1,90 +1,132 @@
 import React, { Component } from "react";
 
 class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
+  renderButtonMakeHyp(str, content) {
+    const inferenceItself = {
+      itself: content,
+      numberCommentary: "",
+      commentary: "hyp ∨e"
+    };
+    const hyp = "nouvelle hyp ∨e";
+    return (
+      <div
+        className=""
+        onClick={() => {
+          this.props.valueInference.addInference(inferenceItself, hyp);
+        }}
+      >
+        Créer hyp {str}
+      </div>
+    );
+  }
+
+  renderButtonBreakHyp(str) {
+    const hyp = "fin hyp ∨e";
+    return (
+      <div
+        className=""
+        onClick={() => {
+          this.manageLotsOfStuffAboutHypothesis(
+            "newInference",
+            hyp,
+            "decrease"
+          );
+          // this.props.valueRule.addInferenceFromRule(inferenceItself, "∨e");
+        }}
+      >
+        {str + " est trouvé"}
+      </div>
+    );
+  }
+
   render() {
     let buttonDisjonctionEliminationHypothesis = "";
     let arrayExpectedArguments = [];
     let arrayExpectedButtons = [];
     const expectedArguments = this.props.expectedArguments;
     const storedInference = this.props.valueInference.storedInference;
-    let ArrayAorB;
-    let step = 0;
+    let ArrayAorB = "";
+    let argumentAorB, firstHyp, firstConclusion, secondHyp, secondConclusion;
     // const allHypotheticalInferences = this.props.valueInference
     //   .allHypotheticalInferences;
+    if (storedInference[0]) {
+      ArrayAorB = this.props.valueRule.returnWhatIsBeforeAndAfterTheOperator(
+        storedInference[0],
+        "∨"
+      );
+      console.log("ArrayAorB", ArrayAorB);
+    }
     if (this.props.whatToReturn === "buttons") {
-      let inferenceToAdd = {};
       if (storedInference[0]) {
-        ArrayAorB = this.props.valueRule.returnWhatIsBeforeAndAfterTheOperator(
-          storedInference[0],
-          "∨"
-        );
-        inferenceToAdd = {
-          // cet objet doit contenir le A de A∨B, puis le B et A∨B
-          itself: ArrayAorB[0],
-          numbers: "",
-          commentary: "hyp ∨e"
-        };
-        buttonDisjonctionEliminationHypothesis = (
-          <div
-            onClick={() => {
-              step++;
-              this.props.valueRule.addInferenceFromRule(
-                inferenceToAdd,
-                "nouvelle hypothèse"
-              );
-            }}
-            className="singleRule fatRule"
-          >
-            hyp A
-          </div>
+        buttonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
+          "A",
+          ArrayAorB[0]
         );
       }
-      if (step === 1) {
-        buttonDisjonctionEliminationHypothesis = (
-          <div
-            onClick={() => {
-              this.props.valueRule.addInferenceFromRule(
-                inferenceToAdd,
-                "nouvelle hypothèse"
-              );
-            }}
-            className="singleRule fatRule"
-          >
-            /hyp A
-          </div>
+      if (storedInference[1] && !firstHyp) {
+        buttonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
+          "B",
+          ArrayAorB[1]
         );
       }
-      arrayExpectedButtons.push(buttonDisjonctionEliminationHypothesis);
+      arrayExpectedButtons[0] = buttonDisjonctionEliminationHypothesis;
     } else if (this.props.whatToReturn === "arguments") {
-      let argumentAorB = (
+      if (!storedInference[0]) {
+      }
+      argumentAorB = (
         <p className="awaiting-an-inference-blinking">
           {"<Cliquez sur une inférence A∨B>"}
         </p>
       );
-      let firstHyp = (
+      firstHyp = (
         <p className="awaiting-an-inference-blinking">
           {"<Créez d'abord une hypothèse A>"}
         </p>
       );
-      let secondHyp = (
+      secondHyp = (
         <p className="awaiting-an-inference-blinking">
-          {"<Créez d'abord une hypothèse B, après avoir fermé l'hypothèse A>"}
+          {"<Créez d'abord une hypothèse B, en dehors de l'hypothèse A>"}
         </p>
       );
-      let firstConclusion = (
+      firstConclusion = (
         <p className="awaiting-an-inference-blinking">
           {"<Cliquez sur une inférence B dans l'hypothèse A>"}
         </p>
       );
-      let secondConclusion = (
+      secondConclusion = (
         <p className="awaiting-an-inference-blinking">
           {"<Cliquez sur une inférence B dans l'hypothèse B>"}
         </p>
       );
       if (storedInference[0]) {
+        console.log("ArrayAorB", ArrayAorB);
         argumentAorB = <p className="infItself-modal">{storedInference[0]}</p>;
-      }
+        firstHyp = (
+          <p className="awaiting-an-inference-blinking">{ArrayAorB[0]}</p>
+        );
+        secondHyp = (
+          <p className="awaiting-an-inference-blinking">{ArrayAorB[1]}</p>
+        );
+        if (storedInference[1]) {
+          firstHyp = <p className="infItself-modal">{storedInference[1]}</p>;
 
+          if (storedInference[2]) {
+            firstConclusion = (
+              <p className="infItself-modal">{storedInference[2]}</p>
+            );
+            if (storedInference[3]) {
+              secondHyp = (
+                <p className="infItself-modal">{storedInference[3]}</p>
+              );
+              if (storedInference[4]) {
+                secondConclusion = (
+                  <p className="infItself-modal">{storedInference[4]}</p>
+                );
+              }
+            }
+          }
+        }
+      }
       arrayExpectedArguments.push(
         <li
           key={arrayExpectedArguments.length}

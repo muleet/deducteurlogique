@@ -115,7 +115,7 @@ class RuleModal extends Component {
             <Fragment>
               <div>
                 <ReactModal
-                  isOpen={this.props.valueInference.ruleModalShown}
+                  isOpen={this.props.valueInference.ruleModalShown.normal}
                   contentLabel="onRequestClose Example"
                   // onAfterOpen={handleAfterOpenFunc}
                   onRequestClose={this.handleCloseModal}

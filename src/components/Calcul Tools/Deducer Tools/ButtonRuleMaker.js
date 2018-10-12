@@ -37,6 +37,14 @@ class ButtonRuleMaker extends Component {
     }
   }
 
+  renderRuleClassName() {
+    if (!this.props.valueInference.ruleModalShown.normal) {
+      return "";
+    } else if (this.props.valueInference.ruleModalShown.normal) {
+      // return "selected";
+    }
+  }
+
   handleClick(instruction, expectedArguments, ruleName, valueInference) {
     const objectForTheRuleModal = {
       instruction: instruction,
@@ -49,16 +57,16 @@ class ButtonRuleMaker extends Component {
       expectedArguments.length
     );
     if (
-      this.props.valueInference.ruleModalShown === true &&
+      this.props.valueInference.ruleModalShown.normal === true &&
       ruleName === this.props.valueInference.ruleModalContent.ruleName
     ) {
       valueInference.changeStorageBoolean(false);
     } else {
     }
-    if (this.props.valueInference.ruleModalShown === false) {
+    if (this.props.valueInference.ruleModalShown.normal === false) {
       valueInference.changeStorageBoolean(true, expectedArguments.length);
     }
-    if (this.props.valueInference.ruleModalShown === false) {
+    if (this.props.valueInference.ruleModalShown.normal === false) {
       valueInference.setRuleModal(
         "initial",
         "",
@@ -133,7 +141,9 @@ class ButtonRuleMaker extends Component {
               {arrayRulesSent[i].name}
               <RulePopover
                 key={i}
-                RulePopoverClassName="singleRule fatRule selectable"
+                RulePopoverClassName={
+                  "singleRule fatRule selectable " + this.renderRuleClassName()
+                }
                 ruleName={arrayCurrentRules[i].name}
                 // ruleName={arrayCurrentRules[i].name}
                 verbalName={arrayCurrentRules[i].verbalName}
@@ -142,28 +152,6 @@ class ButtonRuleMaker extends Component {
               />
             </li>
           );
-          // arrayAllOtherRules.push(
-          //   <RuleHypothesisModal/>
-          // );
-          // arrayAllOtherRules.push(
-          //   <RuleHypothesisModal
-          //     key={i}
-          //     modalButton={
-          //       <RulePopover
-          //         key={i}
-          //         RulePopoverClassName="singleRule fatRule selectable"
-          //         ruleName={arrayRulesSent[i]}
-          //         verbalName={arrayCurrentRules[i].verbalName}
-          //         Description={arrayCurrentRules[i].verbalDescription}
-          //         HowToUse={organizedUtilization}
-          //       />
-          //     }
-          //     instruction={arrayCurrentRules[i].instruction}
-          //     expectedArguments={arrayCurrentRules[i].expectedArguments} // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
-          //     ruleName={arrayCurrentRules[i].name}
-          //     valueInference={this.props.valueInference}
-          //   />
-          // );
         } else if (Number(arrayRulesSent[i].length) === 2) {
           arrayRulesTwoCharacters.push(
             <li
@@ -180,7 +168,9 @@ class ButtonRuleMaker extends Component {
               {arrayRulesSent[i].name}
               <RulePopover
                 key={i}
-                RulePopoverClassName="singleRule tinyRule selectable"
+                RulePopoverClassName={
+                  "singleRule tinyRule selectable " + this.renderRuleClassName()
+                }
                 ruleName={arrayCurrentRules[i].name}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}

@@ -5,7 +5,7 @@ class Debugger extends Component {
     const valueInference = this.props.valueInference;
     return (
       <Fragment>
-        {"ruleModalShown " + valueInference.ruleModalShown}
+        {"ruleModalShown.normal " + valueInference.ruleModalShown.normal}
         {"canInferenceBeStored " + valueInference.canInferenceBeStored}
         {"storedInference" + valueInference.storedInference}
         {"howManyInferenceToStore" + valueInference.howManyInferenceToStore}

@@ -22,12 +22,13 @@ class RuleModalProvider extends Component {
     this.props.valueInference.setChoiceContent("");
   }
 
-  showExpectedArguments(expectedArguments, ruleName) {
+  showExpectedArguments(expectedArguments, ruleName, valueRule) {
     return (
       <ShowExpectedArguments
         valueInference={this.props.valueInference}
         ruleName={ruleName}
         expectedArguments={expectedArguments}
+        valueRule={valueRule}
       />
     );
   }
@@ -65,7 +66,7 @@ class RuleModalProvider extends Component {
               <div>
                 <ReactModal
                   // isOpen={this.state.showModal}
-                  isOpen={this.props.valueInference.ruleModalShown}
+                  isOpen={this.props.valueInference.ruleModalShown.normal}
                   contentLabel="onRequestClose Example"
                   // onAfterOpen={handleAfterOpenFunc}
                   onRequestClose={this.handleCloseModal}
@@ -90,7 +91,8 @@ class RuleModalProvider extends Component {
                     <ul className="rule-modal-all-arguments">
                       {this.showExpectedArguments(
                         this.props.expectedArguments,
-                        this.props.ruleName
+                        this.props.ruleName,
+                        value
                       )}
                       {keyboard}
                       {this.props.valueInference.ruleModalChoiceContent}
