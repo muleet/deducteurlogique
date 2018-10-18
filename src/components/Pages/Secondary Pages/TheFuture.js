@@ -46,14 +46,14 @@ const TheFuture = () => {
             la contraposée du conditionnel. (Et des exercices associés pour
             chacun.)
           </p>
-          <p className="soon-available-rule">
+          {/* <p className="soon-available-rule">
             - Rendre le site plus user-friendly, avec des messages situationnels
             guidant l'utilisateur.
           </p>
           <p className="soon-available-rule">
             - Rendre responsive le site (au point qu'on puisse l'utiliser
             facilement sur smartphone).
-          </p>
+          </p> */}
           <p className="later-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
             des traits qui s'adaptent à la longueur des hypothèses.
@@ -79,7 +79,8 @@ const TheFuture = () => {
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
             dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant
-            dessus.
+            sur une petite icône située sur ligne, qui apparaît lorsqu'on met sa
+            souris dessus.
           </p>
         </div>
       </div>

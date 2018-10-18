@@ -11,6 +11,7 @@ class ShowTruthTable extends Component {
     arrayInfoLine: {
       number: "",
       name: "",
+      alternativeName: "",
       description: "",
       lecture: "",
       // link
@@ -62,9 +63,10 @@ class ShowTruthTable extends Component {
     }
   }
 
-  renderInfoTruthLine(
+  setInfoTruthLine(
     number,
     name,
+    alternativeName,
     description,
     lecture,
     // link
@@ -79,6 +81,7 @@ class ShowTruthTable extends Component {
         arrayInfoLine: {
           number: number,
           name: name,
+          alternativeName: alternativeName,
           description: description,
           lecture: lecture,
           // link
@@ -89,9 +92,7 @@ class ShowTruthTable extends Component {
           example: example
         }
       });
-    } else {
     }
-    // return name;
   }
 
   renderTruthLine(i, name, itself, character) {
@@ -130,6 +131,16 @@ class ShowTruthTable extends Component {
     return arrayToReturn;
   }
 
+  renderAlternativeName() {
+    if (this.state.arrayInfoLine.alternativeName.length > 0) {
+      return (
+        <li style={{ fontSize: "14px", color: "grey" }}>
+          Autres noms : {this.state.arrayInfoLine.alternativeName}
+        </li>
+      );
+    }
+  }
+
   renderAllInformations() {
     let reductibleTo = "";
     const char = this.state.arrayInfoLine.reductibleTo;
@@ -148,6 +159,7 @@ class ShowTruthTable extends Component {
         <Fragment>
           <li>{this.state.arrayInfoLine.number}</li>
           <li>Nom : {this.state.arrayInfoLine.name}</li>
+          {this.renderAlternativeName()}
           <li>{this.state.arrayInfoLine.description}</li>
           <li>Caractère : {this.state.arrayInfoLine.character[0]}</li>
           {this.renderLecture()}
@@ -168,7 +180,7 @@ class ShowTruthTable extends Component {
         key={0}
         className="truth-line info-line selectable"
         onMouseOver={() => {
-          this.renderInfoTruthLine("", "", "", "", "", "", "", "");
+          this.setInfoTruthLine("", "", "", "", "", "", "", "");
         }}
       >
         {this.renderTruthLine(
@@ -186,9 +198,10 @@ class ShowTruthTable extends Component {
             key={i}
             className={"truth-line selectable " + TruthTable[i].category}
             onMouseOver={() => {
-              this.renderInfoTruthLine(
+              this.setInfoTruthLine(
                 TruthTable[i].number,
                 TruthTable[i].name,
+                TruthTable[i].alternativeName,
                 TruthTable[i].description,
                 TruthTable[i].lecture,
                 // link

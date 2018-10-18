@@ -2,6 +2,7 @@
   {
     "number": 0,
     "name": "p q",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "",
@@ -14,6 +15,7 @@
   {
     "number": 1,
     "name": "Tautologie",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "",
@@ -26,6 +28,7 @@
   {
     "number": 2,
     "name": "Conjonction",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "A∧B",
@@ -37,7 +40,8 @@
   },
   {
     "number": 3,
-    "name": "Négation du conditionnel, ou non-conditionnel, ou abjonction",
+    "name": "Abjonction",
+    "alternativeName": "Négation du conditionnel, ou non-conditionnel",
     "description": "",
     "link": "",
     "reductibleTo": "A∧~B",
@@ -49,8 +53,9 @@
   },
   {
     "number": 4,
-    "name": "",
-    "description": "Contraposée de la négation du conditionnel, ou non-conditionnel réciproque, ou contraposée de l'abjonction",
+    "name": "Contraposée de l'abjonction",
+    "alternativeName": "Contraposée de la négation du conditionnel, ou non-conditionnel réciproque",
+    "description": "",
     "link": "",
     "reductibleTo": "~A∧B",
     "lecture": "",
@@ -62,6 +67,7 @@
   {
     "number": 5,
     "name": "Disjonction réciproque",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "~A∧~B",
@@ -74,6 +80,7 @@
   {
     "number": 6,
     "name": "Proposition p",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "p",
@@ -86,6 +93,7 @@
   {
     "number": 7,
     "name": "Négation de q",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "~q",
@@ -98,6 +106,7 @@
   {
     "number": 8,
     "name": "Biconditionnel",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "~(~p∧q)∧~(p∧~q)",
@@ -113,6 +122,7 @@
   {
     "number": 9,
     "name": "Disjonction exclusive",
+    "alternativeName": "",
     "description": "A et B ne peuvent être ni vrais ensemble, ni faux ensembles.",
     "link": "",
     "reductibleTo": "~(~p∧~q)∧~(p∧q)",
@@ -125,6 +135,7 @@
   {
     "number": 10,
     "name": "Proposition q",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "q",
@@ -137,6 +148,7 @@
   {
     "number": 11,
     "name": "Négation de p",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "~p",
@@ -149,6 +161,7 @@
   {
     "number": 12,
     "name": "Disjonction inclusive",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "~(~p∧~q)",
@@ -163,7 +176,8 @@
   },
   {
     "number": 13,
-    "name": "Contraposée du conditionnel, ou contraposition",
+    "name": "Contraposée du conditionnel",
+    "alternativeName": "Contraposition",
     "description": "",
     "link": "",
     "reductibleTo": "~(~p∧q)",
@@ -176,6 +190,7 @@
   {
     "number": 14,
     "name": "Conditionnel",
+    "alternativeName": "Implication matérielle",
     "description": "",
     "link": "",
     "reductibleTo": "~(p∧~q)",
@@ -188,6 +203,7 @@
   {
     "number": 15,
     "name": "Incompatibilité",
+    "alternativeName": "Barre de Sheffer",
     "description": "",
     "link": "https://fr.wikipedia.org/wiki/Barre_de_Sheffer https://fr.wikipedia.org/wiki/Modus_ponendo_tollens",
     "reductibleTo": "~(p∧q)",
@@ -200,6 +216,7 @@
   {
     "number": 16,
     "name": "Contradiction",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "",

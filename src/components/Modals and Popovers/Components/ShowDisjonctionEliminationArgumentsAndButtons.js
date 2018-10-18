@@ -44,89 +44,120 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
     let arrayExpectedArguments = [];
     let arrayExpectedButtons = [];
     const expectedArguments = this.props.expectedArguments;
-    const storedInference = this.props.valueInference.storedInference;
+    // const storedInference = this.props.valueInference.storedInference;
     let ArrayAorB = "";
     let argumentAorB, firstHyp, firstConclusion, secondHyp, secondConclusion;
     // const allHypotheticalInferences = this.props.valueInference
     //   .allHypotheticalInferences;
-    if (storedInference[0]) {
+    console.log(
+      "longStoredInferenceAndNumber",
+      this.props.valueInference.longStoredInferenceAndNumber,
+      "ArrayAorB",
+      ArrayAorB
+    );
+    if (this.props.valueInference.longStoredInferenceAndNumber[0]) {
       ArrayAorB = this.props.valueRule.returnWhatIsBeforeAndAfterTheOperator(
-        storedInference[0],
+        this.props.valueInference.longStoredInferenceAndNumber[0],
         "∨"
       );
-      console.log("ArrayAorB", ArrayAorB);
     }
+
     if (this.props.whatToReturn === "buttons") {
-      if (storedInference[0]) {
+      // étape 0 : l'utilisateur doit cliquer sur une inférence A∨B
+      if (this.props.valueInference.longStoredInferenceAndNumber.length === 1) {
+        // étape 1 : "créer hyp A"
         buttonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
           "A",
           ArrayAorB[0]
         );
-      }
-      if (storedInference[1] && !firstHyp) {
+      } else if (
+        this.props.valueInference.longStoredInferenceAndNumber.length === 2
+      ) {
+        // étape 2 : "arrêter hyp A"
+        buttonDisjonctionEliminationHypothesis = "casser hyp A";
+      } else if (
+        this.props.valueInference.longStoredInferenceAndNumber.length === 3
+      ) {
+        // étape 3 : "créer hyp B"
         buttonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
           "B",
           ArrayAorB[1]
         );
+      } else if (
+        this.props.valueInference.longStoredInferenceAndNumber.length === 4
+      ) {
+        // étape 4 : "arrêter hyp B"
+        buttonDisjonctionEliminationHypothesis = "casser hyp B";
+      }
+
+      // étape 4 : l'utilisateur clôt l'hyp B puisque B est déjà trouvé par défaut. On infère aussitôt B (la règle se retrouve validée).
+      if (2 === 1 + 1) {
       }
       arrayExpectedButtons[0] = buttonDisjonctionEliminationHypothesis;
     } else if (this.props.whatToReturn === "arguments") {
-      if (!storedInference[0]) {
-      }
       argumentAorB = (
-        <p className="awaiting-an-inference-blinking">
+        <p className="awaiting-an-longStored-inference-blinking">
           {"<Cliquez sur une inférence A∨B>"}
         </p>
       );
       firstHyp = (
-        <p className="awaiting-an-inference-blinking">
+        <p className="awaiting-an-longStored-inference-blinking">
           {"<Créez d'abord une hypothèse A>"}
         </p>
       );
       secondHyp = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Créez d'abord une hypothèse B, en dehors de l'hypothèse A>"}
+        <p className="awaiting-an-longStored-inference-blinking">
+          {"<Créez d'abord une hypothèse B, après avoir terminé l'hypothèse A>"}
         </p>
       );
       firstConclusion = (
-        <p className="awaiting-an-inference-blinking">
+        <p className="awaiting-an-longStored-inference-blinking">
           {"<Cliquez sur une inférence B dans l'hypothèse A>"}
         </p>
       );
       secondConclusion = (
-        <p className="awaiting-an-inference-blinking">
+        <p className="awaiting-an-longStored-inference-blinking">
           {"<Cliquez sur une inférence B dans l'hypothèse B>"}
         </p>
       );
-      if (storedInference[0]) {
-        console.log("ArrayAorB", ArrayAorB);
-        argumentAorB = <p className="infItself-modal">{storedInference[0]}</p>;
-        firstHyp = (
-          <p className="awaiting-an-inference-blinking">{ArrayAorB[0]}</p>
-        );
-        secondHyp = (
-          <p className="awaiting-an-inference-blinking">{ArrayAorB[1]}</p>
-        );
-        if (storedInference[1]) {
-          firstHyp = <p className="infItself-modal">{storedInference[1]}</p>;
 
-          if (storedInference[2]) {
-            firstConclusion = (
-              <p className="infItself-modal">{storedInference[2]}</p>
-            );
-            if (storedInference[3]) {
-              secondHyp = (
-                <p className="infItself-modal">{storedInference[3]}</p>
-              );
-              if (storedInference[4]) {
-                secondConclusion = (
-                  <p className="infItself-modal">{storedInference[4]}</p>
-                );
-              }
-            }
-          }
-        }
+      if (this.props.valueInference.longStoredInferenceAndNumber[0]) {
+        argumentAorB = (
+          <p className="inference-longStored">
+            {this.props.valueInference.longStoredInferenceAndNumber[0]}
+          </p>
+        );
       }
+      if (this.props.valueInference.longStoredInferenceAndNumber[1]) {
+        firstHyp = (
+          <p className="inference-longStored">
+            {this.props.valueInference.longStoredInferenceAndNumber[1]}
+          </p>
+        );
+      }
+      if (this.props.valueInference.longStoredInferenceAndNumber[2]) {
+        firstConclusion = (
+          <p className="inference-longStored">
+            {this.props.valueInference.longStoredInferenceAndNumber[2]}
+          </p>
+        );
+      }
+
+      if (this.props.valueInference.longStoredInferenceAndNumber[3]) {
+        secondHyp = (
+          <p className="inference-longStored">
+            {this.props.valueInference.longStoredInferenceAndNumber[3]}
+          </p>
+        );
+      }
+      if (this.props.valueInference.longStoredInferenceAndNumber[4]) {
+        secondConclusion = (
+          <p className="inference-longStored">
+            {this.props.valueInference.longStoredInferenceAndNumber[4]}
+          </p>
+        );
+      }
+
       arrayExpectedArguments.push(
         <li
           key={arrayExpectedArguments.length}

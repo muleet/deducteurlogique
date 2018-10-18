@@ -62,8 +62,23 @@
   align-self: center;
   text-align: center;
   color: white;
-  /* min-width: 160px; */
   width: 180px;
+}
+
+.awaiting-an-longStored-inference-blinking {
+  animation: very-slow-blinker 3s linear infinite;
+  font-size: 13px;
+  align-self: center;
+  text-align: center;
+  color: hsl(49, 100%, 72%);
+  width: 180px;
+}
+
+.inference-longStored {
+  /* homologue "long" de .inferenceItself */
+  color: hsl(49, 100%, 72%);
+  width: 180px;
+  margin-right: 10px;
 }
 
 @keyframes slow-blinker {

@@ -62,20 +62,21 @@
   },
   {
     "name": "Que sont la contradiction et la contrariété ?",
-    "answer": "Une contradiction revient à admettre vraie deux propositions ou ensembles de propositions, qui ne peuvent l'être ensemble. Elles peuvent être fausses ensembles, en revanche. Une contrariété est"
+    "answer": "Une contradiction revient à admettre vraie deux propositions ou ensembles de propositions, qui ne peuvent l'être ensemble. (Elles peuvent être fausses ensembles, en revanche.) Une contrariété admet des possibilités tierces.",
+    "example": "\"Ce chat est entièrement entièrement noir\" et \"Ce chat n'est pas entièrement noir\" sont des propositions contradictoires. \"Ce chat est en partie noir\" et \"Ce chat est en partie blanc\" sont des propositions contraires."
   },
   {
     "name": "Que sont l'hypothèse et le raisonnement par l'absurde ?",
-    "answer": "Faire une hypothèse a deux utilités : d'abord, \"voir ce qui s'en suit\" (⊃i), et ensuite, faire un raisonnement par l'absurde (~i).",
+    "answer": "Faire une hypothèse conduit à deux possibilités : ou bien, \"voir ce qui s'en suit et conclure dessus\" (⊃i), ou bien, faire un raisonnement par l'absurde pour rejeter l'hypothèse (~i).",
     "example": "Exemple pour le premier cas : un climatologue peut faire des hypothèses sur l'avenir du climat en admettant certaines propositions comme totalement irréfutable. S'il admet qu'en 2100 il fera 3 degrés de plus (appelons cette proposition \"p\"), il peut établir un raisonnement scientifique sur la base de ses connaissances, et arriver à la conclusion irréfutable selon ces connaissances, que, par exemple, le niveau de la mer montera alors de 2 mètres (appelons cette proposition \"q\"). Ou dit formellement : 1. si p, 2. (raisonnement) 3. alors q."
   },
   {
     "name": "Quelle différence entre le conditionnel, ⊃, et l'implication, → ?",
-    "answer": "Le conditionnel désigne une condition particulière, là où il s'agit d'une condition généralisable pour l'implication [à développer]."
+    "answer": "L'implication décrit une relation logique alors que le conditionnel permet de faire des opérations. Ces deux connecteurs sont parfois confondus car certaines traditions les font porter le même nom (implication) voire le même symbole (la flèche allant de la gauche vers la droite), mais ils sont très différents : l'implication parle de la nature de la logique, là où le conditionnel [à développer/réécrire]. En ce sens, le conditionnel désigne une condition particulière, là où il s'agit d'une condition généralisable pour l'implication."
   },
   {
     "name": "Qu'est-ce qu'une table de vérité ?",
-    "answer": "Une table de vérité est la signification d'un connecteur vérifonctionnel. [à développer]"
+    "answer": "Une table de vérité est une liste de toutes les combinaisons de valeurs de vérité que peut prendre un certain ensemble de propositions. A chacune de ces combinaisons correspond une certaine relation logique, laquelle peut être symbolisée par un certain connecteur logique. [à développer] "
   },
   {
     "name": "Qu'est-ce qu'une modalité ?",
@@ -95,7 +96,7 @@
   },
   {
     "name": "Faut-il dépasser l'analyse logique ?",
-    "answer": "Oui, pour deux raisons. D'abord, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Ensuite, l'analyse logique interprète la vérité des propositions de manière binaire (elles sont soient vraies soit fausses, on appelle cela la bivalence), or les interprétations que nous faisons du réel (ou la manière d'en parler : les métaphores, les probabilités...) peuvent rarement être réduits à des descriptions aussi strictes."
+    "answer": "Oui, pour deux raisons. Premièrement, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Deuxièmement, l'analyse logique interprète la vérité des propositions de manière binaire (elles sont soient vraies soit fausses, on appelle cela la bivalence), or les interprétations que nous faisons du réel (ou la manière d'en parler : les métaphores, les probabilités...) peuvent rarement être réduits à des descriptions aussi strictes."
   },
   {
     "name": "Quels auteurs antiques abordent la logique ?",

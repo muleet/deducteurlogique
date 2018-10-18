@@ -51,7 +51,7 @@
   {
     "name": "~~e",
     "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
-    "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique classique). On peut donc inférer A.",
+    "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique classique). Et sur la base de ~~A, on peut inférer A.",
     "arrayUtilization": "",
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],

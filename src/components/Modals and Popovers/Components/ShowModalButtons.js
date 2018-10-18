@@ -88,10 +88,24 @@ class ShowModalButtons extends Component {
   }
 
   render() {
+    let buttonResetArguments = "";
     let buttonInverseInference = "";
     let buttonRemoveLastCharacter = "";
     let buttonSpecificRule = "";
     // let buttonDisjonctionEliminationHypothesis = "";
+    if (this.props.ruleName !== "∨e") {
+      buttonResetArguments = (
+        <p
+          className="rule-modal-button"
+          onClick={() => {
+            this.props.valueInference.changeStorageBoolean("resetButStillTrue");
+            this.props.valueInference.setRuleModal(true, "");
+          }}
+        >
+          <i className="fas fa-eraser" />
+        </p>
+      );
+    }
     if (this.props.ruleName === "∨i") {
       buttonInverseInference = (
         <p
@@ -113,6 +127,7 @@ class ShowModalButtons extends Component {
     if (this.props.ruleName === "∨e") {
       buttonSpecificRule = (
         <ShowDisjonctionEliminationArguments
+          key={1}
           whatToReturn="buttons"
           // expectedArguments={expectedArguments}
           valueRule={this.props.valueRule}
@@ -142,15 +157,7 @@ class ShowModalButtons extends Component {
         >
           <i className="fas fa-check-square" />
         </p>
-        <p
-          className="rule-modal-button"
-          onClick={() => {
-            this.props.valueInference.changeStorageBoolean("resetButStillTrue");
-            this.props.valueInference.setRuleModal(true, "");
-          }}
-        >
-          <i className="fas fa-eraser" />
-        </p>
+        {buttonResetArguments}
         <p className="rule-modal-button" onClick={this.props.handleCloseModal}>
           <i className="fas fa-times-circle" />
         </p>

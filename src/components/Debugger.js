@@ -9,6 +9,8 @@ class Debugger extends Component {
         {"canInferenceBeStored " + valueInference.canInferenceBeStored}
         {"storedInference" + valueInference.storedInference}
         {"howManyInferenceToStore" + valueInference.howManyInferenceToStore}
+        {"longStoredInference.length" +
+          valueInference.longStoredInferenceAndNumber.length}
       </Fragment>
     );
   }

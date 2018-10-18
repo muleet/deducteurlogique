@@ -27,12 +27,19 @@ class InferenceProvider extends Component {
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
         inferenceType = "hypothesisItself";
         // this.updateTrueAtomicPropositions("new hyp");
+        if (hyp === "nouvelle hyp ∨e") {
+          // this.longStorageForRuleVerification(newInference, true);
+        } else if (hyp === "fin hyp ∨e") {
+          // this.longStorageForRuleVerification("", "reset");
+        }
       }
       if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         hypNumber = -1;
         // this.updateTrueAtomicPropositions("break hyp");
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
       }
+
+      // section des hypothèses de l'élimination de la disjonction, ∨e
 
       const copyStoredHypId =
         this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
@@ -197,10 +204,12 @@ class InferenceProvider extends Component {
           "===",
           hypID
         );
+
         if (this.state.hypothesisCurrentLevelAndId.actualID === hypID) {
           if (
             this.state.howManyInferenceToStore ===
             copyArrayStoredInference.length
+            // && copyArrayStoredInference.length !== 5
           ) {
             // copyArrayStoredInference = []; // inférence elle-même
             // copyStoredNumbers = []; // nombre de l'inférence
@@ -211,6 +220,7 @@ class InferenceProvider extends Component {
             copyStoredNumbers.push(" " + numInference);
             copyStoredHypId.push(hypID);
           }
+          // maj du state
           this.setState(state => ({
             storedInference: copyArrayStoredInference,
             storedNumbers: copyStoredNumbers,
@@ -221,6 +231,11 @@ class InferenceProvider extends Component {
             "Impossible d'utiliser des inférences hors de l'hypothèse en cours",
             "error-advice"
           );
+        }
+        // cas de la règle ∨e
+        if (this.state.howManyInferenceToStore === 5) {
+          console.log("la règle ∨e fait son oeuvre");
+          this.longStorageForRuleVerification(inferenceItself, true);
         }
       }
     };
@@ -235,6 +250,7 @@ class InferenceProvider extends Component {
           howManyInferenceToStore: num,
           storedInference: [],
           storedNumbers: "",
+          // longStoredInferenceAndNumber: [],
           ruleModalChoiceContent: "",
           futureInference: "",
           inversion: false
@@ -263,6 +279,8 @@ class InferenceProvider extends Component {
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
           storedNumbers: "",
           storedHypID: 0,
+          // longStoredInferenceAndNumber: [],
+          // ruleModalChoiceContent: "",
           futureInference: "",
           inversion: false
         });
@@ -279,7 +297,7 @@ class InferenceProvider extends Component {
       let copyAllInferencesRendered = [...this.state.allInferencesRendered];
       copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
       // A FAIRE : faut que je vire la dernière hypothèse, si c'était elle la dernière action au moment du clic sur le bouton de removeLastInference
-      console.log("nota bene : y'a un truc à coder dans removeLastInference");
+      console.log("nota bene : faut tout recoder dans removeLastInference");
       this.setState(state => ({
         allInferencesRendered: copyAllInferencesRendered
       }));
@@ -452,20 +470,20 @@ class InferenceProvider extends Component {
       }
     };
 
-    // this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
-    // let copyArray = this.state.arrayTrueAtomicPropositions;
-    // if (str === "new hyp") {
-    //   console.log("UTAP crée bien le tableau");
-    //   copyArray.push([]);
-    // } else if (str === "add prop") {
-    //   copyArray[hypLevel].unshift(itself);
-    // } else if (str === "break hyp") {
-    //   copyArray.splice(copyArray.length - 1);
-    // }
-    // this.setState({
-    //   arrayTrueAtomicPropositions: copyArray
-    // });
-    // };
+    this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
+      // let copyArray = this.state.arrayTrueAtomicPropositions;
+      // if (str === "new hyp") {
+      //   console.log("UTAP crée bien le tableau");
+      //   copyArray.push([]);
+      // } else if (str === "add prop") {
+      //   copyArray[hypLevel].unshift(itself);
+      // } else if (str === "break hyp") {
+      //   copyArray.splice(copyArray.length - 1);
+      // }
+      // this.setState({
+      //   arrayTrueAtomicPropositions: copyArray
+      // });
+    };
 
     this.addToFutureInference = newChar => {
       let copyFutureInference = this.state.futureInference;
@@ -483,16 +501,17 @@ class InferenceProvider extends Component {
     };
 
     this.longStorageForRuleVerification = (inference, str) => {
+      let newlongStoredInferenceAndNumber = [];
       if (str === true) {
-        let newlongStoredInferenceAndNumber = {
-          longStoredInference: inference.itself,
-          longStoredNumbers: inference.numbers
-          // longStoredHypID: inference.hypId
-        };
-        this.setState({
-          longStoredInferenceAndNumber: newlongStoredInferenceAndNumber
-        });
+        newlongStoredInferenceAndNumber = [
+          ...this.state.longStoredInferenceAndNumber
+        ];
+        newlongStoredInferenceAndNumber.push(inference);
+      } else if (str === "reset") {
       }
+      this.setState({
+        longStoredInferenceAndNumber: newlongStoredInferenceAndNumber
+      });
     };
 
     this.state = {
@@ -506,11 +525,7 @@ class InferenceProvider extends Component {
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0, // chaque inférence dans une hypothèse a un id d'hypothèse (qui est à 0 s'il n'y a pas d'hyp en cours), storedHypID permet de stocker cet id d'hypothèse, pour le comparer à celui de l'hypothèse en cours
       // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
-      longStoredInferenceAndNumber: {
-        longStoredInference: [],
-        longStoredNumbers: "",
-        longStoredHypID: 0
-      },
+      longStoredInferenceAndNumber: [],
       longStorageForRuleVerification: this.longStorageForRuleVerification,
       // sections de divers boutons de l'interface
       giveSolution: this.giveSolution,

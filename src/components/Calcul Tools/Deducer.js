@@ -21,7 +21,7 @@ class Deducer extends Component {
     currentExercise: {}
   };
 
-  showMiniHeaderDeducer(value, valueRuleModal) {
+  showMiniHeaderDeducer(value) {
     const currentExerciseParamNumber = this.props.exerciseNumber;
     let leftArrow = (
       <Link
