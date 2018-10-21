@@ -96,13 +96,13 @@
   {
     "name": "∨e",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
-    "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, B a été trouvé, et que depuis l'hypothèse B, B a été trouvé, alors on peut inférer B.",
+    "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
     "arrayUtilization": [
-      ["A∨B", "|A hyp", "|B", "|B hyp", "|B", "B 1, 2-3, 4-5, ∨e"],
+      ["A∨B", "|A hyp", "|C", "|B hyp", "|C", "C 1, 2-3, 4-5, ∨e"],
       ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"]
     ],
-    "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence B dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence B dans cette hypothèse, et enfin refermez-la. Tout cela permettra d'inférer B. (En inversant ce fonctionnement on peut aussi inférer A.)",
-    "expectedArguments": ["A∨B", "B dans |A", "B dans |B"],
+    "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
+    "expectedArguments": ["A∨B", "C |A", "C |B"],
     "available": "yes",
     "binomial": "e"
   },

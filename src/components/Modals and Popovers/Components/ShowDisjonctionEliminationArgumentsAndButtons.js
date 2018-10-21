@@ -10,7 +10,7 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
     const hyp = "nouvelle hyp ∨e";
     return (
       <div
-        className="rule-modal-specific-button selectable"
+        className="rule-modal-specific-button icon"
         onClick={() => {
           this.props.valueInference.addInference(inferenceItself, hyp);
           this.props.valueInference.updateStepRule(true);
@@ -25,7 +25,7 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
     const hyp = "fin hyp ∨e";
     return (
       <div
-        className="rule-modal-specific-button selectable"
+        className="rule-modal-specific-button icon"
         onClick={() => {
           this.props.valueInference.manageLotsOfStuffAboutHypothesis(
             "newInference",
@@ -109,9 +109,14 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
         secondButtonDisjonctionEliminationHypothesis = this.renderButtonBreakHyp(
           "B"
         );
-        // this.props.valueInference.updateStepRule(true);
+      } else if (stepRule > 4) {
+        firstButtonDisjonctionEliminationHypothesis = (
+          <div className="rule-modal-specific-button deactivated">hyp A</div>
+        );
+        secondButtonDisjonctionEliminationHypothesis = (
+          <div className="rule-modal-specific-button deactivated">hyp B</div>
+        );
       }
-
       arrayExpectedButtons[0] = firstButtonDisjonctionEliminationHypothesis;
       arrayExpectedButtons[1] = secondButtonDisjonctionEliminationHypothesis;
     } else if (whatToReturn === "arguments") {

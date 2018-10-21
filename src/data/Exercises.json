@@ -278,6 +278,6 @@
     "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],
-    "doable": false
+    "doable": true
   }
 ]

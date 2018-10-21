@@ -241,35 +241,29 @@ class RuleProvider extends Component {
       const AorB = this.returnWhatIsBeforeAndAfterTheOperator(arrInf[0], "∨");
       const concA = arrInf[1];
       const concB = arrInf[2];
-      let side = "";
       let inferenceToAdd = {
         itself: "",
         numberCommentary: number,
         commentary: "∨e"
       };
-
-      // console.log(
-      //   "conditions étapes, LSIAN.length === ",
-      //   this.props.valueInference.longStoredInference.length,
-      //   " && allHypotheticalInferences[0] ",
-      //   this.props.valueInference.allHypotheticalInferences[0],
-      //   " !== ArrayAorB[0]",
-      //   ArrayAorB[0]
-      // );
+      let proposition;
 
       if (AorB[0] === concA && AorB[0] === concB) {
         inferenceToAdd.itself = AorB[0];
-        side = "gauche";
+        proposition = "A";
       } else if (AorB[1] === concA && AorB[1] === concB) {
         inferenceToAdd.itself = AorB[1];
-        side = "droite";
+        proposition = "B";
+      } else if (AorB[1] !== concA && concA === concB) {
+        inferenceToAdd.itself = concA;
+        proposition = "C";
       }
       if (inferenceToAdd.itself.length > 0) {
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
-          "Disjonction inclusive éliminée, on extrait la partie " +
-            side +
-            ", nouvelle inférence :" +
+          "Disjonction inclusive éliminée, les hypothèses A et B permettent toutes deux d'inférer " +
+            proposition +
+            ", qui est la nouvelle inférence :" +
             inferenceToAdd.itself,
           "rule-advice"
         );

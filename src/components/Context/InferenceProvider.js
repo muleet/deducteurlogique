@@ -489,6 +489,19 @@ class InferenceProvider extends Component {
       }
     };
 
+    this.setPartOfInference = () => {
+      // la "partie de l'inférence" en question est celle qui sera extraite par toute règle où le choix est possible, comme ∨e
+      let newPartOfInference;
+      if (this.state.partOfInference === "A") {
+        newPartOfInference = "B";
+      } else if (this.state.partOfInference === "B") {
+        newPartOfInference = "C";
+      } else if (this.state.partOfInference === "C") {
+        newPartOfInference = "A";
+      }
+      this.setState({ partOfInference: newPartOfInference });
+    };
+
     this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
       // let copyArray = this.state.arrayTrueAtomicPropositions;
       // if (str === "new hyp") {
@@ -562,10 +575,12 @@ class InferenceProvider extends Component {
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
-      inversion: false,
+      inversion: false, // ce booléen permet de savoir s'il faut inverser ou non telle inférence ayant pour connecteur dominant ∧, ∨, ⊻, ≡, ↓ ou |
       setInversion: this.setInversion,
-      arrayTrueAtomicPropositions: [[]],
-      updateTrueAtomicPropositions: this.updateTrueAtomicPropositions,
+      partOfInference: "A", //
+      setPartOfInference: this.setPartOfInference,
+      // arrayTrueAtomicPropositions: [[]],
+      // updateTrueAtomicPropositions: this.updateTrueAtomicPropositions
       //section de la création d'inférence par l'utilisateur
       futureInference: "",
       addToFutureInference: this.addToFutureInference,
