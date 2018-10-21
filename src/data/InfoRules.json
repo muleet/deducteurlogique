@@ -103,7 +103,7 @@
     ],
     "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence B dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence B dans cette hypothèse, et enfin refermez-la. Tout cela permettra d'inférer B. (En inversant ce fonctionnement on peut aussi inférer A.)",
     "expectedArguments": ["A∨B", "B dans |A", "B dans |B"],
-    "available": "soon",
+    "available": "yes",
     "binomial": "e"
   },
   {
