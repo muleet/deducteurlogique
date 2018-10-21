@@ -64,7 +64,11 @@ class ButtonRuleMaker extends Component {
     } else {
     }
     if (this.props.valueInference.ruleModalShown.normal === false) {
-      valueInference.changeStorageBoolean(true, expectedArguments.length);
+      valueInference.changeStorageBoolean(
+        true,
+        expectedArguments.length,
+        ruleName
+      );
     }
     if (this.props.valueInference.ruleModalShown.normal === false) {
       valueInference.setRuleModal(

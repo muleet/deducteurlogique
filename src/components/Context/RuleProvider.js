@@ -238,30 +238,44 @@ class RuleProvider extends Component {
     }; // ∨i
 
     this.inclusiveDisjonctionElimination = (arrInf, number) => {
-      let AorB = this.returnWhatIsBeforeAndAfterTheOperator(arrInf[0], "∨");
-      let hypA = arrInf[1];
-      let concA = arrInf[2];
-      let hypB = arrInf[3];
-      let concB = arrInf[4];
+      const AorB = this.returnWhatIsBeforeAndAfterTheOperator(arrInf[0], "∨");
+      const concA = arrInf[1];
+      const concB = arrInf[2];
+      let side = "";
+      let inferenceToAdd = {
+        itself: "",
+        numberCommentary: number,
+        commentary: "∨e"
+      };
 
-      if (AorB[0] === hypA && AorB[1] === concA) {
-        if (AorB[1] === hypB && AorB[1] === concB) {
-          const inferenceToAdd = {
-            // itself: AutomaticAorB,
-            itself: AorB[1],
-            numberCommentary: number,
-            commentary: "∨e"
-          };
-          this.props.valueInference.addInference(inferenceToAdd);
-          this.props.valueInference.setAdvice(
-            "Disjonction inclusive éliminée, il reste la partie droite, nouvelle inférence :" +
-              inferenceToAdd.itself,
-            "rule-advice"
-          );
-        }
+      // console.log(
+      //   "conditions étapes, LSIAN.length === ",
+      //   this.props.valueInference.longStoredInference.length,
+      //   " && allHypotheticalInferences[0] ",
+      //   this.props.valueInference.allHypotheticalInferences[0],
+      //   " !== ArrayAorB[0]",
+      //   ArrayAorB[0]
+      // );
+
+      if (AorB[0] === concA && AorB[0] === concB) {
+        inferenceToAdd.itself = AorB[0];
+        side = "gauche";
+      } else if (AorB[1] === concA && AorB[1] === concB) {
+        inferenceToAdd.itself = AorB[1];
+        side = "droite";
+      }
+      if (inferenceToAdd.itself.length > 0) {
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Disjonction inclusive éliminée, on extrait la partie " +
+            side +
+            ", nouvelle inférence :" +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser ∨e, faut rentrer les 5 bons trucs.",
+          "Pour utiliser la règle ∨e, lisez bien les instructions",
           "error-advice"
         );
       }
@@ -299,7 +313,7 @@ class RuleProvider extends Component {
       } else if (ruleName === "∨i") {
         this.inclusiveDisjonctionIntroduction(arrInf[0], numbers); // A pour A∨B
       } else if (ruleName === "∨e") {
-        this.inclusiveDisjonctionElimination(arrInf, numbers); // A∨B + hyp A + conc de A + hyp B + conc de B, pour A ou B
+        this.inclusiveDisjonctionElimination(arrInf, numbers); // A∨B + conc de |A + conc de |B, pour A ou B
       }
     };
 
@@ -368,37 +382,48 @@ class RuleProvider extends Component {
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {
       // Cette fonction a plusieurs intérêts. Elle n'est utilisée que dans certaines règles d'élimination d'opérateur. 1) D'abord, elle reçoit un str contenant une inférence dans sa totalité. 2) Elle vérifie ensuite où commence et où termine la première parenthèse. En faisant cela, elle repère le positionnement de l'opérateur principal (celui hors de toute parenthèse). 3) Elle ajoute alors tout ce qui précède cet opérateur, à un tableau à entrées. 4) Ensuite elle poursuit l'exploration de la string et finit par ajouter ce qui précède à l'opérateur à la deuxième entrée du tableau. 5) Finalement, returnWhatIsBeforeAndAfterTheOperator doit retourner un tableau contenant les deux parties, en retirant les premières parenthèses si elles en avaient.
+      console.log(str.indexOf(operator));
       let arrayToReturn = [];
-      let level = 0;
-      let part = "";
-      for (let i = 0; i < str.length; i++) {
-        if (str[i] === operator && level === 0) {
-          // si on arrive ici c'est qu'on vient de recontrer l'unique opérateur hors de toute parenthèse
-          arrayToReturn.push(part);
-          part = "";
-          i++;
-        }
-        if (str[i] === "(") {
-          level++;
-        } else if (str[i] === ")") {
-          level--;
-        }
-        part = part + str[i];
-        if (i === str.length - 1) {
-          arrayToReturn.push(part);
-        }
-      }
-      for (let i = 0; i < 2; i++) {
-        let noFirstParenthesis = "";
-        if (arrayToReturn[i][0] === "(") {
-          for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
-            noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
+      if (str.indexOf(operator) !== -1) {
+        let level = 0;
+        let part = "";
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] === operator && level === 0) {
+            // si on arrive ici c'est qu'on vient de recontrer l'unique opérateur hors de toute parenthèse
+            arrayToReturn.push(part);
+            part = "";
+            i++;
           }
-          arrayToReturn[i] = noFirstParenthesis;
+          if (str[i] === "(") {
+            level++;
+          } else if (str[i] === ")") {
+            level--;
+          }
+          part = part + str[i];
+          if (i === str.length - 1) {
+            arrayToReturn.push(part);
+          }
         }
+        for (let i = 0; i < 2; i++) {
+          let noFirstParenthesis = "";
+          if (arrayToReturn[i][0] === "(") {
+            for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
+              noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
+            }
+            arrayToReturn[i] = noFirstParenthesis;
+          }
+        }
+        // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
+      } else {
+        this.props.valueInference.setAdvice(
+          "Cliquez sur une inférence ayant pour connecteur dominant le symbole '" +
+            operator +
+            "'.",
+          "error-advice"
+        );
+        arrayToReturn = "error";
       }
       return arrayToReturn;
-      // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
     };
 
     this.removeFirstParenthesis = inference => {

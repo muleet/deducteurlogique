@@ -8,9 +8,8 @@ class Debugger extends Component {
         {"ruleModalShown.normal " + valueInference.ruleModalShown.normal}
         {"canInferenceBeStored " + valueInference.canInferenceBeStored}
         {"storedInference" + valueInference.storedInference}
-        {"howManyInferenceToStore" + valueInference.howManyInferenceToStore}
         {"longStoredInference.length" +
-          valueInference.longStoredInferenceAndNumber.length}
+          valueInference.longStoredInference.length}
       </Fragment>
     );
   }

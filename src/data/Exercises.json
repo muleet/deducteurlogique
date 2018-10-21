@@ -268,7 +268,7 @@
     "comment": "",
     "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "⊃e", "∨e"],
-    "doable": false
+    "doable": true
   },
   {
     "verbalName": ["Tautologie de disjonctions"],

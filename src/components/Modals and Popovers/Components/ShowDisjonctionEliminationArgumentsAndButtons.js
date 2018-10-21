@@ -10,12 +10,13 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
     const hyp = "nouvelle hyp ∨e";
     return (
       <div
-        className=""
+        className="rule-modal-specific-button selectable"
         onClick={() => {
           this.props.valueInference.addInference(inferenceItself, hyp);
+          this.props.valueInference.updateStepRule(true);
         }}
       >
-        Créer hyp {str}
+        hyp {str}
       </div>
     );
   }
@@ -24,92 +25,102 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
     const hyp = "fin hyp ∨e";
     return (
       <div
-        className=""
+        className="rule-modal-specific-button selectable"
         onClick={() => {
-          this.manageLotsOfStuffAboutHypothesis(
+          this.props.valueInference.manageLotsOfStuffAboutHypothesis(
             "newInference",
             hyp,
             "decrease"
           );
+          this.props.valueInference.updateStepRule(true);
           // this.props.valueRule.addInferenceFromRule(inferenceItself, "∨e");
         }}
       >
-        {str + " est trouvé"}
+        {"B est trouvé dans " + str}
       </div>
     );
   }
 
   render() {
-    let buttonDisjonctionEliminationHypothesis = "";
+    let whatToReturn = this.props.whatToReturn; // je déclare cette variable pour qu'elle puisse prendre une autre valeur dans un cas précis
+    let firstButtonDisjonctionEliminationHypothesis,
+      secondButtonDisjonctionEliminationHypothesis;
     let arrayExpectedArguments = [];
     let arrayExpectedButtons = [];
     const expectedArguments = this.props.expectedArguments;
     // const storedInference = this.props.valueInference.storedInference;
+    let longStoredInference = this.props.valueInference.longStoredInference;
+    let stepRule = this.props.valueInference.stepRule;
     let ArrayAorB = "";
-    let argumentAorB, firstHyp, firstConclusion, secondHyp, secondConclusion;
-    // const allHypotheticalInferences = this.props.valueInference
-    //   .allHypotheticalInferences;
-    console.log(
-      "longStoredInferenceAndNumber",
-      this.props.valueInference.longStoredInferenceAndNumber,
-      "ArrayAorB",
-      ArrayAorB
-    );
-    if (this.props.valueInference.longStoredInferenceAndNumber[0]) {
+    let argumentAorB, firstConclusion, secondConclusion;
+    const allHypotheticalInferences = this.props.valueInference
+      .allHypotheticalInferences;
+
+    // étape 0 : l'utilisateur doit cliquer sur une inférence A∨B
+    if (longStoredInference[0]) {
+      console.log("bonjour");
       ArrayAorB = this.props.valueRule.returnWhatIsBeforeAndAfterTheOperator(
-        this.props.valueInference.longStoredInferenceAndNumber[0],
+        longStoredInference[0],
         "∨"
       );
+      // if (ArrayAorB === "error") {
+      //   whatToReturn = "";
+      //   longStoredInference = [];
+      // }
+      if (stepRule === 0) {
+        this.props.valueInference.updateStepRule(true);
+      }
     }
-
-    if (this.props.whatToReturn === "buttons") {
-      // étape 0 : l'utilisateur doit cliquer sur une inférence A∨B
-      if (this.props.valueInference.longStoredInferenceAndNumber.length === 1) {
+    console.log("LSIAN", longStoredInference);
+    console.log("stepRule", stepRule);
+    console.log("ArrayAorB", ArrayAorB);
+    if (whatToReturn === "buttons") {
+      if (stepRule === 1) {
         // étape 1 : "créer hyp A"
-        buttonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
+        firstButtonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
           "A",
           ArrayAorB[0]
         );
-      } else if (
-        this.props.valueInference.longStoredInferenceAndNumber.length === 2
-      ) {
+        secondButtonDisjonctionEliminationHypothesis = (
+          <div className="rule-modal-specific-button deactivated">hyp B</div>
+        );
+      } else if (stepRule === 2) {
         // étape 2 : "arrêter hyp A"
-        buttonDisjonctionEliminationHypothesis = "casser hyp A";
-      } else if (
-        this.props.valueInference.longStoredInferenceAndNumber.length === 3
-      ) {
+        firstButtonDisjonctionEliminationHypothesis = this.renderButtonBreakHyp(
+          "A"
+        );
+        secondButtonDisjonctionEliminationHypothesis = (
+          <div className="rule-modal-specific-button deactivated">hyp B</div>
+        );
+      } else if (stepRule === 3) {
         // étape 3 : "créer hyp B"
-        buttonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
+        firstButtonDisjonctionEliminationHypothesis = (
+          <div className="rule-modal-specific-button deactivated">hyp A</div>
+        );
+        secondButtonDisjonctionEliminationHypothesis = this.renderButtonMakeHyp(
           "B",
           ArrayAorB[1]
         );
-      } else if (
-        this.props.valueInference.longStoredInferenceAndNumber.length === 4
-      ) {
+      } else if (stepRule === 4) {
         // étape 4 : "arrêter hyp B"
-        buttonDisjonctionEliminationHypothesis = "casser hyp B";
+        firstButtonDisjonctionEliminationHypothesis = (
+          <div className="rule-modal-specific-button deactivated">hyp A</div>
+        );
+        secondButtonDisjonctionEliminationHypothesis = this.renderButtonBreakHyp(
+          "B"
+        );
+        // this.props.valueInference.updateStepRule(true);
       }
 
-      // étape 4 : l'utilisateur clôt l'hyp B puisque B est déjà trouvé par défaut. On infère aussitôt B (la règle se retrouve validée).
-      if (2 === 1 + 1) {
-      }
-      arrayExpectedButtons[0] = buttonDisjonctionEliminationHypothesis;
-    } else if (this.props.whatToReturn === "arguments") {
+      arrayExpectedButtons[0] = firstButtonDisjonctionEliminationHypothesis;
+      arrayExpectedButtons[1] = secondButtonDisjonctionEliminationHypothesis;
+    } else if (whatToReturn === "arguments") {
       argumentAorB = (
         <p className="awaiting-an-longStored-inference-blinking">
           {"<Cliquez sur une inférence A∨B>"}
         </p>
       );
-      firstHyp = (
-        <p className="awaiting-an-longStored-inference-blinking">
-          {"<Créez d'abord une hypothèse A>"}
-        </p>
-      );
-      secondHyp = (
-        <p className="awaiting-an-longStored-inference-blinking">
-          {"<Créez d'abord une hypothèse B, après avoir terminé l'hypothèse A>"}
-        </p>
-      );
+
       firstConclusion = (
         <p className="awaiting-an-longStored-inference-blinking">
           {"<Cliquez sur une inférence B dans l'hypothèse A>"}
@@ -121,40 +132,21 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
         </p>
       );
 
-      if (this.props.valueInference.longStoredInferenceAndNumber[0]) {
+      if (longStoredInference[0]) {
         argumentAorB = (
-          <p className="inference-longStored">
-            {this.props.valueInference.longStoredInferenceAndNumber[0]}
-          </p>
-        );
-      }
-      if (this.props.valueInference.longStoredInferenceAndNumber[1]) {
-        firstHyp = (
-          <p className="inference-longStored">
-            {this.props.valueInference.longStoredInferenceAndNumber[1]}
-          </p>
-        );
-      }
-      if (this.props.valueInference.longStoredInferenceAndNumber[2]) {
-        firstConclusion = (
-          <p className="inference-longStored">
-            {this.props.valueInference.longStoredInferenceAndNumber[2]}
-          </p>
+          <p className="inference-longStored">{longStoredInference[0]}</p>
         );
       }
 
-      if (this.props.valueInference.longStoredInferenceAndNumber[3]) {
-        secondHyp = (
-          <p className="inference-longStored">
-            {this.props.valueInference.longStoredInferenceAndNumber[3]}
-          </p>
+      if (longStoredInference[1]) {
+        firstConclusion = (
+          <p className="inference-longStored">{longStoredInference[1]}</p>
         );
       }
-      if (this.props.valueInference.longStoredInferenceAndNumber[4]) {
+
+      if (longStoredInference[2]) {
         secondConclusion = (
-          <p className="inference-longStored">
-            {this.props.valueInference.longStoredInferenceAndNumber[4]}
-          </p>
+          <p className="inference-longStored">{longStoredInference[2]}</p>
         );
       }
 
@@ -169,25 +161,16 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
           </div>
           <div className="rule-modal-single-argument">
             {expectedArguments[1] + " : "}
-            {firstHyp}
-          </div>
-          <div className="rule-modal-single-argument">
-            {expectedArguments[2] + " : "}
             {firstConclusion}
           </div>
           <div className="rule-modal-single-argument">
-            {expectedArguments[3] + " : "}
-            {secondHyp}
-          </div>
-          <div className="rule-modal-single-argument">
-            {expectedArguments[4] + " : "}
+            {expectedArguments[2] + " : "}
             {secondConclusion}
           </div>
         </li>
       );
     }
 
-    let whatToReturn;
     if (this.props.whatToReturn === "arguments") {
       whatToReturn = arrayExpectedArguments;
     } else if (this.props.whatToReturn === "buttons") {

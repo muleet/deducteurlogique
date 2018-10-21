@@ -207,7 +207,7 @@ class InferenceProvider extends Component {
 
         if (this.state.hypothesisCurrentLevelAndId.actualID === hypID) {
           if (
-            this.state.howManyInferenceToStore ===
+            this.state.ruleModalContent.expectedArguments.length ===
             copyArrayStoredInference.length
             // && copyArrayStoredInference.length !== 5
           ) {
@@ -233,11 +233,30 @@ class InferenceProvider extends Component {
           );
         }
         // cas de la règle ∨e
-        if (this.state.howManyInferenceToStore === 5) {
+        if (this.state.ruleModalContent.ruleName === "∨e") {
           console.log("la règle ∨e fait son oeuvre");
-          this.longStorageForRuleVerification(inferenceItself, true);
+          this.longStorageForRuleVerification(
+            inferenceItself,
+            copyStoredNumbers,
+            true
+          );
         }
       }
+    };
+
+    this.longStorageForRuleVerification = (inference, numbers, str) => {
+      let newlongStoredInference = [];
+      if (str === true) {
+        newlongStoredInference = [...this.state.longStoredInference];
+        newlongStoredInference.push(inference);
+      }
+      if (this.state.storedNumbers.length < 1 && numbers.length < 1) {
+        numbers = "1";
+      }
+      this.setState({
+        longStoredInference: newlongStoredInference,
+        storedNumbers: numbers
+      });
     };
 
     this.changeStorageBoolean = (str, num) => {
@@ -247,39 +266,34 @@ class InferenceProvider extends Component {
         this.setState({
           // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
           canInferenceBeStored: true,
-          howManyInferenceToStore: num,
           storedInference: [],
           storedNumbers: "",
-          // longStoredInferenceAndNumber: [],
+          // longStoredInference: [],
           ruleModalChoiceContent: "",
           futureInference: "",
           inversion: false
         });
       } else if (str === true) {
         this.setState({
-          canInferenceBeStored: true,
-          howManyInferenceToStore: num
+          canInferenceBeStored: true
         });
       } else if (str === false) {
         this.setState({
           canInferenceBeStored: false,
-          howManyInferenceToStore: "empty",
           futureInference: "",
           inversion: false
         });
       } else if (!this.state.canInferenceBeStored) {
         this.setState({
-          canInferenceBeStored: true,
-          howManyInferenceToStore: num
+          canInferenceBeStored: true
         });
       } else {
         this.setState({
           canInferenceBeStored: false,
-          howManyInferenceToStore: "empty",
           storedInference: [], // on vide les inférences stockées durant le court temps où storedInference était pushable
           storedNumbers: "",
           storedHypID: 0,
-          // longStoredInferenceAndNumber: [],
+          // longStoredInference: [],
           // ruleModalChoiceContent: "",
           futureInference: "",
           inversion: false
@@ -310,7 +324,6 @@ class InferenceProvider extends Component {
         storedNumbers: "",
         storedHypID: 0,
         canInferenceBeStored: false,
-        howManyInferenceToStore: "empty",
         hypothesisCurrentLevelAndId: {
           level: 0,
           maxID: 0,
@@ -326,6 +339,7 @@ class InferenceProvider extends Component {
           expectedArguments: [],
           ruleName: ""
         },
+        stepRule: 0,
         ruleModalChoiceContent: "",
         // autre
         advice: <div className="advice" />,
@@ -334,11 +348,7 @@ class InferenceProvider extends Component {
         inversion: false,
         futureInference: "",
         // stockage conditionnel
-        longStoredInferenceAndNumber: {
-          longStoredInference: [],
-          longStoredNumbers: "",
-          longStoredHypID: 0
-        } // EXPERIMENTAL
+        longStoredInference: []
       }));
     };
 
@@ -387,6 +397,12 @@ class InferenceProvider extends Component {
       // console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
+    this.setChoiceContent = choiceContent => {
+      this.setState({
+        ruleModalChoiceContent: choiceContent
+      });
+    };
+
     this.setRuleModal = (str, strClassName, ruleModalContent, eal) => {
       // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "reverse", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
       // "eal" contient expectedArguments.length
@@ -425,10 +441,13 @@ class InferenceProvider extends Component {
       });
     };
 
-    this.setChoiceContent = choiceContent => {
-      this.setState({
-        ruleModalChoiceContent: choiceContent
-      });
+    this.updateStepRule = bool => {
+      if (bool) {
+        const newStepRule = this.state.stepRule + 1;
+        this.setState({
+          stepRule: newStepRule
+        });
+      }
     };
 
     this.setAdvice = (advice, adviceClassName, specificContent) => {
@@ -500,24 +519,9 @@ class InferenceProvider extends Component {
       }));
     };
 
-    this.longStorageForRuleVerification = (inference, str) => {
-      let newlongStoredInferenceAndNumber = [];
-      if (str === true) {
-        newlongStoredInferenceAndNumber = [
-          ...this.state.longStoredInferenceAndNumber
-        ];
-        newlongStoredInferenceAndNumber.push(inference);
-      } else if (str === "reset") {
-      }
-      this.setState({
-        longStoredInferenceAndNumber: newlongStoredInferenceAndNumber
-      });
-    };
-
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
-      howManyInferenceToStore: 0, // contient la donnée expectedArguments.length concernant la règle en cours
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
       storageForRuleVerification: this.storageForRuleVerification,
@@ -525,13 +529,14 @@ class InferenceProvider extends Component {
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0, // chaque inférence dans une hypothèse a un id d'hypothèse (qui est à 0 s'il n'y a pas d'hyp en cours), storedHypID permet de stocker cet id d'hypothèse, pour le comparer à celui de l'hypothèse en cours
       // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
-      longStoredInferenceAndNumber: [],
+      longStoredInference: [],
       longStorageForRuleVerification: this.longStorageForRuleVerification,
       // sections de divers boutons de l'interface
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
       // section de l'hypothèse
+      manageLotsOfStuffAboutHypothesis: this.manageLotsOfStuffAboutHypothesis,
       hypothesisCurrentLevelAndId: {
         level: 0,
         maxID: 0,
@@ -540,16 +545,18 @@ class InferenceProvider extends Component {
       },
       allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
       // section ruleModal
-      ruleModalShown: { normal: false },
+      ruleModalShown: { normal: false }, // je ferai peut-être un "ruleModalShown.special", plus tard
       ruleModalClassName: "",
       ruleModalContent: {
         instruction: "",
         expectedArguments: [],
         ruleName: ""
       },
+      stepRule: 0,
       ruleModalChoiceContent: "",
       setChoiceContent: this.setChoiceContent,
       setRuleModal: this.setRuleModal,
+      updateStepRule: this.updateStepRule,
       // section autres trucs
       advice: <div className="advice" />,
       setAdvice: this.setAdvice,

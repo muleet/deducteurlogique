@@ -178,6 +178,10 @@
   font-size: 16px;
 }
 
+.rule-modal-specific-button {
+  font-size: 14px;
+}
+
 .typable-text {
   display: flex;
   flex-direction: row;

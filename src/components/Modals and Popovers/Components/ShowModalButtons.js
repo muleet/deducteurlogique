@@ -27,9 +27,9 @@ class ShowModalButtons extends Component {
       }
     } else {
       this.props.valueInference.setAdvice(
-        "Entrez tous les arguments requis pour la règle" +
+        "Entrez tous les arguments requis pour la règle " +
           this.props.ruleName +
-          ", avant la de valider.",
+          ", avant de la valider.",
         "error-advice"
       );
       this.props.valueInference.setRuleModal(true, "ended-badly");
@@ -70,6 +70,36 @@ class ShowModalButtons extends Component {
         "error-advice"
       );
       return;
+    }
+  }
+
+  verifyLongStorageRule(valueRule) {
+    if (
+      this.props.valueInference.longStoredInference !== undefined &&
+      this.props.expectedArguments.length ===
+        this.props.valueInference.longStoredInference.length
+    ) {
+      valueRule.redirectToTheRightRule(
+        this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
+        this.props.valueInference.longStoredInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
+        this.props.valueInference.storedNumbers.slice(
+          0,
+          this.props.expectedArguments.length
+        ) // storedNumbers contient (en str) les numéros des inférences citées juste avant.
+      );
+      if (this.props.ruleName !== "∧e") {
+        // ∧e est exclus parce qu'il ne doit pas s'arrêter juste après que l'utilisateur ait validé la règle
+        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.changeStorageBoolean();
+      }
+    } else {
+      this.props.valueInference.setAdvice(
+        "Entrez tous les arguments requis pour la règle " +
+          this.props.ruleName +
+          ", avant de la valider.",
+        "error-advice"
+      );
+      this.props.valueInference.setRuleModal(true, "ended-badly");
     }
   }
 
@@ -132,7 +162,6 @@ class ShowModalButtons extends Component {
           // expectedArguments={expectedArguments}
           valueRule={this.props.valueRule}
           valueInference={this.props.valueInference}
-          // allHypotheticalInferences={allHypotheticalInferences}
         />
       );
     }
@@ -148,7 +177,12 @@ class ShowModalButtons extends Component {
         <p
           className="rule-modal-button"
           onClick={() => {
-            if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
+            if (this.props.ruleName === "∨e") {
+              this.verifyLongStorageRule(this.props.valueRule);
+            } else if (
+              this.props.ruleName !== "⊃i" &&
+              this.props.ruleName !== "~i"
+            ) {
               this.verifyRule(this.props.valueRule);
             } else {
               this.verifyBreakHypothesisRule(this.props.valueRule);
