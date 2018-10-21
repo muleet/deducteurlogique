@@ -19,7 +19,8 @@ class ShowTruthTable extends Component {
       // itself
       category: "",
       character: "",
-      example: ""
+      example: "",
+      image: ""
     }
   };
 
@@ -74,7 +75,8 @@ class ShowTruthTable extends Component {
     // itself
     category,
     character,
-    example
+    example,
+    image
   ) {
     if (!isNaN(number)) {
       this.setState({
@@ -89,7 +91,8 @@ class ShowTruthTable extends Component {
           // itself
           category: category,
           character: character,
-          example: example
+          example: example,
+          image: image
         }
       });
     }
@@ -141,6 +144,17 @@ class ShowTruthTable extends Component {
     }
   }
 
+  renderImage() {
+    if (this.state.arrayInfoLine.image.length > 0) {
+      return (
+        <img
+          src={this.state.arrayInfoLine.image}
+          style={{ width: "100px", height: "73px" }}
+        />
+      );
+    }
+  }
+
   renderAllInformations() {
     let reductibleTo = "";
     const char = this.state.arrayInfoLine.reductibleTo;
@@ -165,6 +179,7 @@ class ShowTruthTable extends Component {
           {this.renderLecture()}
           {reductibleTo}
           <li>{this.renderExample()}</li>
+          <li>{this.renderImage()}</li>
           {/* <li>{this.state.arrayInfoLine.category}</li> */}
         </Fragment>
       );
@@ -209,7 +224,8 @@ class ShowTruthTable extends Component {
                 // itself
                 TruthTable[i].category,
                 TruthTable[i].character,
-                TruthTable[i].example
+                TruthTable[i].example,
+                TruthTable[i].image
               );
             }}
           >

@@ -219,8 +219,7 @@
       { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "|q", "numberCommentary": "2, 3", "commentary": "⊃e" },
       { "itself": "|q", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|q", "numberCommentary": "5", "commentary": "reit" },
-      { "itself": "q", "numberCommentary": "1, 2-4, 5-6", "commentary": "ve" }
+      { "itself": "q", "numberCommentary": "1, 2-4, 5", "commentary": "ve" }
     ]
   },
   {

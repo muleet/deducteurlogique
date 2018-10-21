@@ -72,10 +72,6 @@ const TheFuture = () => {
             déduction).
           </p>
           <p className="maybenever-available-rule">
-            - Des diagrammes de Venn dans la page de la table de vérité, un pour
-            chacune des 16 colonnes.
-          </p>
-          <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
             dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant

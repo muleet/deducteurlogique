@@ -251,11 +251,11 @@
     "doable": true
   },
   {
-    "verbalName": "Loi du tier exclu",
+    "verbalName": "Principe du tiers exclu",
     "premisses": [],
     "conclusion": "p∨~p",
     "meaning": [["p : La lune éclaire la nuit."]],
-    "comment": "La loi du tier exclu (ou loi du milieu exclu) est un cas célèbre de logique, qui soutient que soit une proposition est vraie, soit sa négation est vraie (il n'y aurait aucune autre possibilité). Cet exercice est la démonstration de cette loi.",
+    "comment": "La principe du tiers exclu (ou principe du milieu exclu) est un cas célèbre de logique, qui soutient que soit une proposition est vraie, soit sa négation est vraie (il n'y aurait donc aucune autre possibilité). Cet exercice est la démonstration de ce principe.",
     "propositionsImplied": 1,
     "rulesImplied": ["reit", "hyp", "~i", "~~e", "∨i"],
     "doable": true
@@ -267,7 +267,7 @@
     "meaning": [],
     "comment": "",
     "propositionsImplied": 2,
-    "rulesImplied": ["rep", "reit", "hyp", "⊃e", "∨e"],
+    "rulesImplied": ["rep", "reit", "⊃e", "∨e"],
     "doable": true
   },
   {

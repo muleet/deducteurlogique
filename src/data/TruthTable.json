@@ -10,7 +10,8 @@
     "itself": ["VV", "VF", "FV", "FF"],
     "category": "info-line",
     "character": "",
-    "example": []
+    "example": [],
+    "image": ""
   },
   {
     "number": 1,
@@ -23,7 +24,8 @@
     "itself": ["V", "V", "V", "V"],
     "category": "always-true",
     "character": "⊤1",
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Venn1111.svg/100px-Venn1111.svg.png"
   },
   {
     "number": 2,
@@ -36,7 +38,8 @@
     "itself": ["V", "F", "F", "F"],
     "category": "one-true",
     "character": "∧&",
-    "example": ["Tu peux manger cet aliment.", "Tu peux boire cette eau."]
+    "example": ["Tu peux manger cet aliment.", "Tu peux boire cette eau."],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Venn0001.svg/100px-Venn0001.svg.png"
   },
   {
     "number": 3,
@@ -49,7 +52,8 @@
     "itself": ["F", "V", "F", "F"],
     "category": "one-true",
     "character": "⊅↛",
-    "example": []
+    "example": [],
+    "image": "https://commons.wikimedia.org/wiki/File:Venn0100.svg?uselang=fr"
   },
   {
     "number": 4,
@@ -62,7 +66,8 @@
     "itself": ["F", "F", "V", "F"],
     "category": "one-true",
     "character": "⊄↚",
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Venn0010.svg/100px-Venn0010.svg.png"
   },
   {
     "number": 5,
@@ -75,7 +80,8 @@
     "itself": ["F", "F", "F", "V"],
     "category": "one-true",
     "character": "↓",
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Venn1000.svg/100px-Venn1000.svg.png"
   },
   {
     "number": 6,
@@ -88,7 +94,8 @@
     "itself": ["V", "V", "F", "F"],
     "category": "true-and-false",
     "character": "p",
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Venn0101.svg/100px-Venn0101.svg.png"
   },
   {
     "number": 7,
@@ -101,12 +108,13 @@
     "itself": ["F", "V", "F", "V"],
     "category": "true-and-false",
     "character": ["~q"],
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Venn1100.svg/100px-Venn1100.svg.png"
   },
   {
     "number": 8,
     "name": "Biconditionnel",
-    "alternativeName": "",
+    "alternativeName": "Équivalence",
     "description": "",
     "link": "",
     "reductibleTo": "~(~p∧q)∧~(p∧~q)",
@@ -117,7 +125,8 @@
     "example": [
       "S'il y a du foin dans l'écurie, la jument y est.",
       "La jument est dans l'écurie donc il s'y trouve du foin."
-    ]
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Venn1001.svg/100px-Venn1001.svg.png"
   },
   {
     "number": 9,
@@ -130,7 +139,8 @@
     "itself": ["F", "V", "V", "F"],
     "category": "true-and-false",
     "character": "⊻w⊕",
-    "example": ["Je suis debout.", "Je ne suis pas debout."]
+    "example": ["Je suis debout.", "Je ne suis pas debout."],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Venn0110.svg/100px-Venn0110.svg.png"
   },
   {
     "number": 10,
@@ -143,7 +153,8 @@
     "itself": ["V", "F", "V", "F"],
     "category": "true-and-false",
     "character": "q",
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Venn0011.svg/100px-Venn0011.svg.png"
   },
   {
     "number": 11,
@@ -156,7 +167,8 @@
     "itself": ["F", "F", "V", "V"],
     "category": "true-and-false",
     "character": ["~p"],
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Venn1010.svg/100px-Venn1010.svg.png"
   },
   {
     "number": 12,
@@ -172,7 +184,8 @@
     "example": [
       "Ludwig Wittgenstein est l'auteur du Tractatus logico-philosophicus.",
       "Les fourmis ont six pattes."
-    ]
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venn0111.svg/100px-Venn0111.svg.png"
   },
   {
     "number": 13,
@@ -185,7 +198,8 @@
     "itself": ["V", "V", "F", "V"],
     "category": "one-false",
     "character": "⊂←",
-    "example": ["Il pleut.", "Le sol est mouillé."]
+    "example": ["Il pleut.", "Le sol est mouillé."],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Venn1101.svg/100px-Venn1101.svg.png"
   },
   {
     "number": 14,
@@ -198,7 +212,8 @@
     "itself": ["V", "F", "V", "V"],
     "category": "one-false",
     "character": "⊃→",
-    "example": ["Je doute.", "Je suis."]
+    "example": ["Je doute.", "Je suis."],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Venn1011.svg/100px-Venn1011.svg.png"
   },
   {
     "number": 15,
@@ -211,7 +226,8 @@
     "itself": ["F", "V", "V", "V"],
     "category": "one-false",
     "character": "|↑",
-    "example": []
+    "example": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Venn1110.svg/100px-Venn1110.svg.png"
   },
   {
     "number": 16,
@@ -227,6 +243,7 @@
     "example": [
       "Toute personne connaît la logique.",
       "Au moins une personne ne connaît pas la logique."
-    ]
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Venn0000.svg/100px-Venn0000.svg.png"
   }
 ]
