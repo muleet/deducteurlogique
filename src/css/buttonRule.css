@@ -34,12 +34,14 @@
   height: 36px;
   width: 36px;
   margin-bottom: 6px;
+  margin-right: 6px;
 }
 
 .fatRule {
   height: 36px;
   width: 50px;
   margin-top: 6px;
+  margin-right: 6px;
 }
 
 .unclickableRule {

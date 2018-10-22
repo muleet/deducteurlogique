@@ -139,8 +139,9 @@
 
 .solution-button {
   border: 1px solid white;
-  width: 5px;
+  width: 6px;
   display: inline-flex;
+  margin-bottom: 6px;
   margin-right: 8px;
   padding: 3px 8px;
   justify-content: center;
