@@ -90,11 +90,20 @@ class ButtonRuleMaker extends Component {
   }
 
   render() {
-    const arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
+    let arrayRulesSent = [];
     let arrayRuleModal;
     let arrayRulesTwoCharacters = [];
     let arrayAllOtherRules = [];
     let arrayUnclickableRule = [];
+    if (this.props.sandbox) {
+      for (let i = 0; i < InfoRules.length; i++) {
+        if (InfoRules[i].available === "yes") {
+          arrayRulesSent.push(InfoRules[i].name);
+        }
+      }
+    } else {
+      arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
+    }
     if (arrayRulesSent.length === 0) {
       // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doit renvoyer la totalité des règles possibles.)
     } else if (arrayRulesSent.length > 0) {
@@ -156,7 +165,10 @@ class ButtonRuleMaker extends Component {
               />
             </li>
           );
-        } else if (Number(arrayRulesSent[i].length) === 2) {
+        } else if (
+          Number(arrayRulesSent[i].length) === 2
+          // || arrayRulesSent !== "~~e"
+        ) {
           arrayRulesTwoCharacters.push(
             <li
               key={i}
@@ -231,7 +243,9 @@ class ButtonRuleMaker extends Component {
         {arrayRuleModal}
         {arrayAllOtherRules}
         <hr style={{ width: "20px" }} />
-        {arrayRulesTwoCharacters}
+        <div className="setOfRules-twoCharacters">
+          {arrayRulesTwoCharacters}
+        </div>
       </Fragment>
     );
   }

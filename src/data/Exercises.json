@@ -154,7 +154,7 @@
     "conclusion": "q",
     "meaning": [],
     "comment": "",
-    "rulesImplied": ["rep", "hyp", "∧e", "⊃e", "≡e"],
+    "rulesImplied": ["rep", "∧e", "⊃e", "≡e"],
     "doable": true
   },
   {
@@ -211,7 +211,10 @@
     "verbalName": "Un premier théorème",
     "premisses": [],
     "conclusion": "~(p∧~p)",
-    "meaning": [["p : Il fait beau à Rennes aujourd'hui."]],
+    "meaning": [
+      ["p : Il fait beau à Rennes aujourd'hui."],
+      ["p : Chez Prixbas, les prix sont bas."]
+    ],
     "comment": "",
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧e"],
     "doable": true

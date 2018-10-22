@@ -121,6 +121,11 @@ h3 {
   padding: 0px;
 }
 
+.pageTitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .icon {
   color: white;
 }

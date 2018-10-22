@@ -37,6 +37,7 @@ import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 import MakeListExercises from "./components/Pages/MakeListExercises";
 import ButtonNav from "./components/Navigation Components/ButtonNav";
 import TruthTable from "./components/Pages/TruthTable";
+import Sandbox from "./components/Pages/Sandbox";
 // Images
 // import athens from "./img/athens.svg";
 
@@ -145,12 +146,11 @@ class App extends Component {
                 </Link> */}
               </li>
               <li>
-                <Link to="/calcul-prop">
-                  <ButtonNav
-                    className="prop-color unavailable-yet"
-                    name={<i className="fas fa-terminal" />}
-                  />
+                <Link to="/sandbox">
+                  <ButtonNav name={<i className="fas fa-terminal" />} />
                 </Link>
+              </li>
+              <li>
                 <Link to="/calcul-prop-exo">
                   <ButtonNav
                     className="prop-color"
@@ -159,12 +159,6 @@ class App extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="/forma">
-                  <ButtonNav
-                    className="forma-color unavailable-yet"
-                    name={<i className="fas fa-terminal" />}
-                  />
-                </Link>
                 <Link to="/forma-exo">
                   <ButtonNav
                     className="forma-color unavailable-yet"
@@ -173,12 +167,6 @@ class App extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="/calcul-pred">
-                  <ButtonNav
-                    className="pred-color unavailable-yet"
-                    name={<i className="fas fa-terminal" />}
-                  />
-                </Link>
                 <Link to="/calcul-pred-exo">
                   <ButtonNav
                     className="pred-color unavailable-yet"
@@ -192,6 +180,7 @@ class App extends Component {
             <Route path="/questions" component={Questions} />
             <Route path="/règles" component={InfoRules} />
             <Route path="/tables-de-vérité" component={TruthTable} />
+            <Route path="/sandbox" component={Sandbox} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"

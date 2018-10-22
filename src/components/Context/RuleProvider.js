@@ -334,6 +334,7 @@ class RuleProvider extends Component {
         );
       }
     };
+
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {

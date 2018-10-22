@@ -7,6 +7,16 @@
   padding: 10px;
 }
 
+.setOfRules-twoCharacters {
+  max-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
 /* .pairOfRules { // Les "pairOfRules" sont les règles d'introduction et d'élimination d'un même symbole (etc : ~i et ~e). Je voulais les regrouper mais c'est trop trop trop le bordel de faire ça. Je le ferai sans doute pas. (Ca aurait été dans ButtonRuleMaker.)
   display: flex;
   padding: 30px;
@@ -57,4 +67,11 @@
 .selected {
   background-color: white;
   color: black;
+}
+
+.longSelected {
+  /* uniquement pour l'élimination de la disjonction, pour le moment */
+  background-color: white;
+  color: black;
+  border: 1px solid hsl(49, 100%, 72%);
 }

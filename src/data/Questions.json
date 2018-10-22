@@ -72,7 +72,7 @@
   },
   {
     "name": "Quelle différence entre le conditionnel, ⊃, et l'implication, → ?",
-    "answer": "L'implication décrit une relation logique alors que le conditionnel permet de faire des opérations. Ces deux connecteurs sont parfois confondus car certaines traditions les font porter le même nom (implication) voire le même symbole (la flèche allant de la gauche vers la droite), mais ils sont très différents : l'implication parle de la nature de la logique, là où le conditionnel [à développer/réécrire]. En ce sens, le conditionnel désigne une condition particulière, là où il s'agit d'une condition généralisable pour l'implication."
+    "answer": "L'implication décrit une relation logique alors que le conditionnel permet de faire des opérations. Ces deux connecteurs sont parfois confondus car certaines traditions les font porter le même nom (implication) voire le même symbole (la flèche allant de la gauche vers la droite), mais ils sont très différents : l'implication décrit la nature de la logique, là où le conditionnel permet d'utiliser la logique. En ce sens, le conditionnel désigne une condition particulière, là où il s'agit d'une condition généralisable pour l'implication."
   },
   {
     "name": "Qu'est-ce qu'une table de vérité ?",

@@ -40,7 +40,7 @@
   },
   {
     "name": "~i",
-    "verbalName": "Règle d'introduction de la négation",
+    "verbalName": "Règle d'introduction de la négation (modus tollens)",
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": [["hyp A", "contradiction", "~A ~i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
