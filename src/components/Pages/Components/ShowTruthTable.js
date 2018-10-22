@@ -150,6 +150,7 @@ class ShowTruthTable extends Component {
         <img
           src={this.state.arrayInfoLine.image}
           style={{ width: "100px", height: "73px" }}
+          alt="Aristote le bg"
         />
       );
     }

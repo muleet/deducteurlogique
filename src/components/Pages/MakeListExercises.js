@@ -64,7 +64,7 @@ class MakeListExercises extends Component {
       )
     });
 
-    if (Object.keys(Exercises[numExercise]).length === 8) {
+    if (Object.keys(Exercises[numExercise]).length === 7) {
       let TitleToRender = "";
       let PremissesToRender = "(Pas de prémisses, c'est une tautologie.)";
       let RulesImpliedToRender = "(Pas de règles prédéterminées.)";

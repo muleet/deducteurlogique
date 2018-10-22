@@ -237,10 +237,13 @@ class RuleProvider extends Component {
       }
     }; // ∨i
 
-    this.inclusiveDisjonctionElimination = (arrInf, number) => {
-      const AorB = this.returnWhatIsBeforeAndAfterTheOperator(arrInf[0], "∨");
-      const concA = arrInf[1];
-      const concB = arrInf[2];
+    this.inclusiveDisjonctionElimination = (expectedArguments, number) => {
+      const AorB = this.returnWhatIsBeforeAndAfterTheOperator(
+        expectedArguments[0],
+        "∨"
+      );
+      const concA = expectedArguments[1];
+      const concB = expectedArguments[2];
       let inferenceToAdd = {
         itself: "",
         numberCommentary: number,
@@ -275,6 +278,62 @@ class RuleProvider extends Component {
       }
     }; // ∨e
 
+    this.biconditionalIntroduction = (AthenB, BthenA, number) => {
+      const ArrayAthenB = this.returnWhatIsBeforeAndAfterTheOperator(
+        AthenB,
+        "⊃"
+      );
+      const ArrayBthenA = this.returnWhatIsBeforeAndAfterTheOperator(
+        BthenA,
+        "⊃"
+      );
+      if (
+        ArrayAthenB[0] === ArrayBthenA[1] &&
+        ArrayAthenB[1] === ArrayBthenA[0]
+      ) {
+        const AifandonlyifB = ArrayAthenB[0] + "≡" + ArrayAthenB[1];
+        const inferenceToAdd = {
+          itself: AifandonlyifB,
+          numberCommentary: number,
+          commentary: "≡i"
+        };
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Biconditionnel introduit, nouvelle inférence :" +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser la règle ≡i, sélectionnez A⊃B et B⊃A puis validez.",
+          "error-advice"
+        );
+      }
+    };
+
+    this.biconditionalElimination = (AifandonlyifB, number) => {
+      let leftChoice, rightChoice;
+      const ArrayAifandonlyifB = this.returnWhatIsBeforeAndAfterTheOperator(
+        AifandonlyifB,
+        "≡"
+      );
+      if (ArrayAifandonlyifB.length === 2) {
+        if (ArrayAifandonlyifB[0].length > 2) {
+          ArrayAifandonlyifB[0] = "(" + ArrayAifandonlyifB[0] + ")";
+        }
+        if (ArrayAifandonlyifB[1].length > 2) {
+          ArrayAifandonlyifB[1] = "(" + ArrayAifandonlyifB[1] + ")";
+        }
+        leftChoice = ArrayAifandonlyifB[0] + "⊃" + ArrayAifandonlyifB[1];
+        rightChoice = ArrayAifandonlyifB[1] + "⊃" + ArrayAifandonlyifB[0];
+        return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "≡e");
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser la règle ≡e, sélectionnez A≡B.",
+          "error-advice"
+        );
+      }
+    };
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
@@ -308,6 +367,10 @@ class RuleProvider extends Component {
         this.inclusiveDisjonctionIntroduction(arrInf[0], numbers); // A pour A∨B
       } else if (ruleName === "∨e") {
         this.inclusiveDisjonctionElimination(arrInf, numbers); // A∨B + conc de |A + conc de |B, pour A ou B
+      } else if (ruleName === "≡i") {
+        this.biconditionalIntroduction(arrInf[0], arrInf[1], numbers); // A⊃B, B⊃A pour A≡B
+      } else if (ruleName === "≡e") {
+        this.biconditionalElimination(arrInf[0], numbers); // A≡B pour A⊃B ou B⊃A
       }
     };
 
@@ -454,8 +517,10 @@ class RuleProvider extends Component {
       // conjonctionElimination: this.conjonctionElimination, // ∧e
       // inclusiveDisjonctionIntroduction: this.inclusiveDisjonctionIntroduction, // ∨i
       // inclusiveDisjonctionElimination: this.inclusiveDisjonctionElimination, // ∨e
-      // exclusiveDisjonctionIntroduction: this.exclusiveDisjonctionIntroduction, // ⊻i
-      // exclusiveDisjonctionElimination: this.exclusiveDisjonctionElimination, // ⊻e
+      // // exclusiveDisjonctionIntroduction: this.exclusiveDisjonctionIntroduction, // ⊻i
+      // // exclusiveDisjonctionElimination: this.exclusiveDisjonctionElimination, // ⊻e
+      // biconditionalIntroduction: this.biconditionalIntroduction, // ≡i
+      // biconditionalElimination: this.biconditionalElimination, // ≡e
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       showChoiceOnTheModal: this.showChoiceOnTheModal,

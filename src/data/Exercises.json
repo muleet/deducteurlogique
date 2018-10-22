@@ -12,7 +12,6 @@
       ]
     ],
     "comment": "Salut fdp",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "⊃e"],
     "doable": true
   },
@@ -38,7 +37,6 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 3,
     "rulesImplied": ["rep", "∧e", "⊃e"],
     "doable": true
   },
@@ -54,7 +52,6 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "∧i", "∧e"],
     "doable": true
   },
@@ -64,7 +61,6 @@
     "conclusion": "~~p",
     "meaning": [["p : Aristote est un philosophe."]],
     "comment": "",
-    "propositionsImplied": 1,
     "rulesImplied": ["rep", "hyp", "~i"],
     "doable": true
   },
@@ -85,7 +81,6 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "⊃i", "⊃e"],
     "doable": true
   },
@@ -108,7 +103,6 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "∧i", "~i"],
     "doable": true
   },
@@ -118,7 +112,6 @@
     "conclusion": "(p∧q)⊃r",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "∧e", "⊃i", "⊃e"],
     "doable": true
   },
@@ -134,8 +127,16 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "hyp", "~i", "∧e"],
+    "doable": true
+  },
+  {
+    "verbalName": "Introduction du biconditionnel",
+    "premisses": ["p", "q"],
+    "conclusion": "p≡q",
+    "meaning": [["p : Je respire.", "q : Je vis."]],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "≡i", "⊃i"],
     "doable": true
   },
   {
@@ -144,8 +145,16 @@
     "conclusion": "~r",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 3,
     "rulesImplied": ["rep", "hyp", "~i", "∧i", "∧e"],
+    "doable": true
+  },
+  {
+    "verbalName": "Elimination du biconditionnel",
+    "premisses": ["p∧r", "p≡(q≡r)"],
+    "conclusion": "q",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "∧e", "⊃e", "≡e"],
     "doable": true
   },
   {
@@ -159,7 +168,6 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "~~e", "∧i"],
     "doable": true
   },
@@ -169,7 +177,6 @@
     "conclusion": "~(q∧~(p∧q))",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧i", "∧e"],
     "doable": true
   },
@@ -179,7 +186,6 @@
     "conclusion": "~p⊃~q",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i"],
     "doable": true
   },
@@ -189,7 +195,6 @@
     "conclusion": "q⊃~p",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧i", "⊃i"],
     "doable": true
   },
@@ -199,19 +204,15 @@
     "conclusion": "~q⊃~p",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],
     "doable": true
   },
   {
     "verbalName": "Un premier théorème",
-    "premisses": ["q"],
+    "premisses": [],
     "conclusion": "~(p∧~p)",
-    "meaning": [
-      ["p : La neige est blanche.", "q : Il fait beau à Rennes aujourd'hui."]
-    ],
+    "meaning": [["p : Il fait beau à Rennes aujourd'hui."]],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧e"],
     "doable": true
   },
@@ -221,7 +222,6 @@
     "conclusion": "p⊃(q⊃p)",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "⊃i"],
     "doable": true
   },
@@ -231,7 +231,6 @@
     "conclusion": "(p⊃q)⊃(~q⊃~p)",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],
     "doable": true
   },
@@ -246,7 +245,6 @@
       ]
     ],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∨i"],
     "doable": true
   },
@@ -256,7 +254,6 @@
     "conclusion": "p∨~p",
     "meaning": [["p : La lune éclaire la nuit."]],
     "comment": "La principe du tiers exclu (ou principe du milieu exclu) est un cas célèbre de logique, qui soutient que soit une proposition est vraie, soit sa négation est vraie (il n'y aurait donc aucune autre possibilité). Cet exercice est la démonstration de ce principe.",
-    "propositionsImplied": 1,
     "rulesImplied": ["reit", "hyp", "~i", "~~e", "∨i"],
     "doable": true
   },
@@ -266,7 +263,6 @@
     "conclusion": "q",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["rep", "reit", "⊃e", "∨e"],
     "doable": true
   },
@@ -276,7 +272,6 @@
     "conclusion": "(p∨q)⊃(q∨p)",
     "meaning": [],
     "comment": "",
-    "propositionsImplied": 2,
     "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],
     "doable": true
   }

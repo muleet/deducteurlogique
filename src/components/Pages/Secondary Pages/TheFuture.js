@@ -42,9 +42,8 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            - Les règles de disjonction, celles du biconditionnel, et celles de
-            la contraposée du conditionnel. (Et des exercices associés pour
-            chacun.)
+            - Les règles du biconditionnel, et celles de la contraposée du
+            conditionnel. (Et des exercices associés pour chacun.)
           </p>
           {/* <p className="soon-available-rule">
             - Rendre le site plus user-friendly, avec des messages situationnels

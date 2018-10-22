@@ -24,7 +24,7 @@
     "itself": ["V", "V", "V", "V"],
     "category": "always-true",
     "character": "⊤1",
-    "example": [],
+    "example": ["Le chat est sur le fauteuil.", "Le chat est sur le fauteuil."],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Venn1111.svg/100px-Venn1111.svg.png"
   },
   {
@@ -53,7 +53,7 @@
     "category": "one-true",
     "character": "⊅↛",
     "example": [],
-    "image": "https://commons.wikimedia.org/wiki/File:Venn0100.svg?uselang=fr"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Venn0100.svg/100px-Venn0100.svg.png"
   },
   {
     "number": 4,
@@ -218,7 +218,7 @@
   {
     "number": 15,
     "name": "Incompatibilité",
-    "alternativeName": "Barre de Sheffer",
+    "alternativeName": "Barre de Sheffer, non-conjonction",
     "description": "",
     "link": "https://fr.wikipedia.org/wiki/Barre_de_Sheffer https://fr.wikipedia.org/wiki/Modus_ponendo_tollens",
     "reductibleTo": "~(p∧q)",

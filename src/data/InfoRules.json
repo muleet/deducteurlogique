@@ -113,7 +113,7 @@
     "arrayUtilization": [["A", "~B", "A⊻B ⊻i"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "maybenever",
     "binomial": "i"
   },
   {
@@ -123,7 +123,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
+    "available": "maybenever",
     "binomial": "e"
   },
   {
@@ -171,19 +171,19 @@
     "verbalName": "Règle d'introduction du biconditionnel",
     "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B.",
     "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "later",
+    "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
+    "expectedArguments": ["A⊃B", "B⊃A"],
+    "available": "yes",
     "binomial": "i"
   },
   {
     "name": "≡e",
     "verbalName": "Règle d'élimination du biconditionnel",
-    "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés. De plus, si A≡B a été posé, et que A a été posé, on peut inférer B (et inversement).",
+    "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
     "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "later",
+    "instruction": "Cliquez sur A≡B, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
+    "expectedArguments": ["A≡B"],
+    "available": "yes",
     "binomial": "e"
   },
   {
@@ -200,7 +200,7 @@
     "name": "|e",
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
     "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B.",
-    "arrayUtilization": ["A|B", "A", "~B |e"],
+    "arrayUtilization": [["A|B", "A", "~B |e"], ["A|B", "~A", "B |e"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
     "available": "soon",
@@ -213,7 +213,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
+    "available": "later",
     "binomial": "i"
   },
   {
@@ -223,7 +223,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
+    "available": "later",
     "binomial": "e"
   },
   {
