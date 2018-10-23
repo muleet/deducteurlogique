@@ -37,15 +37,19 @@ class ButtonRuleMaker extends Component {
     }
   }
 
-  renderRuleClassName(availability) {
-    // if (!this.props.valueInference.ruleModalShown.normal) {
-    //   return "";
-    // } else if (this.props.valueInference.ruleModalShown.normal) {
-    //   // return "selected";
+  renderRuleClassName(ruleName, availability) {
+    let classNameToReturn = "";
+    // if (this.props.valueInference.longStoredInference) {
+    //   classNameToReturn = "longSelected";
+    //   // this.renderRuleClassName("∨e");
     // }
-    if (availability === "test") {
-      return "testRule";
+    if (this.props.valueInference.ruleModalContent.ruleName === ruleName) {
+      classNameToReturn = "selected";
     }
+    if (availability === "test") {
+      classNameToReturn = "testRule";
+    }
+    return classNameToReturn;
   }
 
   handleClick(instruction, expectedArguments, ruleName, valueInference) {
@@ -162,7 +166,11 @@ class ButtonRuleMaker extends Component {
               <RulePopover
                 key={i}
                 RulePopoverClassName={
-                  "singleRule fatRule selectable " + this.renderRuleClassName()
+                  "singleRule fatRule selectable " +
+                  this.renderRuleClassName(
+                    arrayCurrentRules[i].name,
+                    arrayCurrentRules[i].available
+                  )
                 }
                 ruleName={arrayCurrentRules[i].name}
                 // ruleName={arrayCurrentRules[i].name}
@@ -202,7 +210,10 @@ class ButtonRuleMaker extends Component {
                 key={i}
                 RulePopoverClassName={
                   "singleRule tinyRule selectable " +
-                  this.renderRuleClassName(arrayCurrentRules[i].available)
+                  this.renderRuleClassName(
+                    arrayCurrentRules[i].name,
+                    arrayCurrentRules[i].available
+                  )
                 }
                 ruleName={currentRuleName}
                 verbalName={arrayCurrentRules[i].verbalName}

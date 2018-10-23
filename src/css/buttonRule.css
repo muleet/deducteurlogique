@@ -64,13 +64,14 @@
 }
 
 .selected {
-  background-color: white;
-  color: black;
+  background-color: rgba(255, 0, 0, 0.253);
+  /* color: black; */
+  /* border: 1px solid rgb(46, 0, 0)); */
 }
 
 .longSelected {
   /* uniquement pour l'élimination de la disjonction, pour le moment */
-  background-color: white;
+  background-color: hsl(49, 100%, 72%);
   color: black;
   border: 1px solid hsl(49, 100%, 72%);
 }
