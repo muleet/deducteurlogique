@@ -64,6 +64,12 @@ const TheFuture = () => {
             déduction).
           </p>
           <p className="maybenever-available-rule">
+            - Au sein de la déduction, pouvoir réduire instantanément une
+            inférence ayant un symbole autre que ~ et ∧, par leur équivalent
+            avec ces symboles. Il y aurait une petite icône sur laquelle
+            cliquer. Par exemple p⊃q se réduit à ~(~p∧q).
+          </p>
+          <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
             dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant
