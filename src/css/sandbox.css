@@ -4,11 +4,11 @@
 }
 
 #buttonKeyboardPremisses {
-  margin-left: 34px;
+  margin: 0px 8px 0px 34px;
 }
 
 #buttonKeyboardConclusion {
-  /*  */
+  margin: 0px 8px;
 }
 
 .possible-premisse-sandbox {

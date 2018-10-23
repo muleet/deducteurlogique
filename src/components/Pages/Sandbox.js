@@ -52,10 +52,7 @@ class Deducer extends Component {
     // }
 
     return (
-      <InferenceProvider
-        conclusionSent={this.state.currentExercise.conclusion}
-        meaningSent={this.state.currentExercise.meaning}
-      >
+      <InferenceProvider>
         <InferenceContext.Consumer>
           {(
             value // (méga important) on permet à tout ce qui est dans la balise InferenceContext.Consumer, d'avoir accès au state déclaré dans InferenceProvider (pour cela il faut employer la variable value)
@@ -81,7 +78,7 @@ class Deducer extends Component {
                 <section className="usablesRules">
                   <ul className="setOfRules">
                     <ButtonRuleMaker
-                      rulesSent={this.state.currentExercise.rulesImplied}
+                      // rulesSent={this.state.currentExercise.rulesImplied}
                       valueInference={value}
                       sandbox={true}
                     />

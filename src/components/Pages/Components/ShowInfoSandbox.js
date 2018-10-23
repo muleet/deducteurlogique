@@ -84,18 +84,19 @@ class ShowInfoSandbox extends Component {
                   id="buttonKeyboardPremisses"
                 />
               }
+              {<i className="fas fa-eraser icon" />}
             </div>
             {this.state.setOfPremisses}
           </li>
           <li>
-            Conclusion{" "}
+            Conclusion
             {
               <i
                 className="far fa-keyboard icon"
                 id="buttonKeyboardConclusion"
               />
             }
-            <div id="conclusion">{this.props.premissesSent.conclusion}</div>
+            {<i className="fas fa-eraser icon" />}
           </li>
         </ul>
       </Fragment>

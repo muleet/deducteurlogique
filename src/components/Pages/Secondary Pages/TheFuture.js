@@ -45,14 +45,6 @@ const TheFuture = () => {
             - Les règles de l'abjonction, et de la contraposition du
             conditionnel et de la contraposition de l'abjonction.
           </p>
-          {/* <p className="soon-available-rule">
-            - Rendre le site plus user-friendly, avec des messages situationnels
-            guidant l'utilisateur.
-          </p>
-          <p className="soon-available-rule">
-            - Rendre responsive le site (au point qu'on puisse l'utiliser
-            facilement sur smartphone).
-          </p> */}
           <p className="later-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
             des traits qui s'adaptent à la longueur des hypothèses.
