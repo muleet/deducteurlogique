@@ -38,17 +38,21 @@ class ButtonRuleMaker extends Component {
   }
 
   renderRuleClassName(ruleName, availability) {
-    let classNameToReturn = "";
+    let classNameToReturn = " selectable ";
     // if (this.props.valueInference.longStoredInference) {
     //   classNameToReturn = "longSelected";
     //   // this.renderRuleClassName("∨e");
     // }
-    if (this.props.valueInference.ruleModalContent.ruleName === ruleName) {
-      classNameToReturn = "selected";
-    }
     if (availability === "test") {
-      classNameToReturn = "testRule";
+      classNameToReturn += " testRule ";
     }
+    if (
+      this.props.valueInference.ruleModalContent.ruleName === ruleName &&
+      this.props.valueInference.ruleModalShown.normal
+    ) {
+      classNameToReturn += " selected";
+    }
+
     return classNameToReturn;
   }
 
@@ -166,7 +170,7 @@ class ButtonRuleMaker extends Component {
               <RulePopover
                 key={i}
                 RulePopoverClassName={
-                  "singleRule fatRule selectable " +
+                  "singleRule fatRule " +
                   this.renderRuleClassName(
                     arrayCurrentRules[i].name,
                     arrayCurrentRules[i].available
@@ -209,7 +213,7 @@ class ButtonRuleMaker extends Component {
               <RulePopover
                 key={i}
                 RulePopoverClassName={
-                  "singleRule tinyRule selectable " +
+                  "singleRule tinyRule " +
                   this.renderRuleClassName(
                     arrayCurrentRules[i].name,
                     arrayCurrentRules[i].available

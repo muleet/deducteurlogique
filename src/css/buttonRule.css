@@ -63,12 +63,6 @@
   margin-bottom: 10px;
 }
 
-.selected {
-  background-color: rgba(255, 0, 0, 0.253);
-  /* color: black; */
-  /* border: 1px solid rgb(46, 0, 0)); */
-}
-
 .longSelected {
   /* uniquement pour l'élimination de la disjonction, pour le moment */
   background-color: hsl(49, 100%, 72%);
@@ -79,6 +73,9 @@
 .testRule {
   border: 1px solid rgb(121, 121, 121);
   color: rgb(121, 121, 121);
+}
+.selected {
+  border: 1px solid red;
 }
 
 #negationElimination {
