@@ -166,9 +166,17 @@ class ButtonRuleMaker extends Component {
             </li>
           );
         } else if (
-          Number(arrayRulesSent[i].length) === 2
+          Number(arrayRulesSent[i].length) === 2 ||
+          arrayRulesSent[i] === "~~e"
           // || arrayRulesSent !== "~~e"
         ) {
+          let currentRuleName = arrayCurrentRules[i].name;
+          if (arrayRulesSent[i] === "~~e") {
+            currentRuleName = (
+              <p id="negationElimination">{arrayCurrentRules[i].name}</p>
+            );
+          }
+
           arrayRulesTwoCharacters.push(
             <li
               key={i}
@@ -187,7 +195,7 @@ class ButtonRuleMaker extends Component {
                 RulePopoverClassName={
                   "singleRule tinyRule selectable " + this.renderRuleClassName()
                 }
-                ruleName={arrayCurrentRules[i].name}
+                ruleName={currentRuleName}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
                 HowToUse={organizedUtilization}
