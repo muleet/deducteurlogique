@@ -75,6 +75,11 @@
   border: 1px solid hsl(49, 100%, 72%);
 }
 
+.testRule {
+  border: 1px solid rgb(121, 121, 121);
+  color: rgb(121, 121, 121);
+}
+
 #negationElimination {
   font-size: 16px;
 }

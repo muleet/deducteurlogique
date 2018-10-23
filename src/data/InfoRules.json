@@ -153,7 +153,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon",
+    "available": "test",
     "binomial": "i"
   },
   {
@@ -163,7 +163,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon",
+    "available": "test",
     "binomial": "e"
   },
   {
@@ -184,6 +184,46 @@
     "instruction": "Cliquez sur A≡B, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
     "available": "yes",
+    "binomial": "e"
+  },
+  {
+    "name": "⊅i",
+    "verbalName": "Règle d'introduction de l'abjonction",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "",
+    "expectedArguments": [],
+    "available": "later",
+    "binomial": "i"
+  },
+  {
+    "name": "⊅e",
+    "verbalName": "Règle d'élimination de l'abjonction",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "",
+    "expectedArguments": [],
+    "available": "later",
+    "binomial": "e"
+  },
+  {
+    "name": "⊄i",
+    "verbalName": "Règle d'introduction de la contraposée de l'abjonction",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "",
+    "expectedArguments": [],
+    "available": "later",
+    "binomial": "i"
+  },
+  {
+    "name": "⊄e",
+    "verbalName": "Règle d'élimination de la contraposée de l'abjonction",
+    "verbalDescription": "",
+    "arrayUtilization": "",
+    "instruction": "",
+    "expectedArguments": [],
+    "available": "later",
     "binomial": "e"
   },
   {

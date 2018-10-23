@@ -14,14 +14,12 @@ import InferenceProvider, {
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
 // Elle réceptionne InferenceContext, qui va véhiculer les infos de chaque nouvelle inférence.
 class Deducer extends Component {
-  state = {
-    currentExercise: {}
-  };
-
   render() {
     let ArrayAllPremisses = [
       "p",
       "q",
+      "~p",
+      "~q",
       "p⊃q",
       "p∧q",
       "p∨q",
@@ -34,22 +32,9 @@ class Deducer extends Component {
       "p≡(q≡r)",
       "~(p∧~q)",
       "~(p∨q)"
+      // "~(~p∧q)∧~(p∧~q)",
+      // "~(pvq)≡(~p^~q)"
     ];
-    // let ArrayAllPremissesDisplayed = [];
-    // for (let i = 0; i < ArrayAllPremisses.length; i++) {
-    //   const newLetter = numberOfPremisses.toString(36).toLowerCase();
-    //   ArrayAllPremissesDisplayed.push(
-    //     <ButtonRuleRep
-    //       key={i}
-    //       className={"premisse selectable"}
-    //       NumberButton={newLetter}
-    //       NameButton={ArrayAllPremisses[i]}
-    //       useOfMakeInferenceSent={() =>
-    //         this.useOfMakeInference(ArrayAllPremisses[i], newLetter, "rep")
-    //       }
-    //     />
-    //   );
-    // }
 
     return (
       <InferenceProvider>
@@ -63,12 +48,10 @@ class Deducer extends Component {
                 <section className="infos-and-deduction-itself">
                   {
                     <ShowInfoSandbox
-                      sandbox={true}
                       premissesSent={ArrayAllPremisses}
                       valueInference={value}
                     />
                   }
-                  {/* {ArrayAllPremissesDisplayed} */}
                   <Fragment>
                     <ul className="deduction">{value.allInferencesRendered}</ul>
                     {/* <Debugger valueInference={value} /> */}

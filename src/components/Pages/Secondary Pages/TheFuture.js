@@ -54,7 +54,7 @@ const TheFuture = () => {
             exercices résolus par un utilisateur et pour lui permettre de créer
             de nouveaux exercices (il pourra choisir les prémisses, les règles
             utilisées, la conclusion, une solution possible, et les
-            significations possibles).
+            significations possibles des prémisses).
           </p>
           <p className="maybenever-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">

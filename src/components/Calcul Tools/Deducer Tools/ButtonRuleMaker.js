@@ -37,11 +37,14 @@ class ButtonRuleMaker extends Component {
     }
   }
 
-  renderRuleClassName() {
-    if (!this.props.valueInference.ruleModalShown.normal) {
-      return "";
-    } else if (this.props.valueInference.ruleModalShown.normal) {
-      // return "selected";
+  renderRuleClassName(availability) {
+    // if (!this.props.valueInference.ruleModalShown.normal) {
+    //   return "";
+    // } else if (this.props.valueInference.ruleModalShown.normal) {
+    //   // return "selected";
+    // }
+    if (availability === "test") {
+      return "testRule";
     }
   }
 
@@ -97,7 +100,10 @@ class ButtonRuleMaker extends Component {
     let arrayUnclickableRule = [];
     if (this.props.sandbox) {
       for (let i = 0; i < InfoRules.length; i++) {
-        if (InfoRules[i].available === "yes") {
+        if (
+          InfoRules[i].available === "yes" ||
+          InfoRules[i].available === "test"
+        ) {
           arrayRulesSent.push(InfoRules[i].name);
         }
       }
@@ -124,6 +130,7 @@ class ButtonRuleMaker extends Component {
             <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
           );
         }
+
         if (arrayRulesSent[i] === "reit" || arrayRulesSent[i] === "rep") {
           arrayUnclickableRule.push(
             <li key={i}>
@@ -170,6 +177,7 @@ class ButtonRuleMaker extends Component {
           arrayRulesSent[i] === "~~e"
           // || arrayRulesSent !== "~~e"
         ) {
+          console.log(arrayCurrentRules[i].available);
           let currentRuleName = arrayCurrentRules[i].name;
           if (arrayRulesSent[i] === "~~e") {
             currentRuleName = (
@@ -193,7 +201,8 @@ class ButtonRuleMaker extends Component {
               <RulePopover
                 key={i}
                 RulePopoverClassName={
-                  "singleRule tinyRule selectable " + this.renderRuleClassName()
+                  "singleRule tinyRule selectable " +
+                  this.renderRuleClassName(arrayCurrentRules[i].available)
                 }
                 ruleName={currentRuleName}
                 verbalName={arrayCurrentRules[i].verbalName}
