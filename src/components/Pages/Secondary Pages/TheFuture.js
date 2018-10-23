@@ -42,8 +42,8 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            - Les règles du biconditionnel, et celles de la contraposée du
-            conditionnel. (Et des exercices associés pour chacun.)
+            - Les règles de l'abjonction, et de la contraposition du
+            conditionnel et de la contraposition de l'abjonction.
           </p>
           {/* <p className="soon-available-rule">
             - Rendre le site plus user-friendly, avec des messages situationnels
@@ -57,13 +57,14 @@ const TheFuture = () => {
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
             des traits qui s'adaptent à la longueur des hypothèses.
           </p>
-          <p className="maybenever-available-rule">
+          <p className="later-available-rule">
             - La possibilité de créer des comptes utilisateurs, pour stocker les
             exercices résolus par un utilisateur et pour lui permettre de créer
             de nouveaux exercices (il pourra choisir les prémisses, les règles
             utilisées, la conclusion, une solution possible, et les
             significations possibles).
           </p>
+          <p className="maybenever-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
             - Laisser la possibilité à l'utilisateur d'écrire les dernières
             lignes d'une déduction (avec un "?" à la place de leur nombre), dès

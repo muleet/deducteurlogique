@@ -1,0 +1,31 @@
+#buttonAddPremisses {
+  margin-left: 105px;
+  position: absolute;
+}
+
+#buttonKeyboardPremisses {
+  margin-left: 34px;
+}
+
+#buttonKeyboardConclusion {
+  /*  */
+}
+
+.possible-premisse-sandbox {
+  color: white;
+  font-size: 16px;
+  display: none;
+}
+
+#buttonAddPremisses:hover .possible-premisse-sandbox {
+  /* quand on met sa souris sur le bouton, les prémisses possibles apparaissent */
+  background-color: #333;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  position: absolute relative;
+}
+#buttonAddPremisses .possible-premisse-sandbox:hover {
+  /* quand on met sa souris sur les prémisses possibles, elles deviennent grises */
+  background-color: #777;
+}

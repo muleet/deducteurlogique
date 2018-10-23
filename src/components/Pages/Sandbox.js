@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
-import ShowInformationsExercise from "../Calcul Tools/Deducer Tools/ShowInformationsExercise";
+// import Exercises from "../../data/Exercises.json";
+import ShowInfoSandbox from "./Components/ShowInfoSandbox";
 import ButtonRuleMaker from "../Calcul Tools/Deducer Tools/ButtonRuleMaker";
 import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";
+
 // import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
@@ -18,6 +19,38 @@ class Deducer extends Component {
   };
 
   render() {
+    let ArrayAllPremisses = [
+      "p",
+      "q",
+      "p⊃q",
+      "p∧q",
+      "p∨q",
+      "(p∧q)∧(p∧r)",
+      "q⊃r",
+      "~(p∧q)",
+      "p⊃(q⊃r)",
+      "~(p∧r)",
+      "p∧r",
+      "p≡(q≡r)",
+      "~(p∧~q)",
+      "~(p∨q)"
+    ];
+    // let ArrayAllPremissesDisplayed = [];
+    // for (let i = 0; i < ArrayAllPremisses.length; i++) {
+    //   const newLetter = numberOfPremisses.toString(36).toLowerCase();
+    //   ArrayAllPremissesDisplayed.push(
+    //     <ButtonRuleRep
+    //       key={i}
+    //       className={"premisse selectable"}
+    //       NumberButton={newLetter}
+    //       NameButton={ArrayAllPremisses[i]}
+    //       useOfMakeInferenceSent={() =>
+    //         this.useOfMakeInference(ArrayAllPremisses[i], newLetter, "rep")
+    //       }
+    //     />
+    //   );
+    // }
+
     return (
       <InferenceProvider
         conclusionSent={this.state.currentExercise.conclusion}
@@ -32,13 +65,13 @@ class Deducer extends Component {
               <div className="deducer">
                 <section className="infos-and-deduction-itself">
                   {
-                    // <ShowInformationsExercise
-                    //   valueInference={value} // on envoie le state déclaré dans InferenceProvider
-                    //   exerciseSent={this.state.currentExercise} // on envoie les données de l'exercice actuel
-                    //   minimalLineNumber={"1"}
-                    // />
+                    <ShowInfoSandbox
+                      sandbox={true}
+                      premissesSent={ArrayAllPremisses}
+                      valueInference={value}
+                    />
                   }
-                  (page en construction)
+                  {/* {ArrayAllPremissesDisplayed} */}
                   <Fragment>
                     <ul className="deduction">{value.allInferencesRendered}</ul>
                     {/* <Debugger valueInference={value} /> */}

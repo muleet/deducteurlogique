@@ -23,7 +23,7 @@ class ShowInformationsExercise extends Component {
   // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
   render() {
     let setOfPremisses = [];
-    let numberOfPremisses = 10; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
+    let numberOfPremisses = 9; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
     let textCanItBeDone;
     // let exerciseComment = <i className="fas fa-comment deactivated" />;
     if (this.props.exerciseSent.doable === false) {
@@ -53,6 +53,7 @@ class ShowInformationsExercise extends Component {
       // );
     }
     if (this.props.exerciseSent.premisses.length === 0) {
+      // CSS pour le cas où y'a pas de prémisses
       setOfPremisses = (
         <div
           style={{
@@ -67,7 +68,7 @@ class ShowInformationsExercise extends Component {
       );
     } else {
       for (let i = 0; i < this.props.exerciseSent.premisses.length; i++) {
-        numberOfPremisses = numberOfPremisses + i;
+        numberOfPremisses++;
         const newLetter = numberOfPremisses.toString(36).toLowerCase();
         setOfPremisses.push(
           <ButtonRuleRep

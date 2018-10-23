@@ -11,7 +11,7 @@
   {
     "name": "reit",
     "verbalName": "Règle de réitération",
-    "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. Il est impossible de réitérer l'inférence A si elle provient d'une hypothèse terminée.",
+    "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. Il est impossible de réitérer l'inférence A si elle provient d'une hypothèse terminée. (Cliquez sur l'inférence à réitérer.)",
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer dans l'hypothèse en cours.",
     "expectedArguments": [],
