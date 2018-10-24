@@ -66,15 +66,28 @@ const TheFuture = () => {
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir réduire instantanément une
             inférence ayant un symbole autre que ~ et ∧, par leur équivalent
-            avec ces symboles. Il y aurait une petite icône sur laquelle
-            cliquer. Par exemple p⊃q se réduit à ~(~p∧q).
+            avec ces symboles. Une petite icône sur la ligne le permettra. Par
+            exemple p⊃q se réduit à ~(~p∧q).
           </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
             dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant
             sur une petite icône située sur ligne, qui apparaît lorsqu'on met sa
-            souris dessus.
+            souris dessus. (Ce bouton sera le bouton de commutativité, c'est le
+            nom de la règle d'inférence logique qui permet d'inverser A et B
+            dans ces cas-là.)
+          </p>
+          <p className="maybenever-available-rule">
+            - Au sein de la déduction, pouvoir réduire instantanément une
+            inférence de type "A⊅B" à une inférence "A⊃~B", et inversement. Une
+            petite icône sur la ligne le permettra.
+          </p>
+          <p className="maybenever-available-rule">
+            - Un mode "tutoriel" activable/désactivable à volonté pour tous les
+            exercices, qui dira à l'utilisateur où il doit cliquer et quand. En
+            suivant sans réfléchir les indications de ce tutoriel, on devra
+            pouvoir faire tous les exercices du site.
           </p>
         </div>
       </div>

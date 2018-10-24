@@ -132,7 +132,6 @@ class InferenceProvider extends Component {
     };
 
     this.addInferenceViaReit = (numberInference, newInference, hypNumber) => {
-      console.log("addInferenceViaReit");
       let copyArrayRendered = [...this.state.allInferencesRendered];
       const copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
       const storedLevel = this.state.hypothesisCurrentLevelAndId.level; // variable qui n'est utilisée que conditionner la règle reit
@@ -193,10 +192,18 @@ class InferenceProvider extends Component {
       inferenceItself,
       hypID
     ) => {
+      // déclaration des variables essentielles à cette fonction
       let copyArrayStoredInference = [...this.state.storedInference]; // inférence elle-même
       let copyStoredNumbers = [...this.state.storedNumbers]; // numéro(s) justifiant l'inférence (c'est une chaîne de caractères)
       let copyStoredHypId = [...this.state.storedHypID]; // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
-
+      // petite déclaration intermédiaire pour bien préparer le moment où on va reset le tableau des arguments
+      let expectedArgumentsLength = this.state.ruleModalContent
+        .expectedArguments.length;
+      const ruleName = this.state.ruleModalContent.ruleName;
+      if (ruleName === "~i" || ruleName === "⊃i" || ruleName === "⊅i") {
+        expectedArgumentsLength--;
+      }
+      // début de l'intérêt principal de cette fonction
       if (this.state.canInferenceBeStored === true) {
         console.log(
           "faut que ce soit égal",
@@ -206,11 +213,7 @@ class InferenceProvider extends Component {
         );
 
         if (this.state.hypothesisCurrentLevelAndId.actualID === hypID) {
-          if (
-            this.state.ruleModalContent.expectedArguments.length ===
-            copyArrayStoredInference.length
-            // && copyArrayStoredInference.length !== 5
-          ) {
+          if (expectedArgumentsLength === copyArrayStoredInference.length) {
             // copyArrayStoredInference = []; // inférence elle-même
             // copyStoredNumbers = []; // nombre de l'inférence
             copyArrayStoredInference = [inferenceItself]; // inférence el  le-même
@@ -233,7 +236,7 @@ class InferenceProvider extends Component {
           );
         }
         // cas de la règle ∨e
-        if (this.state.ruleModalContent.ruleName === "∨e") {
+        if (ruleName === "∨e") {
           console.log("la règle ∨e fait son oeuvre");
           this.longStorageForRuleVerification(
             inferenceItself,
@@ -261,7 +264,6 @@ class InferenceProvider extends Component {
 
     this.changeStorageBoolean = (str, num) => {
       // sert à désactiver le tableau storedInference quand un modal n'est pas activé
-      console.log("changeStorageBoolean, le num reçu est à ", num);
       if (str === "resetButStillTrue") {
         this.setState({
           // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
@@ -353,10 +355,10 @@ class InferenceProvider extends Component {
     };
 
     this.manageLotsOfStuffAboutHypothesis = (hypothesisItself, hyp, change) => {
-      console.log(
-        "manageLotsOfStuffAboutHypothesis, l'hypothèse est ",
-        hypothesisItself
-      );
+      // consolelog(
+      //   "manageLotsOfStuffAboutHypothesis, l'hypothèse est ",
+      //   hypothesisItself
+      // );
       // (section 1 : change) Cette section gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
       // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
       let copyHypothesisCurrentLevelAndID = {
@@ -394,7 +396,7 @@ class InferenceProvider extends Component {
         allHypotheticalInferences: copyAllHypotheticalInferences,
         hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID
       });
-      // console.log("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
+      // consolelog("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
     this.setChoiceContent = choiceContent => {
@@ -505,7 +507,6 @@ class InferenceProvider extends Component {
     this.updateTrueAtomicPropositions = (str, itself, hypLevel) => {
       // let copyArray = this.state.arrayTrueAtomicPropositions;
       // if (str === "new hyp") {
-      //   console.log("UTAP crée bien le tableau");
       //   copyArray.push([]);
       // } else if (str === "add prop") {
       //   copyArray[hypLevel].unshift(itself);
@@ -556,7 +557,7 @@ class InferenceProvider extends Component {
         actualID: 0,
         hypIsStillOpen: []
       },
-      allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i ou ⊅i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
       // section ruleModal
       ruleModalShown: { normal: false }, // je ferai peut-être un "ruleModalShown.special", plus tard
       ruleModalClassName: "",

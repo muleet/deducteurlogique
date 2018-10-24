@@ -63,10 +63,6 @@ class ButtonRuleMaker extends Component {
       ruleName: ruleName
     };
     // les deux conditions ci-dessous permettent de vérifier si canInferenceBeStored doit être ouvert ou fermé
-    console.log(
-      "handleclick de ruleModal, son expectedArguments.length est à",
-      expectedArguments.length
-    );
     if (
       this.props.valueInference.ruleModalShown.normal === true &&
       ruleName === this.props.valueInference.ruleModalContent.ruleName
@@ -189,7 +185,6 @@ class ButtonRuleMaker extends Component {
           arrayRulesSent[i] === "~~e"
           // || arrayRulesSent !== "~~e"
         ) {
-          console.log(arrayCurrentRules[i].available);
           let currentRuleName = arrayCurrentRules[i].name;
           if (arrayRulesSent[i] === "~~e") {
             currentRuleName = (

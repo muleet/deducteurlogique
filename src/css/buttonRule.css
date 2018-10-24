@@ -8,7 +8,7 @@
 }
 
 .setOfRules-twoCharacters {
-  max-height: 230px;
+  max-height: 264px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,7 +65,7 @@
 
 .longSelected {
   /* uniquement pour l'élimination de la disjonction, pour le moment */
-  background-color: hsl(49, 100%, 72%);
+  background-color: hsla(49, 100%, 72%, 0.171);
   color: black;
   border: 1px solid hsl(49, 100%, 72%);
 }
@@ -75,7 +75,8 @@
   color: rgb(121, 121, 121);
 }
 .selected {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  background-color: hsl(0, 100%, 24%);
 }
 
 #negationElimination {

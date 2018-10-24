@@ -58,7 +58,6 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
 
     // étape 0 : l'utilisateur doit cliquer sur une inférence A∨B
     if (longStoredInference[0]) {
-      console.log("bonjour");
       ArrayAorB = this.props.valueRule.returnWhatIsBeforeAndAfterTheOperator(
         longStoredInference[0],
         "∨"

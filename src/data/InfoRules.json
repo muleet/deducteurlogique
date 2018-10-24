@@ -44,9 +44,8 @@
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": [["hyp A", "contradiction", "~A ~i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
-    "expectedArguments": ["A", "B", "~B"],
-    "available": "yes",
-    "binomial": "i"
+    "expectedArguments": ["hyp A", "B", "~B"],
+    "available": "yes"
   },
   {
     "name": "~~e",
@@ -55,9 +54,7 @@
     "arrayUtilization": "",
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
-    "available": "yes",
-    "binomial": "e",
-    "notaBene": "Il est facile de trouver des exemples montrant que ~~A ne dit pas forcément la même que A, ou que ~~~~A. Les doubles négation ne sont pas toujours simplement redondantes, et c'est là un important exemple des limites de la logique des propositions. [à développer]"
+    "available": "yes"
   },
   {
     "name": "∧i",
@@ -66,8 +63,7 @@
     "arrayUtilization": [["A", "B", "A∧B ∧i"]],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
     "expectedArguments": ["A", "B"],
-    "available": "yes",
-    "binomial": "i"
+    "available": "yes"
   },
   {
     "name": "∧e",
@@ -76,8 +72,7 @@
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
-    "available": "yes",
-    "binomial": "e"
+    "available": "yes"
   },
   {
     "name": "∨i",
@@ -90,8 +85,7 @@
     ],
     "instruction": "Cliquez sur A, puis décidez arbitrairement de B, pour inférer A∨B.",
     "expectedArguments": ["A"],
-    "available": "yes",
-    "binomial": "i"
+    "available": "yes"
   },
   {
     "name": "∨e",
@@ -103,128 +97,79 @@
     ],
     "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
     "expectedArguments": ["A∨B", "C |A", "C |B"],
-    "available": "yes",
-    "binomial": "e"
+    "available": "yes"
   },
   {
     "name": "⊻i",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription": "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
-    "arrayUtilization": [["A", "~B", "A⊻B ⊻i"]],
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "i"
+    "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
+    "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
+    "expectedArguments": ["A⊅B", "B⊅A"],
+    "available": "yes"
   },
   {
     "name": "⊻e",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
-    "verbalDescription": "Si A⊻B a été posé, [il faut trouver lequel des deux est vrai et c'est pas évident wesh [à développer]].",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
+    "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A).",
+    "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
+    "instruction": "Cliquez sur A⊻B, puis A (ou B), pour inférer ~B (ou ~A).",
+    "expectedArguments": ["A ou B", "A⊻B"],
+    "available": "yes"
   },
   {
     "name": "⊃i",
     "verbalName": "Règle d'introduction du conditionnel",
-    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux. (A noter que A⊃B signifie exactement la même chose que ~(A∧~B).)",
+    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux.",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
-    "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins une inférence B la suit, confirmez cette règle pour valider l'hypothèse, en inférant A⊃B.",
-    "expectedArguments": ["A", "B"],
-    "available": "yes",
-    "binomial": "i"
+    "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊃B.",
+    "expectedArguments": ["hyp A", "B"],
+    "available": "yes"
   },
   {
     "name": "⊃e",
     "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊃B, on peut poser B isolément.",
-    "arrayUtilization": "",
+    "arrayUtilization": [["A", "A⊃B", "B ⊃e"]],
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
-    "available": "yes",
-    "binomial": "e"
-  },
-  {
-    "name": "⊂i",
-    "verbalName": "Règle d'introduction de la contraposée du conditionnel",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "test",
-    "binomial": "i"
-  },
-  {
-    "name": "⊂e",
-    "verbalName": "Règle d'élimination de la contraposée du conditionnel (modus tollens)",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "test",
-    "binomial": "e"
+    "available": "yes"
   },
   {
     "name": "≡i",
     "verbalName": "Règle d'introduction du biconditionnel",
     "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B.",
-    "arrayUtilization": "",
+    "arrayUtilization": [["A⊃B", "B⊃A", "A≡B ≡i"]],
     "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
     "expectedArguments": ["A⊃B", "B⊃A"],
-    "available": "yes",
-    "binomial": "i"
+    "available": "yes"
   },
   {
     "name": "≡e",
     "verbalName": "Règle d'élimination du biconditionnel",
     "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
-    "arrayUtilization": "",
+    "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
     "instruction": "Cliquez sur A≡B, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
-    "available": "yes",
-    "binomial": "e"
+    "available": "yes"
   },
   {
     "name": "⊅i",
     "verbalName": "Règle d'introduction de l'abjonction",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "",
-    "expectedArguments": [],
-    "available": "later",
-    "binomial": "i"
+    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à ~B, on peut valider l'hypothèse et inférer A⊅B (si A alors ~B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat faux, alors il y a un lien de nécessité généralisable l'hypothèse et ce résultat faux.",
+    "arrayUtilization": [["|A hyp", "|~B", "A⊅B ⊅i"]],
+    "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence ~B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊅B.",
+    "expectedArguments": ["hyp A", "~B"],
+    "available": "yes"
   },
   {
     "name": "⊅e",
     "verbalName": "Règle d'élimination de l'abjonction",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "",
-    "expectedArguments": [],
-    "available": "later",
-    "binomial": "e"
-  },
-  {
-    "name": "⊄i",
-    "verbalName": "Règle d'introduction de la contraposée de l'abjonction",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "",
-    "expectedArguments": [],
-    "available": "later",
-    "binomial": "i"
-  },
-  {
-    "name": "⊄e",
-    "verbalName": "Règle d'élimination de la contraposée de l'abjonction",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "",
-    "expectedArguments": [],
-    "available": "later",
-    "binomial": "e"
+    "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊃~B, on peut poser ~B isolément.",
+    "arrayUtilization": [["A", "A⊅B", "~B ⊅e"], ["A", "A⊃~B", "~B ⊅e"]],
+    "instruction": "Cliquez sur A, puis A⊅B ou A⊃~B, pour inférer B.",
+    "expectedArguments": ["A", "A⊅B ou A⊃~B"],
+    "available": "yes"
   },
   {
     "name": "|i",
@@ -233,18 +178,16 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon",
-    "binomial": "i"
+    "available": "soon"
   },
   {
     "name": "|e",
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
-    "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B.",
-    "arrayUtilization": [["A|B", "A", "~B |e"], ["A|B", "~A", "B |e"]],
+    "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
+    "arrayUtilization": [["A|B", "A", "~B |e"]],
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon",
-    "binomial": "e"
+    "available": "soon"
   },
   {
     "name": "□i",
@@ -253,8 +196,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
-    "binomial": "i"
+    "available": "later"
   },
   {
     "name": "□e",
@@ -263,8 +205,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later",
-    "binomial": "e"
+    "available": "later"
   },
   {
     "name": "◊i",
@@ -273,8 +214,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "i"
+    "available": "maybenever"
   },
   {
     "name": "◊e",
@@ -283,16 +223,14 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
+    "available": "maybenever"
   },
   {
     "name": "∀i",
     "verbalName": "Règle d'introduction du quantificateur universel",
     "verbalDescription": "",
     "arrayUtilization": "",
-    "available": "maybenever",
-    "binomial": "i"
+    "available": "maybenever"
   },
   {
     "name": "∀e",
@@ -301,8 +239,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
+    "available": "maybenever"
   },
   {
     "name": "Ǝi",
@@ -311,8 +248,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "i"
+    "available": "maybenever"
   },
   {
     "name": "Ǝe",
@@ -321,8 +257,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
+    "available": "maybenever"
   },
   {
     "name": "=i",
@@ -331,8 +266,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "i"
+    "available": "maybenever"
   },
   {
     "name": "=e",
@@ -341,7 +275,6 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever",
-    "binomial": "e"
+    "available": "maybenever"
   }
 ]

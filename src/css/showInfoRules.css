@@ -68,6 +68,11 @@
 .soon-available-rule {
   color: rgb(58, 127, 255);
 }
+
+.test-available-rule {
+  color: rgb(58, 127, 255);
+}
+
 .later-available-rule {
   color: rgb(238, 155, 0);
 }

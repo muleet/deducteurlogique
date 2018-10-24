@@ -44,7 +44,7 @@
   {
     "number": 3,
     "name": "Abjonction",
-    "alternativeName": "Négation du conditionnel, ou non-conditionnel",
+    "alternativeName": "Négation du conditionnel, Non-conditionnel, Non-implication matérielle",
     "description": "",
     "link": "",
     "reductibleTo": "A∧~B",
@@ -58,7 +58,7 @@
   {
     "number": 4,
     "name": "Contraposée de l'abjonction",
-    "alternativeName": "Contraposée de la négation du conditionnel, ou non-conditionnel réciproque",
+    "alternativeName": "Contraposée de la négation du conditionnel, Non-conditionnel réciproque",
     "description": "",
     "link": "",
     "reductibleTo": "~A∧B",
@@ -122,10 +122,7 @@
     "itself": ["V", "F", "F", "V"],
     "category": "true-and-false",
     "character": "≡↔",
-    "example": [
-      "S'il y a du foin dans l'écurie, la jument y est.",
-      "La jument est dans l'écurie donc il s'y trouve du foin."
-    ],
+    "example": ["Je respire.", "Je vis."],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Venn1001.svg/100px-Venn1001.svg.png"
   },
   {
@@ -135,10 +132,10 @@
     "description": "A et B ne peuvent être ni vrais ensemble, ni faux ensembles.",
     "link": "",
     "reductibleTo": "~(~p∧~q)∧~(p∧q)",
-    "lecture": "ou bien A, ou bien B",
+    "lecture": "ou bien A, ou bien B ; soit A, soit B",
     "itself": ["F", "V", "V", "F"],
     "category": "true-and-false",
-    "character": "⊻w⊕",
+    "character": "⊻≢↮",
     "example": ["Je suis debout.", "Je ne suis pas debout."],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Venn0110.svg/100px-Venn0110.svg.png"
   },
@@ -190,7 +187,7 @@
   {
     "number": 13,
     "name": "Contraposée du conditionnel",
-    "alternativeName": "Contraposition",
+    "alternativeName": "Contraposition, Contraposée de l'implication matérielle",
     "description": "",
     "link": "",
     "reductibleTo": "~(~p∧q)",

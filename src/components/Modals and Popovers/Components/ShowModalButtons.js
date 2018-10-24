@@ -5,8 +5,6 @@ class ShowModalButtons extends Component {
   verifyRule(valueRule) {
     // "RuleModal", puis "ShowExpectedArguments"/"ShowModalButtons", puis "VerifyRule", puis "redirectToTheRightRule", puis "[la règle en question]", puis "addInference"
     // puis dans le cas des hypothèses, changeHypothesisLevel, puis updateHypotheticalInferencesThemselves puis RIEN (pas d'updateInferencesOfCurrentHypotheses)
-    // console.log("verifyRule, pour la règle ", this.props.ruleName);
-
     if (
       this.props.valueInference.storedInference !== undefined &&
       this.props.expectedArguments.length ===
@@ -37,7 +35,6 @@ class ShowModalButtons extends Component {
   }
 
   verifyBreakHypothesisRule(valueRule) {
-    // console.log("verifyBreakHypothesisRule", this.props.ruleName);
     if (this.props.valueInference.hypothesisCurrentLevelAndId.level !== 0) {
       if (
         this.props.valueInference.storedInference !== undefined &&
@@ -164,6 +161,8 @@ class ShowModalButtons extends Component {
           valueInference={this.props.valueInference}
         />
       );
+      // buttonResetArguments = "???"
+      // à faire : pour la règle d'élimination de la disjonction il faut pouvoir supprimer les deux hypothèses créées, à volonté. Y compris si une seule hypothèse avait été créée.
     }
 
     return (
@@ -181,6 +180,7 @@ class ShowModalButtons extends Component {
               this.verifyLongStorageRule(this.props.valueRule);
             } else if (
               this.props.ruleName !== "⊃i" &&
+              this.props.ruleName !== "⊅i" &&
               this.props.ruleName !== "~i"
             ) {
               this.verifyRule(this.props.valueRule);

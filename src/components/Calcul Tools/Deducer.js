@@ -162,7 +162,7 @@ class Deducer extends Component {
   componentDidMount() {
     this.setState(
       { currentExercise: Exercises[Number(this.props.exerciseNumber - 1)] }
-      // () => console.log("currentExercice", this.state.currentExercise) // console.log avec une fonction avec fat arrow, oui ça existe
+      // () => consolelog("currentExercice", this.state.currentExercise) // consolelog avec une fonction avec fat arrow, oui ça existe
     );
   }
 
