@@ -37,7 +37,7 @@
 
 .box-info-rule {
   height: 380px;
-  width: 950px;
+  /* width: 950px; */
   display: flex;
   flex-direction: column;
   align-content: center;

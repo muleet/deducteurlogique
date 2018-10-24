@@ -28,6 +28,7 @@ class Deducer extends Component {
       "p∧q",
       "p∨q",
       "p⊻q",
+      "p≡q",
       "(p∧q)∧(p∧r)",
       "q⊃r",
       "~(p∧q)",
