@@ -198,7 +198,7 @@ class RuleProvider extends Component {
         this.props.valueInference.setAdvice(
           "Disjonction inclusive éliminée, les hypothèses A et B permettent toutes deux d'inférer " +
             proposition +
-            ", qui est la nouvelle inférence :" +
+            ", qui est la nouvelle inférence : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
@@ -219,7 +219,6 @@ class RuleProvider extends Component {
         ifBthenNotA,
         "⊃"
       );
-
       if (ArrayifAthenNotB.length !== 2) {
         ArrayifAthenNotB = this.returnWhatIsBeforeAndAfterTheOperator(
           ifAthenNotB,
@@ -258,7 +257,7 @@ class RuleProvider extends Component {
         };
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
-          "Disjonction exclusive introduite, nouvelle inférence :" +
+          "Disjonction exclusive introduite, nouvelle inférence : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
@@ -280,18 +279,32 @@ class RuleProvider extends Component {
         numberCommentary: numbers,
         commentary: "⊻e"
       };
-
+      // A === A⊻B pour ~B
       if (A === ArrayeitherAeitherB[0]) {
         inferenceToAdd.itself = "~" + ArrayeitherAeitherB[1];
       }
       if (A === ArrayeitherAeitherB[1]) {
         inferenceToAdd.itself = "~" + ArrayeitherAeitherB[0];
       }
+      // ~+A === ~A⊻B pour B
+      if ("~" + A === ArrayeitherAeitherB[0]) {
+        inferenceToAdd.itself = ArrayeitherAeitherB[1];
+      }
+      if ("~" + A === ArrayeitherAeitherB[1]) {
+        inferenceToAdd.itself = ArrayeitherAeitherB[0];
+      }
+      // ~A === ~+A⊻B pour B
+      if (A === "~" + ArrayeitherAeitherB[0]) {
+        inferenceToAdd.itself = ArrayeitherAeitherB[1];
+      }
+      if (A === "~" + ArrayeitherAeitherB[1]) {
+        inferenceToAdd.itself = ArrayeitherAeitherB[0];
+      }
 
       if (inferenceToAdd.itself.length > 0) {
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
-          "Disjonction exclusive introduite, nouvelle inférence :" +
+          "Disjonction exclusive introduite, nouvelle inférence : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
@@ -392,7 +405,7 @@ class RuleProvider extends Component {
         };
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
-          "Biconditionnel introduit, nouvelle inférence :" +
+          "Biconditionnel introduit, nouvelle inférence : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
@@ -584,14 +597,19 @@ class RuleProvider extends Component {
             arrayToReturn.push(part);
           }
         }
-        for (let i = 0; i < 2; i++) {
-          let noFirstParenthesis = "";
-          if (arrayToReturn[i][0] === "(") {
-            for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
-              noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
+        console.log(arrayToReturn);
+        if (arrayToReturn.length === 2) {
+          for (let i = 0; i < 2; i++) {
+            let noFirstParenthesis = "";
+            if (arrayToReturn[i][0] === "(") {
+              for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
+                noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
+              }
+              arrayToReturn[i] = noFirstParenthesis;
             }
-            arrayToReturn[i] = noFirstParenthesis;
           }
+        } else {
+          arrayToReturn = "error";
         }
         // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
       } else {
@@ -636,6 +654,8 @@ class RuleProvider extends Component {
         verbalRuleName = "Conjonction éliminée";
       } else if (ruleName === "∨i") {
         verbalRuleName = "Disjonction inclusive introduite";
+      } else if (ruleName === "≡e") {
+        verbalRuleName = "Biconditionnel éliminé";
       }
       let leftSide = (
         <div
@@ -646,7 +666,7 @@ class RuleProvider extends Component {
               verbalRuleName +
                 ", nouvelle inférence : " +
                 leftInferenceToAdd.itself,
-              leftChoice,
+              // leftChoice,
               "rule-advice"
             );
           }}
@@ -663,7 +683,7 @@ class RuleProvider extends Component {
               verbalRuleName +
                 ", nouvelle inférence : " +
                 rightInferenceToAdd.itself,
-              rightChoice,
+              // rightChoice,
               "rule-advice"
             );
           }}

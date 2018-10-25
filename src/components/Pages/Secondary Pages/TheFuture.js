@@ -42,8 +42,9 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            - Les règles de l'abjonction, et de la contraposition du
-            conditionnel et de la contraposition de l'abjonction.
+            - Les règles de l'incompatibilité + corrections des bugs de la règle
+            ve, et d'un bug de la gestion des parenthèses dans de rares cas
+            (avec ⊻i notamment).
           </p>
           <p className="later-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
@@ -55,6 +56,10 @@ const TheFuture = () => {
             de nouveaux exercices (il pourra choisir les prémisses, les règles
             utilisées, la conclusion, une solution possible, et les
             significations possibles des prémisses).
+          </p>
+          <p className="later-available-rule">
+            - Un bouton pour effacer la dernière inférence produite dans la
+            déduction, en tenant compte du niveau d'hypothèse.
           </p>
           <p className="maybenever-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
@@ -73,10 +78,10 @@ const TheFuture = () => {
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
             dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant
-            sur une petite icône située sur ligne, qui apparaît lorsqu'on met sa
-            souris dessus. (Ce bouton sera le bouton de commutativité, c'est le
-            nom de la règle d'inférence logique qui permet d'inverser A et B
-            dans ces cas-là.)
+            sur le connecteur. En mettant sa souris sur un connecteur
+            commutatif, on verra la portée de celui-ci (même s'il est au sein
+            d'une parenthèse). (L'action d'inverser ainsi des inférences sera
+            appelé "utilisation de la règle de commutativité".)
           </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir réduire instantanément une

@@ -48,7 +48,7 @@
       [
         "p : Cette table est en bois.",
         "q : La Terre est ronde.",
-        "r : C'est une feuille de papier."
+        "r : Ceci est une feuille de papier."
       ]
     ],
     "comment": "",
@@ -94,7 +94,7 @@
         "q : Macron peut être un bon président."
       ],
       [
-        "p : Comme professeur d'université, Pierre Jean a une bonne situation sociale.",
+        "p : Comme professeur de logique à l'université, Pierre Jean a une bonne situation sociale.",
         "q : Il est probable que Pierre Jean voit par son propre mode de vie la pertinence du concept de lutte des classes."
       ],
       [
@@ -116,6 +116,20 @@
     "doable": true
   },
   {
+    "verbalName": "Introduction du biconditionnel",
+    "premisses": ["p", "q"],
+    "conclusion": "p≡q",
+    "meaning": [
+      [
+        "p : Mon pays est authentiquement démocratique.",
+        "q : Tout enfant naissant dans mon pays est considéré apte à décider ce que signifie le mot \"travail\"."
+      ]
+    ],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "≡i", "⊃i"],
+    "doable": true
+  },
+  {
     "verbalName": "Réfutation d'hypothèse (3)",
     "premisses": ["p∧q"],
     "conclusion": "~(q∧~p)",
@@ -131,12 +145,12 @@
     "doable": true
   },
   {
-    "verbalName": "Introduction du biconditionnel",
-    "premisses": ["p", "q"],
-    "conclusion": "p≡q",
-    "meaning": [["p : Je respire.", "q : Je vis."]],
+    "verbalName": "Elimination du biconditionnel",
+    "premisses": ["p∧r", "p≡(q≡r)"],
+    "conclusion": "q",
+    "meaning": [],
     "comment": "",
-    "rulesImplied": ["rep", "hyp", "≡i", "⊃i"],
+    "rulesImplied": ["rep", "∧e", "⊃e", "≡e"],
     "doable": true
   },
   {
@@ -149,12 +163,12 @@
     "doable": true
   },
   {
-    "verbalName": "Elimination du biconditionnel",
-    "premisses": ["p∧r", "p≡(q≡r)"],
-    "conclusion": "q",
-    "meaning": [],
+    "verbalName": "Élimination de l'abjonction",
+    "premisses": ["p⊃q", "p⊅r"],
+    "conclusion": "p⊃(q∧~r)",
+    "meaning": [["p : La philosophie est fille de l'étonnement.", "q : "]],
     "comment": "",
-    "rulesImplied": ["rep", "∧e", "⊃e", "≡e"],
+    "rulesImplied": ["rep", "hyp", "∧i", "⊃i", "⊃e", "⊅e"],
     "doable": true
   },
   {
@@ -169,6 +183,15 @@
     ],
     "comment": "",
     "rulesImplied": ["rep", "reit", "hyp", "~i", "~~e", "∧i"],
+    "doable": true
+  },
+  {
+    "verbalName": "Introduction & élimination de l'abjonction",
+    "premisses": ["p", "q⊅r"],
+    "conclusion": "(p⊃q)⊅r",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "⊃e", "⊅i", "⊅e"],
     "doable": true
   },
   {
@@ -238,6 +261,30 @@
     "doable": true
   },
   {
+    "verbalName": "Introduction de la disjonction exclusive",
+    "premisses": ["(p⊃r)⊅(q⊅r)", "(q⊅r)⊅(p⊃r)"],
+    "conclusion": "(p⊃r)⊻(q⊅r)",
+    "meaning": [
+      [
+        "p : Ma conception du bonheur est entièrement personnelle et instinctive.",
+        "q : Ma conception du bonheur est héritée des passions nationales.",
+        "r : Ma conception du bonheur est authentique."
+      ]
+    ],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "⊻i", "⊻e", "⊃e", "⊅i", "⊅e"],
+    "doable": false
+  },
+  {
+    "verbalName": "Elimination de la disjonction exclusive",
+    "premisses": ["p", "~p⊻(q⊻r)"],
+    "conclusion": "(p⊅q)⊃r",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "⊃i", "⊻e", "⊅e"],
+    "doable": true
+  },
+  {
     "verbalName": "Introduction de la disjonction inclusive",
     "premisses": ["~(p∨q)"],
     "conclusion": "~p",
@@ -275,7 +322,16 @@
     "conclusion": "(p∨q)⊃(q∨p)",
     "meaning": [],
     "comment": "",
-    "rulesImplied": ["hyp", "∨i", "∨e", "⊃i"],
+    "rulesImplied": ["reit", "hyp", "∨i", "∨e", "⊃i"],
     "doable": true
+  },
+  {
+    "verbalName": ["Tautologie de disjonctions (2)"],
+    "premisses": [],
+    "conclusion": "(~p∨~q)⊃~(p∧q)",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["reit", "hyp", "~i", "∧e", "∨e", "⊃i"],
+    "doable": false
   }
 ]

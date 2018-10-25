@@ -56,7 +56,7 @@
     "answer": "On peut distinguer 3 genres de règles : les règles structurelles (rep, reit, hyp...), les règles de connecteurs (∧i, ...), et les règles dérivées (~~e, ...). Les deux premières sont des règles acceptées par défaut, sans démonstration ; les règles dérivées sont au contraire démontrables à partir des précédentes. Elles sont comme des raccourcis. Il est possible de déduire toutes les règles des connecteurs propositionnels en ayant pour base ~ et ∧ (ces deux connecteurs forment donc ce qu'on appelle un \"système complet\"), par exemple A⊃B peut s'écrire ~(A∧~B)."
   },
   {
-    "name": "Que sont le théorème et la tautologie ?",
+    "name": "Que sont le théorème, la tautologie, et la preuve logique ?",
     "answer": "Un théorème logique est la conclusion d'une déduction qui est toujours vraie quelle que soit la valeur de vérité des prémisses qu'on lui donne. Une telle déduction est, elle, appelée \"preuve logique\". Les théorèmes existent en fonction des règles de logique qu'on adopte. Si A est un théorème, on peut l'écrire ⊢A. Une tautologie est une formule qui est vraie en toute circonstance. Ainsi, un théorème logique est toujours une tautologie, et une tautologie correspond toujours en puissance à un théorème logique. Si A est une tautologie, on peut l'écrire ⊨A.",
     "example": "La terre est une planète ou n'est pas une planète. ⊢~(p∧~p). ⊨~(p∧~p)."
   },

@@ -102,7 +102,7 @@
   {
     "name": "⊻i",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
-    "verbalDescription": "Si A a été posé comme vrai, et que B a été posé comme faux (ou inversement) on peut inférer A⊻B.",
+    "verbalDescription": "Si A⊅B et B⊅A ont été posés, on peut inférer A⊻B.",
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
@@ -111,7 +111,7 @@
   {
     "name": "⊻e",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
-    "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A).",
+    "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A).",
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A⊻B, puis A (ou B), pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
@@ -138,7 +138,7 @@
   {
     "name": "≡i",
     "verbalName": "Règle d'introduction du biconditionnel",
-    "verbalDescription": "Si l'on a posé A⊃B et B⊃A, on peut poser A≡B.",
+    "verbalDescription": "Si A⊃B et B⊃A ont été posés, on peut poser A≡B.",
     "arrayUtilization": [["A⊃B", "B⊃A", "A≡B ≡i"]],
     "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
     "expectedArguments": ["A⊃B", "B⊃A"],

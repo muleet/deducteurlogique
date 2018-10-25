@@ -10,6 +10,7 @@ Choses à faire :
 5) Faire que les numéros des commentaires de la règle ⊃i ne soient pas séparés par une virgule et un espace, mais par un trait d'union.
 5) Pour la règle ∧i (et quelques autres), ce serait pas mal de mettre "&" pour séparer les numéros d'inférence qui justifient l'utilisation de la règle. Ca montrerait qu'il n'y avait que 2 inférences utilisés pour cette règle (ça clarifierait donc l'interface ET le fonctionnement de la règle de logique en question).
 5) Tant que l'utilisateur n'a pas rempli toutes les conditions requises pour une règle, le bouton de confirmation de la règle doit rester désactivé.
+6) Faire un exercice démontrant la viabilité d'une révolution passive.
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state

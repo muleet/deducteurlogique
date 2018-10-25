@@ -62,22 +62,12 @@
     "verbalName": "Validation d'hypothèse (2)",
     "possibleSolution": [
       { "itself": "|p∧q", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|p", "numberCommentary": "1", "commentary": "∧" },
+      { "itself": "|p", "numberCommentary": "1", "commentary": "∧e" },
       { "itself": "|q", "numberCommentary": "1", "commentary": "∧e" },
       { "itself": "|p⊃(q⊃r)", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "|q⊃r", "numberCommentary": "2, 4", "commentary": "⊃e" },
       { "itself": "|r", "numberCommentary": "3, 5", "commentary": "⊃e" },
       { "itself": "(p∧q)⊃r", "numberCommentary": "1, 5", "commentary": "⊃i" }
-    ]
-  },
-  {
-    "verbalName": "Réfutation d'hypothèse (3)",
-    "possibleSolution": [
-      { "itself": "|q∧~p", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
-      { "itself": "|~p", "numberCommentary": "1", "commentary": "∧e" },
-      { "itself": "|p", "numberCommentary": "2", "commentary": "∧e" },
-      { "itself": "~(q∧~p)", "numberCommentary": "1, 3, 4", "commentary": "~i" }
     ]
   },
   {
@@ -93,14 +83,13 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse (4)",
+    "verbalName": "Réfutation d'hypothèse (3)",
     "possibleSolution": [
-      { "itself": "|r", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|q∧~p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|~p", "numberCommentary": "1", "commentary": "∧e" },
       { "itself": "|p", "numberCommentary": "2", "commentary": "∧e" },
-      { "itself": "|p∧r", "numberCommentary": "1, 3", "commentary": "∧i" },
-      { "itself": "|~(p∧r)", "numberCommentary": "b", "commentary": "rep" },
-      { "itself": "~r", "numberCommentary": "1, 4, 5", "commentary": "~i" }
+      { "itself": "~(q∧~p)", "numberCommentary": "1, 3, 4", "commentary": "~i" }
     ]
   },
   {
@@ -117,6 +106,29 @@
     ]
   },
   {
+    "verbalName": "Réfutation d'hypothèse (4)",
+    "possibleSolution": [
+      { "itself": "|r", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|p", "numberCommentary": "2", "commentary": "∧e" },
+      { "itself": "|p∧r", "numberCommentary": "1, 3", "commentary": "∧i" },
+      { "itself": "|~(p∧r)", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "~r", "numberCommentary": "1, 4, 5", "commentary": "~i" }
+    ]
+  },
+  {
+    "verbalName": "Élimination de l'abjonction",
+    "possibleSolution": [
+      { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p⊅r", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "|~r", "numberCommentary": "1, 2", "commentary": "⊅e" },
+      { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|q", "numberCommentary": "1, 4", "commentary": "⊃e" },
+      { "itself": "|q∧~r", "numberCommentary": "5, 3", "commentary": "∧e" },
+      { "itself": "p⊃(q∧~r)", "numberCommentary": "", "commentary": "⊃i" }
+    ]
+  },
+  {
     "verbalName": "Réfutation d'hypothèse et élimination de double négation",
     "possibleSolution": [
       { "itself": "|~q", "numberCommentary": "", "commentary": "hyp" },
@@ -128,14 +140,29 @@
     ]
   },
   {
+    "verbalName": "Introduction & élimination de l'abjonction",
+    "possibleSolution": [
+      { "itself": "p⊃q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "p", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "q", "numberCommentary": "2, 1", "commentary": "⊃e" },
+      { "itself": "q⊅r", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "~r", "numberCommentary": "3, 4", "commentary": "⊅e" },
+      { "itself": "(p⊃q)⊅r", "numberCommentary": "1-5", "commentary": "⊅i" }
+    ]
+  },
+  {
     "verbalName": "Réfutation d'hypothèse contradictoire",
     "possibleSolution": [
       { "itself": "|q∧~(p∧q)", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|q", "numberCommentary": "", "commentary": "∧e" },
-      { "itself": "|p", "numberCommentary": "", "commentary": "rep" },
-      { "itself": "|p∧q", "numberCommentary": "", "commentary": "∧i" },
-      { "itself": "|~(p∧q)", "numberCommentary": "", "commentary": "∧e" },
-      { "itself": "~(q∧~(p∧q))", "numberCommentary": "", "commentary": "~i" }
+      { "itself": "|q", "numberCommentary": "1", "commentary": "∧e" },
+      { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|p∧q", "numberCommentary": "2, 3", "commentary": "∧i" },
+      { "itself": "|~(p∧q)", "numberCommentary": "1", "commentary": "∧e" },
+      {
+        "itself": "~(q∧~(p∧q))",
+        "numberCommentary": "1, 4, 5",
+        "commentary": "~i"
+      }
     ]
   },
   {
@@ -211,12 +238,32 @@
     ]
   },
   {
+    "verbalName": "Introduction de la disjonction exclusive",
+    "possibleSolution": [
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "r", "numberCommentary": "", "commentary": "" },
+      { "itself": "p⊻", "numberCommentary": "", "commentary": "⊻i" }
+    ]
+  },
+  {
+    "verbalName": "Elimination de la disjonction exclusive",
+    "possibleSolution": [
+      { "itself": "|p⊅q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|~p⊻(q⊻r)", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "|q⊻r", "numberCommentary": "2, 3", "commentary": "⊻e" },
+      { "itself": "|~q", "numberCommentary": "2, 1", "commentary": "⊅e" },
+      { "itself": "|r", "numberCommentary": "5, 4", "commentary": "⊻e" },
+      { "itself": "(p⊅q)⊃r", "numberCommentary": "1, 6", "commentary": "⊃i" }
+    ]
+  },
+  {
     "verbalName": "Introduction de la disjonction inclusive",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|~(p∨q)", "numberCommentary": "", "commentary": "reit" },
-      { "itself": "|p∨q", "numberCommentary": "2", "commentary": "∨i" },
-      { "itself": "~p", "numberCommentary": "1", "commentary": "reit" }
+      { "itself": "|p∨q", "numberCommentary": "1", "commentary": "∨i" },
+      { "itself": "|~(p∨q)", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "~p", "numberCommentary": "1, 2, 3", "commentary": "~i" }
     ]
   },
   {
@@ -248,7 +295,7 @@
     ]
   },
   {
-    "verbalName": ["Stratégie du fer à cheval pour une tautologie"],
+    "verbalName": ["Tautologie de disjonctions"],
     "possibleSolution": [
       { "itself": "|p∨q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||p", "numberCommentary": "", "commentary": "hyp" },
@@ -258,9 +305,43 @@
       {
         "itself": "|q∨p",
         "numberCommentary": "1, 2-3, 4-5",
-        "commentary": "ve"
+        "commentary": "∨e"
       },
-      { "itself": "(pvq)⊃(qvp)", "numberCommentary": "1-6", "commentary": "⊃i" }
+      { "itself": "(p∨q)⊃(q∨p)", "numberCommentary": "1-6", "commentary": "⊃i" }
+    ]
+  },
+  {
+    "verbalName": ["Tautologie de disjonctions (2)"],
+    "possibleSolution": [
+      { "itself": "|~p∨~q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "||~p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|||p∧q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|||~p", "numberCommentary": "2", "commentary": "reit" },
+      { "itself": "|||p", "numberCommentary": "3", "commentary": "∧e" },
+      {
+        "itself": "||~(p∧q)",
+        "numberCommentary": "3, 4, 5",
+        "commentary": "~i"
+      },
+      { "itself": "||~q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|||p∧q", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|||~q", "numberCommentary": "7", "commentary": "reit" },
+      { "itself": "|||q", "numberCommentary": "8", "commentary": "∧e" },
+      {
+        "itself": "||~(p∧q)",
+        "numberCommentary": "8, 9, 10",
+        "commentary": "~i"
+      },
+      {
+        "itself": "|~(p∧q)",
+        "numberCommentary": "1, 2-6, 7-11",
+        "commentary": "∨e"
+      },
+      {
+        "itself": "(~pv~q)⊃~(p∧q)",
+        "numberCommentary": "1-12",
+        "commentary": "⊃i"
+      }
     ]
   }
 ]

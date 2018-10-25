@@ -23,13 +23,13 @@
 
 .rule-popover-rulename {
   margin-bottom: 10px;
+  background-color: black;
 }
 
-.rule-popover-content{
-  background-color: rgb(49, 49, 71);
+.rule-popover-content {
+  background-color: #313147;
   display: flex;
   flex-direction: row;
-  color : white;
 }
 
 .rule-popover-description {
@@ -37,8 +37,8 @@
   text-align: center;
 }
 
-.rule-popover-longDescription{
-  font-size : 14px;
+.rule-popover-longDescription {
+  font-size: 14px;
 }
 
 .rule-popover-array {
@@ -50,4 +50,3 @@
   display: none;
   /* désactivé pour le moment puisque flemme d'afficher correctement l'array d'info */
 }
-
