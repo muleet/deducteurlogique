@@ -126,6 +126,11 @@ class Deducer extends Component {
                     {/* Sert à afficher des infos à l'utilisateur */}
                     <Fragment>
                       <ul className="deduction">
+                        {/* {
+                          <div className="hypothesis-level">
+                            {value.dataRegardingHypothesisLine}
+                          </div>
+                        } */}
                         {
                           value.allInferencesRendered /* on affiche le tableau */
                         }

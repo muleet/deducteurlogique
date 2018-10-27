@@ -10,7 +10,6 @@ class MakeInference extends Component {
     for (let i = 0; i < this.props.hypothesisCurrentLevel; i++) {
       hypothesisLevel += "|";
     }
-
     return (
       <Fragment>
         <li
@@ -22,8 +21,7 @@ class MakeInference extends Component {
           </div>
           <div className={"hypothesis-level " + this.props.inferenceType}>
             {hypothesisLevel}
-            {/* {this.props.hypothesisCurrentLevel} */}
-            {/* {this.props.hypothesisCurrentID} */}
+            {/* <hr style={{ height: heightHypothesisBar + "px" }} /> */}
           </div>
           <div className={"inferenceItself " + this.props.inferenceType}>
             {this.props.inferenceItself}
