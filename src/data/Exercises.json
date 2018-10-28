@@ -122,7 +122,11 @@
     "meaning": [
       [
         "p : Mon pays est authentiquement démocratique.",
-        "q : Tout enfant naissant dans mon pays est considéré apte à décider ce que signifie le mot \"travail\"."
+        "q : Tout enfant naissant dans mon pays est considéré apte à décider ce que signifie pour lui le mot \"travail\"."
+      ],
+      [
+        "p : Les actions que je fais ont du sens pour moi.",
+        "q : Les actions que je fais ne sont pas motivées par la recherche de l'argent."
       ]
     ],
     "comment": "",
@@ -148,7 +152,7 @@
     "verbalName": "Elimination du biconditionnel",
     "premisses": ["p∧r", "p≡(q≡r)"],
     "conclusion": "q",
-    "meaning": [],
+    "meaning": [["p : Je vis.", "q : Je respire.", "r : Je peux mourir."]],
     "comment": "",
     "rulesImplied": ["rep", "∧e", "⊃e", "≡e"],
     "doable": true
@@ -166,7 +170,7 @@
     "verbalName": "Élimination de l'abjonction",
     "premisses": ["p⊃q", "p⊅r"],
     "conclusion": "p⊃(q∧~r)",
-    "meaning": [["p : La philosophie est fille de l'étonnement.", "q : "]],
+    "meaning": [],
     "comment": "",
     "rulesImplied": ["rep", "hyp", "∧i", "⊃i", "⊃e", "⊅e"],
     "doable": true
@@ -198,7 +202,12 @@
     "verbalName": "Réfutation d'hypothèse contradictoire",
     "premisses": ["p"],
     "conclusion": "~(q∧~(p∧q))",
-    "meaning": [],
+    "meaning": [
+      [
+        "p : Théophraste est l'élève d'Aristote.",
+        "q : Théophraste est le premier à avoir écrit sur la règle du modus tollens."
+      ]
+    ],
     "comment": "",
     "rulesImplied": ["rep", "reit", "hyp", "~i", "∧i", "∧e"],
     "doable": true
@@ -299,6 +308,20 @@
     "doable": true
   },
   {
+    "verbalName": "Elimination de l'incompatibilité",
+    "premisses": ["p", "p|q"],
+    "conclusion": "~q",
+    "meaning": [
+      [
+        "p : Le lapin est arrivé le premier à la fin de la course.",
+        "q : La torture est arrivée la première à la fin de la course."
+      ]
+    ],
+    "comment": "",
+    "rulesImplied": ["rep", "reit", "hyp", "|e"],
+    "doable": true
+  },
+  {
     "verbalName": "Principe du tiers exclu",
     "premisses": [],
     "conclusion": "p∨~p",
@@ -332,6 +355,15 @@
     "meaning": [],
     "comment": "",
     "rulesImplied": ["reit", "hyp", "~i", "∧e", "∨e", "⊃i"],
+    "doable": false
+  },
+  {
+    "verbalName": ["Nombreuses éliminations"],
+    "premisses": ["r", "(~r⊻(~q|r))∧(q≡(r⊃(q⊅p)))"],
+    "conclusion": "~p",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "|e"],
     "doable": false
   }
 ]

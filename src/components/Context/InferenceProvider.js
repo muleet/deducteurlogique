@@ -60,6 +60,10 @@ class InferenceProvider extends Component {
         commentary = newInference.commentary;
       }
 
+      // section  de la détection de l'opérateur + de la possibilité de commuter, pour les règles où l'opérateur est commutatif
+      // showOperatorScope: this.showOperatorScope,
+      // commutativityRule: this.commutativityRule
+
       // Maj du tableau lui-même, avec la nouvelle inférence (l'un des moments les plus importants du code)
       copyArrayRendered.push(
         <MakeInference
@@ -559,16 +563,19 @@ class InferenceProvider extends Component {
       setChoiceContent: this.setChoiceContent,
       setRuleModal: this.setRuleModal,
       updateStepRule: this.updateStepRule,
-      // section autres trucs
+      // section conseil & signification
       advice: <div className="advice" />,
       setAdvice: this.setAdvice,
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
+      //  section commutativité & portée de l'opérateur
       inversion: false, // ce booléen permet de savoir s'il faut inverser ou non telle inférence ayant pour connecteur dominant ∧, ∨, ⊻, ≡, ↓ ou |
       setInversion: this.setInversion,
       partOfInference: "A", //
-      setPartOfInference: this.setPartOfInference,
-      //section de la création d'inférence par l'utilisateur
+      setPartOfInference: this.setPartOfInference, // cette fonction permet de savoir quelle inférence doit être extraite par ∨e dans A∨B (A, B, ou C)
+      // showOperatorScope: this.showOperatorScope, // cette fonction détecte la portée de l'opérateur et l'affiche lorsque l'utilisateur met sa souris sur l'opérateur (la portée se retrouve soulignée)
+      // commutativityRule: this.commutativityRule, // cette fonction permet d'inverser les parties gauche et droite de ce qui est dans la portée de l'opérateur
+      // section de la création d'inférence par l'utilisateur
       futureInference: "",
       addToFutureInference: this.addToFutureInference,
       removeLastCharacter: this.removeLastCharacter

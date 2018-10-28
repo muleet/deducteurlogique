@@ -267,7 +267,15 @@
     ]
   },
   {
-    "verbalName": "Loi du tier exclu",
+    "verbalName": "Elimination de l'incompatibilité",
+    "possibleSolution": [
+      { "itself": "p", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "p|q", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "~q", "numberCommentary": "1, 2", "commentary": "|e" }
+    ]
+  },
+  {
+    "verbalName": "Principe du tiers exclu",
     "possibleSolution": [
       { "itself": "|~(p∨~p)", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||p", "numberCommentary": "", "commentary": "hyp" },
@@ -342,6 +350,26 @@
         "numberCommentary": "1-12",
         "commentary": "⊃i"
       }
+    ]
+  },
+  {
+    "verbalName": ["Nombreuses éliminations"],
+    "possibleSolution": [
+      { "itself": "r", "numberCommentary": "a", "commentary": "rep" },
+      {
+        "itself": "(~r⊻(~q|r))∧(q≡(r⊃(q⊅p)))",
+        "numberCommentary": "b",
+        "commentary": "rep"
+      },
+      { "itself": "~r⊻(~q|r)", "numberCommentary": "2", "commentary": "∧e" },
+      { "itself": "q≡(r⊃(q⊅p))", "numberCommentary": "2", "commentary": "∧e" },
+      { "itself": "~q|r", "numberCommentary": "1, 3", "commentary": "⊻e" },
+      { "itself": "~~q", "numberCommentary": "1, 5", "commentary": "|e" },
+      { "itself": "q", "numberCommentary": "6", "commentary": "~~e" },
+      { "itself": "q⊃(r⊃(q⊅p))", "numberCommentary": "4", "commentary": "≡e" },
+      { "itself": "r⊃(q⊅p)", "numberCommentary": "7, 8", "commentary": "⊃e" },
+      { "itself": "q⊅p", "numberCommentary": "1, 9", "commentary": "⊃e" },
+      { "itself": "~p", "numberCommentary": "7, 10", "commentary": "⊅e" }
     ]
   }
 ]

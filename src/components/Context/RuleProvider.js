@@ -304,13 +304,13 @@ class RuleProvider extends Component {
       if (inferenceToAdd.itself.length > 0) {
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
-          "Disjonction exclusive introduite, nouvelle inférence : " +
+          "Disjonction exclusive éliminée, nouvelle inférence : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser la règle ⊻e, il faut une inférence A et une inférence A⊻B.",
+          "Pour utiliser la règle ⊻e, il faut une inférence A (ou ~A) et une inférence A⊻B.",
           "error-advice"
         );
       }
@@ -516,6 +516,56 @@ class RuleProvider extends Component {
       }
     }; // ⊅e
 
+    this.incompatibilityIntroduction = () => {};
+
+    this.incompatibilityElimination = (A, AincompatibleB, numbers) => {
+      const ArrayAincompatibleB = this.returnWhatIsBeforeAndAfterTheOperator(
+        AincompatibleB,
+        "|"
+      );
+      let inferenceToAdd = {
+        itself: "",
+        numberCommentary: numbers,
+        commentary: "|e"
+      };
+      console.log(A, ArrayAincompatibleB);
+      // A === A|B pour ~B
+      if (A === ArrayAincompatibleB[0]) {
+        inferenceToAdd.itself = "~" + ArrayAincompatibleB[1];
+      }
+      if (A === ArrayAincompatibleB[1]) {
+        inferenceToAdd.itself = "~" + ArrayAincompatibleB[0];
+      }
+      // // ~+A === ~A|B pour B
+      // if ("~" + A === ArrayAincompatibleB[0]) {
+      //   inferenceToAdd.itself = ArrayAincompatibleB[1];
+      // }
+      // if ("~" + A === ArrayAincompatibleB[1]) {
+      //   inferenceToAdd.itself = ArrayAincompatibleB[0];
+      // }
+      // ~A === ~+A|B pour B
+      // if (A === "~" + ArrayAincompatibleB[0]) {
+      //   inferenceToAdd.itself = ArrayAincompatibleB[1];
+      // }
+      // if (A === "~" + ArrayAincompatibleB[1]) {
+      //   inferenceToAdd.itself = ArrayAincompatibleB[0];
+      // }
+
+      if (inferenceToAdd.itself.length > 0) {
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Incompatibilité éliminée, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser la règle |e, il faut une inférence A et une inférence A|B.",
+          "error-advice"
+        );
+      }
+    };
+
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
@@ -543,9 +593,9 @@ class RuleProvider extends Component {
       } else if (ruleName === "∨e") {
         this.inclusiveDisjonctionElimination(arrInf, numbers); // A∨B + conc de |A + conc de |B, pour A ou B
       } else if (ruleName === "⊻i") {
-        this.exclusiveDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A⊅B, B⊅A pour A≡B
+        this.exclusiveDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A⊅B, B⊅A pour A⊻B
       } else if (ruleName === "⊻e") {
-        this.exclusiveDisjonctionElimination(arrInf[0], arrInf[1], numbers); // A∨B + conc de |A + conc de |B, pour A ou B
+        this.exclusiveDisjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊻B pour ~B (ou ~A, A⊻B, pour B)
       } else if (ruleName === "⊃i") {
         this.conditionalIntroduction(arrInf[0], numbers); // (A), B pour A⊃B
       } else if (ruleName === "⊃e") {
@@ -558,6 +608,10 @@ class RuleProvider extends Component {
         this.abjonctionIntroduction(arrInf[0], numbers); // (A), B pour A⊅B
       } else if (ruleName === "⊅e") {
         this.abjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊅B pour ~B
+      } else if (ruleName === "|i") {
+        this.incompatibilityIntroduction(arrInf[0], numbers); // ???????????????????
+      } else if (ruleName === "|e") {
+        this.incompatibilityElimination(arrInf[0], arrInf[1], numbers); // A, A|B pour ~B
       }
     };
 

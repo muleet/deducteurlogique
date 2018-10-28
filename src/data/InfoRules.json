@@ -113,7 +113,7 @@
     "verbalName": "Règle d'élimination de la disjonction exclusive",
     "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A).",
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
-    "instruction": "Cliquez sur A⊻B, puis A (ou B), pour inférer ~B (ou ~A).",
+    "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
     "available": "yes"
   },
@@ -185,9 +185,9 @@
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
     "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
     "arrayUtilization": [["A|B", "A", "~B |e"]],
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "soon"
+    "instruction": "Cliquez sur A|B, puis A (ou B), pour inférer ~B (ou ~A).",
+    "expectedArguments": ["A ou B", "A|B"],
+    "available": "yes"
   },
   {
     "name": "□i",

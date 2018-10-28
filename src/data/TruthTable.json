@@ -215,7 +215,7 @@
   {
     "number": 15,
     "name": "Incompatibilité",
-    "alternativeName": "Barre de Sheffer, non-conjonction",
+    "alternativeName": "Barre de Sheffer, négation de la conjonction",
     "description": "",
     "link": "https://fr.wikipedia.org/wiki/Barre_de_Sheffer https://fr.wikipedia.org/wiki/Modus_ponendo_tollens",
     "reductibleTo": "~(p∧q)",
