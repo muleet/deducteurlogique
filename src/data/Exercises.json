@@ -364,6 +364,6 @@
     "meaning": [],
     "comment": "",
     "rulesImplied": ["rep", "hyp", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "|e"],
-    "doable": false
+    "doable": true
   }
 ]
