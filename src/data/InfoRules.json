@@ -33,16 +33,19 @@
     "name": "ex falso",
     "verbalName": "Règle ex falso, ou principe d'explosion",
     "verbalDescription": "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "maybenever"
+    "arrayUtilization": [["A", "~A", "B ex falso"], ["A", "~A", "C ex falso"]],
+    "instruction": "Cliquez sur A, puis ~A, et décidez arbitrairement de B, pour inférer B.",
+    "expectedArguments": ["A", "~A"],
+    "available": "yes"
   },
   {
     "name": "~i",
     "verbalName": "Règle d'introduction de la négation (modus tollens)",
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
-    "arrayUtilization": [["hyp A", "contradiction", "~A ~i"]],
+    "arrayUtilization": [
+      ["hyp A", "|B", "|~B", "~A ~i"],
+      ["hyp A", "|~A", "~A ~i"]
+    ],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
     "expectedArguments": ["hyp A", "B", "~B"],
     "available": "yes"
@@ -51,7 +54,7 @@
     "name": "~~e",
     "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
     "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique classique). Et sur la base de ~~A, on peut inférer A.",
-    "arrayUtilization": "",
+    "arrayUtilization": [["~~A", "A ~~e"], ["~~(A∧B)", "A∧B ~~e"]],
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
     "available": "yes"
@@ -174,11 +177,11 @@
   {
     "name": "|i",
     "verbalName": "Règle d'introduction de l'incompatibilité",
-    "verbalDescription": "",
-    "arrayUtilization": "",
-    "instruction": "(Pas encore codée)",
-    "expectedArguments": [],
-    "available": "soon"
+    "verbalDescription": "Si A et ~B ont été posés, on peut inférer A|B.",
+    "arrayUtilization": [["A", "~B", "A∧B |i"]],
+    "instruction": "Cliquez sur A, puis ~B, pour inférer A|B.",
+    "expectedArguments": ["A", "~B"],
+    "available": "yes"
   },
   {
     "name": "|e",

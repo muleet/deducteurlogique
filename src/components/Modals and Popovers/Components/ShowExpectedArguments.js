@@ -62,7 +62,8 @@ class ShowExpectedArguments extends Component {
       ruleName !== "⊅i" &&
       ruleName !== "~i" &&
       ruleName !== "∨i" &&
-      ruleName !== "∨e"
+      ruleName !== "∨e" &&
+      ruleName !== "ex falso"
     ) {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
@@ -195,6 +196,60 @@ class ShowExpectedArguments extends Component {
           valueRule={this.props.valueRule}
           allHypotheticalInferences={allHypotheticalInferences}
         />
+      );
+    } else if (ruleName === "ex falso") {
+      let exFalsoTrueArgument = (
+        <p className="awaiting-an-inference-blinking">
+          {"<Cliquez sur une inférence A>"}
+        </p>
+      );
+      let exFalsoFalseArgument = (
+        <p className="awaiting-an-inference-blinking">
+          {"<Cliquez sur une inférence ~A>"}
+        </p>
+      );
+      let arbitraryArgument = (
+        <p className="awaiting-an-inference-blinking">
+          {"<Utilisez le clavier virtuel>"}
+        </p>
+      );
+
+      if (storedInference[0]) {
+        exFalsoTrueArgument = (
+          <p className="infItself-modal">{storedInference[0]}</p>
+        );
+      }
+      if (storedInference[1]) {
+        exFalsoFalseArgument = (
+          <p className="infItself-modal">{storedInference[1]}</p>
+        );
+      }
+
+      if (this.props.valueInference.futureInference.length > 0) {
+        arbitraryArgument = this.props.valueInference.futureInference;
+      }
+
+      const keyboard = this.showKeyboard();
+
+      arrayExpectedArguments.push(
+        <li
+          key={arrayExpectedArguments.length}
+          className="rule-modal-all-arguments"
+        >
+          <div className="rule-modal-single-argument">
+            {expectedArguments[0] + " : "}
+            {exFalsoTrueArgument}
+          </div>
+          <div className="rule-modal-single-argument">
+            {expectedArguments[1] + " : "}
+            {exFalsoFalseArgument}
+          </div>
+          <div className="rule-modal-single-argument">
+            {"B : "}
+            {arbitraryArgument}
+          </div>
+          {keyboard}
+        </li>
       );
     }
 

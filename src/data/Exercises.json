@@ -346,7 +346,7 @@
     "meaning": [],
     "comment": "",
     "rulesImplied": ["reit", "hyp", "∨i", "∨e", "⊃i"],
-    "doable": true
+    "doable": false
   },
   {
     "verbalName": ["Tautologie de disjonctions (2)"],

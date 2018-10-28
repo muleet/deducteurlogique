@@ -36,7 +36,7 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
           // this.props.valueRule.addInferenceFromRule(inferenceItself, "∨e");
         }}
       >
-        {"B est trouvé dans " + str}
+        {"C est trouvé dans " + str}
       </div>
     );
   }

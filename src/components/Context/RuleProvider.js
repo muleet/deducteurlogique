@@ -125,22 +125,6 @@ class RuleProvider extends Component {
     }; // ∧e
 
     this.inclusiveDisjonctionIntroduction = (A, number) => {
-      // const actualID = this.props.valueInference.hypothesisCurrentLevelAndId
-      //   .actualID;
-      // const arraySPDAT = this.props.valueInference.arrayTrueAtomicPropositions;
-      // consolelog("arrayTrueAtomicPropositions",arraySPDAT,"première condition",arraySPDAT[actualID].length,"deuxième condition",arraySPDAT[actualID].indexOf("p"));
-      // let B;
-      // if (
-      //   arraySPDAT[actualID].length > 0 &&
-      //   arraySPDAT[actualID].indexOf("p") !== -1
-      //   // cette condition dit : "Si il y a au moins une proposition atomique vraie dans l'hypothèse actuelle et que p en fait partie, alors [...]"
-      // ) {
-      //   B = String.fromCharCode(112 + actualID); // 112 est l'emplacement de "p" dans le tableau ASCII
-      // } else {
-      //   B = "p";
-      // }
-      // const AutomaticAorB = this.returnAnInferenceOutOfTwoInferences(A, B, "∨");
-
       const B = this.props.valueInference.futureInference;
       let ArbitraryAorB;
       if (this.props.valueInference.inversion === false) {
@@ -516,7 +500,52 @@ class RuleProvider extends Component {
       }
     }; // ⊅e
 
-    this.incompatibilityIntroduction = () => {};
+    this.incompatibilityIntroduction = (A, B, numbers) => {
+      // |i
+      let Anegationcount = 0,
+        Bnegationcount = 0;
+      for (let i = 0; i < A.length; i++) {
+        if (A[i] === "~") {
+          Anegationcount++;
+        } else {
+          i = i + A.length;
+        }
+      }
+      for (let i = 0; i < B.length; i++) {
+        if (B[i] === "~") {
+          Bnegationcount++;
+        } else {
+          i = i + B.length;
+        }
+      }
+
+      if (Anegationcount !== Bnegationcount) {
+        let AincompatibleB;
+        if (Anegationcount > Bnegationcount) {
+          A = A.slice(1, A.length);
+          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "|");
+        } else if (Bnegationcount > Anegationcount) {
+          B = B.slice(1, B.length);
+          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "|");
+        }
+        const inferenceToAdd = {
+          itself: AincompatibleB,
+          numberCommentary: numbers,
+          commentary: "|i"
+        };
+        this.props.valueInference.setAdvice(
+          "Incompatibilité introduite, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+        this.addInferenceFromRule(inferenceToAdd);
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser |e, il faut deux inférences, l'une vraie et l'autre fausse.",
+          "error-advice"
+        );
+      }
+    }; // |i
 
     this.incompatibilityElimination = (A, AincompatibleB, numbers) => {
       const ArrayAincompatibleB = this.returnWhatIsBeforeAndAfterTheOperator(
@@ -531,27 +560,16 @@ class RuleProvider extends Component {
       console.log(A, ArrayAincompatibleB);
       // A === A|B pour ~B
       if (A === ArrayAincompatibleB[0]) {
-        inferenceToAdd.itself = "~" + ArrayAincompatibleB[1];
+        inferenceToAdd.itself =
+          "~" + this.addFirstParenthesis(ArrayAincompatibleB[1]);
       }
       if (A === ArrayAincompatibleB[1]) {
-        inferenceToAdd.itself = "~" + ArrayAincompatibleB[0];
+        inferenceToAdd.itself =
+          "~" + this.addFirstParenthesis(ArrayAincompatibleB[0]);
       }
-      // // ~+A === ~A|B pour B
-      // if ("~" + A === ArrayAincompatibleB[0]) {
-      //   inferenceToAdd.itself = ArrayAincompatibleB[1];
-      // }
-      // if ("~" + A === ArrayAincompatibleB[1]) {
-      //   inferenceToAdd.itself = ArrayAincompatibleB[0];
-      // }
-      // ~A === ~+A|B pour B
-      // if (A === "~" + ArrayAincompatibleB[0]) {
-      //   inferenceToAdd.itself = ArrayAincompatibleB[1];
-      // }
-      // if (A === "~" + ArrayAincompatibleB[1]) {
-      //   inferenceToAdd.itself = ArrayAincompatibleB[0];
-      // }
 
       if (inferenceToAdd.itself.length > 0) {
+        // Si on arrive ici c'est que la règle est validée
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
           "Incompatibilité éliminée, nouvelle inférence : " +
@@ -561,6 +579,31 @@ class RuleProvider extends Component {
       } else {
         this.props.valueInference.setAdvice(
           "Pour utiliser la règle |e, il faut une inférence A et une inférence A|B.",
+          "error-advice"
+        );
+      }
+    }; // |e
+
+    this.exFalso = (A, notA, numbers) => {
+      const B = this.props.valueInference.futureInference;
+      if (
+        ("~" + A === notA || "~" + this.addFirstParenthesis(A) === notA) &&
+        B.length > 0
+      ) {
+        let inferenceToAdd = {
+          itself: B,
+          numberCommentary: numbers,
+          commentary: "ex falso"
+        };
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Règle ex falso utilisée, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser la règle ex falso, il faut une inférence A, une inférence ~A, et décider arbitrairement de B.",
           "error-advice"
         );
       }
@@ -609,22 +652,32 @@ class RuleProvider extends Component {
       } else if (ruleName === "⊅e") {
         this.abjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊅B pour ~B
       } else if (ruleName === "|i") {
-        this.incompatibilityIntroduction(arrInf[0], numbers); // ???????????????????
+        this.incompatibilityIntroduction(arrInf[0], arrInf[1], numbers); // A, ~B, pour A|B
       } else if (ruleName === "|e") {
         this.incompatibilityElimination(arrInf[0], arrInf[1], numbers); // A, A|B pour ~B
+      } else if (ruleName === "ex falso") {
+        this.exFalso(arrInf[0], arrInf[1], numbers); // A, ~A pour B
       }
+    };
+
+    this.addFirstParenthesis = inference => {
+      if (inference.length > 2) {
+        inference = "(" + inference + ")";
+      }
+      return inference;
     };
 
     this.removeFirstParenthesis = inference => {
       // pas utilisé pour le moment
       let noFirstParenthesis = "";
-      let inferenceToReturn = "";
+      let newInference = "";
       if (inference[0] === "(") {
         for (let i = 1; i < inference.length - 1; i++) {
-          noFirstParenthesis = noFirstParenthesis + inferenceToReturn[i];
+          noFirstParenthesis = noFirstParenthesis + newInference[i];
         }
+        inference = newInference;
       }
-      return inferenceToReturn;
+      return inference;
     };
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {
@@ -769,6 +822,11 @@ class RuleProvider extends Component {
       // conditionalElimination: this.conditionalElimination, // ⊃e
       // biconditionalIntroduction: this.biconditionalIntroduction, // ≡i
       // biconditionalElimination: this.biconditionalElimination, // ≡e
+      // abjonctionIntroduction: this.abjonctionIntroduction, // ⊅i
+      // abjonctionElimination: this.abjonctionElimination, // ⊅e
+      // incompatibilityIntroduction: this.incompatibilityIntroduction, // |i
+      // incompatibilityElimination: this.incompatibilityElimination, // |e
+      // exFalso: this.exFalso,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       removeFirstParenthesis: this.removeFirstParenthesis,
