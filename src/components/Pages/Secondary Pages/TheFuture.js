@@ -42,11 +42,11 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            - Les règles de l'incompatibilité + corrections des bugs de la règle
-            ve, et d'un bug de la gestion des parenthèses dans de rares cas
-            (avec ⊻i notamment).
+            - Corrections des bugs de la règle ∨e (et amélioration de son
+            interface), et d'un bug de la gestion des parenthèses dans certains
+            cas (avec ⊻i notamment).
           </p>
-          <p className="later-available-rule">
+          <p className="soon-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
             des traits qui s'adaptent à la longueur des hypothèses.
           </p>

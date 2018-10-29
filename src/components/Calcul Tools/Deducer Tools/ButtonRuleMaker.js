@@ -106,7 +106,8 @@ class ButtonRuleMaker extends Component {
       for (let i = 0; i < InfoRules.length; i++) {
         if (
           InfoRules[i].available === "yes" ||
-          InfoRules[i].available === "test"
+          InfoRules[i].available === "test" ||
+          InfoRules[i].available === "bug"
         ) {
           arrayRulesSent.push(InfoRules[i].name);
         }

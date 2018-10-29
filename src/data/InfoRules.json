@@ -100,7 +100,7 @@
     ],
     "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
     "expectedArguments": ["A∨B", "C |A", "C |B"],
-    "available": "yes"
+    "available": "bug"
   },
   {
     "name": "⊻i",
@@ -109,7 +109,7 @@
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
-    "available": "yes"
+    "available": "bug"
   },
   {
     "name": "⊻e",
@@ -199,7 +199,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later"
+    "available": "soon"
   },
   {
     "name": "□e",
@@ -208,7 +208,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "later"
+    "available": "soon"
   },
   {
     "name": "◊i",
@@ -217,7 +217,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever"
+    "available": "later"
   },
   {
     "name": "◊e",
@@ -226,7 +226,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "maybenever"
+    "available": "later"
   },
   {
     "name": "∀i",

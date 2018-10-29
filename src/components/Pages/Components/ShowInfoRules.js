@@ -34,6 +34,9 @@ class ShowInfoRules extends Component {
     const LegendAboutColorRule = (
       <Fragment>
         <li className="yes-available-rule legend-example">{"Disponible"}</li>
+        <li className="bug-available-rule legend-example">
+          {"Disponible mais bug détecté, en attente de correction"}
+        </li>
         <li className="soon-available-rule legend-example">
           {"Prochains ajouts"}
         </li>
