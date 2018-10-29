@@ -4,8 +4,8 @@ import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArg
 class ShowExpectedArguments extends Component {
   showKeyboard = () => {
     let everyPossibleCharacter = [
-      ["~", "∧", "∨", "⊃", "⊅", "≡", "⊻"],
-      ["p", "q", "r"],
+      ["~", "∧", "∨", "⊃", "⊅", "≡", "⊻", "|", "↓"],
+      ["p", "q", "r", "s"],
       ["(", ")"]
     ];
     let keyboard = [];

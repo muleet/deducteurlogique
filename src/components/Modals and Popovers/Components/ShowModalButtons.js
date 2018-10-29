@@ -18,8 +18,12 @@ class ShowModalButtons extends Component {
           this.props.expectedArguments.length
         ) // storedNumbers contient (en str) les numéros des inférences citées juste avant.
       );
-      if (this.props.ruleName !== "∧e" && this.props.ruleName !== "≡e") {
-        // ∧e et ≡e sont exclus parce qu'ils ne doivent pas s'arrêter juste après que l'utilisateur ait validé la règle
+      if (
+        this.props.ruleName !== "∧e" &&
+        this.props.ruleName !== "≡e" &&
+        this.props.ruleName !== "↓e"
+      ) {
+        // ∧e et ≡e et ↓e sont exclus parce qu'ils ne doivent pas s'arrêter juste après que l'utilisateur ait validé la règle
         this.props.valueInference.setRuleModal("", "ended-well modal-ending");
         this.props.valueInference.changeStorageBoolean();
       }

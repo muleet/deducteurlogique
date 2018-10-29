@@ -357,19 +357,37 @@
     "possibleSolution": [
       { "itself": "r", "numberCommentary": "a", "commentary": "rep" },
       {
-        "itself": "(~r⊻(~q|r))∧(q≡(r⊃(q⊅p)))",
+        "itself": "(~r⊻(~(p↓q)|r))∧(~q≡(~p⊃(~q⊅s)))",
         "numberCommentary": "b",
         "commentary": "rep"
       },
-      { "itself": "~r⊻(~q|r)", "numberCommentary": "2", "commentary": "∧e" },
-      { "itself": "q≡(r⊃(q⊅p))", "numberCommentary": "2", "commentary": "∧e" },
-      { "itself": "~q|r", "numberCommentary": "1, 3", "commentary": "⊻e" },
-      { "itself": "~~q", "numberCommentary": "1, 5", "commentary": "|e" },
-      { "itself": "q", "numberCommentary": "6", "commentary": "~~e" },
-      { "itself": "q⊃(r⊃(q⊅p))", "numberCommentary": "4", "commentary": "≡e" },
-      { "itself": "r⊃(q⊅p)", "numberCommentary": "7, 8", "commentary": "⊃e" },
-      { "itself": "q⊅p", "numberCommentary": "1, 9", "commentary": "⊃e" },
-      { "itself": "~p", "numberCommentary": "7, 10", "commentary": "⊅e" }
+      {
+        "itself": "~r⊻(~(p↓q)|r)",
+        "numberCommentary": "2",
+        "commentary": "∧e"
+      },
+      {
+        "itself": "~q≡(~p⊃(~q⊅s))",
+        "numberCommentary": "2",
+        "commentary": "∧e"
+      },
+      { "itself": "~(p↓q)|r", "numberCommentary": "1, 3", "commentary": "⊻e" },
+      { "itself": "~~(p↓q)", "numberCommentary": "1, 5", "commentary": "|e" },
+      { "itself": "p↓q", "numberCommentary": "6", "commentary": "~~e" },
+      { "itself": "~p", "numberCommentary": "7", "commentary": "↓e" },
+      { "itself": "~q", "numberCommentary": "7", "commentary": "↓e" },
+      {
+        "itself": "~q⊃(~p⊃(~q⊅s))",
+        "numberCommentary": "4",
+        "commentary": "≡e"
+      },
+      {
+        "itself": "~p⊃(~q⊅s)",
+        "numberCommentary": "9, 10",
+        "commentary": "⊃e"
+      },
+      { "itself": "~q⊅s", "numberCommentary": "8, 11", "commentary": "⊃e" },
+      { "itself": "~s", "numberCommentary": "9, 12", "commentary": "⊅e" }
     ]
   }
 ]

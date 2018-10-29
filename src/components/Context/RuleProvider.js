@@ -233,7 +233,10 @@ class RuleProvider extends Component {
         ArrayifBthenNotA[1] === "~" + ArrayifAthenNotB[0] &&
         ArrayifAthenNotB[1] === "~" + ArrayifBthenNotA[0]
       ) {
-        const eitherAeitherB = ArrayifAthenNotB[0] + "⊻" + ArrayifBthenNotA[0];
+        const eitherAeitherB =
+          this.mayAddFirstParenthesis(ArrayifAthenNotB[0]) +
+          "⊻" +
+          this.mayAddFirstParenthesis(ArrayifBthenNotA[0]);
         const inferenceToAdd = {
           itself: eitherAeitherB,
           numberCommentary: num,
@@ -557,15 +560,14 @@ class RuleProvider extends Component {
         numberCommentary: numbers,
         commentary: "|e"
       };
-      console.log(A, ArrayAincompatibleB);
       // A === A|B pour ~B
       if (A === ArrayAincompatibleB[0]) {
         inferenceToAdd.itself =
-          "~" + this.addFirstParenthesis(ArrayAincompatibleB[1]);
+          "~" + this.mayAddFirstParenthesis(ArrayAincompatibleB[1]);
       }
       if (A === ArrayAincompatibleB[1]) {
         inferenceToAdd.itself =
-          "~" + this.addFirstParenthesis(ArrayAincompatibleB[0]);
+          "~" + this.mayAddFirstParenthesis(ArrayAincompatibleB[0]);
       }
 
       if (inferenceToAdd.itself.length > 0) {
@@ -584,10 +586,53 @@ class RuleProvider extends Component {
       }
     }; // |e
 
+    this.reciprocalDisjonctionIntroduction = (notA, notB, numbers) => {
+      if (notA[0] === "~" && notB[0] === "~") {
+        notA = notA.slice(1, notA.length);
+        notB = notB.slice(1, notB.length);
+        const neitherAneitherB = notA + "↓" + notB;
+        const inferenceToAdd = {
+          itself: neitherAneitherB,
+          numberCommentary: numbers,
+          commentary: "↓i"
+        };
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Disjonction réciproque introduite, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ↓e, il faut deux inférences fausses.",
+          "error-advice"
+        );
+      }
+    }; // ↓i
+
+    this.reciprocalDisjonctionElimination = (neitherAneitherB, number) => {
+      neitherAneitherB = this.returnWhatIsBeforeAndAfterTheOperator(
+        neitherAneitherB,
+        "↓"
+      );
+      if (neitherAneitherB.length === 2) {
+        const leftChoice =
+          "~" + this.mayAddFirstParenthesis(neitherAneitherB[0]);
+        const rightChoice =
+          "~" + this.mayAddFirstParenthesis(neitherAneitherB[1]);
+        return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "↓e");
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ↓e, il faut une inférence A↓B puis choisir d'inférer ~A ou ~B.",
+          "error-advice"
+        );
+      }
+    }; // ↓e
+
     this.exFalso = (A, notA, numbers) => {
       const B = this.props.valueInference.futureInference;
       if (
-        ("~" + A === notA || "~" + this.addFirstParenthesis(A) === notA) &&
+        ("~" + A === notA || "~" + this.mayAddFirstParenthesis(A) === notA) &&
         B.length > 0
       ) {
         let inferenceToAdd = {
@@ -655,13 +700,17 @@ class RuleProvider extends Component {
         this.incompatibilityIntroduction(arrInf[0], arrInf[1], numbers); // A, ~B, pour A|B
       } else if (ruleName === "|e") {
         this.incompatibilityElimination(arrInf[0], arrInf[1], numbers); // A, A|B pour ~B
+      } else if (ruleName === "↓i") {
+        this.reciprocalDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // ~A, ~B, pour A↓B
+      } else if (ruleName === "↓e") {
+        this.reciprocalDisjonctionElimination(arrInf[0], numbers); // A↓B pour ~A ou ~B
       } else if (ruleName === "ex falso") {
         this.exFalso(arrInf[0], arrInf[1], numbers); // A, ~A pour B
       }
     };
 
-    this.addFirstParenthesis = inference => {
-      if (inference.length > 2) {
+    this.mayAddFirstParenthesis = inference => {
+      if (inference.length > 2 && inference[0] !== "~") {
         inference = "(" + inference + ")";
       }
       return inference;
@@ -759,10 +808,10 @@ class RuleProvider extends Component {
       let verbalRuleName = "";
       if (ruleName === "∧e") {
         verbalRuleName = "Conjonction éliminée";
-      } else if (ruleName === "∨i") {
-        verbalRuleName = "Disjonction inclusive introduite";
       } else if (ruleName === "≡e") {
         verbalRuleName = "Biconditionnel éliminé";
+      } else if (ruleName === "↓e") {
+        verbalRuleName = "Disjonction réciproque éliminée";
       }
       let leftSide = (
         <div
@@ -829,6 +878,7 @@ class RuleProvider extends Component {
       // exFalso: this.exFalso,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
+      mayAddFirstParenthesis: this.mayAddFirstParenthesis,
       removeFirstParenthesis: this.removeFirstParenthesis,
       returnWhatIsBeforeAndAfterTheOperator: this
         .returnWhatIsBeforeAndAfterTheOperator,

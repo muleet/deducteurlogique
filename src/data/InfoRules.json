@@ -1,6 +1,7 @@
 [
   {
     "name": "rep",
+    "lecture": "",
     "verbalName": "Règle de répétition",
     "verbalDescription": "Si A était dans les prémisses, alors on peut répéter A dans la déduction. (Cliquez sur la prémisse à répéter.)",
     "arrayUtilization": "",
@@ -10,6 +11,7 @@
   },
   {
     "name": "reit",
+    "lecture": "",
     "verbalName": "Règle de réitération",
     "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. Il est impossible de réitérer l'inférence A si elle provient d'une hypothèse terminée. (Cliquez sur l'inférence à réitérer.)",
     "arrayUtilization": [["A", "|B", "|A reit"]],
@@ -19,6 +21,7 @@
   },
   {
     "name": "hyp",
+    "lecture": "on fait l'hypothèse que A",
     "verbalName": "Hypothèse",
     "verbalDescription": "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les y utiliser.",
     "arrayUtilization": [
@@ -31,6 +34,7 @@
   },
   {
     "name": "ex falso",
+    "lecture": "",
     "verbalName": "Règle ex falso, ou principe d'explosion",
     "verbalDescription": "A partir du faux, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
     "arrayUtilization": [["A", "~A", "B ex falso"], ["A", "~A", "C ex falso"]],
@@ -40,6 +44,7 @@
   },
   {
     "name": "~i",
+    "lecture": "~A : il est faux que A",
     "verbalName": "Règle d'introduction de la négation (modus tollens)",
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": [
@@ -52,6 +57,7 @@
   },
   {
     "name": "~~e",
+    "lecture": "~~A : il est faux de dire qu'il est faux que A",
     "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
     "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique classique). Et sur la base de ~~A, on peut inférer A.",
     "arrayUtilization": [["~~A", "A ~~e"], ["~~(A∧B)", "A∧B ~~e"]],
@@ -61,6 +67,7 @@
   },
   {
     "name": "∧i",
+    "lecture": "A∧B : A et B",
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
     "arrayUtilization": [["A", "B", "A∧B ∧i"]],
@@ -70,6 +77,7 @@
   },
   {
     "name": "∧e",
+    "lecture": "A∧B : A et B",
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
@@ -79,6 +87,7 @@
   },
   {
     "name": "∨i",
+    "lecture": "A∨B : A et/ou B",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
     "verbalDescription": "Si A a été posé, on peut inférer A∨B, quel que soit B.",
     "arrayUtilization": [
@@ -92,6 +101,7 @@
   },
   {
     "name": "∨e",
+    "lecture": "A∨B : A et/ou B",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
     "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
     "arrayUtilization": [
@@ -104,15 +114,17 @@
   },
   {
     "name": "⊻i",
+    "lecture": "A⊻B : ou bien A, ou bien B ; soit A, soit B",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription": "Si A⊅B et B⊅A ont été posés, on peut inférer A⊻B.",
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
-    "available": "bug"
+    "available": "yes"
   },
   {
     "name": "⊻e",
+    "lecture": "A⊻B : ou bien A, ou bien B ; soit A, soit B",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
     "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A).",
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
@@ -122,6 +134,7 @@
   },
   {
     "name": "⊃i",
+    "lecture": "A⊃B : si A alors B",
     "verbalName": "Règle d'introduction du conditionnel",
     "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux.",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
@@ -131,6 +144,7 @@
   },
   {
     "name": "⊃e",
+    "lecture": "A⊃B : si A alors B",
     "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊃B, on peut poser B isolément.",
     "arrayUtilization": [["A", "A⊃B", "B ⊃e"]],
@@ -140,6 +154,7 @@
   },
   {
     "name": "≡i",
+    "lecture": "A≡B : A si et seulement si B",
     "verbalName": "Règle d'introduction du biconditionnel",
     "verbalDescription": "Si A⊃B et B⊃A ont été posés, on peut poser A≡B.",
     "arrayUtilization": [["A⊃B", "B⊃A", "A≡B ≡i"]],
@@ -149,6 +164,7 @@
   },
   {
     "name": "≡e",
+    "lecture": "A≡B : A si et seulement si B",
     "verbalName": "Règle d'élimination du biconditionnel",
     "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
     "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
@@ -158,6 +174,7 @@
   },
   {
     "name": "⊅i",
+    "lecture": "A⊅B : si A alors non B",
     "verbalName": "Règle d'introduction de l'abjonction",
     "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à ~B, on peut valider l'hypothèse et inférer A⊅B (si A alors ~B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat faux, alors il y a un lien de nécessité généralisable l'hypothèse et ce résultat faux.",
     "arrayUtilization": [["|A hyp", "|~B", "A⊅B ⊅i"]],
@@ -167,6 +184,7 @@
   },
   {
     "name": "⊅e",
+    "lecture": "A⊅B : si A alors non B",
     "verbalName": "Règle d'élimination de l'abjonction",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊃~B, on peut poser ~B isolément.",
     "arrayUtilization": [["A", "A⊅B", "~B ⊅e"], ["A", "A⊃~B", "~B ⊅e"]],
@@ -176,6 +194,7 @@
   },
   {
     "name": "|i",
+    "lecture": "A|B : A et B sont incompatibles, ils ne peuvent être vrais ensembles",
     "verbalName": "Règle d'introduction de l'incompatibilité",
     "verbalDescription": "Si A et ~B ont été posés, on peut inférer A|B.",
     "arrayUtilization": [["A", "~B", "A∧B |i"]],
@@ -185,6 +204,7 @@
   },
   {
     "name": "|e",
+    "lecture": "A|B : A et B sont incompatibles",
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
     "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
     "arrayUtilization": [["A|B", "A", "~B |e"]],
@@ -193,7 +213,28 @@
     "available": "yes"
   },
   {
+    "name": "↓i",
+    "lecture": "A↓B : ni A ni B",
+    "verbalName": "Règle d'introduction de la disjonction réciproque",
+    "verbalDescription": "Si ~A et ~B ont été posés, on peut inférer A↓B.",
+    "arrayUtilization": [["~A", "~B", "A↓B ↓i"]],
+    "instruction": "Cliquez sur ~A, puis ~B, pour inférer A↓B.",
+    "expectedArguments": ["~A", "~B"],
+    "available": "yes"
+  },
+  {
+    "name": "↓e",
+    "lecture": "A↓B : ni A ni B",
+    "verbalName": "Règle d'élimination de la disjonction réciproque",
+    "verbalDescription": "Si A↓B a été posé, on peut inférer ~A et/ou ~B.",
+    "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
+    "instruction": "Cliquez sur A↓B, puis sélectionnez ~A ou ~B, pour l'inférer.",
+    "expectedArguments": ["A↓B"],
+    "available": "yes"
+  },
+  {
     "name": "□i",
+    "lecture": "□A : il est nécessaire que A",
     "verbalName": "Règle d'introduction de la nécessité",
     "verbalDescription": "Si l'on arrive à p depuis une hypothèse vide, on peut inférer □p.",
     "arrayUtilization": "",
@@ -203,6 +244,7 @@
   },
   {
     "name": "□e",
+    "lecture": "□A : il est nécessaire que A",
     "verbalName": "Règle d'élimination de la nécessité",
     "verbalDescription": "Si l'on a posé □p, alors on peut inférer que p.",
     "arrayUtilization": "",
@@ -212,6 +254,7 @@
   },
   {
     "name": "◊i",
+    "lecture": "◊A : il est possible que A",
     "verbalName": "Règle d'introduction de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
@@ -221,6 +264,7 @@
   },
   {
     "name": "◊e",
+    "lecture": "◊A : il est possible que A",
     "verbalName": "Règle d'élimination de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",

@@ -144,6 +144,7 @@ class ButtonRuleMaker extends Component {
                 key={i}
                 RulePopoverClassName="fatRule unclickableRule"
                 ruleName={arrayRulesSent[i]}
+                // lecture={arrayCurrentRules[i].lecture}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
               />
@@ -174,6 +175,7 @@ class ButtonRuleMaker extends Component {
                   )
                 }
                 ruleName={arrayCurrentRules[i].name}
+                lecture={arrayCurrentRules[i].lecture}
                 // ruleName={arrayCurrentRules[i].name}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
@@ -216,6 +218,7 @@ class ButtonRuleMaker extends Component {
                   )
                 }
                 ruleName={currentRuleName}
+                lecture={arrayCurrentRules[i].lecture}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
                 HowToUse={organizedUtilization}
@@ -241,6 +244,7 @@ class ButtonRuleMaker extends Component {
                 key={i}
                 RulePopoverClassName="singleRule fatRule selectable"
                 ruleName={arrayCurrentRules[i].name}
+                // lecture={arrayCurrentRules[i].lecture}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
                 HowToUse={organizedUtilization}

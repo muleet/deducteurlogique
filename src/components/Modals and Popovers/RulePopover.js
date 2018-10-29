@@ -13,6 +13,7 @@ class RulePopover extends Component {
         {this.props.ruleName}
         <div className="rule-popover">
           <div className="rule-popover-rulename">{this.props.verbalName}</div>
+          <div className="rule-popover-lecture">{this.props.lecture}</div>
           <ul className="rule-popover-content">
             <li
               className={"rule-popover-description " + this.longDescription()}

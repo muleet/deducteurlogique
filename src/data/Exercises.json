@@ -278,11 +278,16 @@
         "p : Ma conception du bonheur est entièrement personnelle et instinctive.",
         "q : Ma conception du bonheur est héritée des passions nationales.",
         "r : Ma conception du bonheur est authentique."
+      ],
+      [
+        "p : La signification possible A ne laisse aucun vide logique.",
+        "q : La signification possible A ouvre un vide logique.",
+        "r : La signification possible A est cohérente."
       ]
     ],
     "comment": "",
     "rulesImplied": ["rep", "hyp", "⊻i", "⊻e", "⊃e", "⊅i", "⊅e"],
-    "doable": false
+    "doable": true
   },
   {
     "verbalName": "Elimination de la disjonction exclusive",
@@ -359,11 +364,22 @@
   },
   {
     "verbalName": ["Nombreuses éliminations"],
-    "premisses": ["r", "(~r⊻(~q|r))∧(q≡(r⊃(q⊅p)))"],
-    "conclusion": "~p",
+    "premisses": ["r", "(~r⊻(~(p↓q)|r))∧(~q≡(~p⊃(~q⊅s)))"],
+    "conclusion": "~s",
     "meaning": [],
     "comment": "",
-    "rulesImplied": ["rep", "hyp", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "|e"],
+    "rulesImplied": [
+      "rep",
+      "hyp",
+      "~~e",
+      "∧e",
+      "⊻e",
+      "⊃e",
+      "≡e",
+      "⊅e",
+      "|e",
+      "↓e"
+    ],
     "doable": true
   }
 ]
