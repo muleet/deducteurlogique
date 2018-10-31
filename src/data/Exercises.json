@@ -280,13 +280,13 @@
         "r : Ma conception du bonheur est authentique."
       ],
       [
-        "p : La signification possible A ne laisse aucun vide logique.",
-        "q : La signification possible A ouvre un vide logique.",
-        "r : La signification possible A est cohérente."
+        "p : Une bonne signification possible ne laisse aucun vide logique.",
+        "q : Une mauvaise signification possible laisse un vide logique.",
+        "r : Une telle signification possible est utile à l'utilisateur."
       ]
     ],
     "comment": "",
-    "rulesImplied": ["rep", "hyp", "⊻i", "⊻e", "⊃e", "⊅i", "⊅e"],
+    "rulesImplied": ["rep", "⊻i"],
     "doable": true
   },
   {
@@ -318,8 +318,8 @@
     "conclusion": "~q",
     "meaning": [
       [
-        "p : Le lapin est arrivé le premier à la fin de la course.",
-        "q : La torture est arrivée la première à la fin de la course."
+        "p : Le lapin est arrivé premier à la fin de la course.",
+        "q : La tortue est arrivée première à la fin de la course."
       ]
     ],
     "comment": "",
@@ -368,18 +368,7 @@
     "conclusion": "~s",
     "meaning": [],
     "comment": "",
-    "rulesImplied": [
-      "rep",
-      "hyp",
-      "~~e",
-      "∧e",
-      "⊻e",
-      "⊃e",
-      "≡e",
-      "⊅e",
-      "|e",
-      "↓e"
-    ],
+    "rulesImplied": ["rep", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "|e", "↓e"],
     "doable": true
   }
 ]

@@ -52,7 +52,7 @@
     "itself": ["F", "V", "F", "F"],
     "category": "one-true",
     "character": "⊅↛",
-    "example": [],
+    "example": ["Je lis un livre.", "Je regarde un film."],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Venn0100.svg/100px-Venn0100.svg.png"
   },
   {
@@ -80,7 +80,7 @@
     "itself": ["F", "F", "F", "V"],
     "category": "one-true",
     "character": "↓",
-    "example": [],
+    "example": ["Le capitalisme.", "Le nationalisme."],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Venn1000.svg/100px-Venn1000.svg.png"
   },
   {
