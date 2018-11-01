@@ -1,8 +1,5 @@
 Choses à faire :
 
-1) (J) Créer une base de donnée utilisateur. Elle sauvegardera les exos résolus + permettra à l'utilisateur de créer ses propres exercices.
-1,5) Adapter removeLastInference aux hypothèses.
-2) Mettre des raccourcis claviers pour les règles. (Par exemple la première règle (outre rep et reit) serait 1/&, la seconde 2/é, la troisième 3/", etc.)
 3) Rajouter des options pour désactiver diverses choses des locutions grecques et latines.
 3) Rajouter dans la page d'exercice, une petite icône de bulle à côté du titre : quand on met sa souris dessus (voire quand on clique dessus) on aura un commentaire de l'exercice. Il y a pas mal d'exos où ça peut être une info intéressante (et complémentaire de l'info apportée par les signification possible des prémisses).
 4) Faire apparaître une ligne transparente pour le prochain emplacement d'inférence, ligne transparente (qui blink) disant "< prochaine inférence >" ou quelque chose du genre. Et cette ligne n'apparaît plus lorsque la conclusion a été trouvée.

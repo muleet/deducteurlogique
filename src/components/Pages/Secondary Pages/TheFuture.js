@@ -18,7 +18,7 @@ const TheFuture = () => {
   return (
     <main className="main-auteurs-contact">
       <h2 style={{ marginBottom: "20px" }}>
-        Qu'apporteront les plus proches mises à jour ? <br />
+        Qu'apporteront les prochaines mises à jour ? <br />
       </h2>
       <div
         style={{
@@ -95,10 +95,20 @@ const TheFuture = () => {
             exemple p⊃q se réduit à ~(~p∧q).
           </p>
           <p className="maybenever-available-rule">
+            Créer des raccourcis claviers pour les règles. Par exemple les
+            lettres a z e r t permettront d'utiliser les 5 premières règles de
+            tout exercice, et 1 2 3 4 5 permettront de référer aux 5 premières
+            inférence (que ce soit pour utiliser la règle reit ou pour utiliser
+            une inférence comme argument d'une règle).
+          </p>
+          <p className="maybenever-available-rule">
             - Laisser la possibilité à l'utilisateur d'écrire les dernières
             lignes d'une déduction (avec un "?" à la place de leur nombre), dès
             le début (pour qu'il puisse établir à l'avance le but visé dans sa
             déduction).
+          </p>
+          <p className="maybenever-available-rule">
+            - Les règles des prédicats.
           </p>
         </div>
       </div>
