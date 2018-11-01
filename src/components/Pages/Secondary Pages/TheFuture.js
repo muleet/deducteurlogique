@@ -42,9 +42,8 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            - Corrections des bugs de la règle ∨e (et amélioration de son
-            interface), et d'un bug de la gestion des parenthèses dans certains
-            cas (avec ⊻i notamment).
+            - Corrections des bugs de la règle ∨e (et surtout, amélioration de
+            son interface).
           </p>
           <p className="soon-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
@@ -61,19 +60,7 @@ const TheFuture = () => {
             - Un bouton pour effacer la dernière inférence produite dans la
             déduction, en tenant compte du niveau d'hypothèse.
           </p>
-          <p className="maybenever-available-rule">- Les règles modales.</p>
-          <p className="maybenever-available-rule">
-            - Laisser la possibilité à l'utilisateur d'écrire les dernières
-            lignes d'une déduction (avec un "?" à la place de leur nombre), dès
-            le début (pour qu'il puisse établir à l'avance le but visé dans sa
-            déduction).
-          </p>
-          <p className="maybenever-available-rule">
-            - Au sein de la déduction, pouvoir réduire instantanément une
-            inférence ayant un symbole autre que ~ et ∧, par leur équivalent
-            avec ces symboles. Une petite icône sur la ligne le permettra. Par
-            exemple p⊃q se réduit à ~(~p∧q).
-          </p>
+          <p className="later-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
@@ -100,6 +87,18 @@ const TheFuture = () => {
             et b) la conclusion, et c) toute la déduction en cours en affichant
             le niveau d'hypothèses par des barres verticales devant chaque
             ligne.
+          </p>
+          <p className="maybenever-available-rule">
+            - Au sein de la déduction, pouvoir réduire instantanément une
+            inférence ayant un symbole autre que ~ et ∧, par leur équivalent
+            avec ces symboles. Une petite icône sur la ligne le permettra. Par
+            exemple p⊃q se réduit à ~(~p∧q).
+          </p>
+          <p className="maybenever-available-rule">
+            - Laisser la possibilité à l'utilisateur d'écrire les dernières
+            lignes d'une déduction (avec un "?" à la place de leur nombre), dès
+            le début (pour qu'il puisse établir à l'avance le but visé dans sa
+            déduction).
           </p>
         </div>
       </div>

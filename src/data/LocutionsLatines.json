@@ -391,11 +391,17 @@
   },
   {
     "latin": "Qui non est hodie, cras minus aptus erit",
-    "traduction": "Celui qui n'est pas prêt aujourd'hui, le sera moins demain"
+    "traduction": "Celui qui n'est pas prêt aujourd'hui, le sera moins demain",
+    "auteur": "Ovide"
   },
   {
     "latin": "Mens sana in corpore sano",
     "traduction": "Un esprit sain dans un corps sain",
     "auteur": "Juvénal, Satires VIII"
+  },
+  {
+    "latin": "Nullum magnum ingenium sine mixtura dementiae fuit",
+    "traduction": "Il n'est pas de grand talent qui n'ait une part de folie",
+    "auteur": "Sénèque,  De la tranquilité de l'âme, XVII.10"
   }
 ]
