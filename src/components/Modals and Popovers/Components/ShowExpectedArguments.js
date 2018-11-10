@@ -4,7 +4,8 @@ import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArg
 class ShowExpectedArguments extends Component {
   showKeyboard = () => {
     let everyPossibleCharacter = [
-      ["~", "∧", "∨", "⊃", "⊅", "≡", "⊻", "|", "↓"],
+      // ["~", "∧", "∨", "⊃", "⊅", "≡", "⊻", "|", "↓"], // A CHANGER LORSQUE J'AURAI AMELIORE L'AFFICHAGE DES HYPOTHESES : pour le moment j'ai retiré "|" pour éviter la confusion avec le caractère des hypothèses
+      ["~", "∧", "∨", "⊃", "⊅", "≡", "⊻", "↓"],
       ["p", "q", "r", "s"],
       ["(", ")"]
     ];
