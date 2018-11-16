@@ -116,6 +116,21 @@
     "doable": true
   },
   {
+    "verbalName": "Réfutation d'hypothèse (3)",
+    "premisses": ["p∧q"],
+    "conclusion": "~(q∧~p)",
+    "meaning": [
+      ["p : Je vois l'océan.", "q : Je vois l'océan sous la tempête."],
+      [
+        "p : L'anarchisme est pluriel.",
+        "q : L'anarchisme est difficile à définir."
+      ]
+    ],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "~i", "∧e"],
+    "doable": true
+  },
+  {
     "verbalName": "Introduction du biconditionnel",
     "premisses": ["p", "q"],
     "conclusion": "p≡q",
@@ -131,21 +146,6 @@
     ],
     "comment": "",
     "rulesImplied": ["rep", "hyp", "≡i", "⊃i"],
-    "doable": true
-  },
-  {
-    "verbalName": "Réfutation d'hypothèse (3)",
-    "premisses": ["p∧q"],
-    "conclusion": "~(q∧~p)",
-    "meaning": [
-      ["p : Je vois l'océan.", "q : Je vois l'océan sous la tempête."],
-      [
-        "p : L'anarchisme est pluriel.",
-        "q : L'anarchisme est difficile à définir."
-      ]
-    ],
-    "comment": "",
-    "rulesImplied": ["rep", "hyp", "~i", "∧e"],
     "doable": true
   },
   {
@@ -167,13 +167,28 @@
     "doable": true
   },
   {
-    "verbalName": "Élimination de l'abjonction",
-    "premisses": ["p⊃q", "p⊅r"],
-    "conclusion": "p⊃(q∧~r)",
+    "verbalName": "Introduction de la disjonction réciproque",
+    "premisses": [],
+    "conclusion": "(p∧q)⊃r",
+    "meaning": [
+      [
+        "p : La guerre entre les peuples.",
+        "q : La paix entre les classes.",
+        "r : Conditions de l'anarchisme."
+      ]
+    ],
+    "comment": "",
+    "rulesImplied": ["rep", "∧i", "⊃i", "↓i"],
+    "doable": false
+  },
+  {
+    "verbalName": "Elimination de la disjonction réciproque",
+    "premisses": [],
+    "conclusion": "",
     "meaning": [],
     "comment": "",
-    "rulesImplied": ["rep", "hyp", "∧i", "⊃i", "⊃e", "⊅e"],
-    "doable": true
+    "rulesImplied": ["rep", "↓e"],
+    "doable": false
   },
   {
     "verbalName": "Réfutation d'hypothèse et élimination de double négation",
@@ -187,6 +202,15 @@
     ],
     "comment": "",
     "rulesImplied": ["rep", "reit", "hyp", "~i", "~~e", "∧i"],
+    "doable": true
+  },
+  {
+    "verbalName": "Élimination de l'abjonction",
+    "premisses": ["p⊃q", "p⊅r"],
+    "conclusion": "p⊃(q∧~r)",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["rep", "hyp", "∧i", "⊃i", "⊃e", "⊅e"],
     "doable": true
   },
   {

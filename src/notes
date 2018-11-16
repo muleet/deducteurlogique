@@ -31,3 +31,8 @@ Thèmes de significations possibles à rajouter :
 - Sur la notion "d'artisan de la révolution".
 - "Un fonctionnaire coûte moins cher qu'un actionnaire." (Phrase sur une pancarte de manif)
 - Sur le propos d'Eric Sadin selon lequel la technique n'existe plus, puisqu'elle est toujours inféodée à des intérêts économiques. (vers 15mn de son interview sur thinkerview) (son propos est qu'on arrive dans un nouveau seuil du libéralisme, le technolibéralisme)
+- (Jérémie Zimmerman) On ne peut pas être libre ET utiliser des ordinateurs si l'on ne peut pas passer en revue les firmware (programme informatique permettant le fonctionnement du hardware) et hardware.
+p : je peux utiliser des ordinateurs
+q : je peux passer en revue le firmware et hardware de toutes les machines informatiques que j'utilise
+r : je peux être libre
+(p∧q)⊃r, p⊃~r

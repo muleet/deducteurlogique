@@ -15,7 +15,7 @@
     "grec": "ζῷον πολιτικόν",
     "alphabetlatin": "Zỗon politikόn",
     "traduction": "Animal politique",
-    "auteur": "Aristote, définissant l'être humain"
+    "auteur": "Définition aristotélicienne de l'être humain"
   },
   {
     "grec": "Ἕν οἶδα ὅτι οὐδὲν οἶδα",
@@ -38,8 +38,7 @@
     "grec": "Μικρὸν ἀπὸ τοῦ ἡλίου μετάστηθι",
     "alphabetlatin": "Mikròn apò toû hêliou metástêthi",
     "traduction": "[Litt.] Tiens-toi un peu à l'écart de mon soleil",
-    "auteur":
-      "Diogène de Sinope, répondant à Alexandre le Grand, qui venait lui demander s'il avait besoin de quelque chose"
+    "auteur": "Diogène de Sinope, répondant à Alexandre le Grand, qui venait lui demander s'il avait besoin de quelque chose"
   },
   {
     "grec": "Ἄνθρωπὸς ἐστὶ πάντων χρημάτων μέτρον",
@@ -51,8 +50,7 @@
     "grec": "Ἀπὸ μηχανῆς θεός",
     "alphabetlatin": "Apò mêkhanễs theós",
     "traduction": "Dieu issu de la machine",
-    "note":
-      "Expression issue du théâtre grec, pour désigner un mécanisme servant à faire entrer en scène une ou des divinités pour résoudre une situation désespérée (Latin : Deus ex machina)"
+    "note": "Expression issue du théâtre grec, pour désigner un mécanisme servant à faire entrer en scène une ou des divinités pour résoudre une situation désespérée (Latin : Deus ex machina)"
   },
   {
     "grec": "Γίγνωσκε καιρόν",
@@ -81,8 +79,7 @@
     "grec": "Θνητὰ φρονεῖ",
     "alphabetlatin": "Thnêtà phroneî",
     "traduction": "Souviens-toi que tu vas mourir",
-    "note":
-      "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs, durant les célébrations de leur victoire"
+    "note": "Une coutume romaine aurait été que des esclaves rappellent cette phrase aux généraux vainqueurs, durant les célébrations de leur victoire"
   },
   {
     "grec": "Ἰχθὺν νηχέσθαι διδάσκεις",
@@ -123,12 +120,9 @@
     "traduction": "Comment allez-vous ?"
   },
   {
-    "grec":
-      "Tὶ ἐστὶν ὃ μίαν ἔχον φωνὴν τετράπουν καὶ δίπουν καὶ τρίπουν γίνεται;",
-    "alphabetlatin":
-      "Tì estìn hò mían ékhon phônền tetrápoun kaì dípoun kaì trípoun gínetai;",
-    "traduction":
-      "Quel être, pourvu d’une seule voix, a d’abord quatre jambes, puis deux jambes, et trois jambes ensuite ?"
+    "grec": "Tὶ ἐστὶν ὃ μίαν ἔχον φωνὴν τετράπουν καὶ δίπουν καὶ τρίπουν γίνεται;",
+    "alphabetlatin": "Tì estìn hò mían ékhon phônền tetrápoun kaì dípoun kaì trípoun gínetai;",
+    "traduction": "Quel être, pourvu d’une seule voix, a d’abord quatre jambes, puis deux jambes, et trois jambes ensuite ?"
   },
   {
     "grec": "Ὕβρις φυτεύει τύραννον",
@@ -146,12 +140,9 @@
     "traduction": "Salut et porte-toi bien"
   },
   {
-    "grec":
-      "Χρώμεθα γὰρ πολιτείᾳ […] καὶ ὄνομα μὲν διὰ τὸ μὴ ἐς ὀλίγους ἀλλ’ ἐς πλείονας οἰκεῖν δημοκρατία κέκληται",
-    "alphabetlatin":
-      "Khrốmetha gàr politeíai […] kaì ónoma mèn dià tò mề es olígous all’ es pleíonas oikeîn dêmokratía kéklêtai",
-    "traduction":
-      "Notre régime politique […] a pour nom démocratie parce que le pouvoir est entre les mains non d’une minorité, mais du plus grand nombre",
+    "grec": "Χρώμεθα γὰρ πολιτείᾳ […] καὶ ὄνομα μὲν διὰ τὸ μὴ ἐς ὀλίγους ἀλλ’ ἐς πλείονας οἰκεῖν δημοκρατία κέκληται",
+    "alphabetlatin": "Khrốmetha gàr politeíai […] kaì ónoma mèn dià tò mề es olígous all’ es pleíonas oikeîn dêmokratía kéklêtai",
+    "traduction": "Notre régime politique […] a pour nom démocratie parce que le pouvoir est entre les mains non d’une minorité, mais du plus grand nombre",
     "note": "Extrait d'un discours de Périclès, rapporté par Thucydide"
   },
   {
@@ -163,8 +154,7 @@
     "grec": "Ἀγεωμέτρητος μηδεὶς εἰσίτω",
     "alphabetlatin": "Ἀgeōmétrētos mēdeìs eisítō",
     "traduction": "Que nul n'entre ici s'il n'est géomètre",
-    "note":
-      "Phrase qui aurait été gravée à l'entrée de l'Académie, école fondée à Athènes par Platon."
+    "note": "Phrase qui aurait été gravée à l'entrée de l'Académie, école fondée à Athènes par Platon."
   },
   {
     "grec": "θάνατος οὐδὲν διαφέρει τοῦ ζῆν",
@@ -176,29 +166,24 @@
     "grec": "Κρῆτες ἀεὶ ψεῦσται",
     "alphabetlatin": "Krêtes aeì pseûstai",
     "traduction": "Les crétois mentent toujours",
-    "note":
-      "Locution attribuée à Épiménide de Knossos (~6ème siècle av. J-C.) qui désigne un paradoxe logique. Puisqu'Épiménide est lui-même crétois, son énoncé mène à la conclusion qu'il ment et que son énoncé est faux, d'où le paradoxe."
+    "note": "Locution attribuée à Épiménide de Knossos (~6ème siècle av. J-C.) qui désigne un paradoxe logique. Puisqu'Épiménide est lui-même crétois, son énoncé mène à la conclusion qu'il ment et que son énoncé est faux, d'où le paradoxe."
   },
   {
     "grec": "Τί δύσκολον; Τὸ ἑαυτὸν γνῶναι / τί εὔκολον; Τὸ ἄλλῳ ὑποτίθεσθαι",
-    "alphabetlatin":
-      "Tí dýskolon? Tò heautòn gnônai / Tí eúkolon? Tò állōi hypotíthesthai",
-    "traduction":
-      "Qu'est-ce qui est difficile ? De se connaître soi-même / Qu'est-ce qui est facile ? De conseiller son prochain",
+    "alphabetlatin": "Tí dýskolon? Tò heautòn gnônai / Tí eúkolon? Tò állōi hypotíthesthai",
+    "traduction": "Qu'est-ce qui est difficile ? De se connaître soi-même / Qu'est-ce qui est facile ? De conseiller son prochain",
     "auteur": "Attribuées à Thalès, par Pausanias"
   },
   {
     "grec": "τί καινὸν εἴη τεθεαμένος; Γέροντα τύραννον.",
     "alphabetlatin": "Tí kainòn eiē tetheaménos? Géronta týrannon.",
-    "traduction": "Quelle est la chose la plus étrange à voir ? Un tyran âgé",
+    "traduction": "Quelle est la chose la plus étrange à voir ? Un tyran âgé.",
     "auteur": "Attribuée à Thalès, par Plutarque"
   },
   {
     "grec": "Τί κοινότατον; Ἐλπίς. Καὶ γὰρ οἷς ἄλλο μηδέν, αὔτη παρέστη.",
-    "alphabetlatin":
-      "Tí koinótaton? Elpís. Kaì gàr hoîs állo mēdén, aútē paréstē.",
-    "traduction":
-      "Qu'est-ce qui est le plus commun ? L'espoir. Parce que même à ceux à qui il ne reste rien, il est toujours là.",
+    "alphabetlatin": "Tí koinótaton? Elpís. Kaì gàr hoîs állo mēdén, aútē paréstē.",
+    "traduction": "Qu'est-ce qui est le plus commun ? L'espoir. Parce que même à ceux à qui il ne reste rien, il est toujours là.",
     "auteur": "Attribuée à Thalès"
   }
 ]

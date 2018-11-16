@@ -71,6 +71,16 @@
     ]
   },
   {
+    "verbalName": "Réfutation d'hypothèse (3)",
+    "possibleSolution": [
+      { "itself": "|q∧~p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|~p", "numberCommentary": "1", "commentary": "∧e" },
+      { "itself": "|p", "numberCommentary": "2", "commentary": "∧e" },
+      { "itself": "~(q∧~p)", "numberCommentary": "1, 3, 4", "commentary": "~i" }
+    ]
+  },
+  {
     "verbalName": "Introduction du biconditionnel",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
@@ -80,16 +90,6 @@
       { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "q⊃p", "numberCommentary": "4-5", "commentary": "⊃i" },
       { "itself": "p≡q", "numberCommentary": "3, 6", "commentary": "≡i" }
-    ]
-  },
-  {
-    "verbalName": "Réfutation d'hypothèse (3)",
-    "possibleSolution": [
-      { "itself": "|q∧~p", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
-      { "itself": "|~p", "numberCommentary": "1", "commentary": "∧e" },
-      { "itself": "|p", "numberCommentary": "2", "commentary": "∧e" },
-      { "itself": "~(q∧~p)", "numberCommentary": "1, 3, 4", "commentary": "~i" }
     ]
   },
   {
@@ -117,15 +117,18 @@
     ]
   },
   {
-    "verbalName": "Élimination de l'abjonction",
+    "verbalName": "Introduction de la disjonction réciproque",
     "possibleSolution": [
-      { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
-      { "itself": "|p⊅r", "numberCommentary": "b", "commentary": "rep" },
-      { "itself": "|~r", "numberCommentary": "1, 2", "commentary": "⊅e" },
-      { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
-      { "itself": "|q", "numberCommentary": "1, 4", "commentary": "⊃e" },
-      { "itself": "|q∧~r", "numberCommentary": "5, 3", "commentary": "∧e" },
-      { "itself": "p⊃(q∧~r)", "numberCommentary": "", "commentary": "⊃i" }
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "", "numberCommentary": "", "commentary": "" }
+    ]
+  },
+  {
+    "verbalName": "Elimination de la disjonction réciproque",
+    "possibleSolution": [
+      { "itself": "", "numberCommentary": "", "commentary": "" }
     ]
   },
   {
@@ -137,6 +140,18 @@
       { "itself": "|p∧~q", "numberCommentary": "2, 1", "commentary": "∧i" },
       { "itself": "~~q", "numberCommentary": "1, 3, 4", "commentary": "~i" },
       { "itself": "q", "numberCommentary": "5", "commentary": "~~e" }
+    ]
+  },
+  {
+    "verbalName": "Élimination de l'abjonction",
+    "possibleSolution": [
+      { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
+      { "itself": "|p⊅r", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "|~r", "numberCommentary": "1, 2", "commentary": "⊅e" },
+      { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
+      { "itself": "|q", "numberCommentary": "1, 4", "commentary": "⊃e" },
+      { "itself": "|q∧~r", "numberCommentary": "5, 3", "commentary": "∧e" },
+      { "itself": "p⊃(q∧~r)", "numberCommentary": "", "commentary": "⊃i" }
     ]
   },
   {
