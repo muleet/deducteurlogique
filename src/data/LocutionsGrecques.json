@@ -132,7 +132,8 @@
   {
     "grec": "Φοβοὺ τοὺς Δαναοὺς καὶ δῶρα φέροντες",
     "alphabetlatin": "Phoboù toùs Danaoùs kaì dỗra phérontes",
-    "traduction": "Je crains les Grecs, même porteurs de présents"
+    "traduction": "Je crains les Grecs, même porteurs de présents",
+    "auteur": "Virgile, l'Énéide (II, 49)."
   },
   {
     "grec": "Χαῖρε καὶ ἔρρωσο",
@@ -140,9 +141,9 @@
     "traduction": "Salut et porte-toi bien"
   },
   {
-    "grec": "Χρώμεθα γὰρ πολιτείᾳ […] καὶ ὄνομα μὲν διὰ τὸ μὴ ἐς ὀλίγους ἀλλ’ ἐς πλείονας οἰκεῖν δημοκρατία κέκληται",
-    "alphabetlatin": "Khrốmetha gàr politeíai […] kaì ónoma mèn dià tò mề es olígous all’ es pleíonas oikeîn dêmokratía kéklêtai",
-    "traduction": "Notre régime politique […] a pour nom démocratie parce que le pouvoir est entre les mains non d’une minorité, mais du plus grand nombre",
+    "grec": "Χρώμεθα γὰρ πολιτείᾳ […] καὶ ὄνομα μὲν διὰ τὸ μὴ ἐς ὀλίγους ἀλλ’ ἐς πλείονας οἰκεῖν δημοκρατία κέκληται.",
+    "alphabetlatin": "Khrốmetha gàr politeíai […] kaì ónoma mèn dià tò mề es olígous all’ es pleíonas oikeîn dêmokratía kéklêtai.",
+    "traduction": "Notre régime politique […] a pour nom démocratie parce que le pouvoir est entre les mains non d’une minorité, mais du plus grand nombre.",
     "note": "Extrait d'un discours de Périclès, rapporté par Thucydide"
   },
   {

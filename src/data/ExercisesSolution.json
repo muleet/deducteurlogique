@@ -117,21 +117,6 @@
     ]
   },
   {
-    "verbalName": "Introduction de la disjonction réciproque",
-    "possibleSolution": [
-      { "itself": "", "numberCommentary": "", "commentary": "" },
-      { "itself": "", "numberCommentary": "", "commentary": "" },
-      { "itself": "", "numberCommentary": "", "commentary": "" },
-      { "itself": "", "numberCommentary": "", "commentary": "" }
-    ]
-  },
-  {
-    "verbalName": "Elimination de la disjonction réciproque",
-    "possibleSolution": [
-      { "itself": "", "numberCommentary": "", "commentary": "" }
-    ]
-  },
-  {
     "verbalName": "Réfutation d'hypothèse et élimination de double négation",
     "possibleSolution": [
       { "itself": "|~q", "numberCommentary": "", "commentary": "hyp" },
@@ -287,6 +272,21 @@
       { "itself": "p", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "p|q", "numberCommentary": "b", "commentary": "rep" },
       { "itself": "~q", "numberCommentary": "1, 2", "commentary": "|e" }
+    ]
+  },
+  {
+    "verbalName": "Introduction de la disjonction réciproque",
+    "possibleSolution": [
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "", "numberCommentary": "", "commentary": "" },
+      { "itself": "", "numberCommentary": "", "commentary": "" }
+    ]
+  },
+  {
+    "verbalName": "Elimination de la disjonction réciproque",
+    "possibleSolution": [
+      { "itself": "", "numberCommentary": "", "commentary": "" }
     ]
   },
   {

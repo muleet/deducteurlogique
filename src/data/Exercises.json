@@ -167,30 +167,6 @@
     "doable": true
   },
   {
-    "verbalName": "Introduction de la disjonction réciproque",
-    "premisses": [],
-    "conclusion": "(p∧q)⊃r",
-    "meaning": [
-      [
-        "p : La guerre entre les peuples.",
-        "q : La paix entre les classes.",
-        "r : Conditions de l'anarchisme."
-      ]
-    ],
-    "comment": "",
-    "rulesImplied": ["rep", "∧i", "⊃i", "↓i"],
-    "doable": false
-  },
-  {
-    "verbalName": "Elimination de la disjonction réciproque",
-    "premisses": [],
-    "conclusion": "",
-    "meaning": [],
-    "comment": "",
-    "rulesImplied": ["rep", "↓e"],
-    "doable": false
-  },
-  {
     "verbalName": "Réfutation d'hypothèse et élimination de double négation",
     "premisses": ["~(p∧~q)", "p"],
     "conclusion": "q",
@@ -349,6 +325,30 @@
     "comment": "",
     "rulesImplied": ["rep", "reit", "hyp", "|e"],
     "doable": true
+  },
+  {
+    "verbalName": "Introduction de la disjonction réciproque",
+    "premisses": ["~p⊻(q∧~r)"],
+    "conclusion": "p↓r",
+    "meaning": [
+      [
+        "p : La guerre entre les peuples.",
+        "q : La paix entre les classes.",
+        "r : Conditions de l'anarchisme."
+      ]
+    ],
+    "comment": "",
+    "rulesImplied": ["rep", "∧i", "⊃i", "↓i"],
+    "doable": false
+  },
+  {
+    "verbalName": "Elimination de la disjonction réciproque",
+    "premisses": [],
+    "conclusion": "",
+    "meaning": [],
+    "comment": "",
+    "rulesImplied": ["rep", "↓e"],
+    "doable": false
   },
   {
     "verbalName": "Principe du tiers exclu",
