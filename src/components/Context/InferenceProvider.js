@@ -458,6 +458,18 @@ class InferenceProvider extends Component {
           possibleMeaningShown: false
         });
       }
+      // if (
+      //   (this.state.possibleMeaningShown =
+      //     "afficher une signification possible")
+      // ) {
+      //   this.setState({
+      //     possibleMeaningShown: str
+      //   });
+      // } else if (this.state.possibleMeaningShown[0] !== "a") {
+      //   this.setState({
+      //     possibleMeaningShown: "afficher une signification possible"
+      //   });
+      // }
     };
 
     this.setInversion = () => {

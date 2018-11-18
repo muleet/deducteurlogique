@@ -299,7 +299,7 @@
   },
   {
     "name": "Ǝe",
-    "verbalName": "Règle d'élimination de quantificateur universel",
+    "verbalName": "Règle d'élimination de quantificateur existentiel",
     "verbalDescription": "",
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",

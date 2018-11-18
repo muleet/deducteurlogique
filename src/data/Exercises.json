@@ -149,7 +149,7 @@
     "doable": true
   },
   {
-    "verbalName": "Elimination du biconditionnel",
+    "verbalName": "Élimination du biconditionnel",
     "premisses": ["p∧r", "p≡(q≡r)"],
     "conclusion": "q",
     "meaning": [["p : Je vis.", "q : Je respire.", "r : Je peux mourir."]],
@@ -290,7 +290,7 @@
     "doable": true
   },
   {
-    "verbalName": "Elimination de la disjonction exclusive",
+    "verbalName": "Élimination de la disjonction exclusive",
     "premisses": ["p", "~p⊻(q⊻r)"],
     "conclusion": "(p⊅q)⊃r",
     "meaning": [],
@@ -313,7 +313,7 @@
     "doable": true
   },
   {
-    "verbalName": "Elimination de l'incompatibilité",
+    "verbalName": "Élimination de l'incompatibilité",
     "premisses": ["p", "p|q"],
     "conclusion": "~q",
     "meaning": [
@@ -328,27 +328,33 @@
   },
   {
     "verbalName": "Introduction de la disjonction réciproque",
-    "premisses": ["~p⊻(q∧~r)"],
-    "conclusion": "p↓r",
+    "premisses": ["p⊃~q", "p⊃~r"],
+    "conclusion": "p⊃(q↓r)",
     "meaning": [
       [
-        "p : La guerre entre les peuples.",
-        "q : La paix entre les classes.",
-        "r : Conditions de l'anarchisme."
+        "p : Louise est anarchiste.",
+        "q : Louise souhaite la guerre entre les peuples.",
+        "r : Louise souhaite la paix entre les classes."
       ]
     ],
     "comment": "",
-    "rulesImplied": ["rep", "∧i", "⊃i", "↓i"],
-    "doable": false
+    "rulesImplied": ["rep", "hyp", "∧e", "⊃i", "⊃e", "↓i"],
+    "doable": true
   },
   {
-    "verbalName": "Elimination de la disjonction réciproque",
-    "premisses": [],
-    "conclusion": "",
-    "meaning": [],
+    "verbalName": "Élimination de la disjonction réciproque",
+    "premisses": ["p↓q", "r⊃(p∧q)"],
+    "conclusion": "~r",
+    "meaning": [
+      [
+        "p : Le capitalisme est une bonne idée.",
+        "q : Le nationalisme est une bonne idée.",
+        "r : Un système qui asservit les citoyens est une bonne idée."
+      ]
+    ],
     "comment": "",
-    "rulesImplied": ["rep", "↓e"],
-    "doable": false
+    "rulesImplied": ["rep", "hyp", "~i", "⊃e", "∧i", "↓e"],
+    "doable": true
   },
   {
     "verbalName": "Principe du tiers exclu",
@@ -360,7 +366,7 @@
     "doable": true
   },
   {
-    "verbalName": "Elimination de la disjonction inclusive",
+    "verbalName": "Élimination de la disjonction inclusive",
     "premisses": ["p⊃q", "p∨q"],
     "conclusion": "q",
     "meaning": [],

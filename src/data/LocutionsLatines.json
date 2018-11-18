@@ -82,10 +82,6 @@
     "note": "Principe d'explosion"
   },
   {
-    "latin": "Exeat",
-    "traduction": "Qu'il sorte"
-  },
-  {
     "latin": "Exoriare aliquis nostris ex ossibus ultor !",
     "traduction": "Qu'un vengeur naisse un jour de ma cendre !"
   },
@@ -140,7 +136,7 @@
   {
     "latin": "Omnia mea mecum porto",
     "traduction": "Je transporte avec moi tous mes biens",
-    "note": "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, eut un jour à fuir sa ville Priène prise par l'ennemi. A ceux qui s'étonnaient qu'il n'emporte aucun bien avec lui, ni meubles ni argent,\n il répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a fasciné Nietzsche."
+    "note": "Selon Cicéron, Bias, l'un des sept sages de la Grèce Antique, eut un jour à fuir sa ville Priène prise par l'ennemi. A ceux qui s'étonnaient qu'il n'emporte aucun bien avec lui, ni meubles ni argent,\n il répondait qu'il les portaient tous avec lui : la droiture, l'honnêteté et la vertu. Phrase qui a inspiré Nietzsche."
   },
   {
     "latin": "Pericula ludus",
@@ -372,7 +368,7 @@
   {
     "latin": "O Melibœ, Deus nobis hæc otia fecit",
     "traduction": "Ô Mélibée, un Dieu nous a donné cette oisiveté",
-    "note": "Virgile, dans les Bucoliques (Locution reprise par Paul Lafargue dans son texte \"Le droit à la paresse\")"
+    "note": "Virgile, dans les Bucoliques ; locution reprise par Paul Lafargue dans son texte \"Le droit à la paresse\""
   },
   {
     "latin": "Pluralitas non est ponenda sine necessitate",
@@ -382,7 +378,7 @@
   {
     "latin": "Quod gratis asseritur, gratis negatur",
     "traduction": "Ce qui est affirmé sans preuve peut être nié sans preuve",
-    "note": "Locution originaire d'Euclide, et très commune au 19ème siècle."
+    "note": "Euclide, locution qui fut ensuite très commune au 19ème siècle."
   },
   {
     "latin": "Quam bene vivas refert, non quam diu",
