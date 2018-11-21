@@ -48,11 +48,11 @@
     "description": "",
     "link": "",
     "reductibleTo": "A∧~B",
-    "lecture": "",
+    "lecture": "si A alors non B",
     "itself": ["F", "V", "F", "F"],
     "category": "one-true",
     "character": "⊅↛",
-    "example": ["Je lis un livre.", "Je regarde un film."],
+    "example": ["Cette table est en bois.", "Cette table est en verre."],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Venn0100.svg/100px-Venn0100.svg.png"
   },
   {

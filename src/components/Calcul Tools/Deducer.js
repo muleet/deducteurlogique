@@ -142,7 +142,7 @@ class Deducer extends Component {
                         valueInference={value}
                       />
                       <div style={{ fontSize: 16 }}>
-                        Solutions :{" "}
+                        Solutions :
                         <ShowPossibleSolutions valueInference={value} />
                       </div>
                     </Fragment>

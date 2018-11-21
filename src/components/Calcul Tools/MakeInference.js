@@ -16,12 +16,13 @@ class MakeInference extends Component {
           className={"inferenceGlobal selectable " + this.props.inferenceType}
           onClick={this.props.onClickSent}
         >
+          {/* {this.props.dataRegardingHypothesisLine} */}
           <div className={"inferenceNumber " + this.props.inferenceType}>
             {this.props.inferenceNumber}
           </div>
           <div className={"hypothesis-level " + this.props.inferenceType}>
             {hypothesisLevel}
-            {/* <hr style={{ height: heightHypothesisBar + "px" }} /> */}
+            {/* {this.props.dataRegardingHypothesisLine} */}
           </div>
           <div className={"inferenceItself " + this.props.inferenceType}>
             {this.props.inferenceItself}

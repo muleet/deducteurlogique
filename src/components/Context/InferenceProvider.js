@@ -26,12 +26,12 @@ class InferenceProvider extends Component {
         newInference.numberCommentaryHypothesis = copyArrayRendered.length + 1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
         inferenceType = "hypothesisItself";
-        this.state.manageDataRegardingHypothesisLine("+hyp");
+        // this.state.manageDataRegardingHypothesisLine("+hyp");
       }
       if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         hypNumber = -1;
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
-        this.state.manageDataRegardingHypothesisLine("-hyp");
+        // this.state.manageDataRegardingHypothesisLine("-hyp");
       }
       if (!hyp) {
         this.state.manageDataRegardingHypothesisLine("=");
@@ -59,6 +59,9 @@ class InferenceProvider extends Component {
       } else {
         commentary = newInference.commentary;
       }
+      let newAllJustificationData = [...this.state.allJustificationData];
+      newAllJustificationData.push(newInference.commentary);
+      console.log("newAllJustificationData", newAllJustificationData);
 
       // section  de la détection de l'opérateur + de la possibilité de commuter, pour les règles où l'opérateur est commutatif
       // showOperatorScope: this.showOperatorScope,
@@ -75,6 +78,7 @@ class InferenceProvider extends Component {
           hypothesisCurrentID={
             this.state.hypothesisCurrentLevelAndId.actualID + hypNumber
           }
+          dataRegardingHypothesisLine={this.state.dataRegardingHypothesisLine}
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}
           onClickSent={() => {
@@ -113,7 +117,8 @@ class InferenceProvider extends Component {
       );
 
       this.setState(state => ({
-        allInferencesRendered: copyArrayRendered
+        allInferencesRendered: copyArrayRendered,
+        allJustificationData: newAllJustificationData
       }));
     };
 
@@ -168,8 +173,13 @@ class InferenceProvider extends Component {
         "rule-advice"
       );
 
+      let newAllJustificationData = [...this.state.allJustificationData];
+      newAllJustificationData.push("reit");
+      console.log("newAllJustificationData", newAllJustificationData);
+
       this.setState(state => ({
-        allInferencesRendered: copyArrayRendered
+        allInferencesRendered: copyArrayRendered,
+        allJustificationData: newAllJustificationData
       }));
     };
 
@@ -293,17 +303,29 @@ class InferenceProvider extends Component {
 
     this.removeLastInference = () => {
       let copyAllInferencesRendered = [...this.state.allInferencesRendered];
+      let newAllJustificationData = [...this.state.allJustificationData];
+      const newAJDlength = newAllJustificationData.length - 1;
       copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
-      // A FAIRE : faut que je vire la dernière hypothèse, si c'était elle la dernière action au moment du clic sur le bouton de removeLastInference
-      console.log("nota bene : faut tout recoder dans removeLastInference");
+      if (newAllJustificationData[newAJDlength] === "hyp") {
+        this.manageLotsOfStuffAboutHypothesis("", "", "decrease");
+      } else if (
+        newAllJustificationData[newAJDlength] === "⊃i" ||
+        newAllJustificationData[newAJDlength] === "~i"
+      ) {
+        this.manageLotsOfStuffAboutHypothesis("", "", "increase");
+      }
+      newAllJustificationData.pop();
+
       this.setState(state => ({
-        allInferencesRendered: copyAllInferencesRendered
+        allInferencesRendered: copyAllInferencesRendered,
+        allJustificationData: newAllJustificationData
       }));
     };
 
     this.resetDeduction = () => {
       this.setState(state => ({
         allInferencesRendered: [],
+        allJustificationData: [],
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
@@ -350,12 +372,14 @@ class InferenceProvider extends Component {
         copyHypothesisCurrentLevelAndID.level++;
         copyHypothesisCurrentLevelAndID.actualID++;
         copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
+        this.state.manageDataRegardingHypothesisLine("+hyp");
       } else if (change === "decrease") {
         copyHypothesisCurrentLevelAndID.level--;
         copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
         copyHypothesisCurrentLevelAndID.hypIsStillOpen[
           copyHypothesisCurrentLevelAndID.actualID
         ] = false;
+        this.state.manageDataRegardingHypothesisLine("-hyp");
       }
       // (section 2 : hypothesisItself, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
       let copyAllHypotheticalInferences = [
@@ -529,7 +553,7 @@ class InferenceProvider extends Component {
       } else if (str === "=") {
         newDataRegardingHypothesisLine.push(previousLine);
       }
-      console.log(newDataRegardingHypothesisLine);
+      // console.log("newDataRegardingHypothesisLine", newDataRegardingHypothesisLine); // très important pour pouvoir faire un truc qui gère les lignes des hyps
       this.setState({
         dataRegardingHypothesisLine: newDataRegardingHypothesisLine
       });
@@ -537,6 +561,7 @@ class InferenceProvider extends Component {
 
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
+      allJustificationData: [], // contient toutes les infos justifiant chaque inférence, de la première à la dernière (variable qui n'est utilisée que par removeLastInference pour le moment)
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
@@ -544,6 +569,7 @@ class InferenceProvider extends Component {
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0, // chaque inférence dans une hypothèse a un id d'hypothèse (qui est à 0 s'il n'y a pas d'hyp en cours), storedHypID permet de stocker cet id d'hypothèse, pour le comparer à celui de l'hypothèse en cours
+      lastInferenceMade: "", // permet de savoir de quel genre est la dernière inférence faite (=hyp, +hyp, -hyp, ou autres cas spéciaux)
       // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
       longStoredInference: [],
       longStorageForRuleVerification: this.longStorageForRuleVerification,

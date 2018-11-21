@@ -43,7 +43,8 @@ const TheFuture = () => {
         >
           <p className="soon-available-rule">
             - Corrections des bugs de la règle ∨e (et surtout, amélioration de
-            son interface).
+            son interface) + possibilité d'utiliser la suppression de la
+            dernière inférence, avec cette règle.
           </p>
           <p className="soon-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
@@ -57,8 +58,12 @@ const TheFuture = () => {
             significations possibles des prémisses).
           </p>
           <p className="later-available-rule">
-            - Un bouton pour effacer la dernière inférence produite dans la
-            déduction, en tenant compte du niveau d'hypothèse.
+            - Lorsqu'on clique sur une règle, l'interface mettra en avant les
+            inférences compatibles avec cette règle. Par exemple pour la règle
+            ⊃e, l'interface mettra en surbrillance dans la déduction, une
+            inférence A et une inférence A⊃B, si et seulement si les deux sont
+            présentes dans la déduction. (Si elles ne le sont pas, la règle
+            n'indiquera rien.)
           </p>
           <p className="later-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
