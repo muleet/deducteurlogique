@@ -260,7 +260,7 @@ class ButtonRuleMaker extends Component {
           <i
             className="fas fa-long-arrow-alt-left icon"
             onClick={() => {
-              this.props.valueInference.removeLastInference(); // cette fonction est un nid à bug donc je l'ai virée pour le moment
+              this.props.valueInference.removeLastInference();
             }}
           />
           <i

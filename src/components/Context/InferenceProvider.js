@@ -61,7 +61,6 @@ class InferenceProvider extends Component {
       }
       let newAllJustificationData = [...this.state.allJustificationData];
       newAllJustificationData.push(newInference.commentary);
-      console.log("newAllJustificationData", newAllJustificationData);
 
       // section  de la détection de l'opérateur + de la possibilité de commuter, pour les règles où l'opérateur est commutatif
       // showOperatorScope: this.showOperatorScope,
@@ -175,7 +174,6 @@ class InferenceProvider extends Component {
 
       let newAllJustificationData = [...this.state.allJustificationData];
       newAllJustificationData.push("reit");
-      console.log("newAllJustificationData", newAllJustificationData);
 
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
@@ -304,28 +302,40 @@ class InferenceProvider extends Component {
     this.removeLastInference = () => {
       let copyAllInferencesRendered = [...this.state.allInferencesRendered];
       let newAllJustificationData = [...this.state.allJustificationData];
+      let copyAHI = [...this.state.allHypotheticalInferences];
+      let copyAEHI = [...this.state.allEndedHypotheticalInferences];
+      console.log("copyAHI avant", copyAHI);
+      console.log("copyAEHI avant", copyAEHI);
       const newAJDlength = newAllJustificationData.length - 1;
       copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
       if (newAllJustificationData[newAJDlength] === "hyp") {
+        // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
+        copyAHI = copyAHI.slice(1);
         this.manageLotsOfStuffAboutHypothesis("", "", "decrease");
       } else if (
         newAllJustificationData[newAJDlength] === "⊃i" ||
         newAllJustificationData[newAJDlength] === "~i"
       ) {
+        // on supprime une conclusion d'hypothèse, donc on augmente d'un niveau d'hyp et on remet la dernière entrée dans AHI (présente dans AEHI), et on supprime la dernière entrée ASHI
+        copyAHI.unshift(copyAEHI[0]);
+        copyAEHI = copyAEHI.slice(1);
         this.manageLotsOfStuffAboutHypothesis("", "", "increase");
       }
       newAllJustificationData.pop();
-
+      console.log("copyAHI avant", copyAHI);
+      console.log("copyAEHI après", copyAEHI);
       this.setState(state => ({
         allInferencesRendered: copyAllInferencesRendered,
-        allJustificationData: newAllJustificationData
+        allJustificationData: newAllJustificationData,
+        allHypotheticalInferences: copyAHI,
+        allEndedHypotheticalInferences: copyAEHI
       }));
     };
 
     this.resetDeduction = () => {
       this.setState(state => ({
         allInferencesRendered: [],
-        allJustificationData: [],
+        allJustificationData: [], // utilisé uniquement pour removeLastInference
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
@@ -337,6 +347,7 @@ class InferenceProvider extends Component {
           hypIsStillOpen: []
         },
         allHypotheticalInferences: [],
+        allEndedHypotheticalInferences: [], // utilisé uniquement pour removeLastInference
         // section ruleModal
         ruleModalShown: { normal: false },
         ruleModalClassName: "",
@@ -367,6 +378,8 @@ class InferenceProvider extends Component {
       let copyHypothesisCurrentLevelAndID = {
         ...this.state.hypothesisCurrentLevelAndId
       };
+      let copyAEHI = [...this.state.allEndedHypotheticalInferences]; // utilisé uniquement pour removeLastInference
+
       if (change === "increase") {
         copyHypothesisCurrentLevelAndID.maxID++;
         copyHypothesisCurrentLevelAndID.level++;
@@ -386,20 +399,20 @@ class InferenceProvider extends Component {
         ...this.state.allHypotheticalInferences
       ];
       if (hyp === "nouvelle hypothèse" || hyp === "nouvelle hyp ∨e") {
-        // On rajoute une hypothèse dans le tableau qui ne contient que les hypothèses
-        copyAllHypotheticalInferences.unshift(hypothesisItself);
+        copyAllHypotheticalInferences.unshift(hypothesisItself); // On rajoute une hypothèse dans le tableau qui ne contient que les hypothèses
       } else if (
         hyp === "hypothèse validée" ||
         hyp === "hypothèse réfutée" ||
         hyp === "fin hyp ∨e"
       ) {
-        // On retire une hypothèse dans le tableau qui ne contient que les hypothèses
-        copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1);
+        copyAEHI.unshift(copyAllHypotheticalInferences[0]); // utilisé uniquement pour removeLastInference
+        copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1); // On retire une hypothèse dans le tableau qui ne contient que les hypothèses
       }
       // (section 3 : setState)
       this.setState({
         allHypotheticalInferences: copyAllHypotheticalInferences,
-        hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID
+        hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID,
+        allEndedHypotheticalInferences: copyAEHI // utilisé uniquement pour removeLastInference
       });
       // consolelog("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
@@ -569,7 +582,6 @@ class InferenceProvider extends Component {
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0, // chaque inférence dans une hypothèse a un id d'hypothèse (qui est à 0 s'il n'y a pas d'hyp en cours), storedHypID permet de stocker cet id d'hypothèse, pour le comparer à celui de l'hypothèse en cours
-      lastInferenceMade: "", // permet de savoir de quel genre est la dernière inférence faite (=hyp, +hyp, -hyp, ou autres cas spéciaux)
       // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
       longStoredInference: [],
       longStorageForRuleVerification: this.longStorageForRuleVerification,
@@ -586,6 +598,7 @@ class InferenceProvider extends Component {
         hypIsStillOpen: []
       },
       allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i ou ⊅i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      allEndedHypotheticalInferences: [], // utilisé uniquement pour removeLastInference. Lorsqu'on supprime une inférence qui concluait une hypothèse, celle-ci redevient une hypothèse en cours, il faut donc pouvoir la récupérer. C'est à cela que sert le stockage des hyp supprimées.
       manageDataRegardingHypothesisLine: this.manageDataRegardingHypothesisLine,
       dataRegardingHypothesisLine: [""],
       // section ruleModal
