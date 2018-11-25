@@ -28,7 +28,7 @@ class ShowInformationsExercise extends Component {
     // let exerciseComment = <i className="fas fa-comment deactivated" />;
     if (this.props.exerciseSent.doable === false) {
       textCanItBeDone =
-        "(Cet exercice ne peut pas être terminé pour le moment.)";
+        "(Une des règles de cet exercice comporte au moins un bug, ce qui peut empêcher de terminer l'exercice.)";
     }
     if (this.props.exerciseSent.comment.length > 0) {
       // exerciseComment = (

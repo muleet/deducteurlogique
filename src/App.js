@@ -147,7 +147,7 @@ class App extends Component {
                 </Link> */}
               </li>
               <li>
-                <Link to="/sandbox">
+                <Link to="/bac-à-sable-logique">
                   <ButtonNav name={<i className="fas fa-terminal" />} />
                 </Link>
               </li>
@@ -181,7 +181,7 @@ class App extends Component {
             <Route path="/questions" component={Questions} />
             <Route path="/règles" component={InfoRules} />
             <Route path="/tables-de-vérité" component={TruthTable} />
-            <Route path="/sandbox" component={Sandbox} />
+            <Route path="/bac-à-sable-logique" component={Sandbox} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"

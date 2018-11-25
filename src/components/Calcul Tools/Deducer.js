@@ -91,7 +91,7 @@ class Deducer extends Component {
           <br />
           Veuillez entrer un nombre entier positif, inférieur ou égal
           <br />
-          au nombre total d'exercices, c'est-à-dire {Number(Exercises.length)}.
+          au nombre actuel d'exercices, c'est-à-dire {Number(Exercises.length)}.
         </Fragment>
       );
     } else if (Object.keys(this.state.currentExercise).length === 0) {

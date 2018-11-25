@@ -18,7 +18,8 @@ class InferenceProvider extends Component {
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
       let hypNumber = 0;
       let inferenceType = "";
-      const copyArrayRendered = [...this.state.allInferencesRendered];
+      let copyArrayRendered = [...this.state.allInferencesRendered];
+      let copyArrayThemselves = [...this.state.allInferencesThemselves];
 
       // section de l'hypothèse (ignorée si hyp est undefined)
       if (hyp === "nouvelle hypothèse" || hyp === "nouvelle hyp ∨e") {
@@ -59,8 +60,8 @@ class InferenceProvider extends Component {
       } else {
         commentary = newInference.commentary;
       }
-      let newAllJustificationData = [...this.state.allJustificationData];
-      newAllJustificationData.push(newInference.commentary);
+      // let newAllJustificationData = [...this.state.allJustificationData];
+      // newAllJustificationData.push(newInference.commentary);
 
       // section  de la détection de l'opérateur + de la possibilité de commuter, pour les règles où l'opérateur est commutatif
       // showOperatorScope: this.showOperatorScope,
@@ -114,15 +115,18 @@ class InferenceProvider extends Component {
           inferenceType={inferenceType}
         />
       );
+      copyArrayThemselves.push(newInference);
 
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
-        allJustificationData: newAllJustificationData
+        allInferencesThemselves: copyArrayThemselves
+        // allJustificationData: newAllJustificationData
       }));
     };
 
     this.addInferenceViaReit = (numberInference, newInference, hypNumber) => {
       let copyArrayRendered = [...this.state.allInferencesRendered];
+      let copyArrayThemselves = [...this.state.allInferencesThemselves];
       const copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
       const storedLevel = this.state.hypothesisCurrentLevelAndId.level; // variable qui n'est utilisée que conditionner la règle reit
       copyArrayRendered.push(
@@ -166,18 +170,20 @@ class InferenceProvider extends Component {
           }}
         />
       );
+      copyArrayThemselves.push(newInference);
 
       this.setAdvice(
         "Réitération de l'inférence " + newInference.itself,
         "rule-advice"
       );
 
-      let newAllJustificationData = [...this.state.allJustificationData];
-      newAllJustificationData.push("reit");
+      // let newAllJustificationData = [...this.state.allJustificationData];
+      // newAllJustificationData.push("reit");
 
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
-        allJustificationData: newAllJustificationData
+        allInferenceThemselves: copyArrayThemselves
+        // allJustificationData: newAllJustificationData
       }));
     };
 
@@ -301,32 +307,28 @@ class InferenceProvider extends Component {
 
     this.removeLastInference = () => {
       let copyAllInferencesRendered = [...this.state.allInferencesRendered];
-      let newAllJustificationData = [...this.state.allJustificationData];
+      let copyAllInferencesThemselves = [...this.state.allInferencesThemselves];
       let copyAHI = [...this.state.allHypotheticalInferences];
       let copyAEHI = [...this.state.allEndedHypotheticalInferences];
-      console.log("copyAHI avant", copyAHI);
-      console.log("copyAEHI avant", copyAEHI);
-      const newAJDlength = newAllJustificationData.length - 1;
+      const AITLength = copyAllInferencesThemselves.length - 1;
       copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
-      if (newAllJustificationData[newAJDlength] === "hyp") {
+      if (copyAllInferencesThemselves[AITLength].commentary === "hyp") {
         // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
         copyAHI = copyAHI.slice(1);
         this.manageLotsOfStuffAboutHypothesis("", "", "decrease");
       } else if (
-        newAllJustificationData[newAJDlength] === "⊃i" ||
-        newAllJustificationData[newAJDlength] === "~i"
+        copyAllInferencesThemselves[AITLength].commentary === "⊃i" ||
+        copyAllInferencesThemselves[AITLength].commentary === "~i"
       ) {
         // on supprime une conclusion d'hypothèse, donc on augmente d'un niveau d'hyp et on remet la dernière entrée dans AHI (présente dans AEHI), et on supprime la dernière entrée ASHI
         copyAHI.unshift(copyAEHI[0]);
         copyAEHI = copyAEHI.slice(1);
         this.manageLotsOfStuffAboutHypothesis("", "", "increase");
       }
-      newAllJustificationData.pop();
-      console.log("copyAHI avant", copyAHI);
-      console.log("copyAEHI après", copyAEHI);
+      copyAllInferencesThemselves.pop();
       this.setState(state => ({
         allInferencesRendered: copyAllInferencesRendered,
-        allJustificationData: newAllJustificationData,
+        allInferencesThemselves: copyAllInferencesThemselves,
         allHypotheticalInferences: copyAHI,
         allEndedHypotheticalInferences: copyAEHI
       }));
@@ -335,7 +337,7 @@ class InferenceProvider extends Component {
     this.resetDeduction = () => {
       this.setState(state => ({
         allInferencesRendered: [],
-        allJustificationData: [], // utilisé uniquement pour removeLastInference
+        allInferencesThemselves: [],
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
@@ -462,6 +464,7 @@ class InferenceProvider extends Component {
     };
 
     this.updateStepRule = bool => {
+      // utilisé uniquement pour cette putain de règle d'élimination de la disjonction
       if (bool) {
         const newStepRule = this.state.stepRule + 1;
         this.setState({
@@ -574,7 +577,8 @@ class InferenceProvider extends Component {
 
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
-      allJustificationData: [], // contient toutes les infos justifiant chaque inférence, de la première à la dernière (variable qui n'est utilisée que par removeLastInference pour le moment)
+      allInferencesThemselves: [], // contient les inférences elles-mêmes + leur commentaire + les nombres justifiant leur commentaire
+      // allJustificationData: [], // contient toutes les infos justifiant chaque inférence, de la première à la dernière (variable qui n'est utilisée que par removeLastInference pour le moment)
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
