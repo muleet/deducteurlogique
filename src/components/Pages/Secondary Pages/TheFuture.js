@@ -50,20 +50,28 @@ const TheFuture = () => {
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
             des traits qui s'adaptent à la longueur des hypothèses.
           </p>
-          <p className="later-available-rule">
-            - La possibilité de créer des comptes utilisateurs, pour stocker les
-            exercices résolus par un utilisateur et pour lui permettre de créer
-            de nouveaux exercices (il pourra choisir les prémisses, les règles
-            utilisées, la conclusion, une solution possible, et les
-            significations possibles des prémisses).
+          <p className="soon-available-rule">
+            - Correction d'un bug entre la fonction permettant de supprimer la
+            dernière inférence créée, et la règle reit.
           </p>
-          <p className="later-available-rule">
+          <p className="soon-available-rule">
             - Lorsqu'on clique sur une règle, l'interface mettra en avant les
             inférences compatibles avec cette règle. Par exemple pour la règle
             ⊃e, l'interface mettra en surbrillance dans la déduction, une
             inférence A et une inférence A⊃B, si et seulement si les deux sont
             présentes dans la déduction. (Si elles ne le sont pas, la règle
             n'indiquera rien.)
+          </p>
+          <p className="soon-available-rule">
+            - Une meilleure interface pour la liste des exercices, notamment
+            pour mettre en avant les significations possibles.
+          </p>
+          <p className="later-available-rule">
+            - La possibilité de créer des comptes utilisateurs, pour stocker les
+            exercices résolus par un utilisateur et pour lui permettre de créer
+            de nouveaux exercices (il pourra choisir les prémisses, les règles
+            utilisées, la conclusion, une solution possible, et les
+            significations possibles des prémisses).
           </p>
           <p className="later-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">

@@ -1,5 +1,6 @@
 import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
 import MakeInference from "../Calcul Tools/MakeInference";
+import InferenceScanner from "./Components/InferenceScanner";
 // import AdviceModal from "../Modals and Popovers/AdviceModal";
 
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
@@ -60,8 +61,6 @@ class InferenceProvider extends Component {
       } else {
         commentary = newInference.commentary;
       }
-      // let newAllJustificationData = [...this.state.allJustificationData];
-      // newAllJustificationData.push(newInference.commentary);
 
       // section  de la détection de l'opérateur + de la possibilité de commuter, pour les règles où l'opérateur est commutatif
       // showOperatorScope: this.showOperatorScope,
@@ -120,7 +119,6 @@ class InferenceProvider extends Component {
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
         allInferencesThemselves: copyArrayThemselves
-        // allJustificationData: newAllJustificationData
       }));
     };
 
@@ -170,6 +168,10 @@ class InferenceProvider extends Component {
           }}
         />
       );
+      newInference.numberCommentary = "" + numberInference;
+      newInference.commentary = "reit";
+      console.log("newInference", newInference);
+      console.log("copyArrayThemselves", copyArrayThemselves);
       copyArrayThemselves.push(newInference);
 
       this.setAdvice(
@@ -177,13 +179,9 @@ class InferenceProvider extends Component {
         "rule-advice"
       );
 
-      // let newAllJustificationData = [...this.state.allJustificationData];
-      // newAllJustificationData.push("reit");
-
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
         allInferenceThemselves: copyArrayThemselves
-        // allJustificationData: newAllJustificationData
       }));
     };
 
@@ -311,11 +309,11 @@ class InferenceProvider extends Component {
       let copyAHI = [...this.state.allHypotheticalInferences];
       let copyAEHI = [...this.state.allEndedHypotheticalInferences];
       const AITLength = copyAllInferencesThemselves.length - 1;
-      copyAllInferencesRendered = copyAllInferencesRendered.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+      console.log("copyAIT", copyAllInferencesThemselves);
       if (copyAllInferencesThemselves[AITLength].commentary === "hyp") {
         // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
         copyAHI = copyAHI.slice(1);
-        this.manageLotsOfStuffAboutHypothesis("", "", "decrease");
+        this.manageLotsOfStuffAboutHypothesis("", "", "noincrease");
       } else if (
         copyAllInferencesThemselves[AITLength].commentary === "⊃i" ||
         copyAllInferencesThemselves[AITLength].commentary === "~i"
@@ -323,8 +321,9 @@ class InferenceProvider extends Component {
         // on supprime une conclusion d'hypothèse, donc on augmente d'un niveau d'hyp et on remet la dernière entrée dans AHI (présente dans AEHI), et on supprime la dernière entrée ASHI
         copyAHI.unshift(copyAEHI[0]);
         copyAEHI = copyAEHI.slice(1);
-        this.manageLotsOfStuffAboutHypothesis("", "", "increase");
+        this.manageLotsOfStuffAboutHypothesis("", "", "reincrease");
       }
+      copyAllInferencesRendered.pop(); // on extrait une partie du tableau, la première en partant de la fin
       copyAllInferencesThemselves.pop();
       this.setState(state => ({
         allInferencesRendered: copyAllInferencesRendered,
@@ -383,17 +382,34 @@ class InferenceProvider extends Component {
       let copyAEHI = [...this.state.allEndedHypotheticalInferences]; // utilisé uniquement pour removeLastInference
 
       if (change === "increase") {
+        // on crée une hyp
         copyHypothesisCurrentLevelAndID.maxID++;
         copyHypothesisCurrentLevelAndID.level++;
         copyHypothesisCurrentLevelAndID.actualID++;
         copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
         this.state.manageDataRegardingHypothesisLine("+hyp");
       } else if (change === "decrease") {
+        // on conclut une hyp
         copyHypothesisCurrentLevelAndID.level--;
         copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
         copyHypothesisCurrentLevelAndID.hypIsStillOpen[
           copyHypothesisCurrentLevelAndID.actualID
         ] = false;
+        this.state.manageDataRegardingHypothesisLine("-hyp");
+      } else if (change === "reincrease") {
+        // on efface une conclusion d'hyp avec removeLastInference
+        copyHypothesisCurrentLevelAndID.level++;
+        copyHypothesisCurrentLevelAndID.actualID++;
+        copyHypothesisCurrentLevelAndID.hypIsStillOpen[
+          copyHypothesisCurrentLevelAndID.actualID
+        ] = true;
+        this.state.manageDataRegardingHypothesisLine("+hyp");
+      } else if (change === "noincrease") {
+        // on efface une hyp avec removeLastInference
+        copyHypothesisCurrentLevelAndID.maxID--;
+        copyHypothesisCurrentLevelAndID.level--;
+        copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
+        copyHypothesisCurrentLevelAndID.hypIsStillOpen.shift();
         this.state.manageDataRegardingHypothesisLine("-hyp");
       }
       // (section 2 : hypothesisItself, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
@@ -456,11 +472,25 @@ class InferenceProvider extends Component {
       } else if (strClassName === "ended-badly") {
         newClassName = "rule-modal-ended-badly";
       }
+      // this.scanAllInferences(this.state.ruleModalContent.ruleName);
+      <InferenceScanner
+        ruleName={newRuleModalContent.ruleName}
+        allInferencesThemselves={this.allInferencesThemselves}
+      />;
       this.setState({
         ruleModalShown: newRuleModalShown,
         ruleModalClassName: newClassName,
         ruleModalContent: newRuleModalContent
       });
+    };
+
+    this.scanAllInferences = rule => {
+      // const copyAIT = this.state.allInferencesThemselves.length;
+      // for (let i = 0; i < copyAIT.length; i++) {
+      // for (let j = 0; j < copyAIT.length; j++) {
+      // if (copyAIT[i])
+      // }
+      // }
     };
 
     this.updateStepRule = bool => {
@@ -476,9 +506,6 @@ class InferenceProvider extends Component {
     this.setAdvice = (advice, adviceClassName, specificContent) => {
       // 3 types de conseils différents : 1) liste de ce qu'il est possible de faire au début de l'exo, 2) étapes sur l'utilisation d'une règle, 3) message d'erreur (l'utilisateur a cliqué là où il ne fallait pas)
       // A chacun correspond une className 1) start-advice, 2) rule-advice, 3) error-advice
-      // const adviceToReturn = (
-      //   <AdviceModal advice={advice} adviceClassName={adviceClassName} />
-      // );
       const adviceToReturn = (
         <div className={"advice " + adviceClassName}>{advice}</div>
       );
@@ -513,6 +540,7 @@ class InferenceProvider extends Component {
     };
 
     this.setInversion = () => {
+      // permet d'inverser l'inférence qui sera produite. fonction utilisée uniquement par l'élimination de la disjonction
       if (this.state.inversion === false) {
         this.setState({
           inversion: true
@@ -578,7 +606,7 @@ class InferenceProvider extends Component {
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
       allInferencesThemselves: [], // contient les inférences elles-mêmes + leur commentaire + les nombres justifiant leur commentaire
-      // allJustificationData: [], // contient toutes les infos justifiant chaque inférence, de la première à la dernière (variable qui n'est utilisée que par removeLastInference pour le moment)
+      allInferencesThemselvesScanned: [], // contient les inférences elles-mêmes, mais scannées selon l'utilité qu'elles pourraient avoir pour une règle
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
@@ -617,6 +645,7 @@ class InferenceProvider extends Component {
       ruleModalChoiceContent: "",
       setChoiceContent: this.setChoiceContent,
       setRuleModal: this.setRuleModal,
+      scanAllInferences: this.scanAllInferences,
       updateStepRule: this.updateStepRule,
       // section conseil & signification
       advice: <div className="advice" />,

@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
-// import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
+import React, { Component, Fragment } from "react";
 import ReactModal from "react-modal";
 import RuleProvider, { RuleContext } from "../Context/RuleProvider";
 import ShowExpectedArguments from "./Components/ShowExpectedArguments";
