@@ -87,8 +87,8 @@
     "answer": ""
   },
   {
-    "name": "Et les raisonnements fallacieux dans tout ça ?",
-    "answer": ""
+    "name": "Que sont un sophisme et un paralogisme ?",
+    "answer": "Traditionnellement depuis l'antiquité grecque, on distingue le sophisme, raisonnement invalide fait avec l'intention de tromper, du paralogisme, raisonnement invalide sans intention de tromper. C'est l'intention qui distingue ces deux termes. Dans l'antiquité grecque, les sophistes n'avaient aucun désir d'accéder à la vérité, ils voulaient simplement faire de beaux discours par intérêt (que ce soit un intérêt pécunier, un intérêt social, un intérêt d'en tirer une polémique, ou tout autre profit que la connaissance), là où les philosophes comme Platon et Aristote voulaient accéder à une connaissance vraie. C'est pour cela que d'une manière générale, les sophistes et les philosophes étaient en désaccord."
   },
   {
     "name": "Que sont la symétrie, la transivité et la réflexivité et qu'ont-elles en commun ? Et relativement à l'identité ?",
@@ -96,10 +96,10 @@
   },
   {
     "name": "Faut-il dépasser l'analyse logique ?",
-    "answer": "Oui, pour deux raisons. Premièrement, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. L'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Deuxièmement, l'analyse logique interprète la vérité des propositions de manière binaire (elles sont soient vraies soit fausses, on appelle cela la bivalence), or les interprétations que nous faisons du réel (ou la manière d'en parler : les métaphores, les probabilités...) peuvent rarement être réduits à des descriptions aussi strictes."
+    "answer": "Oui, pour deux raisons. Premièrement, l'analyse logique est totalement impuissante pour déterminer quelles prémisses sont vraies et fausses. Pour cela il faut observer le monde, douter de soi, etc. Aristote utilise le terme \"endoxa\" pour désigner les idées communément admises, proverbiales, ou acceptées par des autorités scientifiques, qui font de bonnes prémisses. Bref, l'analyse logique est seulement utile pour reconnaître des raisonnements valides, donc il ne faut pas se limiter à elle. Deuxièmement, l'analyse logique interprète la vérité des propositions de manière binaire (elles sont soient vraies soit fausses, on appelle cela la bivalence), or les interprétations que nous faisons du réel (ou la manière d'en parler : les métaphores, les probabilités...) peuvent rarement être réduits à des descriptions aussi strictes."
   },
   {
     "name": "Quels auteurs antiques abordent la logique ?",
-    "answer": "Aristote aborde la logique des prédicats dans les Premiers Analytiques (il est la première personne à écrire sur la logique, ou du moins la première dont on ait conservé des écrits), et de nombreux stoïciens, comme Chrysippe, abordent la logique des propositions. La question de savoir ce qu'est le conditionnel a d'ailleurs fait de nombreux débats chez les stoïciens. Chrysippe avait aussi l'idée que lorsque nous raisonnons, il y a quelque chose qui semble être un guide a priori, qui justifie toute déduction valide avant même qu'elle soit posée."
+    "answer": "Aristote aborde la logique des prédicats dans les Premiers Analytiques (il est la première personne à écrire sur la logique, ou du moins la première dont on ait conservé des écrits). D'une manière générale, toute la philosophie d'Aristote consiste en des raisonnements logique sur la nature, sur l'éthique, sur toute réalité au-delà de la nature. et de nombreux stoïciens, comme Chrysippe, abordent la logique des propositions. La question de savoir ce qu'est le conditionnel a d'ailleurs fait de nombreux débats chez les stoïciens. Chrysippe avait aussi l'idée que lorsque nous raisonnons, il y a quelque chose qui semble être un guide a priori, qui justifie toute déduction valide avant même qu'elle soit posée."
   }
 ]

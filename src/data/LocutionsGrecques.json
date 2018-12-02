@@ -12,12 +12,6 @@
     "auteur": "Lucien de Samosate"
   },
   {
-    "grec": "ζῷον πολιτικόν",
-    "alphabetlatin": "Zỗon politikόn",
-    "traduction": "Animal politique",
-    "auteur": "Définition aristotélicienne de l'être humain"
-  },
-  {
     "grec": "Ἕν οἶδα ὅτι οὐδὲν οἶδα",
     "alphabetlatin": "Hén oȋda hóti oudèn oȋda",
     "traduction": "Tout ce que je sais, c'est que je ne sais rien",
@@ -222,5 +216,11 @@
     "alphabetlatin": "Paliggénésίa",
     "traduction": "Palingénésie, genèse à nouveau, nouvelle naissance, régénération",
     "note": "Concept grec présocratique. Par exemple, Héraclite pensait que le monde s'embrasait entièrement puis renaissait, de manière cyclique."
+  },
+  {
+    "grec": "Ἀλλα τίη μοι ταῡτα περι δρῡν ᾔ περι πέτρην;",
+    "alphabetlatin": "Ἀlla tìè moi taūta peri drūn è peri pétrèn;",
+    "traduction": "Mais à quoi bon tous ces mots autour du chêne et du rocher ?",
+    "note": "Locution proverbiale prononcée par Hésiode dans sa Théogonie, pour ramener à la réalité un discours qui s'est perdu dans l'imagination."
   }
 ]
