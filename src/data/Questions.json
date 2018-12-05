@@ -4,6 +4,14 @@
     "answer": "La première chose à remarquer au sujet de la logique, est qu'elle est un terme qui est couramment utilisé au quotidien. Comme si la plupart des gens n'avaient pas de doute sur ce qu'elle est. Par \"logique\", on veut souvent dire que quelque chose est évident, cohérent, manifeste. Cet usage du mot logique existe bien, bien qu'il soit très indéterminé et synonymique d'autres mots. Cependant sur ce site, j'utiliserai le mot de logique dans un sens qui remonte à la Grèce Antique, je m'intéresserai à son sens aristotélicien : la logique est la codification des règles permettant de faire des inférences valides. Cette définition sera développée dans les questions suivantes."
   },
   {
+    "name": "En quoi la maîtrise des calculs de logique peut-elle être utile à la vie quotidienne d'une personne ?",
+    "answer": "La langue et les mathématique sont des outils de compréhension du réel, et comme outils, on peut se servir d'eux comme on le souhaite. De ce point de vue-là, les calculs de logique ne sont pas différents."
+  },
+  {
+    "name": "En quoi la maîtrise des calculs de logique peut-elle être superflue pour la vie quotidienne d'une personne ?",
+    "answer": ""
+  },
+  {
     "name": "Quel lien peut-on faire entre le langage et la logique ?",
     "answer": "Lorsque nous parlons, argumentons, décrivons le monde, etc, nous émettons des propositions souvent complexes. Celles-ci peuvent être décomposées en des propositions plus élementaires, lesquels peuvent aussi être décomposées. Au bout du compte, nous pouvons arriver à des éléments premiers, indécomposables, irréductibles à d'autres choses. Les calculs de logique ne sont donc ni plus ni moins qu'un outil pour analyser les discours en général, et ce site se propose de faciliter l'accès à cet outil. Comme pour tout outil, chacun est libre ensuite d'en avoir l'usage qu'il souhaite. Ce site ne défend aucunement l'idée qu'il serait important de tout aborder par la logique."
   },
@@ -33,7 +41,7 @@
   },
   {
     "name": "Que sont les connecteurs propositionnels ?",
-    "answer": "Ce sont des outils permettant de faire des opérations logiques sur des propositions. (Tout comme les opérateurs mathématiques +, -, ×, ÷, permettent de faire des opérations sur des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ⊂ ≡ ↓ |. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par un emplacement dans une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs logiques des langues naturelles, comme \"parce que\" ou \"car\". Cet article de Wikipédia https://fr.wikipedia.org/wiki/Connecteur_logique#Linguistique recense bien les connecteurs logiques (associés à des connecteurs vérifonctionnels, ou non) de la langue française. Enfin, notons que les propositions, lorsqu'elles sont connectées aux opérateurs, sont appelées opérandes."
+    "answer": "Ce sont des outils permettant de faire des opérations logiques sur des propositions. (Tout comme les opérateurs mathématiques +, -, ×, ÷, permettent de faire des opérations sur des nombres.) On peut ainsi lier une proposition et une proposition q par le connecteur propositionnel de la conjonction, \"∧\". Ce qui s'écrit p∧q, et se lit \"p et q\". Voici la liste des connecteurs propositionnels, que ce site vous permet de manipuler : ~ ∧ ∨ ⊻ ⊃ ⊂ ≡ ↓ ↑. Ces connecteurs sont des connecteurs vérifonctionnels, c'est-à-dire que leur signification est déterminée par un emplacement dans une table de vérité. Tous les connecteurs ne sont pas vérifonctionnels, par exemple certains connecteurs logiques des langues naturelles, comme \"parce que\" ou \"car\". Cet article de Wikipédia https://fr.wikipedia.org/wiki/Connecteur_logique#Linguistique recense bien les connecteurs logiques (associés à des connecteurs vérifonctionnels, ou non) de la langue française. Enfin, notons que les propositions, lorsqu'elles sont connectées aux opérateurs, sont appelées opérandes."
   },
   {
     "name": "Qu'appelle-t-on \"connecteur dominant\" ?",

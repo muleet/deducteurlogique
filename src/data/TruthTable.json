@@ -222,7 +222,7 @@
     "lecture": "A et B sont incompatibles",
     "itself": ["F", "V", "V", "V"],
     "category": "one-false",
-    "character": "|↑",
+    "character": "↑|",
     "example": [],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Venn1110.svg/100px-Venn1110.svg.png"
   },

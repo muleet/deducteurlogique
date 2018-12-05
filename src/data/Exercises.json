@@ -314,7 +314,7 @@
   },
   {
     "verbalName": "Élimination de l'incompatibilité",
-    "premisses": ["p", "p|q"],
+    "premisses": ["p", "p↑q"],
     "conclusion": "~q",
     "meaning": [
       [
@@ -323,7 +323,7 @@
       ]
     ],
     "comment": "",
-    "rulesImplied": ["rep", "reit", "hyp", "|e"],
+    "rulesImplied": ["rep", "reit", "hyp", "↑e"],
     "doable": true
   },
   {
@@ -394,11 +394,11 @@
   },
   {
     "verbalName": ["Nombreuses éliminations"],
-    "premisses": ["r", "(~r⊻(~(p↓q)|r))∧(~q≡(~p⊃(~q⊅s)))"],
+    "premisses": ["r", "(~r⊻(~(p↓q)↑r))∧(~q≡(~p⊃(~q⊅s)))"],
     "conclusion": "~s",
     "meaning": [],
     "comment": "",
-    "rulesImplied": ["rep", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "|e", "↓e"],
+    "rulesImplied": ["rep", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "↑e", "↓e"],
     "doable": true
   }
 ]

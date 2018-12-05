@@ -504,7 +504,7 @@ class RuleProvider extends Component {
     }; // ⊅e
 
     this.incompatibilityIntroduction = (A, B, numbers) => {
-      // |i
+      // ↑i
       let Anegationcount = 0,
         Bnegationcount = 0;
       for (let i = 0; i < A.length; i++) {
@@ -526,15 +526,15 @@ class RuleProvider extends Component {
         let AincompatibleB;
         if (Anegationcount > Bnegationcount) {
           A = A.slice(1, A.length);
-          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "|");
+          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "↑");
         } else if (Bnegationcount > Anegationcount) {
           B = B.slice(1, B.length);
-          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "|");
+          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "↑");
         }
         const inferenceToAdd = {
           itself: AincompatibleB,
           numberCommentary: numbers,
-          commentary: "|i"
+          commentary: "↑i"
         };
         this.props.valueInference.setAdvice(
           "Incompatibilité introduite, nouvelle inférence : " +
@@ -544,23 +544,23 @@ class RuleProvider extends Component {
         this.addInferenceFromRule(inferenceToAdd);
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser |e, il faut deux inférences, l'une vraie et l'autre fausse.",
+          "Pour utiliser ↑e, il faut deux inférences, l'une vraie et l'autre fausse.",
           "error-advice"
         );
       }
-    }; // |i
+    }; // ↑i
 
     this.incompatibilityElimination = (A, AincompatibleB, numbers) => {
       const ArrayAincompatibleB = this.returnWhatIsBeforeAndAfterTheOperator(
         AincompatibleB,
-        "|"
+        "↑"
       );
       let inferenceToAdd = {
         itself: "",
         numberCommentary: numbers,
-        commentary: "|e"
+        commentary: "↑e"
       };
-      // A === A|B pour ~B
+      // A === A↑B pour ~B
       if (A === ArrayAincompatibleB[0]) {
         inferenceToAdd.itself =
           "~" + this.mayAddFirstParenthesis(ArrayAincompatibleB[1]);
@@ -580,11 +580,11 @@ class RuleProvider extends Component {
         );
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser la règle |e, il faut une inférence A et une inférence A|B.",
+          "Pour utiliser la règle ↑e, il faut une inférence A et une inférence A↑B.",
           "error-advice"
         );
       }
-    }; // |e
+    }; // ↑e
 
     this.reciprocalDisjonctionIntroduction = (notA, notB, numbers) => {
       if (notA[0] === "~" && notB[0] === "~") {
@@ -696,10 +696,10 @@ class RuleProvider extends Component {
         this.abjonctionIntroduction(arrInf[0], numbers); // (A), B pour A⊅B
       } else if (ruleName === "⊅e") {
         this.abjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊅B pour ~B
-      } else if (ruleName === "|i") {
-        this.incompatibilityIntroduction(arrInf[0], arrInf[1], numbers); // A, ~B, pour A|B
-      } else if (ruleName === "|e") {
-        this.incompatibilityElimination(arrInf[0], arrInf[1], numbers); // A, A|B pour ~B
+      } else if (ruleName === "↑i") {
+        this.incompatibilityIntroduction(arrInf[0], arrInf[1], numbers); // A, ~B, pour A↑B
+      } else if (ruleName === "↑e") {
+        this.incompatibilityElimination(arrInf[0], arrInf[1], numbers); // A, A↑B pour ~B
       } else if (ruleName === "↓i") {
         this.reciprocalDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // ~A, ~B, pour A↓B
       } else if (ruleName === "↓e") {
@@ -873,8 +873,8 @@ class RuleProvider extends Component {
       // biconditionalElimination: this.biconditionalElimination, // ≡e
       // abjonctionIntroduction: this.abjonctionIntroduction, // ⊅i
       // abjonctionElimination: this.abjonctionElimination, // ⊅e
-      // incompatibilityIntroduction: this.incompatibilityIntroduction, // |i
-      // incompatibilityElimination: this.incompatibilityElimination, // |e
+      // incompatibilityIntroduction: this.incompatibilityIntroduction, // ↑i
+      // incompatibilityElimination: this.incompatibilityElimination, // ↑e
       // exFalso: this.exFalso,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,

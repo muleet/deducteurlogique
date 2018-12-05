@@ -270,8 +270,8 @@
     "verbalName": "Élimination de l'incompatibilité",
     "possibleSolution": [
       { "itself": "p", "numberCommentary": "a", "commentary": "rep" },
-      { "itself": "p|q", "numberCommentary": "b", "commentary": "rep" },
-      { "itself": "~q", "numberCommentary": "1, 2", "commentary": "|e" }
+      { "itself": "p↑q", "numberCommentary": "b", "commentary": "rep" },
+      { "itself": "~q", "numberCommentary": "1, 2", "commentary": "↑e" }
     ]
   },
   {
@@ -382,12 +382,12 @@
     "possibleSolution": [
       { "itself": "r", "numberCommentary": "a", "commentary": "rep" },
       {
-        "itself": "(~r⊻(~(p↓q)|r))∧(~q≡(~p⊃(~q⊅s)))",
+        "itself": "(~r⊻(~(p↓q)↑r))∧(~q≡(~p⊃(~q⊅s)))",
         "numberCommentary": "b",
         "commentary": "rep"
       },
       {
-        "itself": "~r⊻(~(p↓q)|r)",
+        "itself": "~r⊻(~(p↓q)↑r)",
         "numberCommentary": "2",
         "commentary": "∧e"
       },
@@ -396,8 +396,8 @@
         "numberCommentary": "2",
         "commentary": "∧e"
       },
-      { "itself": "~(p↓q)|r", "numberCommentary": "1, 3", "commentary": "⊻e" },
-      { "itself": "~~(p↓q)", "numberCommentary": "1, 5", "commentary": "|e" },
+      { "itself": "~(p↓q)↑r", "numberCommentary": "1, 3", "commentary": "⊻e" },
+      { "itself": "~~(p↓q)", "numberCommentary": "1, 5", "commentary": "↑e" },
       { "itself": "p↓q", "numberCommentary": "6", "commentary": "~~e" },
       { "itself": "~p", "numberCommentary": "7", "commentary": "↓e" },
       { "itself": "~q", "numberCommentary": "7", "commentary": "↓e" },

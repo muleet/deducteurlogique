@@ -193,23 +193,23 @@
     "available": "yes"
   },
   {
-    "name": "|i",
-    "lecture": "A|B : A et B sont incompatibles, ils ne peuvent être vrais ensembles",
+    "name": "↑i",
+    "lecture": "A↑B : A et B sont incompatibles, ils ne peuvent être vrais ensembles",
     "verbalName": "Règle d'introduction de l'incompatibilité",
-    "verbalDescription": "Si A et ~B ont été posés, on peut inférer A|B.",
-    "arrayUtilization": [["A", "~B", "A∧B |i"]],
-    "instruction": "Cliquez sur A, puis ~B, pour inférer A|B.",
+    "verbalDescription": "Si A et ~B ont été posés, on peut inférer A↑B.",
+    "arrayUtilization": [["A", "~B", "A∧B ↑i"]],
+    "instruction": "Cliquez sur A, puis ~B, pour inférer A↑B.",
     "expectedArguments": ["A", "~B"],
     "available": "yes"
   },
   {
-    "name": "|e",
-    "lecture": "A|B : A et B sont incompatibles",
+    "name": "↑e",
+    "lecture": "A↑B : A et B sont incompatibles",
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
-    "verbalDescription": "Si l'on a A|B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
-    "arrayUtilization": [["A|B", "A", "~B |e"]],
-    "instruction": "Cliquez sur A|B, puis A (ou B), pour inférer ~B (ou ~A).",
-    "expectedArguments": ["A ou B", "A|B"],
+    "verbalDescription": "Si l'on a A↑B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
+    "arrayUtilization": [["A↑B", "A", "~B ↑e"]],
+    "instruction": "Cliquez sur A↑B, puis A (ou B), pour inférer ~B (ou ~A).",
+    "expectedArguments": ["A ou B", "A↑B"],
     "available": "yes"
   },
   {

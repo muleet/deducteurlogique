@@ -653,7 +653,7 @@ class InferenceProvider extends Component {
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
       //  section commutativité & portée de l'opérateur
-      inversion: false, // ce booléen permet de savoir s'il faut inverser ou non telle inférence ayant pour connecteur dominant ∧, ∨, ⊻, ≡, ↓ ou |
+      inversion: false, // ce booléen permet de savoir s'il faut inverser ou non telle inférence ayant pour connecteur dominant ∧, ∨, ⊻, ≡, ↓ ou ↑
       setInversion: this.setInversion,
       partOfInference: "A", //
       setPartOfInference: this.setPartOfInference, // cette fonction permet de savoir quelle inférence doit être extraite par ∨e dans A∨B (A, B, ou C)

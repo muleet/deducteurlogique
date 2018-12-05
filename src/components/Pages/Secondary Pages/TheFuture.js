@@ -77,11 +77,17 @@ const TheFuture = () => {
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir inverser à tout moment A et B
             dans des inférences ayant pour connecteur dominant un connecteur
-            dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou |) en cliquant
+            dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou ↑) en cliquant
             sur le connecteur. En mettant sa souris sur un connecteur
             commutatif, on verra la portée de celui-ci (même s'il est au sein
             d'une parenthèse). (L'action d'inverser ainsi des inférences sera
             appelé "utilisation de la règle de commutativité".)
+          </p>
+          <p className="maybenever-available-rule">
+            - Au sein de la déduction, lorsqu'on met le curseur de la souris sur
+            le caractère d'une parenthèse, l'autre caractère lié à ce premier
+            caractère sera affiché en subrillance, et toute la portée contenue
+            entre ces parenthèses sera soulignée.
           </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir réduire instantanément une

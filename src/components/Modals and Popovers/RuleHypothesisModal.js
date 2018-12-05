@@ -27,7 +27,7 @@ class RuleModal extends Component {
 
   showCharacters = value => {
     let everyPossibleCharacter = [
-      ["~", "∧", "∨", "⊻", "⊃", "⊅", "≡", "↓"],
+      ["~", "∧", "∨", "⊻", "⊃", "⊅", "≡", "↑", "↓"],
       ["p", "q", "r", "s"],
       ["(", ")"]
     ];
