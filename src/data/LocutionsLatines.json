@@ -37,11 +37,13 @@
   },
   {
     "latin": "Aquila non capit muscas",
-    "traduction": "L'aigle n'attrape pas les mouches"
+    "traduction": "L'aigle n'attrape pas les mouches",
+    "auteur": "Érasme"
   },
   {
     "latin": "Aut viam inveniam aut faciam",
-    "traduction": "Je trouverai le chemin ou je le percerai"
+    "traduction": "Je trouverai le chemin ou je le percerai",
+    "auteur": "Attribuée à Hannibal"
   },
   {
     "latin": "Bellum se ipsum alet",
@@ -400,5 +402,37 @@
     "latin": "Nullum magnum ingenium sine mixtura dementiae fuit",
     "traduction": "Il n'est pas de grand talent qui n'ait une part de folie",
     "auteur": "Sénèque,  De la tranquilité de l'âme, XVII.10"
+  },
+  {
+    "latin": "Amare et sapere vix deo conceditur",
+    "traduction": "Aimer et demeurer sage, même un dieu le pourrait à peine",
+    "auteur": "Publilius Syrus, Sentences"
+  },
+  {
+    "latin": "Inimicus Plato, sed magis inimica falsitas",
+    "traduction": "Platon est mon ennemi, mais l'erreur encore plus",
+    "auteur": "Alfred Tarski"
+  },
+  {
+    "latin": "Amor fati",
+    "traduction": "L'amour du destin"
+  },
+  {
+    "latin": "An nescis, mi fili, quantilla prudentia mundus regatur",
+    "traduction": "Tu ne sais pas, mon fils, avec combien peu de sagesse le monde est gouverné"
+  },
+  {
+    "latin": "Arguendo",
+    "traduction": "Pour en discuter",
+    "note": "Terme de rhétorique signifiant que l'on concède un point seulement pour en discuter"
+  },
+  {
+    "latin": "Audentes fortuna juvat",
+    "traduction": "La fortune sourit aux audacieux"
+  },
+  {
+    "latin": "Bellum omnium contra omnes",
+    "traduction": "La guerre de tous contre tous",
+    "auteur": "Thomas Hobbes décrivant l'état de nature des humains"
   }
 ]

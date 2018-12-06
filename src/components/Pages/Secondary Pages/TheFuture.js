@@ -47,10 +47,6 @@ const TheFuture = () => {
             dernière inférence, avec cette règle.
           </p>
           <p className="soon-available-rule">
-            - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
-            des traits qui s'adaptent à la longueur des hypothèses.
-          </p>
-          <p className="soon-available-rule">
             - Correction d'un bug entre la fonction permettant de supprimer la
             dernière inférence créée, et la règle reit.
           </p>
@@ -62,7 +58,11 @@ const TheFuture = () => {
             présentes dans la déduction. (Si elles ne le sont pas, la règle
             n'indiquera rien.)
           </p>
-          <p className="soon-available-rule">
+          <p className="later-available-rule">
+            - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
+            des traits qui s'adaptent à la longueur des hypothèses.
+          </p>
+          <p className="later-available-rule">
             - Une meilleure interface pour la liste des exercices, notamment
             pour mettre en avant les significations possibles.
           </p>
