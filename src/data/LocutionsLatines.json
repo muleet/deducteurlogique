@@ -54,8 +54,9 @@
     "traduction": "J’ai bien navigué ayant fait naufrage"
   },
   {
-    "latin": "Canis sine dentibus vehementius latrat",
-    "traduction": "Un chien sans dents aboie plus vigoureusement"
+    "latin": "Cantabit vacuus coram latrone viator",
+    "traduction": "Le voyageur aux poches vides chantera au nez du voleur",
+    "auteur": "Juvénal, Satires, 10, 22"
   },
   {
     "latin": "Celerius quam asparagi cocuntur",
@@ -97,7 +98,7 @@
   },
   {
     "latin": "Gesta non verba",
-    "traduction": "Moins de mots, des actes"
+    "traduction": "Des actes, non des mots"
   },
   {
     "latin": "Hinc sunt leones ; Hic sunt dracones",
@@ -112,10 +113,6 @@
   {
     "latin": "Into vinceres",
     "traduction": "C'est toi-même qu'il faut vaincre"
-  },
-  {
-    "latin": "Margaritas ante porcos",
-    "traduction": "Jeter des perles aux cochons"
   },
   {
     "latin": "Mihi ipsi scripi",
@@ -155,9 +152,9 @@
     "note": "Désigne l’idéal ascétique d’obéissance parfaite et aveugle du moine."
   },
   {
-    "latin": "Post mortem nihil est ipsaque mors nihil",
-    "traduction": "Après la mort il n'y a rien, la mort elle-même n'est rien",
-    "auteur": "Sénèque"
+    "latin": "Post mortem nihil est ",
+    "traduction": "Après la mort il n'y a rien",
+    "auteur": "Sénèque, Les Troyennes, 2, 398"
   },
   {
     "latin": "Qui rogat non errat",
@@ -174,8 +171,8 @@
   },
   {
     "latin": "Quis custodiet ipsos custodes ?",
-    "traduction": "Qui garde les gardiens eux-mêmes ? / Who watches the watchmen [themselves] ?",
-    "auteur": "Juvénal, Satires VI"
+    "traduction": "Qui gardera les gardiens eux-mêmes ?",
+    "auteur": "Juvénal, Satires 6, 345"
   },
   {
     "latin": "Satis sunt mihi pauci, satis est unus, satis est nullus",
@@ -231,10 +228,6 @@
   {
     "latin": "Summum jus, summa injuria",
     "traduction": "[Paraphr.] A vouloir trop respecter le droit, on risque l’injustice."
-  },
-  {
-    "latin": "Tarde venientibus ossa",
-    "traduction": "Aux retardataires, il reste les os"
   },
   {
     "latin": "Tempora mutantur et nos mutamur in illis",
@@ -309,7 +302,7 @@
   {
     "latin": "Video meliora proboque deteriora sequor",
     "traduction": "Je vois le bien, je l'aime et je fais le mal",
-    "auteur": "Spinoza"
+    "auteur": "Ovide"
   },
   {
     "latin": "Vinum aqua miscere",
@@ -422,17 +415,115 @@
     "traduction": "Tu ne sais pas, mon fils, avec combien peu de sagesse le monde est gouverné"
   },
   {
-    "latin": "Arguendo",
-    "traduction": "Pour en discuter",
-    "note": "Terme de rhétorique signifiant que l'on concède un point seulement pour en discuter"
-  },
-  {
     "latin": "Audentes fortuna juvat",
-    "traduction": "La fortune sourit aux audacieux"
+    "traduction": "La chance sourit aux audacieux"
   },
   {
     "latin": "Bellum omnium contra omnes",
     "traduction": "La guerre de tous contre tous",
     "auteur": "Thomas Hobbes décrivant l'état de nature des humains"
+  },
+  {
+    "latin": "Fere libenter homines id quod volunt credunt",
+    "traduction": "Généralement, les hommes croient ce qu'ils veulent croire"
+  },
+  {
+    "latin": "Ignoti nulla cupido",
+    "traduction": "On ne peut désirer ce qu'on ne connaît pas",
+    "auteur": "Ovide, L'art d'aimer"
+  },
+  {
+    "latin": "In girum imus nocte et consumimur igni",
+    "traduction": "Nous tournons en rond dans la nuit et nous sommes dévorés par le feu",
+    "note": "Locution qui est un palindrome"
+  },
+  {
+    "latin": "Sapere aude !",
+    "traduction": "Ose savoir !",
+    "note": "Formule kantienne incitant chacun à penser par lui-même"
+  },
+  {
+    "latin": "Mihi cura futuri",
+    "traduction": "Moi, je m'occupe de l'avenir",
+    "note": "Dans les Métamorphoses, d'Ovide, Ulysse prononce cette phrase en s'adressant à Ajax en lui reprochant de n'être qu'une force brute"
+  },
+  {
+    "latin": "More ferarum",
+    "traduction": "À la manière des bêtes"
+  },
+  {
+    "latin": "Multa paucis",
+    "traduction": "Beaucoup de choses en peu de mots",
+    "note": "La concision, idéal du style latin"
+  },
+  {
+    "latin": "Natura naturans / Natura naturata",
+    "traduction": "Nature naturante / Nature naturée",
+    "note": "Deux concepts philosophiques de Barruch Spinoza, qu'il oppose entre eux ; le premier désigne Dieu qui est principe de toute action, le second désigne l'ensemble des êtres et des lois qui en découlent"
+  },
+  {
+    "latin": "Nil volentibus arduum",
+    "traduction": "Rien n'est impossible à qui le veut"
+  },
+  {
+    "latin": "Nil mortalibus ardui est",
+    "traduction": "Rien n'est impossible aux mortels"
+  },
+  {
+    "latin": "Non fui, fui, non sum, non curo",
+    "traduction": "Je n'étais pas, j'étais, je ne suis plus, cela m'est indifférent",
+    "note": "Inscription d'inspiration stoïcienne sur les pierres tombales"
+  },
+  {
+    "latin": "Non scholæ, sed vitæ discimus",
+    "traduction": "Nous n'apprenons pas pour l'école mais pour la vie"
+  },
+  {
+    "latin": "Natura enim non nisi parendo vincitur",
+    "traduction": "On ne soumet la nature qu'en lui obéissant",
+    "note": "Francis Bacon, Novum Organum, 1620"
+  },
+  {
+    "latin": "Non omne quod licet honestum est",
+    "traduction": "Tout ce qui n'est pas illicite n'est pas pour autant convenable",
+    "note": "Différence entre la loi et la morale"
+  },
+  {
+    "latin": "Non vestimentum virum ornat, sed vir vestimentum",
+    "traduction": "Ce n'est pas l'habit qui embellit la personne, mais la personne qui embellit l'habit"
+  },
+  {
+    "latin": "Tempus edax rerum",
+    "traduction": "Le temps détruit toutes choses",
+    "auteur": "Ovide, les Métamorphoses, 15, 234"
+  },
+  {
+    "latin": "Oculi plus vident quam oculus",
+    "traduction": "Plusieurs yeux voient mieux qu'un seul"
+  },
+  {
+    "latin": "Omne ignotum pro magnifico",
+    "traduction": "Tout ce qui est inconnu est fascinant"
+  },
+  {
+    "latin": "Petitio principii",
+    "traduction": "Pétition de principe",
+    "note": "Raisonnement fallacieux où la conclusion est contenue dans les prémisses"
+  },
+  {
+    "latin": "Qui futuri sunt moliti",
+    "traduction": "L'avenir appartient à ceux qui luttent"
+  },
+  {
+    "latin": "Nihil novi sub sole",
+    "traduction": "Rien de nouveau sous le soleil"
+  },
+  {
+    "latin": "Quomodo vales ?",
+    "traduction": "Comment vas-tu ?"
+  },
+  {
+    "latin": "Saltus in demonstrando",
+    "traduction": "Saut dans le raisonnement"
   }
 ]
