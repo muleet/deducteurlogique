@@ -80,11 +80,37 @@ class greekAlphabet extends Component {
       "ψῖ",
       "ὦμέγα"
     ],
+    greekNamesInFrench: [
+      "alpha",
+      "bêta",
+      "gamma",
+      "delta",
+      "epsilon",
+      "zêta",
+      "êta",
+      "thêta",
+      "iôta",
+      "kappa",
+      "lambda",
+      "mu",
+      "nu",
+      "ksi",
+      "omikron",
+      "pi",
+      "rhô",
+      "sigma",
+      "tau",
+      "upsilon",
+      "phi",
+      "khi",
+      "psi",
+      "ômega"
+    ],
     selectedLetters: [],
     selectedLettersThemselves: [],
     unselectedLetters: [],
     unselectedLettersThemselves: [],
-    currentType: 0 // 0 = rien, 1 = HC, 2 = HL, 3 = N
+    currentType: [0, "mix"] // 0 = rien, 1 = HC, 2 = HL, 3 = N
   };
 
   selectLetter(letter) {
@@ -112,13 +138,10 @@ class greekAlphabet extends Component {
     });
   }
 
-  refillBoxes(arrayLetters, currentType, FixOrMix) {
+  refillBoxes(arrayLetters, currentType) {
     this.resetEverything();
     let newUnselectedLetters = [];
-    if (FixOrMix === "fix") {
-    } else if (FixOrMix === "mix") {
-      arrayLetters = this.mixArray(arrayLetters);
-    }
+    arrayLetters = this.mixArray(arrayLetters);
     for (let i = 0; i < arrayLetters.length; i++) {
       newUnselectedLetters.push(this.showLetter(arrayLetters[i], i));
     }
@@ -154,6 +177,18 @@ class greekAlphabet extends Component {
         {letter}
       </div>
     );
+  }
+
+  showSolution(type) {
+    let arraySolution = [];
+    for (let i = 0; i < type.length; i++) {
+      arraySolution.push(
+        <div className="greek-alphabet-square-solution">{type[i]}</div>
+      );
+    }
+    this.setState({
+      unselectedLetters: arraySolution
+    });
   }
 
   resetEverything() {
@@ -234,19 +269,47 @@ class greekAlphabet extends Component {
         "χῖ",
         "ψῖ",
         "ὦμέγα"
+      ],
+      greekNamesInFrench = [
+        "alpha",
+        "bêta",
+        "gamma",
+        "delta",
+        "epsilon",
+        "zêta",
+        "êta",
+        "thêta",
+        "iôta",
+        "kappa",
+        "lambda",
+        "mu",
+        "nu",
+        "ksi",
+        "omikron",
+        "pi",
+        "rhô",
+        "sigma",
+        "tau",
+        "upsilon",
+        "phi",
+        "khi",
+        "psi",
+        "ômega"
       ];
 
     this.setState({
       greekHigherCase: greekHigherCase,
       greekLowerCase: greekLowerCase,
-      greekNames: greekNames
+      greekNames: greekNames,
+      greekNames: greekNamesInFrench
     });
   }
 
   render() {
     let choiceClassNameH = "",
       choiceClassNameL = "",
-      choiceClassNameN = "";
+      choiceClassNameN = "",
+      choiceClassNameF = "";
     let greekHigherCase = [
         "Α",
         "Β",
@@ -324,20 +387,42 @@ class greekAlphabet extends Component {
         "χῖ",
         "ψῖ",
         "ὦμέγα"
+      ],
+      greekNamesInFrench = [
+        "alpha",
+        "bêta",
+        "gamma",
+        "delta",
+        "epsilon",
+        "zêta",
+        "êta",
+        "thêta",
+        "iôta",
+        "kappa",
+        "lambda",
+        "mu",
+        "nu",
+        "ksi",
+        "omikron",
+        "pi",
+        "rhô",
+        "sigma",
+        "tau",
+        "upsilon",
+        "phi",
+        "khi",
+        "psi",
+        "ômega"
       ];
 
     if (this.state.currentType === 1) {
-      choiceClassNameH = " greek-alphabet-choice-active ";
-      choiceClassNameL = "";
-      choiceClassNameN = "";
+      choiceClassNameH = "greek-alphabet-choice-active ";
     } else if (this.state.currentType === 2) {
-      choiceClassNameH = "";
       choiceClassNameL = "greek-alphabet-choice-active";
-      choiceClassNameN = "";
     } else if (this.state.currentType === 3) {
-      choiceClassNameH = "";
-      choiceClassNameL = "";
       choiceClassNameN = "greek-alphabet-choice-active";
+    } else if (this.state.currentType === 4) {
+      choiceClassNameF = "greek-alphabet-choice-active";
     }
 
     // création des boutons pour que l'utilisateur sélectionne ce qu'il veut classer
@@ -345,17 +430,7 @@ class greekAlphabet extends Component {
       <div
         className={"greek-alphabet-choice " + choiceClassNameH}
         onClick={() => {
-          console.log(
-            this.state.currentType + "&&" + this.state.unselectedLetters.length
-          );
-          if (
-            this.state.currentType !== 1 &&
-            this.state.unselectedLetters.length !== 24
-          ) {
-            this.refillBoxes(this.state.greekHigherCase, 1, "mix");
-          } else {
-            this.refillBoxes(this.state.greekHigherCase, 1, "fix");
-          }
+          this.refillBoxes(this.state.greekHigherCase, 1);
         }}
       >
         majuscules
@@ -364,7 +439,7 @@ class greekAlphabet extends Component {
     const buttonLowerCase = (
       <div
         className={"greek-alphabet-choice " + choiceClassNameL}
-        onClick={() => this.refillBoxes(this.state.greekLowerCase, 2, "mix")}
+        onClick={() => this.refillBoxes(this.state.greekLowerCase, 2)}
       >
         minuscules
       </div>
@@ -372,9 +447,51 @@ class greekAlphabet extends Component {
     const buttonNames = (
       <div
         className={"greek-alphabet-choice " + choiceClassNameN}
-        onClick={() => this.refillBoxes(this.state.greekNames, 3, "mix")}
+        onClick={() => this.refillBoxes(this.state.greekNames, 3)}
       >
-        en toutes lettres
+        en toutes lettres, en grec
+      </div>
+    );
+    const buttonNamesInFrench = (
+      <div
+        className={"greek-alphabet-choice " + choiceClassNameF}
+        onClick={() => this.refillBoxes(this.state.greekNamesInFrench, 4)}
+      >
+        en toutes lettres, en français
+      </div>
+    );
+
+    // création des boutons donnant la solution
+    const buttonSolutionHigherCase = (
+      <div
+        className="greek-alphabet-button-solution"
+        onClick={() => this.showSolution(greekHigherCase)}
+      >
+        Α
+      </div>
+    );
+    const buttonSolutionLowerCase = (
+      <div
+        className="greek-alphabet-button-solution"
+        onClick={() => this.showSolution(greekLowerCase)}
+      >
+        α
+      </div>
+    );
+    const buttonSolutionGreekName = (
+      <div
+        className="greek-alphabet-button-solution"
+        onClick={() => this.showSolution(greekNames)}
+      >
+        G
+      </div>
+    );
+    const buttonSolutionGreekNamesInFrench = (
+      <div
+        className="greek-alphabet-button-solution"
+        onClick={() => this.showSolution(greekNamesInFrench)}
+      >
+        F
       </div>
     );
 
@@ -395,8 +512,19 @@ class greekAlphabet extends Component {
       this.state.selectedLettersThemselves.every(function(element, index) {
         return element === greekNames[index];
       });
+    var greekNamesInFrenchTrue =
+      this.state.selectedLettersThemselves.length ===
+        greekNamesInFrench.length &&
+      this.state.selectedLettersThemselves.every(function(element, index) {
+        return element === greekNamesInFrench[index];
+      });
     console.log(this.state.selectedLettersThemselves, " ", greekHigherCase);
-    if (greekHigherCaseTrue || greekLowerCaseTrue || greekNamesTrue) {
+    if (
+      greekHigherCaseTrue ||
+      greekLowerCaseTrue ||
+      greekNamesTrue ||
+      greekNamesInFrenchTrue
+    ) {
       victory = "greek-alphabet-box-victory";
     }
 
@@ -411,9 +539,8 @@ class greekAlphabet extends Component {
             majuscules, ses minuscules, et le nom de ses lettres. Cliquez sur
             l'une des trois possibilités pour qu'un tirage au sort soit fait
             dans la première ligne, vous devrez ensuite cliquer dans le bon
-            ordre pour les classer dans la seconde ligne. Vous pouvez cliquer
-            deux fois sur un bouton pour voir l'ordre alphabétique grec. (Note :
-            non en effet cette page n'a rien à voir avec le reste du site.)
+            ordre pour les classer dans la seconde ligne. (Note : non en effet
+            cette page n'a rien à voir avec le reste de ce site.)
           </ul>
         </div>
       </div>
@@ -429,6 +556,11 @@ class greekAlphabet extends Component {
           {buttonHigherCase}
           {buttonLowerCase}
           {buttonNames}
+          {buttonNamesInFrench}
+          {buttonSolutionHigherCase}
+          {buttonSolutionLowerCase}
+          {buttonSolutionGreekName}
+          {buttonSolutionGreekNamesInFrench}
           {questionMark}
         </div>
         <div className="greek-alphabet-box">{this.state.unselectedLetters}</div>
