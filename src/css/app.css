@@ -39,8 +39,8 @@ header {
   display: flex;
   flex-direction: row;
   align-content: center;
-  text-align: center;
   align-items: center;
+  text-align: center;
 }
 
 .header-nav-list a {
@@ -188,4 +188,108 @@ h3 {
   80% {
     opacity: 0;
   }
+}
+
+/* Section du point d'interrogation informant l'utilisateur sur tel ou tel truc */
+
+.question-mark-button {
+  width : 20px;
+  height : 20px;
+  position: relative;
+  display: flex;
+  color : black;
+  flex-direction: row;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: #b3947a;
+  text-align: center;
+  justify-content: center;
+}
+
+.question-mark-button:hover .question-mark {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-mark-title {
+  margin-bottom: 3px;
+  font-style: italic;
+}
+
+.question-mark {
+  position: absolute;
+  color: #b3967a;
+  font-size: 16px;
+  width: 350px;
+  left: 130%;
+  display: none;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.question-mark-content {
+  display: flex;
+  background-color: #473a31;
+  flex-direction: row;
+  padding: 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Section de l'alphabet grec */
+
+.greek-alphabet-choices {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.greek-alphabet-choice {
+  border: 1px solid #44423f;
+  background-color: #31302e;
+  padding: 3px;
+  margin: 3px;
+  min-width: 25px;
+  text-align: center;
+}
+
+.greek-alphabet-choice-active {
+  border: 1px solid #6b665e;
+  background-color: #645940;
+}
+
+.greek-alphabet-choice:hover {
+  border: 1px solid #493d3a;
+  background-color: #49392e;
+}
+
+.greek-alphabet-box {
+  max-width: 1000px;
+  min-height: 36px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 3px solid rgb(39, 35, 35);
+  margin-bottom: 5px;
+}
+
+.greek-alphabet-box-victory {
+  border: 3px solid rgb(97, 124, 87);
+  background-color: rgb(53, 65, 49);
+}
+
+.greek-alphabet-square {
+  border: 1px solid #44423f;
+  background-color: #31302e;
+  padding: 3px;
+  margin: 3px;
+  min-width: 25px;
+  text-align: center;
+}
+
+.greek-alphabet-square:hover {
+  border: 1px solid #493d3a;
+  background-color: #49392e;
 }

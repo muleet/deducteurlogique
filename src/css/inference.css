@@ -93,3 +93,13 @@
     opacity: 0.3;
   }
 }
+
+/* Ci-dessous, la section dédiée aux scans des inférences (hé bé wé) */
+.inference-validFirstArgument {
+  /* border-bottom: 3px solid; */
+  border-bottom: 1px solid;
+}
+
+.inference-validSecondArgument {
+  border-bottom: 3px double;
+}

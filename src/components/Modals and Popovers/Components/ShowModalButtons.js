@@ -119,11 +119,15 @@ class ShowModalButtons extends Component {
   }
 
   render() {
+    // DECLARATION DES VARIABLES DES BOUTONS DU MODAL
+    let indicatorAboutDetectedInference = ""; // Ce voyant est soit un point rouge (inférences non détectées ; indicator-data-undetected) soit vert (inférence détectées ; indicator-data-detected).
     let buttonResetArguments = "";
     let buttonInverseInference = "";
     let buttonRemoveLastCharacter = "";
     let buttonSpecificRule = "";
     // let buttonDisjonctionEliminationHypothesis = "";
+
+    // CONDITIONS PERMETTANT DE DONNER LEURS RÔLES AUX BOUTONS EN FONCTION DE LA REGLE EN COURS
     if (this.props.ruleName !== "∨e") {
       buttonResetArguments = (
         <p
@@ -155,6 +159,20 @@ class ShowModalButtons extends Component {
         </p>
       );
     }
+    // console.log(
+    //   "bordel de sa race",
+    //   this.props.valueInference.ruleModalActivable
+    // );
+    if (this.props.valueInference.ruleModalActivable === false) {
+      indicatorAboutDetectedInference = (
+        <div className="indicator-data-undetected">●</div>
+      );
+    } else if (this.props.valueInference.ruleModalActivable === true) {
+      indicatorAboutDetectedInference = (
+        <div className="indicator-data-detected">●</div>
+      );
+    }
+
     if (this.props.ruleName === "∨e") {
       buttonSpecificRule = (
         <ShowDisjonctionEliminationArguments
@@ -171,10 +189,11 @@ class ShowModalButtons extends Component {
 
     return (
       <Fragment>
+        {/* {indicatorAboutDetectedInference} DESACTIVE TEMPORAIREMENT POUR L'UPLOAD */}
         {/* les deux boutons ci-desous ne concernent que ∨i */}
         {buttonRemoveLastCharacter}
         {buttonInverseInference}
-        {/* le bouton ci-desous ne concernent que ∨e */}
+        {/* le bouton ci-dessous ne concerne que ∨e */}
         {buttonSpecificRule}
         {/* {buttonDisjonctionEliminationHypothesis} */}
         <p

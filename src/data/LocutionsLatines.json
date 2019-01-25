@@ -272,7 +272,7 @@
   {
     "latin": "Delenda Carthago",
     "traduction": "[Litt.] Carthage est à détruire",
-    "auteur": "Caton l'Ancien, selon la légende il prononçait ces mots au début et à la fin de chacun de ses discours au sénat romain"
+    "auteur": "Caton l'Ancien, selon la légende, prononçait ces mots au début et à la fin de chacun de ses discours au sénat romain"
   },
   {
     "latin": " Dilige et quod vis fac",
@@ -394,12 +394,11 @@
   {
     "latin": "Nullum magnum ingenium sine mixtura dementiae fuit",
     "traduction": "Il n'est pas de grand talent qui n'ait une part de folie",
-    "auteur": "Sénèque,  De la tranquilité de l'âme, XVII.10"
+    "auteur": "Sénèque, De la tranquilité de l'âme, XVII.10"
   },
   {
     "latin": "Amare et sapere vix deo conceditur",
-    "traduction": "Aimer et demeurer sage, même un dieu le pourrait à peine",
-    "auteur": "Publilius Syrus, Sentences"
+    "traduction": "Aimer et demeurer sage, même un dieu le pourrait à peine"
   },
   {
     "latin": "Inimicus Plato, sed magis inimica falsitas",
@@ -416,7 +415,7 @@
   },
   {
     "latin": "Audentes fortuna juvat",
-    "traduction": "La chance sourit aux audacieux"
+    "traduction": "La chance favorise les audacieux"
   },
   {
     "latin": "Bellum omnium contra omnes",
@@ -481,7 +480,7 @@
   {
     "latin": "Natura enim non nisi parendo vincitur",
     "traduction": "On ne soumet la nature qu'en lui obéissant",
-    "note": "Francis Bacon, Novum Organum, 1620"
+    "auteur": "Francis Bacon, Novum Organum, 1620"
   },
   {
     "latin": "Non omne quod licet honestum est",

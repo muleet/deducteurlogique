@@ -32,6 +32,7 @@ import InfoRules from "./components/Pages/InfoRules.js";
 import Questions from "./components/Pages/Questions.js";
 import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndContact";
 import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
+import greekAlphabet from "./components/Pages/Secondary Pages/greekAlphabet";
 // Importations d'autres trucs
 // import LogIn from "./components/Users/LogIn";
 // import SignUp from "./components/Users/SignUp";
@@ -182,6 +183,7 @@ class App extends Component {
             <Route path="/règles" component={InfoRules} />
             <Route path="/tables-de-vérité" component={TruthTable} />
             <Route path="/bac-à-sable-logique" component={Sandbox} />
+            <Route path="/omega" component={greekAlphabet} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"

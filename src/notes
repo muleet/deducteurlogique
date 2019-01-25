@@ -9,6 +9,8 @@ Choses à faire :
 5) Tant que l'utilisateur n'a pas rempli toutes les conditions requises pour une règle, le bouton de confirmation de la règle doit rester désactivé.
 5) Faire un bouton dans le bac à sable logique qui permette de créer une url vers le résultat qu'on a produit, contenant toutes les règles utilisées (et seulement elles), toutes les inférences produites & leur justification, et contenant aussi les significations possibles entrées par l'utilisateur. Ce lien pourra ensuite être partagé sur les réseaux sociaux.
 6) Permettre à l'utilisateur de choisir s'il veut que la numérotation des inférences se fasse en chiffres arabes, en chiffres latins, ou en chiffres grecs.
+7) Permettre à l'utilisateur enregistré de retirer les phrases d'instruction d'une fenêtre de règle, histoire d'en faire une toute petite fenêtre.
+
 
 Codes à utiliser plus souvent :
 - { items, inferences, exercices, data } = this.state // ce qui est à droite permet de créer rapidement des objets "items", "inferences", "exercices", "data", à partir de ce que contient this.state
@@ -23,6 +25,7 @@ Modifications/ajouts au sujet des citations grecques et latines :
 - Eduquons nos enfants et il ne sera pas nécessaire de punir les hommes (Pythagore)
 - "Le bonheur, avons-nous dit, est une certaine activité de l'âme conforme à la vertu." (Aristote)
 - « Héraclite pense qu'à un moment donné le monde s'embrase et qu'à un autre moment il se reconstitue de nouveau lui-même à partir du feu, selon certaines périodes de temps, dans lesquelles, dit-il, il s'allume en mesure et s'éteint en mesure. Plus tard les stoïciens ont partagé la même idée » Simplicios, Héraclite, fragment A10.
+- "On ne peut subir l'injustice qu'involontairement." (Aristote, Ethique à nicomaque, V, IX, 8.)
 
 Thèmes de significations possibles à rajouter :
 - Si je fais une activité c'est qu'elle a directement du sens et de l'importance/intérêt pour moi, et non pas parce qu'elle me rapporte de l'argent. L'argent n'est absolument jamais un critère.
@@ -50,3 +53,6 @@ r : je peux être libre
 - La démocratie directe est un pléonasme, puisqu'une démocratie supposant le pouvoir du peuple, c'est lui qui l'a aussi dans la démocratie directe.
 - https://fr.wikipedia.org/wiki/D%C3%A9mocratie_liquide
 - Si une mesure est soutenue par au moins 3,6% d'une population, alors le gouvernement de cette population la fait passer même s'il est en désaccord avec. (Argument d'Yvan Bachaud pour le RIC)
+-  "Avec la valorisation du monde des choses s'accroît en rapport direct la dévalorisation du monde de l'homme." Karl Marx, Manuscrits économico-philosophiques de 1844. (dire à Kôko)
+- Quelque chose sur le fait de "ne pas dire aux gens comment agir". Je crois que je tends trop à faire cela, à penser de manière extrêmement normative dans tous les aspects de mes rapports à autrui (comment ils jouent, comment ils font de la philo ou pas, quels films ils regardent, comment ils raisonnent, etc).
+- Axiome du libéralisme selon Hayek : une bonne loi est une loi dont on ignore "l'efficacité", les "fins particulières" vers lesquelles la loi sera utilisée, ou encore à quelles catégories de la population elle bénéficiera. Car si on l'ignore, c'est qu'elle bénéficiera probablement de manière égale à tous. (Si j'ai le temps, ce serait pas mal que j'inclus dans l'exercice qui illustre ça, le fait que ce raisonnement amène à rejeter le capitalisme dans sa forme "pure", i.e. le droit inaliénable de la propriété privée des moyens de prod.)

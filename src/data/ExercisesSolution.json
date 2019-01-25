@@ -136,7 +136,7 @@
       { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "|q", "numberCommentary": "1, 4", "commentary": "⊃e" },
       { "itself": "|q∧~r", "numberCommentary": "5, 3", "commentary": "∧e" },
-      { "itself": "p⊃(q∧~r)", "numberCommentary": "", "commentary": "⊃i" }
+      { "itself": "p⊃(q∧~r)", "numberCommentary": "1-6", "commentary": "⊃i" }
     ]
   },
   {

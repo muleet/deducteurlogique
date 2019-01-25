@@ -188,3 +188,15 @@
   justify-content: center;
   text-align: center;
 }
+
+/* L'indicateur ci-dessous se trouve dans ShowModalButton et concerne la détection des inférences compatibles avec l'utilisation de la règle en question */
+.indicator-data-undetected {
+  /* background-color: red; */
+  color: red;
+  /* text-shadow: 0px 0px 8px red; */
+}
+.indicator-data-detected {
+  /* background-color: green; */
+  color: rgb(0, 192, 0);
+  /* text-shadow: 0px 0px 8px green; */
+}

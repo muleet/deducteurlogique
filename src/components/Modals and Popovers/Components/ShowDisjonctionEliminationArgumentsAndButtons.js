@@ -53,8 +53,8 @@ class ShowDisjonctionEliminationArgumentsAndButtons extends Component {
     let stepRule = this.props.valueInference.stepRule;
     let ArrayAorB = "";
     let argumentAorB, firstConclusion, secondConclusion;
-    const allHypotheticalInferences = this.props.valueInference
-      .allHypotheticalInferences;
+    // const allHypotheticalInferences = this.props.valueInference
+    //   .allHypotheticalInferences; // J'EN AURAI BESOIN POUR REGLER LE PROBLEME DE CETTE PUTAIN DE REGLE
 
     // étape 0 : l'utilisateur doit cliquer sur une inférence A∨B
     if (longStoredInference[0]) {

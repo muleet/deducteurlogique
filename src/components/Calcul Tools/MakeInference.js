@@ -13,7 +13,11 @@ class MakeInference extends Component {
     return (
       <Fragment>
         <li
-          className={"inferenceGlobal selectable " + this.props.inferenceType}
+          className={
+            "inferenceGlobal selectable " +
+            this.props.inferenceType +
+            this.props.allInferencesValidForCurrentRule
+          }
           onClick={this.props.onClickSent}
         >
           {/* {this.props.dataRegardingHypothesisLine} */}

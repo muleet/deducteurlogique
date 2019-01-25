@@ -7,7 +7,6 @@ class RuleProvider extends Component {
     super(props);
 
     // SECTION DES RÈGLES ELLES-MEMES
-
     this.negationIntroduction = (B, notB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;

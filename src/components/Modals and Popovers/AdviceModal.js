@@ -4,38 +4,8 @@ import ReactModal from "react-modal";
 
 class RuleModal extends Component {
   // dans les props de cette classe il y a "valueInference"
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     showModal: false
-  //   };
-
-  //   this.handleOpenModal = this.handleOpenModal.bind(this);
-  //   this.handleCloseModal = this.handleCloseModal.bind(this);
-  // }
-
-  // handleOpenModal() {
-  //   if (this.state.showModal === false) {
-  //     this.setState({
-  //       showModal: true
-  //     });
-  //   } else {
-  //     // si le modal était déjà affiché, on le referme en cliquant sur le même bouton
-  //     this.handleCloseModal();
-  //   }
-  // }
-
-  // handleCloseModal() {
-  //   this.setState({ showModal: false });
-  // }
 
   render() {
-    // if (!this.state.showModal) {
-    //   this.handleOpenModal();
-    // setTimeout(() => {
-    //   this.handleCloseModal();
-    // }, 6000);
-    // }
     return (
       <Fragment>
         <div>
