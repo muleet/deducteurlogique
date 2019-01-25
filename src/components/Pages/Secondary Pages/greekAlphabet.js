@@ -301,7 +301,7 @@ class greekAlphabet extends Component {
       greekHigherCase: greekHigherCase,
       greekLowerCase: greekLowerCase,
       greekNames: greekNames,
-      greekNames: greekNamesInFrench
+      greekNamesInFrench: greekNamesInFrench
     });
   }
 

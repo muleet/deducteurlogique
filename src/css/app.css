@@ -305,6 +305,11 @@ h3 {
   text-align: center;
 }
 
+.greek-alphabet-button-solution:hover {
+  border: 1px solid #ce7031;
+  background-color: #836122;
+}
+
 .greek-alphabet-square-solution {
   border: 1px solid #242321;
   background-color: #1b1a18;
