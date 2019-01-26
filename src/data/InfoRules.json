@@ -17,7 +17,7 @@
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer dans l'hypothèse en cours.",
     "expectedArguments": [],
-    "available": "yes"
+    "available": "bug"
   },
   {
     "name": "hyp",

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import greekAlphabetData from "../../../data/greekAlphabet";
 
 class greekAlphabet extends Component {
   state = {
@@ -65,7 +66,7 @@ class greekAlphabet extends Component {
       "θῆτα",
       "ἰῶτα",
       "κάππα",
-      "λάμϐδα",
+      "λάμβδα",
       "μῦ",
       "νῦ",
       "ξῖ",
@@ -192,32 +193,7 @@ class greekAlphabet extends Component {
   }
 
   resetEverything() {
-    let greekHigherCase = [
-        "Α",
-        "Β",
-        "Γ",
-        "Δ",
-        "Ε",
-        "Ζ",
-        "Η",
-        "Θ",
-        "Ι",
-        "Κ",
-        "Λ",
-        "Μ",
-        "Ν",
-        "Ξ",
-        "Ο",
-        "Π",
-        "Ρ",
-        "Σ",
-        "Τ",
-        "Υ",
-        "Φ",
-        "Χ",
-        "Ψ",
-        "Ω"
-      ],
+    let greekHigherCase = greekHigherCase,
       greekLowerCase = [
         "α",
         "β",
@@ -255,7 +231,7 @@ class greekAlphabet extends Component {
         "θῆτα",
         "ἰῶτα",
         "κάππα",
-        "λάμϐδα",
+        "λάμβδα",
         "μῦ",
         "νῦ",
         "ξῖ",
@@ -373,7 +349,7 @@ class greekAlphabet extends Component {
         "θῆτα",
         "ἰῶτα",
         "κάππα",
-        "λάμϐδα",
+        "λάμβδα",
         "μῦ",
         "νῦ",
         "ξῖ",
