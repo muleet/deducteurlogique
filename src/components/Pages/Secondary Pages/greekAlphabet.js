@@ -161,7 +161,6 @@ class greekAlphabet extends Component {
       var temp = array[i];
       array[i] = array[j];
       array[j] = temp;
-      console.log("bonjour");
     }
     return array;
   }
@@ -193,7 +192,32 @@ class greekAlphabet extends Component {
   }
 
   resetEverything() {
-    let greekHigherCase = greekHigherCase,
+    let greekHigherCase = [
+        "Α",
+        "Β",
+        "Γ",
+        "Δ",
+        "Ε",
+        "Ζ",
+        "Η",
+        "Θ",
+        "Ι",
+        "Κ",
+        "Λ",
+        "Μ",
+        "Ν",
+        "Ξ",
+        "Ο",
+        "Π",
+        "Ρ",
+        "Σ",
+        "Τ",
+        "Υ",
+        "Φ",
+        "Χ",
+        "Ψ",
+        "Ω"
+      ],
       greekLowerCase = [
         "α",
         "β",
@@ -494,7 +518,6 @@ class greekAlphabet extends Component {
       this.state.selectedLettersThemselves.every(function(element, index) {
         return element === greekNamesInFrench[index];
       });
-    console.log(this.state.selectedLettersThemselves, " ", greekHigherCase);
     if (
       greekHigherCaseTrue ||
       greekLowerCaseTrue ||
@@ -525,9 +548,7 @@ class greekAlphabet extends Component {
     // return
     return (
       <main className="main-greekAlphabet">
-        <h2 style={{ marginBottom: "10px" }}>
-          Apprenons l'alphabet grec dans la joie et la bonne humeur avec React
-        </h2>
+        <h2 style={{ marginBottom: "10px" }}>Apprenons l'alphabet grec</h2>
         <div className="greek-alphabet-choices">
           {buttonHigherCase}
           {buttonLowerCase}

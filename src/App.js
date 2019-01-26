@@ -33,6 +33,7 @@ import Questions from "./components/Pages/Questions.js";
 import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndContact";
 import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 import greekAlphabet from "./components/Pages/Secondary Pages/greekAlphabet";
+import Koko from "./components/Pages/Secondary Pages/Koko";
 // Importations d'autres trucs
 // import LogIn from "./components/Users/LogIn";
 // import SignUp from "./components/Users/SignUp";
@@ -184,6 +185,7 @@ class App extends Component {
             <Route path="/tables-de-vérité" component={TruthTable} />
             <Route path="/bac-à-sable-logique" component={Sandbox} />
             <Route path="/omega" component={greekAlphabet} />
+            <Route path="/Kôko" component={Koko} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"

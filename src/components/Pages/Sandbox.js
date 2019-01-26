@@ -83,13 +83,6 @@ class Deducer extends Component {
       </InferenceProvider>
     );
   }
-
-  componentDidMount() {}
-
-  componentWillReceiveProps(nextProps) {
-    // Fonction qui se fait à chaque fois qu'on navigue vers la page actuelle (on part de CalculDesProps pour arriver à CalculDesProps)
-    // ici on change de numéro d'exercice (sans recharger la page)
-  }
 }
 
 export default Deducer;
