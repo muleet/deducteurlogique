@@ -14,23 +14,49 @@ import ShowPossibleMeaning from "../../Calcul Tools/Deducer Tools/ShowPossibleMe
 
 class Deducer extends Component {
   render() {
-    let ArrayAllPremisses = ["p", "q", "~p", "~q", "p∧q", "p∨q"];
     const KokoExercise = {
       verbalName: "",
-      premisses: ["p", "p⊃q"],
-      conclusion: "p",
+      premisses: [
+        "((p∧r)∧t)⊃~q",
+        "t↑P",
+        "(q↓u)↓v",
+        "T⊃t",
+        "((p∧l)∧(w∧s))⊃k",
+        "(a∨A)≡C"
+      ],
+      conclusion: "k",
       meaning: [
-        ["p : Vive Kôko", "q : Je t'aime Kôko"],
-        ["p : La Terre est ronde", "q : La Terre n'est pas plate"],
         [
-          "p : Les politiciens sont irresponsables politiquement",
-          "q : Je ne devrai pas transférer ma responsabilité politique aux politiciens"
+          "p : Elle aime diversifier sa pensée et lire des livres.",
+          "P : Elle a beaucoup de temps pour diversifier sa pensée et lire des livres",
+          "~q : Elle n'a pas de temps.",
+          "t : Elle a un travail qui lui permet d'avoir un salaire.",
+          "T : Elle doit avoir un salaire, pour vivre et se loger.",
+          "w : Elle a eu une vie difficile.",
+          "r : Elle a pleins d'amants.",
+          "l : Elle est très libre.",
+          "~u : Elle n'a pas de famille biologique.",
+          "s : Elle est hyper sympa.",
+          "~v : Elle ne cherche pas à être aimée (car ce serait une forme de faiblesse selon elle).",
+          "a : Elle pourrait apprendre à coder.",
+          "A : Elle pourrait prendre du temps pour écrire des textes.",
+          "C : Elle a du temps et des moyens pour changer d'activité professionnelle.",
+          "k : Elle est une fille ultra méga super trop cool, être son amant doit être un bonheur immense, Quentin aimerait changer pleins de choses en lui pour apprendre à lui plaire."
         ]
       ],
       comment: "",
-      rulesImplied: ["rep", "⊃e"],
+      rulesImplied: ["rep", "⊃e", "∧e", "∧i"],
       doable: true
     };
+    const KokoSolution = [
+      { itself: "|p", numberCommentary: "", commentary: "hyp" },
+      { itself: "|p⊅r", numberCommentary: "b", commentary: "rep" },
+      { itself: "|~r", numberCommentary: "1, 2", commentary: "⊅e" },
+      { itself: "|p⊃q", numberCommentary: "a", commentary: "rep" },
+      { itself: "|q", numberCommentary: "1, 4", commentary: "⊃e" },
+      { itself: "|q∧~r", numberCommentary: "5, 3", commentary: "∧e" },
+      { itself: "p⊃(q∧~r)", numberCommentary: "1-6", commentary: "⊃i" }
+    ];
     return (
       <InferenceProvider>
         <InferenceContext.Consumer>
@@ -40,11 +66,12 @@ class Deducer extends Component {
             <Fragment>
               <h3 className="pageTitle">Kôko est une fille inspirante</h3>
               <div className="deducer">
-                <section className="infos-and-deduction-itself">
+                <section className="infos-and-deduction-itself fat-infos-and-deduction">
                   {
                     <ShowInformationsExercise
                       valueInference={value} // on envoie le state déclaré dans InferenceProvider
                       exerciseSent={KokoExercise} // on envoie les données de l'exercice actuel
+                      minimalLineNumber={KokoSolution.length}
                     />
                   }{" "}
                   <Fragment>
@@ -55,7 +82,7 @@ class Deducer extends Component {
                       valueInference={value}
                     />
                     <div style={{ fontSize: 16 }}>
-                      Solutions : faut que je code un autre truc
+                      Solution possible : (faut que je code un autre truc)
                       {/* <ShowPossibleSolutions valueInference={value} /> */}
                     </div>
                   </Fragment>

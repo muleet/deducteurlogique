@@ -151,3 +151,9 @@
   border: 1px solid green;
   color: green;
 }
+
+/* Autres trucs, pour les pages spéciales */
+
+.fat-infos-and-deduction {
+  width: 550px;
+}

@@ -47,10 +47,6 @@ const TheFuture = () => {
             dernière inférence, avec cette règle.
           </p>
           <p className="soon-available-rule">
-            - Correction d'un bug entre la fonction permettant de supprimer la
-            dernière inférence créée, et la règle reit.
-          </p>
-          <p className="soon-available-rule">
             - Lorsqu'on clique sur une règle, l'interface mettra en avant les
             inférences compatibles avec cette règle. Par exemple pour la règle
             ⊃e, l'interface mettra en surbrillance dans la déduction, une

@@ -5,6 +5,7 @@ import MakeInference from "../MakeInference";
 class ShowPossibleSolutions extends Component {
   render() {
     let arrayButtonSolutions = [];
+
     for (let i = 0; i < ExercisesSolution.length; i++) {
       let arraySolutionContent = [];
 

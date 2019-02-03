@@ -17,7 +17,7 @@ class InferenceProvider extends Component {
     this.addInference = (newInference, hyp) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
-      console.log("asuppr", this.state.allInferencesValidForCurrentRule);
+      // console.log("allInferenceValideForCurrentRule", this.state.allInferencesValidForCurrentRule);
       let hypNumber = 0;
       let inferenceType = "";
       let copyArrayRendered = [...this.state.allInferencesRendered];
@@ -176,8 +176,6 @@ class InferenceProvider extends Component {
       );
       newInference.numberCommentary = "" + numberInference;
       newInference.commentary = "reit";
-      console.log("newInference", newInference);
-      console.log("copyArrayThemselves", copyArrayThemselves);
       copyArrayThemselves.push(newInference);
 
       this.setAdvice(
@@ -187,7 +185,7 @@ class InferenceProvider extends Component {
 
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
-        allInferenceThemselves: copyArrayThemselves
+        allInferencesThemselves: copyArrayThemselves
       }));
     };
 
@@ -311,40 +309,44 @@ class InferenceProvider extends Component {
     };
 
     this.removeLastInference = () => {
-      let copyAllInferencesRendered = [...this.state.allInferencesRendered];
-      let copyAllInferencesThemselves = [...this.state.allInferencesThemselves];
-      let copyAHI = [...this.state.allHypotheticalInferences];
-      let copyAEHI = [...this.state.allEndedHypotheticalInferences];
-      const AITLength = copyAllInferencesThemselves.length - 1;
-      console.log("copyAIT", copyAllInferencesThemselves);
-      if (copyAllInferencesThemselves[AITLength].commentary === "hyp") {
-        // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
-        copyAHI = copyAHI.slice(1);
-        this.manageLotsOfStuffAboutHypothesis("", "", "noincrease");
-      } else if (
-        copyAllInferencesThemselves[AITLength].commentary === "⊃i" ||
-        copyAllInferencesThemselves[AITLength].commentary === "~i"
-      ) {
-        // on supprime une conclusion d'hypothèse, donc on augmente d'un niveau d'hyp et on remet la dernière entrée dans AHI (présente dans AEHI), et on supprime la dernière entrée ASHI
-        copyAHI.unshift(copyAEHI[0]);
-        copyAEHI = copyAEHI.slice(1);
-        this.manageLotsOfStuffAboutHypothesis("", "", "reincrease");
+      if (this.state.allInferencesThemselves.length >= 1) {
+        let copyAllInferencesRendered = [...this.state.allInferencesRendered];
+        let copyAllInferencesThemselves = [
+          ...this.state.allInferencesThemselves
+        ];
+        let copyAHI = [...this.state.allHypotheticalInferences];
+        let copyAEHI = [...this.state.allEndedHypotheticalInferences];
+        const AITLength = copyAllInferencesThemselves.length - 1;
+        console.log("copyAIT", copyAllInferencesThemselves);
+        if (copyAllInferencesThemselves[AITLength].commentary === "hyp") {
+          // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
+          copyAHI = copyAHI.slice(1);
+          this.manageLotsOfStuffAboutHypothesis("", "", "noincrease");
+        } else if (
+          copyAllInferencesThemselves[AITLength].commentary === "⊃i" ||
+          copyAllInferencesThemselves[AITLength].commentary === "~i"
+        ) {
+          // on supprime une conclusion d'hypothèse, donc on augmente d'un niveau d'hyp et on remet la dernière entrée dans AHI (présente dans AEHI), et on supprime la dernière entrée ASHI
+          copyAHI.unshift(copyAEHI[0]);
+          copyAEHI = copyAEHI.slice(1);
+          this.manageLotsOfStuffAboutHypothesis("", "", "reincrease");
+        }
+        copyAllInferencesRendered.pop(); // on extrait une partie du tableau, la première en partant de la fin
+        copyAllInferencesThemselves.pop();
+
+        InferenceScanner(
+          this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
+          copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
+          this.state.updateScannedInferences // fonction qui permettra de maj la liste des inférences scannées
+        );
+
+        this.setState(state => ({
+          allInferencesRendered: copyAllInferencesRendered,
+          allInferencesThemselves: copyAllInferencesThemselves,
+          allHypotheticalInferences: copyAHI,
+          allEndedHypotheticalInferences: copyAEHI
+        }));
       }
-      copyAllInferencesRendered.pop(); // on extrait une partie du tableau, la première en partant de la fin
-      copyAllInferencesThemselves.pop();
-
-      InferenceScanner(
-        this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
-        copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
-        this.state.updateScannedInferences // fonction qui permettra de maj la liste des inférences scannées
-      );
-
-      this.setState(state => ({
-        allInferencesRendered: copyAllInferencesRendered,
-        allInferencesThemselves: copyAllInferencesThemselves,
-        allHypotheticalInferences: copyAHI,
-        allEndedHypotheticalInferences: copyAEHI
-      }));
     };
 
     this.resetDeduction = () => {

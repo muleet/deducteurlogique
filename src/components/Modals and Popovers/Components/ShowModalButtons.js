@@ -189,7 +189,7 @@ class ShowModalButtons extends Component {
 
     return (
       <Fragment>
-        {/* {indicatorAboutDetectedInference} DESACTIVE TEMPORAIREMENT POUR L'UPLOAD */}
+        {/* {indicatorAboutDetectedInference} RETIRE TEMPORAIREMENT POUR L'UPLOAD*/}
         {/* les deux boutons ci-desous ne concernent que ∨i */}
         {buttonRemoveLastCharacter}
         {buttonInverseInference}
