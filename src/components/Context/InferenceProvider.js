@@ -36,9 +36,7 @@ class InferenceProvider extends Component {
         this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
         // this.state.manageDataRegardingHypothesisLine("-hyp");
       }
-      if (!hyp) {
-        this.state.manageDataRegardingHypothesisLine("=");
-      }
+
       // section des hypothèses de l'élimination de la disjonction, ∨e
 
       const copyStoredHypId =
@@ -102,86 +100,13 @@ class InferenceProvider extends Component {
                   copyStoredHypId - 1
                 ] === true
               ) {
-                this.addInferenceViaReit(
-                  copyArrayRendered.length,
-                  newInference,
-                  hypNumber
-                );
-                this.state.manageDataRegardingHypothesisLine("=");
-              } else {
-                this.setAdvice(
-                  "L'inférence " +
-                    newInference.itself +
-                    " provient d'une hypothèse terminée, elle ne peut donc pas être réitérée.",
-                  "error-advice"
-                );
+                // l'action est possible SSI l'hyp est ouverte.(Il nereste plusqu'à coder l'action en question)
               }
             }
           }}
         />
       );
       copyArrayThemselves.push(newInference);
-
-      this.setState(state => ({
-        allInferencesRendered: copyArrayRendered,
-        allInferencesThemselves: copyArrayThemselves
-      }));
-    };
-
-    this.addInferenceViaReit = (numberInference, newInference, hypNumber) => {
-      let copyArrayRendered = [...this.state.allInferencesRendered];
-      let copyArrayThemselves = [...this.state.allInferencesThemselves];
-      const copyStoredHypId = this.state.hypothesisCurrentLevelAndId.actualID;
-      const storedLevel = this.state.hypothesisCurrentLevelAndId.level; // variable qui n'est utilisée que conditionner la règle reit
-      copyArrayRendered.push(
-        <MakeInference
-          key={Number(copyArrayRendered.length + 1)}
-          inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
-          hypothesisCurrentLevel={this.state.hypothesisCurrentLevelAndId.level}
-          hypothesisCurrentID={this.state.hypothesisCurrentLevelAndId.actualID}
-          inferenceItself={newInference.itself}
-          inferenceCommentary={numberInference + ", reit"}
-          onClickSent={() => {
-            if (this.state.canInferenceBeStored === true) {
-              this.storageForRuleVerification(
-                copyArrayRendered.length, // on restocke le futur numéro d'inférence
-                newInference.itself, // on restocke l'inférence elle-même
-                copyStoredHypId // on réenvoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
-              );
-            } else {
-              // ce if empêche l'utilisateur de reit une inférence qui provient d'une hypothèse terminée
-              if (
-                storedLevel === 0 ||
-                this.state.hypothesisCurrentLevelAndId.hypIsStillOpen[
-                  copyStoredHypId - 1
-                ] === true
-              ) {
-                this.addInferenceViaReit(
-                  copyArrayRendered.length,
-                  newInference,
-                  hypNumber
-                );
-                this.state.manageDataRegardingHypothesisLine("=");
-              } else {
-                this.setAdvice(
-                  "L'inférence " +
-                    newInference.itself +
-                    " provient d'une hypothèse terminée, elle ne peut donc pas être réitérée.",
-                  "error-advice"
-                );
-              }
-            }
-          }}
-        />
-      );
-      newInference.numberCommentary = "" + numberInference;
-      newInference.commentary = "reit";
-      copyArrayThemselves.push(newInference);
-
-      this.setAdvice(
-        "Réitération de l'inférence " + newInference.itself,
-        "rule-advice"
-      );
 
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
@@ -387,10 +312,6 @@ class InferenceProvider extends Component {
     };
 
     this.manageLotsOfStuffAboutHypothesis = (hypothesisItself, hyp, change) => {
-      // consolelog(
-      //   "manageLotsOfStuffAboutHypothesis, l'hypothèse est ",
-      //   hypothesisItself
-      // );
       // (section 1 : change) Cette section gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
       // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
       let copyHypothesisCurrentLevelAndID = {
@@ -626,7 +547,7 @@ class InferenceProvider extends Component {
         previousLine = previousLine.slice(0, previousLine.length - 1);
         newDataRegardingHypothesisLine.push(previousLine);
       } else if (str === "=") {
-        newDataRegardingHypothesisLine.push(previousLine);
+        // newDataRegardingHypothesisLine.push(previousLine);
       }
       // console.log("newDataRegardingHypothesisLine", newDataRegardingHypothesisLine); // très important pour pouvoir faire un truc qui gère les lignes des hyps
       this.setState({

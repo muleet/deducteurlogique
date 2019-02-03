@@ -653,6 +653,19 @@ class RuleProvider extends Component {
       }
     };
 
+    this.reit = (A, numbers) => {
+      let inferenceToAdd = {
+        itself: A,
+        numberCommentary: numbers,
+        commentary: "reit"
+      };
+      this.props.valueInference.addInference(inferenceToAdd);
+      this.props.valueInference.setAdvice(
+        "Inférence réitérée : " + inferenceToAdd.itself,
+        "rule-advice"
+      );
+    };
+
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
     this.addInferenceFromRule = (InferenceItself, hyp) => {
@@ -705,6 +718,8 @@ class RuleProvider extends Component {
         this.reciprocalDisjonctionElimination(arrInf[0], numbers); // A↓B pour ~A ou ~B
       } else if (ruleName === "ex falso") {
         this.exFalso(arrInf[0], arrInf[1], numbers); // A, ~A pour B
+      } else if (ruleName === "reit") {
+        this.reit(arrInf[0], numbers); // A, A
       }
     };
 
@@ -875,6 +890,7 @@ class RuleProvider extends Component {
       // incompatibilityIntroduction: this.incompatibilityIntroduction, // ↑i
       // incompatibilityElimination: this.incompatibilityElimination, // ↑e
       // exFalso: this.exFalso,
+      // reit: this.reit,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       mayAddFirstParenthesis: this.mayAddFirstParenthesis,

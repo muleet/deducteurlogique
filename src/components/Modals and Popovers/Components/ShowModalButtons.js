@@ -187,6 +187,10 @@ class ShowModalButtons extends Component {
       // à faire : pour la règle d'élimination de la disjonction il faut pouvoir supprimer les deux hypothèses créées, à volonté. Y compris si une seule hypothèse avait été créée.
     }
 
+    // if (this.props.ruleName === "reit") {
+    //   return ""; // pas de boutons pour reit
+    // }
+
     return (
       <Fragment>
         {/* {indicatorAboutDetectedInference} RETIRE TEMPORAIREMENT POUR L'UPLOAD*/}

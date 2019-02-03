@@ -136,7 +136,7 @@ class ButtonRuleMaker extends Component {
           );
         }
 
-        if (arrayRulesSent[i] === "reit" || arrayRulesSent[i] === "rep") {
+        if (arrayRulesSent[i] === "rep") {
           arrayUnclickableRule.push(
             <li key={i}>
               {arrayRulesSent[i].name}
@@ -176,7 +176,6 @@ class ButtonRuleMaker extends Component {
                 }
                 ruleName={arrayCurrentRules[i].name}
                 lecture={arrayCurrentRules[i].lecture}
-                // ruleName={arrayCurrentRules[i].name}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
                 HowToUse={organizedUtilization}
@@ -242,7 +241,13 @@ class ButtonRuleMaker extends Component {
               {arrayRulesSent[i].name}
               <RulePopover
                 key={i}
-                RulePopoverClassName="singleRule fatRule selectable"
+                RulePopoverClassName={
+                  "singleRule fatRule " +
+                  this.renderRuleClassName(
+                    arrayCurrentRules[i].name,
+                    arrayCurrentRules[i].available
+                  )
+                }
                 ruleName={arrayCurrentRules[i].name}
                 // lecture={arrayCurrentRules[i].lecture}
                 verbalName={arrayCurrentRules[i].verbalName}
