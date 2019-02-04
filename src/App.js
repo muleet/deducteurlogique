@@ -91,62 +91,18 @@ class App extends Component {
                   <ButtonNav
                     name={<i className="fas fa-home" />}
                     className="flag anarchy"
-                    // className="flag-anarchist"
                     exact={true}
                   />
                 </Link>
                 <Link to="/questions">
-                  <ButtonNav
-                    className="tutorial-button"
-                    // className="info-color"
-                    name={
-                      "Q"
-                      // <i
-                      //   className="fas fa-question"
-                      //   id="interrogation-mark-1"
-                      // />
-                    }
-                  />
+                  <ButtonNav className="tutorial-button" name={"Q"} />
                 </Link>
                 <Link to="/règles">
-                  <ButtonNav
-                    className="tutorial-button"
-                    // className="info-color"
-                    name={
-                      "R"
-                      // <i
-                      //   className="fas fa-question"
-                      //   id="interrogation-mark-2"
-                      // />
-                    }
-                  />
+                  <ButtonNav className="tutorial-button" name={"R"} />
                 </Link>
                 <Link to="/tables-de-vérité">
-                  <ButtonNav
-                    className="tutorial-button"
-                    // className="info-color"
-                    name={
-                      "T"
-                      // <i
-                      //   className="fas fa-question"
-                      //   id="interrogation-mark-2"
-                      // />
-                    }
-                  />
+                  <ButtonNav className="tutorial-button" name={"T"} />
                 </Link>
-                {/* <Link to="/tutoriel">
-                  <ButtonNav
-                    className="tutorial-button unavailable-yet"
-                    // className="info-color"
-                    name={
-                      "T"
-                      // <i
-                      //   className="fas fa-question"
-                      //   id="interrogation-mark-2"
-                      // />
-                    }
-                  />
-                </Link> */}
               </li>
               <li>
                 <Link to="/bac-à-sable-logique">

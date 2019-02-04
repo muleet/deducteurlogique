@@ -70,10 +70,11 @@ class Header extends React.Component {
               name={<i className="far fa-hand-rock" />}
             />
           </NavLink>
-          <h1>
+          <h1 className="website-title">
             déducteur et
             <br />
             formaliseur logique
+            <div className="website-version">version 0.5</div>
           </h1>
         </ul>
       </header>

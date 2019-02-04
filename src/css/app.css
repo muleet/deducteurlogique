@@ -17,6 +17,25 @@ header {
   align-content: center;
 }
 
+.website-title {
+  display:flex;
+  position: relative;
+  font-size: 26px;
+  font-style:italic;
+  justify-content : center;
+  text-align: center;
+}
+
+.website-title .website-version {
+  display: flex;
+}
+
+.website-version {
+  position: absolute;
+  font-size: 13px;
+  margin-top: 57px;
+}
+
 .nav-list {
   display: flex;
   justify-content: column;
@@ -66,16 +85,6 @@ footer {
   background: -moz-linear-gradient(0% 100% 135deg, #000000, #ff0000 0%);
 }
 
-#interrogation-mark-1 {
-  color: red;
-}
-
-#interrogation-mark-2 {
-  color: black;
-  text-shadow: 0px 0px 2px white;
-  /* text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.178); */
-}
-
 .main-auteurs-contact {
   margin: 0px 276px;
 }
@@ -99,11 +108,6 @@ footer {
   position: absolute;
   width: 100%;
   line-height: 350px;
-}
-
-h1 {
-  font-size: 26px;
-  font-style: italic;
 }
 
 h2 {
