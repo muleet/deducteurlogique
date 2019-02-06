@@ -41,7 +41,7 @@ class Deducer extends Component {
           "a : Elle pourrait apprendre à coder.",
           "A : Elle pourrait prendre du temps pour écrire des textes.",
           "C : Elle a du temps et des moyens pour changer d'activité professionnelle.",
-          "k : Elle est une fille ultra méga super trop cool, être son amant doit être un bonheur immense, Quentin aimerait changer pleins de choses en lui pour apprendre à lui plaire."
+          "k : Elle est une fille ultra méga super trop cool, être son amant doit être un bonheur immense."
         ]
       ],
       comment: "",
@@ -81,10 +81,6 @@ class Deducer extends Component {
                       exerciseSent={KokoExercise}
                       valueInference={value}
                     />
-                    <div style={{ fontSize: 16 }}>
-                      Solution possible : (à coder)
-                      {/* <ShowPossibleSolutions valueInference={value} /> */}
-                    </div>
                   </Fragment>
                 </section>
                 <section className="usablesRules">
