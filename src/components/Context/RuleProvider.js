@@ -10,13 +10,13 @@ class RuleProvider extends Component {
     this.negationIntroduction = (B, notB, numbers) => {
       // Il manque ici un truc qui vérifie si la règle est bien utilisée, en tenant compte des parenthèses
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
-      let notA;
-      if (B[0] !== /[pqrs]/ && B[0] !== /\(\)/ && notB[0] !== "~") {
-        this.props.valueInference.setAdvice(
-          'Pour utiliser ~i, B et ~B doivent être similaires, en dehors de la présence d\'un "~" devant ~B.',
-          "error-advice"
-        );
-      } else {
+      let notA,
+        notBbecomeB = notB.substring(1);
+      console.log(notBbecomeB);
+      notBbecomeB = this.removeFirstParenthesis(notBbecomeB);
+      console.log(B, "===", notBbecomeB);
+
+      if (notB[0] === "~" && B === notBbecomeB) {
         if (A.length > 2 && A[1] !== "(") {
           notA = "~(" + A + ")";
         } else {
@@ -25,7 +25,7 @@ class RuleProvider extends Component {
         numbers =
           this.props.valueInference.allHypotheticalInferences[0]
             .numberCommentaryHypothesis +
-          ", " +
+          " & " +
           numbers; // y'a un truc à corriger ici
         const hyp = "hypothèse réfutée";
         const inferenceToAdd = {
@@ -41,13 +41,12 @@ class RuleProvider extends Component {
         this.props.valueInference.setRuleModal("", "ended-well modal-ending");
         this.props.valueInference.changeStorageBoolean();
         this.props.valueInference.addInference(inferenceToAdd, hyp);
+      } else {
+        this.props.valueInference.setAdvice(
+          'Pour utiliser ~i, B et ~B doivent être similaires, en dehors de la présence d\'un "~" devant ~B.',
+          "error-advice"
+        );
       }
-      // else {
-      //   this.props.valueInference.setAdvice(
-      //     "Pour utiliser ~i, vous devez créer une contradiction au sein de l'hypothèse, pour la rejeter",
-      //     "error-advice"
-      //   );
-      // }
     }; // ~i
 
     this.doubleNegationElimination = (notnotA, numbers) => {
@@ -731,16 +730,13 @@ class RuleProvider extends Component {
     };
 
     this.removeFirstParenthesis = inference => {
-      // pas utilisé pour le moment
-      let noFirstParenthesis = "";
       let newInference = "";
       if (inference[0] === "(") {
         for (let i = 1; i < inference.length - 1; i++) {
-          noFirstParenthesis = noFirstParenthesis + newInference[i];
+          newInference = newInference + inference[i];
         }
-        inference = newInference;
       }
-      return inference;
+      return newInference;
     };
 
     this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {

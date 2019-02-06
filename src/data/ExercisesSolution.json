@@ -55,7 +55,7 @@
       { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "|~(p∧q)", "numberCommentary": "b", "commentary": "rep" },
       { "itself": "|p∧q", "numberCommentary": "1, 2", "commentary": "∧i" },
-      { "itself": "~q", "numberCommentary": "1, 3, 4", "commentary": "~i" }
+      { "itself": "~q", "numberCommentary": "1 & 3, 4", "commentary": "~i" }
     ]
   },
   {
