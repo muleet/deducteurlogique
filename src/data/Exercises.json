@@ -202,12 +202,7 @@
     "verbalName": "Réfutation d'hypothèse contradictoire",
     "premisses": ["p"],
     "conclusion": "~(q∧~(p∧q))",
-    "meaning": [
-      [
-        "p : Théophraste est l'élève d'Aristote.",
-        "q : Théophraste est le premier à avoir écrit sur la règle du modus tollens."
-      ]
-    ],
+    "meaning": [],
     "comment": "",
     "rulesImplied": ["rep", "hyp", "~i", "∧i", "∧e"],
     "doable": true

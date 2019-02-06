@@ -12,9 +12,7 @@ class RuleProvider extends Component {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
       let notA,
         notBbecomeB = notB.substring(1);
-      console.log(notBbecomeB);
       notBbecomeB = this.removeFirstParenthesis(notBbecomeB);
-      console.log(B, "===", notBbecomeB);
 
       if (notB[0] === "~" && B === notBbecomeB) {
         if (A.length > 2 && A[1] !== "(") {
@@ -763,7 +761,7 @@ class RuleProvider extends Component {
             arrayToReturn.push(part);
           }
         }
-        console.log(arrayToReturn);
+        // consolelog(arrayToReturn);
         if (arrayToReturn.length === 2) {
           for (let i = 0; i < 2; i++) {
             let noFirstParenthesis = "";

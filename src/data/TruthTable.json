@@ -24,7 +24,9 @@
     "itself": ["V", "V", "V", "V"],
     "category": "always-true",
     "character": "⊤1",
-    "example": ["Le chat est sur le fauteuil.", "Le chat est sur le fauteuil."],
+    "example": [
+      "Si le chat est sur le fauteuil, alors le chat est sur le fauteuil."
+    ],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Venn1111.svg/100px-Venn1111.svg.png"
   },
   {
@@ -187,7 +189,7 @@
   {
     "number": 13,
     "name": "Contraposée du conditionnel",
-    "alternativeName": "Contraposition, Contraposée de l'implication matérielle",
+    "alternativeName": "Modus tollens, Contraposition, Contraposée de l'implication matérielle",
     "description": "",
     "link": "",
     "reductibleTo": "~(~A∧B)",
@@ -201,7 +203,7 @@
   {
     "number": 14,
     "name": "Conditionnel",
-    "alternativeName": "Implication matérielle",
+    "alternativeName": "Modus ponens, Implication matérielle",
     "description": "",
     "link": "",
     "reductibleTo": "~(A∧~B)",

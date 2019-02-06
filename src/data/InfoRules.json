@@ -45,7 +45,7 @@
   {
     "name": "~i",
     "lecture": "~A : il est faux que A",
-    "verbalName": "Règle d'introduction de la négation (modus tollens)",
+    "verbalName": "Règle d'introduction de la négation",
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": [
       ["hyp A", "|B", "|~B", "~A ~i"],
