@@ -13,7 +13,7 @@ function scanInferences(
 ) {
   let result = false; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider (setRuleModal() ou removeLastInference())
   let position = [];
-  const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e", "⊅i", "↓e"];
+  const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e", "⊅i", "↓e", "reit"];
   const twoStepRules = [
     "~i",
     "∧i",
@@ -33,7 +33,9 @@ function scanInferences(
       result = scanOneStepRule(ruleName, allInferencesThemselves[i].itself);
       if (result === true) {
         position.push(i);
+        // break;
       }
+      console.log(position);
     }
   } else if (twoStepRules.indexOf(ruleName) !== -1) {
     // stepOne : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, stepTwo.
@@ -99,7 +101,13 @@ function scanOneStepRule(ruleName, inference) {
     if (arrayAandB.length === 2) {
       isTheRuleAdequate = true;
     }
+  } else if (ruleName === "reit") {
+    // A pour A
+    if (inference) {
+      isTheRuleAdequate = true;
+    }
   }
+
   return isTheRuleAdequate;
 }
 

@@ -108,6 +108,12 @@ class InferenceProvider extends Component {
       );
       copyArrayThemselves.push(newInference);
 
+      // InferenceScanner(
+      //   this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
+      //   copyArrayThemselves, // ensemble des inférences actuelles (qui seront scannées)
+      //   this.state.updateScannedInferences // fonction qui permettra de maj la liste des inférences scannées
+      // );
+
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
         allInferencesThemselves: copyArrayThemselves
@@ -430,19 +436,31 @@ class InferenceProvider extends Component {
 
     this.updateScannedInferences = (bool, position) => {
       // bool répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "position" contient les emplacements de ces inférences.
-      const newRuleModalActivable = bool;
-      let newAllInferencesValidForCurrentRule = [];
-      if (position) {
-        for (let i = 0; i < this.state.allInferencesThemselves.length; i++) {
-          newAllInferencesValidForCurrentRule.push();
-        }
-        newAllInferencesValidForCurrentRule[position] =
-          "inference-validFirstArgument";
-      }
-      this.setState({
-        ruleModalActivable: newRuleModalActivable,
-        allInferencesValidForCurrentRule: newAllInferencesValidForCurrentRule
-      });
+      // let newAllInferencesValidForCurrentRule = [],
+      //   newAllInferencesRendered = this.state.allInferencesRendered;
+      // console.log(newAllInferencesRendered);
+      // if (position) {
+      //   for (let i = 0; i < this.state.allInferencesThemselves.length; i++) {
+      //     newAllInferencesValidForCurrentRule.push("");
+      //   }
+      //   for (let i = 0; i < position.length; i++) {
+      //     newAllInferencesValidForCurrentRule[position[i]] =
+      //       "inference-valid-first-argument";
+      //   }
+      //   for (let i = 0; i < position.length; i++) {
+      //     newAllInferencesRendered[position[i]] = (
+      //       <div className="inference-valid-first-argument">
+      //         {newAllInferencesRendered[[position[i]]]}
+      //       </div>
+      //     );
+      //   }
+      // }
+      // this.setState({
+      //   ruleModalActivable: bool,
+      //   allInferencesValidForCurrentRule: position,
+      //   allInferencesRendered: newAllInferencesRendered
+      //   // allInferencesValidForCurrentRule: newAllInferencesValidForCurrentRule
+      // });
     };
 
     this.updateStepRule = bool => {

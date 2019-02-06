@@ -94,6 +94,8 @@ class App extends Component {
                     exact={true}
                   />
                 </Link>
+              </li>
+              <li>
                 <Link to="/questions">
                   <ButtonNav className="tutorial-button" name={"Q"} />
                 </Link>

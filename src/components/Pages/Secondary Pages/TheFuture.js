@@ -99,9 +99,8 @@ const TheFuture = () => {
           <p className="maybenever-available-rule">
             - Dans l'interface de la déduction, il faudrait un bouton qui
             permettrait de mettre dans le presse-papier a) toutes les prémisses,
-            et b) la conclusion, et c) toute la déduction en cours en affichant
-            le niveau d'hypothèses par des barres verticales devant chaque
-            ligne.
+            b) la conclusion, et c) toute la déduction en cours en affichant le
+            niveau d'hypothèses par des barres verticales devant chaque ligne.
           </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, pouvoir réduire instantanément une

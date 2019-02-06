@@ -95,11 +95,12 @@
 }
 
 /* Ci-dessous, la section dédiée aux scans des inférences (hé bé wé) */
-.inference-validFirstArgument {
+.inference-valid-first-argument {
   /* border-bottom: 3px solid; */
   border-bottom: 1px solid;
+  color: red;
 }
 
-.inference-validSecondArgument {
+.inference-valid-second-argument {
   border-bottom: 3px double;
 }

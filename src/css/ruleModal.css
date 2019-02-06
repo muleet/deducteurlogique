@@ -124,6 +124,12 @@
   margin-right: 8px;
 }
 
+.rule-modal-hypothetical-argument {
+  /* border: 2px solid rgb(75, 75, 255); */
+  background-color: rgba(75, 75, 255, 0.178);
+  /* background-color: rgba(0, 0, 255, 0.15); */
+}
+
 .infNum-modal {
   color: #86ffab;
   margin-right: 10px;
@@ -153,8 +159,10 @@
 .rule-modal-hypothesis {
   display: inline-block;
   max-width: 280px;
-  background-color: rgba(0, 0, 255, 0.15);
-  box-shadow: -5px 5px 50px rgba(0, 89, 255, 0.237);
+  background-color: rgba(75, 75, 255, 0.178);
+  /* background-color: rgba(0, 0, 255, 0.15); */
+  /* box-shadow: -5px 5px 50px rgba(0, 89, 255, 0.237); */
+  box-shadow: -5px 5px 50px rgba(75, 75, 255, 0.178);
   border-radius: 10px;
   padding: 10px;
   outline: none;

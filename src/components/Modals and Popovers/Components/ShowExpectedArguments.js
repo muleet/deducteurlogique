@@ -43,17 +43,17 @@ class ShowExpectedArguments extends Component {
     // déclaration des arguments attendus
     let hypContent = (
       <p className="awaiting-an-inference-blinking">
-        {"<Créez d'abord une hypothèse>"}
+        {"<Créez d'abord une hypothèse A, à l'aide de la règle \"hyp\">"}
       </p>
     );
     let firstArgument = (
       <p className="awaiting-an-inference-blinking">
-        {"<Cliquez sur une inférence qui suit l'hypothèse>"}
+        {"<Cliquez sur une inférence B au sein de l'hypothèse A>"}
       </p>
     );
     let secondArgument = (
       <p className="awaiting-an-inference-blinking">
-        {"<Cliquez sur une inférence qui nie la précédente inférence>"}
+        {"<Cliquez sur une inférence qui nie l'inférence B>"}
       </p>
     );
 
@@ -101,7 +101,7 @@ class ShowExpectedArguments extends Component {
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          <div className="rule-modal-single-argument">
+          <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
             {expectedArguments[0] + " : "}
             {hypContent}
           </div>
@@ -132,7 +132,7 @@ class ShowExpectedArguments extends Component {
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          <div className="rule-modal-single-argument">
+          <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
             {expectedArguments[0] + " : "}
             {hypContent}
           </div>
