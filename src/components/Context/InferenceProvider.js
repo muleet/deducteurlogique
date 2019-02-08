@@ -141,38 +141,58 @@ class InferenceProvider extends Component {
           hypID
         );
 
-        if (this.state.hypothesisCurrentLevelAndId.actualID === hypID) {
+        // cas de la règle reit
+        if (
+          ruleName === "reit" &&
+          this.state.hypothesisCurrentLevelAndId.actualID >= hypID
+        ) {
+          copyArrayStoredInference = [infItself]; // inférence elle-même
+          copyStoredNumbers = [numInference]; // nombre de l'inférence
+        } else if (ruleName === "reit") {
+          this.setAdvice(
+            "Impossible de réitérer une inférence provenant d'une hypothèse terminée",
+            "error-advice"
+          );
+        }
+
+        // cas de toutes les règles sauf reit
+        if (
+          ruleName !== "reit" &&
+          this.state.hypothesisCurrentLevelAndId.actualID === hypID
+        ) {
           if (expectedArgumentsLength === copyArrayStoredInference.length) {
-            // copyArrayStoredInference = []; // inférence elle-même
-            // copyStoredNumbers = []; // nombre de l'inférence
-            copyArrayStoredInference = [infItself]; // inférence el  le-même
+            // dans ce if on reset les arguments, vu que l'utilisateur a dépassé le nombre d'arguments max en cliquant
+            copyArrayStoredInference = [infItself]; // inférence elle-même
             copyStoredNumbers = [numInference]; // nombre de l'inférence
           } else {
             copyArrayStoredInference.push(infItself);
             copyStoredNumbers.push(" " + numInference);
             copyStoredHypId.push(hypID);
           }
-          // maj du state
-          this.setState(state => ({
-            storedInference: copyArrayStoredInference,
-            storedNumbers: copyStoredNumbers,
-            storedHypID: copyStoredHypId
-          }));
-        } else {
+        } else if (ruleName !== "reit") {
           this.setAdvice(
-            "Impossible d'utiliser des inférences hors de l'hypothèse en cours",
+            "Impossible d'utiliser des inférences hors de l'hypothèse en cours, sauf pour reit",
             "error-advice"
           );
         }
+
         // cas de la règle ∨e
         if (ruleName === "∨e") {
-          console.log("la règle ∨e fait son oeuvre");
+          console.log(
+            "la règle d'élimination de la disjonction inclusive, fait son oeuvre"
+          );
           this.longStorageForRuleVerification(
             infItself,
             copyStoredNumbers,
             true
           );
         }
+
+        this.setState(state => ({
+          storedInference: copyArrayStoredInference,
+          storedNumbers: copyStoredNumbers,
+          storedHypID: copyStoredHypId
+        }));
       }
     };
 

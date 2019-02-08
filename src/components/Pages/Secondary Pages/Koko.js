@@ -5,7 +5,7 @@ import InferenceProvider, {
   InferenceContext
 } from "../../Context/InferenceProvider";
 import ShowInformationsExercise from "../../Calcul Tools/Deducer Tools/ShowInformationsExercise";
-import ShowPossibleSolutions from "../../Calcul Tools/Deducer Tools/ShowPossibleSolutions";
+// import ShowPossibleSolutions from "../../Calcul Tools/Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "../../Calcul Tools/Deducer Tools/ShowPossibleMeaning";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
@@ -73,7 +73,7 @@ class Deducer extends Component {
                       exerciseSent={KokoExercise} // on envoie les données de l'exercice actuel
                       minimalLineNumber={KokoSolution.length}
                     />
-                  }{" "}
+                  }
                   <Fragment>
                     <ul className="deduction">{value.allInferencesRendered}</ul>
                     {value.advice}
