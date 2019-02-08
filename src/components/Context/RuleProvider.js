@@ -12,8 +12,9 @@ class RuleProvider extends Component {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
       let notA,
         notBbecomeB = notB.substring(1);
-      notBbecomeB = this.removeFirstParenthesis(notBbecomeB);
-
+      console.log("étape 2", notB, "!==", notBbecomeB);
+      notBbecomeB = this.mayRemoveFirstParenthesis(notBbecomeB);
+      console.log("étape 3", B, "===", notBbecomeB);
       if (notB[0] === "~" && B === notBbecomeB) {
         if (A.length > 2 && A[1] !== "(") {
           notA = "~(" + A + ")";
@@ -727,9 +728,10 @@ class RuleProvider extends Component {
       return inference;
     };
 
-    this.removeFirstParenthesis = inference => {
-      let newInference = "";
+    this.mayRemoveFirstParenthesis = inference => {
+      let newInference = inference;
       if (inference[0] === "(") {
+        newInference = "";
         for (let i = 1; i < inference.length - 1; i++) {
           newInference = newInference + inference[i];
         }
@@ -888,7 +890,7 @@ class RuleProvider extends Component {
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       mayAddFirstParenthesis: this.mayAddFirstParenthesis,
-      removeFirstParenthesis: this.removeFirstParenthesis,
+      mayRemoveFirstParenthesis: this.mayRemoveFirstParenthesis,
       returnWhatIsBeforeAndAfterTheOperator: this
         .returnWhatIsBeforeAndAfterTheOperator,
       returnAnInferenceOutOfTwoInferences: this
