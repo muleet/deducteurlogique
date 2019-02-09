@@ -6,12 +6,6 @@
     "auteur": "Inscription gravée sur le fronton du temple de Delphes"
   },
   {
-    "grec": "Ἐλέφαντα ἐκ μυίας ποιεῖς",
-    "alphabetlatin": "Eléphanta èk muias poieῖs",
-    "traduction": "Tu fais d'une mouche un éléphant",
-    "auteur": "Lucien de Samosate"
-  },
-  {
     "grec": "Ἕν οἶδα ὅτι οὐδὲν οἶδα",
     "alphabetlatin": "Hén oȋda hóti oudèn oȋda",
     "traduction": "Tout ce que je sais, c'est que je ne sais rien",
@@ -102,6 +96,12 @@
     "grec": "Πολυμήτις Ὀδυσσεύς",
     "alphabetlatin": "Polymếtis Odysseús",
     "traduction": "Ulysse aux multiples ruses"
+  },
+  {
+    "grec": "Ἐλέφαντα ἐκ μυίας ποιεῖς",
+    "alphabetlatin": "Eléphanta èk muias poieῖs",
+    "traduction": "Tu fais d'une mouche un éléphant",
+    "auteur": "Lucien de Samosate"
   },
   {
     "grec": "Πώγων οὐ ποιεῖ φιλόσοφον",

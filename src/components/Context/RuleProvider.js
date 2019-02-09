@@ -12,9 +12,7 @@ class RuleProvider extends Component {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
       let notA,
         notBbecomeB = notB.substring(1);
-      console.log("étape 2", notB, "!==", notBbecomeB);
       notBbecomeB = this.mayRemoveFirstParenthesis(notBbecomeB);
-      console.log("étape 3", B, "===", notBbecomeB);
       if (notB[0] === "~" && B === notBbecomeB) {
         if (A.length > 2 && A[1] !== "(") {
           notA = "~(" + A + ")";

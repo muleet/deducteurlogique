@@ -18,11 +18,11 @@ header {
 }
 
 .website-title {
-  display:flex;
+  display: flex;
   position: relative;
   font-size: 26px;
-  font-style:italic;
-  justify-content : center;
+  font-style: italic;
+  justify-content: center;
   text-align: center;
 }
 
@@ -322,4 +322,33 @@ h3 {
   margin: 3px;
   min-width: 25px;
   text-align: center;
+}
+
+/* Section au sujet de la page secrète des locutions */
+
+.all-locutions {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.single-locution {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.single-line-locution {
+}
+
+.greek-color {
+  color: rgb(196, 160, 94);
+}
+
+.french-color {
+  color: rgb(228, 190, 114);
 }
