@@ -9,65 +9,89 @@ import RuleProvider from "../RuleProvider";
 function scanInferences(
   ruleName,
   allInferencesThemselves,
-  updateScannedInferences
+  updateScannedInferences,
+  allHypotheticalInferences
 ) {
-  let result = false; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider (setRuleModal() ou removeLastInference())
-  let position = [];
-  const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e", "⊅i", "↓e", "reit"];
-  const twoStepRules = [
-    "~i",
-    "∧i",
-    "∨e",
-    "⊻i",
-    "⊻e",
-    "⊃e",
-    "≡i",
-    "⊅e",
-    "↑i",
-    "↑e",
-    "↓i",
-    "ex falso"
-  ];
-  if (oneStepRules.indexOf(ruleName) !== -1) {
-    for (let i = 0; i < allInferencesThemselves.length; i++) {
-      result = scanOneStepRule(ruleName, allInferencesThemselves[i].itself);
-      if (result === true) {
-        position.push(i);
-        // break;
+  if (ruleName) {
+    let result = true; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider (setRuleModal() ou removeLastInference())
+    let typeOfRule = "";
+    let position = [];
+    const oneStepRules = [
+      "~~e",
+      "∧e",
+      "∧i",
+      "∨i",
+      "⊃i",
+      "≡e",
+      "⊅i",
+      "↓e",
+      "reit"
+    ];
+    const twoStepRules = [
+      "⊃e",
+      "~i",
+      "∨e",
+      "⊻i",
+      "⊻e",
+      "≡i",
+      "↑i",
+      "↑e",
+      "↓i",
+      "ex falso"
+    ];
+    if (oneStepRules.indexOf(ruleName) !== -1) {
+      for (let i = 0; i < allInferencesThemselves.length; i++) {
+        result = scanOneStepRule(
+          ruleName,
+          allInferencesThemselves[i].itself,
+          allHypotheticalInferences
+        );
+        if (result === true) {
+          position.push(i);
+          typeOfRule = "oneStep";
+        }
       }
-      console.log(position);
-    }
-  } else if (twoStepRules.indexOf(ruleName) !== -1) {
-    // stepOne : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, stepTwo.
-    // stepTwo : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
-    for (let i = 0; i < allInferencesThemselves.length; i++) {
-      const stepOne = scanOneStepRule(
-        ruleName,
-        allInferencesThemselves[i],
-        "stepOne"
-      ); // true or false
-      if (stepOne === true) {
-        for (let j = 0; j < allInferencesThemselves.length; j++) {
-          // const stepTwo = scanOneStepRule(
-          //   ruleName,
-          //   allInferencesThemselves[i],
-          //   "stepTwo"
-          // ); // true or scanOneStepRulescanOneStepRulefalse
-          if (allInferencesThemselves[i][j]) {
-            // const dataAboutTheRightInferences = "blabla";
-            // updateScannedInferences(dataAboutTheRightInferences);
-            // result;
+    } else if (twoStepRules.indexOf(ruleName) !== -1) {
+      console.log(
+        "inferenceScanner, bonjour on est bien dans une règle à deux étapes"
+      );
+      for (let i = 0; i < allInferencesThemselves.length; i++) {
+        if (allInferencesThemselves[i].itself.indexOf(ruleName[0]) !== -1) {
+          // stepOne : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, stepTwo.
+          let arrayOfJ = [];
+          for (let j = 0; j < allInferencesThemselves.length; j++) {
+            // stepTwo : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
+            result = scanTwoStepRule(
+              ruleName,
+              allInferencesThemselves[i].itself,
+              allInferencesThemselves[j].itself,
+              allHypotheticalInferences
+            );
+            // console.log("IF, result", result);
+            if (result === true) {
+              arrayOfJ.push([j]);
+              typeOfRule = "twoStep";
+            }
           }
+          position.push(i, arrayOfJ);
         }
       }
     }
+    console.log(
+      "inferenceScanner retourne une règle, ",
+      typeOfRule,
+      " les positions",
+      position
+    );
+    updateScannedInferences(typeOfRule, position, allInferencesThemselves); // result = true or false ; position = contient l'emplacement des inférences valides pour la règle
+    // return result;
+  } else {
+    // updateScannedInferences(false);
   }
-  updateScannedInferences(result, position); // result = true or false ; position = contient l'emplacement des inférences valides pour la règle
-  return result;
 }
 
-// la fonction scanWithTheRightRule sert à "~~e" "∧e" "∨i" "⊃i" "≡e" "⊅i" "↓e"
-function scanOneStepRule(ruleName, inference) {
+// la fonction scanWithTheRightRule sert à "~~e" "∧e" "∧i""∨i" "⊃i" "≡e" "⊅i" "↓e"
+function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
   let isTheRuleAdequate = false;
   if (ruleName === "~~e") {
     // ~~A pour A
@@ -80,25 +104,37 @@ function scanOneStepRule(ruleName, inference) {
     if (arrayAandB.length === 2) {
       isTheRuleAdequate = true;
     }
+  } else if (ruleName === "∧i") {
+    // A, B pour A∧B
+    if (inference) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "∨i") {
     // A pour A∨B
-    if (inference) {
+    const arrayAorB = returnWhatIsBeforeAndAfterTheOperator(inference, "∨");
+    if (arrayAorB.length === 2) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊃i") {
     // (A), B pour A⊃B
+    if (allHypotheticalInferences) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "≡e") {
     // A≡B pour A⊃B ou B⊃A
-    const arrayAandB = returnWhatIsBeforeAndAfterTheOperator(inference, "≡");
-    if (arrayAandB.length === 2) {
+    const arrayAiffB = returnWhatIsBeforeAndAfterTheOperator(inference, "≡");
+    if (arrayAiffB.length === 2) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊅i") {
     // (A), B pour A⊅B
+    if (allHypotheticalInferences) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "↓e") {
     // A↓B pour ~A ou ~B
-    const arrayAandB = returnWhatIsBeforeAndAfterTheOperator(inference, "↓");
-    if (arrayAandB.length === 2) {
+    const arraynotAnotB = returnWhatIsBeforeAndAfterTheOperator(inference, "↓");
+    if (arraynotAnotB.length === 2) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "reit") {
@@ -111,20 +147,40 @@ function scanOneStepRule(ruleName, inference) {
   return isTheRuleAdequate;
 }
 
-function scanTwoStepRule(ruleName, arrInf) {
-  // "~i" "∧i" "∨e" "⊻i" "⊻e" "⊃e" "≡i" "⊅e" "↑i" "↑e" "↓i" "ex falso"
-  if (ruleName === "~i") {
+function scanTwoStepRule(
+  ruleName,
+  inferenceOne,
+  inferenceTwo,
+  allHypotheticalInferences
+) {
+  // "⊃e" "~i"  "∨e" "⊻i" "⊻e" "≡i" "⊅e" "↑i" "↑e" "↓i" "ex falso"
+  let isTheRuleAdequate;
+  if (ruleName === "⊃e") {
+    // A, A⊃B pour B
+    // console.log("inferenceOne avant", inferenceOne);
+    inferenceOne = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊃");
+    // console.log("inferenceOne après", inferenceOne);
+    // console.log("condition : ", inferenceOne[0], "===", inferenceTwo);
+    if (inferenceOne[0] === inferenceTwo) {
+      isTheRuleAdequate = true;
+    }
+  } else if (ruleName === "~i") {
     // B, ~B, pour réfuter l'hypothèse (A)
-  } else if (ruleName === "∧i") {
-    // A, B pour A∧B
+    let notBbecomeB = inferenceTwo.substring(1);
+    notBbecomeB = mayRemoveFirstParenthesis(notBbecomeB);
+    if (allHypotheticalInferences && inferenceOne === notBbecomeB) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "∨e") {
     // A∨B + conc de |A + conc de |B, pour A ou B
   } else if (ruleName === "⊻i") {
     // A⊅B, B⊅A pour A⊻B
   } else if (ruleName === "⊻e") {
     // A, A⊻B pour ~B (ou ~A, A⊻B, pour B)
-  } else if (ruleName === "⊃e") {
-    // A, A⊃B pour B
+    const AorB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊻");
+    if (AorB[0] === inferenceTwo || AorB[1] === inferenceTwo) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "≡i") {
     // A⊃B, B⊃A pour A≡B
   } else if (ruleName === "⊅e") {
@@ -138,6 +194,8 @@ function scanTwoStepRule(ruleName, arrInf) {
   } else if (ruleName === "ex falso") {
     // A, ~A pour B
   }
+  // console.log("IF, isTheRuleAdequate", isTheRuleAdequate);
+  return isTheRuleAdequate;
 }
 
 function mayAddFirstParenthesis(inference) {
@@ -147,17 +205,15 @@ function mayAddFirstParenthesis(inference) {
   return inference;
 }
 
-function removeFirstParenthesis(inference) {
-  // pas utilisé pour le moment
-  let noFirstParenthesis = "";
-  let newInference = "";
+function mayRemoveFirstParenthesis(inference) {
+  let newInference = inference;
   if (inference[0] === "(") {
+    newInference = "";
     for (let i = 1; i < inference.length - 1; i++) {
-      noFirstParenthesis = noFirstParenthesis + newInference[i];
+      newInference = newInference + inference[i];
     }
-    inference = newInference;
   }
-  return inference;
+  return newInference;
 }
 
 function returnWhatIsBeforeAndAfterTheOperator(str, operator) {
@@ -184,7 +240,6 @@ function returnWhatIsBeforeAndAfterTheOperator(str, operator) {
         arrayToReturn.push(part);
       }
     }
-    console.log(arrayToReturn);
     if (arrayToReturn.length === 2) {
       for (let i = 0; i < 2; i++) {
         let noFirstParenthesis = "";

@@ -34,7 +34,7 @@ class ShowModalButtons extends Component {
           ", avant de la valider.",
         "error-advice"
       );
-      this.props.valueInference.setRuleModal(true, "ended-badly");
+      this.props.valueInference.setRuleModal("stillOpen", "ended-badly");
     }
   }
 
@@ -100,7 +100,7 @@ class ShowModalButtons extends Component {
           ", avant de la valider.",
         "error-advice"
       );
-      this.props.valueInference.setRuleModal(true, "ended-badly");
+      this.props.valueInference.setRuleModal("stillOpen", "ended-badly");
     }
   }
 
@@ -134,7 +134,7 @@ class ShowModalButtons extends Component {
           className="rule-modal-button"
           onClick={() => {
             this.props.valueInference.changeStorageBoolean("resetButStillTrue");
-            this.props.valueInference.setRuleModal(true, "");
+            this.props.valueInference.setRuleModal("stillOpen", "");
           }}
         >
           <i className="fas fa-eraser" />
@@ -159,19 +159,6 @@ class ShowModalButtons extends Component {
         </p>
       );
     }
-    // console.log(
-    //   "bordel de sa race",
-    //   this.props.valueInference.ruleModalActivable
-    // );
-    if (this.props.valueInference.ruleModalActivable === false) {
-      indicatorAboutDetectedInference = (
-        <div className="indicator-data-undetected">●</div>
-      );
-    } else if (this.props.valueInference.ruleModalActivable === true) {
-      indicatorAboutDetectedInference = (
-        <div className="indicator-data-detected">●</div>
-      );
-    }
 
     if (this.props.ruleName === "∨e") {
       buttonSpecificRule = (
@@ -193,7 +180,6 @@ class ShowModalButtons extends Component {
 
     return (
       <Fragment>
-        {/* {indicatorAboutDetectedInference} RETIRE TEMPORAIREMENT POUR L'UPLOAD*/}
         {/* les deux boutons ci-desous ne concernent que ∨i */}
         {buttonRemoveLastCharacter}
         {buttonInverseInference}

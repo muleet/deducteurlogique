@@ -79,6 +79,7 @@ class ButtonRuleMaker extends Component {
     }
     if (this.props.valueInference.ruleModalShown.normal === false) {
       valueInference.setRuleModal(
+        // cas 1
         "initial",
         "",
         objectForTheRuleModal,
@@ -86,14 +87,13 @@ class ButtonRuleMaker extends Component {
       );
     } else {
       valueInference.setRuleModal(
-        "reverse",
+        // cas 2 et 3
+        "change",
         "",
         objectForTheRuleModal,
         expectedArguments.length
       );
     }
-
-    // valueInference.setRuleModal("reverse", "", objectForTheRuleModal);
   }
 
   render() {
@@ -259,8 +259,32 @@ class ButtonRuleMaker extends Component {
         }
       }
     }
+
+    // section dédiée au bouton qui permet d'activer ou désactiver la détection des inférences compatibles avec la règle en cours
+    let eyeOfCompatibleInferences = "";
+    if (!this.props.valueInference.isTheInferenceScannerActive) {
+      eyeOfCompatibleInferences = (
+        <i
+          className="fas fa-eye-slash icon"
+          onClick={() => {
+            this.props.valueInference.toggleScanInference();
+          }}
+        />
+      );
+    } else if (this.props.valueInference.isTheInferenceScannerActive) {
+      eyeOfCompatibleInferences = (
+        <i
+          className="fas fa-eye icon"
+          onClick={() => {
+            this.props.valueInference.toggleScanInference();
+          }}
+        />
+      );
+    }
+    // le return
     return (
       <Fragment>
+        {eyeOfCompatibleInferences}
         <div className="all-button-about-inferences">
           <i
             className="fas fa-long-arrow-alt-left icon"

@@ -14,6 +14,18 @@ import InferenceProvider, {
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
 // Elle réceptionne InferenceContext, qui va véhiculer les infos de chaque nouvelle inférence.
 class Deducer extends Component {
+  renderCompatibleInferencesForCurrentRule(value) {
+    let result = "";
+    if (value.isTheInferenceScannerActive) {
+      result = (
+        <div className="all-indicators-about-inference-validation">
+          {value.allInferencesValidForCurrentRule}
+        </div>
+      ); /* on affiche le tableau contenant les inférences compatibles ou non */
+    }
+    return result;
+  }
+
   render() {
     let ArrayAllPremisses = [
       "p",
@@ -62,7 +74,10 @@ class Deducer extends Component {
                     />
                   }
                   <Fragment>
-                    <ul className="deduction">{value.allInferencesRendered}</ul>
+                    <ul className="deduction">
+                      {this.renderCompatibleInferencesForCurrentRule(value)}
+                      {value.allInferencesRendered}
+                    </ul>
                     {/* <Debugger valueInference={value} /> */}
                     {value.advice}
                   </Fragment>

@@ -79,6 +79,18 @@ class Deducer extends Component {
     );
   }
 
+  renderCompatibleInferencesForCurrentRule(value) {
+    let result = "";
+    if (value.isTheInferenceScannerActive) {
+      result = (
+        <div className="all-indicators-about-inference-validation">
+          {value.allInferencesValidForCurrentRule}
+        </div>
+      ); /* on affiche le tableau contenant les inférences compatibles ou non */
+    }
+    return result;
+  }
+
   render() {
     if (
       isNaN(this.props.exerciseNumber) ||
@@ -131,6 +143,7 @@ class Deducer extends Component {
                             {value.dataRegardingHypothesisLine}
                           </div>
                         } */}
+                        {this.renderCompatibleInferencesForCurrentRule(value)}
                         {
                           value.allInferencesRendered /* on affiche le tableau */
                         }

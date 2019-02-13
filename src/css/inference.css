@@ -18,6 +18,7 @@
 }
 
 .inferenceItself-color {
+  /* utilisé seulement pour la fenêtre rule-modale je crois */
   color: #93b5ff;
 }
 
@@ -92,15 +93,4 @@
   50% {
     opacity: 0.3;
   }
-}
-
-/* Ci-dessous, la section dédiée aux scans des inférences (hé bé wé) */
-.inference-valid-first-argument {
-  /* border-bottom: 3px solid; */
-  border-bottom: 1px solid;
-  color: red;
-}
-
-.inference-valid-second-argument {
-  border-bottom: 3px double;
 }

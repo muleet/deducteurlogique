@@ -17,7 +17,6 @@ class InferenceProvider extends Component {
     this.addInference = (newInference, hyp) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
-      // console.log("allInferenceValideForCurrentRule", this.state.allInferencesValidForCurrentRule);
       let hypNumber = 0;
       let inferenceType = "";
       let copyArrayRendered = [...this.state.allInferencesRendered];
@@ -80,11 +79,6 @@ class InferenceProvider extends Component {
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}
           inferenceType={inferenceType}
-          allInferencesValidForCurrentRule={
-            this.state.allInferencesValidForCurrentRule[
-              Number(copyArrayRendered.length + 1)
-            ]
-          }
           onClickSent={() => {
             if (this.state.canInferenceBeStored === true) {
               this.storageForRuleVerification(
@@ -108,11 +102,17 @@ class InferenceProvider extends Component {
       );
       copyArrayThemselves.push(newInference);
 
-      // InferenceScanner(
-      //   this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
-      //   copyArrayThemselves, // ensemble des inférences actuelles (qui seront scannées)
-      //   this.state.updateScannedInferences // fonction qui permettra de maj la liste des inférences scannées
-      // );
+      if (
+        this.state.ruleModalContent.ruleName &&
+        this.state.ruleModalShown.normal === true
+      ) {
+        InferenceScanner(
+          this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
+          copyArrayThemselves, // ensemble des inférences actuelles (qui seront scannées)
+          this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
+          this.state.allHypotheticalInferences // contenu des hyp en cours
+        );
+      }
 
       this.setState(state => ({
         allInferencesRendered: copyArrayRendered,
@@ -165,6 +165,7 @@ class InferenceProvider extends Component {
             copyArrayStoredInference = [infItself]; // inférence elle-même
             copyStoredNumbers = [numInference]; // nombre de l'inférence
           } else {
+            // dans ce else on rajoute un argument, vu que l'utilisateur n'a pas encore dépassé le nombre d'arguments max en cliquant
             copyArrayStoredInference.push(infItself);
             copyStoredNumbers.push(" " + numInference);
             copyStoredHypId.push(hypID);
@@ -265,10 +266,12 @@ class InferenceProvider extends Component {
         let copyAllInferencesThemselves = [
           ...this.state.allInferencesThemselves
         ];
+        let copyAllInferencesValidForCurrentRule = [
+          ...this.state.allInferencesValidForCurrentRule
+        ];
         let copyAHI = [...this.state.allHypotheticalInferences];
         let copyAEHI = [...this.state.allEndedHypotheticalInferences];
         const AITLength = copyAllInferencesThemselves.length - 1;
-        console.log("copyAIT", copyAllInferencesThemselves);
         if (copyAllInferencesThemselves[AITLength].commentary === "hyp") {
           // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
           copyAHI = copyAHI.slice(1);
@@ -284,18 +287,15 @@ class InferenceProvider extends Component {
         }
         copyAllInferencesRendered.pop(); // on extrait une partie du tableau, la première en partant de la fin
         copyAllInferencesThemselves.pop();
-
-        InferenceScanner(
-          this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
-          copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
-          this.state.updateScannedInferences // fonction qui permettra de maj la liste des inférences scannées
-        );
-
+        if (copyAllInferencesValidForCurrentRule.length > 0) {
+          copyAllInferencesValidForCurrentRule.pop();
+        }
         this.setState(state => ({
           allInferencesRendered: copyAllInferencesRendered,
           allInferencesThemselves: copyAllInferencesThemselves,
           allHypotheticalInferences: copyAHI,
-          allEndedHypotheticalInferences: copyAEHI
+          allEndedHypotheticalInferences: copyAEHI,
+          allInferencesValidForCurrentRule: copyAllInferencesValidForCurrentRule
         }));
       }
     };
@@ -304,6 +304,7 @@ class InferenceProvider extends Component {
       this.setState(state => ({
         allInferencesRendered: [],
         allInferencesThemselves: [],
+        allInferencesValidForCurrentRule: [],
         storedInference: [],
         storedNumbers: "",
         storedHypID: 0,
@@ -324,7 +325,6 @@ class InferenceProvider extends Component {
           expectedArguments: [],
           ruleName: ""
         },
-        ruleModalActivable: false,
         stepRule: 0,
         ruleModalChoiceContent: "",
         // autre
@@ -406,7 +406,7 @@ class InferenceProvider extends Component {
     };
 
     this.setRuleModal = (str, strClassName, ruleModalContent, eal) => {
-      // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "reverse", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
+      // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "change", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
       // "eal" contient expectedArguments.length
       let newRuleModalShown = { normal: false };
       let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
@@ -416,21 +416,50 @@ class InferenceProvider extends Component {
       } else {
         newRuleModalContent = this.state.ruleModalContent;
       }
-      if (str === "initial") {
-        newRuleModalShown.normal = true;
-      } else if (str === true) {
+      if (str === "stillOpen" || str === "initial") {
+        // cas 1 : rien n'était ouvert et on ouvre un premier ruleModal
         newRuleModalShown.normal = true;
       } else if (
-        str === "reverse" &&
+        str === "change" &&
         ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName
       ) {
+        // cas 2 : un ruleModal s'est ouvert mais il avait un ruleName différent du ruleModal déjà en cours
         newRuleModalShown.normal = true;
         this.changeStorageBoolean("resetButStillTrue", eal);
-      } else if (str === "reverse") {
-        if (!this.state.ruleModalShown.normal) {
-          newRuleModalShown.normal = true;
-        }
+      } else if (str === "change" && !newRuleModalShown.shown) {
+        // cas 3 : L'utilisateur a fermé le ruleModal qui était ouvert, en cliquant sur le bouton du ruleModal, par conséquent plus rien n'est ouvert
+        this.updateScannedInferences("reset"); // il n'y a plus de ruleModal en cours, donc plus de détection des inférences compatibles
       }
+
+      if (str === "hypothesis-ended-well" || str === "user-closed-the-modal") {
+        // cas 4 : fin d'une règle qui ferme le ruleModal (par exemple ⊃i ⊅i ~i)
+        // cas 5 : l'utilisateur appuie sur la touche de fermeture du ruleModal
+        newRuleModalShown.normal = false;
+        this.updateScannedInferences("reset"); // il n'y a plus de ruleModal en cours, donc plus de détection des inférences compatibles
+      }
+
+      if (
+        // newRuleModalShown.normal === true ||
+        str === "initial" ||
+        str === "stillOpen" ||
+        (str === "change" &&
+          // ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName &&
+          newRuleModalShown.normal === true)
+      ) {
+        console.log(
+          "SEEEETRULEMODAL, les 3 données pour IF ",
+          newRuleModalContent.ruleName,
+          this.state.allInferencesThemselves,
+          this.state.updateScannedInferences
+        );
+        InferenceScanner(
+          newRuleModalContent.ruleName, // nom de la règle du ruleModal en cours
+          this.state.allInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
+          this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
+          this.state.allHypotheticalInferences // contenu des hyp en cours
+        );
+      }
+
       if (strClassName === "ended-well") {
         newClassName = "rule-modal-ended-well";
       } else if (strClassName === "ended-badly") {
@@ -438,49 +467,104 @@ class InferenceProvider extends Component {
       }
 
       // ci-dessous on utilise la fonction permettant de scanner les inférences pour voir s'il y en a qui sont compatibles avec la règle du ruleModal en cours
-      const arrayResultScan = InferenceScanner(
-        newRuleModalContent.ruleName, // nom de la règle du ruleModal en cours
-        this.state.allInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
-        this.state.updateScannedInferences // fonction qui permettra de maj la liste des inférences scannées
-      );
-      console.log("arrayresultscan", arrayResultScan);
 
-      // arrayResultScan contient la position de la ou les inférence(s) utilisables par la règle sélectionnée + le premier caractère à partir duquel il faut distinguer A de B pour des règles utilisant plusieurs inférences, comme le modus ponens
       this.setState({
         ruleModalShown: newRuleModalShown,
         ruleModalClassName: newClassName,
         ruleModalContent: newRuleModalContent
-        // ruleModalActivable = true
       });
     };
 
-    this.updateScannedInferences = (bool, position) => {
-      // bool répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "position" contient les emplacements de ces inférences.
-      // let newAllInferencesValidForCurrentRule = [],
-      //   newAllInferencesRendered = this.state.allInferencesRendered;
-      // console.log(newAllInferencesRendered);
-      // if (position) {
-      //   for (let i = 0; i < this.state.allInferencesThemselves.length; i++) {
-      //     newAllInferencesValidForCurrentRule.push("");
-      //   }
-      //   for (let i = 0; i < position.length; i++) {
-      //     newAllInferencesValidForCurrentRule[position[i]] =
-      //       "inference-valid-first-argument";
-      //   }
-      //   for (let i = 0; i < position.length; i++) {
-      //     newAllInferencesRendered[position[i]] = (
-      //       <div className="inference-valid-first-argument">
-      //         {newAllInferencesRendered[[position[i]]]}
-      //       </div>
-      //     );
-      //   }
-      // }
-      // this.setState({
-      //   ruleModalActivable: bool,
-      //   allInferencesValidForCurrentRule: position,
-      //   allInferencesRendered: newAllInferencesRendered
-      //   // allInferencesValidForCurrentRule: newAllInferencesValidForCurrentRule
-      // });
+    this.updateScannedInferences = (
+      typeOfRule,
+      position,
+      allInferencesThemselves
+    ) => {
+      // typeOfRule répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "position" contient les emplacements de ces inférences ; allInferencesThemselves est envoyé depuis InferenceScanner, lequel le recevait de setRuleModal, ou addInference, ou removeLastInference
+      let newAllInferencesValidForCurrentRule = [];
+      // if (typeOfRule && this.state.ruleModalShown.normal) {
+      if (typeOfRule === "reset") {
+      } else if (typeOfRule) {
+        console.log(
+          "updateScannedInferenes, this.state.ruleModalShown.normal",
+          this.state.ruleModalShown.normal,
+          "typeOfRule",
+          typeOfRule,
+          "position",
+          position,
+          "allInferencesThemselves.length",
+          allInferencesThemselves.length
+        );
+        // ici on maj la liste des inférences valides/invalides
+        if (position) {
+          if (typeOfRule === "oneStep") {
+            // cas des règles à un seul argument, position est un tableau contenant des nombres
+            for (let i = 0; i < allInferencesThemselves.length; i++) {
+              console.log(
+                "position.indexOf(i) !== -1",
+                position.indexOf(i) !== -1
+              );
+              if (position.indexOf(i) !== -1) {
+                newAllInferencesValidForCurrentRule.push(
+                  <div key={i} className="indicator-data-detected">
+                    •
+                  </div>
+                );
+              } else {
+                newAllInferencesValidForCurrentRule.push(
+                  <div key={i} className="indicator-data-undetected">
+                    •
+                  </div>
+                );
+              }
+            }
+          } else if (typeOfRule === "twoStep") {
+            // cas des règles à deux arguments, position est un tableau contenant des tableaux contenant un nombre puis un tableau contenant des nombres
+            console.log(
+              "updateScannedInferences, coucou on est bien dans une règle à deux étapes"
+            );
+            for (let i = 0; i < allInferencesThemselves.length; i++) {
+              newAllInferencesValidForCurrentRule.push(
+                <div key={i} className="indicator-data-undetected">
+                  •
+                </div>
+              );
+            }
+            for (let i = 0; i < allInferencesThemselves.length; i++) {
+              if (position[0] === i) {
+                console.log("USI, avec", position, "on teste", i);
+                newAllInferencesValidForCurrentRule[i] = (
+                  <div key={i} className="indicator-data-first-part-detected">
+                    •
+                  </div>
+                );
+                for (let j = 0; j < position[1].length; j++) {
+                  console.log("USI, on teste ", j);
+                  newAllInferencesValidForCurrentRule[position[1][j]] = (
+                    <div
+                      key={1000 + j}
+                      className="indicator-data-second-part-detected"
+                    >
+                      •
+                    </div>
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+      this.setState({
+        allInferencesValidForCurrentRule: newAllInferencesValidForCurrentRule
+      });
+    };
+
+    this.toggleScanInference = () => {
+      let newtoggle = false;
+      if (!this.state.isTheInferenceScannerActive) {
+        newtoggle = true;
+      }
+      this.setState({ isTheInferenceScannerActive: newtoggle });
     };
 
     this.updateStepRule = bool => {
@@ -515,18 +599,6 @@ class InferenceProvider extends Component {
           possibleMeaningShown: false
         });
       }
-      // if (
-      //   (this.state.possibleMeaningShown =
-      //     "afficher une signification possible")
-      // ) {
-      //   this.setState({
-      //     possibleMeaningShown: str
-      //   });
-      // } else if (this.state.possibleMeaningShown[0] !== "a") {
-      //   this.setState({
-      //     possibleMeaningShown: "afficher une signification possible"
-      //   });
-      // }
     };
 
     this.setInversion = () => {
@@ -596,7 +668,9 @@ class InferenceProvider extends Component {
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
       allInferencesThemselves: [], // contient les inférences elles-mêmes + leur commentaire + les nombres justifiant leur commentaire
-      allInferencesValidForCurrentRule: [], // contient des tableaux à deux données : la position de l'inférence dans la liste des inférences + la classeName qu'il faut lui donner (soit "inference-validFirstArgument", soit "inference-validSecondArgument"), autrement dit allValidInference ne contient rien sur les inférences invalides pour la règle en cours
+      allInferencesValidForCurrentRule: [], // contient des tableaux à deux données : la position du premier caractère dans l'inf + la classeName qu'il faut lui donner (soit "inference-validFirstArgument", soit "inference-validSecondArgument"), autrement dit allValidInference ne contient rien sur les inférences invalides pour la règle en cours
+      isTheInferenceScannerActive: false, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
+      toggleScanInference: this.toggleScanInference,
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
@@ -631,7 +705,6 @@ class InferenceProvider extends Component {
         expectedArguments: [],
         ruleName: ""
       },
-      ruleModalActivable: false,
       stepRule: 0,
       ruleModalChoiceContent: "",
       setChoiceContent: this.setChoiceContent,

@@ -10,14 +10,11 @@ class MakeInference extends Component {
     for (let i = 0; i < this.props.hypothesisCurrentLevel; i++) {
       hypothesisLevel += "|";
     }
+
     return (
       <Fragment>
         <li
-          className={
-            "inferenceGlobal selectable " +
-            this.props.inferenceType +
-            this.props.allInferencesValidForCurrentRule
-          }
+          className={"inferenceGlobal selectable " + this.props.inferenceType}
           onClick={this.props.onClickSent}
         >
           {/* {this.props.dataRegardingHypothesisLine} */}

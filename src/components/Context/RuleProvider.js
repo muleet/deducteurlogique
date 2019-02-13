@@ -35,7 +35,10 @@ class RuleProvider extends Component {
             inferenceToAdd.itself,
           "rule-advice"
         );
-        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.setRuleModal(
+          "hypothesis-ended-well",
+          "ended-well modal-ending"
+        );
         this.props.valueInference.changeStorageBoolean();
         this.props.valueInference.addInference(inferenceToAdd, hyp);
       } else {
@@ -318,7 +321,10 @@ class RuleProvider extends Component {
       );
       const hyp = "hypothèse validée";
       this.props.valueInference.addInference(inferenceToAdd, hyp);
-      this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+      this.props.valueInference.setRuleModal(
+        "hypothesis-ended-well",
+        "ended-well modal-ending"
+      );
       this.props.valueInference.changeStorageBoolean();
     }; // ⊃i
 
@@ -447,7 +453,10 @@ class RuleProvider extends Component {
         );
         const hyp = "hypothèse validée";
         this.props.valueInference.addInference(inferenceToAdd, hyp);
-        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.setRuleModal(
+          "hypothesis-ended-well",
+          "ended-well modal-ending"
+        );
         this.props.valueInference.changeStorageBoolean();
       } else {
         this.props.valueInference.setAdvice(
