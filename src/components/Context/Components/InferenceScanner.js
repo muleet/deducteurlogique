@@ -45,6 +45,9 @@ function scanInferences(
       "↓i",
       "ex falso"
     ];
+    const hypotheticalRules = ["⊃i", "⊅i", "~i"];
+    const doesTheRuleImplyAnHypothesis =
+      hypotheticalRules.indexOf(ruleName) !== -1;
     if (oneStepRules.indexOf(ruleName) !== -1) {
       typeOfRule = "oneStep";
       for (let i = 0; i < allInferencesThemselves.length; i++) {
@@ -91,7 +94,9 @@ function scanInferences(
           // étape 1 : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, on l'ajoute aux semis-détectés et on passe à l'étape 2.
           allInferencesThemselves[i].itself.indexOf(characterDetector) !== -1
         ) {
-          positions.semiDetectedFirstArgument.push(i);
+          if (!doesTheRuleImplyAnHypothesis) {
+            positions.semiDetectedFirstArgument.push(i);
+          }
           for (let j = 0; j < allInferencesThemselves.length; j++) {
             // étape 2 : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
             result = scanTwoStepRule(
@@ -116,18 +121,17 @@ function scanInferences(
         }
       }
     }
-    if (
-      (ruleName === "~i" || ruleName === "⊃i" || ruleName === "⊅i") &&
-      allHypotheticalInferences[0]
-    ) {
+    if (doesTheRuleImplyAnHypothesis && allHypotheticalInferences[0]) {
       // si la règle implique une hypothèse, on prend son numéro d'inférence
       positions.currentHypothesis =
-        allHypotheticalInferences[0].numberCommentaryHypothesis;
+        allHypotheticalInferences[0].numberCommentaryHypothesis - 1;
     }
     console.log(
-      "inferenceScanner retourne une règle, ",
+      "inferenceScanner retourne la règle, ",
+      ruleName,
+      " qui est de type ",
       typeOfRule,
-      " les positions",
+      " avec les positions ",
       positions
     );
     prepareUpdate(
@@ -135,8 +139,7 @@ function scanInferences(
       positions,
       allInferencesThemselves,
       updateScannedInferences
-    ); // result = true or false ; positions = contient l'emplacement des inférences valides pour la règle
-    // return result;
+    );
   }
 }
 
@@ -155,6 +158,7 @@ function prepareUpdate(
     if (positions) {
       let key = 0;
       // étape 0 : toutes les inférences reçoivent un rond rouge
+      console.log("étape 0, AIT.L", allInferencesThemselves.length);
       for (let i = 0; i < allInferencesThemselves.length; i++, key++) {
         newAllInferencesValidForCurrentRule.push(
           <div key={i} className="indicator-data-undetected">
@@ -182,9 +186,12 @@ function prepareUpdate(
         }
       } else if (typeOfRule === "twoStep") {
         // cas des règles à deux arguments, positions est un objet contenant des clés qui sont des tableaux contenant des tableaux contenant des nombres
-        // étape 1 : on remplace certains ronds rouges par un rond vert transparent, lorsque l'argument principal est détecté mais pas le deuxième
-        // étape 4 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
+        // étape 0 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
         if (positions.currentHypothesis) {
+          console.log(
+            "l'emplacement de l'hyp est",
+            positions.currentHypothesis
+          );
           newAllInferencesValidForCurrentRule[positions.currentHypothesis] = (
             <div key={1000} className="indicator-data-hypothesis-detected">
               •
@@ -192,6 +199,7 @@ function prepareUpdate(
           );
         }
         if (positions.semiDetectedFirstArgument) {
+          // étape 1 : on remplace certains ronds rouges par un rond vert transparent, lorsque l'argument principal est détecté mais pas le deuxième
           for (
             let i = 0;
             i < positions.semiDetectedFirstArgument.length;
