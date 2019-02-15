@@ -20,7 +20,7 @@ function scanInferences(
       semiDetectedFirstArgument: [], // on ajoute toute position trouvée
       detectedFirstArgument: [], // si l'on trouve une position de second argument, on déplace le nombre dans semiDetectedFA vers detectedFA
       detectedSecondArgument: [], // ne peut contenir des nombres que si detectedFirstArgument en contient
-      currentHypothesis: "" // ne contient qu'un nombre
+      currentHyp: { num: "", type: "" } // contient un nombre et un str contenant le nom de la clé où se trouve le nombre
     };
     const oneStepRules = [
       "~~e",
@@ -122,9 +122,34 @@ function scanInferences(
       }
     }
     if (doesTheRuleImplyAnHypothesis && allHypotheticalInferences[0]) {
-      // si la règle implique une hypothèse, on prend son numéro d'inférence
-      positions.currentHypothesis =
-        allHypotheticalInferences[0].numberCommentaryHypothesis - 1;
+      // si la règle implique une hypothèse ET qu'une hypothèse est en cours, on prend son numéro d'inférence
+      positions.currentHyp.num = Number(
+        allHypotheticalInferences[0].numberCommentaryHypothesis - 1
+      );
+      positions.currentHyp.type = "indicator-data-hypothesis-detected";
+      console.log(
+        "wesh wesh wesh",
+        positions.semiDetectedFirstArgument,
+        positions.currentHyp.num
+      );
+      if (
+        positions.semiDetectedFirstArgument.indexOf(
+          positions.currentHyp.num
+        ) !== -1
+      ) {
+        positions.currentHyp.type += " indicator-data-semi-detected";
+      } else if (
+        positions.detectedFirstArgument.indexOf(positions.currentHyp.num) !== -1
+      ) {
+        positions.currentHyp.type += " indicator-data-detected";
+      } else if (
+        positions.detectedSecondArgument.indexOf(positions.currentHyp.num) !==
+        -1
+      ) {
+        positions.currentHyp.type += " indicator-data-second-argument-detected";
+      } else {
+        positions.currentHyp.type += " indicator-data-undetected";
+      }
     }
     console.log(
       "inferenceScanner retourne la règle, ",
@@ -151,6 +176,7 @@ function prepareUpdate(
 ) {
   // typeOfRule répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "positions" contient les emplacements de ces inférences ; allInferencesThemselves est envoyé depuis InferenceScanner, lequel le recevait de setRuleModal, ou addInference, ou removeLastInference
   let newAllInferencesValidForCurrentRule = [];
+
   // if (typeOfRule && this.state.ruleModalShown.normal) {
   if (typeOfRule === "reset") {
   } else if (typeOfRule) {
@@ -187,17 +213,7 @@ function prepareUpdate(
       } else if (typeOfRule === "twoStep") {
         // cas des règles à deux arguments, positions est un objet contenant des clés qui sont des tableaux contenant des tableaux contenant des nombres
         // étape 0 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
-        if (positions.currentHypothesis) {
-          console.log(
-            "l'emplacement de l'hyp est",
-            positions.currentHypothesis
-          );
-          newAllInferencesValidForCurrentRule[positions.currentHypothesis] = (
-            <div key={1000} className="indicator-data-hypothesis-detected">
-              •
-            </div>
-          );
-        }
+
         if (positions.semiDetectedFirstArgument) {
           // étape 1 : on remplace certains ronds rouges par un rond vert transparent, lorsque l'argument principal est détecté mais pas le deuxième
           for (
@@ -251,6 +267,15 @@ function prepareUpdate(
               </div>
             );
           }
+        }
+        if (positions.currentHyp) {
+          // étape 4, pour les règles avec une hypothèse, il faut d'abord trouver si le numéro en question est présent dans une autre catégorie
+          console.log("l'emplacement de l'hyp est", positions.currentHyp);
+          newAllInferencesValidForCurrentRule[positions.currentHyp.num] = (
+            <div key={1000} className={positions.currentHyp.type}>
+              •
+            </div>
+          );
         }
       }
     }
