@@ -24,7 +24,10 @@ class ShowModalButtons extends Component {
         this.props.ruleName !== "↓e"
       ) {
         // ∧e et ≡e et ↓e sont exclus parce qu'ils ne doivent pas s'arrêter juste après que l'utilisateur ait validé la règle
-        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.setRuleModal(
+          "rule-ended-well",
+          "ended-well modal-ending"
+        );
         this.props.valueInference.changeStorageBoolean();
       }
     } else {
@@ -90,7 +93,10 @@ class ShowModalButtons extends Component {
       );
       if (this.props.ruleName !== "∧e") {
         // ∧e est exclus parce qu'il ne doit pas s'arrêter juste après que l'utilisateur ait validé la règle
-        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.setRuleModal(
+          "rule-ended-well",
+          "ended-well modal-ending"
+        );
         this.props.valueInference.changeStorageBoolean();
       }
     } else {

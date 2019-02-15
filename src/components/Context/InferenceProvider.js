@@ -431,7 +431,11 @@ class InferenceProvider extends Component {
         this.updateScannedInferences("reset"); // il n'y a plus de ruleModal en cours, donc plus de détection des inférences compatibles
       }
 
-      if (str === "hypothesis-ended-well" || str === "user-closed-the-modal") {
+      if (
+        str === "hypothesis-ended-well" ||
+        str === "user-closed-the-modal" ||
+        str === "rule-ended-well"
+      ) {
         // cas 4 : fin d'une règle qui ferme le ruleModal (par exemple ⊃i ⊅i ~i)
         // cas 5 : l'utilisateur appuie sur la touche de fermeture du ruleModal
         newRuleModalShown.normal = false;

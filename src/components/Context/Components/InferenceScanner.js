@@ -87,12 +87,10 @@ function scanInferences(
           // cas bizarre donc je fais rien pour le moment
         }
 
-        console.log("IS avant étape 1");
         if (
           // étape 1 : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, on l'ajoute aux semis-détectés et on passe à l'étape 2.
           allInferencesThemselves[i].itself.indexOf(characterDetector) !== -1
         ) {
-          console.log("IS après étape 1");
           positions.semiDetectedFirstArgument.push(i);
           for (let j = 0; j < allInferencesThemselves.length; j++) {
             // étape 2 : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
@@ -184,8 +182,15 @@ function prepareUpdate(
         }
       } else if (typeOfRule === "twoStep") {
         // cas des règles à deux arguments, positions est un objet contenant des clés qui sont des tableaux contenant des tableaux contenant des nombres
-        console.log("prepareUpdate, on est bien avec une règle twoStep");
         // étape 1 : on remplace certains ronds rouges par un rond vert transparent, lorsque l'argument principal est détecté mais pas le deuxième
+        // étape 4 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
+        if (positions.currentHypothesis) {
+          newAllInferencesValidForCurrentRule[positions.currentHypothesis] = (
+            <div key={1000} className="indicator-data-hypothesis-detected">
+              •
+            </div>
+          );
+        }
         if (positions.semiDetectedFirstArgument) {
           for (
             let i = 0;
@@ -202,7 +207,7 @@ function prepareUpdate(
             );
           }
         }
-        // étape 3 : on remplace d'autres ronds rouges par un rond vert
+        // étape 2 : on remplace d'autres ronds rouges par un rond vert
         if (positions.detectedFirstArgument) {
           for (
             let i = 0;
@@ -238,14 +243,6 @@ function prepareUpdate(
               </div>
             );
           }
-        }
-        // étape 4 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
-        if (positions.currentHypothesis) {
-          newAllInferencesValidForCurrentRule[positions.currentHypothesis] = (
-            <div key={1000} className="indicator-data-hypothesis-detected">
-              •
-            </div>
-          );
         }
       }
     }
