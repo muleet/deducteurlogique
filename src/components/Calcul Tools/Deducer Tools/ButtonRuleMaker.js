@@ -9,6 +9,15 @@ import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
 
 class ButtonRuleMaker extends Component {
+  renderSlashedEyeForButtonRule(bool) {
+    if (
+      bool === "no" &&
+      this.props.valueInference.isTheInferenceScannerActive
+    ) {
+      return <i className="fas fa-eye-slash tiny-info-rule" />;
+    }
+  }
+
   renderModal() {
     if (this.props.valueInference.ruleModalContent.ruleName === "hyp") {
       return (
@@ -144,7 +153,7 @@ class ButtonRuleMaker extends Component {
                 key={i}
                 RulePopoverClassName="fatRule unclickableRule"
                 ruleName={arrayRulesSent[i]}
-                // lecture={arrayCurrentRules[i].lecture}
+                lecture={arrayCurrentRules[i].lecture}
                 verbalName={arrayCurrentRules[i].verbalName}
                 Description={arrayCurrentRules[i].verbalDescription}
               />
@@ -207,6 +216,9 @@ class ButtonRuleMaker extends Component {
               }}
             >
               {arrayRulesSent[i].name}
+              {this.renderSlashedEyeForButtonRule(
+                arrayCurrentRules[i].canDetectInferences
+              )}
               <RulePopover
                 key={i}
                 RulePopoverClassName={
@@ -239,6 +251,9 @@ class ButtonRuleMaker extends Component {
               }}
             >
               {arrayRulesSent[i].name}
+              {this.renderSlashedEyeForButtonRule(
+                arrayCurrentRules[i].canDetectInferences
+              )}
               <RulePopover
                 key={i}
                 RulePopoverClassName={
@@ -261,27 +276,41 @@ class ButtonRuleMaker extends Component {
     }
 
     // section dédiée au bouton qui permet d'activer ou désactiver la détection des inférences compatibles avec la règle en cours
-    let eyeOfCompatibleInferences = "";
+    let eyeOfCompatibleInferences = "",
+      textOfTheEye = (
+        <div className="question-mark">
+          <div className="question-mark-content">
+            Cliquez pour activer/désactiver la détection automatique des
+            inférences compatibles avec une règle. Les règles avec lesquelles
+            cette fonctionnalité ne fonctionne pas ou mal, ont un petit oeil
+            barré sur leur bouton.
+          </div>
+        </div>
+      );
     if (!this.props.valueInference.isTheInferenceScannerActive) {
       eyeOfCompatibleInferences = (
         <i
-          className="fas fa-eye-slash icon"
+          className="fas fa-eye-slash icon question-mark-button"
           onClick={() => {
             this.props.valueInference.toggleScanInference();
           }}
-        />
+        >
+          {textOfTheEye}
+        </i>
       );
     } else if (this.props.valueInference.isTheInferenceScannerActive) {
       eyeOfCompatibleInferences = (
         <i
-          className="fas fa-eye icon"
+          className="fas fa-eye icon question-mark-button"
           onClick={() => {
             this.props.valueInference.toggleScanInference();
           }}
-        />
+        >
+          {textOfTheEye}
+        </i>
       );
     }
-    // le return
+    // pour finir, on retourne tous les boutons relatifs aux règles
     return (
       <Fragment>
         {eyeOfCompatibleInferences}

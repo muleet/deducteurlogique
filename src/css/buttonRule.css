@@ -82,3 +82,11 @@
 #negationElimination {
   font-size: 16px;
 }
+
+.tiny-info-rule {
+  /* concerne le petit oeil qui indique si la détection des inférences fonctionne avec cette règle */
+  position: absolute;
+  /* margin-top: -5px; */
+  /* margin-left: -5px; */
+  font-size: 12px;
+}

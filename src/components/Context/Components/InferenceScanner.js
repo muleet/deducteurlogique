@@ -1,4 +1,4 @@
-// import React, { Component } from "react";
+import React, { Component } from "react";
 import RuleProvider from "../RuleProvider";
 
 // composant appelé par InferenceProvider, avec les props ruleName, areTheInferencesDetected, allInferencesThemselves
@@ -15,7 +15,13 @@ function scanInferences(
   if (ruleName) {
     let result = true; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider (setRuleModal() ou removeLastInference())
     let typeOfRule = "";
-    let position = [];
+    let positions = {
+      detectedOneStepArgument: [], // seule donnée pour les règles à un seul argument
+      semiDetectedFirstArgument: [], // on ajoute toute position trouvée
+      detectedFirstArgument: [], // si l'on trouve une position de second argument, on déplace le nombre dans semiDetectedFA vers detectedFA
+      detectedSecondArgument: [], // ne peut contenir des nombres que si detectedFirstArgument en contient
+      currentHypothesis: "" // ne contient qu'un nombre
+    };
     const oneStepRules = [
       "~~e",
       "∧e",
@@ -40,6 +46,7 @@ function scanInferences(
       "ex falso"
     ];
     if (oneStepRules.indexOf(ruleName) !== -1) {
+      typeOfRule = "oneStep";
       for (let i = 0; i < allInferencesThemselves.length; i++) {
         result = scanOneStepRule(
           ruleName,
@@ -47,8 +54,7 @@ function scanInferences(
           allHypotheticalInferences
         );
         if (result === true) {
-          position.push(i);
-          typeOfRule = "oneStep";
+          positions.detectedOneStepArgument.push(i);
         }
       }
     } else if (twoStepRules.indexOf(ruleName) !== -1) {
@@ -56,38 +62,195 @@ function scanInferences(
         "inferenceScanner, bonjour on est bien dans une règle à deux étapes"
       );
       for (let i = 0; i < allInferencesThemselves.length; i++) {
-        if (allInferencesThemselves[i].itself.indexOf(ruleName[0]) !== -1) {
-          // stepOne : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, stepTwo.
-          let arrayOfJ = [];
+        // étape 0 : on crée le caractère qui va permettre de détecter si l'on parle des bonnes inférences
+        typeOfRule = "twoStep";
+        let characterDetector = "";
+        if (
+          ruleName === "⊻e" ||
+          ruleName === "⊃e" ||
+          ruleName === "⊅e" ||
+          ruleName === "↑e"
+        ) {
+          characterDetector = ruleName[0];
+        } else if (ruleName === "≡i") {
+          // il faut deux inférences avec un ⊃
+          characterDetector = "⊃";
+        } else if (ruleName === "⊻i") {
+          // il faut deux inférences avec un ⊅
+          characterDetector = "⊅";
+        } else if (ruleName === "↓i") {
+          // il faut deux inférences avec un ~
+          characterDetector = "~";
+        } else if (ruleName === "↑i") {
+          // cas bizarre donc je fais rien pour le moment
+        } else if (ruleName === "∨e") {
+          // cas bizarre donc je fais rien pour le moment
+        }
+
+        console.log("IS avant étape 1");
+        if (
+          // étape 1 : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, on l'ajoute aux semis-détectés et on passe à l'étape 2.
+          allInferencesThemselves[i].itself.indexOf(characterDetector) !== -1
+        ) {
+          console.log("IS après étape 1");
+          positions.semiDetectedFirstArgument.push(i);
           for (let j = 0; j < allInferencesThemselves.length; j++) {
-            // stepTwo : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
+            // étape 2 : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
             result = scanTwoStepRule(
               ruleName,
               allInferencesThemselves[i].itself,
               allInferencesThemselves[j].itself,
               allHypotheticalInferences
             );
+            console.log(
+              "IS étape 2 avec le i : '",
+              i,
+              "' le result est ",
+              result
+            );
             // console.log("IF, result", result);
             if (result === true) {
-              arrayOfJ.push([j]);
-              typeOfRule = "twoStep";
+              positions.detectedFirstArgument.push(i);
+              positions.detectedSecondArgument.push(j);
+              // positions.semiDetectedFirstArgument.pop();
             }
           }
-          position.push(i, arrayOfJ);
         }
       }
+    }
+    if (
+      (ruleName === "~i" || ruleName === "⊃i" || ruleName === "⊅i") &&
+      allHypotheticalInferences[0]
+    ) {
+      // si la règle implique une hypothèse, on prend son numéro d'inférence
+      positions.currentHypothesis =
+        allHypotheticalInferences[0].numberCommentaryHypothesis;
     }
     console.log(
       "inferenceScanner retourne une règle, ",
       typeOfRule,
       " les positions",
-      position
+      positions
     );
-    updateScannedInferences(typeOfRule, position, allInferencesThemselves); // result = true or false ; position = contient l'emplacement des inférences valides pour la règle
+    prepareUpdate(
+      typeOfRule,
+      positions,
+      allInferencesThemselves,
+      updateScannedInferences
+    ); // result = true or false ; positions = contient l'emplacement des inférences valides pour la règle
     // return result;
-  } else {
-    // updateScannedInferences(false);
   }
+}
+
+function prepareUpdate(
+  typeOfRule,
+  positions,
+  allInferencesThemselves,
+  updateScannedInferences
+) {
+  // typeOfRule répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "positions" contient les emplacements de ces inférences ; allInferencesThemselves est envoyé depuis InferenceScanner, lequel le recevait de setRuleModal, ou addInference, ou removeLastInference
+  let newAllInferencesValidForCurrentRule = [];
+  // if (typeOfRule && this.state.ruleModalShown.normal) {
+  if (typeOfRule === "reset") {
+  } else if (typeOfRule) {
+    // ici on maj la liste des inférences valides/invalides
+    if (positions) {
+      let key = 0;
+      // étape 0 : toutes les inférences reçoivent un rond rouge
+      for (let i = 0; i < allInferencesThemselves.length; i++, key++) {
+        newAllInferencesValidForCurrentRule.push(
+          <div key={i} className="indicator-data-undetected">
+            •
+          </div>
+        );
+      }
+      if (typeOfRule === "oneStep") {
+        // cas des règles à un seul argument, positions est un objet contenant une clé "detectedOneStepArgument" qui est un tableau contenant des nombres
+        // étape 1 : on remplace certains ronds rouges par des ronds verts
+        if (positions.detectedOneStepArgument) {
+          for (
+            let i = 0;
+            i < positions.detectedOneStepArgument.length;
+            i++, key++
+          ) {
+            newAllInferencesValidForCurrentRule[
+              positions.detectedOneStepArgument[i]
+            ] = (
+              <div key={key} className="indicator-data-detected">
+                •
+              </div>
+            );
+          }
+        }
+      } else if (typeOfRule === "twoStep") {
+        // cas des règles à deux arguments, positions est un objet contenant des clés qui sont des tableaux contenant des tableaux contenant des nombres
+        console.log("prepareUpdate, on est bien avec une règle twoStep");
+        // étape 1 : on remplace certains ronds rouges par un rond vert transparent, lorsque l'argument principal est détecté mais pas le deuxième
+        if (positions.semiDetectedFirstArgument) {
+          for (
+            let i = 0;
+            i < positions.semiDetectedFirstArgument.length;
+            i++, key++
+          ) {
+            console.log("USI, avec", positions, "on teste", i);
+            newAllInferencesValidForCurrentRule[
+              positions.semiDetectedFirstArgument[i]
+            ] = (
+              <div key={key} className="indicator-data-semi-detected">
+                •
+              </div>
+            );
+          }
+        }
+        // étape 3 : on remplace d'autres ronds rouges par un rond vert
+        if (positions.detectedFirstArgument) {
+          for (
+            let i = 0;
+            i < positions.detectedFirstArgument.length;
+            i++, key++
+          ) {
+            console.log("USI, on teste ", i);
+            newAllInferencesValidForCurrentRule[
+              positions.detectedFirstArgument[i]
+            ] = (
+              <div key={key} className="indicator-data-detected">
+                •
+              </div>
+            );
+          }
+        }
+        // étape 3 : on remplace d'autres ronds rouges par un rond bleu ciel
+        if (positions.detectedSecondArgument) {
+          for (
+            let i = 0;
+            i < positions.detectedSecondArgument.length;
+            i++, key++
+          ) {
+            console.log("USI, on teste ", i);
+            newAllInferencesValidForCurrentRule[
+              positions.detectedSecondArgument[i]
+            ] = (
+              <div
+                key={key}
+                className="indicator-data-second-argument-detected"
+              >
+                •
+              </div>
+            );
+          }
+        }
+        // étape 4 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
+        if (positions.currentHypothesis) {
+          newAllInferencesValidForCurrentRule[positions.currentHypothesis] = (
+            <div key={1000} className="indicator-data-hypothesis-detected">
+              •
+            </div>
+          );
+        }
+      }
+    }
+  }
+  updateScannedInferences(newAllInferencesValidForCurrentRule);
 }
 
 // la fonction scanWithTheRightRule sert à "~~e" "∧e" "∧i""∨i" "⊃i" "≡e" "⊅i" "↓e"
@@ -157,10 +320,9 @@ function scanTwoStepRule(
   let isTheRuleAdequate;
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
-    // console.log("inferenceOne avant", inferenceOne);
     inferenceOne = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊃");
-    // console.log("inferenceOne après", inferenceOne);
-    // console.log("condition : ", inferenceOne[0], "===", inferenceTwo);
+    console.log("verification ⊃e", inferenceOne[0], "===", inferenceTwo);
+
     if (inferenceOne[0] === inferenceTwo) {
       isTheRuleAdequate = true;
     }

@@ -475,87 +475,12 @@ class InferenceProvider extends Component {
       });
     };
 
-    this.updateScannedInferences = (
-      typeOfRule,
-      position,
-      allInferencesThemselves
-    ) => {
-      // typeOfRule répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "position" contient les emplacements de ces inférences ; allInferencesThemselves est envoyé depuis InferenceScanner, lequel le recevait de setRuleModal, ou addInference, ou removeLastInference
-      let newAllInferencesValidForCurrentRule = [];
-      // if (typeOfRule && this.state.ruleModalShown.normal) {
-      if (typeOfRule === "reset") {
-      } else if (typeOfRule) {
-        console.log(
-          "updateScannedInferenes, this.state.ruleModalShown.normal",
-          this.state.ruleModalShown.normal,
-          "typeOfRule",
-          typeOfRule,
-          "position",
-          position,
-          "allInferencesThemselves.length",
-          allInferencesThemselves.length
-        );
-        // ici on maj la liste des inférences valides/invalides
-        if (position) {
-          if (typeOfRule === "oneStep") {
-            // cas des règles à un seul argument, position est un tableau contenant des nombres
-            for (let i = 0; i < allInferencesThemselves.length; i++) {
-              console.log(
-                "position.indexOf(i) !== -1",
-                position.indexOf(i) !== -1
-              );
-              if (position.indexOf(i) !== -1) {
-                newAllInferencesValidForCurrentRule.push(
-                  <div key={i} className="indicator-data-detected">
-                    •
-                  </div>
-                );
-              } else {
-                newAllInferencesValidForCurrentRule.push(
-                  <div key={i} className="indicator-data-undetected">
-                    •
-                  </div>
-                );
-              }
-            }
-          } else if (typeOfRule === "twoStep") {
-            // cas des règles à deux arguments, position est un tableau contenant des tableaux contenant un nombre puis un tableau contenant des nombres
-            console.log(
-              "updateScannedInferences, coucou on est bien dans une règle à deux étapes"
-            );
-            for (let i = 0; i < allInferencesThemselves.length; i++) {
-              newAllInferencesValidForCurrentRule.push(
-                <div key={i} className="indicator-data-undetected">
-                  •
-                </div>
-              );
-            }
-            for (let i = 0; i < allInferencesThemselves.length; i++) {
-              if (position[0] === i) {
-                console.log("USI, avec", position, "on teste", i);
-                newAllInferencesValidForCurrentRule[i] = (
-                  <div key={i} className="indicator-data-first-part-detected">
-                    •
-                  </div>
-                );
-                for (let j = 0; j < position[1].length; j++) {
-                  console.log("USI, on teste ", j);
-                  newAllInferencesValidForCurrentRule[position[1][j]] = (
-                    <div
-                      key={1000 + j}
-                      className="indicator-data-second-part-detected"
-                    >
-                      •
-                    </div>
-                  );
-                }
-              }
-            }
-          }
-        }
+    this.updateScannedInferences = newArrayOfCompatibleInferences => {
+      if (newArrayOfCompatibleInferences === "reset") {
+        newArrayOfCompatibleInferences = "";
       }
       this.setState({
-        allInferencesValidForCurrentRule: newAllInferencesValidForCurrentRule
+        allInferencesValidForCurrentRule: newArrayOfCompatibleInferences
       });
     };
 

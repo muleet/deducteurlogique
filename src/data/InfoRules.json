@@ -1,7 +1,7 @@
 [
   {
     "name": "rep",
-    "lecture": "",
+    "lecture": "A se lit \"on admet que A\"",
     "verbalName": "Règle de répétition",
     "verbalDescription": "Si A était dans les prémisses, alors on peut répéter A dans la déduction. (Cliquez sur la prémisse à répéter.)",
     "arrayUtilization": "",
@@ -11,17 +11,18 @@
   },
   {
     "name": "reit",
-    "lecture": "",
+    "lecture": "A se lit \"on réitère A, puisqu'il était déjà admis\"",
     "verbalName": "Règle de réitération",
     "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. Il est impossible de réitérer l'inférence A si elle provient d'une hypothèse terminée.",
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer, issue d'une hypothèse en cours.",
     "expectedArguments": ["A"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "hyp",
-    "lecture": "|A : on fait l'hypothèse que A",
+    "lecture": "|A se lit \"on fait l'hypothèse que A\"",
     "verbalName": "Hypothèse",
     "verbalDescription": "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les y utiliser.",
     "arrayUtilization": [
@@ -40,11 +41,12 @@
     "arrayUtilization": [["A", "~A", "B ex falso"], ["A", "~A", "C ex falso"]],
     "instruction": "Cliquez sur A, puis ~A, et décidez arbitrairement de B, pour inférer B.",
     "expectedArguments": ["A", "~A"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "~i",
-    "lecture": "~A : il est faux que A",
+    "lecture": "~A se lit \"il est faux que A\"",
     "verbalName": "Règle d'introduction de la négation",
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
     "arrayUtilization": [
@@ -53,41 +55,45 @@
     ],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
     "expectedArguments": ["hyp A", "B", "~B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "~~e",
-    "lecture": "~~A : il est faux de dire qu'il est faux que A",
+    "lecture": "~~A se lit \"il est faux de dire qu'il est faux que A\"",
     "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
     "verbalDescription": "Si l'on prouve que ~A est faux, on peut inférer ~~A (ce qui a exactement le même sens que A dans la logique classique). Et sur la base de ~~A, on peut inférer A.",
     "arrayUtilization": [["~~A", "A ~~e"], ["~~(A∧B)", "A∧B ~~e"]],
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "∧i",
-    "lecture": "A∧B : A et B",
+    "lecture": "A∧B se lit \"A et B\"",
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
     "arrayUtilization": [["A", "B", "A∧B ∧i"]],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
     "expectedArguments": ["A", "B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "∧e",
-    "lecture": "A∧B : A et B",
+    "lecture": "A∧B se lit \"A et B\"",
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "∨i",
-    "lecture": "A∨B : A et/ou B",
+    "lecture": "A∨B se lit \"A et/ou B\"",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
     "verbalDescription": "Si A a été posé, on peut inférer A∨B, quel que soit B.",
     "arrayUtilization": [
@@ -97,11 +103,12 @@
     ],
     "instruction": "Cliquez sur A, puis décidez arbitrairement de B, pour inférer A∨B.",
     "expectedArguments": ["A"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "∨e",
-    "lecture": "A∨B : A et/ou B",
+    "lecture": "A∨B se lit \"A et/ou B\"",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
     "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
     "arrayUtilization": [
@@ -110,131 +117,144 @@
     ],
     "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
     "expectedArguments": ["A∨B", "C |A", "C |B"],
-    "available": "bug"
+    "available": "bug",
+    "canDetectInferences": "no"
   },
   {
     "name": "⊻i",
-    "lecture": "A⊻B : ou bien A, ou bien B ; soit A, soit B",
+    "lecture": "A⊻B se lit \"ou bien A, ou bien B\" ; \"soit A, soit B\"",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription": "Si A⊅B et B⊅A ont été posés, on peut inférer A⊻B.",
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "⊻e",
-    "lecture": "A⊻B : ou bien A, ou bien B ; soit A, soit B",
+    "lecture": "A⊻B se lit \"ou bien A, ou bien B\" ; \"soit A, soit B\"",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
     "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A).",
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "⊃i",
-    "lecture": "A⊃B : si A alors B",
+    "lecture": "A⊃B se lit \"si A alors B\"",
     "verbalName": "Règle d'introduction du conditionnel",
     "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux.",
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊃B.",
     "expectedArguments": ["hyp A", "B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "⊃e",
-    "lecture": "A⊃B : si A alors B",
+    "lecture": "A⊃B se lit \"si A alors B\"",
     "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊃B, on peut poser B isolément.",
     "arrayUtilization": [["A", "A⊃B", "B ⊃e"]],
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "≡i",
-    "lecture": "A≡B : A si et seulement si B",
+    "lecture": "A≡B se lit \"A si et seulement si B\"",
     "verbalName": "Règle d'introduction du biconditionnel",
     "verbalDescription": "Si A⊃B et B⊃A ont été posés, on peut poser A≡B.",
     "arrayUtilization": [["A⊃B", "B⊃A", "A≡B ≡i"]],
     "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
     "expectedArguments": ["A⊃B", "B⊃A"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "≡e",
-    "lecture": "A≡B : A si et seulement si B",
+    "lecture": "A≡B se lit \"A si et seulement si B\"",
     "verbalName": "Règle d'élimination du biconditionnel",
     "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
     "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
     "instruction": "Cliquez sur A≡B, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "⊅i",
-    "lecture": "A⊅B : si A alors non B",
+    "lecture": "A⊅B se lit \"si A alors non B\"",
     "verbalName": "Règle d'introduction de l'abjonction",
     "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à ~B, on peut valider l'hypothèse et inférer A⊅B (si A alors ~B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat faux, alors il y a un lien de nécessité généralisable l'hypothèse et ce résultat faux.",
     "arrayUtilization": [["|A hyp", "|~B", "A⊅B ⊅i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence ~B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊅B.",
     "expectedArguments": ["hyp A", "~B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "⊅e",
-    "lecture": "A⊅B : si A alors non B",
+    "lecture": "A⊅B se lit \"si A alors non B\"",
     "verbalName": "Règle d'élimination de l'abjonction",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊃~B, on peut poser ~B isolément.",
     "arrayUtilization": [["A", "A⊅B", "~B ⊅e"], ["A", "A⊃~B", "~B ⊅e"]],
     "instruction": "Cliquez sur A, puis A⊅B ou A⊃~B, pour inférer B.",
     "expectedArguments": ["A", "A⊅B ou A⊃~B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "↑i",
-    "lecture": "A↑B : A et B sont incompatibles, ils ne peuvent être vrais ensembles",
+    "lecture": "A↑B se lit \"A et B sont incompatibles, ils ne peuvent être vrais ensembles\"",
     "verbalName": "Règle d'introduction de l'incompatibilité",
     "verbalDescription": "Si A et ~B ont été posés, on peut inférer A↑B.",
     "arrayUtilization": [["A", "~B", "A∧B ↑i"]],
     "instruction": "Cliquez sur A, puis ~B, pour inférer A↑B.",
     "expectedArguments": ["A", "~B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "↑e",
-    "lecture": "A↑B : A et B sont incompatibles",
+    "lecture": "A↑B se lit \"A et B sont incompatibles, ils ne peuvent être vrais ensembles\"",
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
     "verbalDescription": "Si l'on a A↑B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
     "arrayUtilization": [["A↑B", "A", "~B ↑e"]],
     "instruction": "Cliquez sur A↑B, puis A (ou B), pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A↑B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "↓i",
-    "lecture": "A↓B : ni A ni B",
+    "lecture": "A↓B se lit \"ni A ni B\"",
     "verbalName": "Règle d'introduction de la disjonction réciproque",
     "verbalDescription": "Si ~A et ~B ont été posés, on peut inférer A↓B.",
     "arrayUtilization": [["~A", "~B", "A↓B ↓i"]],
     "instruction": "Cliquez sur ~A, puis ~B, pour inférer A↓B.",
     "expectedArguments": ["~A", "~B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "no"
   },
   {
     "name": "↓e",
-    "lecture": "A↓B : ni A ni B",
+    "lecture": "A↓B se lit \"ni A ni B\"",
     "verbalName": "Règle d'élimination de la disjonction réciproque",
     "verbalDescription": "Si A↓B a été posé, on peut inférer ~A et/ou ~B.",
     "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
     "instruction": "Cliquez sur A↓B, puis sélectionnez ~A ou ~B, pour l'inférer.",
     "expectedArguments": ["A↓B"],
-    "available": "yes"
+    "available": "yes",
+    "canDetectInferences": "yes"
   },
   {
     "name": "□i",
-    "lecture": "□A : il est nécessaire que A",
+    "lecture": "□A se lit \"il est nécessaire que A\"",
     "verbalName": "Règle d'introduction de la nécessité",
     "verbalDescription": "Si l'on arrive à p depuis une hypothèse vide, on peut inférer □p.",
     "arrayUtilization": "",
@@ -244,7 +264,7 @@
   },
   {
     "name": "□e",
-    "lecture": "□A : il est nécessaire que A",
+    "lecture": "□A se lit \"il est nécessaire que A\"",
     "verbalName": "Règle d'élimination de la nécessité",
     "verbalDescription": "Si l'on a posé □p, alors on peut inférer que p.",
     "arrayUtilization": "",
@@ -254,7 +274,7 @@
   },
   {
     "name": "◊i",
-    "lecture": "◊A : il est possible que A",
+    "lecture": "◊A se lit \"il est possible que A\"",
     "verbalName": "Règle d'introduction de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",
@@ -264,7 +284,7 @@
   },
   {
     "name": "◊e",
-    "lecture": "◊A : il est possible que A",
+    "lecture": "◊A se lit \"il est possible que A\"",
     "verbalName": "Règle d'élimination de la possibilité",
     "verbalDescription": "",
     "arrayUtilization": "",

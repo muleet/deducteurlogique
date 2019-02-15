@@ -529,7 +529,7 @@ class greekAlphabet extends Component {
 
     // section du point d'interrogation
     const questionMark = (
-      <div className={"question-mark-button "}>
+      <div className={"question-mark-button icon "}>
         ?
         <div className="question-mark">
           <div className="question-mark-title">A quoi sert cette page ?</div>

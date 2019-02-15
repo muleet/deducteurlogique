@@ -201,11 +201,7 @@ h3 {
   height: 20px;
   position: relative;
   display: flex;
-  color: black;
   flex-direction: row;
-  border: 1px solid white;
-  border-radius: 10px;
-  background-color: #b3947a;
   text-align: center;
   justify-content: center;
 }
@@ -222,23 +218,21 @@ h3 {
 
 .question-mark {
   position: absolute;
-  color: #b3967a;
+  color: white;
   font-size: 16px;
   width: 350px;
   left: 130%;
   display: none;
-  overflow: auto;
   flex-direction: column;
-  opacity: 0.95;
 }
 
 .question-mark-content {
   display: flex;
-  background-color: #473a31;
   flex-direction: row;
   padding: 8px;
   text-align: center;
-  border-radius: 5px;
+  font-weight: 500;
+  font-family: sans-serif;
 }
 
 /* Section de l'alphabet grec */
