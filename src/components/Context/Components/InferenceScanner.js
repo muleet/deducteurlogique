@@ -127,12 +127,12 @@ function scanInferences(
         allHypotheticalInferences[0].numberCommentaryHypothesis - 1
       );
       positions.currentHyp.type = "indicator-data-hypothesis-detected";
-      console.log(
-        "wesh wesh wesh",
-        positions.semiDetectedFirstArgument,
-        positions.currentHyp.num
-      );
       if (
+        positions.detectedOneStepArgument.indexOf(positions.currentHyp.num) !==
+        -1
+      ) {
+        positions.currentHyp.type += " indicator-data-detected";
+      } else if (
         positions.semiDetectedFirstArgument.indexOf(
           positions.currentHyp.num
         ) !== -1
@@ -150,6 +150,10 @@ function scanInferences(
       } else {
         positions.currentHyp.type += " indicator-data-undetected";
       }
+      console.log(
+        "wesh wesh wesh y'aura-t-il une hyp et que contient-elle",
+        positions.currentHyp
+      );
     }
     console.log(
       "inferenceScanner retourne la règle, ",
@@ -192,95 +196,84 @@ function prepareUpdate(
           </div>
         );
       }
+
+      key = key + allInferencesThemselves.length;
       if (typeOfRule === "oneStep") {
         // cas des règles à un seul argument, positions est un objet contenant une clé "detectedOneStepArgument" qui est un tableau contenant des nombres
         // étape 1 : on remplace certains ronds rouges par des ronds verts
         if (positions.detectedOneStepArgument) {
-          for (
-            let i = 0;
-            i < positions.detectedOneStepArgument.length;
-            i++, key++
-          ) {
-            newAllInferencesValidForCurrentRule[
-              positions.detectedOneStepArgument[i]
-            ] = (
-              <div key={key} className="indicator-data-detected">
-                •
-              </div>
-            );
-          }
+          makeAllIndicatorsWithALoop(
+            positions.detectedOneStepArgument,
+            newAllInferencesValidForCurrentRule,
+            "indicator-data-detected",
+            key
+          );
         }
+        key = key + positions.detectedOneStepArgument.length;
       } else if (typeOfRule === "twoStep") {
         // cas des règles à deux arguments, positions est un objet contenant des clés qui sont des tableaux contenant des tableaux contenant des nombres
         // étape 0 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
 
         if (positions.semiDetectedFirstArgument) {
-          // étape 1 : on remplace certains ronds rouges par un rond vert transparent, lorsque l'argument principal est détecté mais pas le deuxième
-          for (
-            let i = 0;
-            i < positions.semiDetectedFirstArgument.length;
-            i++, key++
-          ) {
-            console.log("USI, avec", positions, "on teste", i);
-            newAllInferencesValidForCurrentRule[
-              positions.semiDetectedFirstArgument[i]
-            ] = (
-              <div key={key} className="indicator-data-semi-detected">
-                •
-              </div>
-            );
-          }
+          makeAllIndicatorsWithALoop(
+            positions.semiDetectedFirstArgument,
+            newAllInferencesValidForCurrentRule,
+            "indicator-data-semi-detected",
+            key
+          );
+          key = key + positions.semiDetectedFirstArgument.length;
         }
+
         // étape 2 : on remplace d'autres ronds rouges par un rond vert
         if (positions.detectedFirstArgument) {
-          for (
-            let i = 0;
-            i < positions.detectedFirstArgument.length;
-            i++, key++
-          ) {
-            console.log("USI, on teste ", i);
-            newAllInferencesValidForCurrentRule[
-              positions.detectedFirstArgument[i]
-            ] = (
-              <div key={key} className="indicator-data-detected">
-                •
-              </div>
-            );
-          }
+          makeAllIndicatorsWithALoop(
+            positions.detectedFirstArgument,
+            newAllInferencesValidForCurrentRule,
+            "indicator-data-detected",
+            key
+          );
+          key = key + positions.detectedFirstArgument.length;
         }
         // étape 3 : on remplace d'autres ronds rouges par un rond bleu ciel
         if (positions.detectedSecondArgument) {
-          for (
-            let i = 0;
-            i < positions.detectedSecondArgument.length;
-            i++, key++
-          ) {
-            console.log("USI, on teste ", i);
-            newAllInferencesValidForCurrentRule[
-              positions.detectedSecondArgument[i]
-            ] = (
-              <div
-                key={key}
-                className="indicator-data-second-argument-detected"
-              >
-                •
-              </div>
-            );
-          }
-        }
-        if (positions.currentHyp) {
-          // étape 4, pour les règles avec une hypothèse, il faut d'abord trouver si le numéro en question est présent dans une autre catégorie
-          console.log("l'emplacement de l'hyp est", positions.currentHyp);
-          newAllInferencesValidForCurrentRule[positions.currentHyp.num] = (
-            <div key={1000} className={positions.currentHyp.type}>
-              •
-            </div>
+          makeAllIndicatorsWithALoop(
+            positions.detectedSecondArgument,
+            newAllInferencesValidForCurrentRule,
+            "indicator-data-second-argument-detected",
+            key
           );
+          key = key + positions.detectedSecondArgument.length;
         }
+      }
+      console.log("peut-on faire le truc avec l'hyp ?", positions.currentHyp);
+      if (positions.currentHyp) {
+        // étape 4, pour les règles avec une hypothèse, il faut d'abord trouver si le numéro en question est présent dans une autre catégorie
+        console.log("les données de l'hyp sont", positions.currentHyp);
+        newAllInferencesValidForCurrentRule[positions.currentHyp.num] = (
+          <div key={key} className={positions.currentHyp.type}>
+            •
+          </div>
+        );
       }
     }
   }
   updateScannedInferences(newAllInferencesValidForCurrentRule);
+}
+
+function makeAllIndicatorsWithALoop(
+  currentPositions,
+  newAllInferencesValidForCurrentRule,
+  className,
+  key
+) {
+  for (let i = 0; i < currentPositions.length; i++, key++) {
+    newAllInferencesValidForCurrentRule[currentPositions[i]] = (
+      <div key={key} className={className}>
+        •
+      </div>
+    );
+  }
+  return newAllInferencesValidForCurrentRule;
 }
 
 // la fonction scanWithTheRightRule sert à "~~e" "∧e" "∧i""∨i" "⊃i" "≡e" "⊅i" "↓e"
