@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import LocutionsGrecques from "../../../data/LocutionsGrecques";
-import LocutionsLatines from "../../../data/LocutionsLatines";
+// import LocutionsLatines from "../../../data/LocutionsLatines";
 
 class Locution extends Component {
   state = {

@@ -339,13 +339,11 @@ function scanTwoStepRule(
   inferenceTwo,
   allHypotheticalInferences
 ) {
-  // "⊃e" "~i"  "∨e" "⊻i" "⊻e" "≡i" "⊅e" "↑i" "↑e" "↓i" "ex falso"
-  let isTheRuleAdequate;
+  // "⊃e" "~i" "≡i"  "⊻i" "⊻e" "⊅e" "↑i" "↑e" "↓i" "∨e" "ex falso"
+  let isTheRuleAdequate = false;
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
     inferenceOne = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊃");
-    console.log("verification ⊃e", inferenceOne[0], "===", inferenceTwo);
-
     if (inferenceOne[0] === inferenceTwo) {
       isTheRuleAdequate = true;
     }
@@ -356,26 +354,51 @@ function scanTwoStepRule(
     if (allHypotheticalInferences && inferenceOne === notBbecomeB) {
       isTheRuleAdequate = true;
     }
-  } else if (ruleName === "∨e") {
-    // A∨B + conc de |A + conc de |B, pour A ou B
+  } else if (ruleName === "≡i") {
+    // A⊃B, B⊃A pour A≡B
+    const AthenB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊃");
+    const BthenA = returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊃");
+    if (AthenB[0] === BthenA[1] && AthenB[1] === BthenA[0]) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "⊻i") {
     // A⊅B, B⊅A pour A⊻B
+    const AthennotB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊅");
+    const BthennotA = returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊅");
+    if (AthennotB[0] === BthennotA[1] && AthennotB[1] === BthennotA[0]) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "⊻e") {
     // A, A⊻B pour ~B (ou ~A, A⊻B, pour B)
     const AorB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊻");
     if (AorB[0] === inferenceTwo || AorB[1] === inferenceTwo) {
       isTheRuleAdequate = true;
     }
-  } else if (ruleName === "≡i") {
-    // A⊃B, B⊃A pour A≡B
   } else if (ruleName === "⊅e") {
     // A, A⊅B pour ~B
+    inferenceOne = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊅");
+    if (inferenceOne[0] === inferenceTwo) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "↑i") {
     // A, ~B, pour A↑B
+    if (inferenceOne && inferenceTwo[0] === "~") {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "↑e") {
     // A, A↑B pour ~B
+    const AincompB = returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "↑");
+    if (AincompB[0] === inferenceOne || AincompB[1] === inferenceOne) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "↓i") {
     // ~A, ~B, pour A↓B
+    if (inferenceOne[0] === "~" && inferenceTwo[0] === "~") {
+      isTheRuleAdequate = true;
+    }
+  } else if (ruleName === "∨e") {
+    // A∨B + conc de |A + conc de |B, pour A ou B
+    // cas super compliqué et relou
   } else if (ruleName === "ex falso") {
     // A, ~A pour B
   }

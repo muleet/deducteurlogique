@@ -129,7 +129,7 @@
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "⊻e",
@@ -140,7 +140,7 @@
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "⊃i",
@@ -162,7 +162,7 @@
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "≡i",
@@ -173,7 +173,7 @@
     "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
     "expectedArguments": ["A⊃B", "B⊃A"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "≡e",
@@ -206,7 +206,7 @@
     "instruction": "Cliquez sur A, puis A⊅B ou A⊃~B, pour inférer B.",
     "expectedArguments": ["A", "A⊅B ou A⊃~B"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "↑i",
@@ -217,7 +217,7 @@
     "instruction": "Cliquez sur A, puis ~B, pour inférer A↑B.",
     "expectedArguments": ["A", "~B"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "↑e",
@@ -228,7 +228,7 @@
     "instruction": "Cliquez sur A↑B, puis A (ou B), pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A↑B"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "↓i",
@@ -239,7 +239,7 @@
     "instruction": "Cliquez sur ~A, puis ~B, pour inférer A↓B.",
     "expectedArguments": ["~A", "~B"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "↓e",

@@ -126,7 +126,6 @@ class ShowModalButtons extends Component {
 
   render() {
     // DECLARATION DES VARIABLES DES BOUTONS DU MODAL
-    let indicatorAboutDetectedInference = ""; // Ce voyant est soit un point rouge (inférences non détectées ; indicator-data-undetected) soit vert (inférence détectées ; indicator-data-detected).
     let buttonResetArguments = "";
     let buttonInverseInference = "";
     let buttonRemoveLastCharacter = "";
