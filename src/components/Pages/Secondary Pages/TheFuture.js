@@ -42,17 +42,9 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            - Corrections des bugs de la règle ∨e (et surtout, amélioration de
-            son interface) + possibilité d'utiliser la suppression de la
-            dernière inférence, avec cette règle.
-          </p>
-          <p className="soon-available-rule">
-            - Lorsqu'on clique sur une règle, l'interface mettra en avant les
-            inférences compatibles avec cette règle. Par exemple pour la règle
-            ⊃e, l'interface mettra en surbrillance dans la déduction, une
-            inférence A et une inférence A⊃B, si et seulement si les deux sont
-            présentes dans la déduction. (Si elles ne le sont pas, la règle
-            n'indiquera rien.)
+            - Corrections des bugs spécifiques au fonctionnement de la règle ∨e
+            (et surtout, amélioration de son interface) + possibilité d'utiliser
+            la suppression de la dernière inférence, avec cette règle.
           </p>
           <p className="later-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec

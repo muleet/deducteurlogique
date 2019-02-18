@@ -42,7 +42,7 @@
     "instruction": "Cliquez sur A, puis ~A, et décidez arbitrairement de B, pour inférer B.",
     "expectedArguments": ["A", "~A"],
     "available": "yes",
-    "canDetectInferences": "no"
+    "canDetectInferences": "yes"
   },
   {
     "name": "~i",
@@ -86,7 +86,7 @@
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et/ou B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
-    "instruction": "Cliquez sur A∧B, puis sélectionnez A ou B, pour l'inférer.",
+    "instruction": "Cliquez sur A∧B, validez, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
     "available": "yes",
     "canDetectInferences": "yes"
@@ -135,7 +135,7 @@
     "name": "⊻e",
     "lecture": "A⊻B se lit \"ou bien A, ou bien B\" ; \"soit A, soit B\"",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
-    "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A).",
+    "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A). Inversement, si l'on a ~A (ou ~B) et A⊻B, on peut alors inférer A (ou B).",
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
@@ -181,7 +181,7 @@
     "verbalName": "Règle d'élimination du biconditionnel",
     "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
     "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
-    "instruction": "Cliquez sur A≡B, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
+    "instruction": "Cliquez sur A≡B, validez, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
     "available": "yes",
     "canDetectInferences": "yes"
@@ -225,7 +225,7 @@
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
     "verbalDescription": "Si l'on a A↑B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
     "arrayUtilization": [["A↑B", "A", "~B ↑e"]],
-    "instruction": "Cliquez sur A↑B, puis A (ou B), pour inférer ~B (ou ~A).",
+    "instruction": "Cliquez sur A (ou B) puis A↑B,  pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A↑B"],
     "available": "yes",
     "canDetectInferences": "yes"
@@ -247,7 +247,7 @@
     "verbalName": "Règle d'élimination de la disjonction réciproque",
     "verbalDescription": "Si A↓B a été posé, on peut inférer ~A et/ou ~B.",
     "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
-    "instruction": "Cliquez sur A↓B, puis sélectionnez ~A ou ~B, pour l'inférer.",
+    "instruction": "Cliquez sur A↓B, validez, puis sélectionnez ~A ou ~B, pour l'inférer.",
     "expectedArguments": ["A↓B"],
     "available": "yes",
     "canDetectInferences": "yes"

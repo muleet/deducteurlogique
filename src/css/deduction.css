@@ -157,3 +157,38 @@
 .fat-infos-and-deduction {
   width: 550px;
 }
+
+/* Les indicateurs ci-dessous sont générés par InferenceScanner et concernent la détection des inférences compatibles avec l'utilisation de la règle en question */
+.all-indicators-about-inference-validation {
+  display: flex;
+  margin-top: -5px;
+  margin-left: -45px;
+  flex-direction: column;
+  line-height: 26px;
+  font-size: 18px;
+  padding: 5px;
+  position: absolute;
+  width: 30px;
+}
+.indicator {
+  height: 26px;
+  border: 2px solid transparent;
+  /* line-height: 20 px; */
+  text-align: center;
+}
+.indicator-data-undetected {
+  color: red;
+}
+.indicator-data-detected {
+  color: rgb(0, 192, 0);
+}
+.indicator-data-semi-detected {
+  color: rgba(0, 192, 0, 0.548);
+}
+.indicator-data-second-argument-detected {
+  color: rgb(174, 255, 24);
+}
+.indicator-data-hypothesis-detected {
+  border: 2px solid rgb(0, 140, 255);
+  border-radius: 8px;
+}
