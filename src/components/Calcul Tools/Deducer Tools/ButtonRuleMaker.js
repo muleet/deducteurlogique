@@ -9,14 +9,14 @@ import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
 
 class ButtonRuleMaker extends Component {
-  renderSlashedEyeForButtonRule(bool) {
-    if (
-      bool === "no" &&
-      this.props.valueInference.isTheInferenceScannerActive
-    ) {
-      return <i className="fas fa-eye-slash tiny-info-rule" />;
-    }
-  }
+  // renderSlashedEyeForButtonRule(bool) {
+  //   if (
+  //     bool === "no" &&
+  //     this.props.valueInference.isTheInferenceScannerActive
+  //   ) {
+  //     return <i className="fas fa-eye-slash tiny-info-rule" />;
+  //   }
+  // }
 
   renderModal() {
     if (this.props.valueInference.ruleModalContent.ruleName === "hyp") {
@@ -216,9 +216,9 @@ class ButtonRuleMaker extends Component {
               }}
             >
               {arrayRulesSent[i].name}
-              {this.renderSlashedEyeForButtonRule(
+              {/* {this.renderSlashedEyeForButtonRule(
                 arrayCurrentRules[i].canDetectInferences
-              )}
+              )} */}
               <RulePopover
                 key={i}
                 RulePopoverClassName={
@@ -251,9 +251,9 @@ class ButtonRuleMaker extends Component {
               }}
             >
               {arrayRulesSent[i].name}
-              {this.renderSlashedEyeForButtonRule(
+              {/* {this.renderSlashedEyeForButtonRule(
                 arrayCurrentRules[i].canDetectInferences
-              )}
+              )} */}
               <RulePopover
                 key={i}
                 RulePopoverClassName={
@@ -281,9 +281,7 @@ class ButtonRuleMaker extends Component {
         <div className="question-mark">
           <div className="question-mark-content">
             Cliquez pour activer/désactiver la détection automatique des
-            inférences compatibles avec une règle. Les règles avec lesquelles
-            cette fonctionnalité ne fonctionne pas ou mal, ont un petit oeil
-            barré sur leur bouton.
+            inférences compatibles avec la règle en cours.
           </div>
         </div>
       );

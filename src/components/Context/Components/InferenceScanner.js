@@ -6,16 +6,24 @@ import RuleProvider from "../RuleProvider";
 // 2) La portée des inférences en question (en chiffre).
 // Par exemple pour le modus ponens : si on détecte l'inférence A dans une inférence A⊃B, il faut savoir quand s'arrête l'emplacement de A.
 
-function getInferencesFromClosedHypotheses(
+function getInferencesFromPreviousHypotheses(
   allHypotheticalInferences,
-  hypothesisCurrentLevelAndId
+  hypothesisCurrentLevelAndId,
+  currentHypPosition
 ) {
   let positions = [];
+  if (allHypotheticalInferences[0]) {
+    const numLastHyp = allHypotheticalInferences[0].numberCommentaryHypothesis;
+    for (let i = 1; i < numLastHyp; i++) {
+      positions.push(i);
+    }
+  }
   return positions;
 }
-function getInferencesFromPreviousHypothesesStillOpen(
+function getInferencesFromClosedHypotheses(
   allHypotheticalInferences,
-  hypothesisCurrentLevelAndId
+  hypothesisCurrentLevelAndId,
+  currentHypPosition
 ) {
   let positions = [];
   return positions;
@@ -37,16 +45,24 @@ function scanInferences(
       detectedFirstArgument: [], // si l'on trouve une position de second argument, on déplace le nombre dans semiDetectedFA vers detectedFA
       detectedSecondArgument: [], // ne peut contenir des nombres que si detectedFirstArgument en contient
       currentHyp: { num: "", type: "" }, // contient un nombre et un str contenant le nom de la clé où se trouve le nombre
-      inferencesFromClosedHypotheses: [],
-      inferencesFromPreviousHypothesesStillOpen: []
+      inferencesFromPreviousHypotheses: [], // tableau contenant les positions des inférences précédent la dernière hyp
+      inferencesFromClosedHypotheses: []
     };
-    positions.inferencesFromClosedHypotheses = getInferencesFromClosedHypotheses(
+    positions.inferencesFromPreviousHypotheses = getInferencesFromPreviousHypotheses(
+      // plus simple
       allHypotheticalInferences,
-      hypothesisCurrentLevelAndId
+      hypothesisCurrentLevelAndId,
+      positions.currentHyp.num
     );
-    positions.inferencesFromPreviousHypothesesStillOpen = getInferencesFromPreviousHypothesesStillOpen(
+    positions.inferencesFromClosedHypotheses = getInferencesFromClosedHypotheses(
+      // plus compliqué
       allHypotheticalInferences,
-      hypothesisCurrentLevelAndId
+      hypothesisCurrentLevelAndId,
+      positions.currentHyp.num
+    );
+    console.log(
+      "inferencesFromPreviousHypotheses",
+      positions.inferencesFromPreviousHypotheses
     );
 
     const oneStepRules = [
@@ -279,6 +295,19 @@ function prepareUpdate(
         }
       }
       if (positions.currentHyp) {
+        for (
+          let i = 0;
+          i < positions.inferencesFromPreviousHypotheses.length;
+          i++, key++
+        ) {
+          newAllInferencesValidForCurrentRule[
+            positions.inferencesFromPreviousHypotheses[i] - 1
+          ] = (
+            <div key={key} className={"indicator "}>
+              -
+            </div>
+          );
+        }
         // étape 4, pour les règles avec une hypothèse, il faut d'abord trouver si le numéro en question est présent dans une autre catégorie
         console.log("il y a bien une hyp et c'est ", positions.currentHyp);
         newAllInferencesValidForCurrentRule[positions.currentHyp.num] = (
