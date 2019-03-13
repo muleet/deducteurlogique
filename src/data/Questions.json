@@ -60,13 +60,17 @@
     "answer": "On peut distinguer 3 genres de règles : les règles structurelles (rep, reit, hyp...), les règles de connecteurs (∧i, ...), et les règles dérivées (~~e, ...). Les deux premières sont des règles acceptées par défaut, sans démonstration ; les règles dérivées sont au contraire démontrables à partir des précédentes. Elles sont comme des raccourcis. Il est possible de déduire toutes les règles des connecteurs propositionnels en ayant pour base ~ et ∧ (ces deux connecteurs forment donc ce qu'on appelle un \"système complet\"), par exemple A⊃B peut s'écrire ~(A∧~B)."
   },
   {
+    "name": "La règle ex falso est-elle vraiment une règle d'inférence valide ?",
+    "answer": "Oui, car elle découle nécessairement de la conception binaire de la vérité. La règle ex falso devient invalide si l'on admet que ce qu'on appelle faux n'est pas qu'une simple inversion de valeur de vérité. (Et tous les logiciens n'avaient pas cette conception binaire du vrai et du faux, ce n'est pas le cas d'Aristote par exemple.)"
+  },
+  {
     "name": "Que sont le théorème, la tautologie, et la preuve logique ?",
     "answer": "Un théorème logique est la conclusion d'une déduction qui est toujours vraie quelle que soit la valeur de vérité des prémisses qu'on lui donne. Une telle déduction est, elle, appelée \"preuve logique\". Les théorèmes existent en fonction des règles de logique qu'on adopte. Si A est un théorème, on peut l'écrire ⊢A. Une tautologie est une formule qui est vraie en toute circonstance. Ainsi, un théorème logique est toujours une tautologie, et une tautologie correspond toujours en puissance à un théorème logique. Si A est une tautologie, on peut l'écrire ⊨A.",
     "example": "La terre est une planète ou n'est pas une planète. ⊢~(p∧~p). ⊨~(p∧~p)."
   },
   {
     "name": "Que sont la contradiction et la contrariété ?",
-    "answer": "Une contradiction revient à admettre vraie deux propositions ou ensembles de propositions, qui ne peuvent l'être ensemble. (Elles peuvent être fausses ensembles, en revanche.) Une contrariété admet des possibilités tierces.",
+    "answer": "Une contradiction revient à admettre vraies, ou fausses, deux propositions ou ensembles de propositions, qui ne peuvent l'être ensemble. Une contrariété admet des possibilités tierces, comme la possibilité que les deux propositions soient fausses ensembles. Note : on peut substituer le mot \"contradiction\" par le terme \"faux logique\" et inversement.",
     "example": "\"Ce chat est entièrement entièrement noir\" et \"Ce chat n'est pas entièrement noir\" sont des propositions contradictoires. \"Ce chat est en partie noir\" et \"Ce chat est en partie blanc\" sont des propositions contraires."
   },
   {

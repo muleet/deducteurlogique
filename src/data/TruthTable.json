@@ -88,20 +88,20 @@
   {
     "number": 6,
     "name": "Proposition p",
-    "alternativeName": "",
+    "alternativeName": "Affirmation de l'antécédent",
     "description": "",
     "link": "",
     "reductibleTo": "",
     "lecture": "",
     "itself": ["V", "V", "F", "F"],
     "category": "true-and-false",
-    "character": "p",
+    "character": "A",
     "example": [],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Venn0101.svg/100px-Venn0101.svg.png"
   },
   {
     "number": 7,
-    "name": "Négation de q",
+    "name": "Négation du conséquent",
     "alternativeName": "",
     "description": "",
     "link": "",
@@ -109,7 +109,7 @@
     "lecture": "",
     "itself": ["F", "V", "F", "V"],
     "category": "true-and-false",
-    "character": ["~q"],
+    "character": ["~B"],
     "example": [],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Venn1100.svg/100px-Venn1100.svg.png"
   },
@@ -143,7 +143,7 @@
   },
   {
     "number": 10,
-    "name": "Proposition q",
+    "name": "Affirmation du conséquent",
     "alternativeName": "",
     "description": "",
     "link": "",
@@ -151,13 +151,13 @@
     "lecture": "",
     "itself": ["V", "F", "V", "F"],
     "category": "true-and-false",
-    "character": "q",
+    "character": "B",
     "example": [],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Venn0011.svg/100px-Venn0011.svg.png"
   },
   {
     "number": 11,
-    "name": "Négation de p",
+    "name": "Négation de l'antécédent",
     "alternativeName": "",
     "description": "",
     "link": "",
@@ -165,7 +165,7 @@
     "lecture": "",
     "itself": ["F", "F", "V", "V"],
     "category": "true-and-false",
-    "character": ["~p"],
+    "character": ["~A"],
     "example": [],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Venn1010.svg/100px-Venn1010.svg.png"
   },
