@@ -59,7 +59,6 @@ class ShowExpectedArguments extends Component {
 
     if (
       ruleName !== "⊃i" &&
-      ruleName !== "⊅i" &&
       ruleName !== "~i" &&
       ruleName !== "∨i" &&
       ruleName !== "∨e" &&
@@ -84,7 +83,7 @@ class ShowExpectedArguments extends Component {
           </li>
         );
       }
-    } else if (ruleName === "⊃i" || ruleName === "⊅i") {
+    } else if (ruleName === "⊃i") {
       // introduction du conditionnel
       if (allHypotheticalInferences.length >= 1) {
         hypContent = (

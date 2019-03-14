@@ -52,7 +52,7 @@ class ButtonRuleMaker extends Component {
     //   classNameToReturn = "longSelected";
     //   // this.renderRuleClassName("∨e");
     // }
-    if (availability === "test") {
+    if (availability === "test" || availability === "bug") {
       classNameToReturn += " testRule ";
     }
     if (

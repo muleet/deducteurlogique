@@ -84,7 +84,7 @@
     "name": "∧e",
     "lecture": "A∧B se lit \"A et B\"",
     "verbalName": "Règle d'élimination de la conjonction",
-    "verbalDescription": "Si A∧B a été posé, on peut inférer A ou on peut inférer B.",
+    "verbalDescription": "Si A∧B a été posé, on peut inférer A et on peut inférer B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, validez, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
@@ -128,7 +128,7 @@
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
-    "available": "yes",
+    "available": "test",
     "canDetectInferences": "yes"
   },
   {
@@ -139,7 +139,7 @@
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
-    "available": "yes",
+    "available": "test",
     "canDetectInferences": "yes"
   },
   {
@@ -188,24 +188,24 @@
   },
   {
     "name": "⊅i",
-    "lecture": "A⊅B se lit \"si A alors non B\"",
+    "lecture": "A⊅B se lit \"A et non B\"",
     "verbalName": "Règle d'introduction de l'abjonction",
-    "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à ~B, on peut valider l'hypothèse et inférer A⊅B (si A alors ~B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat faux, alors il y a un lien de nécessité généralisable l'hypothèse et ce résultat faux.",
-    "arrayUtilization": [["|A hyp", "|~B", "A⊅B ⊅i"]],
-    "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence ~B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊅B.",
-    "expectedArguments": ["hyp A", "~B"],
-    "available": "yes",
+    "verbalDescription": "Si l'on a posé A, et que l'on a posé ~B (ou inversement), on peut inférer A⊅B.",
+    "arrayUtilization": [["A", "~B", "A⊅B ⊅i"]],
+    "instruction": "(Pas encore codée)",
+    "expectedArguments": ["A", "~B"],
+    "available": "test",
     "canDetectInferences": "no"
   },
   {
     "name": "⊅e",
-    "lecture": "A⊅B se lit \"si A alors non B\"",
+    "lecture": "A⊅B se lit \"A et non B\"",
     "verbalName": "Règle d'élimination de l'abjonction",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊃~B, on peut poser ~B isolément.",
     "arrayUtilization": [["A", "A⊅B", "~B ⊅e"], ["A", "A⊃~B", "~B ⊅e"]],
     "instruction": "Cliquez sur A, puis A⊅B ou A⊃~B, pour inférer B.",
     "expectedArguments": ["A", "A⊅B ou A⊃~B"],
-    "available": "yes",
+    "available": "test",
     "canDetectInferences": "yes"
   },
   {
@@ -260,7 +260,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon"
+    "available": "later"
   },
   {
     "name": "□e",
@@ -270,7 +270,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "available": "soon"
+    "available": "later"
   },
   {
     "name": "◊i",

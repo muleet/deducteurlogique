@@ -78,11 +78,6 @@ const TheFuture = () => {
             entre ces parenthèses sera soulignée.
           </p>
           <p className="maybenever-available-rule">
-            - Au sein de la déduction, pouvoir réduire instantanément une
-            inférence de type "A⊅B" à une inférence "A⊃~B", et inversement. Une
-            petite icône sur la ligne le permettra.
-          </p>
-          <p className="maybenever-available-rule">
             - Un mode "tutoriel" activable/désactivable à volonté pour tous les
             exercices, qui dira à l'utilisateur où il doit cliquer et quand. En
             suivant sans réfléchir les indications de ce tutoriel, on devra

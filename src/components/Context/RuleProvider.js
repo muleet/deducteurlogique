@@ -431,40 +431,7 @@ class RuleProvider extends Component {
       }
     }; // ≡e
 
-    this.abjonctionIntroduction = (notB, numbers) => {
-      if (notB[0] === "~") {
-        const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
-        const B = notB.slice(1, notB.length);
-        let ifAthenNotB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊅");
-        numbers =
-          this.props.valueInference.allHypotheticalInferences[0]
-            .numberCommentaryHypothesis +
-          "," +
-          numbers; // y'a un truc à corriger ici
-        const inferenceToAdd = {
-          itself: ifAthenNotB,
-          numberCommentary: numbers,
-          commentary: "⊅i"
-        };
-        this.props.valueInference.setAdvice(
-          "Hypothèse validée par ⊅i, introduction de l'abjonction, inférence produite : " +
-            inferenceToAdd.itself,
-          "rule-advice"
-        );
-        const hyp = "hypothèse validée";
-        this.props.valueInference.addInference(inferenceToAdd, hyp);
-        this.props.valueInference.setRuleModal(
-          "hypothesis-ended-well",
-          "ended-well modal-ending"
-        );
-        this.props.valueInference.changeStorageBoolean();
-      } else {
-        this.props.valueInference.setAdvice(
-          "Pour utiliser ⊅i, il faut créer une hypothèse A et cliquer sur une inférence ~B en son sein.",
-          "error-advice"
-        );
-      }
-    }; // ⊅i
+    this.abjonctionIntroduction = (notB, numbers) => {}; // ⊅i
 
     this.abjonctionElimination = (A, ifAthenNotB, numbers) => {
       let ArrayifAthenNotB = this.returnWhatIsBeforeAndAfterTheOperator(

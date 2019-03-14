@@ -198,7 +198,6 @@ class ShowModalButtons extends Component {
               this.verifyLongStorageRule(this.props.valueRule);
             } else if (
               this.props.ruleName !== "⊃i" &&
-              this.props.ruleName !== "⊅i" &&
               this.props.ruleName !== "~i"
             ) {
               this.verifyRule(this.props.valueRule);

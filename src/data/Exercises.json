@@ -181,24 +181,6 @@
     "doable": true
   },
   {
-    "verbalName": "Élimination de l'abjonction",
-    "premisses": ["p⊃q", "p⊅r"],
-    "conclusion": "p⊃(q∧~r)",
-    "meaning": [],
-    "comment": "",
-    "rulesImplied": ["rep", "hyp", "∧i", "⊃i", "⊃e", "⊅e"],
-    "doable": true
-  },
-  {
-    "verbalName": "Introduction & élimination de l'abjonction",
-    "premisses": ["p", "q⊅r"],
-    "conclusion": "(p⊃q)⊅r",
-    "meaning": [],
-    "comment": "",
-    "rulesImplied": ["rep", "hyp", "⊃e", "⊅i", "⊅e"],
-    "doable": true
-  },
-  {
     "verbalName": "Réfutation d'hypothèse contradictoire",
     "premisses": ["p"],
     "conclusion": "~(q∧~(p∧q))",
@@ -262,35 +244,6 @@
     "meaning": [],
     "comment": "",
     "rulesImplied": ["rep", "reit", "hyp", "~i", "⊃i", "⊃e"],
-    "doable": true
-  },
-  {
-    "verbalName": "Introduction de la disjonction exclusive",
-    "premisses": ["(p⊃r)⊅(q⊅r)", "(q⊅r)⊅(p⊃r)"],
-    "conclusion": "(p⊃r)⊻(q⊅r)",
-    "meaning": [
-      [
-        "p : Ma conception du bonheur est entièrement personnelle et instinctive.",
-        "q : Ma conception du bonheur est héritée des passions nationales.",
-        "r : Ma conception du bonheur est authentique."
-      ],
-      [
-        "p : Une bonne signification possible ne laisse aucun vide logique.",
-        "q : Une mauvaise signification possible laisse un vide logique.",
-        "r : Une telle signification possible est utile à l'utilisateur."
-      ]
-    ],
-    "comment": "",
-    "rulesImplied": ["rep", "⊻i"],
-    "doable": true
-  },
-  {
-    "verbalName": "Élimination de la disjonction exclusive",
-    "premisses": ["p", "~p⊻(q⊻r)"],
-    "conclusion": "(p⊅q)⊃r",
-    "meaning": [],
-    "comment": "",
-    "rulesImplied": ["rep", "hyp", "⊃i", "⊻e", "⊅e"],
     "doable": true
   },
   {
@@ -386,14 +339,5 @@
     "comment": "",
     "rulesImplied": ["reit", "hyp", "~i", "∧e", "∨e", "⊃i"],
     "doable": false
-  },
-  {
-    "verbalName": ["Nombreuses éliminations"],
-    "premisses": ["r", "(~r⊻(~(p↓q)↑r))∧(~q≡(~p⊃(~q⊅s)))"],
-    "conclusion": "~s",
-    "meaning": [],
-    "comment": "",
-    "rulesImplied": ["rep", "~~e", "∧e", "⊻e", "⊃e", "≡e", "⊅e", "↑e", "↓e"],
-    "doable": true
   }
 ]
