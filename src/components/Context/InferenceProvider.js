@@ -44,7 +44,6 @@ class InferenceProvider extends Component {
 
       // section des hypothèses de l'élimination de la disjonction, ∨e
       // const copyStoredHypId =
-      //   this.state.hypothesisCurrentLevelAndId.actualID + hypNumber; // CE TRUC LA MARCHE
       const copyStoredHypId = hypIDNumber;
 
       const storedLevel =
@@ -87,26 +86,25 @@ class InferenceProvider extends Component {
                 newInference.itself, // on envoie l'inférence elle-même
                 copyStoredHypId // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
               );
-            } else {
-              // ce if empêche l'utilisateur de reit une inférence qui provient d'une hyp terminée, et permet toujours de reit depuis une absence d'hyp
-              if (
-                storedLevel === 0 ||
-                this.state.hypothesisCurrentLevelAndId.whichIDIsStillOpen[
-                  copyStoredHypId - 1
-                ][1] === true
-              ) {
-                // l'action est possible SSI l'hyp est ouverte.(Il nereste plusqu'à coder l'action en question)
-              }
             }
+            // else {
+            //   // ce if empêche l'utilisateur de reit une inférence qui provient d'une hyp terminée, et permet toujours de reit depuis une absence d'hyp
+            //   if (
+            //     storedLevel === 0 ||
+            //     this.state.hypothesisCurrentLevelAndId.whichIDIsStillOpen[
+            //       copyStoredHypId - 1
+            //     ][1] === true
+            //   ) {
+            //     // l'action est possible SSI l'hyp est ouverte.(Il nereste plusqu'à coder l'action en question)
+            //   }
+            // }
           }}
           hypIDSent={hypIDNumber}
         />
       );
       newInference.level =
         this.state.hypothesisCurrentLevelAndId.level + hypNumber;
-      newInference.actualHypID =
-        // this.state.hypothesisCurrentLevelAndId.actualID + hypNumber; // ce truc-là marche !
-        hypIDNumber;
+      newInference.actualHypID = hypIDNumber;
       copyArrayThemselves.push(newInference);
 
       if (
@@ -149,7 +147,6 @@ class InferenceProvider extends Component {
         if (
           ruleName === "reit" &&
           this.state.hypothesisCurrentLevelAndId.theCurrentHypID >= hypID
-          // this.state.hypothesisCurrentLevelAndId.actualID >= hypID
         ) {
           copyArrayStoredInference = [infItself]; // inférence elle-même
           copyStoredNumbers = [numInference]; // nombre de l'inférence
@@ -167,16 +164,9 @@ class InferenceProvider extends Component {
           "===",
           hypID
         );
-        // console.log(
-        //   "faut que ce soit égal",
-        //   this.state.hypothesisCurrentLevelAndId.actualID,
-        //   "===",
-        //   hypID
-        // );
         if (
           ruleName !== "reit" &&
           this.state.hypothesisCurrentLevelAndId.theCurrentHypID === hypID
-          // this.state.hypothesisCurrentLevelAndId.actualID === hypID
         ) {
           if (expectedArgumentsLength === copyArrayStoredInference.length) {
             // dans ce if on reset les arguments, vu que l'utilisateur a dépassé le nombre d'arguments max en cliquant
@@ -339,7 +329,6 @@ class InferenceProvider extends Component {
         hypothesisCurrentLevelAndId: {
           level: 0,
           maxID: -1,
-          // actualID: 0,
           theCurrentHypID: -1,
           whichIDIsStillOpen: [] // tableau à tableaux contenant un nombre + un booléen
         },
@@ -384,7 +373,6 @@ class InferenceProvider extends Component {
         // on crée une hyp
         copyHypothesisCurrentLevelAndID.maxID++;
         copyHypothesisCurrentLevelAndID.level++;
-        // copyHypothesisCurrentLevelAndID.actualID++;
         copyHypothesisCurrentLevelAndID.whichIDIsStillOpen.push([
           copyHypothesisCurrentLevelAndID.maxID,
           true
@@ -392,14 +380,12 @@ class InferenceProvider extends Component {
       } else if (change === "conclusion d'hypothèse") {
         // on conclut une hyp
         copyHypothesisCurrentLevelAndID.level--;
-        // copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
         copyHypothesisCurrentLevelAndID.whichIDIsStillOpen[
           copyHypothesisCurrentLevelAndID.theCurrentHypID
         ][1] = false;
       } else if (change === "effacement de conclusion d'hyp") {
         // on efface une conclusion d'hyp avec removeLastInference
         copyHypothesisCurrentLevelAndID.level++;
-        // copyHypothesisCurrentLevelAndID.actualID++;
         copyHypothesisCurrentLevelAndID.whichIDIsStillOpen[
           // copyHypothesisCurrentLevelAndID.theCurrentHypID + 1
           this.state.allInferencesThemselves[
@@ -410,7 +396,6 @@ class InferenceProvider extends Component {
         // on efface une hyp avec removeLastInference
         copyHypothesisCurrentLevelAndID.maxID--;
         copyHypothesisCurrentLevelAndID.level--;
-        // copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
         copyHypothesisCurrentLevelAndID.whichIDIsStillOpen.pop();
       }
 
@@ -666,7 +651,6 @@ class InferenceProvider extends Component {
       hypothesisCurrentLevelAndId: {
         level: 0,
         maxID: -1, // -1 signifie qu'aucune hypothèse n'a encore été créée
-        // actualID: 0,
         theCurrentHypID: -1, // -1 signifie qu'aucune hypothèse n'a encore été créée
         whichIDIsStillOpen: [] // tableau à tableau contenant un nombre + un booléen
       },
