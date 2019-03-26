@@ -5,6 +5,7 @@
   align-items: center;
   align-content: center;
   padding: 10px;
+  width: 70px;
 }
 
 .setOfRules-twoCharacters {
@@ -54,13 +55,30 @@
   border-radius: 5px;
 }
 
-.all-button-about-inferences {
-  justify-content: space-around;
+.all-buttons-about-inferences {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.all-button-about-inferences > .icon {
+.all-buttons-about-inferences > .icon {
   font-size: 26px;
   margin-bottom: 10px;
+  width: 30px;
+}
+
+.all-toggle-buttons-about-inferences {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50px;
+  margin-left: 20px;
+}
+
+.all-toggle-buttons-about-inferences > i {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .longSelected {

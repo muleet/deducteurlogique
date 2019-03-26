@@ -4,7 +4,96 @@ import ButtonRuleRep from "../../Calcul Tools/ButtonRuleRep";
 // fonction appelée par Deducer, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json) ainsi que valueInference
 class ShowInfoSandbox extends Component {
   state = {
-    setOfPremisses: []
+    setOfPremisses: [],
+    futurePremisse: [],
+    // keyboard: "",
+    isTheWindowShown: false
+  };
+
+  addToFuturePremisse = newChar => {
+    let copyFuturePremisse = this.state.futurePremisse;
+    copyFuturePremisse += newChar;
+    this.setState({ futurePremisse: copyFuturePremisse });
+  };
+
+  removeLastCharacter = () => {
+    let copyFuturePremisse = [...this.state.futurePremisse];
+    copyFuturePremisse = copyFuturePremisse.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
+    copyFuturePremisse = copyFuturePremisse.join("");
+    this.setState(state => ({
+      futurePremisse: copyFuturePremisse
+    }));
+  };
+
+  toggleWindow = () => {
+    let newBool = false;
+    if (!this.state.isTheWindowShown) {
+      newBool = true;
+    }
+    this.setState({
+      isTheWindowShown: newBool
+    });
+    // console.log("window", newBool);
+  };
+
+  showKeyboard = () => {
+    // console.log("1on vient bien là wesh");
+    let everyPossibleCharacter = [
+      ["~", "∧", "∨", "⊻", "⊃", "⊅", "≡", "↑", "↓"],
+      ["p", "q", "r", "s"],
+      ["(", ")"]
+    ];
+    let buttonConfirmPremisse = (
+      <p
+        className="rule-modal-button"
+        onClick={() => this.updateState(this.state.futurePremisse)}
+      >
+        <i className="fas fa-check-square icon" />
+      </p>
+    );
+    let buttonRemoveLastCharacter = (
+      <p className="rule-modal-button" onClick={this.removeLastCharacter}>
+        <i className="fas fa-long-arrow-alt-left icon" />
+      </p>
+    );
+    let keyboard = [];
+    for (let i = 0; i < everyPossibleCharacter.length; i++) {
+      let subKeyboard = [];
+      for (let j = 0; j < everyPossibleCharacter[i].length; j++) {
+        // console.log("2on vient bien là wesh");
+        subKeyboard.push(
+          <li
+            key={subKeyboard.length}
+            className="selectable"
+            onClick={() => {
+              this.addToFuturePremisse(everyPossibleCharacter[i][j]);
+            }}
+          >
+            {everyPossibleCharacter[i][j]}
+          </li>
+        );
+      }
+      keyboard.push(<ul key={keyboard.length}>{subKeyboard}</ul>);
+    }
+    // console.log(this.state.isTheWindowShown);
+    if (this.state.isTheWindowShown) {
+      console.log("4on vient bien là wesh");
+      return (
+        <div className="question-mark-window-sandbox">
+          {keyboard}
+          <div className="future-premisse">
+            {this.state.futurePremisse}
+            <p className="blinking">_</p>
+          </div>
+          <div className="rule-modal-all-button-premisse">
+            {buttonRemoveLastCharacter}
+            {buttonConfirmPremisse}
+          </div>
+        </div>
+      );
+    } else {
+      // return;
+    }
   };
 
   useOfMakeInference = (infItself, infNumCom, infComm) => {
@@ -24,42 +113,71 @@ class ShowInfoSandbox extends Component {
 
   updateState(newPremisse) {
     let newSetofPremisses = [...this.state.setOfPremisses];
-    newSetofPremisses.push(newPremisse);
+    if (
+      newSetofPremisses.indexOf(newPremisse) === -1 &&
+      newPremisse.length > 0
+    ) {
+      newSetofPremisses.push(newPremisse);
+    }
     this.setState({
-      setOfPremisses: newSetofPremisses
+      setOfPremisses: newSetofPremisses,
+      futurePremisse: ""
     });
   }
 
-  showPremisses(premisses) {
-    let numberOfPremisses = 10 + this.state.setOfPremisses.length; // cette variable permet de connaître la lettre de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
-    let setOfPossiblePremisses = [];
-    for (let i = 0; i < premisses.length; i++) {
+  resetState() {
+    this.setState({
+      setOfPremisses: []
+    });
+  }
+
+  showPremisses(setOfPremissesThemselves) {
+    let numberOfPremisses = 9,
+      setOfPremissesRendered = []; // cette variable permet de connaître la lettre de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
+    for (let i = 0; i < setOfPremissesThemselves.length; i++) {
+      numberOfPremisses++;
       const newLetter = numberOfPremisses.toString(36).toLowerCase();
-      if (premisses[i] !== this.state.setOfPremisses) {
+      setOfPremissesRendered.push(
+        <ButtonRuleRep
+          key={i}
+          className={"premisse selectable"}
+          NumberButton={newLetter}
+          NameButton={setOfPremissesThemselves[i]}
+          useOfMakeInferenceSent={() =>
+            this.useOfMakeInference(
+              setOfPremissesThemselves[i],
+              newLetter,
+              "rep"
+            )
+          }
+        />
+      );
+    }
+    return setOfPremissesRendered;
+    // this.setState({ setOfPremisses: newSetOfPremisses });
+  }
+
+  showPossiblePremisses(premissesSent) {
+    let setOfPossiblePremisses = [];
+    for (let i = 0; i < premissesSent.length; i++) {
+      let className = "";
+      if (premissesSent[i] !== this.state.setOfPremisses) {
+        if (this.state.setOfPremisses.indexOf(premissesSent[i]) !== -1) {
+          className = "possible-premisse-sandbox-added";
+        }
         setOfPossiblePremisses.push(
           <a
             key={i}
-            className="possible-premisse-sandbox"
+            className={"possible-premisse-sandbox " + className}
             onClick={() => {
-              this.updateState(
-                <ButtonRuleRep
-                  key={i}
-                  className={"premisse selectable"}
-                  NumberButton={newLetter}
-                  NameButton={premisses[i]}
-                  useOfMakeInferenceSent={() =>
-                    this.useOfMakeInference(premisses[i], newLetter, "rep")
-                  }
-                />
-              );
+              this.updateState(premissesSent[i]);
             }}
           >
-            {premisses[i]}
+            {premissesSent[i]}
           </a>
         );
       }
     }
-
     return (
       <div id="buttonAddPremisses">
         <i className="active fas fa-plus-circle icon" />
@@ -70,23 +188,39 @@ class ShowInfoSandbox extends Component {
 
   // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
   render() {
-    for (let i = 0; i < this.props.premissesSent.length; i++) {}
+    let keyBoardToAddPremisses = (
+      <Fragment>
+        <i
+          className="far fa-keyboard icon question-mark-button"
+          id="buttonKeyboardPremisses"
+          onClick={() => this.toggleWindow()}
+        >
+          <div className="question-mark">
+            <div className="question-mark-content">
+              Cliquez ici pour ouvrir le clavier permettant de créer une
+              prémisse.
+            </div>
+          </div>
+        </i>
+        {this.showKeyboard()}
+      </Fragment>
+    );
     return (
       <Fragment>
         <p className={"exercise-title "} />
         <ul className="setPremissesConclusion">
           <li>
             <div style={{ display: "flex", flexDirection: "row" }}>
-              Prémisses {this.showPremisses(this.props.premissesSent)}
+              Prémisses {this.showPossiblePremisses(this.props.premissesSent)}
+              {keyBoardToAddPremisses}
               {
                 <i
-                  className="far fa-keyboard icon deactivated"
-                  id="buttonKeyboardPremisses"
+                  className="fas fa-eraser icon"
+                  onClick={() => this.resetState()}
                 />
               }
-              {<i className="fas fa-eraser icon deactivated" />}
             </div>
-            {this.state.setOfPremisses}
+            {this.showPremisses(this.state.setOfPremisses)}
           </li>
           <li>
             Conclusion
@@ -99,6 +233,7 @@ class ShowInfoSandbox extends Component {
             {<i className="fas fa-eraser icon deactivated" />}
           </li>
         </ul>
+        {this.state.keyboard}
       </Fragment>
     );
   }

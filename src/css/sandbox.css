@@ -29,3 +29,17 @@
   /* quand on met sa souris sur les prémisses possibles, elles deviennent grises */
   background-color: #777;
 }
+
+#buttonAddPremisses:hover .possible-premisse-sandbox-added {
+  background-color: rgb(105, 101, 101);
+}
+
+.future-premisse {
+  display: flex;
+  flex-direction: row;
+}
+
+.rule-modal-all-button-premisse {
+  display: flex;
+  flex-direction: row;
+}

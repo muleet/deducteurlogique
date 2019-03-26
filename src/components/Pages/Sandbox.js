@@ -6,7 +6,7 @@ import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";
 
-// import Debugger from "../Debugger";
+import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
 
@@ -16,12 +16,19 @@ import InferenceProvider, {
 class Deducer extends Component {
   renderCompatibleInferencesForCurrentRule(value) {
     let result = "";
-    if (value.isTheInferenceScannerActive) {
+    if (value.booleansOptionsAboutInferences.boolInferenceScanner) {
       result = (
         <div className="all-indicators-about-inference-validation">
           {value.allInferencesValidForCurrentRule}
         </div>
       ); /* on affiche le tableau contenant les inférences compatibles ou non */
+    }
+    return result;
+  }
+  renderDebugger(value) {
+    let result = "";
+    if (value.booleansOptionsAboutInferences.boolDebugger) {
+      result = <Debugger valueInference={value} />; /* on affiche le debugger */
     }
     return result;
   }
@@ -36,6 +43,7 @@ class Deducer extends Component {
       "p∨q",
       "p⊻q",
       "p⊃q",
+      "q⊃r",
       "p⊃~q",
       "q⊃~p",
       "p⊅q",
@@ -45,8 +53,8 @@ class Deducer extends Component {
       "q↓p",
       "p≡q",
       "(p∧q)∧(p∧r)",
-      "q⊃r",
       "~(p∧q)",
+      "(p∧q)⊃r",
       "p⊃(q⊃r)",
       "~(p∧r)",
       "p∧r",
@@ -78,8 +86,8 @@ class Deducer extends Component {
                       {this.renderCompatibleInferencesForCurrentRule(value)}
                       {value.allInferencesRendered}
                     </ul>
-                    {/* <Debugger valueInference={value} /> */}
                     {value.advice}
+                    {this.renderDebugger(value)}
                   </Fragment>
                 </section>
                 <section className="usablesRules">

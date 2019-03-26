@@ -99,8 +99,7 @@ const TheFuture = () => {
             Créer des raccourcis claviers pour les règles. Par exemple les
             lettres a z e r t permettront d'utiliser les 5 premières règles de
             tout exercice, et 1 2 3 4 5 permettront de référer aux 5 premières
-            inférence (que ce soit pour utiliser la règle reit ou pour utiliser
-            une inférence comme argument d'une règle).
+            inférence (pour utiliser une inférence comme argument d'une règle).
           </p>
           <p className="maybenever-available-rule">
             - Laisser la possibilité à l'utilisateur d'écrire les dernières

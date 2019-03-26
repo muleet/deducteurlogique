@@ -12,7 +12,7 @@ class ButtonRuleMaker extends Component {
   // renderSlashedEyeForButtonRule(bool) {
   //   if (
   //     bool === "no" &&
-  //     this.props.valueInference.isTheInferenceScannerActive
+  //     this.props.valueInference.booleansOptionsAboutInferences.boolInferenceScanner
   //   ) {
   //     return <i className="fas fa-eye-slash tiny-info-rule" />;
   //   }
@@ -285,34 +285,83 @@ class ButtonRuleMaker extends Component {
           </div>
         </div>
       );
-    if (!this.props.valueInference.isTheInferenceScannerActive) {
+    if (
+      !this.props.valueInference.booleansOptionsAboutInferences
+        .boolInferenceScanner
+    ) {
       eyeOfCompatibleInferences = (
         <i
           className="fas fa-eye-slash icon question-mark-button"
           onClick={() => {
-            this.props.valueInference.toggleScanInference();
+            this.props.valueInference.toggleOptionsAboutInferences(
+              "InferenceScanner"
+            );
           }}
         >
           {textOfTheEye}
         </i>
       );
-    } else if (this.props.valueInference.isTheInferenceScannerActive) {
+    } else if (
+      this.props.valueInference.booleansOptionsAboutInferences
+        .boolInferenceScanner
+    ) {
       eyeOfCompatibleInferences = (
         <i
           className="fas fa-eye icon question-mark-button"
           onClick={() => {
-            this.props.valueInference.toggleScanInference();
+            this.props.valueInference.toggleOptionsAboutInferences(
+              "InferenceScanner"
+            );
           }}
         >
           {textOfTheEye}
         </i>
       );
     }
+    // section dédiée au bouton qui permet d'activer ou désactiver le debugger
+    let cameraOfTheDebugger = "",
+      textOfTheCamera = (
+        <div className="question-mark">
+          <div className="question-mark-content">
+            Cliquez pour activer/désactiver l'outil de détection des bugs.
+          </div>
+        </div>
+      );
+    if (
+      !this.props.valueInference.booleansOptionsAboutInferences.boolDebugger
+    ) {
+      cameraOfTheDebugger = (
+        <i
+          className="fas fa-video-slash icon hidden question-mark-button"
+          onClick={() => {
+            this.props.valueInference.toggleOptionsAboutInferences("Debugger");
+          }}
+        >
+          {textOfTheCamera}
+        </i>
+      );
+    } else if (
+      this.props.valueInference.booleansOptionsAboutInferences.boolDebugger
+    ) {
+      cameraOfTheDebugger = (
+        <i
+          className="fas fa-video icon hidden question-mark-button"
+          onClick={() => {
+            this.props.valueInference.toggleOptionsAboutInferences("Debugger");
+          }}
+        >
+          {textOfTheCamera}
+        </i>
+      );
+    }
     // pour finir, on retourne tous les boutons relatifs aux règles
     return (
       <Fragment>
-        {eyeOfCompatibleInferences}
-        <div className="all-button-about-inferences">
+        <div className="all-toggle-buttons-about-inferences">
+          {eyeOfCompatibleInferences}
+          {cameraOfTheDebugger}
+        </div>
+        <div className="all-buttons-about-inferences">
           <i
             className="fas fa-long-arrow-alt-left icon"
             onClick={() => {

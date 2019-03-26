@@ -303,6 +303,7 @@ class RuleProvider extends Component {
 
     this.conditionalIntroduction = (B, numbers) => {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
+      B = this.mayAddFirstParenthesis(B);
       let ifAthenB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
       numbers =
         this.props.valueInference.allHypotheticalInferences[0]
@@ -696,7 +697,7 @@ class RuleProvider extends Component {
     };
 
     this.mayAddFirstParenthesis = inference => {
-      if (inference.length > 2 && inference[0] !== "~") {
+      if (inference.length > 2 && inference[inference.length - 1] !== ")") {
         inference = "(" + inference + ")";
       }
       return inference;

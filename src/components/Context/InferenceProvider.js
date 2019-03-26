@@ -17,33 +17,42 @@ class InferenceProvider extends Component {
     this.addInference = (newInference, hyp) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
-      let hypNumber = 0;
+      let hypNumber = 0,
+        hypIDNumber = this.state.hypothesisCurrentLevelAndId.theCurrentHypID;
       let inferenceType = "";
       let copyArrayRendered = [...this.state.allInferencesRendered];
       let copyArrayThemselves = [...this.state.allInferencesThemselves];
-
       // section de l'hypothèse (ignorée si hyp est undefined)
       if (hyp === "nouvelle hypothèse" || hyp === "nouvelle hyp ∨e") {
         hypNumber = 1;
         newInference.numberCommentaryHypothesis = copyArrayRendered.length + 1;
-        this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "increase");
+        hypIDNumber = this.manageLotsOfStuffAboutHypothesis(
+          newInference,
+          hyp,
+          "hypothèse créée"
+        );
         inferenceType = "hypothesisItself";
       }
       if (hyp === "hypothèse validée" || hyp === "hypothèse réfutée") {
         hypNumber = -1;
-        this.manageLotsOfStuffAboutHypothesis(newInference, hyp, "decrease");
+        hypIDNumber = this.manageLotsOfStuffAboutHypothesis(
+          newInference,
+          hyp,
+          "conclusion d'hypothèse"
+        );
       }
 
       // section des hypothèses de l'élimination de la disjonction, ∨e
-      const copyStoredHypId =
-        this.state.hypothesisCurrentLevelAndId.actualID + hypNumber;
+      // const copyStoredHypId =
+      //   this.state.hypothesisCurrentLevelAndId.actualID + hypNumber; // CE TRUC LA MARCHE
+      const copyStoredHypId = hypIDNumber;
 
       const storedLevel =
         this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que pour conditionner la règle reit
 
       // vérification de la conclusion
       if (
-        copyStoredHypId === 0 &&
+        storedLevel === 0 &&
         this.props.conclusionSent === newInference.itself
       ) {
         inferenceType = "concluding-inference-blinking";
@@ -67,46 +76,38 @@ class InferenceProvider extends Component {
         <MakeInference
           key={Number(copyArrayRendered.length + 1)}
           inferenceNumber={Number(copyArrayRendered.length + 1) + "."}
-          hypothesisCurrentLevel={
-            this.state.hypothesisCurrentLevelAndId.level + hypNumber
-          }
-          hypothesisCurrentID={
-            this.state.hypothesisCurrentLevelAndId.actualID + hypNumber
-          }
+          hypothesisCurrentLevel={storedLevel}
           inferenceItself={newInference.itself}
           inferenceCommentary={commentary}
           inferenceType={inferenceType}
           onClickSent={() => {
             if (this.state.canInferenceBeStored === true) {
               this.storageForRuleVerification(
-                copyArrayRendered.length, // on stocke le futur numéro d'inférence
-                newInference.itself, // on stocke l'inférence elle-même
+                copyArrayRendered.length, // on envoie le futur numéro d'inférence
+                newInference.itself, // on envoie l'inférence elle-même
                 copyStoredHypId // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
               );
             } else {
               // ce if empêche l'utilisateur de reit une inférence qui provient d'une hyp terminée, et permet toujours de reit depuis une absence d'hyp
               if (
                 storedLevel === 0 ||
-                this.state.hypothesisCurrentLevelAndId.hypIsStillOpen[
+                this.state.hypothesisCurrentLevelAndId.whichIDIsStillOpen[
                   copyStoredHypId - 1
-                ] === true
+                ][1] === true
               ) {
                 // l'action est possible SSI l'hyp est ouverte.(Il nereste plusqu'à coder l'action en question)
               }
             }
           }}
+          hypIDSent={hypIDNumber}
         />
       );
+      newInference.level =
+        this.state.hypothesisCurrentLevelAndId.level + hypNumber;
+      newInference.actualHypID =
+        // this.state.hypothesisCurrentLevelAndId.actualID + hypNumber; // ce truc-là marche !
+        hypIDNumber;
       copyArrayThemselves.push(newInference);
-      console.log("addInference, AllInferencesThemselves", copyArrayThemselves);
-      console.log(
-        "addInference, this.state.hypothesisCurrentLevelAndId",
-        this.state.hypothesisCurrentLevelAndId
-      );
-      console.log(
-        "addInference, allHypotheticalInferences",
-        this.state.allHypotheticalInferences
-      );
 
       if (
         this.state.ruleModalContent.ruleName &&
@@ -117,7 +118,8 @@ class InferenceProvider extends Component {
           copyArrayThemselves, // ensemble des inférences actuelles (qui seront scannées)
           this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
           this.state.allHypotheticalInferences, // contenu des hyp en cours
-          this.state.hypothesisCurrentLevelAndId // données des hyp en cours
+          this.state.hypothesisCurrentLevelAndId, // données des hyp en cours
+          this.state.allEndedHypotheticalInferences
         );
       }
 
@@ -136,22 +138,18 @@ class InferenceProvider extends Component {
       let expectedArgumentsLength = this.state.ruleModalContent
         .expectedArguments.length;
       const ruleName = this.state.ruleModalContent.ruleName;
-      if (ruleName === "~i" || ruleName === "⊃i" || ruleName === "⊅i") {
+      if (ruleName === "~i" || ruleName === "⊃i") {
         expectedArgumentsLength--;
       }
       // début de l'intérêt principal de cette fonction
       if (this.state.canInferenceBeStored === true) {
-        console.log(
-          "faut que ce soit égal",
-          this.state.hypothesisCurrentLevelAndId.actualID,
-          "===",
-          hypID
-        );
+        console.log("storageRuleVerif", this.state.hypothesisCurrentLevelAndId);
 
         // cas de la règle reit
         if (
           ruleName === "reit" &&
-          this.state.hypothesisCurrentLevelAndId.actualID >= hypID
+          this.state.hypothesisCurrentLevelAndId.theCurrentHypID >= hypID
+          // this.state.hypothesisCurrentLevelAndId.actualID >= hypID
         ) {
           copyArrayStoredInference = [infItself]; // inférence elle-même
           copyStoredNumbers = [numInference]; // nombre de l'inférence
@@ -163,9 +161,22 @@ class InferenceProvider extends Component {
         }
 
         // cas de toutes les règles sauf reit
+        console.log(
+          "faut que ce soit égal",
+          this.state.hypothesisCurrentLevelAndId.theCurrentHypID,
+          "===",
+          hypID
+        );
+        // console.log(
+        //   "faut que ce soit égal",
+        //   this.state.hypothesisCurrentLevelAndId.actualID,
+        //   "===",
+        //   hypID
+        // );
         if (
           ruleName !== "reit" &&
-          this.state.hypothesisCurrentLevelAndId.actualID === hypID
+          this.state.hypothesisCurrentLevelAndId.theCurrentHypID === hypID
+          // this.state.hypothesisCurrentLevelAndId.actualID === hypID
         ) {
           if (expectedArgumentsLength === copyArrayStoredInference.length) {
             // dans ce if on reset les arguments, vu que l'utilisateur a dépassé le nombre d'arguments max en cliquant
@@ -273,16 +284,17 @@ class InferenceProvider extends Component {
         let copyAllInferencesThemselves = [
           ...this.state.allInferencesThemselves
         ];
-        let copyAllInferencesValidForCurrentRule = [
-          ...this.state.allInferencesValidForCurrentRule
-        ];
         let copyAHI = [...this.state.allHypotheticalInferences];
         let copyAEHI = [...this.state.allEndedHypotheticalInferences];
         const AITLength = copyAllInferencesThemselves.length - 1;
         if (copyAllInferencesThemselves[AITLength].commentary === "hyp") {
           // on supprime une hypothèse, donc on baisse d'un niveau d'hyp et on efface la dernière entrée dans allHypotheticalInferences
           copyAHI = copyAHI.slice(1);
-          this.manageLotsOfStuffAboutHypothesis("", "", "noincrease");
+          this.manageLotsOfStuffAboutHypothesis(
+            "",
+            "",
+            "effacement de création d'hyp"
+          );
         } else if (
           copyAllInferencesThemselves[AITLength].commentary === "⊃i" ||
           copyAllInferencesThemselves[AITLength].commentary === "~i"
@@ -290,31 +302,27 @@ class InferenceProvider extends Component {
           // on supprime une conclusion d'hypothèse, donc on augmente d'un niveau d'hyp et on remet la dernière entrée dans AHI (présente dans AEHI), et on supprime la dernière entrée ASHI
           copyAHI.unshift(copyAEHI[0]);
           copyAEHI = copyAEHI.slice(1);
-          this.manageLotsOfStuffAboutHypothesis("", "", "reincrease");
+          this.manageLotsOfStuffAboutHypothesis(
+            "",
+            "",
+            "effacement de conclusion d'hyp"
+          );
         }
         copyAllInferencesRendered.pop(); // on extrait une partie du tableau, la première en partant de la fin
         copyAllInferencesThemselves.pop();
-        // if (copyAllInferencesValidForCurrentRule.length > 0) {
-        //   copyAllInferencesValidForCurrentRule.pop();
-        // }
-        console.log(
-          "removeLastInference",
-          this.state.ruleModalContent.ruleName,
-          copyAllInferencesThemselves
-        );
         InferenceScanner(
           this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
           copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
           this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
           copyAHI, // contenu des hyp en cours
-          this.state.hypothesisCurrentLevelAndId // données des hyp en cours // contenu des hyp en cours
+          this.state.hypothesisCurrentLevelAndId, // données des hyp en cours // contenu des hyp en cours
+          copyAEHI
         );
         this.setState(state => ({
           allInferencesRendered: copyAllInferencesRendered,
           allInferencesThemselves: copyAllInferencesThemselves,
           allHypotheticalInferences: copyAHI,
           allEndedHypotheticalInferences: copyAEHI
-          // allInferencesValidForCurrentRule: copyAllInferencesValidForCurrentRule
         }));
       }
     };
@@ -330,9 +338,10 @@ class InferenceProvider extends Component {
         canInferenceBeStored: false,
         hypothesisCurrentLevelAndId: {
           level: 0,
-          maxID: 0,
-          actualID: 0,
-          hypIsStillOpen: []
+          maxID: -1,
+          // actualID: 0,
+          theCurrentHypID: -1,
+          whichIDIsStillOpen: [] // tableau à tableaux contenant un nombre + un booléen
         },
         allHypotheticalInferences: [],
         allEndedHypotheticalInferences: [], // utilisé uniquement pour removeLastInference
@@ -356,6 +365,13 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.getCurrentHyp = () => {
+      // cette fonction cherche la première hypothèse en partant de la fin, à toujours être true, et maj la variable "theCurrentHypID" avec le bon nombre
+      let newTheOneAndOnlyCurrentHyp = null;
+
+      return newTheOneAndOnlyCurrentHyp;
+    };
+
     this.manageLotsOfStuffAboutHypothesis = (hypothesisItself, hyp, change) => {
       // (section 1 : change) Cette section gère l'augmentation/diminution du niveau d'hypothèse, et l'augmentation de l'id
       // Pour le moment je triche dans mon affichage. L'affichage dans MakeInference est à -1 par rapport à ici (et je rebalance ça avec un +1 qui sort de nulle part.)
@@ -364,33 +380,56 @@ class InferenceProvider extends Component {
       };
       let copyAEHI = [...this.state.allEndedHypotheticalInferences]; // utilisé uniquement pour removeLastInference
 
-      if (change === "increase") {
+      if (change === "hypothèse créée") {
         // on crée une hyp
         copyHypothesisCurrentLevelAndID.maxID++;
         copyHypothesisCurrentLevelAndID.level++;
-        copyHypothesisCurrentLevelAndID.actualID++;
-        copyHypothesisCurrentLevelAndID.hypIsStillOpen.push(true);
-      } else if (change === "decrease") {
+        // copyHypothesisCurrentLevelAndID.actualID++;
+        copyHypothesisCurrentLevelAndID.whichIDIsStillOpen.push([
+          copyHypothesisCurrentLevelAndID.maxID,
+          true
+        ]);
+      } else if (change === "conclusion d'hypothèse") {
         // on conclut une hyp
         copyHypothesisCurrentLevelAndID.level--;
-        copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
-        copyHypothesisCurrentLevelAndID.hypIsStillOpen[
-          copyHypothesisCurrentLevelAndID.actualID
-        ] = false;
-      } else if (change === "reincrease") {
+        // copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
+        copyHypothesisCurrentLevelAndID.whichIDIsStillOpen[
+          copyHypothesisCurrentLevelAndID.theCurrentHypID
+        ][1] = false;
+      } else if (change === "effacement de conclusion d'hyp") {
         // on efface une conclusion d'hyp avec removeLastInference
         copyHypothesisCurrentLevelAndID.level++;
-        copyHypothesisCurrentLevelAndID.actualID++;
-        copyHypothesisCurrentLevelAndID.hypIsStillOpen[
-          copyHypothesisCurrentLevelAndID.actualID
-        ] = true;
-      } else if (change === "noincrease") {
+        // copyHypothesisCurrentLevelAndID.actualID++;
+        copyHypothesisCurrentLevelAndID.whichIDIsStillOpen[
+          // copyHypothesisCurrentLevelAndID.theCurrentHypID + 1
+          this.state.allInferencesThemselves[
+            this.state.allInferencesThemselves.length - 2
+          ].actualHypID
+        ][1] = true;
+      } else if (change === "effacement de création d'hyp") {
         // on efface une hyp avec removeLastInference
         copyHypothesisCurrentLevelAndID.maxID--;
         copyHypothesisCurrentLevelAndID.level--;
-        copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
-        copyHypothesisCurrentLevelAndID.hypIsStillOpen.shift();
+        // copyHypothesisCurrentLevelAndID.actualID--; // DOUTE : cette ligne a-t-elle vraiment lieu ... ?
+        copyHypothesisCurrentLevelAndID.whichIDIsStillOpen.pop();
       }
+
+      // (étape 1,5 : on maj l'ID de l'hypothèse en cours)
+      for (
+        let i = copyHypothesisCurrentLevelAndID.whichIDIsStillOpen.length - 1;
+        i >= 0;
+        i--
+      ) {
+        if (copyHypothesisCurrentLevelAndID.whichIDIsStillOpen[i][1] === true) {
+          console.log("la dernière hyp en cours est la", i);
+          copyHypothesisCurrentLevelAndID.theCurrentHypID = i;
+          i = -1;
+        }
+        if (i === 0) {
+          copyHypothesisCurrentLevelAndID.theCurrentHypID = -1;
+        }
+      }
+
       // (section 2 : hypothesisItself, hyp) Cette section gère les intitulés d'inférence isolément, et leur ID.
       let copyAllHypotheticalInferences = [
         ...this.state.allHypotheticalInferences
@@ -411,6 +450,7 @@ class InferenceProvider extends Component {
         hypothesisCurrentLevelAndId: copyHypothesisCurrentLevelAndID,
         allEndedHypotheticalInferences: copyAEHI // utilisé uniquement pour removeLastInference
       });
+      return copyHypothesisCurrentLevelAndID.theCurrentHypID;
       // consolelog("niveau & id d'hypothèse", copyHypothesisCurrentLevelAndID);
     };
 
@@ -451,7 +491,7 @@ class InferenceProvider extends Component {
         str === "user-closed-the-modal" ||
         str === "rule-ended-well"
       ) {
-        // cas 4 : fin d'une règle qui ferme le ruleModal (par exemple ⊃i ⊅i ~i)
+        // cas 4 : fin d'une règle qui ferme le ruleModal (par exemple ⊃i ~i)
         // cas 5 : l'utilisateur appuie sur la touche de fermeture du ruleModal
         newRuleModalShown.normal = false;
         this.updateScannedInferences("reset"); // il n'y a plus de ruleModal en cours, donc plus de détection des inférences compatibles
@@ -465,18 +505,13 @@ class InferenceProvider extends Component {
           // ruleModalContent.ruleName !== this.state.ruleModalContent.ruleName &&
           newRuleModalShown.normal === true)
       ) {
-        console.log(
-          "SEEEETRULEMODAL, les 3 données pour IF ",
-          newRuleModalContent.ruleName,
-          this.state.allInferencesThemselves,
-          this.state.updateScannedInferences
-        );
         InferenceScanner(
           newRuleModalContent.ruleName, // nom de la règle du ruleModal en cours
           this.state.allInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
           this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
           this.state.allHypotheticalInferences, // contenu des hyp en cours
-          this.state.hypothesisCurrentLevelAndId // données des hyp en cours // contenu des hyp en cours
+          this.state.hypothesisCurrentLevelAndId, // données des hyp en cours // contenu des hyp en cours
+          this.state.allEndedHypotheticalInferences // données des hyp terminées
         );
       }
 
@@ -487,7 +522,6 @@ class InferenceProvider extends Component {
       }
 
       // ci-dessous on utilise la fonction permettant de scanner les inférences pour voir s'il y en a qui sont compatibles avec la règle du ruleModal en cours
-
       this.setState({
         ruleModalShown: newRuleModalShown,
         ruleModalClassName: newClassName,
@@ -496,10 +530,6 @@ class InferenceProvider extends Component {
     };
 
     this.updateScannedInferences = newArrayOfCompatibleInferences => {
-      console.log(
-        "on update le résultat du scan, avec le tableau",
-        newArrayOfCompatibleInferences
-      );
       if (newArrayOfCompatibleInferences === "reset") {
         newArrayOfCompatibleInferences = "";
       }
@@ -508,12 +538,27 @@ class InferenceProvider extends Component {
       });
     };
 
-    this.toggleScanInference = () => {
-      let newtoggle = false;
-      if (!this.state.isTheInferenceScannerActive) {
-        newtoggle = true;
+    this.toggleOptionsAboutInferences = str => {
+      // str peut avoir "Debugger" ou "inferenceScanner" comme valeur, selon l'option qu'on veut changer
+      let newBooleansOptionsAboutInferences = {
+        ...this.state.booleansOptionsAboutInferences
+      };
+      if (str === "Debugger") {
+        if (newBooleansOptionsAboutInferences.boolDebugger === true) {
+          newBooleansOptionsAboutInferences.boolDebugger = false;
+        } else {
+          newBooleansOptionsAboutInferences.boolDebugger = true;
+        }
+      } else if (str === "InferenceScanner") {
+        if (newBooleansOptionsAboutInferences.boolInferenceScanner === true) {
+          newBooleansOptionsAboutInferences.boolInferenceScanner = false;
+        } else {
+          newBooleansOptionsAboutInferences.boolInferenceScanner = true;
+        }
       }
-      this.setState({ isTheInferenceScannerActive: newtoggle });
+      this.setState({
+        booleansOptionsAboutInferences: newBooleansOptionsAboutInferences
+      });
     };
 
     this.updateStepRule = bool => {
@@ -595,8 +640,6 @@ class InferenceProvider extends Component {
       allInferencesRendered: [], // contient les données htmlisées des inférences
       allInferencesThemselves: [], // contient les inférences elles-mêmes + leur commentaire + les nombres justifiant leur commentaire
       allInferencesValidForCurrentRule: [], // contient des tableaux à deux données : la position du premier caractère dans l'inf + la classeName qu'il faut lui donner (soit "inference-validFirstArgument", soit "inference-validSecondArgument"), autrement dit allValidInference ne contient rien sur les inférences invalides pour la règle en cours
-      isTheInferenceScannerActive: false, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
-      toggleScanInference: this.toggleScanInference,
       canInferenceBeStored: false, // ne devient vrai que lorsqu'on clique sur un bouton de règle, ce qui active aussi un modal
       addInference: this.addInference,
       changeStorageBoolean: this.changeStorageBoolean,
@@ -607,19 +650,27 @@ class InferenceProvider extends Component {
       // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
       longStoredInference: [],
       longStorageForRuleVerification: this.longStorageForRuleVerification,
+      // section de l'objet des options relatives aux déductions et inférences
+      booleansOptionsAboutInferences: {
+        boolInferenceScanner: true, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
+        boolDebugger: false // le debugger est-il activé ? (il affiche certaines informations)
+      },
+      toggleOptionsAboutInferences: this.toggleOptionsAboutInferences,
       // sections de divers boutons de l'interface
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
       // section de l'hypothèse
       manageLotsOfStuffAboutHypothesis: this.manageLotsOfStuffAboutHypothesis,
+      getCurrentHyp: this.getCurrentHyp,
       hypothesisCurrentLevelAndId: {
         level: 0,
-        maxID: 0,
-        actualID: 0,
-        hypIsStillOpen: []
+        maxID: -1, // -1 signifie qu'aucune hypothèse n'a encore été créée
+        // actualID: 0,
+        theCurrentHypID: -1, // -1 signifie qu'aucune hypothèse n'a encore été créée
+        whichIDIsStillOpen: [] // tableau à tableau contenant un nombre + un booléen
       },
-      allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i ou ⊅i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
+      allHypotheticalInferences: [], // cette variable stocke les derniers intitulés d'hypothèses. Lorsqu'on utilise ~i ou ⊃i (si les conditions sont remplies pour les utiliser réellement), le dernier élément de cette variable est alors utilisé pour créer une nouvelle inférence, puis il est retiré du tableau.
       allEndedHypotheticalInferences: [], // utilisé uniquement pour removeLastInference. Lorsqu'on supprime une inférence qui concluait une hypothèse, celle-ci redevient une hypothèse en cours, il faut donc pouvoir la récupérer. C'est à cela que sert le stockage des hyp supprimées.
       // section ruleModal
       ruleModalShown: { normal: false }, // je ferai peut-être un "ruleModalShown.special", plus tard
@@ -641,7 +692,7 @@ class InferenceProvider extends Component {
       possibleMeaningShown: false,
       setPossibleMeaning: this.setPossibleMeaning,
       //  section commutativité & portée de l'opérateur
-      inversion: false, // ce booléen permet de savoir s'il faut inverser ou non telle inférence ayant pour connecteur dominant ∧, ∨, ⊻, ≡, ↓ ou ↑
+      // inversion: false, // ce booléen permet de savoir s'il faut inverser ou non telle inférence ayant pour connecteur dominant ∧, ∨, ⊻, ≡, ↓ ou ↑
       setInversion: this.setInversion,
       partOfInference: "A", //
       setPartOfInference: this.setPartOfInference, // cette fonction permet de savoir quelle inférence doit être extraite par ∨e dans A∨B (A, B, ou C)

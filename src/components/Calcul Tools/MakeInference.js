@@ -22,6 +22,7 @@ class MakeInference extends Component {
           </div>
           <div className={"hypothesis-level " + this.props.inferenceType}>
             {hypothesisLevel}
+            {/* {this.props.hypIDSent} */}
           </div>
           <div className={"inferenceItself " + this.props.inferenceType}>
             {this.props.inferenceItself}

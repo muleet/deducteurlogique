@@ -9,6 +9,7 @@ import InferenceProvider, {
 } from "../Context/InferenceProvider";
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
+import Debugger from "../Debugger.js";
 // import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
@@ -81,12 +82,19 @@ class Deducer extends Component {
 
   renderCompatibleInferencesForCurrentRule(value) {
     let result = "";
-    if (value.isTheInferenceScannerActive) {
+    if (value.booleansOptionsAboutInferences.boolInferenceScanner) {
       result = (
         <div className="all-indicators-about-inference-validation">
           {value.allInferencesValidForCurrentRule}
         </div>
       ); /* on affiche le tableau contenant les inférences compatibles ou non */
+    }
+    return result;
+  }
+  renderDebugger(value) {
+    let result = "";
+    if (value.booleansOptionsAboutInferences.boolDebugger) {
+      result = <Debugger valueInference={value} />; /* on affiche le debugger */
     }
     return result;
   }
@@ -138,18 +146,13 @@ class Deducer extends Component {
                     {/* Sert à afficher des infos à l'utilisateur */}
                     <Fragment>
                       <ul className="deduction">
-                        {/* {
-                          <div className="hypothesis-level">
-                            {value.dataRegardingHypothesisLine}
-                          </div>
-                        } */}
                         {this.renderCompatibleInferencesForCurrentRule(value)}
                         {
                           value.allInferencesRendered /* on affiche le tableau */
                         }
                       </ul>
-                      {/* <Debugger valueInference={value} /> */}
                       {value.advice}
+                      {this.renderDebugger(value)}
                       <ShowPossibleMeaning
                         exerciseSent={this.state.currentExercise}
                         valueInference={value}

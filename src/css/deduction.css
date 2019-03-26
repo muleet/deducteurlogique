@@ -85,8 +85,8 @@
   /*style des prémisses dans les exos, spécifiquement*/
   /* border: 1px transparent solid; */
   font-style: normal;
-  display: "flex";
-  flex-direction: "column";
+  display: flex;
+  flex-direction: column;
   align-content: center;
   padding: 4px;
 }
@@ -99,6 +99,14 @@
 #minimal-line-number {
   font-size: 12px;
   margin-top: 2px;
+}
+
+.debugger {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  border: 1px solid purple;
+  width: 300px;
 }
 
 /* Style des significations possibles */

@@ -29,10 +29,10 @@ class ShowTruthTable extends Component {
     if (
       character[0] === "⊤" ||
       character[0] === "⊥" ||
-      character === "q" ||
-      character === "p" ||
-      character[0] === "~p" ||
-      character[0] === "~q"
+      character === "A" ||
+      character === "B" ||
+      character[0] === "~A" ||
+      character[0] === "~B"
     ) {
       return "";
     } else if (character.length > 0) {
