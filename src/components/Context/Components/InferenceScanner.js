@@ -24,40 +24,19 @@ function getInferencesFromClosedHypotheses(
   // étape 1 : on crée un for qui se refera pour chaque hypothèse, ouverte ou fermée
   for (let i = 0; i < hypCurrentLevelAndId.whichIDIsStillOpen.length; i++) {
     // étape 2 : on vérifie une à une si les hyp sont ouvertes ou fermées, s'il est false il est fermé
-    console.log(
-      "étape 1, si c'est une hyp fermée",
-      hypCurrentLevelAndId.whichIDIsStillOpen[i]
-    );
     if (hypCurrentLevelAndId.whichIDIsStillOpen[i][1] === false) {
       // étape 3 : on fait un for pour détecter toutes les inf qui sont de la même hypID que l'hyp fermée
-      console.log("étape 2, on a trouvé l'hyp fermée", i);
       for (let j = 0; j < allInfThem.length; j++) {
         // étape 4 : si on en trouve une on l'ajoute à la liste des positions, en étant sûr de pas l'avoir déjà ajoutée
-        console.log(
-          "étape 3, on teste l'inf'",
-          j,
-          "' : elle a l'actualHypID '",
-          allInfThem[j].actualHypID,
-          "' qui correspond ou non à '",
-          i,
-          "' et on a '",
-          positionsFromClosedHyp.indexOf(j),
-          "' === - 1"
-        );
         if (
           allInfThem[j].actualHypID === i &&
           positionsFromClosedHyp.indexOf(j) === -1
         ) {
-          console.log("étape 4, on push", j);
           positionsFromClosedHyp.push(j);
         }
       }
     }
   }
-  console.log(
-    "getInferencesFromClosedHypotheses retourne les positions ",
-    positionsFromClosedHyp
-  );
   return positionsFromClosedHyp; // retourne un tableau contenant des numéros de position, celles des inférences d'hyp fermées
 }
 

@@ -37,7 +37,6 @@ class ShowInfoSandbox extends Component {
   };
 
   showKeyboard = () => {
-    // console.log("1on vient bien là wesh");
     let everyPossibleCharacter = [
       ["~", "∧", "∨", "⊻", "⊃", "⊅", "≡", "↑", "↓"],
       ["p", "q", "r", "s"],
@@ -60,7 +59,6 @@ class ShowInfoSandbox extends Component {
     for (let i = 0; i < everyPossibleCharacter.length; i++) {
       let subKeyboard = [];
       for (let j = 0; j < everyPossibleCharacter[i].length; j++) {
-        // console.log("2on vient bien là wesh");
         subKeyboard.push(
           <li
             key={subKeyboard.length}
@@ -75,9 +73,7 @@ class ShowInfoSandbox extends Component {
       }
       keyboard.push(<ul key={keyboard.length}>{subKeyboard}</ul>);
     }
-    // console.log(this.state.isTheWindowShown);
     if (this.state.isTheWindowShown) {
-      console.log("4on vient bien là wesh");
       return (
         <div className="question-mark-window-sandbox">
           {keyboard}
@@ -91,8 +87,6 @@ class ShowInfoSandbox extends Component {
           </div>
         </div>
       );
-    } else {
-      // return;
     }
   };
 

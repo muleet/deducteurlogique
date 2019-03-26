@@ -87,8 +87,8 @@
   },
   {
     "number": 6,
-    "name": "Proposition p",
-    "alternativeName": "Affirmation de l'antécédent",
+    "name": "Affirmation de l'antécédent",
+    "alternativeName": "",
     "description": "",
     "link": "",
     "reductibleTo": "",
