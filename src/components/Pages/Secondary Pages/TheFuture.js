@@ -42,9 +42,21 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
+            - La possibilité de créer des comptes utilisateurs, pour stocker les
+            exercices résolus par un utilisateur et pour lui permettre de créer
+            de nouveaux exercices (il pourra choisir les prémisses, les règles
+            utilisées, la conclusion, une solution possible, et les
+            significations possibles des prémisses).
+          </p>
+          <p className="soon-available-rule">
             - Corrections des bugs spécifiques au fonctionnement de la règle ∨e
             (et surtout, amélioration de son interface) + possibilité d'utiliser
             la suppression de la dernière inférence, avec cette règle.
+          </p>
+          <p className="soon-available-rule">
+            - Des schémas pour indiquer quel genre d'arguments sont attendus
+            pour chaque règle, et montrer aussi clairement que possible la
+            compatibilité des règles avec les inférences en cours.
           </p>
           <p className="later-available-rule">
             - Faire un affichage plus traditionnel du niveau d'hypothèse, avec
@@ -53,13 +65,6 @@ const TheFuture = () => {
           <p className="later-available-rule">
             - Une meilleure interface pour la liste des exercices, notamment
             pour mettre en avant les significations possibles.
-          </p>
-          <p className="later-available-rule">
-            - La possibilité de créer des comptes utilisateurs, pour stocker les
-            exercices résolus par un utilisateur et pour lui permettre de créer
-            de nouveaux exercices (il pourra choisir les prémisses, les règles
-            utilisées, la conclusion, une solution possible, et les
-            significations possibles des prémisses).
           </p>
           <p className="later-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
