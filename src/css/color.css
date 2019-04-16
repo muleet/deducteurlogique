@@ -15,6 +15,10 @@
   background-color: #a27bff;
 }
 
+.user-color {
+  background-color: #00ff6a71;
+}
+
 .unavailable-yet {
   opacity: 0.2;
 }

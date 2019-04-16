@@ -34,11 +34,11 @@ import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndCont
 import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 import greekAlphabet from "./components/Pages/Secondary Pages/greekAlphabet";
 import Locutions from "./components/Pages/Secondary Pages/Locutions";
-import Koko from "./components/Pages/Secondary Pages/Koko";
 // Importations d'autres trucs
 // import LogIn from "./components/Users/LogIn";
 // import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
+import MakeListExercisesOfUser from "./components/Pages/MakeListExercisesOfUser";
 import ButtonNav from "./components/Navigation Components/ButtonNav";
 import TruthTable from "./components/Pages/TruthTable";
 import Sandbox from "./components/Pages/Sandbox";
@@ -121,6 +121,14 @@ class App extends Component {
                 </Link>
               </li>
               <li>
+                <Link to="/calcul-prop-exo-user">
+                  <ButtonNav
+                    className="user-color"
+                    name={<i class="fas fa-user" />}
+                  />
+                </Link>
+              </li>
+              <li>
                 <Link to="/forma-exo">
                   <ButtonNav
                     className="forma-color unavailable-yet"
@@ -145,13 +153,16 @@ class App extends Component {
             <Route path="/bac-à-sable-logique" component={Sandbox} />
             <Route path="/omega" component={greekAlphabet} />
             <Route path="/Locutions" component={Locutions} />
-            <Route path="/Kôko" component={Koko} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"
               render={props => <CalculDesPropositions {...props} user={user} />}
             />
             <Route path="/calcul-prop-exo" component={MakeListExercises} />
+            <Route
+              path="/calcul-prop-exo-user"
+              component={MakeListExercisesOfUser}
+            />
             <Route path="/forma/:num" component={FormalisationEnonces} />
             <Route path="/forma-exo" />
             <Route path="/calcul-pred/:num" component={CalculDesPredicats} />
