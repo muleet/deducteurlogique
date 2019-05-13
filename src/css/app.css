@@ -100,6 +100,7 @@ footer {
 .anarchy-flag {
   width: 100%;
   position: absolute;
+  opacity: 0.2;
 }
 
 .blocAuteur p {
