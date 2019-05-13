@@ -7,9 +7,7 @@ const AuthorsAndContact = () => {
       <h2 style={{ marginBottom: "10px" }}>
         Auteur(s) et contact <br />
       </h2>
-      <p style={{ fontSize: 16, marginBottom: "10px" }}>
-        L'auteur du site est :{" "}
-      </p>
+
       <div className="blocAuteur">
         <img
           src={FlagAnarchy}
@@ -18,6 +16,13 @@ const AuthorsAndContact = () => {
         />
         <p>un·e mystérieu·x·se anticapitaliste</p>
       </div>
+      <p style={{ fontSize: 16, marginBottom: "10px" }}>
+        Page de financement participatif :
+        https://fr.tipeee.com/deducteur-logique
+      </p>
+      <p style={{ fontSize: 16, marginBottom: "10px" }}>
+        Pour me contacter : quentin.vandini@gmail.com{" "}
+      </p>
     </main>
   );
 };
