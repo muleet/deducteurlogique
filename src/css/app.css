@@ -99,15 +99,18 @@ footer {
 
 .anarchy-flag {
   width: 100%;
-  /* margin-bottom: 30px; */
   position: absolute;
 }
 
 .blocAuteur p {
   text-align: center;
+  align-content: center;
   position: absolute;
-  width: 100%;
-  line-height: 350px;
+  margin: 20px;
+  padding: 20px;
+  margin-top: 125px;
+  margin-left: 70px;
+  font-size: 18px;
 }
 
 h2 {
