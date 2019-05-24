@@ -15,14 +15,14 @@ const AuthorsAndContact = () => {
           style={{ display: "flex" }}
         />
         <p>
-          Page de financement participatif : <br />
+          {/* Page de financement participatif : <br />
           <a
             href="https://fr.tipeee.com/deducteur-logique"
             // style={{ color: "" }}
           >
             https://fr.tipeee.com/deducteur-logique
           </a>
-          <br />
+          <br /> */}
           <br />
           Pour me contacter :
           <br />
