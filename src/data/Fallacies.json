@@ -1,0 +1,175 @@
+[
+  {
+    "frenchName": "Homme de paille",
+    "englishName": "Strawman",
+    "definition": "Mal représenter un argument, pour mieux l'attaquer"
+  },
+  {
+    "frenchName": "Pente savonneuse",
+    "englishName": "Slippery slope",
+    "definition": "Si on laisse A se passer, alors B se passera nécessairement, donc on doit empêcher A de se passer.",
+    "link": ""
+  },
+  {
+    "frenchName": "Concession spéciale",
+    "englishName": "Special pleading",
+    "definition": "Demander une exception lorsqu'une affirmation a été montrée comme fausse.",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme du joueur",
+    "englishName": "The gambler's fallacy",
+    "definition": "Croire que des résultats statistiques indépendants s'influent entre eux. Par exemple, penser que si en lançant 3 fois une pièce, qu'on a 3 fois pile, alors les chances d'avoir face ensuite sont plus élevées.",
+    "link": ""
+  },
+  {
+    "frenchName": "Faux dilemme",
+    "alternateFrenchName": "exclusion du tiers",
+    "englishName": "False dilemma, Black-or-white",
+    "definition": "Lorsque deux alternatives sont présentées comme les deux seules possibilités, alors que d'autres possibilitées existent.",
+    "link": ""
+  },
+  {
+    "frenchName": "Appel à l'autorité",
+    "englishName": "Appeal to authority",
+    "definition": "Utiliser l'opinion ou la position d'une figure faisant autorité, ou une institution faisant autorité, comme un argument, à la place d'un vrai argument.",
+    "link": ""
+  },
+  {
+    "frenchName": "Ad hominem",
+    "englishName": "",
+    "definition": "Attaquer la personne, ou ses traits personnels, qui énonce un argument plutôt que l'argument lui-même.",
+    "link": ""
+  },
+  {
+    "frenchName": "Question piège",
+    "englishName": "Loaded question",
+    "definition": "Poser une question qui contient un présupposé, d'une manière telle qu'on ne peut y répondre sans accepter ce présupposé.",
+    "link": ""
+  },
+  {
+    "frenchName": "Effet de mode",
+    "alternateFrenchName": "Appel à la popularité, Raison de la majorité",
+    "englishName": "Bandwagon",
+    "definition": "Faire appel à la popularité d'un argument ou à une action que beaucoup de gens font, pour tenter de valider cet argument ou cette action.",
+    "link": ""
+  },
+  {
+    "frenchName": "Pétition de principe",
+    "englishName": "Begging the question",
+    "definition": "Un argument circulaire dans lequel la conclusion est contenue dans ses prémisses.",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme de division",
+    "alternateFrenchName": "Sophisme de composition",
+    "englishName": "Division fallacy, Composition Fallacy",
+    "definition": "Admettre que ce qui est vrai à propos d'une partie de quelque chose, doit être appliqué au reste (tout ou partie) de cette chose.",
+    "link": ""
+  },
+  {
+    "frenchName": "Appel à l'émotion",
+    "englishName": "Appeal to emotion",
+    "definition": "Faire appel aux émotions à la place d'un argument valide.",
+    "link": ""
+  },
+  {
+    "frenchName": "Tu quoque",
+    "englishName": "",
+    "definition": "Eviter de répondre à une critique en la retournant contre celui qui l'énonce ; répondre à la critique par la critique.",
+    "link": ""
+  },
+  {
+    "frenchName": "Charge de la preuve",
+    "englishName": "Burden of proof",
+    "definition": "Dire que la charge de la preuve ne dépend pas de celui qui fait l'affirmation, mais à quelqu'un qui veut la réfuter.",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme du vrai écossais",
+    "alternateFrenchName": "Appel à la pureté",
+    "englishName": "No true scotsman, appeal to purity",
+    "definition": "Faire une généralisation puis rejeter les contre-exemple sous le prétexte qu'ils sont faux puisqu'ils sont contraire à cette généralisation.",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_du_vrai_%C3%89cossais"
+  },
+  {
+    "frenchName": "Sophisme du tireur d'élite texan",
+    "englishName": "The texas sharpshooter",
+    "definition": "Sélectionner a posteriori des évènements possédants des caractéristiques similaires pour en déduire une relation causale.",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_du_tireur_d%27%C3%A9lite_texan"
+  },
+  {
+    "frenchName": "Appel à la nature",
+    "englishName": "Appeal to nature",
+    "definition": "Dire que quelque chose est naturel et est par conséquent valide, justifié.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature"
+  },
+  {
+    "frenchName": "Sophisme du sophisme",
+    "englishName": "Fallacy fallacy",
+    "definition": "Présumer que puisqu'une affirmation a été mal argumentée ou qu'un sophisme y a été remarqué, alors cette affirmation est nécessairement fausse.",
+    "link": ""
+  },
+  {
+    "frenchName": "Incrédulité personnelle",
+    "englishName": "Personal incredulity",
+    "definition": "Présumer que parce qu'on trouve quelque chose est difficile à comprendre, alors elle ne doit pas être vraie.",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme de l'ambiguité",
+    "englishName": "Ambiguity fallacy",
+    "definition": "Utiliser les doubles sens ou les ambiguités du langage, pour déformer la vérité.",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme génétique",
+    "englishName": "Genetic fallacy",
+    "definition": "Présumer que quelque chose est vrai ou faux, bon ou mauvais, selon la base de laquelle il provient, ou de qui il provient.",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_g%C3%A9n%C3%A9tique"
+  },
+  {
+    "frenchName": "Faux compromis",
+    "alternateFrenchName": "Appel à la modération, juste milieu",
+    "englishName": "False compromise, Middle ground, appeal to moderation",
+    "definition": "Présumer qu'un compromis, ou un juste milieu, entre deux extrêmes, doit être la vérité.",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme de l'anecdote",
+    "englishName": "Anecdotal fallacy",
+    "definition": "Utiliser une expérience personnelle ou un cas isolé plutôt qu'un argument valide (en particulier pour chercher à rendre fausse des statistiques).",
+    "link": ""
+  },
+  {
+    "frenchName": "Essentialisation",
+    "englishName": "Essentialisation",
+    "definition": "Attribuer un trait essentiel et inaliénable à quelque chose.",
+    "link": ""
+  },
+  {
+    "frenchName": "Procès d'intention",
+    "englishName": "Trial of intent",
+    "definition": "Disqualifier l'argumentation d'une personne en arguant que ce qu'il dit repose sur des intentions réprochables.",
+    "link": ""
+  },
+  {
+    "frenchName": "Post hoc ergo propter hoc",
+    "alternateFrenchName": "Cause questionnable, fausse cause",
+    "englishName": "Post hoc ergo propter hoc",
+    "definition": "Présumer que puisque deux évènements se succèdent, alors il y a un lien de cause à effet entre le premier et le second.",
+    "link": ""
+  },
+  {
+    "frenchName": "Cum hoc ergo propter hoc",
+    "englishName": "Cum hoc ergo propter hoc",
+    "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux (confondre corrélation et causation).",
+    "link": ""
+  },
+  {
+    "frenchName": "Sophisme naturaliste",
+    "englishName": "Naturalistic fallacy",
+    "definition": "Confondre ce qui est (descriptif) avec ce qui doit être (prescriptif).",
+    "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste"
+  }
+]

@@ -1,0 +1,55 @@
+.main-fallacy {
+  padding: 20px;
+  /* border: 1px solid red; */
+}
+
+.fallacy-instruction {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.fallacy-randomDescription {
+  color: rgb(97, 97, 255);
+  font-size: 14px;
+  padding: 10px;
+  width: 400px;
+  margin-top: 10px;
+  text-justify: center;
+  text-align: center;
+  border: 1px solid rgba(107, 97, 255, 0.541);
+  background-color: rgba(97, 97, 255, 0.171);
+}
+.set-fallacy-button {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  /* border: 1px solid purple; */
+  width: 1200px;
+  flex-wrap: wrap;
+}
+
+.fallacy-button {
+  font-size: 15px;
+  margin: 2px;
+  padding: 7px;
+  border: 1px solid rgb(97, 97, 255);
+  background-color: rgba(97, 97, 255, 0.25);
+}
+
+.fallacy-button:hover {
+  border: 1px solid rgb(97, 165, 255);
+  background-color: rgba(97, 165, 255, 0.25);
+}
+
+.fallacy-button-rightfullySelected {
+  border: 1px solid rgb(97, 255, 163);
+  background-color: rgba(97, 255, 163, 0.25);
+}
+.fallacy-button-wrongfullySelected {
+  border: 1px solid rgb(255, 97, 118);
+  background-color: rgba(255, 97, 118, 0.25);
+}
+.fallacy-button-cheatfullySelected {
+  border: 1px solid rgb(255, 231, 97);
+  background-color: rgba(255, 231, 97, 0.25);
+}

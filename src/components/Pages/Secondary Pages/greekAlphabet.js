@@ -530,7 +530,7 @@ class greekAlphabet extends Component {
     // section du point d'interrogation
     const questionMark = (
       <div className={"question-mark-button icon "}>
-        ?
+        <i class="fas fa-question-circle" />
         <div className="question-mark">
           <div className="question-mark-title">A quoi sert cette page ?</div>
           <ul className="question-mark-content">
@@ -548,7 +548,9 @@ class greekAlphabet extends Component {
     // return
     return (
       <main className="main-greekAlphabet">
-        <h2 style={{ marginBottom: "10px" }}>Apprenons l'alphabet grec</h2>
+        <h2 style={{ marginBottom: "10px" }}>
+          Apprenons l'alphabet grec {questionMark}
+        </h2>
         <div className="greek-alphabet-choices">
           {buttonHigherCase}
           {buttonLowerCase}
@@ -558,7 +560,6 @@ class greekAlphabet extends Component {
           {buttonSolutionLowerCase}
           {buttonSolutionGreekName}
           {buttonSolutionGreekNamesInFrench}
-          {questionMark}
         </div>
         <div className="greek-alphabet-box">{this.state.unselectedLetters}</div>
         <div className={"greek-alphabet-box " + victory}>

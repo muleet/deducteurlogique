@@ -54,7 +54,7 @@ const TheFuture = () => {
             la suppression de la dernière inférence, avec cette règle.
           </p>
           <p className="soon-available-rule">
-            - Des schémas pour indiquer quel genre d'arguments sont attendus
+            - Des schémas pour indiquer quels genre d'arguments sont attendus
             pour chaque règle, et montrer aussi clairement que possible la
             compatibilité des règles avec les inférences en cours.
           </p>

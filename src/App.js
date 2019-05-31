@@ -7,6 +7,7 @@ import "./css/buttonMenu.css";
 import "./css/buttonRule.css";
 import "./css/deduction.css";
 import "./css/exerciseList.css";
+import "./css/fallacies.css";
 import "./css/inference.css";
 import "./css/rulePopover.css";
 import "./css/ruleModal.css";
@@ -14,6 +15,7 @@ import "./css/questions.css";
 import "./css/sandbox.css";
 import "./css/showInfoRules.css";
 import "./css/truthTable.css";
+import "./css/user.css";
 import "./css/color.css";
 import "./css/media queries/mediaqueries.css";
 // Importation de fonts
@@ -36,12 +38,13 @@ import greekAlphabet from "./components/Pages/Secondary Pages/greekAlphabet";
 import Locutions from "./components/Pages/Secondary Pages/Locutions";
 // Importations d'autres trucs
 // import LogIn from "./components/Users/LogIn";
-// import SignUp from "./components/Users/SignUp";
+import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
 import MakeListExercisesOfUser from "./components/Pages/MakeListExercisesOfUser";
 import ButtonNav from "./components/Navigation Components/ButtonNav";
 import TruthTable from "./components/Pages/TruthTable";
 import Sandbox from "./components/Pages/Sandbox";
+import ShowFallacies from "./components/Pages/ShowFallacies";
 // Images
 // import athens from "./img/athens.svg";
 
@@ -124,7 +127,7 @@ class App extends Component {
                 <Link to="/calcul-prop-exo-user">
                   <ButtonNav
                     className="user-color"
-                    name={<i class="fas fa-user" />}
+                    name={<i className="fas fa-user" />}
                   />
                 </Link>
               </li>
@@ -152,7 +155,8 @@ class App extends Component {
             <Route path="/tables-de-vérité" component={TruthTable} />
             <Route path="/bac-à-sable-logique" component={Sandbox} />
             <Route path="/omega" component={greekAlphabet} />
-            <Route path="/Locutions" component={Locutions} />
+            <Route path="/locutions" component={Locutions} />
+            <Route path="/fallacies" component={ShowFallacies} />
             {/* <Route path="/tutoriel" component={Tutoriel} /> */}
             <Route
               path="/calcul-prop/:num"
@@ -169,9 +173,9 @@ class App extends Component {
             <Route path="/calcul-pred-exo" />
             <Route
               path="/sign_up"
-              // render={props => (
-              //   <SignUp {...props} user={user} setUser={this.setUser} />
-              // )}
+              render={props => (
+                <SignUp {...props} user={user} setUser={this.setUser} />
+              )}
             />
             <Route
               path="/log_in"

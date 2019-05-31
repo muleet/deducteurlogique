@@ -51,7 +51,7 @@ class ShowTruthTable extends Component {
     if (this.state.arrayInfoLine.example.length > 0) {
       return (
         <div style={{ display: "flex" }}>
-          A :{" "}
+          A :
           <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[0]}
           </p>

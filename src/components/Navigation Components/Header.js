@@ -53,6 +53,13 @@ class Header extends React.Component {
               name={<i className="fas fa-cog" />}
             />
           </NavLink>
+          <NavLink to="/fallacies">
+            <ButtonNav
+              className="header-button"
+              id="author-button"
+              name={<i className="fas fa-umbrella" />}
+            />
+          </NavLink>
           <NavLink to="/omega">
             <ButtonNav className="header-button" id="author-button" name="Ω" />
           </NavLink>
@@ -74,7 +81,7 @@ class Header extends React.Component {
             déducteur et
             <br />
             formaliseur logique
-            <div className="website-version">version 0.59a</div>
+            <div className="website-version">version 0.60</div>
           </h1>
         </ul>
       </header>
