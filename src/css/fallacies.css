@@ -53,3 +53,45 @@
   border: 1px solid rgb(255, 231, 97);
   background-color: rgba(255, 231, 97, 0.25);
 }
+
+#button-modal-fallacies {
+  margin-left: 20px;
+}
+
+/* Section de la liste des sophismes, qui apparaît dans le BasicReactModal */
+
+.set-all-fallacy-information {
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+  align-content: flex-start baseline;
+  flex-wrap: wrap;
+  width: 1280px;
+  height: 600px;
+  overflow: auto;
+}
+
+.single-fallacy-information {
+  border: 1px solid rgb(97, 97, 255);
+  background-color: rgba(97, 97, 255, 0.25);
+  width: 400px;
+  /* height: 200px; */
+  margin: 5px;
+}
+
+.title-single-fallacy-information {
+  font-size: 15px;
+  padding: 7px;
+}
+
+.alternateTitle-single-fallacy-information {
+  font-size: 13px;
+  color: rgb(180, 180, 180);
+}
+
+.definition-single-fallacy-information {
+  font-size: 14px;
+  padding: 10px;
+  text-justify: center;
+  text-align: center;
+}

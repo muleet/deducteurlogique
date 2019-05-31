@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Fallacies from "../../data/Fallacies";
+import BasicReactModal from "../BasicTools/BasicReactModal";
 
 class ShowFallacies extends Component {
   state = {
@@ -129,13 +130,55 @@ class ShowFallacies extends Component {
       </div>
     );
 
+    const listOfTheFallacies = [];
+    for (let i = 0; i < Fallacies.length; i++) {
+      let alternateName = "";
+      if (Fallacies[i].alternateFrenchName) {
+        alternateName = (
+          <p className="alternateTitle-single-fallacy-information">
+            {Fallacies[i].alternateFrenchName}
+          </p>
+        );
+      }
+      listOfTheFallacies.push(
+        <li key={i} className="single-fallacy-information">
+          <div className="title-single-fallacy-information">
+            {Fallacies[i].frenchName}
+            {alternateName}
+          </div>
+          <p className="definition-single-fallacy-information">
+            {Fallacies[i].definition}
+          </p>
+        </li>
+      );
+    }
+
     return (
       <main className="main-info">
         <div>
           <h2>
             Mémoriser les raisonnements fallacieux et leur définition
             {questionMark} {togglerCheat}
-            <i className="fas fa-th-list icon" />{" "}
+            <BasicReactModal
+              buttonSent={
+                <i
+                  className="fas fa-th-list icon"
+                  id="button-modal-fallacies"
+                />
+              }
+              contentSent={
+                <Fragment>
+                  <p>
+                    Voici la liste des raisonnements fallacieux pris en compte
+                    sur ce site. Cliquez en dehors de cette liste pour la
+                    quitter.
+                  </p>
+                  <ul className="set-all-fallacy-information">
+                    {listOfTheFallacies}
+                  </ul>
+                </Fragment>
+              }
+            />
           </h2>
           <div className="main-fallacy">
             <p className="fallacy-instruction">
@@ -148,11 +191,11 @@ class ShowFallacies extends Component {
             <ul className="set-fallacy-button">{this.showFallaciesNames()}</ul>
           </div>
         </div>
-        <ul className="debugger">
+        {/* <ul className="debugger">
           <li>{"undetermined" + this.state.undeterminedNumbers}</li>
           <li>{"right" + this.state.rightNumbers}</li>
           <li>{"wrong" + this.state.wrongNumbers}</li>
-        </ul>
+        </ul> */}
       </main>
     );
   }
