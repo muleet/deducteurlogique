@@ -54,10 +54,6 @@
   background-color: rgba(255, 231, 97, 0.25);
 }
 
-#button-modal-fallacies {
-  margin-left: 20px;
-}
-
 /* Section de la liste des sophismes, qui apparaît dans le BasicReactModal */
 
 .set-all-fallacy-information {

@@ -161,10 +161,15 @@ class ShowFallacies extends Component {
             {questionMark} {togglerCheat}
             <BasicReactModal
               buttonSent={
-                <i
-                  className="fas fa-th-list icon"
-                  id="button-modal-fallacies"
-                />
+                <div className={"question-mark-button icon"}>
+                  <i className="fas fa-th-list icon" />
+                  <div className="question-mark">
+                    <div className="question-mark-title">
+                      Cliquez ici pour afficher la liste de tous les
+                      raisonnements fallacieux pris en compte sur ce site.
+                    </div>
+                  </div>
+                </div>
               }
               contentSent={
                 <Fragment>

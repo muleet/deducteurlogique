@@ -2,7 +2,7 @@
   {
     "frenchName": "Homme de paille",
     "englishName": "Strawman",
-    "definition": "Mal représenter un argument, pour mieux l'attaquer"
+    "definition": "Mal expliquer un argument, pour mieux l'attaquer."
   },
   {
     "frenchName": "Pente savonneuse",
@@ -51,13 +51,13 @@
     "frenchName": "Effet de mode",
     "alternateFrenchName": "Appel à la popularité, Raison de la majorité",
     "englishName": "Bandwagon",
-    "definition": "Faire appel à la popularité d'un argument ou à une action que beaucoup de gens font, pour tenter de valider cet argument ou cette action.",
+    "definition": "Faire appel à la popularité d'un argument ou d'une action que beaucoup de gens font, pour tenter de valider cet argument ou cette action.",
     "link": ""
   },
   {
     "frenchName": "Pétition de principe",
     "englishName": "Begging the question",
-    "definition": "Un argument circulaire dans lequel la conclusion est contenue dans ses prémisses.",
+    "definition": "Poser dans les prémisses d'un raisonnement la conclusion qu'on cherche à atteindre, ce qui en fait un argument circulaire.",
     "link": ""
   },
   {
