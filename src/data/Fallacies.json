@@ -32,7 +32,7 @@
   {
     "frenchName": "Appel à l'autorité",
     "englishName": "Appeal to authority",
-    "definition": "Utiliser l'opinion ou la position d'une figure faisant autorité, ou une institution faisant autorité, comme un argument, à la place d'un vrai argument.",
+    "definition": "Utiliser l'opinion ou la position d'une figure faisant autorité, ou une institution faisant autorité, (que cette institution soit scientifique, éducative, religieuse, etc) comme un argument, à la place d'un vrai argument.",
     "link": ""
   },
   {
@@ -169,7 +169,7 @@
   {
     "frenchName": "Sophisme naturaliste",
     "englishName": "Naturalistic fallacy",
-    "definition": "Confondre ce qui est (descriptif) avec ce qui doit être (prescriptif).",
+    "definition": "Justifier ce qui doit être (prescriptif) par ce qui est (descriptif).",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste"
   }
 ]

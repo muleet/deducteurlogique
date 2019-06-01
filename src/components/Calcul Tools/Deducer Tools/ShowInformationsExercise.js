@@ -39,7 +39,7 @@ class ShowInformationsExercise extends Component {
       //       {this.props.ruleName}
       //       <div className="rule-popover">
       //         <div className="rule-popover-rulename">
-      //           {this.props.verbalName}
+      //           {this.props.title}
       //         </div>
       //         <ul className="rule-popover-content">
       //           <li className={"rule-popover-description "}>
@@ -90,7 +90,7 @@ class ShowInformationsExercise extends Component {
     return (
       <Fragment>
         <p className={"exercise-title "}>
-          {this.props.exerciseSent.verbalName}
+          {this.props.exerciseSent.title}
           {/* {exerciseComment} */}
         </p>
         {<p style={{ fontSize: "12px" }}>{textCanItBeDone}</p>}
