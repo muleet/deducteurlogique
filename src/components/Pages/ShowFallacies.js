@@ -67,20 +67,33 @@ class ShowFallacies extends Component {
   showFallaciesNames() {
     let arrayToReturn = [];
     for (let i = 0; i < Fallacies.length; i++) {
-      let specificClassName = "";
+      let occurrentClassName = "",
+        typeClassName = "";
       if (this.state.wrongNumbers.indexOf(i) !== -1) {
-        specificClassName = "fallacy-button-wrongfullySelected";
+        occurrentClassName = "fallacy-button-wrongfullySelected";
       } else if (this.state.rightNumbers.indexOf(i) !== -1) {
-        specificClassName = "fallacy-button-rightfullySelected";
+        occurrentClassName = "fallacy-button-rightfullySelected";
       } else if (this.state.currentNumber === i && this.state.cheat) {
-        specificClassName = "fallacy-button-cheatfullySelected";
+        occurrentClassName = "fallacy-button-cheatfullySelected";
       }
+
+      if (Fallacies[i].type === "deductive") {
+        typeClassName = typeClassName + " deductive-bullet";
+      } else if (Fallacies[i].type === "irrelevant") {
+        typeClassName = typeClassName + " irrelevant-bullet";
+      } else if (Fallacies[i].type === "denial") {
+        typeClassName = typeClassName + " denial-bullet";
+      } else if (Fallacies[i].type === "inductive") {
+        typeClassName = typeClassName + " inductive-bullet";
+      }
+
       arrayToReturn.push(
         <li
           key={i}
-          className={"fallacy-button " + specificClassName}
+          className={"fallacy-button " + occurrentClassName}
           onClick={() => this.verifyFallacy(i)}
         >
+          <p className={typeClassName}>•</p>
           {Fallacies[i].frenchName}
         </li>
       );
@@ -132,7 +145,8 @@ class ShowFallacies extends Component {
 
     const listOfTheFallacies = [];
     for (let i = 0; i < Fallacies.length; i++) {
-      let alternateName = "";
+      let alternateName = "",
+        typeClassName = "";
       if (Fallacies[i].alternateFrenchName) {
         alternateName = (
           <p className="alternateTitle-single-fallacy-information">
@@ -140,9 +154,19 @@ class ShowFallacies extends Component {
           </p>
         );
       }
+      if (Fallacies[i].type === "deductive") {
+        typeClassName = typeClassName + " deductive-bullet";
+      } else if (Fallacies[i].type === "irrelevant") {
+        typeClassName = typeClassName + " irrelevant-bullet";
+      } else if (Fallacies[i].type === "denial") {
+        typeClassName = typeClassName + " denial-bullet";
+      } else if (Fallacies[i].type === "inductive") {
+        typeClassName = typeClassName + " inductive-bullet";
+      }
       listOfTheFallacies.push(
-        <li key={i} className="single-fallacy-information">
+        <li key={i} className={"single-fallacy-information"}>
           <div className="title-single-fallacy-information">
+            <p className={typeClassName}>•</p>
             {Fallacies[i].frenchName}
             {alternateName}
           </div>
@@ -173,11 +197,35 @@ class ShowFallacies extends Component {
               }
               contentSent={
                 <Fragment>
-                  <p>
-                    Voici la liste des raisonnements fallacieux pris en compte
-                    sur ce site. Cliquez en dehors de cette liste pour la
-                    quitter.
-                  </p>
+                  <div
+                    style={{
+                      fontSize: "16px"
+                    }}
+                  >
+                    Voici la liste des sophismes pris en compte sur ce site.
+                    Cliquez en dehors de cette liste pour la quitter.
+                    <br />
+                    Ils peuvent être catégories en 4 types : <br />
+                    <p style={{ color: "red" }}>Sophismes déductifs</p> : ce
+                    sont des raisonnements abstraits, supposés n'utiliser que la
+                    forme logique, et ne tenant pas compte du monde physique.
+                    Souvent ils débutent par des prémisses, à partir desquelles
+                    des déductions sont faites.
+                    <br />
+                    <p style={{ color: "blue" }}>Sophismes non pertinents</p> :
+                    raisonnements qui introduisent des facteurs non pertinents,
+                    empêchant le flux logique d'un argument.
+                    <br />
+                    <p style={{ color: "green" }}>Sophismes de réfutation</p> :
+                    raisonnements utilisés pour réfuter des affirmations.
+                    <br />
+                    <p style={{ color: "yellow" }}>Sophismes inductifs</p> :
+                    raisonnements qui impliquent l'utilisation de données du
+                    monde physique, à partir desquelles des conclusions sont
+                    tirées. <br />
+                    Source de cette classification :
+                    http://www.toolkitforthinking.com/critical-thinking/anatomy-of-an-argument
+                  </div>
                   <ul className="set-all-fallacy-information">
                     {listOfTheFallacies}
                   </ul>
@@ -188,7 +236,7 @@ class ShowFallacies extends Component {
           <div className="main-fallacy">
             <p className="fallacy-instruction">
               Cliquez sur le nom de sophisme qui correspond à la définition
-              ci-dessous.
+              ci-dessous, laquelle est tirée au hasard.
             </p>
             <p className="fallacy-randomDescription ">
               « {this.showRandomDescription(this.state.currentNumber)} »

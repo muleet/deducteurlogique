@@ -11,8 +11,8 @@
 .fallacy-randomDescription {
   color: rgb(97, 97, 255);
   font-size: 14px;
-  padding: 10px;
-  width: 400px;
+  padding: 12px;
+  width: 500px;
   margin-top: 10px;
   text-justify: center;
   text-align: center;
@@ -34,6 +34,7 @@
   padding: 7px;
   border: 1px solid rgb(97, 97, 255);
   background-color: rgba(97, 97, 255, 0.25);
+  display: flex;
 }
 
 .fallacy-button:hover {
@@ -59,7 +60,7 @@
 .set-all-fallacy-information {
   display: flex;
   flex-direction: row;
-  padding: 50px;
+  padding: 0px 50px;
   align-content: flex-start baseline;
   flex-wrap: wrap;
   width: 1280px;
@@ -77,7 +78,8 @@
 
 .title-single-fallacy-information {
   font-size: 15px;
-  padding: 7px;
+  padding: 3px;
+  display: flex;
 }
 
 .alternateTitle-single-fallacy-information {
@@ -90,4 +92,22 @@
   padding: 10px;
   text-justify: center;
   text-align: center;
+}
+.deductive-bullet {
+  color: red;
+}
+.irrelevant-bullet {
+  color: blue;
+}
+.denial-bullet {
+  color: green;
+}
+.inductive-bullet {
+  color: jaune;
+}
+.deductive-bullet,
+.irrelevant-bullet,
+.denial-bullet,
+.inductive-bullet {
+  margin-right: 3px;
 }
