@@ -24,7 +24,7 @@
     "frenchExamples": []
   },
   {
-    "frenchName": "Sophisme du joueur",
+    "frenchName": "Sophisme du parieur",
     "englishName": "The gambler's fallacy",
     "definition": "Croire que des résultats statistiques indépendants s'influent entre eux. Par exemple, penser que si en lançant 3 fois une pièce, qu'on a 3 fois pile, alors les chances d'avoir face ensuite sont plus élevées.",
     "link": "",
@@ -48,9 +48,23 @@
     "frenchExamples": []
   },
   {
-    "frenchName": "Ad hominem",
+    "frenchName": "Argumentum ad personam",
     "englishName": "",
     "definition": "Attaquer la personne, ou ses traits personnels, qui énonce un argument plutôt que l'argument lui-même.",
+    "link": "",
+    "frenchExamples": []
+  },
+  {
+    "frenchName": "Argumentum ad hominem",
+    "englishName": "",
+    "definition": "Retourner le propos d'une personne contre elle-même, pour disqualifier ce qu'elle dit.",
+    "link": "",
+    "frenchExamples": []
+  },
+  {
+    "frenchName": "Procès d'intention",
+    "englishName": "Trial of intent",
+    "definition": "Disqualifier l'argumentation d'une personne en arguant que ce qu'il dit repose sur des intentions réprochables.",
     "link": "",
     "frenchExamples": []
   },
@@ -173,13 +187,6 @@
     "frenchName": "Essentialisation",
     "englishName": "Essentialisation",
     "definition": "Attribuer un trait essentiel et inaliénable à quelque chose.",
-    "link": "",
-    "frenchExamples": []
-  },
-  {
-    "frenchName": "Procès d'intention",
-    "englishName": "Trial of intent",
-    "definition": "Disqualifier l'argumentation d'une personne en arguant que ce qu'il dit repose sur des intentions réprochables.",
     "link": "",
     "frenchExamples": []
   },
