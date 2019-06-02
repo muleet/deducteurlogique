@@ -8,7 +8,7 @@ class ShowFallacies extends Component {
     currentNumber: 0,
     wrongNumbers: [],
     rightNumbers: [],
-    cheat: false,
+    cheat: false
     // mistakes: 0
   };
 
@@ -32,8 +32,8 @@ class ShowFallacies extends Component {
     let newUndeterminedNumbers = this.state.undeterminedNumbers,
       newCurrentNumber = this.state.currentNumber,
       newWrongNumbers = this.state.wrongNumbers,
-      newRightNumbers = this.state.rightNumbers,
-      // newMistakes = this.state.mistakes;
+      newRightNumbers = this.state.rightNumbers;
+    // newMistakes = this.state.mistakes;
     if (clickedNumber === this.state.currentNumber) {
       // le nombre est trouvé, donc on va l'enlever d'undeterminedNumbers, le mettre dans rightNumbers, puis resélectionner au hasard un autre nombre dans ceux qui restent
       const position = newUndeterminedNumbers.indexOf(clickedNumber);
@@ -56,7 +56,7 @@ class ShowFallacies extends Component {
       undeterminedNumbers: newUndeterminedNumbers,
       currentNumber: newCurrentNumber,
       wrongNumbers: newWrongNumbers,
-      rightNumbers: newRightNumbers,
+      rightNumbers: newRightNumbers
       // mistakes: newMistakes
     });
   }
