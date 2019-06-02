@@ -22,7 +22,7 @@
     "frenchName": "Raisonnement ad hoc",
     "alternateFrenchName": "Concession spéciale, Double standard",
     "englishName": "Ad hoc reasoning, special pleading",
-    "definition": "Demander une exception lorsqu'une affirmation a été montrée comme fausse.",
+    "definition": "Proposer de faire une exception lorsqu'une affirmation a été montrée comme fausse, par un raisonnement supposé justifier cette exception (raisonnement qui n'était pas inclus dans l'affirmation de départ, ce qui permet de la sauver tout en la modifiant).",
     "link": "",
     "frenchExamples": [
       "Une licorne rose invisible est proche de moi, c'est prouvé. Mais elle part en présence des sceptiques."
