@@ -187,14 +187,14 @@
     "frenchName": "Post hoc ergo propter hoc",
     "alternateFrenchName": "Cause questionnable, fausse cause",
     "englishName": "Post hoc ergo propter hoc",
-    "definition": "Présumer que puisque deux évènements se succèdent, alors il y a un lien de cause à effet entre le premier et le second.",
+    "definition": "Présumer que puisque deux évènements se succèdent, alors il y a un lien de cause à effet entre le premier et le second. \"Après cela donc à cause de cela.\"",
     "link": "",
     "frenchExamples": []
   },
   {
     "frenchName": "Cum hoc ergo propter hoc",
     "englishName": "Cum hoc ergo propter hoc",
-    "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux (confondre corrélation et causation).",
+    "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux (confondre corrélation et causation). \"Avec cela donc à cause de cela.\"",
     "link": "",
     "frenchExamples": []
   },
@@ -209,7 +209,7 @@
     "frenchName": "Argumentum ad nauseam",
     "alternateFrenchName": "Avoir raison par forfait",
     "englishName": "",
-    "definition": "Répéter un une affirmation jusqu'à ce qu'elle semble vrai (mécanisme de la propagande).",
+    "definition": "Répéter un une affirmation jusqu'à ce qu'elle semble vraie (mécanisme de la propagande).",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
     "frenchExamples": []
   },
@@ -224,10 +224,18 @@
     ]
   },
   {
-    "frenchName": "Argumentum ad antiquatem/Argumentum ad novitatem",
+    "frenchName": "Argumentum ad antiquatem",
     "alternateFrenchName": "",
     "englishName": "",
-    "definition": "Se référer à l'ancienneté ou à la nouveauté d'une affirmation pour dire si elle est vraie ou non.",
+    "definition": "Se référer à l'ancienneté d'une affirmation pour dire si elle est vraie ou non.",
+    "link": "",
+    "frenchExamples": []
+  },
+  {
+    "frenchName": "Argumentum ad novitatem",
+    "alternateFrenchName": "",
+    "englishName": "",
+    "definition": "Se référer à la nouveauté d'une affirmation pour dire si elle est vraie ou non.",
     "link": "",
     "frenchExamples": []
   },
@@ -235,7 +243,24 @@
     "frenchName": "Sophisme de la double faute",
     "alternateFrenchName": "",
     "englishName": "",
-    "definition": "Justifier une mauvaise action par le fait qu'une mauvaise action a été commise avant ; prétendre guérir un tort par un autre tort.",
+    "definition": "Justifier une mauvaise action par le fait qu'une autre mauvaise action a été commise avant ; prétendre guérir un tort par un autre tort.",
+    "link": "",
+    "frenchExamples": []
+  },
+  {
+    "frenchName": "Question à double canon",
+    "alternateFrenchName": "",
+    "englishName": "Double-barreled question",
+    "definition": "Poser une question qui contient au moins deux problèmes, mais ne permet qu'une réponse, qui impliquera par conséquent un présupposé.",
+    "link": "",
+    "frenchExamples": []
+  },
+  {
+    "frenchName": "Gage de Loki",
+    "alternateFrenchName": "",
+    "englishName": "Loki's Wager",
+    "definition": "L'insistance irraisonnée qu'un certain concept ne peut être défini, et par conséquent qu'il ne peut être débattu.",
+    "englishDefinition": "The unreasonable insistence that a concept cannot be defined, and therefore cannot be discussed.",
     "link": "",
     "frenchExamples": []
   }
