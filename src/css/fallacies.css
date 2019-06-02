@@ -8,17 +8,31 @@
   font-style: italic;
 }
 
-.fallacy-randomDescription {
+.set-definition-and-counts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+.fallacy-randomDefinition {
   color: rgb(97, 97, 255);
   font-size: 14px;
   padding: 12px;
   width: 500px;
-  margin-top: 10px;
   text-justify: center;
   text-align: center;
   border: 1px solid rgba(107, 97, 255, 0.541);
   background-color: rgba(97, 97, 255, 0.171);
 }
+.set-counts {
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-left: 20px;
+}
+
 .set-fallacy-button {
   display: flex;
   flex-direction: row;
@@ -27,7 +41,6 @@
   width: 1200px;
   flex-wrap: wrap;
 }
-
 .fallacy-button {
   font-size: 15px;
   margin: 2px;
