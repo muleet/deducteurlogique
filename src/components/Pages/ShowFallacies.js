@@ -9,7 +9,7 @@ class ShowFallacies extends Component {
     wrongNumbers: [],
     rightNumbers: [],
     cheat: false,
-    mistakes: 0
+    // mistakes: 0
   };
 
   resetState() {
@@ -33,7 +33,7 @@ class ShowFallacies extends Component {
       newCurrentNumber = this.state.currentNumber,
       newWrongNumbers = this.state.wrongNumbers,
       newRightNumbers = this.state.rightNumbers,
-      newMistakes = this.state.mistakes;
+      // newMistakes = this.state.mistakes;
     if (clickedNumber === this.state.currentNumber) {
       // le nombre est trouvé, donc on va l'enlever d'undeterminedNumbers, le mettre dans rightNumbers, puis resélectionner au hasard un autre nombre dans ceux qui restent
       const position = newUndeterminedNumbers.indexOf(clickedNumber);
@@ -50,14 +50,14 @@ class ShowFallacies extends Component {
     ) {
       // ce n'était pas le bon nombre, ET il n'est pas déjà présent dans wrongNumbers, donc on va ajouter le nombre dans wrongNumbers et incrémenter mistakes
       newWrongNumbers.push(clickedNumber);
-      newMistakes++;
+      // newMistakes++;
     }
     this.setState({
       undeterminedNumbers: newUndeterminedNumbers,
       currentNumber: newCurrentNumber,
       wrongNumbers: newWrongNumbers,
       rightNumbers: newRightNumbers,
-      mistakes: newMistakes
+      // mistakes: newMistakes
     });
   }
 
@@ -244,7 +244,7 @@ class ShowFallacies extends Component {
                   Nombre de sophismes trouvés : {this.state.rightNumbers.length}
                   /{Fallacies.length}
                 </p>
-                <p>Erreurs faites : {this.state.mistakes}</p>
+                {/* <p>Erreurs faites : {this.state.mistakes}</p> */}
               </div>
             </div>
             <ul className="set-fallacy-button">{this.showFallaciesNames()}</ul>
