@@ -1,6 +1,6 @@
 [
   {
-    "verbalName": "Élimination du conditionnel",
+    "title": "Élimination du conditionnel",
     "possibleSolution": [
       { "itself": "p", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "p⊃q", "numberCommentary": "b", "commentary": "rep" },
@@ -8,7 +8,7 @@
     ]
   },
   {
-    "verbalName": "Élimination de la conjonction",
+    "title": "Élimination de la conjonction",
     "possibleSolution": [
       { "itself": "p∧q", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "q", "numberCommentary": "1", "commentary": "∧e" },
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "verbalName": "Introduction & élimination de la conjonction",
+    "title": "Introduction & élimination de la conjonction",
     "possibleSolution": [
       { "itself": "(p∧q)∧(p∧r)", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "p∧q", "numberCommentary": "1", "commentary": "∧e" },
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse",
+    "title": "Réfutation d'hypothèse",
     "possibleSolution": [
       { "itself": "|~p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
@@ -38,7 +38,7 @@
     ]
   },
   {
-    "verbalName": "Validation d'hypothèse",
+    "title": "Validation d'hypothèse",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p⊃q", "numberCommentary": "a", "commentary": "rep" },
@@ -49,7 +49,7 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse (2)",
+    "title": "Réfutation d'hypothèse (2)",
     "possibleSolution": [
       { "itself": "|q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
@@ -59,7 +59,7 @@
     ]
   },
   {
-    "verbalName": "Validation d'hypothèse (2)",
+    "title": "Validation d'hypothèse (2)",
     "possibleSolution": [
       { "itself": "|p∧q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p", "numberCommentary": "1", "commentary": "∧e" },
@@ -71,7 +71,7 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse (3)",
+    "title": "Réfutation d'hypothèse (3)",
     "possibleSolution": [
       { "itself": "|q∧~p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
@@ -81,7 +81,7 @@
     ]
   },
   {
-    "verbalName": "Introduction du biconditionnel",
+    "title": "Introduction du biconditionnel",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|q", "numberCommentary": "b", "commentary": "rep" },
@@ -93,7 +93,7 @@
     ]
   },
   {
-    "verbalName": "Élimination du biconditionnel",
+    "title": "Élimination du biconditionnel",
     "possibleSolution": [
       { "itself": "p∧r", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "p", "numberCommentary": "1", "commentary": "∧e" },
@@ -106,7 +106,7 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse (4)",
+    "title": "Réfutation d'hypothèse (4)",
     "possibleSolution": [
       { "itself": "|r", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p∧q", "numberCommentary": "a", "commentary": "rep" },
@@ -117,7 +117,7 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse et élimination de double négation",
+    "title": "Réfutation d'hypothèse et élimination de double négation",
     "possibleSolution": [
       { "itself": "|~q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p", "numberCommentary": "a", "commentary": "rep" },
@@ -128,7 +128,7 @@
     ]
   },
   {
-    "verbalName": "Réfutation d'hypothèse contradictoire",
+    "title": "Réfutation d'hypothèse contradictoire",
     "possibleSolution": [
       { "itself": "|q∧~(p∧q)", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|q", "numberCommentary": "1", "commentary": "∧e" },
@@ -143,7 +143,7 @@
     ]
   },
   {
-    "verbalName": "Validation et réfutation d'hypothèse",
+    "title": "Validation et réfutation d'hypothèse",
     "possibleSolution": [
       { "itself": "|~p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||q", "numberCommentary": "", "commentary": "hyp" },
@@ -154,7 +154,7 @@
     ]
   },
   {
-    "verbalName": "Validation et réfutation d'hypothèse (2)",
+    "title": "Validation et réfutation d'hypothèse (2)",
     "possibleSolution": [
       { "itself": "|q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||p", "numberCommentary": "", "commentary": "hyp" },
@@ -166,7 +166,7 @@
     ]
   },
   {
-    "verbalName": "Validation et réfutation d'hypothèse (3)",
+    "title": "Validation et réfutation d'hypothèse (3)",
     "possibleSolution": [
       { "itself": "|~q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||p", "numberCommentary": "", "commentary": "hyp" },
@@ -178,7 +178,7 @@
     ]
   },
   {
-    "verbalName": "Un premier théorème",
+    "title": "Un premier théorème",
     "possibleSolution": [
       { "itself": "|p∧~p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p", "numberCommentary": "1", "commentary": "∧e" },
@@ -187,7 +187,7 @@
     ]
   },
   {
-    "verbalName": "Un deuxième théorème",
+    "title": "Un deuxième théorème",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||q", "numberCommentary": "", "commentary": "hyp" },
@@ -197,7 +197,7 @@
     ]
   },
   {
-    "verbalName": "Un troisième théorème, avec une triple hypothèse",
+    "title": "Un troisième théorème, avec une triple hypothèse",
     "possibleSolution": [
       { "itself": "|p⊃q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||~q", "numberCommentary": "", "commentary": "hyp" },
@@ -215,7 +215,7 @@
     ]
   },
   {
-    "verbalName": "Introduction de la disjonction inclusive",
+    "title": "Introduction de la disjonction inclusive",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p∨q", "numberCommentary": "1", "commentary": "∨i" },
@@ -224,7 +224,7 @@
     ]
   },
   {
-    "verbalName": "Élimination de l'incompatibilité",
+    "title": "Élimination de l'incompatibilité",
     "possibleSolution": [
       { "itself": "p", "numberCommentary": "a", "commentary": "rep" },
       { "itself": "p↑q", "numberCommentary": "b", "commentary": "rep" },
@@ -232,7 +232,7 @@
     ]
   },
   {
-    "verbalName": "Introduction de la disjonction réciproque",
+    "title": "Introduction de la disjonction réciproque",
     "possibleSolution": [
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|p⊃~q", "numberCommentary": "a", "commentary": "rep" },
@@ -244,7 +244,7 @@
     ]
   },
   {
-    "verbalName": "Élimination de la disjonction réciproque",
+    "title": "Élimination de la disjonction réciproque",
     "possibleSolution": [
       { "itself": "|r", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "|r⊃(p∧q)", "numberCommentary": "b", "commentary": "rep" },
@@ -257,7 +257,7 @@
     ]
   },
   {
-    "verbalName": "Principe du tiers exclu",
+    "title": "Principe du tiers exclu",
     "possibleSolution": [
       { "itself": "|~(p∨~p)", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||p", "numberCommentary": "", "commentary": "hyp" },
@@ -274,7 +274,7 @@
     ]
   },
   {
-    "verbalName": "Élimination de la disjonction inclusive",
+    "title": "Élimination de la disjonction inclusive",
     "possibleSolution": [
       { "itself": "p∨q", "numberCommentary": "b", "commentary": "rep" },
       { "itself": "|p", "numberCommentary": "", "commentary": "hyp" },
@@ -285,7 +285,7 @@
     ]
   },
   {
-    "verbalName": ["Tautologie de disjonctions"],
+    "title": ["Tautologie de disjonctions"],
     "possibleSolution": [
       { "itself": "|p∨q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||p", "numberCommentary": "", "commentary": "hyp" },
@@ -301,7 +301,7 @@
     ]
   },
   {
-    "verbalName": ["Tautologie de disjonctions (2)"],
+    "title": ["Tautologie de disjonctions (2)"],
     "possibleSolution": [
       { "itself": "|~p∨~q", "numberCommentary": "", "commentary": "hyp" },
       { "itself": "||~p", "numberCommentary": "", "commentary": "hyp" },
