@@ -220,8 +220,9 @@ class ShowFallacies extends Component {
                     raisonnements qui impliquent l'utilisation de données du
                     monde physique, à partir desquelles des conclusions sont
                     tirées. <br />
-                    Source de cette classification :
-                    http://www.toolkitforthinking.com/critical-thinking/anatomy-of-an-argument
+                    Sources m'ayant aidé à créer cette liste et leurs
+                    classifications : Wikipédia.fr, toolkitforthinking.com,
+                    yourlogicalfallacyis.com
                   </div>
                   <ul className="set-all-fallacy-information">
                     {listOfTheFallacies}

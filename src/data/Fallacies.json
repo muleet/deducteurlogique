@@ -22,7 +22,7 @@
     "frenchName": "Raisonnement ad hoc",
     "alternateFrenchName": "Concession spéciale, Double standard",
     "englishName": "Ad hoc reasoning, special pleading",
-    "definition": "Proposer de faire une exception lorsqu'une affirmation a été montrée comme fausse, par un raisonnement supposé justifier cette exception (raisonnement qui n'était pas inclus dans l'affirmation de départ, ce qui permet de la sauver tout en la modifiant).",
+    "definition": "Proposer de faire une exception lorsqu'une affirmation a été montrée comme fausse, par un raisonnement nouveau justifiant cette exception (nouveau par rapport l'affirmation de départ, ce qui permet de la sauver tout en lui ajoutant quelque chose).",
     "link": "",
     "frenchExamples": [
       "Une licorne rose invisible est proche de moi, c'est prouvé. Mais elle part en présence des sceptiques."
@@ -126,7 +126,7 @@
     "frenchName": "Sophisme de division",
     "alternateFrenchName": "Sophisme de composition",
     "englishName": "Division fallacy, Composition Fallacy",
-    "definition": "Admettre que ce qui est vrai à propos d'une partie de quelque chose, doit être appliqué au reste (tout ou partie) de cette chose.",
+    "definition": "Présumer que ce qui est vrai à propos d'une partie de quelque chose, doit être appliqué au reste (tout ou partie) de cette chose.",
     "link": "",
     "frenchExamples": [],
     "type": "inductive"
@@ -241,7 +241,7 @@
   {
     "frenchName": "Sophisme naturaliste",
     "englishName": "Naturalistic fallacy",
-    "definition": "Justifier ce qui doit être (prescriptif) par ce qui est (descriptif).",
+    "definition": "Justifier ce qui doit être (prescription) par ce qui est (description).",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
     "frenchExamples": [],
     "type": "deductive"
@@ -297,7 +297,7 @@
     "frenchName": "Question à double canon",
     "alternateFrenchName": "",
     "englishName": "Double-barreled question",
-    "definition": "Poser une question qui contient au moins deux problèmes, mais ne permet qu'une réponse, qui impliquera par conséquent un présupposé.",
+    "definition": "Poser une question qui devrait attendre deux réponses, mais ne permet qu'une réponse (oui ou non, par exemple), laquelle impliquera par conséquent un présupposé.",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
