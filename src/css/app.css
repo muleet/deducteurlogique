@@ -149,6 +149,14 @@ h3 {
   opacity: 1;
 }
 
+.set-of-page-icons {
+  /* désigne le container des icônes spécifiques à une page */
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .setOfPropositionsButtons {
   display: flex;
   justify-content: flex-end;
@@ -217,7 +225,6 @@ h3 {
 
 .question-mark-button {
   position: relative;
-  margin-left: 20px;
 }
 
 .question-mark-button:hover .question-mark {
