@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Questions from "../../../data/Questions";
+import Questions from "../../data/Questions";
 
 class ShowQuestions extends Component {
   renderQuestions() {
@@ -21,7 +21,12 @@ class ShowQuestions extends Component {
   }
 
   render() {
-    return <ul className="set-of-questions">{this.renderQuestions()}</ul>;
+    return (
+      <main className="main-info">
+        <h2>Questions sur la logique</h2>
+        <ul className="set-of-questions">{this.renderQuestions()}</ul>
+      </main>
+    );
   }
 }
 

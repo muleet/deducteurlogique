@@ -1,6 +1,8 @@
-#buttonAddPremisses {
+#slidingMenuPossiblePremisses {
   margin-left: 105px;
   position: absolute;
+  display: flex;
+  flex-direction: column;
 }
 
 #buttonKeyboardPremisses {
@@ -17,7 +19,7 @@
   display: none;
 }
 
-#buttonAddPremisses:hover .possible-premisse-sandbox {
+#slidingMenuPossiblePremisses:hover .possible-premisse-sandbox {
   /* quand on met sa souris sur le bouton, les prémisses possibles apparaissent */
   background-color: #333;
   width: 110px;
@@ -25,12 +27,12 @@
   justify-content: center;
   position: absolute relative;
 }
-#buttonAddPremisses .possible-premisse-sandbox:hover {
+#slidingMenuPossiblePremisses .possible-premisse-sandbox:hover {
   /* quand on met sa souris sur les prémisses possibles, elles deviennent grises */
   background-color: #777;
 }
 
-#buttonAddPremisses:hover .possible-premisse-sandbox-added {
+#slidingMenuPossiblePremisses:hover .possible-premisse-sandbox-added {
   background-color: rgb(105, 101, 101);
 }
 

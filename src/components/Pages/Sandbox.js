@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 // import Exercises from "../../data/Exercises.json";
 import ShowInfoSandbox from "./Components/ShowInfoSandbox";
+import SandboxShowUserRequirements from "./Components/SandboxShowUserRequirements";
 import ButtonRuleMaker from "../Calcul Tools/Deducer Tools/ButtonRuleMaker";
 import InferenceProvider, {
   InferenceContext
@@ -71,7 +72,13 @@ class Deducer extends Component {
           {(
             value // (méga important) on permet à tout ce qui est dans la balise InferenceContext.Consumer, d'avoir accès au state déclaré dans InferenceProvider (pour cela il faut employer la variable value)
           ) => (
-            <Fragment>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+            >
               <h3 className="pageTitle">Bac à sable logique</h3>
               <div className="deducer">
                 <section className="infos-and-deduction-itself">
@@ -100,7 +107,17 @@ class Deducer extends Component {
                   </ul>
                 </section>
               </div>
-            </Fragment>
+
+              <div className="user-box-info user-color">
+                <SandboxShowUserRequirements
+                  premissesSent=""
+                  conclusionSent=""
+                  deductionSent=""
+                  rulesSent=""
+                  valueInference={value}
+                />
+              </div>
+            </div>
           )}
         </InferenceContext.Consumer>
       </InferenceProvider>

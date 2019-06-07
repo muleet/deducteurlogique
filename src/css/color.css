@@ -16,7 +16,9 @@
 }
 
 .user-color {
-  background-color: #ff3434;
+  /* background-color: rgba(255, 156, 75, 0.15); */
+  border: 1px solid rgb(255, 148, 60);
+  color: rgb(255, 148, 60);
 }
 
 .unavailable-yet {

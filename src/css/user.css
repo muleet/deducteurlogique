@@ -1,3 +1,47 @@
+.form-login-set {
+  width: 450px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  margin-right: 1050px;
+}
+
+#icon-login-deployer {
+  position: relative;
+  z-index: 10;
+}
+
+.form-singleLine {
+  line-height: 25px;
+  font-size: 18px;
+  width: 160px;
+  color: white;
+  background-color: rgb(10, 10, 10);
+  margin-right: 5px;
+}
+
+.form-signup-set {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 20px;
+  align-items: center;
+}
+.form-signup-set > input {
+  margin-bottom: 20px;
+}
+
+.form-submit-line {
+  background-color: rgb(10, 10, 10);
+  line-height: 25px;
+  border: 2px outset red;
+}
+.form-submit-line:hover {
+  box-shadow: 1px 1px 2px 20px inset rgb(255, 255, 255, 0.1);
+  border: 2px outset;
+}
+
 .user-box-info {
   font-size: 12px;
   display: flex;
@@ -8,10 +52,10 @@
   padding: 10px;
   border-radius: 10px;
   max-width: 500px;
-  background-color: rgba(255, 156, 75, 0.13);
+  /* background-color: rgba(255, 156, 75, 0.13); */
   /* box-shadow: -5px 5px 50px rgba(255, 156, 75, 0.178); */
-  border: 1px solid rgba(255, 156, 75, 0.65);
-  color: rgba(255, 156, 75, 0.65);
+  /* border: 1px solid rgba(255, 156, 75, 0.65); */
+  /* color: rgba(255, 156, 75, 0.65); */
 }
 
 .user-box-allCondition {
@@ -21,7 +65,7 @@
 .user-box-singleCondition {
   margin: 3px;
   padding: 5px;
-  border: 1px solid rgba(255, 156, 75, 0.3);
+  border: 1px solid rgba(255, 115, 78);
   border-radius: 5px;
 }
 
@@ -30,4 +74,16 @@
 }
 .checked {
   color: green;
+}
+
+/* page du profil de l'utilisateur */
+.main-profilePage {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  border: 1px solid blue;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
 }

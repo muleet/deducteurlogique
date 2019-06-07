@@ -10,6 +10,7 @@ class ShowFallacies extends Component {
     wrongNumbers: [],
     rightNumbers: [],
     cheat: false,
+    categoriesBool: false,
     content: Fallacies
     // mistakes: 0
   };
@@ -30,15 +31,21 @@ class ShowFallacies extends Component {
     });
   }
 
-  changeLanguage() {
-    console.log("bonjour");
-    let newContent = Fallacies;
-    if (this.state.content[0].name[0] !== "S") {
-      newContent = FallaciesEng;
-      console.log("rebonjour");
-      this.resetState();
+  changeBoolean(bool) {
+    if (bool === "language") {
+      let newContent = Fallacies;
+      if (this.state.content[0].name[0] !== "S") {
+        newContent = FallaciesEng;
+        this.resetState();
+      }
+      this.setState({ content: newContent });
+    } else if (bool === "categoriesBool") {
+      let newBool = true;
+      if (this.state.categoriesBool) {
+        newBool = false;
+      }
+      this.setState({ categoriesBool: newBool });
     }
-    this.setState({ content: newContent });
   }
 
   verifyFallacy(clickedNumber) {
@@ -96,6 +103,10 @@ class ShowFallacies extends Component {
       } else if (this.state.content[i].type === "inductive") {
         typeClassName = typeClassName + " inductive-bullet";
       }
+      let bullet = "";
+      if (this.state.categoriesBool) {
+        bullet = <p className={typeClassName}>•</p>;
+      }
 
       arrayToReturn.push(
         <li
@@ -103,7 +114,7 @@ class ShowFallacies extends Component {
           className={"fallacy-button " + occurrentClassName}
           onClick={() => this.verifyFallacy(i)}
         >
-          <p className={typeClassName}>•</p>
+          {bullet}
           {this.state.content[i].name}
         </li>
       );
@@ -189,12 +200,29 @@ class ShowFallacies extends Component {
 
     const togglerLanguage = (
       <div className={"question-mark-button icon"}>
-        <i className="fas fa-flag icon" onClick={() => this.changeLanguage()} />
+        <i
+          className="fas fa-flag icon"
+          onClick={() => this.changeBoolean("language")}
+        />
         <div className="question-mark">
           <div className="question-mark-title">
-            Changer la langue des noms et descriptions, français vers anglais /
-            change the language of the names and descriptions, English to
-            French.
+            Cliquez pour changer la langue des noms et descriptions, français
+            vers anglais / change the language of the names and descriptions,
+            English to French.
+          </div>
+        </div>
+      </div>
+    );
+
+    const togglerInfoIconFallacies = (
+      <div className={"question-mark-button icon"}>
+        <i
+          className="fas fa-info-circle icon"
+          onClick={() => this.changeBoolean("categoriesBool")}
+        />
+        <div className="question-mark">
+          <div className="question-mark-title">
+            Cliquez ici pour afficher les catégories de sophismes.
           </div>
         </div>
       </div>
@@ -206,7 +234,8 @@ class ShowFallacies extends Component {
           <h2>
             Mémoriser les raisonnements fallacieux et leur définition
             <div className="set-of-page-icons">
-              {questionMark} {togglerLanguage} {togglerCheat}
+              {questionMark} {togglerInfoIconFallacies} {togglerLanguage}{" "}
+              {togglerCheat}
               <BasicReactModal
                 buttonSent={
                   <div className={"question-mark-button icon"}>
@@ -232,25 +261,20 @@ class ShowFallacies extends Component {
                       Ils peuvent être catégories en 4 types : <br />
                       <p style={{ color: "red" }}>Sophismes déductifs</p> : ce
                       sont des raisonnements abstraits, supposés n'utiliser que
-                      la forme logique, et ne tenant pas compte du monde
-                      physique. Souvent ils débutent par des prémisses, à partir
-                      desquelles des déductions sont faites.
+                      la forme logique, et ne tenant pas compte de l'expérience
+                      du monde. Leurs conclusions sont fausses de manière a
+                      priori.
                       <br />
-                      <p style={{ color: "blue" }}>
-                        Sophismes non pertinents
-                      </p>{" "}
+                      <p style={{ color: "blue" }}>Sophismes non pertinents</p>
                       : raisonnements qui introduisent des facteurs non
                       pertinents, empêchant le flux logique d'un argument.
                       <br />
-                      <p style={{ color: "green" }}>
-                        Sophismes de réfutation
-                      </p>{" "}
+                      <p style={{ color: "green" }}>Sophismes de réfutation</p>
                       : raisonnements utilisés pour réfuter des affirmations.
                       <br />
                       <p style={{ color: "yellow" }}>Sophismes inductifs</p> :
-                      raisonnements qui impliquent l'utilisation de données du
-                      monde physique, à partir desquelles des conclusions sont
-                      tirées. <br />
+                      raisonnements qui impliquent l'expérience du monde, à
+                      partir desquelles des conclusions sont tirées. <br />
                       Sources m'ayant aidé à créer cette liste et leurs
                       classifications : Wikipédia.fr, toolkitforthinking.com,
                       yourlogicalfallacyis.com

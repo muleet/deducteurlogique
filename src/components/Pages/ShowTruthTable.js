@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import TruthTable from "../../../data/TruthTable";
+import TruthTable from "../../data/TruthTable";
 
 class ShowTruthTable extends Component {
   state = {

@@ -5,8 +5,8 @@ import axios from "axios";
 
 class LogIn extends React.Component {
   state = {
-    email: "",
-    password: "",
+    email: "email",
+    password: "mot de passe",
     username: ""
   };
 
@@ -22,13 +22,13 @@ class LogIn extends React.Component {
 
   onSubmit = event => {
     axios
-      .post("https://leboncoin-api.herokuapp.com/api/user/log_in", {
+      .post("http://localhost:3001/api/user/log_in", {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username
       })
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         // {
         //   account: { username: "Farid" },
         //   token: "Ii0HYfXTN7L2SMoL",
@@ -52,37 +52,43 @@ class LogIn extends React.Component {
   };
 
   render() {
+    let typeInputPassword = "text";
+    if (this.state.password !== "mot de passe") {
+      typeInputPassword = "password";
+    }
     return (
-      <form
-        onSubmit={this.onSubmit}
-        className="form form-signup"
-        style={{ display: "flex", flexDirection: "column", width: "200px" }}
-      >
-        <label htmlFor="email">Email</label>
+      <form onSubmit={this.onSubmit} className="form-login-set">
+        {/* <label htmlFor="email">Email</label> */}
         <input
+          className="form-singleLine user-color"
           id="email"
           name="email"
           type="text"
           value={this.state.email}
           onChange={this.handleChange}
         />
-        <label htmlFor="email">password</label>
+        {/* <label htmlFor="email">password</label> */}
         <input
+          className="form-singleLine user-color"
           id="password"
           name="password"
-          type="password"
+          type={typeInputPassword}
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <label htmlFor="username">username</label>
+        {/* <label htmlFor="username">username</label>
         <input
           id="username"
           name="username"
           type="text"
           value={this.state.username}
           onChange={this.handleChange}
+        /> */}
+        <input
+          type="submit"
+          value="Valider"
+          className="form-submit-line user-color"
         />
-        <input type="submit" value="Valider" />
       </form>
     );
   }

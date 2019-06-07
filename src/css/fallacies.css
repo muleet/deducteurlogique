@@ -43,7 +43,7 @@
 }
 .fallacy-button {
   font-size: 15px;
-  margin: 2px;
+  margin: 3px;
   padding: 7px;
   border: 1px solid rgb(97, 97, 255);
   background-color: rgba(97, 97, 255, 0.25);
@@ -51,8 +51,7 @@
 }
 
 .fallacy-button:hover {
-  border: 1px solid rgb(97, 165, 255);
-  background-color: rgba(97, 165, 255, 0.25);
+  box-shadow: 1px 1px 2px 20px inset rgb(255, 255, 255, 0.1);
 }
 
 .fallacy-button-rightfullySelected {

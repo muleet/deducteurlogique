@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 // Importation de mes composants
 import ButtonMenu from "../Navigation Components/ButtonMenu";
-import InfoRules from "./InfoRules";
+import ShowInfoRules from "./ShowInfoRules";
 import MakeListExercises from "./MakeListExercises.js";
 import FormalisationEnonces from "./FormalisationEnonces";
 // import CalculDesPredicats from "./CalculDesPredicats";
@@ -16,7 +16,7 @@ class Home extends Component {
           <Linker
             link="/règles"
             path="/règles"
-            components={InfoRules}
+            components={ShowInfoRules}
             name={
               <ButtonMenu
                 className="info-color main-button"

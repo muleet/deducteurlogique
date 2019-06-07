@@ -25,25 +25,26 @@ import "./font/stylesheet.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import MakeLocution from "./components/MakeLocution";
-import Header from "./components/Navigation Components/Header"; // commenté pour le moment
+import Header from "./components/Navigation Components/Header";
 // Importation des pages
 import Home from "./components/Pages/Home";
 import CalculDesPropositions from "./components/Pages/CalculDesPropositions";
 import FormalisationEnonces from "./components/Pages/FormalisationEnonces";
 import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
-import InfoRules from "./components/Pages/InfoRules.js";
-import Questions from "./components/Pages/Questions.js";
+import ShowInfoRules from "./components/Pages/ShowInfoRules.js";
+import ShowQuestions from "./components/Pages/ShowQuestions.js";
 import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndContact";
 import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 import greekAlphabet from "./components/Pages/Secondary Pages/greekAlphabet";
 import Locutions from "./components/Pages/Secondary Pages/Locutions";
 // Importations d'autres trucs
 // import LogIn from "./components/Users/LogIn";
+import Profile from "./components/Users/Profile";
 import SignUp from "./components/Users/SignUp";
 import MakeListExercises from "./components/Pages/MakeListExercises";
 import MakeListExercisesOfUser from "./components/Pages/MakeListExercisesOfUser";
 import ButtonNav from "./components/Navigation Components/ButtonNav";
-import TruthTable from "./components/Pages/TruthTable";
+import TruthTable from "./components/Pages/ShowTruthTable";
 import Sandbox from "./components/Pages/Sandbox";
 import ShowFallacies from "./components/Pages/ShowFallacies";
 // Images
@@ -87,7 +88,7 @@ class App extends Component {
       <Fragment>
         <Router>
           <div>
-            <Header user={user} logOut={this.logOut} />
+            <Header user={user} logOut={this.logOut} setUser={this.setUser} />
             {/* cette ligne hyper importante active le composant du Header, et ce avec des props spécifiques.*/}
             <ul className="nav-list">
               <li>
@@ -123,8 +124,6 @@ class App extends Component {
                     name={<i className="fas fa-th" />}
                   />
                 </Link>
-              </li>
-              <li>
                 <Link to="/calcul-prop-exo-user">
                   <ButtonNav
                     className="user-color"
@@ -149,10 +148,9 @@ class App extends Component {
                 </Link>
               </li>
             </ul>
-            <ul />
             <Route exact={true} path="/" component={Home} />
-            <Route path="/questions" component={Questions} />
-            <Route path="/règles" component={InfoRules} />
+            <Route path="/questions" component={ShowQuestions} />
+            <Route path="/règles" component={ShowInfoRules} />
             <Route path="/tables-de-vérité" component={TruthTable} />
             <Route path="/bac-à-sable-logique" component={Sandbox} />
             <Route path="/omega" component={greekAlphabet} />
@@ -178,11 +176,17 @@ class App extends Component {
                 <SignUp {...props} user={user} setUser={this.setUser} />
               )}
             />
-            <Route
+            {/* <Route
               path="/log_in"
-              // render={props => (
-              //   <LogIn {...props} user={user} setUser={this.setUser} />
-              // )}
+              render={props => (
+                <LogIn {...props} user={user} setUser={this.setUser} />
+              )}
+            /> */}
+            <Route
+              path="/profile"
+              render={props => (
+                <Profile {...props} user={user} setUser={this.setUser} />
+              )}
             />
             <Route path="/auteurs_contact" component={AuthorsAndContact} />
             <Route path="/futur" component={TheFuture} />

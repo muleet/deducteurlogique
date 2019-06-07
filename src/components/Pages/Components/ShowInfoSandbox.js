@@ -5,47 +5,46 @@ import ButtonRuleRep from "../../Calcul Tools/ButtonRuleRep";
 class ShowInfoSandbox extends Component {
   state = {
     setOfPremisses: [],
-    futurePremisse: [],
-    // keyboard: "",
-    isTheWindowShown: false
+    futureContent: [],
+    isTheKeyboardWindowShownAndWhy: false, // peut être "false" ou "premisse" ou "conclusion"
+    conclusion: ""
   };
 
-  addToFuturePremisse = newChar => {
-    let copyFuturePremisse = this.state.futurePremisse;
+  addToFuturePremOrConc = newChar => {
+    let copyFuturePremisse = this.state.futureContent;
     copyFuturePremisse += newChar;
-    this.setState({ futurePremisse: copyFuturePremisse });
+    this.setState({ futureContent: copyFuturePremisse });
   };
 
   removeLastCharacter = () => {
-    let copyFuturePremisse = [...this.state.futurePremisse];
+    let copyFuturePremisse = [...this.state.futureContent];
     copyFuturePremisse = copyFuturePremisse.slice(0, -1); // on extrait une partie du tableau, la première en partant de la fin (d'où le "-1")
     copyFuturePremisse = copyFuturePremisse.join("");
     this.setState(state => ({
-      futurePremisse: copyFuturePremisse
+      futureContent: copyFuturePremisse
     }));
   };
 
-  toggleWindow = () => {
+  toggleWindow = type => {
     let newBool = false;
-    if (!this.state.isTheWindowShown) {
-      newBool = true;
+    if (!this.state.isTheKeyboardWindowShownAndWhy) {
+      newBool = type;
     }
     this.setState({
-      isTheWindowShown: newBool
+      isTheKeyboardWindowShownAndWhy: newBool
     });
-    // console.log("window", newBool);
   };
 
-  showKeyboard = () => {
+  showKeyboard = type => {
     let everyPossibleCharacter = [
       ["~", "∧", "∨", "⊻", "⊃", "⊅", "≡", "↑", "↓"],
       ["p", "q", "r", "s"],
       ["(", ")"]
     ];
-    let buttonConfirmPremisse = (
+    let buttonConfirmContent = (
       <p
         className="rule-modal-button"
-        onClick={() => this.updateState(this.state.futurePremisse)}
+        onClick={() => this.updateState(this.state.futureContent, type)}
       >
         <i className="fas fa-check-square icon" />
       </p>
@@ -64,7 +63,7 @@ class ShowInfoSandbox extends Component {
             key={subKeyboard.length}
             className="selectable"
             onClick={() => {
-              this.addToFuturePremisse(everyPossibleCharacter[i][j]);
+              this.addToFuturePremOrConc(everyPossibleCharacter[i][j]);
             }}
           >
             {everyPossibleCharacter[i][j]}
@@ -73,17 +72,17 @@ class ShowInfoSandbox extends Component {
       }
       keyboard.push(<ul key={keyboard.length}>{subKeyboard}</ul>);
     }
-    if (this.state.isTheWindowShown) {
+    if (this.state.isTheKeyboardWindowShownAndWhy) {
       return (
         <div className="question-mark-window-sandbox">
           {keyboard}
-          <div className="future-premisse">
-            {this.state.futurePremisse}
+          <div className="future-premisseOrConclusion">
+            {this.state.futureContent}
             <p className="blinking">_</p>
           </div>
           <div className="rule-modal-all-button-premisse">
             {buttonRemoveLastCharacter}
-            {buttonConfirmPremisse}
+            {buttonConfirmContent}
           </div>
         </div>
       );
@@ -105,24 +104,47 @@ class ShowInfoSandbox extends Component {
     this.props.valueInference.addInference(inference);
   };
 
-  updateState(newPremisse) {
-    let newSetofPremisses = [...this.state.setOfPremisses];
-    if (
-      newSetofPremisses.indexOf(newPremisse) === -1 &&
-      newPremisse.length > 0
-    ) {
-      newSetofPremisses.push(newPremisse);
+  updateState(newContent, type) {
+    let newSetofPremisses = [...this.state.setOfPremisses],
+      newConclusion = this.state.conclusion,
+      newStoredObjectExercise = this.props.valueInference.storedObjectExercise;
+    if (type === "premisse") {
+      if (
+        newSetofPremisses.indexOf(newContent) === -1 &&
+        newContent.length > 0
+      ) {
+        console.log("3)", newContent);
+        newSetofPremisses.push(newContent);
+        newStoredObjectExercise.premisses.push(newContent);
+        this.props.valueInference.storeUserExerciseBeforeUpload(
+          newStoredObjectExercise
+        );
+      }
+    } else if (type === "conclusion") {
+      console.log("3)", newContent);
+      newConclusion = newContent;
+      newStoredObjectExercise.conclusion = newContent;
+      this.props.valueInference.storeUserExerciseBeforeUpload(
+        newStoredObjectExercise
+      );
     }
     this.setState({
       setOfPremisses: newSetofPremisses,
-      futurePremisse: ""
+      conclusion: newConclusion,
+      futureContent: []
     });
   }
 
-  resetState() {
-    this.setState({
-      setOfPremisses: []
-    });
+  resetPartOfState(partToReset) {
+    if (partToReset === "premisse") {
+      this.setState({
+        setOfPremisses: []
+      });
+    } else if (partToReset === "conclusion") {
+      this.setState({
+        conclusion: ""
+      });
+    }
   }
 
   showPremisses(setOfPremissesThemselves) {
@@ -164,7 +186,7 @@ class ShowInfoSandbox extends Component {
             key={i}
             className={"possible-premisse-sandbox " + className}
             onClick={() => {
-              this.updateState(premissesSent[i]);
+              this.updateState(premissesSent[i], "premisse");
             }}
           >
             {premissesSent[i]}
@@ -173,7 +195,7 @@ class ShowInfoSandbox extends Component {
       }
     }
     return (
-      <div id="buttonAddPremisses">
+      <div id="slidingMenuPossiblePremisses">
         <i className="active fas fa-plus-circle icon" />
         {setOfPossiblePremisses}
       </div>
@@ -183,51 +205,70 @@ class ShowInfoSandbox extends Component {
   // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
   render() {
     let keyBoardToAddPremisses = (
-      <Fragment>
-        <i
-          className="far fa-keyboard icon question-mark-button"
-          id="buttonKeyboardPremisses"
-          onClick={() => this.toggleWindow()}
-        >
-          <div className="question-mark">
-            <div className="question-mark-content">
-              Cliquez ici pour ouvrir le clavier permettant de créer une
-              prémisse.
+        <Fragment>
+          <i
+            className="far fa-keyboard icon question-mark-button"
+            id="buttonKeyboardPremisses"
+            onClick={() => this.toggleWindow("premisse")}
+          >
+            <div className="question-mark">
+              <div className="question-mark-content">
+                Cliquez ici pour ouvrir le clavier permettant de créer une
+                prémisse.
+              </div>
             </div>
-          </div>
-        </i>
-        {this.showKeyboard()}
-      </Fragment>
-    );
+          </i>
+          {this.showKeyboard()}
+        </Fragment>
+      ),
+      keyBoardToSetConclusion = (
+        <Fragment>
+          <i
+            className="far fa-keyboard icon question-mark-button"
+            id="buttonKeyboardConclusion"
+            onClick={() => this.toggleWindow("conclusion")}
+          >
+            <div className="question-mark">
+              <div className="question-mark-content">
+                Cliquez ici pour ouvrir le clavier permettant de créer une
+                conclusion.
+              </div>
+            </div>
+          </i>
+          {/* {this.showKeyboard("conclusion")} */}
+        </Fragment>
+      );
     return (
       <Fragment>
         <p className={"exercise-title "} />
         <ul className="setPremissesConclusion">
-          <li>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              Prémisses {this.showPossiblePremisses(this.props.premissesSent)}
-              {keyBoardToAddPremisses}
-              {
-                <i
-                  className="fas fa-eraser icon"
-                  onClick={() => this.resetState()}
-                />
-              }
-            </div>
-            {this.showPremisses(this.state.setOfPremisses)}
-          </li>
-          <li>
-            Conclusion
+          <li style={{ display: "flex", flexDirection: "row" }}>
+            Prémisses {this.showPossiblePremisses(this.props.premissesSent)}
+            {keyBoardToAddPremisses}
             {
               <i
-                className="far fa-keyboard icon deactivated"
-                id="buttonKeyboardConclusion"
+                className="fas fa-eraser icon"
+                onClick={() => this.resetPartOfState("premisse")}
               />
             }
-            {<i className="fas fa-eraser icon deactivated" />}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {this.showPremisses(this.state.setOfPremisses)}
+            </div>
+          </li>
+          <li style={{ display: "flex", flexDirection: "row" }}>
+            Conclusion
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {this.state.conclusion}
+            </div>
+            {keyBoardToSetConclusion}
+            {
+              <i
+                className="fas fa-eraser icon"
+                onClick={() => this.resetPartOfState("conclusion")}
+              />
+            }
           </li>
         </ul>
-        {this.state.keyboard}
       </Fragment>
     );
   }

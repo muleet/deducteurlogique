@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Rules from "../../../data/InfoRules";
+import Rules from "../../data/InfoRules";
 
 class ShowInfoRules extends Component {
   state = {

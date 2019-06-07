@@ -621,6 +621,16 @@ class InferenceProvider extends Component {
       }));
     };
 
+    this.storeUserExerciseBeforeUpload = newStoredObjectExercise => {
+      console.log(
+        "5) storeUserExerciseBeforeUpload, avec",
+        newStoredObjectExercise
+      );
+      this.setState({
+        storedObjectExercise: newStoredObjectExercise
+      });
+    };
+
     this.state = {
       allInferencesRendered: [], // contient les données htmlisées des inférences
       allInferencesThemselves: [], // contient les inférences elles-mêmes + leur commentaire + les nombres justifiant leur commentaire
@@ -685,7 +695,18 @@ class InferenceProvider extends Component {
       // section de la création d'inférence par l'utilisateur
       futureInference: "",
       addToFutureInference: this.addToFutureInference,
-      removeLastCharacter: this.removeLastCharacter
+      removeLastCharacter: this.removeLastCharacter,
+      // section des données de l'utilisateur
+      storeUserExerciseBeforeUpload: this.storeUserExerciseBeforeUpload,
+      storedObjectExercise: {
+        title: "",
+        premisses: [],
+        conclusion: "",
+        meaning: [],
+        comment: "",
+        rulesImplied: [],
+        doable: undefined
+      }
     };
   }
 

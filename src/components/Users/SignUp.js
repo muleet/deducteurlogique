@@ -22,13 +22,13 @@ class SignUp extends React.Component {
 
   onSubmit = event => {
     axios
-      .post("https://leboncoin-api.herokuapp.com/api/user/sign_up", {
+      .post("http://localhost:3001/api/user/sign_up", {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username
       })
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         // {
         //   account: { username: "Farid" },
         //   token: "Ii0HYfXTN7L2SMoL",
@@ -54,37 +54,42 @@ class SignUp extends React.Component {
   render() {
     return (
       <Fragment>
-        <form
-          onSubmit={this.onSubmit}
-          className="form form-signup"
-          style={{ display: "flex", flexDirection: "column", width: "200px" }}
-        >
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="email">password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="username">username</label>
-          <input
-            id="username"
-            name="username"
-            type="text"
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
-          <input type="submit" value="Valider" />
-        </form>
+        <main>
+          <form onSubmit={this.onSubmit} className="form-signup-set">
+            <label htmlFor="email">email</label>
+            <input
+              className="form-singleLine user-color"
+              id="email"
+              name="email"
+              type="text"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="email">mot de passe</label>
+            <input
+              className="form-singleLine user-color"
+              id="password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="username">nom d'utilisateur</label>
+            <input
+              className="form-singleLine user-color"
+              id="username"
+              name="username"
+              type="text"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+            <input
+              type="submit"
+              value="Valider"
+              className="form-submit-line user-color"
+            />
+          </form>
+        </main>
       </Fragment>
     );
   }
