@@ -4,7 +4,7 @@ import ButtonNav from "./ButtonNav";
 import LogIn from "../Users/LogIn";
 
 class Header extends React.Component {
-  state = { loginButtonDeployed: true };
+  state = { loginButtonDeployed: false };
 
   deployLogin() {
     let loginButtonDeployed = false;
