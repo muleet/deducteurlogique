@@ -11,7 +11,8 @@ class ShowFallacies extends Component {
     rightNumbers: [],
     cheat: false,
     categoriesBool: false,
-    content: Fallacies
+    content: Fallacies,
+    language: "fr"
     // mistakes: 0
   };
 
@@ -33,12 +34,14 @@ class ShowFallacies extends Component {
 
   changeBoolean(bool) {
     if (bool === "language") {
-      let newContent = Fallacies;
-      if (this.state.content[0].name[0] !== "S") {
+      let newContent = Fallacies,
+        newLanguage = "fr";
+      if (this.state.language === "fr") {
         newContent = FallaciesEng;
+        newLanguage = "en";
         this.resetState();
       }
-      this.setState({ content: newContent });
+      this.setState({ content: newContent, language: newLanguage });
     } else if (bool === "categoriesBool") {
       let newBool = true;
       if (this.state.categoriesBool) {

@@ -1,21 +1,5 @@
 [
   {
-    "name": "Strawman",
-    "definition": "Misrepresent an argument to make it easier to attack.",
-    "link": "https://fr.wikipedia.org/wiki/%C3%89pouvantail_(rh%C3%A9torique)",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Slippery slope",
-    "definition": "If we let A happen, then B will necessarily occur, therefore we must prevent A from happening.",
-    "link": "",
-    "frenchExamples": [
-      "Si l'on abat le droit de propriété privé des moyens de production, alors il y aura nécessairement des millions de morts."
-    ],
-    "type": "denial"
-  },
-  {
     "name": "Ad hoc reasoning",
     "alternateName": "Special pleading",
     "definition": "Make an exception when an claim has been shown as false, by a new reasoning justifying that exception (in order to let the claim as it was).",
@@ -26,21 +10,18 @@
     "type": "denial"
   },
   {
-    "name": "The gambler's fallacy",
-    "definition": "To presume that independant statistical results impacts on each other. For example, if I draw a coin three time, that I get heads each time, the conclusion with that fallacy would be that the chances to get tails are now higher.",
-    "link": "",
-    "frenchExamples": [
-      "Si je lance 3 fois une pièce en l'air, que j'obtiens trois fois pile, les chances d'avoir face ensuite sont plus élevées."
-    ],
-    "type": "inductive"
-  },
-  {
-    "name": "False dilemma",
-    "alternateName": "Black-or-white",
-    "definition": "To present two alternatives as the only possibilities, while other options actually exists.",
+    "name": "Ambiguity fallacy",
+    "definition": "Using double meanings or ambiguities of language to mislead or misrepresent the truth.",
     "link": "",
     "frenchExamples": [],
-    "type": "deductive"
+    "type": "irrelevant"
+  },
+  {
+    "name": "Anecdotal fallacy",
+    "definition": "Using personal experience or an isolated example instead of a valid argument, especially to dismiss statistics.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "inductive"
   },
   {
     "name": "Appeal to authority",
@@ -50,29 +31,33 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad personam",
-    "definition": "To attack someone, or his personal traits, that says a claim, rather than the claim itself.",
+    "name": "Appeal to emotion",
+    "definition": "Appealing to emotion in place of a valid argument. By extension, to use emotionally loaded words in order to persuade.",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad hominem",
-    "definition": "To turn back the claim of someone against himself or herself, in order to disqualify what he or she says.",
-    "link": "",
+    "name": "Appeal to ignorance",
+    "alternateName": "",
+    "definition": "If a claim hasn't been shown as false, it is because it must be a true one.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
+    "frenchExamples": [
+      "Il n'a pas été prouvé qu'une théière n'est pas en orbite autour du Soleil, entre la Terre et Mars, donc c'est le cas."
+    ],
+    "type": "inductive"
+  },
+  {
+    "name": "Appeal to nature",
+    "definition": "Saying that something is natural and is therefore valid, justified.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
     "frenchExamples": [],
     "type": "irrelevant"
   },
   {
-    "name": "Trial of intent",
-    "definition": "To discredit someone's claim by pretending (with no proof) that what he or she says stands on blameworthy intentions.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Tu quoque",
-    "definition": "To avoid to engage with criticism by turning it back to the accuser ; answering criticism by criticism.",
+    "name": "Argumentum ad antiquatem",
+    "alternateName": "",
+    "definition": "Using the old age of a claim, in order to say if it is a true one or not.",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
@@ -85,10 +70,32 @@
     "type": "irrelevant"
   },
   {
-    "name": "Loaded question",
-    "definition": "To ask a question that contains a presumption built into it, in a way that we cannot answer it without accepting that presumption.",
+    "name": "Argumentum ad hominem",
+    "definition": "To turn back the claim of someone against himself or herself, in order to disqualify what he or she says.",
     "link": "",
-    "frenchExamples": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Argumentum ad nauseam",
+    "definition": "Repeating a claim till it seems true (mecanism of propaganda).",
+    "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Argumentum ad novitatem",
+    "alternateName": "",
+    "definition": "Using the novelty of a claim, in order to say if it is a true one or not.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Argumentum ad personam",
+    "definition": "To attack someone, or his personal traits, that says a claim, rather than the claim itself.",
+    "link": "",
+    "frenchExamples": [],
     "type": "irrelevant"
   },
   {
@@ -108,96 +115,8 @@
     "type": "deductive"
   },
   {
-    "name": "Division fallacy",
-    "alternateName": "Composition fallacy",
-    "definition": "Assuming that what's true about one part of something, has to be applied to all, or other, parts of it.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "inductive"
-  },
-  {
-    "name": "Appeal to emotion",
-    "definition": "Appealing to emotion in place of a valid argument. By extension, to use emotionally loaded words in order to persuade.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
     "name": "Burden of proof",
     "definition": "Saying that the burden of proof lies not with the person making the claim, but with someone else to disprove.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "inductive"
-  },
-  {
-    "name": "No true scotsman",
-    "alternateName": "Appeal to purity",
-    "definition": "Make a generalisation about something, and then reject the counterexamples under the pretext that they're not true example because they're different from the generalisation.",
-    "link": "https://fr.wikipedia.org/wiki/Sophisme_du_vrai_%C3%89cossais",
-    "frenchExamples": [],
-    "type": "denial"
-  },
-  {
-    "name": "The texas sharpshooter",
-    "definition": "Cherry-picking data clusters in order to suit an argument, or finding a pattern to fit a presumption (usually a posteriori, in both cases).",
-    "link": "https://fr.wikipedia.org/wiki/Sophisme_du_tireur_d%27%C3%A9lite_texan",
-    "frenchExamples": [],
-    "type": "inductive"
-  },
-  {
-    "name": "Appeal to nature",
-    "definition": "Saying that something is natural and is therefore valid, justified.",
-    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Fallacy fallacy",
-    "definition": "Presuming that because a claim has been poorly argued, or a fallacy has been made, that the claim itself must be wrong..",
-    "link": "",
-    "frenchExamples": [],
-    "type": "deductive"
-  },
-  {
-    "name": "Personal incredulity",
-    "definition": "Saying that because one finds something difficult to understand that it's therefore not true.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "denial"
-  },
-  {
-    "name": "Ambiguity fallacy",
-    "definition": "Using double meanings or ambiguities of language to mislead or misrepresent the truth.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Genetic fallacy",
-    "definition": "Presuming that something is true or false, right or wrong, on the basis of where it comes from, or from who it comes from.",
-    "link": "https://fr.wikipedia.org/wiki/Sophisme_g%C3%A9n%C3%A9tique",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Middle ground",
-    "alternateName": "False compromise, appeal to moderation",
-    "definition": "Saying that a compromise, or middle point, between two extremes is the truth.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "inductive"
-  },
-  {
-    "name": "Anecdotal fallacy",
-    "definition": "Using personal experience or an isolated example instead of a valid argument, especially to dismiss statistics.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "inductive"
-  },
-  {
-    "name": "Post hoc ergo propter hoc",
-    "alternateName": "Questionable cause, false cause",
-    "definition": "Presuming that because two events are one after the other, there must be a causality link between them. \"Before that therefore because of that.\"",
     "link": "",
     "frenchExamples": [],
     "type": "inductive"
@@ -210,48 +129,9 @@
     "type": "inductive"
   },
   {
-    "name": "Naturalistic fallacy",
-    "definition": "Justify what ought to be (prescription) by actually is (description).",
-    "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
-    "frenchExamples": [],
-    "type": "deductive"
-  },
-  {
-    "name": "Argumentum ad nauseam",
-    "definition": "Repeating a claim till it seems true (mecanism of propaganda).",
-    "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Appeal to ignorance",
-    "alternateName": "",
-    "definition": "If a claim hasn't been shown as false, it is because it must be a true one.",
-    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
-    "frenchExamples": [
-      "Il n'a pas été prouvé qu'une théière n'est pas en orbite autour du Soleil, entre la Terre et Mars, donc c'est le cas."
-    ],
-    "type": "inductive"
-  },
-  {
-    "name": "Argumentum ad antiquatem",
-    "alternateName": "",
-    "definition": "Using the old age of a claim, in order to say if it is a true one or not.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Argumentum ad novitatem",
-    "alternateName": "",
-    "definition": "Using the novelty of a claim, in order to say if it is a true one or not.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Two wrongs make a right",
-    "definition": "Justifying a bad action by the fact that another bad action was commited before ; pretend to fix a wrong by another wrong.",
+    "name": "Division fallacy",
+    "alternateName": "Composition fallacy",
+    "definition": "Assuming that what's true about one part of something, has to be applied to all, or other, parts of it.",
     "link": "",
     "frenchExamples": [],
     "type": "inductive"
@@ -264,10 +144,130 @@
     "type": "irrelevant"
   },
   {
+    "name": "Fallacy fallacy",
+    "definition": "Presuming that because a claim has been poorly argued, or a fallacy has been made, that the claim itself must be wrong..",
+    "link": "",
+    "frenchExamples": [],
+    "type": "deductive"
+  },
+  {
+    "name": "False dilemma",
+    "alternateName": "Black-or-white",
+    "definition": "To present two alternatives as the only possibilities, while other options actually exists.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "deductive"
+  },
+  {
+    "name": "Genetic fallacy",
+    "definition": "Presuming that something is true or false, right or wrong, on the basis of where it comes from, or from who it comes from.",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_g%C3%A9n%C3%A9tique",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Loaded question",
+    "definition": "To ask a question that contains a presumption built into it, in a way that we cannot answer it without accepting that presumption.",
+    "link": "",
+    "frenchExamples": "",
+    "type": "irrelevant"
+  },
+  {
     "name": "Loki's Wager",
     "definition": "The unreasonable insistence that a concept cannot be defined, and therefore cannot be discussed.",
     "link": "",
     "frenchExamples": [],
     "type": "denial"
+  },
+  {
+    "name": "Middle ground",
+    "alternateName": "False compromise, appeal to moderation",
+    "definition": "Saying that a compromise, or middle point, between two extremes is the truth.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "inductive"
+  },
+  {
+    "name": "Naturalistic fallacy",
+    "definition": "Justify what ought to be (prescription) by actually is (description).",
+    "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
+    "frenchExamples": [],
+    "type": "deductive"
+  },
+  {
+    "name": "No true scotsman",
+    "alternateName": "Appeal to purity",
+    "definition": "Make a generalisation about something, and then reject the counterexamples under the pretext that they're not true example because they're different from the generalisation.",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_du_vrai_%C3%89cossais",
+    "frenchExamples": [],
+    "type": "denial"
+  },
+  {
+    "name": "Personal incredulity",
+    "definition": "Saying that because one finds something difficult to understand that it's therefore not true.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "denial"
+  },
+  {
+    "name": "Post hoc ergo propter hoc",
+    "alternateName": "Questionable cause, false cause",
+    "definition": "Presuming that because two events are one after the other, there must be a causality link between them. \"Before that therefore because of that.\"",
+    "link": "",
+    "frenchExamples": [],
+    "type": "inductive"
+  },
+  {
+    "name": "Slippery slope",
+    "definition": "If we let A happen, then B will necessarily occur, therefore we must prevent A from happening.",
+    "link": "",
+    "frenchExamples": [
+      "Si l'on abat le droit de propriété privé des moyens de production, alors il y aura nécessairement des millions de morts."
+    ],
+    "type": "denial"
+  },
+  {
+    "name": "Strawman fallacy",
+    "definition": "Misrepresent an argument to make it easier to attack.",
+    "link": "https://fr.wikipedia.org/wiki/%C3%89pouvantail_(rh%C3%A9torique)",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "The gambler's fallacy",
+    "definition": "To presume that independant statistical results impacts on each other. For example, if I draw a coin three time, that I get heads each time, the conclusion with that fallacy would be that the chances to get tails are now higher.",
+    "link": "",
+    "frenchExamples": [
+      "Si je lance 3 fois une pièce en l'air, que j'obtiens trois fois pile, les chances d'avoir face ensuite sont plus élevées."
+    ],
+    "type": "inductive"
+  },
+  {
+    "name": "The texas sharpshooter",
+    "definition": "Cherry-picking data clusters in order to suit an argument, or finding a pattern to fit a presumption (usually a posteriori, in both cases).",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_du_tireur_d%27%C3%A9lite_texan",
+    "frenchExamples": [],
+    "type": "inductive"
+  },
+  {
+    "name": "Trial of intent",
+    "definition": "To discredit someone's claim by pretending (with no proof) that what he or she says stands on blameworthy intentions.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Tu quoque",
+    "definition": "To avoid to engage with criticism by turning it back to the accuser ; answering criticism by criticism.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Two wrongs make a right",
+    "definition": "Justifying a bad action by the fact that another bad action was commited before ; pretend to fix a wrong by another wrong.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "inductive"
   }
 ]
