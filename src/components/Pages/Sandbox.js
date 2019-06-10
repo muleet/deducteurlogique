@@ -108,7 +108,7 @@ class Deducer extends Component {
                 </section>
               </div>
 
-              <div className="user-box-info user-color">
+              {/* <div className="user-box-info user-color">
                 <SandboxShowUserRequirements
                   premissesSent=""
                   conclusionSent=""
@@ -116,7 +116,7 @@ class Deducer extends Component {
                   rulesSent=""
                   valueInference={value}
                 />
-              </div>
+              </div> */}
             </div>
           )}
         </InferenceContext.Consumer>
