@@ -310,7 +310,7 @@ h3 {
 }
 
 .greek-alphabet-box {
-  max-width: 1000px;
+  width: 900px;
   min-height: 36px;
   display: flex;
   flex-direction: row;

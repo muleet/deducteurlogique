@@ -60,7 +60,7 @@ class LogIn extends React.Component {
       <form onSubmit={this.onSubmit} className="form-login-set">
         {/* <label htmlFor="email">Email</label> */}
         <input
-          className="form-singleLine user-color"
+          className="form-singleLine user-color unavailable-yet"
           id="email"
           name="email"
           type="text"
@@ -69,7 +69,7 @@ class LogIn extends React.Component {
         />
         {/* <label htmlFor="email">password</label> */}
         <input
-          className="form-singleLine user-color"
+          className="form-singleLine user-color unavailable-yet"
           id="password"
           name="password"
           type={typeInputPassword}
@@ -87,7 +87,7 @@ class LogIn extends React.Component {
         <input
           type="submit"
           value="Valider"
-          className="form-submit-line user-color"
+          className="form-submit-line user-color unavailable-yet"
         />
       </form>
     );

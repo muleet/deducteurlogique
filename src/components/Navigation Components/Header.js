@@ -43,7 +43,7 @@ class Header extends React.Component {
         // l'utilisateur n'a pas encore cliqué sur le bouton de login
         loginButton = (
           <div
-            className="fas fa-sign-in-alt icon nav-button header-button user-color"
+            className="fas fa-sign-in-alt icon nav-button header-button user-color unavailable-yet"
             id="icon-login-deployer"
             onClick={() => this.deployLogin()}
           />
@@ -53,24 +53,27 @@ class Header extends React.Component {
         loginButton = (
           <Fragment>
             <div
-              className="fas fa-window-close icon nav-button header-button user-color"
+              className="fas fa-window-close icon nav-button header-button user-color unavailable-yet"
               id="icon-login-deployer"
               onClick={() => this.deployLogin()}
             />
-            <LogIn
+            {/* <LogIn
               // {...props}
               user={this.props.user}
               setUser={this.props.setUser}
-            />
+            /> */}
           </Fragment>
         );
       }
       return (
         <Fragment>
           {loginButton}
-          <NavLink to="/sign_up">
+          <NavLink
+            to=""
+            // to="/sign_up"
+          >
             <ButtonNav
-              className="header-button user-color"
+              className="header-button user-color  unavailable-yet"
               name={<i className="fas fa-globe" />} // je savais pas quelle icône prendre pour signifier "créer un compte"
             />
           </NavLink>
