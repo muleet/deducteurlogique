@@ -530,7 +530,7 @@ class greekAlphabet extends Component {
     // section du point d'interrogation
     const questionMark = (
       <div className={"question-mark-button icon "}>
-        <i class="fas fa-question-circle" />
+        <i className="fas fa-question-circle" />
         <div className="question-mark">
           <div className="question-mark-title">A quoi sert cette page ?</div>
           <ul className="question-mark-content">

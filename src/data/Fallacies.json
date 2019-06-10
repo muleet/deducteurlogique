@@ -102,9 +102,9 @@
     "type": "inductive"
   },
   {
-    "name": "Effet de mode",
-    "alternateName": "Appel à la popularité, Raison de la majorité",
-    "englishName": "Bandwagon",
+    "name": "Appel à la popularité",
+    "alternateName": "Raison de la majorité, Effet de mode",
+    "englishName": "Bandwagon effect",
     "definition": "Faire appel à la popularité d'un argument ou d'une action que beaucoup de gens font, pour tenter de valider cet argument ou cette action.",
     "link": "",
     "frenchExamples": [],

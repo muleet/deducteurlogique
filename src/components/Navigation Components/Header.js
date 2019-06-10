@@ -119,7 +119,7 @@ class Header extends React.Component {
             déducteur et
             <br />
             formaliseur logique
-            <div className="website-version">version 0.61</div>
+            <div className="website-version">version 0.62</div>
           </h1>
         </ul>
       </header>
