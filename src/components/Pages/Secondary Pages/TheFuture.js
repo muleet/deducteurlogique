@@ -49,6 +49,13 @@ const TheFuture = () => {
             significations possibles des prémisses).
           </p>
           <p className="soon-available-rule">
+            - La possibilité pour un utilisateur, de créer des exercices
+            relatifs aux raisonnements fallacieux. Par exemple la phrase "La
+            France, tu l'aimes ou tu la quittes" est au moins un faux dilemme et
+            un appel à l'émotion, le but de l'exercice serait de trouver que
+            c'est le cas.
+          </p>
+          <p className="soon-available-rule">
             - Corrections des bugs spécifiques au fonctionnement de la règle ∨e
             (et surtout, amélioration de son interface) + possibilité d'utiliser
             la suppression de la dernière inférence, avec cette règle.

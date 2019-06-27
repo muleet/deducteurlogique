@@ -15,13 +15,13 @@
   margin-top: 10px;
 }
 .fallacy-randomDefinition {
-  color: rgb(97, 97, 255);
+  color: rgb(118, 118, 255);
   font-size: 14px;
   padding: 12px;
   width: 500px;
   text-justify: center;
   text-align: center;
-  border: 1px solid rgba(107, 97, 255, 0.541);
+  border: 1px solid rgba(118, 118, 255, 0.541);
   background-color: rgba(97, 97, 255, 0.171);
 }
 .set-counts {

@@ -11,8 +11,9 @@ class ShowFallacies extends Component {
     rightNumbers: [],
     cheat: false,
     categoriesBool: false,
-    content: Fallacies,
-    language: "fr"
+    content: Fallacies, // peut être Fallacies ou FallaciesEng
+    language: "fr", // peut être "fr" ou "en"
+    isItRandomOrSorted: "random" // peut être "random" ou "sorted"
     // mistakes: 0
   };
 
@@ -69,7 +70,8 @@ class ShowFallacies extends Component {
       newWrongNumbers = [];
     } else if (
       clickedNumber !== this.state.currentNumber &&
-      !newWrongNumbers.includes(clickedNumber)
+      !newWrongNumbers.includes(clickedNumber) &&
+      !this.state.rightNumbers.includes(clickedNumber)
     ) {
       // ce n'était pas le bon nombre, ET il n'est pas déjà présent dans wrongNumbers, donc on va ajouter le nombre dans wrongNumbers et incrémenter mistakes
       newWrongNumbers.push(clickedNumber);
@@ -137,6 +139,12 @@ class ShowFallacies extends Component {
       newCheat = false;
     }
     this.setState({ cheat: newCheat });
+  }
+
+  randomizeOrSort() {
+    if (this.state.isItRandomOrSorted === "random") {
+    } else if (this.state.isItRandomOrSorted === "sorted") {
+    }
   }
 
   render() {
@@ -231,13 +239,27 @@ class ShowFallacies extends Component {
       </div>
     );
 
+    const togglerRandomizeOrSort = (
+      <div className={"question-mark-button icon"}>
+        <i className="fas fa-dice" /> onClick=
+        {() => this.randomizeOrSort()}
+        <div className="question-mark">
+          <div className="question-mark-title">
+            Cliquez ici classer les sophismes aléatoirement ou par ordre
+            alphabétique.
+          </div>
+        </div>
+      </div>
+    );
+
     return (
       <main className="main-info">
         <div>
           <h2>
             Mémoriser les raisonnements fallacieux et leur définition
             <div className="set-of-page-icons">
-              {questionMark} {togglerInfoIconFallacies} {togglerLanguage}{" "}
+              {questionMark} {togglerInfoIconFallacies} {togglerLanguage}
+              {/* {togglerRandomizeOrSort} */}
               {togglerCheat}
               <BasicReactModal
                 buttonSent={
@@ -262,21 +284,20 @@ class ShowFallacies extends Component {
                       Cliquez en dehors de cette liste pour la quitter.
                       <br />
                       Ils peuvent être catégories en 4 types : <br />
-                      <p style={{ color: "red" }}>Sophismes déductifs</p> : ce
-                      sont des raisonnements abstraits, supposés n'utiliser que
-                      la forme logique, et ne tenant pas compte de l'expérience
-                      du monde. Leurs conclusions sont fausses de manière a
-                      priori.
+                      <p style={{ color: "red" }}>Sophismes déductifs</p>
+                      Raisonnements abstraits, supposés n'utiliser que la forme
+                      logique, et ne tenant pas compte de l'expérience du monde.
+                      Leurs conclusions sont fausses de manière a priori.
                       <br />
                       <p style={{ color: "blue" }}>Sophismes non pertinents</p>
-                      : raisonnements qui introduisent des facteurs non
-                      pertinents, empêchant le flux logique d'un argument.
+                      Raisonnements qui introduisent des facteurs non
+                      pertinents, empêchant l'écoulement logique d'un argument.
                       <br />
                       <p style={{ color: "green" }}>Sophismes de réfutation</p>
-                      : raisonnements utilisés pour réfuter des affirmations.
+                      Raisonnements utilisés pour réfuter des affirmations.
                       <br />
-                      <p style={{ color: "yellow" }}>Sophismes inductifs</p> :
-                      raisonnements qui impliquent l'expérience du monde, à
+                      <p style={{ color: "yellow" }}>Sophismes inductifs</p>
+                      Raisonnements qui impliquent l'expérience du monde, à
                       partir desquelles des conclusions sont tirées. <br />
                       Sources m'ayant aidé à créer cette liste et leurs
                       classifications : Wikipédia.fr, toolkitforthinking.com,

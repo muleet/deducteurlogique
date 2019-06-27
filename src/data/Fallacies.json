@@ -44,7 +44,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad antiquatem",
+    "name": "Ad antiquitatem",
     "alternateName": "",
     "englishName": "",
     "definition": "Se référer à l'ancienneté d'une affirmation pour dire si elle est vraie ou non.",
@@ -53,7 +53,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad consequentiam",
+    "name": "Ad consequentiam",
     "englishName": "",
     "definition": "Utiliser une conséquence d'un argument pour supporter ou critiquer un argument. \"X ne peut pas être faux puisque sinon la conséquence Y serait fausse.\"",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam",
@@ -61,7 +61,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad hominem",
+    "name": "Ad hominem",
     "englishName": "",
     "definition": "Retourner le propos d'une personne contre elle-même, pour disqualifier ce qu'elle dit.",
     "link": "",
@@ -69,8 +69,8 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad nauseam",
-    "alternateName": "Avoir raison par forfait",
+    "name": "Ad nauseam",
+    "alternateName": "Avoir raison par forfait, Ad infinitum, Argument par répétition",
     "englishName": "",
     "definition": "Répéter une affirmation jusqu'à ce qu'elle semble vraie (mécanisme de la propagande).",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
@@ -78,7 +78,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad novitatem",
+    "name": "Ad novitatem",
     "alternateName": "",
     "englishName": "",
     "definition": "Se référer à la nouveauté d'une affirmation pour dire si elle est vraie ou non.",
@@ -87,7 +87,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad personam",
+    "name": "Ad personam",
     "englishName": "",
     "definition": "Attaquer la personne, ou ses traits personnels, qui énonce un argument plutôt que l'argument lui-même.",
     "link": "",
@@ -186,7 +186,7 @@
   {
     "name": "Procès d'intention",
     "englishName": "Trial of intent",
-    "definition": "Disqualifier l'argumentation d'une personne en prétendant (sans preuves) que ce qu'il dit repose sur des intentions réprochables.",
+    "definition": "Disqualifier l'argumentation d'une personne en prétendant que ce qu'il dit repose sur des intentions réprochables (avec ou sans preuves).",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
@@ -299,7 +299,7 @@
   {
     "name": "Sophisme naturaliste",
     "englishName": "Naturalistic fallacy",
-    "definition": "Justifier ce qui doit être (prescription) par ce qui est (description).",
+    "definition": "Prétendre justifier ce qui devrait être (prescription) par ce qui est (description) ; prétendre voi une normativité dans ce qui existe.",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
     "frenchExamples": [],
     "type": "deductive"

@@ -55,7 +55,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad antiquatem",
+    "name": "Ad antiquitatem",
     "alternateName": "",
     "definition": "Using the old age of a claim, in order to say if it is a true one or not.",
     "link": "",
@@ -63,28 +63,29 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad consequentiam",
+    "name": "Ad consequentiam",
     "definition": "To use the consequence of an argument in order to support or praise an argument. \"X cannot be false, or else the consequence Y would be false.\"",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam",
     "frenchExamples": [],
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad hominem",
+    "name": "Ad hominem",
     "definition": "To turn back the claim of someone against himself or herself, in order to disqualify what he or she says.",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad nauseam",
+    "name": "Ad nauseam",
+    "alternateName": "Being right par reason, Ad infinitum, Argument from repetition",
     "definition": "Repeating a claim till it seems true (mecanism of propaganda).",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
     "frenchExamples": [],
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad novitatem",
+    "name": "Ad novitatem",
     "alternateName": "",
     "definition": "Using the novelty of a claim, in order to say if it is a true one or not.",
     "link": "",
@@ -92,7 +93,7 @@
     "type": "irrelevant"
   },
   {
-    "name": "Argumentum ad personam",
+    "name": "Ad personam",
     "definition": "To attack someone, or his personal traits, that says a claim, rather than the claim itself.",
     "link": "",
     "frenchExamples": [],
@@ -189,7 +190,7 @@
   },
   {
     "name": "Naturalistic fallacy",
-    "definition": "Justify what ought to be (prescription) by actually is (description).",
+    "definition": "Justify what ought to be (prescription) by actually is (description) ; pretend to see a normativity in what exists.",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
     "frenchExamples": [],
     "type": "deductive"
@@ -251,7 +252,7 @@
   },
   {
     "name": "Trial of intent",
-    "definition": "To discredit someone's claim by pretending (with no proof) that what he or she says stands on blameworthy intentions.",
+    "definition": "To discredit someone's claim by pretending that what he or she says stands on blameworthy intentions (with or without proof).",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
