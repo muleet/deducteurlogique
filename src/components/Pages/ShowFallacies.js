@@ -299,9 +299,6 @@ class ShowFallacies extends Component {
                       <p style={{ color: "yellow" }}>Sophismes inductifs</p>
                       Raisonnements qui impliquent l'expérience du monde, à
                       partir desquelles des conclusions sont tirées. <br />
-                      Sources m'ayant aidé à créer cette liste et leurs
-                      classifications : Wikipédia.fr, toolkitforthinking.com,
-                      yourlogicalfallacyis.com
                     </div>
                     <ul className="set-all-fallacy-information">
                       {listOfTheFallacies}

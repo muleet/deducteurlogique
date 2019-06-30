@@ -2,9 +2,9 @@
   {
     "name": "Appel à l'autorité",
     "englishName": "Appeal to authority",
-    "definition": "Utiliser l'opinion ou la position d'une figure faisant autorité, ou une institution faisant autorité, (que cette institution soit scientifique, éducative, religieuse, etc) comme un argument, à la place d'un vrai argument.",
+    "definition": "Utiliser l'opinion ou la position d'une figure ou institution faisant autorité, (qu'elle soit scientifique, éducative, religieuse, parentale, militaire etc) comme un argument, à la place d'un vrai argument.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -12,7 +12,7 @@
     "englishName": "Appeal to emotion",
     "definition": "Faire appel aux émotions à la place d'un argument valide. Par extension, employer des mots émotionnellement chargés pour convaincre.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -21,7 +21,7 @@
     "englishName": "",
     "definition": "Si une affirmation n'a pas été démontrée comme fausse, c'est qu'elle est forcément vraie.",
     "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
-    "frenchExamples": [
+    "examples": [
       "Il n'a pas été prouvé qu'une théière n'est pas en orbite autour du Soleil, entre la Terre et Mars, donc c'est le cas."
     ],
     "type": "inductive"
@@ -31,7 +31,7 @@
     "englishName": "Appeal to nature",
     "definition": "Dire que quelque chose est naturel et est par conséquent valide, justifié.",
     "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -40,7 +40,7 @@
     "englishName": "Bandwagon effect",
     "definition": "Dire qu'un argument ou une action est partagée ou faite par beaucoup de gens, pour tenter de valider cet argument ou cette action.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -49,7 +49,7 @@
     "englishName": "",
     "definition": "Se référer à l'ancienneté d'une affirmation pour dire si elle est vraie ou non.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -57,7 +57,7 @@
     "englishName": "",
     "definition": "Utiliser une conséquence d'un argument pour supporter ou critiquer un argument. \"X ne peut pas être faux puisque sinon la conséquence Y serait fausse.\"",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -65,7 +65,7 @@
     "englishName": "",
     "definition": "Retourner le propos d'une personne contre elle-même, pour disqualifier ce qu'elle dit.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -74,7 +74,7 @@
     "englishName": "",
     "definition": "Répéter une affirmation jusqu'à ce qu'elle semble vraie (mécanisme de la propagande).",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -83,7 +83,7 @@
     "englishName": "",
     "definition": "Se référer à la nouveauté d'une affirmation pour dire si elle est vraie ou non.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -91,7 +91,7 @@
     "englishName": "",
     "definition": "Attaquer la personne, ou ses traits personnels, qui énonce un argument plutôt que l'argument lui-même.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -99,7 +99,7 @@
     "englishName": "Burden of proof",
     "definition": "Dire que la charge de la preuve ne dépend pas de celui qui fait l'affirmation, mais à quelqu'un qui veut la réfuter.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -107,7 +107,7 @@
     "englishName": "Cum hoc ergo propter hoc",
     "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux (confondre corrélation et causation). \"Avec cela donc à cause de cela.\"",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -116,7 +116,7 @@
     "englishName": "False compromise, Middle ground, appeal to moderation",
     "definition": "Présumer qu'un compromis, ou un juste milieu, entre deux extrêmes, doit être la vérité.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -125,7 +125,7 @@
     "englishName": "False dilemma, Black-or-white",
     "definition": "Présenter deux alternatives comme les deux seules possibilités, lorsque que d'autres possibilités existent.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "deductive"
   },
   {
@@ -133,9 +133,8 @@
     "alternateName": "",
     "englishName": "Loki's Wager",
     "definition": "L'insistance irraisonnée qu'un certain concept ne peut être défini, et par conséquent qu'il ne peut être débattu.",
-    "englishDefinition": "The unreasonable insistence that a concept cannot be defined, and therefore cannot be discussed.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "denial"
   },
   {
@@ -144,7 +143,7 @@
     "englishName": "Strawman",
     "definition": "Mal expliquer un argument, pour mieux l'attaquer.",
     "link": "https://fr.wikipedia.org/wiki/%C3%89pouvantail_(rh%C3%A9torique)",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -152,7 +151,7 @@
     "englishName": "Personal incredulity",
     "definition": "Présumer que parce qu'on trouve quelque chose est difficile à comprendre, alors elle ne doit pas être vraie.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "denial"
   },
   {
@@ -160,7 +159,7 @@
     "englishName": "Slippery slope",
     "definition": "Si on laisse A se passer, alors B se passera nécessairement, donc on doit empêcher A de se passer.",
     "link": "",
-    "frenchExamples": [
+    "examples": [
       "Si l'on abat le droit de propriété privé des moyens de production, alors il y aura nécessairement des millions de morts."
     ],
     "type": "denial"
@@ -171,7 +170,7 @@
     "englishName": "Begging the question",
     "definition": "Poser dans les prémisses d'un raisonnement la conclusion qu'on cherche à atteindre.",
     "link": "",
-    "frenchExamples": [],
+    "examples": ["S'il fait "],
     "type": "deductive"
   },
   {
@@ -180,7 +179,7 @@
     "englishName": "Post hoc ergo propter hoc",
     "definition": "Présumer que puisque deux évènements se succèdent, alors il y a un lien de cause à effet entre le premier et le second. \"Après cela donc à cause de cela.\"",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -188,7 +187,7 @@
     "englishName": "Trial of intent",
     "definition": "Disqualifier l'argumentation d'une personne en prétendant que ce qu'il dit repose sur des intentions réprochables (avec ou sans preuves).",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -197,7 +196,7 @@
     "englishName": "Double-barreled question",
     "definition": "Poser une question qui devrait attendre deux réponses, mais ne permet qu'une réponse (oui ou non, par exemple), laquelle impliquera par conséquent un présupposé.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -205,7 +204,7 @@
     "englishName": "Loaded question",
     "definition": "Poser une question qui contient un présupposé, d'une manière telle qu'on ne peut y répondre sans accepter ce présupposé.",
     "link": "",
-    "frenchExamples": "",
+    "examples": "",
     "type": "irrelevant"
   },
   {
@@ -214,7 +213,7 @@
     "englishName": "Ad hoc reasoning, special pleading",
     "definition": "Proposer de faire une exception lorsqu'une affirmation a été montrée comme fausse, par un raisonnement nouveau justifiant cette exception (nouveau par rapport l'affirmation de départ, ce qui permet de la sauver tout en lui ajoutant quelque chose).",
     "link": "",
-    "frenchExamples": [
+    "examples": [
       "Une licorne rose invisible est proche de moi, c'est prouvé. Mais elle part en présence des sceptiques."
     ],
     "type": "denial"
@@ -224,7 +223,7 @@
     "englishName": "Ambiguity fallacy",
     "definition": "Utiliser un double sens d'un mot ou une ambiguité de langage, pour déformer un argument.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
@@ -233,7 +232,7 @@
     "englishName": "Division fallacy, Composition Fallacy",
     "definition": "Présumer que ce qui est vrai à propos d'une partie de quelque chose, doit être appliqué au reste (tout ou partie) de cette chose.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -241,7 +240,7 @@
     "englishName": "Anecdotal fallacy",
     "definition": "Utiliser une expérience personnelle ou un cas isolé plutôt qu'un argument valide (en particulier pour chercher à rendre fausse des statistiques).",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -250,7 +249,7 @@
     "englishName": "",
     "definition": "Justifier une mauvaise action par le fait qu'une autre mauvaise action a été commise avant ; prétendre guérir un tort par un autre tort.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -258,7 +257,7 @@
     "englishName": "The gambler's fallacy",
     "definition": "Croire que des résultats statistiques indépendants s'influent entre eux. Par exemple, penser que si en lançant 3 fois une pièce, qu'on a 3 fois pile, alors les chances d'avoir face ensuite sont plus élevées.",
     "link": "",
-    "frenchExamples": [
+    "examples": [
       "Si je lance 3 fois une pièce en l'air, que j'obtiens trois fois pile, les chances d'avoir face ensuite sont plus élevées."
     ],
     "type": "inductive"
@@ -268,7 +267,7 @@
     "englishName": "Fallacy fallacy",
     "definition": "Présumer que puisqu'une affirmation a été mal argumentée ou qu'un sophisme y a été remarqué, alors cette affirmation est nécessairement fausse.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "deductive"
   },
   {
@@ -276,7 +275,7 @@
     "englishName": "The texas sharpshooter",
     "definition": "Sélectionner a posteriori des évènements possédants des caractéristiques similaires pour en déduire une relation causale.",
     "link": "https://fr.wikipedia.org/wiki/Sophisme_du_tireur_d%27%C3%A9lite_texan",
-    "frenchExamples": [],
+    "examples": [],
     "type": "inductive"
   },
   {
@@ -285,7 +284,7 @@
     "englishName": "No true scotsman, appeal to purity",
     "definition": "Faire une généralisation puis rejeter les contre-exemple sous le prétexte qu'ils sont faux puisqu'ils sont contraire à cette généralisation.",
     "link": "https://fr.wikipedia.org/wiki/Sophisme_du_vrai_%C3%89cossais",
-    "frenchExamples": [],
+    "examples": [],
     "type": "denial"
   },
   {
@@ -293,15 +292,15 @@
     "englishName": "Genetic fallacy",
     "definition": "Présumer que quelque chose est vrai ou faux, bon ou mauvais, selon la base de laquelle il provient, ou de qui il provient.",
     "link": "https://fr.wikipedia.org/wiki/Sophisme_g%C3%A9n%C3%A9tique",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   },
   {
     "name": "Sophisme naturaliste",
     "englishName": "Naturalistic fallacy",
-    "definition": "Prétendre justifier ce qui devrait être (prescription) par ce qui est (description) ; prétendre voi une normativité dans ce qui existe.",
+    "definition": "Justifier ce qui devrait être (prescription) par ce qui est (description) ; voir une normativité dans ce qui existe.",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
-    "frenchExamples": [],
+    "examples": [],
     "type": "deductive"
   },
   {
@@ -309,7 +308,7 @@
     "englishName": "",
     "definition": "Eviter de répondre à une critique en la retournant contre celui qui l'énonce ; répondre à la critique par la critique.",
     "link": "",
-    "frenchExamples": [],
+    "examples": [],
     "type": "irrelevant"
   }
 ]

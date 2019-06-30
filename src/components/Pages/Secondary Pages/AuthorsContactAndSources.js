@@ -1,11 +1,11 @@
 import React from "react";
 import FlagAnarchy from "../../../img/flag-anarchy.png";
 
-const AuthorsAndContact = () => {
+const AuthorsContactAndSources = () => {
   return (
     <main className="main-auteurs-contact">
       <h2 style={{ marginBottom: "10px" }}>
-        Auteur(s) et contact <br />
+        Auteur(s), contact et sources <br />
       </h2>
       <div className="blocAuteur" style={{ display: "flex" }}>
         <img
@@ -29,8 +29,21 @@ const AuthorsAndContact = () => {
           quentin.vandini@gmail.com
         </p>
       </div>
+      <div style={{ fontSize: "17px" }}>
+        <br />
+        Les sources sur lesquelles je me suis appuyé pour représenter la logique
+        sur ce site :<br />- Les cours de logiquede l'UFR de philosophie de
+        l'Université de Rennes 1
+        <br />- F.Lepage (2010), <i>Éléments de logique contemporaine</i>,
+        Montréal, éd. Presses Universitaires de Montréal, coll. Paramètres, 276
+        pages. <br />
+        - De nombreux articles anglais et français de Wikipédia
+        <br />
+        - yourlogicalfallacyis.com
+        <br />- toolkitforthinking.com
+      </div>
     </main>
   );
 };
 
-export default AuthorsAndContact;
+export default AuthorsContactAndSources;

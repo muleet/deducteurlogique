@@ -33,7 +33,7 @@ import FormalisationEnonces from "./components/Pages/FormalisationEnonces";
 import CalculDesPredicats from "./components/Pages/CalculDesPredicats";
 import ShowInfoRules from "./components/Pages/ShowInfoRules.js";
 import ShowQuestions from "./components/Pages/ShowQuestions.js";
-import AuthorsAndContact from "./components/Pages/Secondary Pages/AuthorsAndContact";
+import AuthorsContactAndSources from "./components/Pages/Secondary Pages/AuthorsContactAndSources";
 import TheFuture from "./components/Pages/Secondary Pages/TheFuture";
 import greekAlphabet from "./components/Pages/Secondary Pages/greekAlphabet";
 import Locutions from "./components/Pages/Secondary Pages/Locutions";
@@ -188,7 +188,10 @@ class App extends Component {
                 <Profile {...props} user={user} setUser={this.setUser} />
               )}
             />
-            <Route path="/auteurs_contact" component={AuthorsAndContact} />
+            <Route
+              path="/auteurs_contact"
+              component={AuthorsContactAndSources}
+            />
             <Route path="/futur" component={TheFuture} />
 
             <footer>
