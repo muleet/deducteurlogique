@@ -24,13 +24,6 @@
     "type": "inductive"
   },
   {
-    "name": "Appeal to authority",
-    "definition": "To use the opinion or position of an authority figure (wether it is scentific, educative, religious, military, etc) as an argument, only because of its source.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
     "name": "Appeal to emotion",
     "definition": "Appealing to emotion in place of a valid argument. By extension, to use emotionally loaded words in order to persuade.",
     "link": "",
@@ -39,7 +32,7 @@
   },
   {
     "name": "Appeal to ignorance",
-    "alternateName": "",
+    "alternateName": "Ad ignorantiam, Argument from ignorance",
     "definition": "If a claim hasn't been shown as false, it is because it must be a true one.",
     "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
     "frenchExamples": [
@@ -116,6 +109,14 @@
     "type": "deductive"
   },
   {
+    "name": "Broken window fallacy",
+    "alternateName": "",
+    "definition": "To assume that when a destruction has occur, it will make the economy work and therefore it's a benefit to society.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "inductive"
+  },
+  {
     "name": "Burden of proof",
     "definition": "Saying that the burden of proof lies not with the person making the claim, but with someone else to disprove.",
     "link": "",
@@ -145,8 +146,15 @@
     "type": "irrelevant"
   },
   {
+    "name": "Epistemic fallacy",
+    "definition": "To posit an identity between an individual's knowledge towards an object, with the object itself.",
+    "link": "",
+    "examples": [],
+    "type": "deductive"
+  },
+  {
     "name": "Fallacy fallacy",
-    "definition": "Presuming that because a claim has been poorly argued, or a fallacy has been made, that the claim itself must be wrong..",
+    "definition": "Presuming that because a claim has been poorly argued, or a fallacy has been made, that the claim itself must be wrong.",
     "link": "",
     "frenchExamples": [],
     "type": "deductive"
@@ -163,6 +171,14 @@
     "name": "Genetic fallacy",
     "definition": "Presuming that something is true or false, right or wrong, on the basis of where it comes from, or from who it comes from.",
     "link": "https://fr.wikipedia.org/wiki/Sophisme_g%C3%A9n%C3%A9tique",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ipse dixit",
+    "alternateName": "Appeal to authority",
+    "definition": "To use the opinion or position of an authority figure (wether it is scentific, educative, religious, military, etc) as an argument, only because of its source ; \"He said it himself\".",
+    "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
   },
@@ -194,6 +210,13 @@
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
     "frenchExamples": [],
     "type": "deductive"
+  },
+  {
+    "name": "Nirvana fallacy",
+    "definition": "To reject attainable and realistic solutions under the pretext that they are not as good as an ideal solution that is less attainable.",
+    "link": "",
+    "examples": [],
+    "type": "denial"
   },
   {
     "name": "No true scotsman",

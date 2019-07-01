@@ -1,13 +1,5 @@
 [
   {
-    "name": "Appel à l'autorité",
-    "englishName": "Appeal to authority",
-    "definition": "Utiliser l'opinion ou la position d'une figure ou institution faisant autorité, (qu'elle soit scientifique, éducative, religieuse, parentale, militaire etc) comme un argument, à la place d'un vrai argument.",
-    "link": "",
-    "examples": [],
-    "type": "irrelevant"
-  },
-  {
     "name": "Appel à l'émotion",
     "englishName": "Appeal to emotion",
     "definition": "Faire appel aux émotions à la place d'un argument valide. Par extension, employer des mots émotionnellement chargés pour convaincre.",
@@ -155,6 +147,15 @@
     "type": "denial"
   },
   {
+    "name": "Ipse dixit",
+    "alternateName": "Appel à l'autorité",
+    "englishName": "Appeal to authority",
+    "definition": "Utiliser l'opinion ou la position d'une figure ou institution faisant autorité, (qu'elle soit scientifique, éducative, religieuse, parentale, militaire etc) comme un argument, à la place d'un vrai argument ; \"Lui-même l'a dit.\"",
+    "link": "",
+    "examples": [],
+    "type": "irrelevant"
+  },
+  {
     "name": "Pente savonneuse",
     "englishName": "Slippery slope",
     "definition": "Si on laisse A se passer, alors B se passera nécessairement, donc on doit empêcher A de se passer.",
@@ -194,7 +195,7 @@
     "name": "Question à double canon",
     "alternateName": "",
     "englishName": "Double-barreled question",
-    "definition": "Poser une question qui devrait attendre deux réponses, mais ne permet qu'une réponse (oui ou non, par exemple), laquelle impliquera par conséquent un présupposé.",
+    "definition": "Poser une question qui devrait attendre deux réponses, mais ne permet qu'un type de réponse (oui/non, par exemple), laquelle impliquera par conséquent un présupposé.",
     "link": "",
     "examples": [],
     "type": "irrelevant"
@@ -217,6 +218,14 @@
       "Une licorne rose invisible est proche de moi, c'est prouvé. Mais elle part en présence des sceptiques."
     ],
     "type": "denial"
+  },
+  {
+    "name": "Sophisme épistémique",
+    "englishName": "Epistemic fallacy",
+    "definition": "Postuler une identité entre la connaissance d'un individu au sujet d'un objet, avec l'objet lui-même.",
+    "link": "",
+    "examples": [],
+    "type": "deductive"
   },
   {
     "name": "Sophisme d'ambiguité",
@@ -251,6 +260,23 @@
     "link": "",
     "examples": [],
     "type": "inductive"
+  },
+  {
+    "name": "Sophisme de la vitre cassée",
+    "alternateName": "",
+    "englishName": "Broken window fallacy",
+    "definition": "Poser que lorsqu'un dommage matériel a été causé, cela fera fonctionner l'économie et donc c'est un bénéfice pour la société.",
+    "link": "https://fr.wikipedia.org/wiki/Sophisme_de_la_vitre_cass%C3%A9e",
+    "examples": [],
+    "type": "inductive"
+  },
+  {
+    "name": "Sophisme du Nirvana",
+    "englishName": "Nirvana fallacy",
+    "definition": "Rejeter des solutions réalistes au prétexte qu'elles sont moins bonnes qu'une solution idéale bien que peu atteignable.",
+    "link": "",
+    "examples": [],
+    "type": "denial"
   },
   {
     "name": "Sophisme du parieur",

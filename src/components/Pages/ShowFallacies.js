@@ -275,15 +275,11 @@ class ShowFallacies extends Component {
                 }
                 contentSent={
                   <Fragment>
-                    <div
-                      style={{
-                        fontSize: "16px"
-                      }}
-                    >
+                    <div className="text-all-fallacy-information">
                       Voici la liste des sophismes pris en compte sur ce site.
                       Cliquez en dehors de cette liste pour la quitter.
                       <br />
-                      Ils peuvent être catégories en 4 types : <br />
+                      Ils peuvent être catégorisés en 4 types : <br />
                       <p style={{ color: "red" }}>Sophismes déductifs</p>
                       Raisonnements abstraits, supposés n'utiliser que la forme
                       logique, et ne tenant pas compte de l'expérience du monde.

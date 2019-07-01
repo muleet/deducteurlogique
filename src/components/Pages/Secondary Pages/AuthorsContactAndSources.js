@@ -31,16 +31,16 @@ const AuthorsContactAndSources = () => {
       </div>
       <div style={{ fontSize: "17px" }}>
         <br />
-        Les sources sur lesquelles je me suis appuyé pour représenter la logique
-        sur ce site :<br />- Les cours de logiquede l'UFR de philosophie de
-        l'Université de Rennes 1
-        <br />- F.Lepage (2010), <i>Éléments de logique contemporaine</i>,
-        Montréal, éd. Presses Universitaires de Montréal, coll. Paramètres, 276
-        pages. <br />
+        Les sources sur lesquelles je me suis appuyé pour définir la logique sur
+        ce site :<br />- Les cours de logique de l'UFR de philosophie de
+        l'Université de Rennes 1<br />
         - De nombreux articles anglais et français de Wikipédia
         <br />
         - yourlogicalfallacyis.com
         <br />- toolkitforthinking.com
+        <br />- F.Lepage (2010), <i>Éléments de logique contemporaine</i>,
+        Montréal, éd. Presses Universitaires de Montréal, coll. Paramètres, 276
+        pages.
       </div>
     </main>
   );

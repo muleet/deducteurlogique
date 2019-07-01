@@ -70,6 +70,12 @@
 
 /* Section de la liste des sophismes, qui apparaît dans le BasicReactModal */
 
+.text-all-fallacy-information {
+  font-size: 16px;
+  padding: 50px 50px 10px 50px;
+  width: 900px;
+}
+
 .set-all-fallacy-information {
   display: flex;
   flex-direction: row;
