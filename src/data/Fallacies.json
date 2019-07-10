@@ -37,7 +37,7 @@
     "definition": "Dire qu'un argument ou une action est partagée ou faite par beaucoup de gens, pour tenter de valider cet argument ou cette action.",
     "link": "",
     "examples": [
-      "Si l'on permet une révocabilité des élus, en conséquence plus personne ne pourra gouverner."
+      "Le monde entier se presse pour visiter la Tour Eiffel c'est bien qu'elle est remarquable !"
     ],
     "type": "irrelevant"
   },
@@ -182,7 +182,7 @@
     "englishName": "Personal incredulity",
     "definition": "Présumer que parce qu'on trouve quelque chose est difficile à comprendre, alors elle ne doit pas être vraie.",
     "link": "",
-    "examples": ["Je ne comprends rien à ce que tu dis, tu te trompes."],
+    "examples": ["Je ne comprends rien à ce que tu dis, donc tu te trompes."],
     "type": "denial"
   },
   {
@@ -283,7 +283,7 @@
     "definition": "Présumer que ce qui est vrai à propos d'une partie de quelque chose, doit être appliqué au reste (tout ou partie) de cette chose.",
     "link": "",
     "examples": [
-      "Chacun des joueurs de cette équipe est bon, c'est donc qu'on a une bonne équipe."
+      "Chacun des joueurs de cette équipe est bon, c'est donc que c'est une bonne équipe."
     ],
     "type": "inductive"
   },
