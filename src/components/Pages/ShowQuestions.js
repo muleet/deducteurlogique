@@ -22,7 +22,7 @@ class ShowQuestions extends Component {
 
   render() {
     return (
-      <main className="main-info">
+      <main className="main-questions">
         <h2>Questions sur la logique</h2>
         <ul className="set-of-questions">{this.renderQuestions()}</ul>
       </main>

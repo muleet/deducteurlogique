@@ -3,7 +3,7 @@ import ShowTruthTable from "./Components/ShowTruthTable";
 
 const TruthTable = () => {
   return (
-    <main className="main-info">
+    <main className="main-truthtable">
       <div>
         <h2>Table de vérité pour connecteurs binaires</h2>
         <ShowTruthTable />

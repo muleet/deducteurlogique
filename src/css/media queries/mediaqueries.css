@@ -4,22 +4,22 @@
     margin: 0 0;
     color: white;
     font-size: 16px;
+    justify-content: unset;
+    align-content: unset;
+    flex-direction: unset;
   }
 
   .unavailable-yet {
     display: none;
   }
 
-  .nav-list > li a {
+  .nav-list > li a,
+  .header-nav-list a {
     margin-right: 5px;
   }
 
   .nav-list > li {
     margin-left: 5px;
-  }
-
-  .header-nav-list a {
-    margin-right: 5px;
   }
 
   .main-menu {
@@ -32,9 +32,13 @@
   }
 
   h1 {
-    font-size: 18px;
+    font-size: 14px;
     font-style: italic;
     color: white;
+  }
+
+  h2 {
+    font-size: 17px;
   }
 
   h3 {
@@ -107,14 +111,37 @@
   }
 
   /* SECTION RAISONNEMENT FALLACIEUX */
+  .main-fallacy {
+    padding: 0px;
+  }
+
+  .fallacy-instruction {
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .set-definition-and-counts {
+    margin-top: 2px;
+  }
+
+  .fallacy-randomDefinition {
+    width: 300px;
+    font-size: 13px;
+  }
+
+  .set-counts {
+    font-size: 12px;
+    height: 0px;
+    margin-left: 0;
+  }
   .set-fallacy-button {
     padding: 10px;
-    width: 400px;
+    width: unset;
   }
   .fallacy-button {
     font-size: 12px;
-    margin: 2px;
-    padding: 4px;
+    margin: 1px;
+    padding: 2px;
   }
 }
 

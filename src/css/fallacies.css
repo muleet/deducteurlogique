@@ -1,6 +1,5 @@
 .main-fallacy {
   padding: 20px;
-  /* border: 1px solid red; */
 }
 
 .fallacy-instruction {
@@ -15,7 +14,7 @@
   margin-top: 10px;
 }
 .fallacy-randomDefinition {
-  color: rgb(118, 118, 255);
+  color: rgb(124, 124, 255);
   font-size: 14px;
   padding: 12px;
   width: 500px;
