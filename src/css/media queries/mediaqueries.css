@@ -105,6 +105,17 @@
   .rule-modal-portal {
     margin-top: -800px;
   }
+
+  /* SECTION RAISONNEMENT FALLACIEUX */
+  .set-fallacy-button {
+    padding: 10px;
+    width: 400px;
+  }
+  .fallacy-button {
+    font-size: 12px;
+    margin: 2px;
+    padding: 4px;
+  }
 }
 
 @media screen and (min-width: 400px) and (max-width: 1300px) {

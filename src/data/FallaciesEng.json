@@ -124,6 +124,14 @@
     "type": "inductive"
   },
   {
+    "name": "Contextomy",
+    "alternateName": "Quoting out of context, Quote mining",
+    "definition": "To quote something out of its surroundings, in a way that distorts its intended meaning.",
+    "link": "",
+    "examples": [],
+    "type": "irrelevant"
+  },
+  {
     "name": "Cum hoc ergo propter hoc",
     "definition": "Presuming that because two events are one after the other, there must be a correlation between them. \"With that therefore because of that.\"",
     "link": "",

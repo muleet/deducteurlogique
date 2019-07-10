@@ -95,6 +95,15 @@
     "type": "inductive"
   },
   {
+    "name": "Contextomie",
+    "alternateName": "Citation hors contexte",
+    "englishName": "Contextomy",
+    "definition": "Citer un propos hors du contenu qui l'entoure, d'une façon telle que cela déforme son sens.",
+    "link": "",
+    "examples": [],
+    "type": "irrelevant"
+  },
+  {
     "name": "Cum hoc ergo propter hoc",
     "englishName": "Cum hoc ergo propter hoc",
     "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux (confondre corrélation et causation). \"Avec cela donc à cause de cela.\"",
@@ -186,7 +195,7 @@
   {
     "name": "Procès d'intention",
     "englishName": "Trial of intent",
-    "definition": "Disqualifier l'argumentation d'une personne en prétendant que ce qu'il dit repose sur des intentions réprochables (avec ou sans preuves).",
+    "definition": "Disqualifier l'argumentation d'une personne en prétendant que ce qu'il dit repose sur des intentions réprochables (avec ou sans preuves sur ces intentions).",
     "link": "",
     "examples": [],
     "type": "irrelevant"
@@ -221,7 +230,8 @@
   },
   {
     "name": "Sophisme épistémique",
-    "englishName": "Epistemic fallacy",
+    "alternateName": "Sophisme de l'homme masqué",
+    "englishName": "Epistemic fallacy, Masked man fallacy",
     "definition": "Postuler une identité entre la connaissance d'un individu au sujet d'un objet, avec l'objet lui-même.",
     "link": "",
     "examples": [],
@@ -273,7 +283,7 @@
   {
     "name": "Sophisme du Nirvana",
     "englishName": "Nirvana fallacy",
-    "definition": "Rejeter des solutions réalistes au prétexte qu'elles sont moins bonnes qu'une solution idéale bien que peu atteignable.",
+    "definition": "Rejeter des solutions réalistes au prétexte qu'elles sont moins bonnes qu'une solution idéale peu ou pas atteignable.",
     "link": "",
     "examples": [],
     "type": "denial"
@@ -281,7 +291,7 @@
   {
     "name": "Sophisme du parieur",
     "englishName": "The gambler's fallacy",
-    "definition": "Croire que des résultats statistiques indépendants s'influent entre eux. Par exemple, penser que si en lançant 3 fois une pièce, qu'on a 3 fois pile, alors les chances d'avoir face ensuite sont plus élevées.",
+    "definition": "Croire que des résultats statistiques indépendants s'influent entre eux. Par exemple, penser que si on lance 3 fois une pièce et qu'on obtient 3 fois pile, alors les chances d'avoir face ensuite ont augmentées.",
     "link": "",
     "examples": [
       "Si je lance 3 fois une pièce en l'air, que j'obtiens trois fois pile, les chances d'avoir face ensuite sont plus élevées."

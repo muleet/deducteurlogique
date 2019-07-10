@@ -485,7 +485,7 @@
   {
     "latin": "Non omne quod licet honestum est",
     "traduction": "Tout ce qui n'est pas illicite n'est pas pour autant convenable",
-    "note": "Différence entre la loi et la morale"
+    "note": "Différence entre loi et morale"
   },
   {
     "latin": "Non vestimentum virum ornat, sed vir vestimentum",
@@ -528,5 +528,10 @@
   {
     "latin": "Sic parvis magna",
     "traduction": "La grandeur vient des débuts modestes"
+  },
+  {
+    "latin": "Ex his clare intelligimus quid amor quidque odium sit. Nempe amor nihil aliud est quam laetitia concomitante idea causae externae et odium nihil aliud quam tristitia concomitante idea causae externae.",
+    "traduction": "Nous pouvons ainsi comprendre clairement ce qu'est l'Amour et ce qu'est la Haine. L'Amour n'est rien d'autre qu'une Joie accompagnée de l'idée d'une cause extérieure et la Haine n'est rien d'autre qu'une Tristesse accompagnée de l'idée d'une cause extérieure.",
+    "auteur": "Spinoza dans l'Ethique (3, prop 13, sc), définissant l'amour et la haine"
   }
 ]
