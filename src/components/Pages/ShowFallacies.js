@@ -13,7 +13,8 @@ class ShowFallacies extends Component {
     categoriesBool: false,
     content: Fallacies, // peut être Fallacies ou FallaciesEng
     language: "fr", // peut être "fr" ou "en"
-    isItRandomOrSorted: "random" // peut être "random" ou "sorted"
+    isItRandomOrSorted: "random", // peut être "random" ou "sorted"
+    definitionOrExample: 1 // 0=définition & exemple, 1=définition, 2=exemple
     // mistakes: 0
   };
 
@@ -128,8 +129,27 @@ class ShowFallacies extends Component {
   }
 
   showRandomDefinition(currentNumber) {
-    if (this.state.undeterminedNumbers.length > 0) {
-      return this.state.content[currentNumber].definition;
+    if (
+      this.state.undeterminedNumbers.length > 0 &&
+      this.state.definitionOrExample < 2
+    ) {
+      return (
+        <p className="fallacy-randomDefinition">
+          « {this.state.content[currentNumber].definition} »
+        </p>
+      );
+    }
+  }
+  showRandomExample(currentNumber) {
+    if (
+      this.state.undeterminedNumbers.length > 0 &&
+      this.state.definitionOrExample !== 1
+    ) {
+      return (
+        <p className="fallacy-randomExample">
+          « {this.state.content[currentNumber].examples} »
+        </p>
+      );
     }
   }
 
@@ -145,6 +165,14 @@ class ShowFallacies extends Component {
     if (this.state.isItRandomOrSorted === "random") {
     } else if (this.state.isItRandomOrSorted === "sorted") {
     }
+  }
+
+  setDefinitionOrExample() {
+    let newDefinitionOrExample = this.state.definitionOrExample + 1;
+    if (newDefinitionOrExample > 2) {
+      newDefinitionOrExample = 0;
+    }
+    this.setState({ definitionOrExample: newDefinitionOrExample });
   }
 
   render() {
@@ -252,12 +280,37 @@ class ShowFallacies extends Component {
       </div>
     );
 
+    let classNameFontAwesome = "";
+    if (this.state.definitionOrExample === 0) {
+      classNameFontAwesome = "fas fa-sort";
+    } else if (this.state.definitionOrExample === 1) {
+      classNameFontAwesome = "fas fa-sort-up";
+    } else if (this.state.definitionOrExample === 2) {
+      classNameFontAwesome = "fas fa-sort-down";
+    }
+
+    const togglerDefinitionAndOrExample = (
+      <div className={"question-mark-button icon"}>
+        <i
+          className={classNameFontAwesome}
+          onClick={() => this.setDefinitionOrExample()}
+        />
+        <div className="question-mark">
+          <div className="question-mark-title">
+            Cliquez ici pour choisir si vous voulez que pour tout sophisme tiré
+            au hasard, sa définition s'affiche, ou son exemple, ou les deux.
+          </div>
+        </div>
+      </div>
+    );
+
     return (
       <main className="main-page-fallacy">
         <h2>
           Mémoriser les raisonnements fallacieux et leur définition
           <div className="set-of-page-icons">
-            {questionMark} {togglerInfoIconFallacies} {togglerLanguage}
+            {questionMark} {togglerDefinitionAndOrExample}
+            {togglerInfoIconFallacies} {togglerLanguage}
             {/* {togglerRandomizeOrSort} */}
             {togglerCheat}
             <BasicReactModal
@@ -309,9 +362,10 @@ class ShowFallacies extends Component {
             ci-dessous, laquelle est tirée au hasard.
           </p>
           <div className="set-definition-and-counts">
-            <p className="fallacy-randomDefinition ">
-              « {this.showRandomDefinition(this.state.currentNumber)} »
-            </p>
+            <div className="fallacy-set-randomDefinitionAndExample">
+              {this.showRandomDefinition(this.state.currentNumber)}
+              {this.showRandomExample(this.state.currentNumber)}
+            </div>
             <p className="set-counts">
               Nombre de sophismes trouvés : {this.state.rightNumbers.length}/
               {this.state.content.length}

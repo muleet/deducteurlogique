@@ -213,6 +213,13 @@
     "type": "inductive"
   },
   {
+    "name": "Moralistic fallacy",
+    "definition": "Justify what ought to be, by a moral prejudice.",
+    "link": "https://en.wikipedia.org/wiki/Moralistic_fallacy",
+    "examples": [],
+    "type": "irrelevant"
+  },
+  {
     "name": "Naturalistic fallacy",
     "definition": "Justify what ought to be (prescription) by actually is (description) ; pretend to see a normativity in what exists.",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
@@ -297,9 +304,16 @@
   },
   {
     "name": "Two wrongs make a right",
-    "definition": "Justifying a bad action by the fact that another bad action was commited before ; pretend to fix a wrong by another wrong.",
+    "definition": "To justify a bad action by the fact that another bad action was commited before ; pretend to fix a wrong by another wrong.",
     "link": "",
     "frenchExamples": [],
     "type": "inductive"
+  },
+  {
+    "name": "Vacuous truth",
+    "definition": "To assert that all members of an empty set have a certain property.",
+    "link": "",
+    "examples": [],
+    "type": "irrelevant"
   }
 ]

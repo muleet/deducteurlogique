@@ -15,15 +15,24 @@
   align-content: center;
   margin-top: 10px;
 }
-.fallacy-randomDefinition {
-  color: rgb(124, 124, 255);
+.fallacy-set-randomDefinitionAndExample {
   font-size: 14px;
-  padding: 12px;
+  /* padding: 6px; */
   width: 500px;
   text-justify: center;
   text-align: center;
   border: 1px solid rgba(118, 118, 255, 0.541);
+  /* box-shadow: inset 1px 1px 2px 5px rgba(97, 97, 255, 0.171); */
+}
+.fallacy-randomDefinition {
+  color: rgb(124, 124, 255);
+  padding: 6px;
   background-color: rgba(97, 97, 255, 0.171);
+}
+.fallacy-randomExample {
+  color: rgb(180, 97, 255);
+  padding: 6px;
+  background-color: rgba(205, 97, 255, 0.171);
 }
 .set-counts {
   font-size: 16px;
