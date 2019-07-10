@@ -312,13 +312,11 @@ class ShowFallacies extends Component {
             <p className="fallacy-randomDefinition ">
               « {this.showRandomDefinition(this.state.currentNumber)} »
             </p>
-            <div className="set-counts">
-              <p>
-                Nombre de sophismes trouvés : {this.state.rightNumbers.length}/
-                {this.state.content.length}
-              </p>
+            <p className="set-counts">
+              Nombre de sophismes trouvés : {this.state.rightNumbers.length}/
+              {this.state.content.length}
               {/* <p>Erreurs faites : {this.state.mistakes}</p> */}
-            </div>
+            </p>
           </div>
           <ul className="set-fallacy-button">{this.showFallaciesNames()}</ul>
         </div>

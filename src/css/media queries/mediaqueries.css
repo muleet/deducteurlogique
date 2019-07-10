@@ -125,14 +125,13 @@
   }
 
   .fallacy-randomDefinition {
-    width: 300px;
-    font-size: 13px;
+    width: 225px;
+    font-size: 12px;
+    padding: 4px;
   }
-
   .set-counts {
     font-size: 12px;
-    height: 0px;
-    margin-left: 0;
+    width: 100px;
   }
   .set-fallacy-button {
     padding: 10px;
@@ -140,8 +139,8 @@
   }
   .fallacy-button {
     font-size: 12px;
-    margin: 1px;
-    padding: 2px;
+    margin: 3px;
+    padding: 4px;
   }
 }
 

@@ -10,7 +10,9 @@
 .set-definition-and-counts {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
+  align-content: center;
   margin-top: 10px;
 }
 .fallacy-randomDefinition {
@@ -24,12 +26,7 @@
   background-color: rgba(97, 97, 255, 0.171);
 }
 .set-counts {
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   font-size: 16px;
-  margin-left: 20px;
 }
 
 .set-fallacy-button {
