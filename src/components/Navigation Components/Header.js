@@ -57,11 +57,11 @@ class Header extends React.Component {
               id="icon-login-deployer"
               onClick={() => this.deployLogin()}
             />
-            {/* <LogIn
+            <LogIn
               // {...props}
               user={this.props.user}
               setUser={this.props.setUser}
-            /> */}
+            />
           </Fragment>
         );
       }

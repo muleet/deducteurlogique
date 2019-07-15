@@ -414,7 +414,9 @@
     "englishName": "",
     "definition": "Eviter de répondre à une critique en la retournant contre celui qui l'énonce ; répondre à la critique par la critique.",
     "link": "",
-    "examples": ["C'est celui qui dit qui l'est."],
+    "examples": [
+      "Je ne vois pas l'intérêt d'écouter ce philosophe : il n'appliquait pas lui-même ce qu'il disait."
+    ],
     "type": "irrelevant"
   },
   {
