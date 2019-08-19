@@ -246,6 +246,7 @@ class ShowTruthTable extends Component {
   render() {
     return (
       <div className="main-truth-table">
+        <h2>Table de vérité</h2>
         <ul className="whole-truth-table">{this.renderTruthTable()} </ul>
         <ul className="box-info-truth-table">{this.renderAllInformations()}</ul>
       </div>

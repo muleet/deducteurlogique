@@ -140,6 +140,7 @@ class ShowInfoRules extends Component {
   render() {
     return (
       <main className="main-rules-info">
+        <h2>Règles d'inférence</h2>
         <ul className="legend-about-colors">
           {this.makeLegendAboutColorRule()}
         </ul>
