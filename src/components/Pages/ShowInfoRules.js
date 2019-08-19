@@ -139,17 +139,19 @@ class ShowInfoRules extends Component {
 
   render() {
     return (
-      <main className="main-rules-info">
+      <div>
         <h2>Règles d'inférence</h2>
-        <ul className="legend-about-colors">
-          {this.makeLegendAboutColorRule()}
-        </ul>
-        <ul className="list-rules">{this.renderListRules()}</ul>
-        <ul className="box-info-rule">
-          {this.state.numberRule}
-          {this.state.arrayInfoRule}
-        </ul>
-      </main>
+        <main className="main-rules-info">
+          <ul className="legend-about-colors">
+            {this.makeLegendAboutColorRule()}
+          </ul>
+          <ul className="list-rules">{this.renderListRules()}</ul>
+          <ul className="box-info-rule">
+            {this.state.numberRule}
+            {this.state.arrayInfoRule}
+          </ul>
+        </main>
+      </div>
     );
   }
 }

@@ -36,8 +36,8 @@
 }
 
 .box-info-rule {
-  height: 380px;
-  /* width: 950px; */
+  height: 360px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-content: center;
