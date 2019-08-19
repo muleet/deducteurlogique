@@ -103,13 +103,13 @@ class App extends Component {
               </li>
               <li>
                 <Link to="/questions">
-                  <ButtonNav className="tutorial-button" name={"Q"} />
+                  <ButtonNav className="info-button" name={"Q"} />
                 </Link>
                 <Link to="/règles">
-                  <ButtonNav className="tutorial-button" name={"R"} />
+                  <ButtonNav className="info-button" name={"R"} />
                 </Link>
-                <Link to="/tables-de-vérité">
-                  <ButtonNav className="tutorial-button" name={"T"} />
+                <Link to="/table-de-vérité">
+                  <ButtonNav className="info-button" name={"T"} />
                 </Link>
               </li>
               <li>
@@ -151,7 +151,7 @@ class App extends Component {
             <Route exact={true} path="/" component={Home} />
             <Route path="/questions" component={ShowQuestions} />
             <Route path="/règles" component={ShowInfoRules} />
-            <Route path="/tables-de-vérité" component={TruthTable} />
+            <Route path="/table-de-vérité" component={TruthTable} />
             <Route path="/bac-à-sable-logique" component={Sandbox} />
             <Route path="/omega" component={greekAlphabet} />
             <Route path="/locutions" component={Locutions} />

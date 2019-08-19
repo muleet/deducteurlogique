@@ -180,7 +180,7 @@
   {
     "name": "Incrédulité personnelle",
     "englishName": "Personal incredulity",
-    "definition": "Présumer que parce qu'on trouve quelque chose est difficile à comprendre, alors elle ne doit pas être vraie.",
+    "definition": "Présumer que parce qu'on trouve une idée difficile à comprendre, alors elle ne doit pas être vraie.",
     "link": "",
     "examples": ["Je ne comprends rien à ce que tu dis, donc tu te trompes."],
     "type": "denial"

@@ -13,24 +13,48 @@ class Home extends Component {
     return (
       <Fragment>
         <main className="main-menu">
-          <Linker
-            link="/règles"
-            path="/règles"
-            components={ShowInfoRules}
-            name={
-              <ButtonMenu
-                className="info-color main-button"
-                name={"Informations sur la logique"}
-              />
-            }
-          />
+          <div className="info-button-menu-list">
+            <Linker
+              link="/questions"
+              path="/questions"
+              components={ShowInfoRules}
+              name={
+                <ButtonMenu
+                  className="info-color info-button-menu"
+                  name={"Questions sur la logique"}
+                />
+              }
+            />
+            <Linker
+              link="/règles"
+              path="/règles"
+              components={ShowInfoRules}
+              name={
+                <ButtonMenu
+                  className="info-color info-button-menu"
+                  name={"Règles d'inférence"}
+                />
+              }
+            />
+            <Linker
+              link="/table-de-vérité"
+              path="/table-de-vérité"
+              components={ShowInfoRules}
+              name={
+                <ButtonMenu
+                  className="info-color info-button-menu"
+                  name={"Table de vérité"}
+                />
+              }
+            />
+          </div>
           <Linker
             link="/calcul-prop-exo"
             path="/calcul-prop-exo"
             components={MakeListExercises}
             name={
               <ButtonMenu
-                className="prop-color main-button"
+                className="prop-color"
                 name="Calcul des propositions"
               />
             }
@@ -41,7 +65,7 @@ class Home extends Component {
             components={FormalisationEnonces}
             name={
               <ButtonMenu
-                className="forma-color main-button unavailable-yet"
+                className="forma-color unavailable-yet"
                 name="Formalisation des énoncés"
               />
             }
@@ -52,7 +76,7 @@ class Home extends Component {
             components={CalculDesPredicats}
             name={
               <ButtonMenu
-                className="pred-color main-button unavailable-yet"
+                className="pred-color unavailable-yet"
                 name="Calcul des prédicats"
               />
             }
