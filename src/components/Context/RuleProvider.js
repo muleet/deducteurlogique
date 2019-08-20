@@ -1,4 +1,5 @@
 import React, { createContext, Component } from "react";
+import InferenceTools from "./Components/InferenceTools";
 
 export const RuleContext = createContext();
 
@@ -12,7 +13,7 @@ class RuleProvider extends Component {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
       let notA,
         notBbecomeB = notB.substring(1);
-      notBbecomeB = this.mayRemoveFirstParenthesis(notBbecomeB);
+      notBbecomeB = InferenceTools.mayRemoveFirstParenthesis(notBbecomeB);
       if (notB[0] === "~" && B === notBbecomeB) {
         if (A.length > 2 && A[1] !== "(") {
           notA = "~(" + A + ")";
@@ -90,7 +91,12 @@ class RuleProvider extends Component {
 
     this.conjonctionIntroduction = (A, B, numbers) => {
       // ∧i
-      let AandB = this.returnAnInferenceOutOfTwoInferences(A, B, "∧");
+      let AandB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+        A,
+        B,
+        "∧",
+        true
+      );
       const inferenceToAdd = {
         itself: AandB,
         numberCommentary: numbers,
@@ -104,16 +110,15 @@ class RuleProvider extends Component {
     }; // ∧i
 
     this.conjonctionElimination = (AandB, number) => {
-      if (AandB.indexOf("∧") !== -1) {
-        const arrayTwoChoices = this.returnWhatIsBeforeAndAfterTheOperator(
-          AandB,
-          "∧"
-        );
-        // if (arrayTwoChoices.length === 2) {
+      const arrayTwoChoices = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+        AandB,
+        "∧"
+      );
+      console.log("wesh5", arrayTwoChoices);
+      if (arrayTwoChoices !== "error") {
         const leftChoice = arrayTwoChoices[0];
         const rightChoice = arrayTwoChoices[1];
         return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "∧e");
-        // }
       } else {
         this.props.valueInference.setAdvice(
           "Pour utiliser ∧e, il faut sélectionnez une inférence de forme A∧B.",
@@ -126,9 +131,17 @@ class RuleProvider extends Component {
       const B = this.props.valueInference.futureInference;
       let ArbitraryAorB;
       if (this.props.valueInference.inversion === false) {
-        ArbitraryAorB = this.returnAnInferenceOutOfTwoInferences(A, B, "∨");
+        ArbitraryAorB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+          A,
+          B,
+          "∨"
+        );
       } else {
-        ArbitraryAorB = this.returnAnInferenceOutOfTwoInferences(B, A, "∨");
+        ArbitraryAorB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+          B,
+          A,
+          "∨"
+        );
       }
       const inferenceToAdd = {
         // itself: AutomaticAorB,
@@ -152,7 +165,7 @@ class RuleProvider extends Component {
     }; // ∨i
 
     this.inclusiveDisjonctionElimination = (expectedArguments, number) => {
-      const AorB = this.returnWhatIsBeforeAndAfterTheOperator(
+      const AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         expectedArguments[0],
         "∨"
       );
@@ -193,16 +206,16 @@ class RuleProvider extends Component {
     }; // ∨e
 
     this.exclusiveDisjonctionIntroduction = (ifAthenNotB, ifBthenNotA, num) => {
-      let ArrayifAthenNotB = this.returnWhatIsBeforeAndAfterTheOperator(
+      let ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenNotB,
         "⊃"
       );
-      let ArrayifBthenNotA = this.returnWhatIsBeforeAndAfterTheOperator(
+      let ArrayifBthenNotA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifBthenNotA,
         "⊃"
       );
       if (ArrayifAthenNotB.length !== 2) {
-        ArrayifAthenNotB = this.returnWhatIsBeforeAndAfterTheOperator(
+        ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
           ifAthenNotB,
           "⊅"
         );
@@ -214,7 +227,7 @@ class RuleProvider extends Component {
       }
 
       if (ArrayifBthenNotA.length !== 2) {
-        ArrayifBthenNotA = this.returnWhatIsBeforeAndAfterTheOperator(
+        ArrayifBthenNotA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
           ifBthenNotA,
           "⊅"
         );
@@ -232,9 +245,9 @@ class RuleProvider extends Component {
         ArrayifAthenNotB[1] === "~" + ArrayifBthenNotA[0]
       ) {
         const eitherAeitherB =
-          this.mayAddFirstParenthesis(ArrayifAthenNotB[0]) +
+          InferenceTools.mayAddFirstParenthesis(ArrayifAthenNotB[0]) +
           "⊻" +
-          this.mayAddFirstParenthesis(ArrayifBthenNotA[0]);
+          InferenceTools.mayAddFirstParenthesis(ArrayifBthenNotA[0]);
         const inferenceToAdd = {
           itself: eitherAeitherB,
           numberCommentary: num,
@@ -255,7 +268,7 @@ class RuleProvider extends Component {
     }; // ⊻i
 
     this.exclusiveDisjonctionElimination = (A, eitherAeitherB, numbers) => {
-      const ArrayeitherAeitherB = this.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayeitherAeitherB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         eitherAeitherB,
         "⊻"
       );
@@ -303,8 +316,12 @@ class RuleProvider extends Component {
 
     this.conditionalIntroduction = (B, numbers) => {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
-      B = this.mayAddFirstParenthesis(B);
-      let ifAthenB = this.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
+      B = InferenceTools.mayAddFirstParenthesis(B);
+      let ifAthenB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+        A,
+        B,
+        "⊃"
+      );
       numbers =
         this.props.valueInference.allHypotheticalInferences[0]
           .numberCommentaryHypothesis +
@@ -331,7 +348,7 @@ class RuleProvider extends Component {
 
     this.conditionalElimination = (A, ifAthenB, numbers) => {
       // ⊃e
-      const ArrayIfAthenB = this.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayIfAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenB,
         "⊃"
       );
@@ -374,11 +391,11 @@ class RuleProvider extends Component {
     }; // ⊃e
 
     this.biconditionalIntroduction = (ifAthenB, ifBthenA, number) => {
-      const ArrayifAthenB = this.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayifAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenB,
         "⊃"
       );
-      const ArrayifBthenA = this.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayifBthenA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifBthenA,
         "⊃"
       );
@@ -408,7 +425,7 @@ class RuleProvider extends Component {
 
     this.biconditionalElimination = (AifandonlyifB, number) => {
       let leftChoice, rightChoice;
-      const ArrayAifandonlyifB = this.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayAifandonlyifB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         AifandonlyifB,
         "≡"
       );
@@ -435,12 +452,12 @@ class RuleProvider extends Component {
     this.abjonctionIntroduction = (notB, numbers) => {}; // ⊅i
 
     this.abjonctionElimination = (A, ifAthenNotB, numbers) => {
-      let ArrayifAthenNotB = this.returnWhatIsBeforeAndAfterTheOperator(
+      let ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenNotB,
         "⊃"
       );
       if (ArrayifAthenNotB.length !== 2) {
-        ArrayifAthenNotB = this.returnWhatIsBeforeAndAfterTheOperator(
+        ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
           ifAthenNotB,
           "⊅"
         );
@@ -498,10 +515,18 @@ class RuleProvider extends Component {
         let AincompatibleB;
         if (Anegationcount > Bnegationcount) {
           A = A.slice(1, A.length);
-          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "↑");
+          AincompatibleB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+            A,
+            B,
+            "↑"
+          );
         } else if (Bnegationcount > Anegationcount) {
           B = B.slice(1, B.length);
-          AincompatibleB = this.returnAnInferenceOutOfTwoInferences(A, B, "↑");
+          AincompatibleB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+            A,
+            B,
+            "↑"
+          );
         }
         const inferenceToAdd = {
           itself: AincompatibleB,
@@ -523,7 +548,7 @@ class RuleProvider extends Component {
     }; // ↑i
 
     this.incompatibilityElimination = (A, AincompatibleB, numbers) => {
-      const ArrayAincompatibleB = this.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayAincompatibleB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         AincompatibleB,
         "↑"
       );
@@ -535,11 +560,11 @@ class RuleProvider extends Component {
       // A === A↑B pour ~B
       if (A === ArrayAincompatibleB[0]) {
         inferenceToAdd.itself =
-          "~" + this.mayAddFirstParenthesis(ArrayAincompatibleB[1]);
+          "~" + InferenceTools.mayAddFirstParenthesis(ArrayAincompatibleB[1]);
       }
       if (A === ArrayAincompatibleB[1]) {
         inferenceToAdd.itself =
-          "~" + this.mayAddFirstParenthesis(ArrayAincompatibleB[0]);
+          "~" + InferenceTools.mayAddFirstParenthesis(ArrayAincompatibleB[0]);
       }
 
       if (inferenceToAdd.itself.length > 0) {
@@ -583,15 +608,15 @@ class RuleProvider extends Component {
     }; // ↓i
 
     this.reciprocalDisjonctionElimination = (neitherAneitherB, number) => {
-      neitherAneitherB = this.returnWhatIsBeforeAndAfterTheOperator(
+      neitherAneitherB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         neitherAneitherB,
         "↓"
       );
       if (neitherAneitherB.length === 2) {
         const leftChoice =
-          "~" + this.mayAddFirstParenthesis(neitherAneitherB[0]);
+          "~" + InferenceTools.mayAddFirstParenthesis(neitherAneitherB[0]);
         const rightChoice =
-          "~" + this.mayAddFirstParenthesis(neitherAneitherB[1]);
+          "~" + InferenceTools.mayAddFirstParenthesis(neitherAneitherB[1]);
         return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "↓e");
       } else {
         this.props.valueInference.setAdvice(
@@ -604,7 +629,8 @@ class RuleProvider extends Component {
     this.exFalso = (A, notA, numbers) => {
       const B = this.props.valueInference.futureInference;
       if (
-        ("~" + A === notA || "~" + this.mayAddFirstParenthesis(A) === notA) &&
+        ("~" + A === notA ||
+          "~" + InferenceTools.mayAddFirstParenthesis(A) === notA) &&
         B.length > 0
       ) {
         let inferenceToAdd = {
@@ -624,7 +650,7 @@ class RuleProvider extends Component {
           "error-advice"
         );
       }
-    };
+    }; // ex falso
 
     this.reit = (A, numbers) => {
       let inferenceToAdd = {
@@ -696,82 +722,6 @@ class RuleProvider extends Component {
       }
     };
 
-    this.mayAddFirstParenthesis = inference => {
-      if (inference.length > 2 && inference[inference.length - 1] !== ")") {
-        inference = "(" + inference + ")";
-      }
-      return inference;
-    };
-
-    this.mayRemoveFirstParenthesis = inference => {
-      let newInference = inference;
-      if (inference[0] === "(") {
-        newInference = "";
-        for (let i = 1; i < inference.length - 1; i++) {
-          newInference = newInference + inference[i];
-        }
-      }
-      return newInference;
-    };
-
-    this.returnWhatIsBeforeAndAfterTheOperator = (str, operator) => {
-      // Cette fonction a plusieurs intérêts. Elle n'est utilisée que dans certaines règles d'élimination d'opérateur. 1) D'abord, elle reçoit un str contenant une inférence dans sa totalité. 2) Elle vérifie ensuite où commence et où termine la première parenthèse. En faisant cela, elle repère le positionnement de l'opérateur principal (celui hors de toute parenthèse). 3) Elle ajoute alors tout ce qui précède cet opérateur, à un tableau à entrées. 4) Ensuite elle poursuit l'exploration de la string et finit par ajouter ce qui précède à l'opérateur à la deuxième entrée du tableau. 5) Finalement, returnWhatIsBeforeAndAfterTheOperator doit retourner un tableau contenant les deux parties, en retirant les premières parenthèses si elles en avaient.
-      // consolelog(str.indexOf(operator));
-      let arrayToReturn = [];
-      if (str.indexOf(operator) !== -1) {
-        let level = 0;
-        let part = "";
-        for (let i = 0; i < str.length; i++) {
-          if (str[i] === operator && level === 0) {
-            // si on arrive ici c'est qu'on vient de recontrer l'unique opérateur hors de toute parenthèse
-            arrayToReturn.push(part);
-            part = "";
-            i++;
-          }
-          if (str[i] === "(") {
-            level++;
-          } else if (str[i] === ")") {
-            level--;
-          }
-          part = part + str[i];
-          if (i === str.length - 1) {
-            arrayToReturn.push(part);
-          }
-        }
-        // consolelog(arrayToReturn);
-        if (arrayToReturn.length === 2) {
-          for (let i = 0; i < 2; i++) {
-            let noFirstParenthesis = "";
-            if (arrayToReturn[i][0] === "(") {
-              for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
-                noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
-              }
-              arrayToReturn[i] = noFirstParenthesis;
-            }
-          }
-        } else {
-          arrayToReturn = "error";
-        }
-        // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
-      } else {
-        this.props.valueInference.setAdvice(
-          "Cliquez sur une inférence ayant pour connecteur dominant le symbole '" +
-            operator +
-            "'.",
-          "error-advice"
-        );
-        arrayToReturn = "error";
-      }
-      return arrayToReturn;
-    };
-
-    this.returnAnInferenceOutOfTwoInferences = (A, B, operator) => {
-      A = this.mayAddFirstParenthesis(A);
-      B = this.mayAddFirstParenthesis(B);
-      let AoperatorB = A + operator + B;
-      return AoperatorB;
-    };
-
     this.showChoiceOnTheModal = (leftChoice, rightChoice, number, ruleName) => {
       let choiceContent;
       let leftInferenceToAdd = {
@@ -837,6 +787,12 @@ class RuleProvider extends Component {
       this.props.valueInference.setChoiceContent(choiceContent);
     };
 
+    // this.makeACommutatedInference = inference => {
+    //   // n'est utilisé que pour ∧e, ⊻e, ≡e, ↓e (et pourrait l'être pour ∨e)
+
+    //   return "pandq";
+    // };
+
     this.state = {
       // negationIntroduction: this.negationIntroduction, // ~i
       // negationElimination: this.negationElimination, // ~~e
@@ -858,12 +814,6 @@ class RuleProvider extends Component {
       // reit: this.reit,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
-      mayAddFirstParenthesis: this.mayAddFirstParenthesis,
-      mayRemoveFirstParenthesis: this.mayRemoveFirstParenthesis,
-      returnWhatIsBeforeAndAfterTheOperator: this
-        .returnWhatIsBeforeAndAfterTheOperator,
-      returnAnInferenceOutOfTwoInferences: this
-        .returnAnInferenceOutOfTwoInferences,
       showChoiceOnTheModal: this.showChoiceOnTheModal
     };
   }

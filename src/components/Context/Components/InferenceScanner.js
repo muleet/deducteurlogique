@@ -1,4 +1,5 @@
 import React from "react";
+import InferenceTools from "./InferenceTools";
 
 // composant appelé par InferenceProvider, avec les props ruleName, areTheInferencesDetected, allInferencesThemselves
 // ce composant va retourner 2 choses : 1) l'emplacement (en chiffre) des inférences compatibles pour la règle en question.
@@ -304,9 +305,9 @@ function prepareUpdate(
           key = key + positions.detectedSecondArgument.length;
         }
       }
-      if (positions.currentHyp) {
+      if (positions.currentHyp && ruleName !== "reit") {
         // consolelog("il y a bien une hyp et c'est ", positions.currentHyp);
-        // étape 4, on rajoute un tiret pour les inférences hors de l'hypothèse en cours
+        // étape 4, on rajoute un tiret pour les inférences hors de l'hypothèse en cours (sauf pour reit)
         makeAllIndicatorsWithALoop(
           positions.inferencesFromPreviousHypotheses,
           newAllInferencesValidForCurrentRule,
@@ -363,7 +364,10 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     }
   } else if (ruleName === "∧e") {
     //  A∧B pour A ou B
-    const arrayAandB = returnWhatIsBeforeAndAfterTheOperator(inference, "∧");
+    const arrayAandB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inference,
+      "∧"
+    );
     if (arrayAandB.length === 2) {
       isTheRuleAdequate = true;
     }
@@ -384,7 +388,10 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     }
   } else if (ruleName === "≡e") {
     // A≡B pour A⊃B ou B⊃A
-    const arrayAiffB = returnWhatIsBeforeAndAfterTheOperator(inference, "≡");
+    const arrayAiffB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inference,
+      "≡"
+    );
     if (arrayAiffB.length === 2) {
       isTheRuleAdequate = true;
     }
@@ -392,7 +399,10 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     // (A), B pour A⊅B
   } else if (ruleName === "↓e") {
     // A↓B pour ~A ou ~B
-    const arraynotAnotB = returnWhatIsBeforeAndAfterTheOperator(inference, "↓");
+    const arraynotAnotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inference,
+      "↓"
+    );
     if (arraynotAnotB.length === 2) {
       isTheRuleAdequate = true;
     }
@@ -416,34 +426,52 @@ function scanTwoStepRule(
   let isTheRuleAdequate = false;
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
-    inferenceOne = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊃");
+    inferenceOne = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceOne,
+      "⊃"
+    );
     if (inferenceOne[0] === inferenceTwo) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "~i") {
     // B, ~B, pour réfuter l'hypothèse (A)
     let notBbecomeB = inferenceTwo.substring(1);
-    notBbecomeB = mayRemoveFirstParenthesis(notBbecomeB);
+    notBbecomeB = InferenceTools.mayRemoveFirstParenthesis(notBbecomeB);
     if (allHypotheticalInferences && inferenceOne === notBbecomeB) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "≡i") {
     // A⊃B, B⊃A pour A≡B
-    const AthenB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊃");
-    const BthenA = returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊃");
+    const AthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceOne,
+      "⊃"
+    );
+    const BthenA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊃"
+    );
     if (AthenB[0] === BthenA[1] && AthenB[1] === BthenA[0]) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊻i") {
     // A⊅B, B⊅A pour A⊻B
-    const AthennotB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊅");
-    const BthennotA = returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊅");
+    const AthennotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceOne,
+      "⊅"
+    );
+    const BthennotA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊅"
+    );
     if (AthennotB[0] === BthennotA[1] && AthennotB[1] === BthennotA[0]) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊻e") {
     // A, A⊻B pour ~B (ou ~A, A⊻B, pour B)
-    const AorB = returnWhatIsBeforeAndAfterTheOperator(inferenceOne, "⊻");
+    const AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceOne,
+      "⊻"
+    );
     if (
       AorB[0] === inferenceTwo ||
       AorB[1] === inferenceTwo ||
@@ -463,7 +491,10 @@ function scanTwoStepRule(
     }
   } else if (ruleName === "↑e") {
     // A, A↑B pour ~B
-    const AincompB = returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "↑");
+    const AincompB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "↑"
+    );
     if (AincompB[0] === inferenceOne || AincompB[1] === inferenceOne) {
       isTheRuleAdequate = true;
     }
@@ -478,87 +509,12 @@ function scanTwoStepRule(
   } else if (ruleName === "ex falso") {
     // A, ~A pour B
     let notBbecomeB = inferenceTwo.substring(1);
-    notBbecomeB = mayRemoveFirstParenthesis(notBbecomeB);
+    notBbecomeB = InferenceTools.mayRemoveFirstParenthesis(notBbecomeB);
     if (inferenceOne === notBbecomeB) {
       isTheRuleAdequate = true;
     }
   }
   return isTheRuleAdequate;
 }
-
-// function mayAddFirstParenthesis(inference) {
-//   if (inference.length > 2 && inference[0] !== "~") {
-//     inference = "(" + inference + ")";
-//   }
-//   return inference;
-// }
-
-function mayRemoveFirstParenthesis(inference) {
-  let newInference = inference;
-  if (inference[0] === "(") {
-    newInference = "";
-    for (let i = 1; i < inference.length - 1; i++) {
-      newInference = newInference + inference[i];
-    }
-  }
-  return newInference;
-}
-
-function returnWhatIsBeforeAndAfterTheOperator(str, operator) {
-  // Cette fonction a plusieurs intérêts. Elle n'est utilisée que dans certaines règles d'élimination d'opérateur. 1) D'abord, elle reçoit un str contenant une inférence dans sa totalité. 2) Elle vérifie ensuite où commence et où termine la première parenthèse. En faisant cela, elle repère le positionnement de l'opérateur principal (celui hors de toute parenthèse). 3) Elle ajoute alors tout ce qui précède cet opérateur, à un tableau à entrées. 4) Ensuite elle poursuit l'exploration de la string et finit par ajouter ce qui précède à l'opérateur à la deuxième entrée du tableau. 5) Finalement, returnWhatIsBeforeAndAfterTheOperator doit retourner un tableau contenant les deux parties, en retirant les premières parenthèses si elles en avaient.
-  // consolelog(str.indexOf(operator));
-  let arrayToReturn = [];
-  if (str.indexOf(operator) !== -1) {
-    let level = 0;
-    let part = "";
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === operator && level === 0) {
-        // si on arrive ici c'est qu'on vient de recontrer l'unique opérateur hors de toute parenthèse
-        arrayToReturn.push(part);
-        part = "";
-        i++;
-      }
-      if (str[i] === "(") {
-        level++;
-      } else if (str[i] === ")") {
-        level--;
-      }
-      part = part + str[i];
-      if (i === str.length - 1) {
-        arrayToReturn.push(part);
-      }
-    }
-    if (arrayToReturn.length === 2) {
-      for (let i = 0; i < 2; i++) {
-        let noFirstParenthesis = "";
-        if (arrayToReturn[i][0] === "(") {
-          for (let j = 1; j < arrayToReturn[i].length - 1; j++) {
-            noFirstParenthesis = noFirstParenthesis + arrayToReturn[i][j];
-          }
-          arrayToReturn[i] = noFirstParenthesis;
-        }
-      }
-    } else {
-      arrayToReturn = "error";
-    }
-    // arrayToReturn[0] = <ce qui précède>, arrayToReturn[1] = <ce qui succède>.
-  } else {
-    arrayToReturn = "error";
-  }
-  return arrayToReturn;
-}
-
-// function returnAnInferenceOutOfTwoInferences(A, B, operator) {
-//   if (A.length > 2 && A[0] !== "(" && A[A.length - 1] !== /[pqrs]/) {
-//     // if (A.length > 2 && A[0] !== "~" && A[A.length - 1] !== /[pqrs]/) {
-//     A = "(" + A + ")";
-//   }
-//   if (B.length > 2 && B[0] !== "(" && B[B.length - 1] !== /[pqrs]/) {
-//     // if (B.length > 2 && B[0] !== "~" && B[B.length] !== /[pqrs]/) {
-//     B = "(" + B + ")";
-//   }
-//   let AoperatorB = A + operator + B;
-//   return AoperatorB;
-// }
 
 export default scanInferences;

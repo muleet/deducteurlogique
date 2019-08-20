@@ -1,6 +1,7 @@
 import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
 import MakeInference from "../Calcul Tools/MakeInference";
 import InferenceScanner from "./Components/InferenceScanner";
+import InferenceTools from "./Components/InferenceTools";
 // import AdviceModal from "../Modals and Popovers/AdviceModal";
 
 // Création d'une variable contextuelle qui contiendra toutes les informations élémentaires sur toutes les inférences d'une déduction
@@ -8,6 +9,8 @@ import InferenceScanner from "./Components/InferenceScanner";
 // import { InferenceContext } from "./InferenceContext";
 // Note : actuellement, InferenceProvider a deux props, qu'elle hérite de Deducer : conclusionSent et meaningSent.
 export const InferenceContext = createContext();
+
+// création d'une fonction utilisable partout dans ce fichier)
 
 /*la classe UserProvider fera office de... Provider (!) en englobant son enfant direct dans le composant éponyme. De cette façon, ses values seront accessibles de manière globale via le `Consumer`*/
 class InferenceProvider extends Component {
@@ -43,16 +46,20 @@ class InferenceProvider extends Component {
       }
 
       // section des hypothèses de l'élimination de la disjonction, ∨e
-      // const copyStoredHypId =
       const copyStoredHypId = hypIDNumber;
-
       const storedLevel =
         this.state.hypothesisCurrentLevelAndId.level + hypNumber; // variable qui n'est utilisée que pour conditionner la règle reit
 
       // vérification de la conclusion
+      let commutedInference = InferenceTools.commute(
+        newInference.itself,
+        this.state.ruleModalContent.ruleName[0],
+        "commute"
+      );
       if (
         storedLevel === 0 &&
-        this.props.conclusionSent === newInference.itself
+        (this.props.conclusionSent === newInference.itself ||
+          this.props.conclusionSent === commutedInference)
       ) {
         inferenceType = "concluding-inference-blinking";
       }
