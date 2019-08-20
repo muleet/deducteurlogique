@@ -48,9 +48,9 @@ function scanInferences(
   hypothesisCurrentLevelAndId,
   allEndedHypotheticalInferences
 ) {
-  console.log("toutes les inférences et leur données", allInferencesThemselves);
-  console.log("hypothesisCurrentLevelAndId", hypothesisCurrentLevelAndId);
-  console.log("allHypotheticalInferences", allHypotheticalInferences);
+  // consolelog("toutes les inférences et leur données", allInferencesThemselves);
+  // consolelog("hypothesisCurrentLevelAndId", hypothesisCurrentLevelAndId);
+  // consolelog("allHypotheticalInferences", allHypotheticalInferences);
   if (ruleName) {
     let result = true; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider (setRuleModal() ou removeLastInference())
     let typeOfRule = "";
@@ -79,12 +79,12 @@ function scanInferences(
       hypotheticalRules,
       hypothesisCurrentLevelAndId
     );
-    console.log(
-      "inferencesFromPreviousHypotheses",
-      positions.inferencesFromPreviousHypotheses,
-      "inferencesFromClosedHypotheses",
-      positions.inferencesFromClosedHypotheses
-    );
+    // consolelog(
+    //   "inferencesFromPreviousHypotheses",
+    //   positions.inferencesFromPreviousHypotheses,
+    //   "inferencesFromClosedHypotheses",
+    //   positions.inferencesFromClosedHypotheses
+    // );
 
     const oneStepRules = [
       "~~e",
@@ -125,7 +125,7 @@ function scanInferences(
         }
       }
     } else if (twoStepRules.indexOf(ruleName) !== -1) {
-      // console.log("inferenceScanner, on a bien une règle à deux étapes, avec les inférences",allInferencesThemselves);
+      // consolelog("inferenceScanner, on a bien une règle à deux étapes, avec les inférences",allInferencesThemselves);
       for (let i = 0; i < allInferencesThemselves.length; i++) {
         // étape 0 : on crée le caractère qui va permettre de détecter si l'on parle des bonnes inférences
         typeOfRule = "twoStep";
@@ -167,8 +167,6 @@ function scanInferences(
               allInferencesThemselves[j].itself,
               allHypotheticalInferences
             );
-            // console.log("IS étape 2 avec le i : '",i,"' le result est ",result);
-            // console.log("IF, result", result);
             if (result === true) {
               positions.detectedFirstArgument.push(i);
               positions.detectedSecondArgument.push(j);
@@ -208,16 +206,16 @@ function scanInferences(
       } else {
         positions.currentHyp.type += " indicator-data-undetected";
       }
-      // console.log("y'aura-t-il une hyp et que contient-elle",positions.currentHyp);
+      // consolelog("y'aura-t-il une hyp et que contient-elle",positions.currentHyp);
     }
-    console.log(
-      "inferenceScanner retourne la règle, ",
-      ruleName,
-      " qui est de type ",
-      typeOfRule,
-      " avec les positions ",
-      positions
-    );
+    // consolelog(
+    //   "inferenceScanner retourne la règle, ",
+    //   ruleName,
+    //   " qui est de type ",
+    //   typeOfRule,
+    //   " avec les positions ",
+    //   positions
+    // );
     prepareUpdate(
       typeOfRule,
       positions,
@@ -245,7 +243,7 @@ function prepareUpdate(
     if (positions) {
       let key = 0;
       // étape 0 : toutes les inférences reçoivent un rond rouge
-      // console.log("étape 0, AIT.L", allInferencesThemselves.length);
+      // consolelog("étape 0, AIT.L", allInferencesThemselves.length);
       for (let i = 0; i < allInferencesThemselves.length; i++, key++) {
         newAllInferencesValidForCurrentRule.push(
           <div key={i} className="indicator indicator-data-undetected">
@@ -307,7 +305,7 @@ function prepareUpdate(
         }
       }
       if (positions.currentHyp) {
-        // console.log("il y a bien une hyp et c'est ", positions.currentHyp);
+        // consolelog("il y a bien une hyp et c'est ", positions.currentHyp);
         // étape 4, on rajoute un tiret pour les inférences hors de l'hypothèse en cours
         makeAllIndicatorsWithALoop(
           positions.inferencesFromPreviousHypotheses,
@@ -485,7 +483,6 @@ function scanTwoStepRule(
       isTheRuleAdequate = true;
     }
   }
-  // console.log("IF, isTheRuleAdequate", isTheRuleAdequate);
   return isTheRuleAdequate;
 }
 

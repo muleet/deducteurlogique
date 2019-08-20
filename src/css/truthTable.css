@@ -1,6 +1,6 @@
 .main-truth-table {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* border: 1px solid green; */
   align-items: center;
 }
@@ -11,6 +11,7 @@
   /* border: 1px solid blue; */
   text-align: center;
   color: black;
+  width: 740px;
 }
 
 .truth-line {
@@ -39,7 +40,8 @@
 
 .box-info-truth-table {
   margin-left: 10px;
-  height: 230px;
+  height: 250px;
+  width: 740px;
 }
 
 /* Section des classname des catégories de lignes de la table de vérité */
@@ -65,7 +67,11 @@
 }
 
 .truth-table-possible-meaning {
-  margin-left: 6px;
+  margin: 0px 6px;
   font-style: italic;
-  width: 350px;
+  max-width: 320px;
+}
+
+.proposition-example {
+  width: 10px;
 }

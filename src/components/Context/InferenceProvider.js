@@ -108,8 +108,9 @@ class InferenceProvider extends Component {
       copyArrayThemselves.push(newInference);
 
       if (
-        this.state.ruleModalContent.ruleName &&
-        this.state.ruleModalShown.normal === true
+        this.state.ruleModalShown.normal === true &&
+        hyp !== "hypothèse validée" &&
+        hyp !== "hypothèse réfutée"
       ) {
         InferenceScanner(
           this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
@@ -141,7 +142,7 @@ class InferenceProvider extends Component {
       }
       // début de l'intérêt principal de cette fonction
       if (this.state.canInferenceBeStored === true) {
-        console.log("storageRuleVerif", this.state.hypothesisCurrentLevelAndId);
+        // consolelog("storageRuleVerif", this.state.hypothesisCurrentLevelAndId);
 
         // cas de la règle reit
         if (
@@ -187,9 +188,7 @@ class InferenceProvider extends Component {
 
         // cas de la règle ∨e
         if (ruleName === "∨e") {
-          console.log(
-            "la règle d'élimination de la disjonction inclusive, fait son oeuvre"
-          );
+          // consolelog("la règle d'élimination de la disjonction inclusive, fait son oeuvre");
           this.longStorageForRuleVerification(
             infItself,
             copyStoredNumbers,
@@ -300,14 +299,18 @@ class InferenceProvider extends Component {
         }
         copyAllInferencesRendered.pop(); // on extrait une partie du tableau, la première en partant de la fin
         copyAllInferencesThemselves.pop();
-        InferenceScanner(
-          this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
-          copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
-          this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
-          copyAHI, // contenu des hyp en cours
-          this.state.hypothesisCurrentLevelAndId, // données des hyp en cours // contenu des hyp en cours
-          copyAEHI
-        );
+
+        if (this.state.ruleModalShown.normal === true) {
+          InferenceScanner(
+            this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
+            copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
+            this.state.updateScannedInferences, // fonction qui permettra de maj la liste des inférences scannées
+            copyAHI, // contenu des hypothèses en cours
+            this.state.hypothesisCurrentLevelAndId, // données des hyp en cours // contenu des hyp en cours
+            copyAEHI // contenu des hypothèses terminées
+          );
+        }
+
         this.setState(state => ({
           allInferencesRendered: copyAllInferencesRendered,
           allInferencesThemselves: copyAllInferencesThemselves,
@@ -406,7 +409,7 @@ class InferenceProvider extends Component {
         i--
       ) {
         if (copyHypothesisCurrentLevelAndID.whichIDIsStillOpen[i][1] === true) {
-          console.log("la dernière hyp en cours est la", i);
+          // consolelog("la dernière hyp en cours est la", i);
           copyHypothesisCurrentLevelAndID.theCurrentHypID = i;
           i = -1;
         }
@@ -467,7 +470,7 @@ class InferenceProvider extends Component {
         newRuleModalShown.normal = true;
         this.changeStorageBoolean("resetButStillTrue", eal);
       } else if (str === "change" && !newRuleModalShown.shown) {
-        // cas 3 : L'utilisateur a fermé le ruleModal qui était ouvert, en cliquant sur le bouton du ruleModal, par conséquent plus rien n'est ouvert
+        // cas 3 : L'utilisateur a fermé le ruleModal qui était ouvert, en cliquant sur le bouton "fermer" du ruleModal, par conséquent plus rien n'est ouvert
         this.updateScannedInferences("reset"); // il n'y a plus de ruleModal en cours, donc plus de détection des inférences compatibles
       }
 

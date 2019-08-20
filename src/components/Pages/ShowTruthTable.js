@@ -51,11 +51,11 @@ class ShowTruthTable extends Component {
     if (this.state.arrayInfoLine.example.length > 0) {
       return (
         <div style={{ display: "flex" }}>
-          A :
+          <div style={{ width: "27px" }}> A : </div>
           <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[0]}
           </p>
-          <div style={{ marginLeft: "6px" }}> B : </div>
+          <div style={{ width: "27px" }}> B : </div>
           <p className="truth-table-possible-meaning">
             {this.state.arrayInfoLine.example[1]}
           </p>
