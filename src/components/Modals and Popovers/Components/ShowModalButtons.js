@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
-import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
+// import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
 
 class ShowModalButtons extends Component {
   verifyRule(valueRule) {
-    // "RuleModal", puis "ShowExpectedArguments"/"ShowModalButtons", puis "VerifyRule", puis "redirectToTheRightRule", puis "[la règle en question]", puis "addInference"
+    // Généalogie : "RuleModal", puis "ShowExpectedArguments"/"ShowModalButtons", puis "VerifyRule", puis "redirectToTheRightRule", puis "[la règle en question]", puis "addInference"
     // puis dans le cas des hypothèses, changeHypothesisLevel, puis updateHypotheticalInferencesThemselves puis RIEN (pas d'updateInferencesOfCurrentHypotheses)
     if (
       this.props.valueInference.storedInference !== undefined &&
@@ -133,19 +133,19 @@ class ShowModalButtons extends Component {
     // let buttonDisjonctionEliminationHypothesis = "";
 
     // CONDITIONS PERMETTANT DE DONNER LEURS RÔLES AUX BOUTONS EN FONCTION DE LA REGLE EN COURS
-    if (this.props.ruleName !== "∨e") {
-      buttonResetArguments = (
-        <p
-          className="rule-modal-button"
-          onClick={() => {
-            this.props.valueInference.changeStorageBoolean("resetButStillTrue");
-            this.props.valueInference.setRuleModal("stillOpen", "");
-          }}
-        >
-          <i className="fas fa-eraser" />
-        </p>
-      );
-    }
+    // if (this.props.ruleName !== "∨e") {
+    //   buttonResetArguments = (
+    //     <p
+    //       className="rule-modal-button"
+    //       onClick={() => {
+    //         this.props.valueInference.changeStorageBoolean("resetButStillTrue");
+    //         this.props.valueInference.setRuleModal("stillOpen", "");
+    //       }}
+    //     >
+    //       <i className="fas fa-eraser" />
+    //     </p>
+    //   );
+    // }
     if (this.props.ruleName === "∨i") {
       buttonInverseInference = (
         <p
@@ -165,19 +165,19 @@ class ShowModalButtons extends Component {
       );
     }
 
-    if (this.props.ruleName === "∨e") {
-      buttonSpecificRule = (
-        <ShowDisjonctionEliminationArguments
-          key={1}
-          whatToReturn="buttons"
-          // expectedArguments={expectedArguments}
-          valueRule={this.props.valueRule}
-          valueInference={this.props.valueInference}
-        />
-      );
-      // buttonResetArguments = "???"
-      // à faire : pour la règle d'élimination de la disjonction il faut pouvoir supprimer les deux hypothèses créées, à volonté. Y compris si une seule hypothèse avait été créée.
-    }
+    // if (this.props.ruleName === "∨e") {
+    //   buttonSpecificRule = (
+    //     <ShowDisjonctionEliminationArguments
+    //       key={1}
+    //       whatToReturn="buttons"
+    //       // expectedArguments={expectedArguments}
+    //       valueRule={this.props.valueRule}
+    //       valueInference={this.props.valueInference}
+    //     />
+    //   );
+    //   // buttonResetArguments = "???"
+    //   // à faire : pour la règle d'élimination de la disjonction il faut pouvoir supprimer les deux hypothèses créées, à volonté. Y compris si une seule hypothèse avait été créée.
+    // }
 
     // if (this.props.ruleName === "reit") {
     //   return ""; // pas de boutons pour reit
@@ -194,12 +194,10 @@ class ShowModalButtons extends Component {
         <p
           className="rule-modal-button"
           onClick={() => {
-            if (this.props.ruleName === "∨e") {
-              this.verifyLongStorageRule(this.props.valueRule);
-            } else if (
-              this.props.ruleName !== "⊃i" &&
-              this.props.ruleName !== "~i"
-            ) {
+            // if (this.props.ruleName === "∨e") {
+            //   this.verifyLongStorageRule(this.props.valueRule);
+            // } else
+            if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
               this.verifyRule(this.props.valueRule);
             } else {
               this.verifyBreakHypothesisRule(this.props.valueRule);

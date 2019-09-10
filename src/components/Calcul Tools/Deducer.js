@@ -84,7 +84,7 @@ class Deducer extends Component {
     let result = "";
     if (value.booleansOptionsAboutInferences.boolInferenceScanner) {
       result = (
-        <div className="all-indicators-about-inference-validation">
+        <div className="setAdequacyArrows">
           {value.allInferencesValidForCurrentRule}
         </div>
       ); /* on affiche le tableau contenant les inférences compatibles ou non */
@@ -147,9 +147,7 @@ class Deducer extends Component {
                     <Fragment>
                       <ul className="deduction">
                         {this.renderCompatibleInferencesForCurrentRule(value)}
-                        {
-                          value.allInferencesRendered /* on affiche le tableau */
-                        }
+                        {value.showAllInferences() /* on affiche le tableau */}
                       </ul>
                       {value.advice}
                       {this.renderDebugger(value)}

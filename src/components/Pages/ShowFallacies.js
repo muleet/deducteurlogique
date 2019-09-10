@@ -267,18 +267,18 @@ class ShowFallacies extends Component {
       </div>
     );
 
-    const togglerRandomizeOrSort = (
-      <div className={"question-mark-button icon"}>
-        <i className="fas fa-dice" /> onClick=
-        {() => this.randomizeOrSort()}
-        <div className="question-mark">
-          <div className="question-mark-title">
-            Cliquez ici classer les sophismes aléatoirement ou par ordre
-            alphabétique.
-          </div>
-        </div>
-      </div>
-    );
+    // const togglerRandomizeOrSort = (
+    //   <div className={"question-mark-button icon"}>
+    //     <i className="fas fa-dice" /> onClick=
+    //     {() => this.randomizeOrSort()}
+    //     <div className="question-mark">
+    //       <div className="question-mark-title">
+    //         Cliquez ici classer les sophismes aléatoirement ou par ordre
+    //         alphabétique.
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
 
     let classNameFontAwesome = "";
     if (this.state.definitionOrExample === 0) {

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 // Importation de mon css
 import "./reset.css"; // Reset de tout le css
 import "./css/advice.css";
+import "./css/animation.css";
 import "./css/app.css";
 import "./css/BasicReactModal.css";
 import "./css/buttonMenu.css";

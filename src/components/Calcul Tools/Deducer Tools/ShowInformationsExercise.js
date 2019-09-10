@@ -5,7 +5,7 @@ import ButtonRuleRep from "../ButtonRuleRep";
 class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
 
-  useOfMakeInference = (infItself, infNumCom, infComm) => {
+  useOfAddInference = (infItself, infNumCom, infComm) => {
     // cette méthode crée une inférence à partir de données envoyées par Deducer (au moment d'un clic sur la prémisse). D'abord on crée un objet contenant toutes les bonnes données.
     const inference = {
       itself: infItself,
@@ -28,7 +28,7 @@ class ShowInformationsExercise extends Component {
     // let exerciseComment = <i className="fas fa-comment deactivated" />;
     if (this.props.exerciseSent.doable === false) {
       textCanItBeDone =
-        "(Une des règles de cet exercice comporte au moins un bug, ce qui peut empêcher de terminer l'exercice.)";
+        "(La création de cet exercice n'est pas terminée, il n'a donc probablement pas de solution.)";
     }
     if (this.props.exerciseSent.comment.length > 0) {
       // exerciseComment = (
@@ -76,8 +76,8 @@ class ShowInformationsExercise extends Component {
             className={"premisse selectable"}
             NumberButton={newLetter}
             NameButton={this.props.exerciseSent.premisses[i]}
-            useOfMakeInferenceSent={() =>
-              this.useOfMakeInference(
+            useOfAddInferenceSent={() =>
+              this.useOfAddInference(
                 this.props.exerciseSent.premisses[i],
                 newLetter,
                 "rep"

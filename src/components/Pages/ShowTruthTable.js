@@ -20,7 +20,10 @@ class ShowTruthTable extends Component {
       category: "",
       character: "",
       example: "",
-      image: ""
+      image: "",
+      type: "",
+      dual: "",
+      negativeOpposite: ""
     }
   };
 
@@ -76,7 +79,10 @@ class ShowTruthTable extends Component {
     category,
     character,
     example,
-    image
+    image,
+    type,
+    dual,
+    negativeOpposite
   ) {
     if (!isNaN(number)) {
       this.setState({
@@ -92,7 +98,10 @@ class ShowTruthTable extends Component {
           category: category,
           character: character,
           example: example,
-          image: image
+          image: image,
+          type: type,
+          dual: dual,
+          negativeOpposite: negativeOpposite
         }
       });
     }
@@ -156,6 +165,21 @@ class ShowTruthTable extends Component {
     }
   }
 
+  renderType() {
+    if (this.state.arrayInfoLine.type) {
+      return "Type : " + this.state.arrayInfoLine.type;
+    }
+  }
+  renderDual() {
+    if (this.state.arrayInfoLine.dual) {
+      return "Dual : " + this.state.arrayInfoLine.dual;
+    }
+  }
+  renderNegativeOpposite() {
+    if (this.state.arrayInfoLine.negativeOpposite) {
+      return "Opposé négatif : " + this.state.arrayInfoLine.negativeOpposite;
+    }
+  }
   renderAllInformations() {
     let reductibleTo = "";
     const char = this.state.arrayInfoLine.reductibleTo;
@@ -179,6 +203,9 @@ class ShowTruthTable extends Component {
           <li>Caractère : {this.state.arrayInfoLine.character[0]}</li>
           {this.renderLecture()}
           {reductibleTo}
+          <li>{this.renderType()}</li>
+          <li>{this.renderDual()}</li>
+          <li>{this.renderNegativeOpposite()}</li>
           <li>{this.renderExample()}</li>
           <li>{this.renderImage()}</li>
           {/* <li>{this.state.arrayInfoLine.category}</li> */}
@@ -196,7 +223,22 @@ class ShowTruthTable extends Component {
         key={0}
         className="truth-line info-line selectable"
         onMouseOver={() => {
-          this.setInfoTruthLine("", "", "", "", "", "", "", "");
+          this.setInfoTruthLine(
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          );
         }}
       >
         {this.renderTruthLine(
@@ -226,7 +268,10 @@ class ShowTruthTable extends Component {
                 TruthTable[i].category,
                 TruthTable[i].character,
                 TruthTable[i].example,
-                TruthTable[i].image
+                TruthTable[i].image,
+                TruthTable[i].type,
+                TruthTable[i].dual,
+                TruthTable[i].negativeOpposite
               );
             }}
           >

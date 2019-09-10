@@ -53,23 +53,8 @@ class RuleProvider extends Component {
     this.doubleNegationElimination = (notnotA, numbers) => {
       if (notnotA[0] === "~" && notnotA[1] === "~") {
         let A = "";
-        if (notnotA.length > 2) {
-          if (notnotA[2] === "(") {
-            let i = 3;
-            while (i < notnotA.length - 1) {
-              A = A + notnotA[i];
-              i++;
-            }
-          } else {
-            let i = 2;
-            while (i < notnotA.length) {
-              A = A + notnotA[i];
-              i++;
-            }
-          }
-        } else {
-          A = notnotA[2];
-        }
+        notnotA = InferenceTools.withdrawFirstCharacters(notnotA, 2);
+        A = InferenceTools.mayRemoveFirstParenthesis(notnotA);
         const inferenceToAdd = {
           itself: A,
           numberCommentary: numbers,
@@ -114,7 +99,6 @@ class RuleProvider extends Component {
         AandB,
         "∧"
       );
-      console.log("wesh5", arrayTwoChoices);
       if (arrayTwoChoices !== "error") {
         const leftChoice = arrayTwoChoices[0];
         const rightChoice = arrayTwoChoices[1];
@@ -164,36 +148,24 @@ class RuleProvider extends Component {
       }
     }; // ∨i
 
-    this.inclusiveDisjonctionElimination = (expectedArguments, number) => {
-      const AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
-        expectedArguments[0],
-        "∨"
-      );
-      const concA = expectedArguments[1];
-      const concB = expectedArguments[2];
-      let inferenceToAdd = {
-        itself: "",
-        numberCommentary: number,
-        commentary: "∨e"
-      };
-      let proposition;
-
-      if (AorB[0] === concA && AorB[0] === concB) {
-        inferenceToAdd.itself = AorB[0];
-        proposition = "A";
-      } else if (AorB[1] === concA && AorB[1] === concB) {
-        inferenceToAdd.itself = AorB[1];
-        proposition = "B";
-      } else if (AorB[1] !== concA && concA === concB) {
-        inferenceToAdd.itself = concA;
-        proposition = "C";
-      }
-      if (inferenceToAdd.itself.length > 0) {
+    this.inclusiveDisjonctionElimination = (notA, AorB, number) => {
+      AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(AorB, "∨");
+      if (notA[0] === "~" && AorB !== "error") {
+        notA = notA.substring(1);
+        let B = "";
+        if (notA === AorB[0]) {
+          B = AorB[1];
+        } else if (notA === AorB[1]) {
+          B = AorB[0];
+        }
+        const inferenceToAdd = {
+          itself: B,
+          numberCommentary: number,
+          commentary: "∨e"
+        };
         this.props.valueInference.addInference(inferenceToAdd);
         this.props.valueInference.setAdvice(
-          "Disjonction inclusive éliminée, les hypothèses A et B permettent toutes deux d'inférer " +
-            proposition +
-            ", qui est la nouvelle inférence : " +
+          "Disjonction inclusive éliminée, nouvelle inférence : " +
             inferenceToAdd.itself,
           "rule-advice"
         );
@@ -203,6 +175,45 @@ class RuleProvider extends Component {
           "error-advice"
         );
       }
+
+      // const AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      //   expectedArguments[0],
+      //   "∨"
+      // );
+      // const concA = expectedArguments[1];
+      // const concB = expectedArguments[2];
+      // let inferenceToAdd = {
+      //   itself: "",
+      //   numberCommentary: number,
+      //   commentary: "∨e"
+      // };
+      // let proposition;
+
+      // if (AorB[0] === concA && AorB[0] === concB) {
+      //   inferenceToAdd.itself = AorB[0];
+      //   proposition = "A";
+      // } else if (AorB[1] === concA && AorB[1] === concB) {
+      //   inferenceToAdd.itself = AorB[1];
+      //   proposition = "B";
+      // } else if (AorB[1] !== concA && concA === concB) {
+      //   inferenceToAdd.itself = concA;
+      //   proposition = "C";
+      // }
+      // if (inferenceToAdd.itself.length > 0) {
+      //   this.props.valueInference.addInference(inferenceToAdd);
+      //   this.props.valueInference.setAdvice(
+      //     "Disjonction inclusive éliminée, les hypothèses A et B permettent toutes deux d'inférer " +
+      //       proposition +
+      //       ", qui est la nouvelle inférence : " +
+      //       inferenceToAdd.itself,
+      //     "rule-advice"
+      //   );
+      // } else {
+      //   this.props.valueInference.setAdvice(
+      //     "Pour utiliser la règle ∨e, lisez bien les instructions",
+      //     "error-advice"
+      //   );
+      // }
     }; // ∨e
 
     this.exclusiveDisjonctionIntroduction = (ifAthenNotB, ifBthenNotA, num) => {
@@ -268,6 +279,7 @@ class RuleProvider extends Component {
     }; // ⊻i
 
     this.exclusiveDisjonctionElimination = (A, eitherAeitherB, numbers) => {
+      // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
       const ArrayeitherAeitherB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         eitherAeitherB,
         "⊻"
@@ -316,7 +328,6 @@ class RuleProvider extends Component {
 
     this.conditionalIntroduction = (B, numbers) => {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
-      B = InferenceTools.mayAddFirstParenthesis(B);
       let ifAthenB = InferenceTools.returnAnInferenceOutOfTwoInferences(
         A,
         B,
@@ -492,42 +503,22 @@ class RuleProvider extends Component {
       }
     }; // ⊅e
 
-    this.incompatibilityIntroduction = (A, B, numbers) => {
+    this.incompatibilityIntroduction = (A, notB, numbers) => {
       // ↑i
-      let Anegationcount = 0,
-        Bnegationcount = 0;
-      for (let i = 0; i < A.length; i++) {
-        if (A[i] === "~") {
-          Anegationcount++;
-        } else {
-          i = i + A.length;
-        }
-      }
-      for (let i = 0; i < B.length; i++) {
-        if (B[i] === "~") {
-          Bnegationcount++;
-        } else {
-          i = i + B.length;
-        }
-      }
-
-      if (Anegationcount !== Bnegationcount) {
-        let AincompatibleB;
-        if (Anegationcount > Bnegationcount) {
-          A = A.slice(1, A.length);
-          AincompatibleB = InferenceTools.returnAnInferenceOutOfTwoInferences(
-            A,
-            B,
-            "↑"
-          );
-        } else if (Bnegationcount > Anegationcount) {
-          B = B.slice(1, B.length);
-          AincompatibleB = InferenceTools.returnAnInferenceOutOfTwoInferences(
-            A,
-            B,
-            "↑"
-          );
-        }
+      let AincompatibleB = "";
+      if (
+        !InferenceTools.isThereAMainOperator(notB) &&
+        InferenceTools.returnNegationCount(A) <
+          InferenceTools.returnNegationCount(notB)
+      ) {
+        // note : s'il y a un opérateur dominant, notB est forcément vraie, donc ↑i ne peut pas avoir lieu
+        let B = InferenceTools.withdrawFirstCharacters(notB, 1);
+        B = InferenceTools.mayRemoveFirstParenthesis(B);
+        AincompatibleB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+          A,
+          B,
+          "↑"
+        );
         const inferenceToAdd = {
           itself: AincompatibleB,
           numberCommentary: numbers,
@@ -541,7 +532,7 @@ class RuleProvider extends Component {
         this.addInferenceFromRule(inferenceToAdd);
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser ↑e, il faut deux inférences, l'une vraie et l'autre fausse.",
+          "Pour utiliser ↑i, il faut deux inférences, l'une vraie et l'autre fausse.",
           "error-advice"
         );
       }
@@ -601,7 +592,7 @@ class RuleProvider extends Component {
         );
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser ↓e, il faut deux inférences fausses.",
+          "Pour utiliser ↓i, il faut deux inférences fausses.",
           "error-advice"
         );
       }
@@ -690,11 +681,11 @@ class RuleProvider extends Component {
       } else if (ruleName === "∨i") {
         this.inclusiveDisjonctionIntroduction(arrInf[0], numbers); // A pour A∨B
       } else if (ruleName === "∨e") {
-        this.inclusiveDisjonctionElimination(arrInf, numbers); // A∨B + conc de |A + conc de |B, pour A ou B
+        this.inclusiveDisjonctionElimination(arrInf[0], arrInf[1], numbers); // ~A (ou ~B), A∨B, pour B (ou A)
       } else if (ruleName === "⊻i") {
         this.exclusiveDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A⊅B, B⊅A pour A⊻B
       } else if (ruleName === "⊻e") {
-        this.exclusiveDisjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊻B pour ~B (ou ~A, A⊻B, pour B)
+        this.exclusiveDisjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
       } else if (ruleName === "⊃i") {
         this.conditionalIntroduction(arrInf[0], numbers); // (A), B pour A⊃B
       } else if (ruleName === "⊃e") {

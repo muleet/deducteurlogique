@@ -61,7 +61,7 @@
   },
   {
     "name": "La règle ex falso est-elle vraiment une règle d'inférence valide ?",
-    "answer": "Oui, car elle découle nécessairement de la conception binaire de la vérité. La règle ex falso devient invalide si l'on admet que ce qu'on appelle faux n'est pas qu'une simple inversion de valeur de vérité. (Et tous les logiciens n'avaient pas cette conception binaire du vrai et du faux, ce n'est pas le cas d'Aristote par exemple.)"
+    "answer": "Oui, à partir du momentoù l'on a une conception binaire de la vérité, la règle ex falso en découle nécessairement. Cette règle devient cependant invalide si l'on admet que ce qu'on appelle faux n'est pas qu'une simple inversion de valeur de vérité, comme le fait la logique intuitionniste. (Et tous les logiciens n'avaient pas cette conception binaire du vrai et du faux, ce n'est pas le cas d'Aristote par exemple.)"
   },
   {
     "name": "Que sont le théorème, la tautologie, et la preuve logique ?",

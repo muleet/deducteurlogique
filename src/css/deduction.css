@@ -153,36 +153,43 @@
 }
 
 /* Les indicateurs ci-dessous sont générés par InferenceScanner et concernent la détection des inférences compatibles avec l'utilisation de la règle en question */
-.all-indicators-about-inference-validation {
+.setAdequacyArrows {
   display: flex;
-  margin-top: -5px;
-  margin-left: -45px;
-  flex-direction: column;
-  line-height: 26px;
-  font-size: 18px;
-  padding: 5px;
-  position: absolute;
+  justify-content: space-evenly;
   width: 30px;
+  position: absolute;
+  margin-left: 20px;
 }
 .indicator {
   height: 26px;
   border: 2px solid transparent;
   /* line-height: 20 px; */
   text-align: center;
+  margin-left: 4px;
 }
-.indicator-data-undetected {
-  color: red;
+.indicator-data-first-argument-alone {
+  color: rgb(105, 105, 105);
 }
-.indicator-data-detected {
-  color: rgb(0, 192, 0);
+.indicator-data-first-argument {
+  color: rgb(56, 255, 72);
 }
-.indicator-data-semi-detected {
-  color: rgba(0, 192, 0, 0.548);
+.indicator-data-second-argument {
+  color: rgb(0, 124, 10);
 }
-.indicator-data-second-argument-detected {
-  color: rgb(174, 255, 24);
+.indicator-data-hypothesis {
+  text-shadow: -1px 0 rgb(0, 140, 255), 0 1px rgb(0, 140, 255),
+    1px 0 rgb(0, 140, 255), 0 -1px rgb(0, 140, 255);
+  color: rgb(0, 140, 255);
 }
-.indicator-data-hypothesis-detected {
-  border: 2px solid rgb(0, 140, 255);
-  border-radius: 8px;
+.indicator-inadequate-argument {
+  /* argument sur lequel l'utilisateur a cliqué, alors que c'est incompatible avec la règle en cours */
+  color: rgb(255, 50, 50);
+}
+.indicator-argument-previous-hypothesis {
+  /* argument qui provient d'une hypothèse non close, et précédant celle en cours */
+  color: rgb(255, 255, 255);
+}
+.indicator-argument-closed-hypothesis {
+  /* argument qui provient d'une hypothèse close */
+  color: rgb(255, 0, 0);
 }

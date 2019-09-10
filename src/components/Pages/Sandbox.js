@@ -6,7 +6,6 @@ import ButtonRuleMaker from "../Calcul Tools/Deducer Tools/ButtonRuleMaker";
 import InferenceProvider, {
   InferenceContext
 } from "../Context/InferenceProvider";
-
 import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
@@ -40,11 +39,13 @@ class Deducer extends Component {
       "q",
       "~p",
       "~q",
+      "~~p",
       "p∧q",
       "p∨q",
       "p⊻q",
       "p⊃q",
       "q⊃r",
+      "q⊃p",
       "p⊃~q",
       "q⊃~p",
       "p⊅q",
@@ -55,6 +56,7 @@ class Deducer extends Component {
       "p≡q",
       "(p∧q)∧(p∧r)",
       "~(p∧q)",
+      "~~(p∧q)",
       "(p∧q)⊃r",
       "p⊃(q⊃r)",
       "~(p∧r)",
@@ -91,7 +93,7 @@ class Deducer extends Component {
                   <Fragment>
                     <ul className="deduction">
                       {this.renderCompatibleInferencesForCurrentRule(value)}
-                      {value.allInferencesRendered}
+                      {value.showAllInferences() /* on affiche le tableau */}
                     </ul>
                     {value.advice}
                     {this.renderDebugger(value)}

@@ -17,8 +17,7 @@
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer, issue d'une hypothèse en cours.",
     "expectedArguments": ["A"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "hyp",
@@ -41,8 +40,7 @@
     "arrayUtilization": [["A", "~A", "B ex falso"], ["A", "~A", "C ex falso"]],
     "instruction": "Cliquez sur A, puis ~A, et décidez arbitrairement de B, pour inférer B.",
     "expectedArguments": ["A", "~A"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "~i",
@@ -55,8 +53,7 @@
     ],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
     "expectedArguments": ["hyp A", "B", "~B"],
-    "available": "yes",
-    "canDetectInferences": "no"
+    "available": "yes"
   },
   {
     "name": "~~e",
@@ -66,8 +63,7 @@
     "arrayUtilization": [["~~A", "A ~~e"], ["~~(A∧B)", "A∧B ~~e"]],
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "∧i",
@@ -77,8 +73,7 @@
     "arrayUtilization": [["A", "B", "A∧B ∧i"]],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
     "expectedArguments": ["A", "B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "∧e",
@@ -88,8 +83,7 @@
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, validez, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "∨i",
@@ -103,22 +97,33 @@
     ],
     "instruction": "Cliquez sur A, puis décidez arbitrairement de B, pour inférer A∨B.",
     "expectedArguments": ["A"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "∨e",
     "lecture": "A∨B se lit \"A et/ou B\"",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
-    "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
+    "verbalDescription": "Si ~A (ou ~B) a été posé, et que A∨B a été posé, on peut inférer A (ou B).",
     "arrayUtilization": [
-      ["A∨B", "|A hyp", "|C", "|B hyp", "|C", "C 1, 2-3, 4-5, ∨e"],
-      ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"]
+      ["~A", "A∨B", "B 1-2, ∨e"],
+      ["~B", "A∨B", "A 1-2, ∨e"]
     ],
-    "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
-    "expectedArguments": ["A∨B", "C |A", "C |B"],
-    "available": "bug",
-    "canDetectInferences": "no"
+    "instruction": "Cliquez sur ~A (ou ~B), puis A∨B, pour inférer B (ou A).",
+    "expectedArguments": ["~A ou ~B", "A∨B"],
+    "available": "yes",
+    "otherInterpretation": {
+      "_name": "∨e",
+      "_lecture": "A∨B se lit \"A et/ou B\"",
+      "_verbalName": "Règle d'élimination de la disjonction inclusive",
+      "_verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
+      "_arrayUtilization": [
+        ["A∨B", "|A hyp", "|C", "|B hyp", "|C", "C 1, 2-3, 4-5, ∨e"],
+        ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"]
+      ],
+      "_instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
+      "_expectedArguments": ["A∨B", "C |A", "C |B"],
+      "_available": "test"
+    }
   },
   {
     "name": "⊻i",
@@ -128,8 +133,7 @@
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
-    "available": "test",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "⊻e",
@@ -139,8 +143,7 @@
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
-    "available": "test",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "⊃i",
@@ -150,8 +153,7 @@
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊃B.",
     "expectedArguments": ["hyp A", "B"],
-    "available": "yes",
-    "canDetectInferences": "no"
+    "available": "yes"
   },
   {
     "name": "⊃e",
@@ -161,8 +163,7 @@
     "arrayUtilization": [["A", "A⊃B", "B ⊃e"]],
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "≡i",
@@ -172,8 +173,7 @@
     "arrayUtilization": [["A⊃B", "B⊃A", "A≡B ≡i"]],
     "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
     "expectedArguments": ["A⊃B", "B⊃A"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "≡e",
@@ -183,30 +183,27 @@
     "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
     "instruction": "Cliquez sur A≡B, validez, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "⊅i",
     "lecture": "A⊅B se lit \"A et non B\"",
     "verbalName": "Règle d'introduction de l'abjonction",
-    "verbalDescription": "Si l'on a posé A, et que l'on a posé ~B (ou inversement), on peut inférer A⊅B.",
+    "verbalDescription": "Si l'on a posé A, et que l'on a posé ~B, on peut inférer A⊅B.",
     "arrayUtilization": [["A", "~B", "A⊅B ⊅i"]],
-    "instruction": "(Pas encore codée)",
+    "instruction": "Cliquez sur A, puis ~B, pour inférer A⊅B.",
     "expectedArguments": ["A", "~B"],
-    "available": "test",
-    "canDetectInferences": "no"
+    "available": "yes"
   },
   {
     "name": "⊅e",
     "lecture": "A⊅B se lit \"A et non B\"",
     "verbalName": "Règle d'élimination de l'abjonction",
-    "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊃~B, on peut poser ~B isolément.",
-    "arrayUtilization": [["A", "A⊅B", "~B ⊅e"], ["A", "A⊃~B", "~B ⊅e"]],
-    "instruction": "Cliquez sur A, puis A⊅B ou A⊃~B, pour inférer B.",
-    "expectedArguments": ["A", "A⊅B ou A⊃~B"],
-    "available": "test",
-    "canDetectInferences": "yes"
+    "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊅B, on peut poser ~B isolément.",
+    "arrayUtilization": [["A", "A⊅B", "~B ⊅e"]],
+    "instruction": "Cliquez sur A, puis A⊅B, pour inférer ~B.",
+    "expectedArguments": ["A", "A⊅B"],
+    "available": "yes"
   },
   {
     "name": "↑i",
@@ -216,19 +213,17 @@
     "arrayUtilization": [["A", "~B", "A∧B ↑i"]],
     "instruction": "Cliquez sur A, puis ~B, pour inférer A↑B.",
     "expectedArguments": ["A", "~B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "↑e",
     "lecture": "A↑B se lit \"A et B sont incompatibles, ils ne peuvent être vrais ensembles\"",
     "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
-    "verbalDescription": "Si l'on a A↑B, que l'on a A, on peut inférer que ~B. (En revanche si l'on a ~A, on ne peut pas dire que B.)",
+    "verbalDescription": "Si l'on a A↑B, que l'on a A (ou B), on peut inférer que ~B (ou ~A). (En revanche si l'on a ~A ou ~B, on ne peut pas dire que B ou A.) A et B peuvent être faux ensembles.",
     "arrayUtilization": [["A↑B", "A", "~B ↑e"]],
     "instruction": "Cliquez sur A (ou B) puis A↑B,  pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A↑B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "↓i",
@@ -238,8 +233,7 @@
     "arrayUtilization": [["~A", "~B", "A↓B ↓i"]],
     "instruction": "Cliquez sur ~A, puis ~B, pour inférer A↓B.",
     "expectedArguments": ["~A", "~B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "↓e",
@@ -249,8 +243,7 @@
     "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
     "instruction": "Cliquez sur A↓B, validez, puis sélectionnez ~A ou ~B, pour l'inférer.",
     "expectedArguments": ["A↓B"],
-    "available": "yes",
-    "canDetectInferences": "yes"
+    "available": "yes"
   },
   {
     "name": "□i",

@@ -2,7 +2,6 @@
 
 function mayAddFirstParenthesis(inference) {
   // concerne ∧i, ⊻i, ⊃i, ↑e, ↓e, ex falso
-  // if (inference.length > 2 && inference[inference.length - 1] !== ")") {
   if (inference.length > 2 && inference[inference.length - 1] !== "~") {
     inference = "(" + inference + ")";
   }
@@ -99,10 +98,81 @@ function commute(inference, operator) {
   return commutedInference;
 }
 
+function checkMainOperator(str, operator) {
+  // fonction qui retourne true or false si le mainOperator est bien celui attendu
+  let arrayToCheck = [],
+    bool = false;
+  if (str.indexOf(operator) !== -1) {
+    let level = 0;
+    let part = "";
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === operator && level === 0) {
+        // si on arrive ici c'est qu'on vient de recontrer l'unique opérateur hors de toute parenthèse
+        bool = true;
+        i = str.length;
+      }
+      if (str[i] === "(") {
+        level++;
+      } else if (str[i] === ")") {
+        level--;
+      }
+      part = part + str[i];
+      if (i === str.length - 1) {
+        arrayToCheck.push(part);
+      }
+    }
+    arrayToCheck = "error";
+  }
+  return bool;
+}
+
+function withdrawFirstCharacters(str, quantity) {
+  // On regarde combien de fois le caractère en question est présent au début de str, dans la limite du nombre à retirer
+  // utilisé par ~~e
+  let result = "";
+  for (let i = 0; i < str.length - quantity; i++) {
+    result = result + str[quantity + i];
+  }
+  return result;
+}
+
+function isThereAMainOperator(inference) {
+  const everyConnector = ["∧", "⊃", "∨", "⊻", "≡", "⊅", "↑", "↓"];
+  let result = "",
+    bool = false;
+  for (let i = 0; i < everyConnector.length; i++) {
+    result = this.returnWhatIsBeforeAndAfterTheOperator(
+      inference,
+      everyConnector[i]
+    );
+    if (result !== "error") {
+      i = everyConnector.length;
+      bool = true;
+    }
+  }
+  return bool;
+}
+
+function returnNegationCount(inference) {
+  let negationCount = 0;
+  for (let i = 0; i < inference.length; i++) {
+    if (inference[i] === "~") {
+      negationCount++;
+    } else {
+      i = i + inference.length;
+    }
+  }
+  return negationCount;
+}
+
 export default {
   mayAddFirstParenthesis,
   mayRemoveFirstParenthesis,
   returnWhatIsBeforeAndAfterTheOperator,
   returnAnInferenceOutOfTwoInferences,
-  commute
+  commute,
+  checkMainOperator,
+  withdrawFirstCharacters,
+  isThereAMainOperator,
+  returnNegationCount
 };

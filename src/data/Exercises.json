@@ -319,8 +319,8 @@
     "conclusion": "q",
     "meaning": [],
     "comment": "",
-    "rulesImplied": ["rep", "reit", "⊃e", "∨e"],
-    "doable": true
+    "rulesImplied": ["rep", "reit", "hyp", "⊃e", "∨e"],
+    "doable": false
   },
   {
     "title": ["Tautologie de disjonctions"],

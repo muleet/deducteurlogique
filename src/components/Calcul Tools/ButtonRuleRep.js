@@ -8,7 +8,7 @@ class ButtonRuleRep extends Component {
     return (
       <div
         className={"button-rep " + this.props.className}
-        onClick={this.props.useOfMakeInferenceSent}
+        onClick={this.props.useOfAddInferenceSent}
       >
         {this.props.NumberButton + ". " + this.props.NameButton}
         {/*que cette inférence soit issue des prémisses ou de la déduction ne change rien*/}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
+// import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
 
 class ShowExpectedArguments extends Component {
   showKeyboard = () => {
@@ -61,7 +61,7 @@ class ShowExpectedArguments extends Component {
       ruleName !== "⊃i" &&
       ruleName !== "~i" &&
       ruleName !== "∨i" &&
-      ruleName !== "∨e" &&
+      // ruleName !== "∨e" &&
       ruleName !== "ex falso"
     ) {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
@@ -185,17 +185,17 @@ class ShowExpectedArguments extends Component {
           {keyboard}
         </li>
       );
-    } else if (ruleName === "∨e") {
-      arrayExpectedArguments.push(
-        <ShowDisjonctionEliminationArguments
-          key={arrayExpectedArguments.length}
-          whatToReturn="arguments"
-          expectedArguments={expectedArguments}
-          valueInference={this.props.valueInference}
-          valueRule={this.props.valueRule}
-          allHypotheticalInferences={allHypotheticalInferences}
-        />
-      );
+      // } else if (ruleName === "∨e") {
+      //   arrayExpectedArguments.push(
+      //     <ShowDisjonctionEliminationArguments
+      //       key={arrayExpectedArguments.length}
+      //       whatToReturn="arguments"
+      //       expectedArguments={expectedArguments}
+      //       valueInference={this.props.valueInference}
+      //       valueRule={this.props.valueRule}
+      //       allHypotheticalInferences={allHypotheticalInferences}
+      //     />
+      //   );
     } else if (ruleName === "ex falso") {
       let exFalsoTrueArgument = (
         <p className="awaiting-an-inference-blinking">

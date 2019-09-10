@@ -216,9 +216,6 @@ class ButtonRuleMaker extends Component {
               }}
             >
               {arrayRulesSent[i].name}
-              {/* {this.renderSlashedEyeForButtonRule(
-                arrayCurrentRules[i].canDetectInferences
-              )} */}
               <RulePopover
                 key={i}
                 RulePopoverClassName={
@@ -251,9 +248,6 @@ class ButtonRuleMaker extends Component {
               }}
             >
               {arrayRulesSent[i].name}
-              {/* {this.renderSlashedEyeForButtonRule(
-                arrayCurrentRules[i].canDetectInferences
-              )} */}
               <RulePopover
                 key={i}
                 RulePopoverClassName={

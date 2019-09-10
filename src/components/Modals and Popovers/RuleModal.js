@@ -17,7 +17,7 @@ class RuleModalProvider extends Component {
 
   handleCloseModal() {
     this.props.valueInference.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInference + storedInference est vidé
-    this.props.valueInference.setRuleModal("user-closed-the-modal");
+    this.props.valueInference.setRuleModal(false);
     this.props.valueInference.setChoiceContent("");
   }
 

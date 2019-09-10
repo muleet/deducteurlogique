@@ -1,103 +1,25 @@
 import React from "react";
-import InferenceTools from "./InferenceTools";
+import InfTools from "./InferenceTools";
 
 // composant appelé par InferenceProvider, avec les props ruleName, areTheInferencesDetected, allInferencesThemselves
 // ce composant va retourner 2 choses : 1) l'emplacement (en chiffre) des inférences compatibles pour la règle en question.
 // 2) La portée des inférences en question (en chiffre).
 // Par exemple pour le modus ponens : si on détecte l'inférence A dans une inférence A⊃B, il faut savoir quand s'arrête l'emplacement de A.
 
-function getInferencesFromPreviousHypotheses(currentHypPosition) {
-  let positions = [];
-  if (currentHypPosition) {
-    for (let i = 1; i < currentHypPosition; i++) {
-      positions.push(i - 1);
-    }
-  }
-  return positions; // retourne un tableau contenant tous les positions des inférences précédant l'hypothèse en cours
-}
-function getInferencesFromClosedHypotheses(
-  allInfThem,
-  allEndedHypotheticalInferences,
-  hypotheticalRules,
-  hypCurrentLevelAndId
-) {
-  let positionsFromClosedHyp = [];
-  // étape 1 : on crée un for qui se refera pour chaque hypothèse, ouverte ou fermée
-  for (let i = 0; i < hypCurrentLevelAndId.whichIDIsStillOpen.length; i++) {
-    // étape 2 : on vérifie une à une si les hyp sont ouvertes ou fermées, s'il est false il est fermé
-    if (hypCurrentLevelAndId.whichIDIsStillOpen[i][1] === false) {
-      // étape 3 : on fait un for pour détecter toutes les inf qui sont de la même hypID que l'hyp fermée
-      for (let j = 0; j < allInfThem.length; j++) {
-        // étape 4 : si on en trouve une on l'ajoute à la liste des positions, en étant sûr de pas l'avoir déjà ajoutée
-        if (
-          allInfThem[j].actualHypID === i &&
-          positionsFromClosedHyp.indexOf(j) === -1
-        ) {
-          positionsFromClosedHyp.push(j);
-        }
-      }
-    }
-  }
-  return positionsFromClosedHyp; // retourne un tableau contenant des numéros de position, celles des inférences d'hyp fermées
-}
-
 function scanInferences(
   ruleName,
   allInferencesThemselves,
-  updateScannedInferences,
   allHypotheticalInferences,
-  hypothesisCurrentLevelAndId,
+  hypCurrentLevelAndId,
   allEndedHypotheticalInferences
 ) {
-  // consolelog("toutes les inférences et leur données", allInferencesThemselves);
-  // consolelog("hypothesisCurrentLevelAndId", hypothesisCurrentLevelAndId);
-  // consolelog("allHypotheticalInferences", allHypotheticalInferences);
+  for (let i = 0; i < allInferencesThemselves.length; i++) {
+    allInferencesThemselves[i].adequacyType = "";
+  }
   if (ruleName) {
-    let result = true; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider (setRuleModal() ou removeLastInference())
-    let typeOfRule = "";
-    let positions = {
-      detectedOneStepArgument: [], // seule donnée pour les règles à un seul argument
-      semiDetectedFirstArgument: [], // on ajoute toute position trouvée
-      detectedFirstArgument: [], // si l'on trouve une position de second argument, on déplace le nombre dans semiDetectedFA vers detectedFA
-      detectedSecondArgument: [], // ne peut contenir des nombres que si detectedFirstArgument en contient
-      currentHyp: { num: "", type: "" }, // contient un nombre et un str contenant le nom de la clé où se trouve le nombre
-      inferencesFromPreviousHypotheses: [], // tableau contenant les positions des inférences précédent la dernière hyp
-      inferencesFromClosedHypotheses: [] // tableau contenant des tableaux contenant toutes d'une hypothèse fermée
-    };
-
+    let result = true; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider, c'est-à-dire setRuleModal() ou removeLastInference()
     const hypotheticalRules = ["⊃i", "~i"];
-
-    if (allHypotheticalInferences[0]) {
-      positions.inferencesFromPreviousHypotheses = getInferencesFromPreviousHypotheses(
-        // plus simple
-        allHypotheticalInferences[0].numberCommentaryHypothesis
-      );
-    }
-    positions.inferencesFromClosedHypotheses = getInferencesFromClosedHypotheses(
-      // plus compliqué
-      allInferencesThemselves,
-      allEndedHypotheticalInferences,
-      hypotheticalRules,
-      hypothesisCurrentLevelAndId
-    );
-    // consolelog(
-    //   "inferencesFromPreviousHypotheses",
-    //   positions.inferencesFromPreviousHypotheses,
-    //   "inferencesFromClosedHypotheses",
-    //   positions.inferencesFromClosedHypotheses
-    // );
-
-    const oneStepRules = [
-      "~~e",
-      "∧e",
-      "∧i",
-      "∨i",
-      "⊅e",
-      "⊃i",
-      "≡e",
-      "↓e",
-      "reit"
-    ];
+    const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e", "↓e", "reit"];
     const twoStepRules = [
       "⊃e",
       "~i",
@@ -105,6 +27,7 @@ function scanInferences(
       "⊻i",
       "⊻e",
       "⊅i",
+      "⊅e",
       "≡i",
       "↑i",
       "↑e",
@@ -114,22 +37,20 @@ function scanInferences(
     const doesTheRuleImplyAnHypothesis =
       hypotheticalRules.indexOf(ruleName) !== -1;
     if (oneStepRules.indexOf(ruleName) !== -1) {
-      typeOfRule = "oneStep";
       for (let i = 0; i < allInferencesThemselves.length; i++) {
         result = scanOneStepRule(
           ruleName,
           allInferencesThemselves[i].itself,
           allHypotheticalInferences
-        );
+        ); // result est soit vrai soit faux
         if (result === true) {
-          positions.detectedOneStepArgument.push(i);
+          allInferencesThemselves[i].adequacyType =
+            "indicator-data-first-argument ";
         }
       }
     } else if (twoStepRules.indexOf(ruleName) !== -1) {
-      // consolelog("inferenceScanner, on a bien une règle à deux étapes, avec les inférences",allInferencesThemselves);
       for (let i = 0; i < allInferencesThemselves.length; i++) {
-        // étape 0 : on crée le caractère qui va permettre de détecter si l'on parle des bonnes inférences
-        typeOfRule = "twoStep";
+        // étape 0 : on crée le caractère qui va permettre de détecter si l'on a des bonnes inférences
         let characterDetector = "";
         if (
           ruleName === "⊻e" ||
@@ -147,214 +68,76 @@ function scanInferences(
         } else if (ruleName === "↓i") {
           // il faut deux inférences avec un ~
           characterDetector = "~";
-        } else if (ruleName === "↑i") {
-          // cas bizarre donc je fais rien pour le moment
-        } else if (ruleName === "∨e") {
-          // cas bizarre donc je fais rien pour le moment
         }
 
         if (
           // étape 1 : y a-t-il une inférence qui a la forme attendue pour le premier argument de la règle ? Si oui, on l'ajoute aux semis-détectés et on passe à l'étape 2.
           allInferencesThemselves[i].itself.indexOf(characterDetector) !== -1
         ) {
-          if (!doesTheRuleImplyAnHypothesis && ruleName !== "ex falso") {
-            positions.semiDetectedFirstArgument.push(i);
+          if (
+            !doesTheRuleImplyAnHypothesis &&
+            ruleName !== "ex falso" &&
+            allInferencesThemselves[i].adequacyType !==
+              "indicator-data-first-argument "
+          ) {
+            allInferencesThemselves[i].adequacyType =
+              "indicator-data-first-argument-alone ";
           }
           for (let j = 0; j < allInferencesThemselves.length; j++) {
             // étape 2 : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
             result = scanTwoStepRule(
               ruleName,
-              allInferencesThemselves[i].itself,
               allInferencesThemselves[j].itself,
+              allInferencesThemselves[i].itself,
               allHypotheticalInferences
             );
+
             if (result === true) {
-              positions.detectedFirstArgument.push(i);
-              positions.detectedSecondArgument.push(j);
-              // positions.semiDetectedFirstArgument.pop();
+              allInferencesThemselves[i].adequacyType =
+                "indicator-data-second-argument ";
+              allInferencesThemselves[j].adequacyType =
+                "indicator-data-first-argument ";
+            }
+          }
+        }
+      }
+    } else if (ruleName === "∧i") {
+      for (let i = 0; i < allInferencesThemselves.length; i++) {
+        allInferencesThemselves[i].adequacyType =
+          "indicator-data-first-argument ";
+      }
+    }
+    // On détecte les inférences précédent l'hypothèse en cours
+    if (allHypotheticalInferences[0]) {
+      for (
+        let i = 0;
+        i < allHypotheticalInferences[0].numberCommentaryHypothesis - 1;
+        i++
+      ) {
+        allInferencesThemselves[i].adequacyType =
+          "indicator-argument-previous-hypothesis ";
+      }
+    }
+    // On détecte les inférences provenant d'hypothèses closes
+    if (allEndedHypotheticalInferences[0]) {
+      // étape 1 : on crée un for qui se refera pour chaque hypothèse, ouverte ou fermée
+      for (let i = 0; i < hypCurrentLevelAndId.whichIDIsStillOpen.length; i++) {
+        // étape 2 : on vérifie une à une si les hyp sont ouvertes ou fermées, s'il est false il est fermé
+        if (hypCurrentLevelAndId.whichIDIsStillOpen[i][1] === false) {
+          // étape 3 : on fait un for pour détecter toutes les inf qui sont de la même hypID que l'hyp fermée
+          for (let j = 0; j < allInferencesThemselves.length; j++) {
+            // étape 4 : si on en trouve une on l'ajoute à la liste des positions, en étant sûr de pas l'avoir déjà ajoutée
+            if (allInferencesThemselves[j].actualHypID === i) {
+              allInferencesThemselves[j].adequacyType =
+                "indicator-argument-closed-hypothesis ";
             }
           }
         }
       }
     }
-    if (doesTheRuleImplyAnHypothesis && allHypotheticalInferences[0]) {
-      // si la règle implique une hypothèse ET qu'une hypothèse est en cours, on prend son numéro d'inférence
-      positions.currentHyp.num = Number(
-        allHypotheticalInferences[0].numberCommentaryHypothesis - 1
-      );
-      positions.currentHyp.type =
-        "indicator indicator-data-hypothesis-detected";
-      if (
-        positions.detectedOneStepArgument.indexOf(positions.currentHyp.num) !==
-        -1
-      ) {
-        positions.currentHyp.type += " indicator-data-detected";
-      } else if (
-        positions.semiDetectedFirstArgument.indexOf(
-          positions.currentHyp.num
-        ) !== -1
-      ) {
-        positions.currentHyp.type += " indicator-data-semi-detected";
-      } else if (
-        positions.detectedFirstArgument.indexOf(positions.currentHyp.num) !== -1
-      ) {
-        positions.currentHyp.type += " indicator-data-detected";
-      } else if (
-        positions.detectedSecondArgument.indexOf(positions.currentHyp.num) !==
-        -1
-      ) {
-        positions.currentHyp.type += " indicator-data-second-argument-detected";
-      } else {
-        positions.currentHyp.type += " indicator-data-undetected";
-      }
-      // consolelog("y'aura-t-il une hyp et que contient-elle",positions.currentHyp);
-    }
-    // consolelog(
-    //   "inferenceScanner retourne la règle, ",
-    //   ruleName,
-    //   " qui est de type ",
-    //   typeOfRule,
-    //   " avec les positions ",
-    //   positions
-    // );
-    prepareUpdate(
-      typeOfRule,
-      positions,
-      allInferencesThemselves,
-      updateScannedInferences,
-      ruleName
-    );
   }
 }
 
-function prepareUpdate(
-  typeOfRule,
-  positions,
-  allInferencesThemselves,
-  updateScannedInferences,
-  ruleName
-) {
-  // typeOfRule répond à la question "la règle en cours a-t-elle des inférences qui peuvent la valider ?" ; "positions" contient les emplacements de ces inférences ; allInferencesThemselves est envoyé depuis InferenceScanner, lequel le recevait de setRuleModal, ou addInference, ou removeLastInference
-  let newAllInferencesValidForCurrentRule = [];
-
-  // if (typeOfRule && this.state.ruleModalShown.normal) {
-  if (typeOfRule === "reset") {
-  } else if (typeOfRule) {
-    // ici on maj la liste des inférences valides/invalides
-    if (positions) {
-      let key = 0;
-      // étape 0 : toutes les inférences reçoivent un rond rouge
-      // consolelog("étape 0, AIT.L", allInferencesThemselves.length);
-      for (let i = 0; i < allInferencesThemselves.length; i++, key++) {
-        newAllInferencesValidForCurrentRule.push(
-          <div key={i} className="indicator indicator-data-undetected">
-            {ruleName}
-          </div>
-        );
-      }
-
-      key = key + allInferencesThemselves.length;
-      if (typeOfRule === "oneStep") {
-        // cas des règles à un seul argument, positions est un objet contenant une clé "detectedOneStepArgument" qui est un tableau contenant des nombres
-        // étape 1 : on remplace certains ronds rouges par des ronds verts
-        if (positions.detectedOneStepArgument) {
-          makeAllIndicatorsWithALoop(
-            positions.detectedOneStepArgument,
-            newAllInferencesValidForCurrentRule,
-            "indicator-data-detected",
-            key,
-            ruleName
-          );
-        }
-        key = key + positions.detectedOneStepArgument.length;
-      } else if (typeOfRule === "twoStep") {
-        // cas des règles à deux arguments, positions est un objet contenant des clés qui sont des tableaux contenant des tableaux contenant des nombres
-        // étape 0 : si la règle est hypothétique on met un background-color au rond de la dernière hyp en cours
-
-        if (positions.semiDetectedFirstArgument) {
-          makeAllIndicatorsWithALoop(
-            positions.semiDetectedFirstArgument,
-            newAllInferencesValidForCurrentRule,
-            "indicator-data-semi-detected",
-            key,
-            ruleName
-          );
-          key = key + positions.semiDetectedFirstArgument.length;
-        }
-
-        // étape 2 : on remplace d'autres ronds rouges par un rond vert
-        if (positions.detectedFirstArgument) {
-          makeAllIndicatorsWithALoop(
-            positions.detectedFirstArgument,
-            newAllInferencesValidForCurrentRule,
-            "indicator-data-detected",
-            key,
-            ruleName
-          );
-          key = key + positions.detectedFirstArgument.length;
-        }
-        // étape 3 : on remplace d'autres ronds rouges par un rond bleu ciel
-        if (positions.detectedSecondArgument) {
-          makeAllIndicatorsWithALoop(
-            positions.detectedSecondArgument,
-            newAllInferencesValidForCurrentRule,
-            "indicator-data-second-argument-detected",
-            key,
-            ruleName
-          );
-          key = key + positions.detectedSecondArgument.length;
-        }
-      }
-      if (positions.currentHyp && ruleName !== "reit") {
-        // consolelog("il y a bien une hyp et c'est ", positions.currentHyp);
-        // étape 4, on rajoute un tiret pour les inférences hors de l'hypothèse en cours (sauf pour reit)
-        makeAllIndicatorsWithALoop(
-          positions.inferencesFromPreviousHypotheses,
-          newAllInferencesValidForCurrentRule,
-          "",
-          key,
-          "-"
-        );
-        key = key + positions.inferencesFromPreviousHypotheses.length;
-        // étape 5, pour les règles avec une hypothèse, il faut d'abord trouver si le numéro en question est présent dans une autre catégorie
-        newAllInferencesValidForCurrentRule[positions.currentHyp.num] = (
-          <div key={1000} className={positions.currentHyp.type}>
-            {ruleName}
-          </div>
-        );
-      }
-      // étape 6, on rajoute une croix pour les inférences d'hypothèses fermées
-      makeAllIndicatorsWithALoop(
-        positions.inferencesFromClosedHypotheses,
-        newAllInferencesValidForCurrentRule,
-        "indicator-data-undetected",
-        key,
-        "×"
-      );
-      key = key + positions.inferencesFromClosedHypotheses.length;
-    }
-  }
-  updateScannedInferences(newAllInferencesValidForCurrentRule);
-}
-
-function makeAllIndicatorsWithALoop(
-  currentPositions,
-  newAllInferencesValidForCurrentRule,
-  className,
-  key,
-  ruleName
-) {
-  for (let i = 0; i < currentPositions.length; i++, key++) {
-    newAllInferencesValidForCurrentRule[currentPositions[i]] = (
-      <div key={key} className={"indicator " + className}>
-        {ruleName}
-      </div>
-    );
-  }
-  return newAllInferencesValidForCurrentRule;
-}
-
-// la fonction scanWithTheRightRule sert à "~~e" "∧e" "∧i""∨i" "⊃i" "≡e" "⊅e" "↓e"
 function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
   let isTheRuleAdequate = false;
   if (ruleName === "~~e") {
@@ -364,16 +147,11 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     }
   } else if (ruleName === "∧e") {
     //  A∧B pour A ou B
-    const arrayAandB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const arrayAandB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inference,
       "∧"
     );
     if (arrayAandB.length === 2) {
-      isTheRuleAdequate = true;
-    }
-  } else if (ruleName === "∧i") {
-    // A, B pour A∧B
-    if (inference) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "∨i") {
@@ -388,7 +166,7 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     }
   } else if (ruleName === "≡e") {
     // A≡B pour A⊃B ou B⊃A
-    const arrayAiffB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const arrayAiffB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inference,
       "≡"
     );
@@ -399,11 +177,11 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     // (A), B pour A⊅B
   } else if (ruleName === "↓e") {
     // A↓B pour ~A ou ~B
-    const arraynotAnotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const neitherAnorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inference,
       "↓"
     );
-    if (arraynotAnotB.length === 2) {
+    if (neitherAnorB !== "error") {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "reit") {
@@ -426,27 +204,25 @@ function scanTwoStepRule(
   let isTheRuleAdequate = false;
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
-    inferenceOne = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
-      inferenceOne,
+    inferenceTwo = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
       "⊃"
     );
-    if (inferenceOne[0] === inferenceTwo) {
+    if (inferenceTwo[0] === inferenceOne) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "~i") {
     // B, ~B, pour réfuter l'hypothèse (A)
-    let notBbecomeB = inferenceTwo.substring(1);
-    notBbecomeB = InferenceTools.mayRemoveFirstParenthesis(notBbecomeB);
-    if (allHypotheticalInferences && inferenceOne === notBbecomeB) {
+    if (allHypotheticalInferences && "~" + inferenceOne === inferenceTwo) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "≡i") {
     // A⊃B, B⊃A pour A≡B
-    const AthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const AthenB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceOne,
       "⊃"
     );
-    const BthenA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const BthenA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceTwo,
       "⊃"
     );
@@ -455,11 +231,11 @@ function scanTwoStepRule(
     }
   } else if (ruleName === "⊻i") {
     // A⊅B, B⊅A pour A⊻B
-    const AthennotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const AthennotB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceOne,
       "⊅"
     );
-    const BthennotA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    const BthennotA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceTwo,
       "⊅"
     );
@@ -467,35 +243,47 @@ function scanTwoStepRule(
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊻e") {
-    // A, A⊻B pour ~B (ou ~A, A⊻B, pour B)
-    const AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
-      inferenceOne,
+    // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
+    const AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
       "⊻"
     );
     if (
-      AorB[0] === inferenceTwo ||
-      AorB[1] === inferenceTwo ||
-      "~" + AorB[0] === inferenceTwo ||
-      "~" + AorB[1] === inferenceTwo ||
-      AorB[0] === "~" + inferenceTwo ||
-      AorB[1] === "~" + inferenceTwo
+      AorB[0] === inferenceOne ||
+      AorB[1] === inferenceOne ||
+      "~" + AorB[0] === inferenceOne ||
+      "~" + AorB[1] === inferenceOne ||
+      AorB[0] === "~" + inferenceOne ||
+      AorB[1] === "~" + inferenceOne
     ) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊅e") {
     // A, A⊅B pour ~B
+    inferenceTwo = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊅"
+    );
+    if (InfTools.mayRemoveFirstParenthesis(inferenceTwo[0]) === inferenceOne) {
+      isTheRuleAdequate = true;
+    }
   } else if (ruleName === "↑i") {
     // A, ~B, pour A↑B
-    if (inferenceOne && inferenceTwo[0] === "~") {
+    if (
+      !InfTools.isThereAMainOperator(inferenceTwo) &&
+      InfTools.returnNegationCount(inferenceOne) <
+        InfTools.returnNegationCount(inferenceTwo)
+    ) {
+      // note : s'il y a un opérateur dominant, inferenceTwo est forcément vraie, donc ↑i ne peut pas avoir lieu
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "↑e") {
     // A, A↑B pour ~B
-    const AincompB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+    inferenceTwo = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceTwo,
       "↑"
     );
-    if (AincompB[0] === inferenceOne || AincompB[1] === inferenceOne) {
+    if (inferenceOne === inferenceTwo[0] || inferenceOne === inferenceTwo[1]) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "↓i") {
@@ -504,13 +292,23 @@ function scanTwoStepRule(
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "∨e") {
-    // A∨B + conc de |A + conc de |B, pour A ou B
-    // cas super compliqué et relou
+    // ~A (ou ~B), A∨B pour A (ou B)
+    inferenceTwo = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "∨"
+    );
+    if (inferenceOne[0] === "~") {
+      inferenceOne = inferenceOne.substring(1);
+      if (
+        inferenceOne === inferenceTwo[0] ||
+        inferenceOne === inferenceTwo[1]
+      ) {
+        isTheRuleAdequate = true;
+      }
+    }
   } else if (ruleName === "ex falso") {
     // A, ~A pour B
-    let notBbecomeB = inferenceTwo.substring(1);
-    notBbecomeB = InferenceTools.mayRemoveFirstParenthesis(notBbecomeB);
-    if (inferenceOne === notBbecomeB) {
+    if (inferenceTwo === "~" + inferenceOne) {
       isTheRuleAdequate = true;
     }
   }

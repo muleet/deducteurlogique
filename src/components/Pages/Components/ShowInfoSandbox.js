@@ -89,13 +89,14 @@ class ShowInfoSandbox extends Component {
     }
   };
 
-  useOfMakeInference = (infItself, infNumCom, infComm) => {
+  useOfAddInference = (infItself, infNumCom, infComm) => {
     // cette méthode crée une inférence à partir de données envoyées par Deducer (au moment d'un clic sur la prémisse). D'abord on crée un objet contenant toutes les bonnes données.
     const inference = {
       itself: infItself,
       numberCommentary: infNumCom,
       commentary: infComm
     };
+    console.log("bonjour");
     // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
     this.props.valueInference.setAdvice(
       "Répétition de la prémisse " + inference.itself,
@@ -113,7 +114,6 @@ class ShowInfoSandbox extends Component {
         newSetofPremisses.indexOf(newContent) === -1 &&
         newContent.length > 0
       ) {
-        console.log("3)", newContent);
         newSetofPremisses.push(newContent);
         newStoredObjectExercise.premisses.push(newContent);
         this.props.valueInference.storeUserExerciseBeforeUpload(
@@ -121,7 +121,6 @@ class ShowInfoSandbox extends Component {
         );
       }
     } else if (type === "conclusion") {
-      console.log("3)", newContent);
       newConclusion = newContent;
       newStoredObjectExercise.conclusion = newContent;
       this.props.valueInference.storeUserExerciseBeforeUpload(
@@ -159,8 +158,8 @@ class ShowInfoSandbox extends Component {
           className={"premisse selectable"}
           NumberButton={newLetter}
           NameButton={setOfPremissesThemselves[i]}
-          useOfMakeInferenceSent={() =>
-            this.useOfMakeInference(
+          useOfAddInferenceSent={() =>
+            this.useOfAddInference(
               setOfPremissesThemselves[i],
               newLetter,
               "rep"
@@ -242,15 +241,20 @@ class ShowInfoSandbox extends Component {
       <Fragment>
         <p className={"exercise-title "} />
         <ul className="setPremissesConclusion">
-          <li style={{ display: "flex", flexDirection: "row" }}>
-            Prémisses {this.showPossiblePremisses(this.props.premissesSent)}
-            {keyBoardToAddPremisses}
-            {
-              <i
-                className="fas fa-eraser icon"
-                onClick={() => this.resetPartOfState("premisse")}
-              />
-            }
+          <li style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              Prémisses {this.showPossiblePremisses(this.props.premissesSent)}
+              {keyBoardToAddPremisses}
+              {
+                <i
+                  className="fas fa-eraser icon"
+                  onClick={() => {
+                    this.resetPartOfState("premisse");
+                    this.props.valueInference.resetDeduction();
+                  }}
+                />
+              }
+            </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               {this.showPremisses(this.state.setOfPremisses)}
             </div>

@@ -26,10 +26,6 @@
   color: #ffb58e;
 }
 
-.inferenceGlobal:hover {
-  border: 1px solid red;
-}
-
 .inferenceGlobal:hover .hypothesis-level {
   color: purple;
 }
@@ -45,8 +41,13 @@
 /* .hypothesis-line {
 } */
 
-.hypothesisItself {
+.hypotheticalInference {
   color: rgb(0, 140, 255);
+}
+
+.inference-normalText {
+  /* utilisé pour mettre du texte normal au milieu d'une inférence, par exemple pour afficher l'inférence probable avec ∧e */
+  color: white;
 }
 
 .concluding-inference-blinking {
@@ -55,6 +56,38 @@
   /* font-weight:bold; */
   /* border:3px solid green; */
   /* text-decoration: underline; */
+}
+
+/* SECTION DE LA PROCHAINE INFERENCE */
+.probable-inference {
+  opacity: 0.5;
+}
+
+.probable-shadow {
+  /* box-shadow: -5px 5px 50px rgba(255, 255, 255, 0.237); */
+  /* box-shadow: -7px -7px 10px -4px steelblue inset; */
+  /* , -5px 5px 10px -2px white; */
+  /* border: 1px steelblue solid; */
+  /* border-radius: 10px; */
+  /* border-top: transparent 1px solid; */
+  /* border-left: transparent 1px solid; */
+}
+
+.adequacyArrow {
+  position: absolute;
+  animation: slow-blinker 3s linear infinite;
+  margin-left: -30px;
+}
+
+.probable-inference-checkSquare {
+  /* opacity: 1 ; */
+  position: relative;
+  margin-left: 50px;
+}
+
+.probable-inference-checkSquare-inactive {
+  opacity: 0.5;
+  margin-left: 50px;
 }
 
 .awaiting-an-inference-blinking {

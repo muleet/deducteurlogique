@@ -11,12 +11,15 @@
     "category": "info-line",
     "character": "",
     "example": [],
-    "image": ""
+    "image": "",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   },
   {
     "number": 1,
-    "name": "Tautologie",
-    "alternativeName": "",
+    "name": "Verum",
+    "alternativeName": "Tautologie",
     "description": "",
     "link": "",
     "reductibleTo": "",
@@ -27,7 +30,10 @@
     "example": [
       "Si le chat est sur le fauteuil, alors le chat est sur le fauteuil."
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Venn1111.svg/100px-Venn1111.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Venn1111.svg/100px-Venn1111.svg.png",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   },
   {
     "number": 2,
@@ -41,7 +47,10 @@
     "category": "one-true",
     "character": "∧&",
     "example": ["Tu peux manger cet aliment.", "Tu peux boire cette eau."],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Venn0001.svg/100px-Venn0001.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Venn0001.svg/100px-Venn0001.svg.png",
+    "type": "Conjonction",
+    "dual": "12",
+    "negativeOpposite": "15"
   },
   {
     "number": 3,
@@ -55,7 +64,10 @@
     "category": "one-true",
     "character": "⊅↛",
     "example": "",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Venn0100.svg/100px-Venn0100.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Venn0100.svg/100px-Venn0100.svg.png",
+    "type": "Conjonction",
+    "dual": "13",
+    "negativeOpposite": "14"
   },
   {
     "number": 4,
@@ -69,7 +81,10 @@
     "category": "one-true",
     "character": "⊄↚",
     "example": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Venn0010.svg/100px-Venn0010.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Venn0010.svg/100px-Venn0010.svg.png",
+    "type": "Conjonction",
+    "dual": "14",
+    "negativeOpposite": "13"
   },
   {
     "number": 5,
@@ -83,7 +98,10 @@
     "category": "one-true",
     "character": "↓",
     "example": ["Le capitalisme.", "Le nationalisme."],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Venn1000.svg/100px-Venn1000.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Venn1000.svg/100px-Venn1000.svg.png",
+    "type": "Conjonction",
+    "dual": "15",
+    "negativeOpposite": "12"
   },
   {
     "number": 6,
@@ -97,7 +115,10 @@
     "category": "true-and-false",
     "character": "A",
     "example": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Venn0101.svg/100px-Venn0101.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Venn0101.svg/100px-Venn0101.svg.png",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   },
   {
     "number": 7,
@@ -111,7 +132,10 @@
     "category": "true-and-false",
     "character": ["~B"],
     "example": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Venn1100.svg/100px-Venn1100.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Venn1100.svg/100px-Venn1100.svg.png",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   },
   {
     "number": 8,
@@ -125,7 +149,10 @@
     "category": "true-and-false",
     "character": "≡↔",
     "example": ["Je respire.", "Je vis."],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Venn1001.svg/100px-Venn1001.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Venn1001.svg/100px-Venn1001.svg.png",
+    "type": "",
+    "dual": "8",
+    "negativeOpposite": "9"
   },
   {
     "number": 9,
@@ -139,7 +166,10 @@
     "category": "true-and-false",
     "character": "⊻≢↮",
     "example": ["Je suis debout.", "Je ne suis pas debout."],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Venn0110.svg/100px-Venn0110.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Venn0110.svg/100px-Venn0110.svg.png",
+    "type": "",
+    "dual": "9",
+    "negativeOpposite": "8"
   },
   {
     "number": 10,
@@ -153,7 +183,10 @@
     "category": "true-and-false",
     "character": "B",
     "example": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Venn0011.svg/100px-Venn0011.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Venn0011.svg/100px-Venn0011.svg.png",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   },
   {
     "number": 11,
@@ -167,7 +200,10 @@
     "category": "true-and-false",
     "character": ["~A"],
     "example": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Venn1010.svg/100px-Venn1010.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Venn1010.svg/100px-Venn1010.svg.png",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   },
   {
     "number": 12,
@@ -184,7 +220,10 @@
       "Ludwig Wittgenstein est l'auteur du Tractatus logico-philosophicus.",
       "Les fourmis ont six pattes."
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venn0111.svg/100px-Venn0111.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venn0111.svg/100px-Venn0111.svg.png",
+    "type": "Disjonction",
+    "dual": "2",
+    "negativeOpposite": "5"
   },
   {
     "number": 13,
@@ -198,7 +237,10 @@
     "category": "one-false",
     "character": "⊂←",
     "example": ["Il pleut.", "Le sol est mouillé."],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Venn1101.svg/100px-Venn1101.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Venn1101.svg/100px-Venn1101.svg.png",
+    "type": "Disjonction",
+    "dual": "3",
+    "negativeOpposite": "4"
   },
   {
     "number": 14,
@@ -212,7 +254,10 @@
     "category": "one-false",
     "character": "⊃→",
     "example": ["Je doute.", "Je suis."],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Venn1011.svg/100px-Venn1011.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Venn1011.svg/100px-Venn1011.svg.png",
+    "type": "Disjonction",
+    "dual": "4",
+    "negativeOpposite": "3"
   },
   {
     "number": 15,
@@ -226,12 +271,15 @@
     "category": "one-false",
     "character": "↑|",
     "example": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Venn1110.svg/100px-Venn1110.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Venn1110.svg/100px-Venn1110.svg.png",
+    "type": "Disjonction",
+    "dual": "5",
+    "negativeOpposite": "2"
   },
   {
     "number": 16,
-    "name": "Contradiction",
-    "alternativeName": "",
+    "name": "Falsum",
+    "alternativeName": "Contradiction",
     "description": "",
     "link": "",
     "reductibleTo": "",
@@ -243,6 +291,9 @@
       "Toute personne connaît la logique.",
       "Au moins une personne ne connaît pas la logique."
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Venn0000.svg/100px-Venn0000.svg.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Venn0000.svg/100px-Venn0000.svg.png",
+    "type": "",
+    "dual": "",
+    "negativeOpposite": ""
   }
 ]

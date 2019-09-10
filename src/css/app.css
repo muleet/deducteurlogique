@@ -76,7 +76,8 @@ footer {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 500px;
+  align-content: center;
+  height: 450px;
 }
 
 .anarchy {

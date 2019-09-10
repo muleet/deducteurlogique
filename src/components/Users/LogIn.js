@@ -22,7 +22,10 @@ class LogIn extends React.Component {
 
   onSubmit = event => {
     axios
-      .post("http://localhost:3001/api/user/log_in", {
+      // le site lui-même
+      .post("http://deducteurlogique-api.herokuapp.com/api/user/log_in", {
+        // quand je suis en local
+        // .post("http://localhost:5000/api/user/log_in", {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username

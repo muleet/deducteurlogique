@@ -42,6 +42,14 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
+            Un système de comptes utilisateur pour créer des exos, savoir quels
+            exos on a résolus etc.
+          </p>
+          <p className="later-available-rule">- Les règles modales.</p>
+          <p className="maybenever-available-rule">
+            - Les règles des prédicats.
+          </p>
+          {/* <p className="soon-available-rule">
             - La possibilité de créer des comptes utilisateurs, pour stocker les
             exercices résolus par un utilisateur et pour lui permettre de créer
             de nouveaux exercices (il pourra choisir les prémisses, les règles
@@ -54,11 +62,6 @@ const TheFuture = () => {
             France, tu l'aimes ou tu la quittes" est au moins un faux dilemme et
             un appel à l'émotion, le but de l'exercice serait de trouver que
             c'est le cas.
-          </p>
-          <p className="soon-available-rule">
-            - Corrections des bugs spécifiques au fonctionnement de la règle ∨e
-            (et surtout, amélioration de son interface) + possibilité d'utiliser
-            la suppression de la dernière inférence, avec cette règle.
           </p>
           <p className="soon-available-rule">
             - Des schémas pour indiquer quels genre d'arguments sont attendus
@@ -74,15 +77,6 @@ const TheFuture = () => {
             pour mettre en avant les significations possibles.
           </p>
           <p className="later-available-rule">- Les règles modales.</p>
-          <p className="maybenever-available-rule">
-            - Au sein de la déduction, pouvoir inverser à tout moment A et B
-            dans des inférences ayant pour connecteur dominant un connecteur
-            dont le sens n'a pas d'importance (∧, ∨, ⊻, ≡, ↓ ou ↑) en cliquant
-            sur le connecteur. En mettant sa souris sur un connecteur
-            commutatif, on verra la portée de celui-ci (même s'il est au sein
-            d'une parenthèse). (L'action d'inverser ainsi des inférences sera
-            appelé "utilisation de la règle de commutativité".)
-          </p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, lorsqu'on met le curseur de la souris sur
             le caractère d'une parenthèse, l'autre caractère lié à ce premier
@@ -118,10 +112,7 @@ const TheFuture = () => {
             lignes d'une déduction (avec un "?" à la place de leur nombre), dès
             le début (pour qu'il puisse établir à l'avance le but visé dans sa
             déduction).
-          </p>
-          <p className="maybenever-available-rule">
-            - Les règles des prédicats.
-          </p>
+          </p> */}
         </div>
       </div>
     </main>
