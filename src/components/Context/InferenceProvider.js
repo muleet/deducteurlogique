@@ -1,4 +1,4 @@
-import React, { createContext, Component, Fragment } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
+import React, { createContext, Component } from "react"; // on importe createContext qui servira à la création d'un ou plusieurs contextes
 import InferenceScanner from "./Components/InferenceScanner";
 import InferenceTools from "./Components/InferenceTools";
 import InferenceForecaster from "./Components/InferenceForecaster";
@@ -68,15 +68,6 @@ class InferenceProvider extends Component {
           this.props.conclusionSent === commutedInference)
       ) {
         newInference.inferenceType = "concluding-inference-blinking ";
-      }
-
-      // section du commentaire
-      let commentary = "";
-      if (newInference.numberCommentary !== "") {
-        commentary =
-          newInference.numberCommentary + ", " + newInference.commentary;
-      } else {
-        commentary = newInference.commentary;
       }
 
       // section de la détection de l'opérateur
@@ -561,7 +552,7 @@ class InferenceProvider extends Component {
       active, // est-on en train de forecaster une inférence
       itself, // inférence elle-même
       commentary, // son commentaire (obtenu quand il y a un ruleModal ouvert)
-      numberCommentary, // nombre.s du commentaire, (obtenu.s quand l'utilisateur a cliqué sur une ou des inférences)
+      numberCommentary, // nombre·s du commentaire, (obtenu·s quand l'utilisateur a cliqué sur une ou des inférences)
       activable // l'inférence forecastée peut-elle être activée
     ) => {
       let newProbableInference = {

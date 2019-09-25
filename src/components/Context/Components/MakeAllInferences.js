@@ -72,41 +72,37 @@ function renderInference(inference, num, selectableClassName, value) {
   }
 
   return (
-    <Fragment>
-      <li
-        key={num - 1}
-        className={"inferenceGlobal " + classNames + selectableClassName}
-        onClick={() => {
-          if (value.canInferenceBeStored === true) {
-            value.storageForRuleVerification(
-              num, // on envoie le futur numéro d'inférence
-              inference.itself, // on envoie l'inférence elle-même
-              inference.actualHypID // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
-            );
-          }
-        }}
-      >
-        <div className={"inferenceNumber " + classNames}>{num}.</div>
-        <div className={"hypothesis-level " + classNames}>
-          {hypothesisLevel}
-          {/* {this.props.hypIDSent} */}
-        </div>
-        <div className={"inferenceItself " + classNames}>
-          {inference.itself}
-        </div>
-        <div className={"inferenceCommentary " + classNames}>{commentary}</div>
-        {/* {this.renderCheckSquare(this.props.checkSquare)} */}
-        {/* {this.props.checkSquare} */}
-        {adequacyArrow}
-      </li>
-    </Fragment>
+    <li
+      key={num - 1}
+      className={"inferenceGlobal " + classNames + selectableClassName}
+      onClick={() => {
+        if (value.canInferenceBeStored === true) {
+          value.storageForRuleVerification(
+            num, // on envoie le futur numéro d'inférence
+            inference.itself, // on envoie l'inférence elle-même
+            inference.actualHypID // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
+          );
+        }
+      }}
+    >
+      <div className={"inferenceNumber " + classNames}>{num}.</div>
+      <div className={"hypothesis-level " + classNames}>
+        {hypothesisLevel}
+        {/* {this.props.hypIDSent} */}
+      </div>
+      <div className={"inferenceItself " + classNames}>{inference.itself}</div>
+      <div className={"inferenceCommentary " + classNames}>{commentary}</div>
+      {/* {this.renderCheckSquare(this.props.checkSquare)} */}
+      {/* {this.props.checkSquare} */}
+      {adequacyArrow}
+    </li>
   );
 }
 
-function renderCheckSquare(checkSquare) {
-  if (checkSquare) {
-    return checkSquare;
-  }
-}
+// function renderCheckSquare(checkSquare) {
+//   if (checkSquare) {
+//     return checkSquare;
+//   }
+// }
 
 export default MakeAllInferences;

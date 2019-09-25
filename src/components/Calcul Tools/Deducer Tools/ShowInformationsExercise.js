@@ -1,16 +1,17 @@
 import React, { Component, Fragment } from "react";
 import ButtonRuleRep from "../ButtonRuleRep";
+import InferenceForecaster from "../../Context/Components/InferenceForecaster";
 
 // fonction appelée par Deducer, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json) ainsi que valueInference
 class ShowInformationsExercise extends Component {
   // on crée un ensemble html qui va organiser l'affichage des prémisses, qu'il y en ait 1, 2, 150, 0
 
-  useOfAddInference = (infItself, infNumCom, infComm) => {
+  useOfAddInference = (infItself, infNumCom) => {
     // cette méthode crée une inférence à partir de données envoyées par Deducer (au moment d'un clic sur la prémisse). D'abord on crée un objet contenant toutes les bonnes données.
     const inference = {
       itself: infItself,
       numberCommentary: infNumCom,
-      commentary: infComm
+      commentary: "rep"
     };
     // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
     this.props.valueInference.setAdvice(
@@ -18,6 +19,16 @@ class ShowInformationsExercise extends Component {
       "rule-advice"
     );
     this.props.valueInference.addInference(inference);
+  };
+
+  useOfForecastInference = (infItself, infNumCom) => {
+    //  anticipation de la prochaine inférence
+    InferenceForecaster(
+      [infItself], // le contenu de l'inférence répétée
+      infNumCom, // le numéro de l'inférence répétée (une lettre dans ce cas-là)
+      "rep", // le nom de la règle, toujours "rep" dans ce cas
+      this.props.valueInference
+    );
   };
 
   // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
@@ -79,9 +90,17 @@ class ShowInformationsExercise extends Component {
             useOfAddInferenceSent={() =>
               this.useOfAddInference(
                 this.props.exerciseSent.premisses[i],
-                newLetter,
-                "rep"
+                newLetter
               )
+            }
+            useOfForecastInferenceSent={() =>
+              this.useOfForecastInference(
+                this.props.exerciseSent.premisses[i],
+                newLetter
+              )
+            }
+            resetForecastInferenceSent={() =>
+              this.useOfForecastInference("reset")
             }
           />
         );

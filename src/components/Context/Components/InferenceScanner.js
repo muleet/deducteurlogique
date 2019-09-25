@@ -1,4 +1,3 @@
-import React from "react";
 import InfTools from "./InferenceTools";
 
 // composant appelé par InferenceProvider, avec les props ruleName, areTheInferencesDetected, allInferencesThemselves

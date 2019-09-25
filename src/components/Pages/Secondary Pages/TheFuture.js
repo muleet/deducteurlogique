@@ -45,6 +45,10 @@ const TheFuture = () => {
             Un système de comptes utilisateur pour créer des exos, savoir quels
             exos on a résolus etc.
           </p>
+          <p className="soon-available-rule">
+            Versions alternatives des règles ⊃e (contraposition) et ∨e
+            (syllogisme disjonctif).
+          </p>
           <p className="later-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
             - Les règles des prédicats.

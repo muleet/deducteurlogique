@@ -139,7 +139,7 @@
     "name": "⊻e",
     "lecture": "A⊻B se lit \"ou bien A, ou bien B\" ; \"soit A, soit B\"",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
-    "verbalDescription": "Si A (ou B) a été posé, et que A⊻B a été posé, on peut inférer ~B (ou ~A). Cela fonctionne aussi avec ~A (ou ~B) pour inférer B (ou A). Inversement, si l'on a ~A (ou ~B) et A⊻B, on peut alors inférer A (ou B).",
+    "verbalDescription": "Dans A⊻B, A et B s'excluent mutuellement, donc si l'un est posé, on peut inférer la négation de l'autre, et si l'un est nié on peut inférer l'autre.",
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 // import Exercises from "../../data/Exercises.json";
 import ShowInfoSandbox from "./Components/ShowInfoSandbox";
-import SandboxShowUserRequirements from "./Components/SandboxShowUserRequirements";
+// import SandboxShowUserRequirements from "./Components/SandboxShowUserRequirements";
 import ButtonRuleMaker from "../Calcul Tools/Deducer Tools/ButtonRuleMaker";
 import InferenceProvider, {
   InferenceContext

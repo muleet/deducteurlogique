@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ButtonRuleRep from "../../Calcul Tools/ButtonRuleRep";
+import InferenceForecaster from "../../Context/Components/InferenceForecaster";
 
 // fonction appelée par Deducer, qui envoie des props sur un exercice de logique (qui ont pour origine le fichier Exercices.json) ainsi que valueInference
 class ShowInfoSandbox extends Component {
@@ -10,7 +11,8 @@ class ShowInfoSandbox extends Component {
     conclusion: ""
   };
 
-  addToFuturePremOrConc = newChar => {
+  // Section 1 : méthodes de modification des caractères
+  addCharacterToFuturePremOrConc = newChar => {
     let copyFuturePremisse = this.state.futureContent;
     copyFuturePremisse += newChar;
     this.setState({ futureContent: copyFuturePremisse });
@@ -25,36 +27,46 @@ class ShowInfoSandbox extends Component {
     }));
   };
 
+  // section 2 : méthodes d'interface
   toggleWindow = type => {
-    let newBool = false;
+    console.log("type", type);
+    let newType = false;
     if (!this.state.isTheKeyboardWindowShownAndWhy) {
-      newBool = type;
+      newType = type; // soit false, soit "premisse", soit "conclusion"
     }
+    console.log("newType", newType);
     this.setState({
-      isTheKeyboardWindowShownAndWhy: newBool
+      isTheKeyboardWindowShownAndWhy: newType
     });
   };
 
-  showKeyboard = type => {
+  showKeyboard = () => {
     let everyPossibleCharacter = [
       ["~", "∧", "∨", "⊻", "⊃", "⊅", "≡", "↑", "↓"],
       ["p", "q", "r", "s"],
       ["(", ")"]
     ];
     let buttonConfirmContent = (
-      <p
-        className="rule-modal-button"
-        onClick={() => this.updateState(this.state.futureContent, type)}
-      >
-        <i className="fas fa-check-square icon" />
-      </p>
-    );
-    let buttonRemoveLastCharacter = (
-      <p className="rule-modal-button" onClick={this.removeLastCharacter}>
-        <i className="fas fa-long-arrow-alt-left icon" />
-      </p>
-    );
-    let keyboard = [];
+        <p
+          className="rule-modal-button"
+          onClick={() => {
+            this.updateState(
+              this.state.futureContent, // le contenu de la prémisse ou de la conclusion
+              this.state.isTheKeyboardWindowShownAndWhy // "premisse" ou "conclusion" (ou false mais jamais au sein de cette méthode)
+            );
+          }}
+        >
+          <i className="fas fa-check-square icon" />
+        </p>
+      ),
+      buttonRemoveLastCharacter = (
+        <p className="rule-modal-button" onClick={this.removeLastCharacter}>
+          <i className="fas fa-long-arrow-alt-left icon" />
+        </p>
+      ),
+      keyboard = [],
+      classNameToHidden = "hidden",
+      textInstruction = "";
     for (let i = 0; i < everyPossibleCharacter.length; i++) {
       let subKeyboard = [];
       for (let j = 0; j < everyPossibleCharacter[i].length; j++) {
@@ -63,7 +75,7 @@ class ShowInfoSandbox extends Component {
             key={subKeyboard.length}
             className="selectable"
             onClick={() => {
-              this.addToFuturePremOrConc(everyPossibleCharacter[i][j]);
+              this.addCharacterToFuturePremOrConc(everyPossibleCharacter[i][j]);
             }}
           >
             {everyPossibleCharacter[i][j]}
@@ -72,31 +84,42 @@ class ShowInfoSandbox extends Component {
       }
       keyboard.push(<ul key={keyboard.length}>{subKeyboard}</ul>);
     }
+
     if (this.state.isTheKeyboardWindowShownAndWhy) {
-      return (
-        <div className="question-mark-window-sandbox">
-          {keyboard}
-          <div className="future-premisseOrConclusion">
-            {this.state.futureContent}
-            <p className="blinking">_</p>
-          </div>
-          <div className="rule-modal-all-button-premisse">
-            {buttonRemoveLastCharacter}
-            {buttonConfirmContent}
-          </div>
-        </div>
-      );
+      classNameToHidden = "";
+      if (this.state.isTheKeyboardWindowShownAndWhy === "conclusion") {
+        textInstruction = "Entrez une conclusion.";
+      } else if (this.state.isTheKeyboardWindowShownAndWhy === "premisse") {
+        textInstruction = "Entrez une prémisse.";
+      }
     }
+
+    return (
+      <div className={"question-mark-window-sandbox " + classNameToHidden}>
+        {keyboard}
+        <div className="future-premisseOrConclusion">
+          {this.state.futureContent}
+          <p className="blinking">_</p>
+        </div>
+        <div className="rule-modal-all-button-premisse">
+          {buttonRemoveLastCharacter}
+          {buttonConfirmContent}
+        </div>
+        <p className="rule-modal-keyboard-premConc-instructionText">
+          {textInstruction}
+        </p>
+      </div>
+    );
   };
 
-  useOfAddInference = (infItself, infNumCom, infComm) => {
+  // section 3 : méthodes utilisées par les prémisses elles-mêmes
+  useOfAddInference = (infItself, infNumCom) => {
     // cette méthode crée une inférence à partir de données envoyées par Deducer (au moment d'un clic sur la prémisse). D'abord on crée un objet contenant toutes les bonnes données.
     const inference = {
       itself: infItself,
       numberCommentary: infNumCom,
-      commentary: infComm
+      commentary: "rep"
     };
-    console.log("bonjour");
     // Puis on envoie utilise cet objet comme argument de la fonction contextuelle addInference, qui provient d'InferenceProvider
     this.props.valueInference.setAdvice(
       "Répétition de la prémisse " + inference.itself,
@@ -105,10 +128,21 @@ class ShowInfoSandbox extends Component {
     this.props.valueInference.addInference(inference);
   };
 
+  useOfForecastInference = (infItself, infNumCom) => {
+    //  anticipation de la prochaine inférence
+    InferenceForecaster(
+      [infItself], // le contenu de l'inférence répétée
+      infNumCom, // le numéro de l'inférence répétée (une lettre dans ce cas-là)
+      "rep", // le nom de la règle, toujours "rep" dans ce cas
+      this.props.valueInference
+    );
+  };
+
   updateState(newContent, type) {
     let newSetofPremisses = [...this.state.setOfPremisses],
       newConclusion = this.state.conclusion,
       newStoredObjectExercise = this.props.valueInference.storedObjectExercise;
+    console.log("newContent", newContent, "type", type);
     if (type === "premisse") {
       if (
         newSetofPremisses.indexOf(newContent) === -1 &&
@@ -159,11 +193,13 @@ class ShowInfoSandbox extends Component {
           NumberButton={newLetter}
           NameButton={setOfPremissesThemselves[i]}
           useOfAddInferenceSent={() =>
-            this.useOfAddInference(
-              setOfPremissesThemselves[i],
-              newLetter,
-              "rep"
-            )
+            this.useOfAddInference(setOfPremissesThemselves[i], newLetter)
+          }
+          useOfForecastInferenceSent={() =>
+            this.useOfForecastInference(setOfPremissesThemselves[i], newLetter)
+          }
+          resetForecastInferenceSent={() =>
+            this.useOfForecastInference("reset")
           }
         />
       );
@@ -201,9 +237,9 @@ class ShowInfoSandbox extends Component {
     );
   }
 
-  // le render retourne à déducer l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
+  // le render retourne à Sandbox l'ensemble des prémisses + la conclusion en organisant l'affichage du tout
   render() {
-    let keyBoardToAddPremisses = (
+    let buttonKeyboardPremisses = (
         <Fragment>
           <i
             className="far fa-keyboard icon question-mark-button"
@@ -212,15 +248,14 @@ class ShowInfoSandbox extends Component {
           >
             <div className="question-mark">
               <div className="question-mark-content">
-                Cliquez ici pour ouvrir le clavier permettant de créer une
-                prémisse.
+                Cliquez ici pour afficher/cacher le clavier permettant de créer
+                une prémisse.
               </div>
             </div>
           </i>
-          {this.showKeyboard()}
         </Fragment>
       ),
-      keyBoardToSetConclusion = (
+      buttonKeyboardConclusion = (
         <Fragment>
           <i
             className="far fa-keyboard icon question-mark-button"
@@ -229,12 +264,11 @@ class ShowInfoSandbox extends Component {
           >
             <div className="question-mark">
               <div className="question-mark-content">
-                Cliquez ici pour ouvrir le clavier permettant de créer une
-                conclusion.
+                Cliquez ici pour afficher/cacher le clavier permettant de créer
+                une conclusion.
               </div>
             </div>
           </i>
-          {/* {this.showKeyboard("conclusion")} */}
         </Fragment>
       );
     return (
@@ -243,8 +277,9 @@ class ShowInfoSandbox extends Component {
         <ul className="setPremissesConclusion">
           <li style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", flexDirection: "row" }}>
+              {this.showKeyboard()}
               Prémisses {this.showPossiblePremisses(this.props.premissesSent)}
-              {keyBoardToAddPremisses}
+              {buttonKeyboardPremisses}
               {
                 <i
                   className="fas fa-eraser icon"
@@ -264,7 +299,7 @@ class ShowInfoSandbox extends Component {
             <div style={{ display: "flex", flexDirection: "column" }}>
               {this.state.conclusion}
             </div>
-            {keyBoardToSetConclusion}
+            {buttonKeyboardConclusion}
             {
               <i
                 className="fas fa-eraser icon"

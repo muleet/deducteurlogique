@@ -6,9 +6,8 @@ function ShowProbableInference(value, previousInference) {
   const ruleName = value.ruleModalContent.ruleName,
     expectedArguments = value.ruleModalContent.expectedArguments;
   let probableInference = value.probableInference,
-    checkSquareClassName = "-inactive",
+    // checkSquareClassName = "-inactive",
     newInference = {},
-    hyp = "",
     classNames = "",
     hypothesisLevel = "",
     hypothesisLevelNumber = Number(previousInference.level),
@@ -17,7 +16,6 @@ function ShowProbableInference(value, previousInference) {
     firstArrow = "",
     secondArrow = "",
     setAdequacyArrows = "";
-
   if (value.canInferenceBeStored) {
     // Section de la création des adequacyArrows
     if (ruleName === "⊃i" || ruleName === "~i") {
@@ -84,23 +82,27 @@ function ShowProbableInference(value, previousInference) {
       probableCommentary = "?";
     }
   } else if (probableInference.activable === true) {
-    probableCommentary = "?, " + ruleName;
-    if (ruleName) {
-      probableCommentary = probableInference.numberCommentary + ", " + ruleName;
-    }
-    checkSquareClassName = "";
+    // probableCommentary = "?, " + ruleName;
+    // if (ruleName) {
+    probableCommentary =
+      probableInference.numberCommentary + ", " + probableInference.commentary;
+    // }
+    // checkSquareClassName = "";
     newInference = {
       itself: probableInference.itself,
       commentary: probableInference.commentary + ", " + ruleName,
       numberCommentary: probableInference.numberCommentary,
       numberCommentaryHypothesis: value.storedHypID[0] // désigne le nombre de l'hypothèse
     };
+    if (probableInference.itself === "prochaine inférence") {
+      probableCommentary = "?";
+    }
     if (ruleName === "~i") {
-      hyp = "hypothèse réfutée";
+      // hyp = "hypothèse réfutée";
       hypothesisLevelNumber--;
       newInference.numberCommentaryHypothesis = value.allHypotheticalInferences;
     } else if (ruleName === "⊃i") {
-      hyp = "hypothèse validée";
+      // hyp = "hypothèse validée";
       hypothesisLevelNumber--;
     }
   } else if (ruleName === "hyp") {
@@ -113,7 +115,7 @@ function ShowProbableInference(value, previousInference) {
       commentary: "hyp",
       numberCommentary: ""
     };
-    hyp = "nouvelle hypothèse";
+    // hyp = "nouvelle hypothèse";
     hypothesisLevelNumber++;
     // } else if (ruleName === "∨e") {
     //   // à faire plus tard
@@ -132,7 +134,7 @@ function ShowProbableInference(value, previousInference) {
       key={value.allInferencesThemselves.length}
     >
       <div className={"inferenceNumber "}>
-        {Number(value.allInferencesThemselves.length + 1) + "."}
+        {value.allInferencesThemselves.length + 1 + "."}
       </div>
       <div className={"hypothesis-level "}>
         {hypothesisLevel}

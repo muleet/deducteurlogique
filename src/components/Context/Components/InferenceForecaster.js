@@ -6,7 +6,7 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
   let result = { itself: "", activable: false },
     A = "?",
     B = "?";
-  const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e", "↓e", "reit"];
+  const oneStepRules = ["rep", "~~e", "∧e", "∨i", "⊃i", "≡e", "↓e", "reit"];
   const twoStepRules = [
     "⊃e",
     "∧i",
@@ -23,7 +23,7 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
     "ex falso"
   ];
 
-  // // 1.a début de la prise des valeurs de probableInference, à l'aide de storedInferences
+  // // 1.a début de la prise des futures valeurs de probableInference, à l'aide de storedInferences
   if (storedInferences[0]) {
     A = storedInferences[0];
   }
@@ -32,7 +32,10 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
   }
 
   // 1.b mise en forme finale de probable inference
-  if (ruleName) {
+  if (storedInferences[0] === "reset") {
+    result.itself = "prochaine inférence";
+    result.activable = true;
+  } else if (ruleName) {
     if (oneStepRules.indexOf(ruleName) !== -1) {
       result = scanOneStepRule(ruleName, A, value.allHypotheticalInferences);
     } else if (twoStepRules.indexOf(ruleName) !== -1) {
@@ -59,7 +62,11 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
 function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
   let objectToReturn = { itself: "?", activable: false };
 
-  if (ruleName === "~~e") {
+  if (ruleName === "rep") {
+    if (inference) {
+      objectToReturn.itself = inference;
+    }
+  } else if (ruleName === "~~e") {
     // ~~A pour A
     if (inference[0] === "~" && inference[1] === "~") {
       inference = InfTools.withdrawFirstCharacters(inference, 2);
@@ -111,7 +118,6 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
   if (objectToReturn.itself !== "?") {
     objectToReturn.activable = true;
   }
-  console.log("obj", objectToReturn);
   return objectToReturn;
 }
 
@@ -123,7 +129,6 @@ function scanTwoStepRule(
 ) {
   // "⊃e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "⊅e" "↑i" "↑e" "↓i" "∨e" "ex falso"
   let objectToReturn = { itself: "?", activable: false };
-  console.log("storageruleverif 6", ruleName, inferenceOne, inferenceTwo);
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
     if (
@@ -239,7 +244,6 @@ function scanTwoStepRule(
       objectToReturn.itself = "résultat arbitraire";
     }
   }
-
   if (objectToReturn.itself !== "?") {
     objectToReturn.activable = true;
   }
