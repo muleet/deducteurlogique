@@ -42,16 +42,18 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            Un système de comptes utilisateur pour créer des exos, savoir quels
-            exos on a résolus etc.
+            Jusqu'à 0.70 : Versions alternatives des règles ⊃e (contraposition)
+            et ∨e (syllogisme disjonctif).
           </p>
           <p className="soon-available-rule">
-            Versions alternatives des règles ⊃e (contraposition) et ∨e
-            (syllogisme disjonctif).
+            0.70-0.80 : Un système de comptes utilisateur pour créer des exos,
+            savoir quels exos on a résolus etc.
           </p>
-          <p className="later-available-rule">- Les règles modales.</p>
+          <p className="later-available-rule">
+            0.80-0.90 : Les règles modales.
+          </p>
           <p className="maybenever-available-rule">
-            - Les règles des prédicats.
+            0.90-1.0 : Les règles des prédicats.
           </p>
           {/* <p className="soon-available-rule">
             - La possibilité de créer des comptes utilisateurs, pour stocker les

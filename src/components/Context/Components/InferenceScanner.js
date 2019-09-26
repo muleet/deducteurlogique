@@ -43,8 +43,7 @@ function scanInferences(
           allHypotheticalInferences
         ); // result est soit vrai soit faux
         if (result === true) {
-          allInferencesThemselves[i].adequacyType =
-            "indicator-data-first-argument ";
+          allInferencesThemselves[i].adequacyType = "first";
         }
       }
     } else if (twoStepRules.indexOf(ruleName) !== -1) {
@@ -76,11 +75,9 @@ function scanInferences(
           if (
             !doesTheRuleImplyAnHypothesis &&
             ruleName !== "ex falso" &&
-            allInferencesThemselves[i].adequacyType !==
-              "indicator-data-first-argument "
+            allInferencesThemselves[i].adequacyType !== "first"
           ) {
-            allInferencesThemselves[i].adequacyType =
-              "indicator-data-first-argument-alone ";
+            allInferencesThemselves[i].adequacyType = "first-alone";
           }
           for (let j = 0; j < allInferencesThemselves.length; j++) {
             // étape 2 : y a-t-il une inférence qui a la forme attendue pour le second argument de la règle ? Si oui, scanInferences retourne true + les emplacements des inférences en question (et l'emplacement des caractères)
@@ -92,18 +89,15 @@ function scanInferences(
             );
 
             if (result === true) {
-              allInferencesThemselves[i].adequacyType =
-                "indicator-data-second-argument ";
-              allInferencesThemselves[j].adequacyType =
-                "indicator-data-first-argument ";
+              allInferencesThemselves[i].adequacyType = "second";
+              allInferencesThemselves[j].adequacyType = "first";
             }
           }
         }
       }
     } else if (ruleName === "∧i") {
       for (let i = 0; i < allInferencesThemselves.length; i++) {
-        allInferencesThemselves[i].adequacyType =
-          "indicator-data-first-argument ";
+        allInferencesThemselves[i].adequacyType = "first";
       }
     }
     // On détecte les inférences précédent l'hypothèse en cours
@@ -113,8 +107,7 @@ function scanInferences(
         i < allHypotheticalInferences[0].numberCommentaryHypothesis - 1;
         i++
       ) {
-        allInferencesThemselves[i].adequacyType =
-          "indicator-argument-previous-hypothesis ";
+        allInferencesThemselves[i].adequacyType = "previous-hypothesis";
       }
     }
     // On détecte les inférences provenant d'hypothèses closes
@@ -127,8 +120,7 @@ function scanInferences(
           for (let j = 0; j < allInferencesThemselves.length; j++) {
             // étape 4 : si on en trouve une on l'ajoute à la liste des positions, en étant sûr de pas l'avoir déjà ajoutée
             if (allInferencesThemselves[j].actualHypID === i) {
-              allInferencesThemselves[j].adequacyType =
-                "indicator-argument-closed-hypothesis ";
+              allInferencesThemselves[j].adequacyType = "closed-hypothesis";
             }
           }
         }

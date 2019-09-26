@@ -55,16 +55,22 @@ function renderInference(inference, num, selectableClassName, value) {
   // section des classNames pour la flèche d'adéquation
   if (inference.adequacyType && value.canInferenceBeStored) {
     adequacyArrow = (
-      <div className={"adequacyArrow " + inference.adequacyType}>▶</div>
+      <div className={"adequacyArrow indicator-" + inference.adequacyType}>
+        ▶
+      </div>
     );
-    if (inference.adequacyType === "indicator-argument-previous-hypothesis ") {
+    if (inference.adequacyType === "previous-hypothesis") {
       adequacyArrow = (
-        <div className={"adequacyArrow " + inference.adequacyType}>-</div>
+        <div className={"adequacyArrow indicator-" + inference.adequacyType}>
+          -
+        </div>
       );
     }
-    if (inference.adequacyType === "indicator-argument-closed-hypothesis ") {
+    if (inference.adequacyType === "closed-hypothesis") {
       adequacyArrow = (
-        <div className={"adequacyArrow " + inference.adequacyType}>×</div>
+        <div className={"adequacyArrow indicator-" + inference.adequacyType}>
+          ×
+        </div>
       );
     }
   } else {

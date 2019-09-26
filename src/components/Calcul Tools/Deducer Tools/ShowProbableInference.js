@@ -15,54 +15,57 @@ function ShowProbableInference(value, previousInference) {
   let hypotheticalArrow = "",
     firstArrow = "",
     secondArrow = "",
-    setAdequacyArrows = "";
+    setAdequacyArrows = "",
+    ait = value.allInferencesThemselves,
+    sn = value.storedNumbers;
   if (value.canInferenceBeStored) {
     // Section de la création des adequacyArrows
     if (ruleName === "⊃i" || ruleName === "~i") {
-      hypotheticalArrow = makeIndicator("indicator-data-hypothesis ", false);
+      // cas des règles hypothétiques
+      hypotheticalArrow = makeIndicator("hypothetical", false);
       if (value.allHypotheticalInferences[0]) {
-        hypotheticalArrow = makeIndicator("indicator-data-hypothesis ", true);
+        hypotheticalArrow = makeIndicator("hypothetical", true);
       }
-      firstArrow = makeIndicator("indicator-data-first-argument ", false);
+      firstArrow = makeIndicator("first", false);
       if (expectedArguments.length === 3) {
-        secondArrow = makeIndicator("indicator-second-argument ", false);
+        secondArrow = makeIndicator("second", false);
       }
-    } else {
-      firstArrow = makeIndicator("indicator-data-first-argument ", false);
-      if (value.storedInference[0]) {
-        if (
-          value.allInferencesThemselves[value.storedNumbers[0] - 1]
-            .adequacyType === "indicator-data-first-argument "
+    }
+
+    // cas de toutes les règles
+    firstArrow = makeIndicator("first", false);
+    if (value.storedInference[0]) {
+      if (ait[sn[0] - 1].adequacyType === "first") {
+        firstArrow = makeIndicator("first", true);
+      } else {
+        firstArrow = makeIndicator("inadequate", true);
+      }
+    }
+    if (expectedArguments.length === 2) {
+      secondArrow = makeIndicator("second", false);
+      if (value.storedInference[1]) {
+        if (ait[sn[1] - 1].adequacyType === "second") {
+          secondArrow = makeIndicator("second", true);
+        } else if (ruleName === "∧i") {
+          // cas spécifique de ∧i, puisque cette règle fonctionne avec toutes les inférences
+          secondArrow = makeIndicator("first", true);
+        } else if (
+          ruleName === "↓i" &&
+          ait[sn[1] - 1].adequacyType === "first"
         ) {
-          firstArrow = makeIndicator("indicator-data-first-argument ", true);
+          // cas spécifique de ↓i
+          secondArrow = makeIndicator("first", true);
         } else {
-          firstArrow = makeIndicator("indicator-inadequate-argument ", true);
+          secondArrow = makeIndicator("inadequate", true);
         }
       }
-      if (expectedArguments.length === 2) {
-        secondArrow = makeIndicator("indicator-second-argument ", false);
-        if (value.storedInference[1]) {
-          if (
-            value.allInferencesThemselves[value.storedNumbers[1] - 1]
-              .adequacyType === "indicator-data-second-argument "
-          ) {
-            secondArrow = makeIndicator(
-              "indicator-data-second-argument ",
-              true
-            );
-          } else if (ruleName === "∧i") {
-            // cas spécifique de ∧i, puisque cette règle fonctionne avec toutes les inférences
-            secondArrow = makeIndicator("indicator-data-first-argument ", true);
-          } else if (
-            ruleName === "↓i" &&
-            value.allInferencesThemselves[value.storedNumbers[1] - 1]
-              .adequacyType === "indicator-data-first-argument "
-          ) {
-            // cas spécifique de ∧i, puisque cette règle fonctionne avec toutes les inférences
-            secondArrow = makeIndicator("indicator-data-first-argument ", true);
-          } else {
-            secondArrow = makeIndicator("indicator-inadequate-argument ", true);
-          }
+    } else if (expectedArguments.length === 3) {
+      // cas spécifique de ~i, qui a 3 arguments
+      if (value.storedInference[1]) {
+        if (ait[sn[1] - 1].adequacyType === "second") {
+          secondArrow = makeIndicator("second", true);
+        } else {
+          secondArrow = makeIndicator("inadequate", true);
         }
       }
     }
@@ -133,6 +136,7 @@ function ShowProbableInference(value, previousInference) {
       }
       key={value.allInferencesThemselves.length}
     >
+      {setAdequacyArrows}
       <div className={"inferenceNumber "}>
         {value.allInferencesThemselves.length + 1 + "."}
       </div>
@@ -142,7 +146,6 @@ function ShowProbableInference(value, previousInference) {
       </div>
       <div className={"inferenceItself "}>{probableInference.itself}</div>
       <div className={"inferenceCommentary "}>{probableCommentary}</div>
-      {setAdequacyArrows}
       {/* {
         <div
           className={"probable-inference-checkSquare" + checkSquareClassName}
@@ -162,10 +165,22 @@ function ShowProbableInference(value, previousInference) {
   return nextInference;
 }
 
-function makeIndicator(className, bool) {
-  let adequacyArrow = "▷";
+function makeIndicator(type, bool) {
+  let adequacyArrow = "▷",
+    className = "";
   if (bool) {
     adequacyArrow = "▶";
+  }
+  if (type === "first") {
+    className = "indicator-first ";
+  } else if (type === "second") {
+    className = "indicator-second ";
+  } else if (type === "hypothetical") {
+    className = "indicator-hypothetical ";
+  } else if (type === "inadequate") {
+    className = "indicator-inadequate ";
+  } else if (type === "first-alone") {
+    className = "indicator-first-alone ";
   }
   return <li className={"indicator " + className}>{adequacyArrow}</li>;
 }

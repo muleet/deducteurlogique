@@ -76,7 +76,7 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     //  A∧B pour A ou B
     let AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(inference, "∧");
     if (AorB !== "error") {
-      objectToReturn.itself = AorB[0] + "ou" + AorB[1];
+      objectToReturn.itself = AorB[0] + " ou " + AorB[1];
     }
   } else if (ruleName === "∨i") {
     // A pour A∨B
