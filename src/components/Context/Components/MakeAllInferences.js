@@ -87,9 +87,6 @@ function renderInference(inference, num, value, isItTheLastInference) {
   } else {
     adequacyArrow = "";
   }
-
-  console.log();
-
   return (
     <li
       key={num - 1}

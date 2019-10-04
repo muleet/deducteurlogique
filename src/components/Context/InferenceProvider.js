@@ -599,7 +599,6 @@ class InferenceProvider extends Component {
     ) => {
       let newAllInferencesThemselves = [...this.state.allInferencesThemselves],
         newClassName = "";
-      console.log("wesh bonjour1");
       if (newAllInferencesThemselves.length > 0) {
         if (classNameType === "unremovable") {
           newClassName = "unremovableInference-blinking";
@@ -607,10 +606,8 @@ class InferenceProvider extends Component {
           newClassName = "removableInference-blinking";
         } else if (classNameType === "selected") {
           newClassName = "selectedInference-blinking";
-          console.log("wesh bonjour2a");
         } else if (classNameType === "unselected") {
           newClassName = "unselectedInference-blinking";
-          console.log("wesh bonjour2b");
         }
         if (positionOfInference === "last") {
           newAllInferencesThemselves[
@@ -621,7 +618,6 @@ class InferenceProvider extends Component {
             newAllInferencesThemselves[i].inferenceBackground = newClassName;
           }
         } else if (typeof positionOfInference === "number") {
-          console.log("wesh bonjour3");
           newAllInferencesThemselves[
             positionOfInference - 1
           ].inferenceBackground = newClassName;
