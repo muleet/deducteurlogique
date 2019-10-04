@@ -71,12 +71,6 @@ function returnWhatIsBeforeAndAfterTheOperator(str, operator, mayCommute) {
         this.mayAddFirstParenthesis(arrayToReturn[0]);
     }
   } else {
-    // this.props.valueInference.setAdvice(
-    //   "Cliquez sur une inférence ayant pour connecteur dominant le symbole '" +
-    //     operator +
-    //     "'.",
-    //   "error-advice"
-    // );
     arrayToReturn = "error";
   }
   return arrayToReturn;

@@ -24,7 +24,7 @@ class InferenceProvider extends Component {
 
     this.addInference = (newInference, hyp, secondNewInference) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
-      // newInference = { itself: "", numberCommentary: "", commentary: "", numberCommentaryHypothesis : "", inferenceType: "" }
+      // newInference = { itself: "", numberCommentary: "", commentary: "", numberCommentaryHypothesis : "", inferenceType: "", inferenceBackground:"" }
       // hyp = "nouvelle hypothèse" / "nouvelle hyp ve" / "hypothèse validée" / "hypothèse réfutée"
       console.log("bonjour c'est addInference, voici le hyp : ", hyp);
       let hypNumber = 0,
@@ -85,7 +85,6 @@ class InferenceProvider extends Component {
           this.state.hypothesisCurrentLevelAndId.level + hypNumber;
         secondNewInference.actualHypID = hypIDNumber;
         copyArrayThemselves.push(secondNewInference);
-        console.log("bonjour");
       }
 
       if (
@@ -105,7 +104,6 @@ class InferenceProvider extends Component {
       if (newInference.commentary !== "rep") {
         this.setRuleModal("rule-ended-well", "ended-well modal-ending");
       }
-      console.log(copyArrayThemselves);
       this.setState(state => ({
         allInferencesThemselves: copyArrayThemselves
       }));
@@ -113,12 +111,12 @@ class InferenceProvider extends Component {
 
     this.storageForRuleVerification = (numInference, infItself, hypID) => {
       // déclaration des variables essentielles à cette fonction
-      let copyArrayStoredInference = [...this.state.storedInference]; // inférence elle-même
-      let copyStoredNumbers = [...this.state.storedNumbers]; // numéro(s) justifiant l'inférence (c'est une chaîne de caractères)
-      let copyStoredHypId = [...this.state.storedHypID]; // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
-      // petite déclaration intermédiaire pour bien préparer le moment où on va reset le tableau des arguments
-      let expectedArgumentsLength = this.state.ruleModalContent
-        .expectedArguments.length;
+      let copyArrayStoredInference = [...this.state.storedInference], // inférence elle-même
+        copyStoredNumbers = [...this.state.storedNumbers], // numéro(s) justifiant l'inférence (c'est une chaîne de caractères)
+        copyStoredHypId = [...this.state.storedHypID], // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
+        // petite déclaration intermédiaire pour bien préparer le moment où on va reset le tableau des arguments
+        expectedArgumentsLength = this.state.ruleModalContent.expectedArguments
+          .length;
       const ruleName = this.state.ruleModalContent.ruleName;
       if (ruleName === "~i" || ruleName === "⊃i") {
         expectedArgumentsLength--;
@@ -191,7 +189,8 @@ class InferenceProvider extends Component {
           storedInference: copyArrayStoredInference,
           storedNumbers: copyStoredNumbers,
           storedHypID: copyStoredHypId,
-          ruleModalChoiceContent: ""
+          ruleModalChoiceContent: "",
+          attemptOfRuleValidation: false // il redevient false quoi qu'il arrive, dans cette méthode
         }));
       }
     };
@@ -290,7 +289,8 @@ class InferenceProvider extends Component {
         this.setState(state => ({
           allInferencesThemselves: copyAllInferencesThemselves,
           allHypotheticalInferences: copyAHI,
-          allEndedHypotheticalInferences: copyAEHI
+          allEndedHypotheticalInferences: copyAEHI,
+          anInferenceWasJustRemoved: true
         }));
       }
     };
@@ -383,14 +383,15 @@ class InferenceProvider extends Component {
       });
     };
 
-    this.setRuleModal = (str, strClassName, ruleModalContent, eal) => {
+    this.setRuleModal = (str, howItEnded, ruleModalContent, eal) => {
       // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "change", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
       // "eal" contient expectedArguments.length
       // setRuleModal très en lien avec forecastInference(active,A,B,operator,commentary,numberCommentary)
+      // howItEnded est soit "ended-well" soit "ended-badly" soit "hypothesis-ended-well" soit "hypothesis-ended-badly"
       console.log("str", str);
-      let newRuleModalShown = { normal: false };
-      let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
-      let newRuleModalContent = { ruleName: "" };
+      let newRuleModalShown = { normal: false },
+        newRuleModalContent = { ruleName: "" },
+        newAttemptOfRuleValidation = false;
       if (ruleModalContent) {
         newRuleModalContent = ruleModalContent;
       } else {
@@ -451,17 +452,16 @@ class InferenceProvider extends Component {
         );
       }
 
-      if (strClassName === "ended-well") {
-        newClassName = "rule-modal-ended-well";
-      } else if (strClassName === "ended-badly") {
-        newClassName = "rule-modal-ended-badly";
+      if (howItEnded === "ended-well") {
+      } else if (howItEnded === "ended-badly") {
+        newAttemptOfRuleValidation = true;
       }
 
       // ci-dessous on utilise la fonction permettant de scanner les inférences pour voir s'il y en a qui sont compatibles avec la règle du ruleModal en cours
       this.setState({
         ruleModalShown: newRuleModalShown,
-        ruleModalClassName: newClassName,
-        ruleModalContent: newRuleModalContent
+        ruleModalContent: newRuleModalContent,
+        attemptOfRuleValidation: newAttemptOfRuleValidation
       });
     };
 
@@ -589,6 +589,49 @@ class InferenceProvider extends Component {
       this.setState({ probableInference: newProbableInference });
     };
 
+    this.attemptingToValidateARule = () => {
+      this.setState({ attemptOfRuleValidation: true });
+    };
+
+    this.modifyClassNameOfAnyInference = (
+      classNameType,
+      positionOfInference
+    ) => {
+      let newAllInferencesThemselves = [...this.state.allInferencesThemselves],
+        newClassName = "";
+      console.log("wesh bonjour1");
+      if (newAllInferencesThemselves.length > 0) {
+        if (classNameType === "unremovable") {
+          newClassName = "unremovableInference-blinking";
+        } else if (classNameType === "removable") {
+          newClassName = "removableInference-blinking";
+        } else if (classNameType === "selected") {
+          newClassName = "selectedInference-blinking";
+          console.log("wesh bonjour2a");
+        } else if (classNameType === "unselected") {
+          newClassName = "unselectedInference-blinking";
+          console.log("wesh bonjour2b");
+        }
+        if (positionOfInference === "last") {
+          newAllInferencesThemselves[
+            newAllInferencesThemselves.length - 1
+          ].inferenceBackground = newClassName;
+        } else if (positionOfInference === "all") {
+          for (let i = 0; i < newAllInferencesThemselves.length; i++) {
+            newAllInferencesThemselves[i].inferenceBackground = newClassName;
+          }
+        } else if (typeof positionOfInference === "number") {
+          console.log("wesh bonjour3");
+          newAllInferencesThemselves[
+            positionOfInference - 1
+          ].inferenceBackground = newClassName;
+        }
+        this.setState({
+          allInferencesThemselves: newAllInferencesThemselves
+        });
+      }
+    };
+
     this.resetDeduction = () => {
       this.setState(state => ({
         allInferencesThemselves: [],
@@ -608,7 +651,6 @@ class InferenceProvider extends Component {
         allEndedHypotheticalInferences: [], // utilisé uniquement pour removeLastInference
         // section ruleModal
         ruleModalShown: { normal: false },
-        ruleModalClassName: "",
         ruleModalContent: {
           instruction: "",
           expectedArguments: [],
@@ -637,7 +679,8 @@ class InferenceProvider extends Component {
           commentary: "",
           numberCommentary: "",
           activable: false
-        }
+        },
+        attemptOfRuleValidation: false
       }));
     };
 
@@ -677,7 +720,6 @@ class InferenceProvider extends Component {
       allEndedHypotheticalInferences: [], // utilisé uniquement pour removeLastInference. Lorsqu'on supprime une inférence qui concluait une hypothèse, celle-ci redevient une hypothèse en cours, il faut donc pouvoir la récupérer. C'est à cela que sert le stockage des hyp supprimées.
       // section ruleModal
       ruleModalShown: { normal: false }, // je ferai peut-être un "ruleModalShown.special", plus tard
-      ruleModalClassName: "",
       ruleModalContent: {
         instruction: "",
         expectedArguments: [],
@@ -720,7 +762,11 @@ class InferenceProvider extends Component {
         commentary: "",
         numberCommentary: "",
         activable: false
-      }
+      },
+      attemptingToValidateARule: this.attemptingToValidateARule,
+      attemptOfRuleValidation: false, // devient "true" dès que l'utilisateur ou l'automatisme, a tenté de valider la règle (et lorsqu'il est true la fenêtre de règle devient rouge)
+      anInferenceWasJustRemoved: false, // toujours faux, sauf lorsque "removeLastInference" vient d'être utilisé
+      modifyClassNameOfAnyInference: this.modifyClassNameOfAnyInference
     };
   }
 

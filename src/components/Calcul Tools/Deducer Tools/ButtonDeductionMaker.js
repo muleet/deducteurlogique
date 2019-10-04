@@ -111,6 +111,18 @@ class ButtonDeductionMaker extends Component {
           onClick={() => {
             this.props.valueInference.removeLastInference();
           }}
+          onMouseOver={() => {
+            this.props.valueInference.modifyClassNameOfAnyInference(
+              "removable",
+              "last"
+            );
+          }}
+          onMouseOut={() => {
+            this.props.valueInference.modifyClassNameOfAnyInference(
+              "unremovable",
+              "last"
+            );
+          }}
         />
       ),
       buttonEraseAllInferences = (
@@ -118,6 +130,18 @@ class ButtonDeductionMaker extends Component {
           className="fas fa-eraser icon"
           onClick={() => {
             this.props.valueInference.resetDeduction();
+          }}
+          onMouseOver={() => {
+            this.props.valueInference.modifyClassNameOfAnyInference(
+              "removable",
+              "all"
+            );
+          }}
+          onMouseOut={() => {
+            this.props.valueInference.modifyClassNameOfAnyInference(
+              "unremovable",
+              "all"
+            );
           }}
         />
       );

@@ -105,7 +105,7 @@ class RuleProvider extends Component {
         return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "∧e");
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser ∧e, il faut sélectionnez une inférence de forme A∧B.",
+          "Pour utiliser ∧e, il faut sélectionner une inférence de forme A∧B.",
           "error-advice"
         );
       }

@@ -275,7 +275,6 @@ function scanTwoStepRule(
     if (inferenceOne && inferenceTwo) {
       inferenceOne = InfTools.mayAddFirstParenthesis(inferenceOne);
       inferenceTwo = InfTools.mayAddFirstParenthesis(inferenceTwo);
-      console.log("inversion", inversion);
       if (!inversion) {
         objectToReturn.itself = inferenceOne + "∨" + inferenceTwo;
       } else {

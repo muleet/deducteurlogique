@@ -136,6 +136,18 @@ h3 {
 .icon {
   color: white;
 }
+.icon:hover {
+  color: red;
+  opacity: 1;
+}
+
+.icon-activable {
+  color: rgb(55, 204, 55);
+}
+.icon-activable:hover {
+  color: red;
+  opacity: 1;
+}
 
 .hidden {
   opacity: 0;
@@ -143,11 +155,6 @@ h3 {
 
 .icon-menu {
   font-size: 35px;
-}
-
-.icon:hover {
-  color: red;
-  opacity: 1;
 }
 
 .set-of-page-icons {

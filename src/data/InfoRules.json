@@ -88,7 +88,7 @@
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et on peut inférer B.",
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
-    "instruction": "Cliquez sur A∧B, validez, puis sélectionnez A ou B, pour l'inférer.",
+    "instruction": "Cliquez sur A∧B, validez, puis choisissez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
     "ruleType": "conjonction",
     "available": "yes"
@@ -208,7 +208,7 @@
     "verbalName": "Règle d'élimination du biconditionnel",
     "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
     "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
-    "instruction": "Cliquez sur A≡B, validez, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
+    "instruction": "Cliquez sur A≡B, validez, puis choisissez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
     "ruleType": "conjonction",
     "available": "yes"
@@ -274,7 +274,7 @@
     "verbalName": "Règle d'élimination de la disjonction réciproque",
     "verbalDescription": "Si A↓B a été posé, on peut inférer ~A et/ou ~B.",
     "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
-    "instruction": "Cliquez sur A↓B, validez, puis sélectionnez ~A ou ~B, pour l'inférer.",
+    "instruction": "Cliquez sur A↓B, validez, puis choisissez ~A ou ~B, pour l'inférer.",
     "expectedArguments": ["A↓B"],
     "ruleType": "conjonction",
     "available": "yes"
@@ -287,7 +287,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "ruleType": "",
+    "ruleType": "modal",
     "available": "later"
   },
   {
@@ -298,7 +298,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "ruleType": "",
+    "ruleType": "modal",
     "available": "later"
   },
   {
@@ -309,7 +309,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "ruleType": "",
+    "ruleType": "modal",
     "available": "later"
   },
   {
@@ -320,7 +320,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
-    "ruleType": "",
+    "ruleType": "modal",
     "available": "later"
   },
   {

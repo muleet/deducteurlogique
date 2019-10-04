@@ -10,6 +10,7 @@ class ShowModalButtons extends Component {
       this.props.expectedArguments.length ===
         this.props.valueInference.storedInference.length
     ) {
+      this.props.valueInference.attemptingToValidateARule();
       valueRule.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
         this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
@@ -47,6 +48,7 @@ class ShowModalButtons extends Component {
         this.props.expectedArguments.length - 1 === // on fait -1 puisque l'hypothèse n'est pas comptée à ce moment
           this.props.valueInference.storedInference.length
       ) {
+        this.props.valueInference.attemptingToValidateARule();
         valueRule.redirectToTheRightRule(
           this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
           this.props.valueInference.storedInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle.
@@ -81,6 +83,7 @@ class ShowModalButtons extends Component {
       this.props.expectedArguments.length ===
         this.props.valueInference.longStoredInference.length
     ) {
+      this.props.valueInference.attemptingToValidateARule();
       valueRule.redirectToTheRightRule(
         this.props.ruleName, // argument qui permettra à redirectToTheRightRule de savoir où rediriger les arguments ci-dessous.
         this.props.valueInference.longStoredInference, // storedInference contient (en tableau) les inférences qui permettront de valider la règle (c'est tout le but du site).
@@ -131,7 +134,8 @@ class ShowModalButtons extends Component {
       ruleName = this.props.valueInference.ruleModalContent.ruleName,
       expectedArgumentsLength = this.props.valueInference.ruleModalContent
         .expectedArguments.length,
-      storedInferenceLength = this.props.valueInference.storedInference.length;
+      storedInferenceLength = this.props.valueInference.storedInference.length,
+      checkSquareClassName = "";
     // let buttonDisjonctionEliminationHypothesis = "";
 
     // CONDITIONS PERMETTANT DE DONNER LEURS RÔLES AUX BOUTONS EN FONCTION DE LA REGLE EN COURS
@@ -166,6 +170,12 @@ class ShowModalButtons extends Component {
         </p>
       );
     }
+    if (
+      this.props.valueInference.probableInference.activable &&
+      this.props.valueInference.probableInference.commentary !== "rep"
+    ) {
+      checkSquareClassName = "icon-activable";
+    }
     let buttonVerifyRule = (
         <p
           className="rule-modal-button"
@@ -180,7 +190,7 @@ class ShowModalButtons extends Component {
             }
           }}
         >
-          <i className="fas fa-check-square" />
+          <i className={"fas fa-check-square " + checkSquareClassName} />
         </p>
       ),
       buttonCloseModal = (
@@ -215,8 +225,7 @@ class ShowModalButtons extends Component {
     //   return ""; // pas de boutons pour reit
     // }
 
-    // section de la tentative de vérification automatique de la règle, lors que tous les arguments ont été rentrés (il y a 4 conditions !!!)
-
+    // SECTION TRES IMPORTANTE, la tentative de vérification automatique de la règle, lors que tous les arguments ont été rentrés (il y a 5 conditions !!!)
     if (ruleName === "⊃i" || ruleName === "~i") {
       storedInferenceLength++;
     }
@@ -224,7 +233,8 @@ class ShowModalButtons extends Component {
       expectedArgumentsLength === storedInferenceLength && // a) s'il y a autant d'arguments entrés que d'arguments attendus
       this.props.valueInference.booleansOptionsAboutInferences.boolFinalCheck && // b) si boolFinalCheck est true
       !this.props.valueInference.ruleModalChoiceContent && // c) s'il n'y a pas déjà un ruleModalChoiceContent
-      this.props.valueInference.ruleModalShown.normal // d) s'il y a bien un ruleModal en cours
+      this.props.valueInference.ruleModalShown.normal && // d) s'il y a bien un ruleModal en cours
+      !this.props.valueInference.attemptOfRuleValidation // e) a-t-on déjà essayé de valider CETTE règle avec CES arguments
     ) {
       if (ruleName === "⊃i" || ruleName === "~i") {
         this.verifyBreakHypothesisRule(this.props.valueRule);

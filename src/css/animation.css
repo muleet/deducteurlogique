@@ -85,45 +85,81 @@
   animation-name: fadeIn-firstHalf;
 }
 
-@-webkit-keyframes fadeOut-lastInferenceAdded {
+@keyframes addedInference-blinking {
   0% {
-    opacity: 1;
-    z-index: 0;
-    background-color: green;
-    /* position: absolute; */
-    width: 100px;
-    height: 30px;
-  }
-  100% {
-    opacity: 0;
-    z-index: 0;
-    background-color: green;
-    /* position: absolute; */
-    width: 100px;
-    height: 30px;
-  }
-}
-
-@keyframes wesh-blinking {
-  0% {
-    /* background-color: #55d66b;
-            /* border-left: 5px solid #126620; */
+    background-color: #276331;
   }
   /* YOU CAN ADD MORE COLORS IN THE KEYFRAMES IF YOU WANT*/
   50% {
     /* background-color: #ff3d50; */
-    background-color: #276331;
     /* border: 5px solid #871924; */
+    /* background-color: #55d66b; */
+    /* border-left: 5px solid #126620; */
+    /* background-color: #222291; */
+    /* border: 5px solid #6565f2; */
   }
 
   100% {
     background-color: none;
-    /* background-color: #222291; */
-    /* border: 5px solid #6565f2; */
   }
 }
-#demo-wesh {
+
+#demo-addedInference-blinking {
   /* NAME | TIME | ITERATION */
-  animation: wesh-blinking 1s normal;
-  -webkit-animation: wesh-blinking 1s normal;
+  animation: addedInference-blinking 1.2s normal;
+  -webkit-animation: addedInference-blinking 1.2s normal;
+}
+
+@keyframes removableInference-blinking {
+  0% {
+    background-color: none;
+  }
+  100% {
+    background-color: #ff3d503a;
+  }
+}
+.removableInference-blinking {
+  /* NAME | TIME | ITERATION */
+  animation: removableInference-blinking 0.8s both;
+  -webkit-animation: removableInference-blinking 0.8s both;
+}
+@keyframes unremovableInference-blinking {
+  0% {
+    background-color: #ff3d503a;
+  }
+  100% {
+    background-color: none;
+  }
+}
+.unremovableInference-blinking {
+  /* NAME | TIME | ITERATION */
+  animation: unremovableInference-blinking 0.8s both;
+  -webkit-animation: unremovableInference-blinking 0.8s both;
+}
+
+@keyframes selectedInference-blinking {
+  0% {
+    background-color: none;
+  }
+  100% {
+    background-color: #121247;
+  }
+}
+.selectedInference-blinking {
+  /* NAME | TIME | ITERATION */
+  animation: selectedInference-blinking 0.8s both;
+  -webkit-animation: selectedInference-blinking 0.8s both;
+}
+@keyframes unselectedInference-blinking {
+  0% {
+    background-color: #121247;
+  }
+  100% {
+    background-color: none;
+  }
+}
+.unselectedInference-blinking {
+  /* NAME | TIME | ITERATION */
+  animation: unselectedInference-blinking 1s both;
+  -webkit-animation: unselectedInference-blinking 1s both;
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ShowProbableInference from "../../Calcul Tools/Deducer Tools/ShowProbableInference";
 
 // la fonction MakeAllInferences est appelée par "ShowAllInferences" provenant de InferenceProvider, laquelle se trouve dans Deducer
@@ -8,15 +8,10 @@ function MakeAllInferences(value) {
   // checkSquare est soit 'undefined', soit il contient du html
 
   let allInferencesShown = [],
-    selectableClassName = "",
     previousInference = "",
     isItTheLastInference = false;
   if (value.allInferencesThemselves) {
     for (let i = 0; i < value.allInferencesThemselves.length; i++) {
-      if (value.canInferenceBeStored === true) {
-        selectableClassName = "selectable ";
-      }
-      console.log(i + 1, "===", value.allInferencesThemselves.length);
       if (i + 1 === value.allInferencesThemselves.length) {
         isItTheLastInference = true;
       }
@@ -24,7 +19,6 @@ function MakeAllInferences(value) {
         renderInference(
           value.allInferencesThemselves[i],
           i + 1,
-          selectableClassName,
           value,
           isItTheLastInference
         )
@@ -39,19 +33,12 @@ function MakeAllInferences(value) {
   return allInferencesShown;
 }
 
-function renderInference(
-  inference,
-  num,
-  selectableClassName,
-  value,
-  isItTheLastInference
-) {
+function renderInference(inference, num, value, isItTheLastInference) {
   let commentary = "",
     hypothesisLevel = "",
     classNames = "",
     adequacyArrow = "",
     fadeClassName = "",
-    fadingBackground = "",
     fadeID = "";
   // section des barres d'hypothèses
   for (let i = 0; i < inference.level; i++) {
@@ -67,11 +54,10 @@ function renderInference(
   if (inference.inferenceType) {
     classNames = inference.inferenceType;
   }
-  if (isItTheLastInference) {
-    // fadeClassName = "fadeOut-lastInferenceAdded-relative";
-    fadeID = "demo-wesh";
-    fadingBackground = <div className="fadeOut-lastInferenceAdded" />;
-    // fadeClassName = " animation-fadeOut fadeOut-lastInferenceAdded ";
+  if (inference.inferenceBackground) {
+    fadeClassName = inference.inferenceBackground;
+  } else if (isItTheLastInference) {
+    fadeID = "demo-addedInference-blinking";
   }
   // section des classNames pour la flèche d'adéquation
   if (
@@ -102,39 +88,45 @@ function renderInference(
     adequacyArrow = "";
   }
 
+  console.log();
+
   return (
-    <Fragment>
-      {fadingBackground}
-      <li
-        key={num - 1}
-        className={
-          "inferenceGlobal " + fadeClassName + classNames + selectableClassName
+    <li
+      key={num - 1}
+      className={"inferenceGlobal " + fadeClassName + classNames}
+      id={fadeID}
+      onClick={() => {
+        if (value.canInferenceBeStored) {
+          value.storageForRuleVerification(
+            num, // on envoie le futur numéro d'inférence
+            inference.itself, // on envoie l'inférence elle-même
+            inference.actualHypID // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
+          );
         }
-        id={fadeID}
-        onClick={() => {
-          if (value.canInferenceBeStored === true) {
-            value.storageForRuleVerification(
-              num, // on envoie le futur numéro d'inférence
-              inference.itself, // on envoie l'inférence elle-même
-              inference.actualHypID // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
-            );
-          }
-        }}
-      >
-        <div className={"inferenceNumber " + classNames}>{num}.</div>
-        <div className={"hypothesis-level " + classNames}>
-          {hypothesisLevel}
-          {/* {this.props.hypIDSent} */}
-        </div>
-        <div className={"inferenceItself " + classNames}>
-          {inference.itself}
-        </div>
-        <div className={"inferenceCommentary " + classNames}>{commentary}</div>
-        {/* {this.renderCheckSquare(this.props.checkSquare)} */}
-        {/* {this.props.checkSquare} */}
-        {adequacyArrow}
-      </li>
-    </Fragment>
+      }}
+      onMouseOver={() => {
+        // console.log("est-ce true", value.canInferenceBeStored);
+        // if (value.canInferenceBeStored) {
+        value.modifyClassNameOfAnyInference("selected", num);
+        // }
+      }}
+      onMouseOut={() => {
+        // if (value.canInferenceBeStored) {
+        value.modifyClassNameOfAnyInference("unselected", num);
+        // }
+      }}
+    >
+      <div className={"inferenceNumber " + classNames}>{num}.</div>
+      <div className={"hypothesis-level " + classNames}>
+        {hypothesisLevel}
+        {/* {this.props.hypIDSent} */}
+      </div>
+      <div className={"inferenceItself " + classNames}>{inference.itself}</div>
+      <div className={"inferenceCommentary " + classNames}>{commentary}</div>
+      {/* {this.renderCheckSquare(this.props.checkSquare)} */}
+      {/* {this.props.checkSquare} */}
+      {adequacyArrow}
+    </li>
   );
 }
 

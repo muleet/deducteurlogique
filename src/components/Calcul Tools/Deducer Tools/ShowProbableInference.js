@@ -30,7 +30,7 @@ function ShowProbableInference(value, previousInference) {
         hypotheticalArrow = makeIndicator("hypothetical", true);
       }
       firstArrow = makeIndicator("first", false);
-      if (expectedArguments.length === 3) {
+      if (ruleName === "~i") {
         secondArrow = makeIndicator("second", false);
       }
     }
@@ -44,7 +44,7 @@ function ShowProbableInference(value, previousInference) {
         firstArrow = makeIndicator("inadequate", true);
       }
     }
-    if (expectedArguments.length === 2) {
+    if (expectedArguments.length === 2 && ruleName !== "⊃i") {
       secondArrow = makeIndicator("second", false);
       if (value.storedInference[1]) {
         if (AIT[SN[1] - 1].adequacyType === "second") {
@@ -134,7 +134,7 @@ function ShowProbableInference(value, previousInference) {
   let nextInference = (
     <li
       className={
-        "inferenceGlobal probable-inference animation-fadeIn fadeIn-firstHalf probable-shadow " +
+        "inferenceGlobal animation-fadeIn fadeIn-firstHalf probable-shadow " +
         classNames
       }
       key={value.allInferencesThemselves.length}
@@ -149,8 +149,7 @@ function ShowProbableInference(value, previousInference) {
       </div>
       <div className={"inferenceItself "}>{probableInference.itself}</div>
       <div className={"inferenceCommentary "}>{probableCommentary}</div>
-      {/* {
-        <div
+      {/* { <div
           className={"probable-inference-checkSquare" + checkSquareClassName}
           // checksquareclickable={checkSquareClickable}
           onClick={() => {
@@ -161,8 +160,7 @@ function ShowProbableInference(value, previousInference) {
           }}
         >
           <i className="fas fa-check-square icon" />
-        </div>
-      } */}
+        </div>} */}
     </li>
   );
   return nextInference;
