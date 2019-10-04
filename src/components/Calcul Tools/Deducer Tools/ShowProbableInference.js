@@ -16,9 +16,12 @@ function ShowProbableInference(value, previousInference) {
     firstArrow = "",
     secondArrow = "",
     setAdequacyArrows = "",
-    ait = value.allInferencesThemselves,
-    sn = value.storedNumbers;
-  if (value.canInferenceBeStored) {
+    AIT = value.allInferencesThemselves,
+    SN = value.storedNumbers;
+  if (
+    value.canInferenceBeStored &&
+    value.booleansOptionsAboutInferences.boolInferenceScanner
+  ) {
     // Section de la création des adequacyArrows
     if (ruleName === "⊃i" || ruleName === "~i") {
       // cas des règles hypothétiques
@@ -35,7 +38,7 @@ function ShowProbableInference(value, previousInference) {
     // cas de toutes les règles
     firstArrow = makeIndicator("first", false);
     if (value.storedInference[0]) {
-      if (ait[sn[0] - 1].adequacyType === "first") {
+      if (AIT[SN[0] - 1].adequacyType === "first") {
         firstArrow = makeIndicator("first", true);
       } else {
         firstArrow = makeIndicator("inadequate", true);
@@ -44,14 +47,14 @@ function ShowProbableInference(value, previousInference) {
     if (expectedArguments.length === 2) {
       secondArrow = makeIndicator("second", false);
       if (value.storedInference[1]) {
-        if (ait[sn[1] - 1].adequacyType === "second") {
+        if (AIT[SN[1] - 1].adequacyType === "second") {
           secondArrow = makeIndicator("second", true);
         } else if (ruleName === "∧i") {
           // cas spécifique de ∧i, puisque cette règle fonctionne avec toutes les inférences
           secondArrow = makeIndicator("first", true);
         } else if (
           ruleName === "↓i" &&
-          ait[sn[1] - 1].adequacyType === "first"
+          AIT[SN[1] - 1].adequacyType === "first"
         ) {
           // cas spécifique de ↓i
           secondArrow = makeIndicator("first", true);
@@ -62,7 +65,7 @@ function ShowProbableInference(value, previousInference) {
     } else if (expectedArguments.length === 3) {
       // cas spécifique de ~i, qui a 3 arguments
       if (value.storedInference[1]) {
-        if (ait[sn[1] - 1].adequacyType === "second") {
+        if (AIT[SN[1] - 1].adequacyType === "second") {
           secondArrow = makeIndicator("second", true);
         } else {
           secondArrow = makeIndicator("inadequate", true);
@@ -131,7 +134,7 @@ function ShowProbableInference(value, previousInference) {
   let nextInference = (
     <li
       className={
-        "inferenceGlobal probable-inference animation-fadeIn fadeIn probable-shadow " +
+        "inferenceGlobal probable-inference animation-fadeIn fadeIn-firstHalf probable-shadow " +
         classNames
       }
       key={value.allInferencesThemselves.length}

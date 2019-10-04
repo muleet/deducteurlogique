@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import ReactModal from "react-modal";
+// import ReactModal from "react-modal";
 import RuleProvider, { RuleContext } from "../Context/RuleProvider";
 // import ReactDOM from "react-dom";
 
@@ -104,6 +104,10 @@ class RuleModal extends Component {
   };
 
   render() {
+    let ruleModalClassName = "";
+    if (!this.props.valueInference.ruleModalShown.normal) {
+      ruleModalClassName = " hidden";
+    }
     return (
       <RuleProvider
         valueInference={this.props.valueInference}
@@ -113,7 +117,7 @@ class RuleModal extends Component {
           {value => (
             <Fragment>
               <div>
-                <ReactModal
+                {/* <ReactModal
                   isOpen={this.props.valueInference.ruleModalShown.normal}
                   contentLabel="onRequestClose Example"
                   // onAfterOpen={handleAfterOpenFunc}
@@ -130,59 +134,59 @@ class RuleModal extends Component {
                   shouldReturnFocusAfterClose={true}
                   ariaHideApp={false}
                   closeTimeoutMS={400}
-                >
-                  <section className="rule-modal-window">
-                    <p className="rule-modal-ruleName">{this.props.ruleName}</p>
-                    <p className="rule-modal-ruleInstruction">
-                      {this.props.instruction}
+                > */}
+                <section className={"rule-modal-window" + ruleModalClassName}>
+                  <p className="rule-modal-ruleName">{this.props.ruleName}</p>
+                  <p className="rule-modal-ruleInstruction">
+                    {this.props.instruction}
+                  </p>
+                  <ul className="typable-text">
+                    {this.state.futureHypothesis}
+                    <p className="blinking">_</p>
+                  </ul>
+                  {this.showCharacters(value)}
+                  {/* {this.props.valueInference.ruleModalChoiceContent} */}
+                  <div className="rule-modal-all-buttons">
+                    <p
+                      className="rule-modal-button"
+                      onClick={() => {
+                        this.removeLastCharacter(
+                          value,
+                          this.state.futureHypothesis
+                        );
+                      }}
+                    >
+                      <i className="fas fa-long-arrow-alt-left icon" />
                     </p>
-                    <ul className="typable-text">
-                      {this.state.futureHypothesis}
-                      <p className="blinking">_</p>
-                    </ul>
-                    {this.showCharacters(value)}
-                    {/* {this.props.valueInference.ruleModalChoiceContent} */}
-                    <div className="rule-modal-all-buttons">
-                      <p
-                        className="rule-modal-button"
-                        onClick={() => {
-                          this.removeLastCharacter(
+                    <p
+                      className="rule-modal-button"
+                      onClick={() => {
+                        if (this.state.futureHypothesis.length > 0)
+                          this.makeHypothesis(
                             value,
                             this.state.futureHypothesis
                           );
-                        }}
-                      >
-                        <i className="fas fa-long-arrow-alt-left icon" />
-                      </p>
-                      <p
-                        className="rule-modal-button"
-                        onClick={() => {
-                          if (this.state.futureHypothesis.length > 0)
-                            this.makeHypothesis(
-                              value,
-                              this.state.futureHypothesis
-                            );
-                        }}
-                      >
-                        <i className="fas fa-check-square" />
-                      </p>
-                      <p
-                        className="rule-modal-button"
-                        onClick={() => {
-                          this.resetHypothesis();
-                        }}
-                      >
-                        <i className="fas fa-eraser" />
-                      </p>
-                      <p
-                        className="rule-modal-button"
-                        onClick={this.handleCloseModal}
-                      >
-                        <i className="fas fa-times-circle" />
-                      </p>
-                    </div>
-                  </section>
-                </ReactModal>
+                      }}
+                    >
+                      <i className="fas fa-check-square" />
+                    </p>
+                    <p
+                      className="rule-modal-button"
+                      onClick={() => {
+                        this.resetHypothesis();
+                      }}
+                    >
+                      <i className="fas fa-eraser" />
+                    </p>
+                    <p
+                      className="rule-modal-button"
+                      onClick={this.handleCloseModal}
+                    >
+                      <i className="fas fa-times-circle" />
+                    </p>
+                  </div>
+                </section>
+                {/* </ReactModal> */}
               </div>
             </Fragment>
           )}

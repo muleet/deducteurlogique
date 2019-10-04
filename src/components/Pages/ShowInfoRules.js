@@ -11,20 +11,36 @@ class ShowInfoRules extends Component {
   renderListRules() {
     let renderedListRules = [];
     for (let i = 0; i < Rules.length; i++) {
-      let classNameToRender =
-        "single-rule " + Rules[i].available + "-available-rule";
       renderedListRules.push(
         <li
           key={i}
-          className={classNameToRender}
+          className={"single-rule " + Rules[i].available + "-available-rule"}
           onMouseOver={() => {
-            this.renderInfoRule(i);
+            this.renderInfoRule(Rules[i]);
             // On appelle la fonction renderInfoRule() qui va permettre de donner à chaque li contenant une règle, la propriété de pouvoir afficher (quand on met sa souris sur le li) des infos dans une box à droite
           }}
         >
           {Rules[i].name}
         </li>
       );
+      if (Rules[i].otherInterpretation) {
+        renderedListRules.push(
+          <li
+            key={i}
+            className={
+              "single-rule " +
+              Rules[i].otherInterpretation.available +
+              "-available-rule"
+            }
+            onMouseOver={() => {
+              this.renderInfoRule(Rules[i].otherInterpretation);
+              // On appelle la fonction renderInfoRule() qui va permettre de donner à chaque li contenant une règle, la propriété de pouvoir afficher (quand on met sa souris sur le li) des infos dans une box à droite
+            }}
+          >
+            {Rules[i].otherInterpretation.name}
+          </li>
+        );
+      }
     }
     return renderedListRules;
   }
@@ -56,7 +72,7 @@ class ShowInfoRules extends Component {
     return <li>{strToReturn}</li>;
   };
 
-  renderInfoRule = numRule => {
+  renderInfoRule = Rule => {
     this.setState({
       numberRule: (
         <div
@@ -67,36 +83,36 @@ class ShowInfoRules extends Component {
             fontSize: 20
           }}
         >
-          Règle {numRule + 1} : {Rules[numRule].name}
+          Règle : {Rule.name}
         </div>
       )
     });
 
-    const verbalNameToRender = <Fragment>{Rules[numRule].verbalName}</Fragment>;
+    const verbalNameToRender = <Fragment>{Rule.verbalName}</Fragment>;
 
     const verbalDescriptionToRender = (
-      <Fragment>{Rules[numRule].verbalDescription}</Fragment>
+      <Fragment>{Rule.verbalDescription}</Fragment>
     );
 
     let arrayUtilizationFormalized = [];
-    if (!Rules[numRule].arrayUtilization) {
+    if (!Rule.arrayUtilization) {
       arrayUtilizationFormalized.push(
         "Pas d'explication sur son utilisation, pour le moment"
       );
     } else {
-      for (let i = 0; i < Rules[numRule].arrayUtilization.length; i++) {
-        if (typeof Rules[numRule].arrayUtilization[i] === "string") {
+      for (let i = 0; i < Rule.arrayUtilization.length; i++) {
+        if (typeof Rule.arrayUtilization[i] === "string") {
           arrayUtilizationFormalized.push(
             <ol className="inference-example-rule" key={i}>
-              {Number(i + 1) + ". " + Rules[numRule].arrayUtilization[i]}
+              {Number(i + 1) + ". " + Rule.arrayUtilization[i]}
             </ol>
           );
-        } else if (typeof Rules[numRule].arrayUtilization[i] === "object") {
+        } else if (typeof Rule.arrayUtilization[i] === "object") {
           let subArrayUtilizationFormalized = [];
-          for (let j = 0; j < Rules[numRule].arrayUtilization[i].length; j++) {
+          for (let j = 0; j < Rule.arrayUtilization[i].length; j++) {
             subArrayUtilizationFormalized.push(
               <ol className="inference-example-rule" key={j}>
-                {Number(j + 1) + ". " + Rules[numRule].arrayUtilization[i][j]}
+                {Number(j + 1) + ". " + Rule.arrayUtilization[i][j]}
               </ol>
             );
           }

@@ -42,8 +42,10 @@ const TheFuture = () => {
           }}
         >
           <p className="soon-available-rule">
-            Jusqu'à 0.70 : Versions alternatives des règles ⊃e (contraposition)
-            et ∨e (syllogisme disjonctif).
+            Jusqu'à 0.70 : Versions alternatives des règles ⊃e, ⊅e (les
+            contrapositions), ∨e (syllogisme disjonctif), et ≡e (permettre
+            d'avoir A si on A≡B et B, et inversement). Refonte d'une partie de
+            l'interface.
           </p>
           <p className="soon-available-rule">
             0.70-0.80 : Un système de comptes utilisateur pour créer des exos,
@@ -55,13 +57,7 @@ const TheFuture = () => {
           <p className="maybenever-available-rule">
             0.90-1.0 : Les règles des prédicats.
           </p>
-          {/* <p className="soon-available-rule">
-            - La possibilité de créer des comptes utilisateurs, pour stocker les
-            exercices résolus par un utilisateur et pour lui permettre de créer
-            de nouveaux exercices (il pourra choisir les prémisses, les règles
-            utilisées, la conclusion, une solution possible, et les
-            significations possibles des prémisses).
-          </p>
+          {/* 
           <p className="soon-available-rule">
             - La possibilité pour un utilisateur, de créer des exercices
             relatifs aux raisonnements fallacieux. Par exemple la phrase "La
@@ -82,7 +78,6 @@ const TheFuture = () => {
             - Une meilleure interface pour la liste des exercices, notamment
             pour mettre en avant les significations possibles.
           </p>
-          <p className="later-available-rule">- Les règles modales.</p>
           <p className="maybenever-available-rule">
             - Au sein de la déduction, lorsqu'on met le curseur de la souris sur
             le caractère d'une parenthèse, l'autre caractère lié à ce premier

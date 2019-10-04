@@ -36,10 +36,10 @@ class RuleProvider extends Component {
             inferenceToAdd.itself,
           "rule-advice"
         );
-        this.props.valueInference.setRuleModal(
-          "hypothesis-ended-well",
-          "ended-well modal-ending"
-        );
+        // this.props.valueInference.setRuleModal(
+        //   "hypothesis-ended-well",
+        //   "ended-well modal-ending"
+        // );
         this.props.valueInference.changeStorageBoolean();
         this.props.valueInference.addInference(inferenceToAdd, hyp);
       } else {
@@ -114,7 +114,7 @@ class RuleProvider extends Component {
     this.inclusiveDisjonctionIntroduction = (A, number) => {
       const B = this.props.valueInference.futureInference;
       let ArbitraryAorB;
-      if (this.props.valueInference.inversion === false) {
+      if (!this.props.valueInference.inversion) {
         ArbitraryAorB = InferenceTools.returnAnInferenceOutOfTwoInferences(
           A,
           B,
@@ -350,10 +350,10 @@ class RuleProvider extends Component {
       );
       const hyp = "hypothèse validée";
       this.props.valueInference.addInference(inferenceToAdd, hyp);
-      this.props.valueInference.setRuleModal(
-        "hypothesis-ended-well",
-        "ended-well modal-ending"
-      );
+      // this.props.valueInference.setRuleModal(
+      //   "hypothesis-ended-well",
+      //   "ended-well modal-ending"
+      // );
       this.props.valueInference.changeStorageBoolean();
     }; // ⊃i
 
@@ -658,12 +658,16 @@ class RuleProvider extends Component {
 
     // SECTION DES AUTRES MÉTHODES, PERMETTANT AUX MÉTHODES DES RÈGLES DE FONCTIONNER
 
-    this.addInferenceFromRule = (InferenceItself, hyp) => {
+    this.addInferenceFromRule = (inferenceToAdd, hyp, secondInferenceToAdd) => {
       // règle qui crée une inférence pour toute règle dont le fonctionnement est arrivé à son terme, sans erreur
       if (hyp) {
-        this.props.valueInference.addInference(InferenceItself, hyp);
-      } else if (InferenceItself !== "") {
-        this.props.valueInference.addInference(InferenceItself);
+        this.props.valueInference.addInference(inferenceToAdd, hyp);
+      } else if (inferenceToAdd !== "") {
+        this.props.valueInference.addInference(
+          inferenceToAdd,
+          "",
+          secondInferenceToAdd
+        );
       }
     };
 
@@ -734,45 +738,69 @@ class RuleProvider extends Component {
         verbalRuleName = "Disjonction réciproque éliminée";
       }
       let leftSide = (
-        <div
-          className="rule-modal-one-choice selectable"
-          onClick={() => {
-            this.addInferenceFromRule(leftInferenceToAdd);
-            this.props.valueInference.setAdvice(
-              verbalRuleName +
-                ", nouvelle inférence : " +
-                leftInferenceToAdd.itself,
-              // leftChoice,
-              "rule-advice"
-            );
-          }}
-        >
-          {leftChoice}
-        </div>
-      );
-      let rightSide = (
-        <div
-          className="rule-modal-one-choice selectable"
-          onClick={() => {
-            this.addInferenceFromRule(rightInferenceToAdd);
-            this.props.valueInference.setAdvice(
-              verbalRuleName +
-                ", nouvelle inférence : " +
-                rightInferenceToAdd.itself,
-              // rightChoice,
-              "rule-advice"
-            );
-          }}
-        >
-          {rightChoice}
-        </div>
-      );
+          <div
+            className="rule-modal-one-choice selectable"
+            onClick={() => {
+              this.addInferenceFromRule(leftInferenceToAdd);
+              this.props.valueInference.setAdvice(
+                verbalRuleName +
+                  ", nouvelle inférence : " +
+                  leftInferenceToAdd.itself,
+                // leftChoice,
+                "rule-advice"
+              );
+            }}
+          >
+            {leftChoice}
+          </div>
+        ),
+        rightSide = (
+          <div
+            className="rule-modal-one-choice selectable"
+            onClick={() => {
+              this.addInferenceFromRule(rightInferenceToAdd);
+              this.props.valueInference.setAdvice(
+                verbalRuleName +
+                  ", nouvelle inférence : " +
+                  rightInferenceToAdd.itself,
+                // rightChoice,
+                "rule-advice"
+              );
+            }}
+          >
+            {rightChoice}
+          </div>
+        ),
+        leftRightSide = (
+          <div
+            className="rule-modal-one-choice selectable"
+            onClick={() => {
+              this.addInferenceFromRule(
+                leftInferenceToAdd,
+                "",
+                rightInferenceToAdd
+              );
+              this.props.valueInference.setAdvice(
+                verbalRuleName +
+                  ", nouvelles inférences : " +
+                  leftInferenceToAdd.itself +
+                  " et " +
+                  rightInferenceToAdd.itself,
+                // rightChoice,
+                "rule-advice"
+              );
+            }}
+          >
+            les deux
+          </div>
+        );
 
       choiceContent = (
         <div className="rule-modal-all-choices">
           <p style={{ fontSize: "16px" }}>Choix :</p>
           {leftSide}
           {rightSide}
+          {leftRightSide}
         </div>
       );
       this.props.valueInference.setChoiceContent(choiceContent);

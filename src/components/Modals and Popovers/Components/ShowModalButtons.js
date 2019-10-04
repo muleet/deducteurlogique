@@ -24,11 +24,10 @@ class ShowModalButtons extends Component {
         this.props.ruleName !== "↓e"
       ) {
         // ∧e et ≡e et ↓e sont exclus parce qu'ils ne doivent pas s'arrêter juste après que l'utilisateur ait validé la règle
-        this.props.valueInference.setRuleModal(
-          "rule-ended-well",
-          "ended-well modal-ending"
-        );
-        this.props.valueInference.changeStorageBoolean();
+        // this.props.valueInference.setRuleModal(
+        //   "rule-ended-well",
+        //   "ended-well modal-ending"
+        // );
       }
     } else {
       this.props.valueInference.setAdvice(
@@ -56,15 +55,14 @@ class ShowModalButtons extends Component {
             this.props.expectedArguments.length - 1
           ) // storedNumbers contient (en str) les numéros des inférences qui permettront de valider la règle.
         );
-        // this.props.valueInference.setRuleModal("", "ended-well modal-ending");
+        this.props.valueInference.setRuleModal("", "ended-well modal-ending");
         // this.props.valueInference.changeStorageBoolean();
       } else {
         this.props.valueInference.setAdvice(
           "Entrez tous les arguments requis, avant de valider.",
           "error-advice"
         );
-        return;
-        // this.props.valueInference.setRuleModal("", "ended-badly");
+        this.props.valueInference.setRuleModal("stillOpen", "ended-badly");
       }
     } else {
       this.props.valueInference.setAdvice(
@@ -73,7 +71,7 @@ class ShowModalButtons extends Component {
           ", il faut d'abord créer une hypothèse.",
         "error-advice"
       );
-      return;
+      this.props.valueInference.setRuleModal("stillOpen", "ended-badly");
     }
   }
 
@@ -126,26 +124,30 @@ class ShowModalButtons extends Component {
 
   render() {
     // DECLARATION DES VARIABLES DES BOUTONS DU MODAL
-    let buttonResetArguments = "";
-    let buttonInverseInference = "";
-    let buttonRemoveLastCharacter = "";
-    let buttonSpecificRule = "";
+    let buttonResetArguments = "",
+      buttonInverseInference = "",
+      buttonRemoveLastCharacter = "",
+      buttonSpecificRule = "",
+      ruleName = this.props.valueInference.ruleModalContent.ruleName,
+      expectedArgumentsLength = this.props.valueInference.ruleModalContent
+        .expectedArguments.length,
+      storedInferenceLength = this.props.valueInference.storedInference.length;
     // let buttonDisjonctionEliminationHypothesis = "";
 
     // CONDITIONS PERMETTANT DE DONNER LEURS RÔLES AUX BOUTONS EN FONCTION DE LA REGLE EN COURS
-    // if (this.props.ruleName !== "∨e") {
-    //   buttonResetArguments = (
-    //     <p
-    //       className="rule-modal-button"
-    //       onClick={() => {
-    //         this.props.valueInference.changeStorageBoolean("resetButStillTrue");
-    //         this.props.valueInference.setRuleModal("stillOpen", "");
-    //       }}
-    //     >
-    //       <i className="fas fa-eraser" />
-    //     </p>
-    //   );
-    // }
+    if (this.props.ruleName !== "∨e") {
+      buttonResetArguments = (
+        <p
+          className="rule-modal-button"
+          onClick={() => {
+            this.props.valueInference.changeStorageBoolean("resetButStillTrue");
+            this.props.valueInference.setRuleModal("stillOpen", "");
+          }}
+        >
+          <i className="fas fa-eraser" />
+        </p>
+      );
+    }
     if (this.props.ruleName === "∨i") {
       buttonInverseInference = (
         <p
@@ -163,6 +165,36 @@ class ShowModalButtons extends Component {
           <i className="fas fa-long-arrow-alt-left icon" />
         </p>
       );
+    }
+    let buttonVerifyRule = (
+        <p
+          className="rule-modal-button"
+          onClick={() => {
+            // if (this.props.ruleName === "∨e") {
+            //   this.verifyLongStorageRule(this.props.valueRule);
+            // } else
+            if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
+              this.verifyRule(this.props.valueRule);
+            } else {
+              this.verifyBreakHypothesisRule(this.props.valueRule);
+            }
+          }}
+        >
+          <i className="fas fa-check-square" />
+        </p>
+      ),
+      buttonCloseModal = (
+        <p className="rule-modal-button" onClick={this.props.handleCloseModal}>
+          <i className="fas fa-times-circle" />
+        </p>
+      );
+
+    if (
+      this.props.valueInference.booleansOptionsAboutInferences.boolFinalCheck
+    ) {
+      buttonResetArguments = "";
+      buttonVerifyRule = "";
+      buttonCloseModal = "";
     }
 
     // if (this.props.ruleName === "∨e") {
@@ -183,6 +215,24 @@ class ShowModalButtons extends Component {
     //   return ""; // pas de boutons pour reit
     // }
 
+    // section de la tentative de vérification automatique de la règle, lors que tous les arguments ont été rentrés (il y a 4 conditions !!!)
+
+    if (ruleName === "⊃i" || ruleName === "~i") {
+      storedInferenceLength++;
+    }
+    if (
+      expectedArgumentsLength === storedInferenceLength && // a) s'il y a autant d'arguments entrés que d'arguments attendus
+      this.props.valueInference.booleansOptionsAboutInferences.boolFinalCheck && // b) si boolFinalCheck est true
+      !this.props.valueInference.ruleModalChoiceContent && // c) s'il n'y a pas déjà un ruleModalChoiceContent
+      this.props.valueInference.ruleModalShown.normal // d) s'il y a bien un ruleModal en cours
+    ) {
+      if (ruleName === "⊃i" || ruleName === "~i") {
+        this.verifyBreakHypothesisRule(this.props.valueRule);
+      } else if (ruleName !== "⊃i" || ruleName !== "~i") {
+        this.verifyRule(this.props.valueRule);
+      }
+    }
+    // section du return
     return (
       <Fragment>
         {/* les deux boutons ci-desous ne concernent que ∨i */}
@@ -191,25 +241,9 @@ class ShowModalButtons extends Component {
         {/* le bouton ci-dessous ne concerne que ∨e */}
         {buttonSpecificRule}
         {/* {buttonDisjonctionEliminationHypothesis} */}
-        <p
-          className="rule-modal-button"
-          onClick={() => {
-            // if (this.props.ruleName === "∨e") {
-            //   this.verifyLongStorageRule(this.props.valueRule);
-            // } else
-            if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
-              this.verifyRule(this.props.valueRule);
-            } else {
-              this.verifyBreakHypothesisRule(this.props.valueRule);
-            }
-          }}
-        >
-          <i className="fas fa-check-square" />
-        </p>
+        {buttonVerifyRule}
         {buttonResetArguments}
-        <p className="rule-modal-button" onClick={this.props.handleCloseModal}>
-          <i className="fas fa-times-circle" />
-        </p>
+        {buttonCloseModal}
       </Fragment>
     );
   }

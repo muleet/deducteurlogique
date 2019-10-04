@@ -78,7 +78,12 @@ class ShowExpectedArguments extends Component {
         }
         arrayExpectedArguments.push(
           <li key={i} className="rule-modal-single-argument">
-            <p>{expectedArguments[i] + " :"}</p>
+            <p>
+              {
+                expectedArguments[i]
+                //  + " :"
+              }
+            </p>
             {arrayEmptyArgument[i]}
           </li>
         );
@@ -101,11 +106,17 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
-            {expectedArguments[0] + " : "}
+            {
+              expectedArguments[0]
+              //  + " : "
+            }
             {hypContent}
           </div>
           <div className="rule-modal-single-argument">
-            {expectedArguments[1] + " : "}
+            {
+              expectedArguments[1]
+              //  + " : "
+            }
             {firstArgument}
           </div>
         </li>
@@ -132,15 +143,24 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
-            {expectedArguments[0] + " : "}
+            {
+              expectedArguments[0]
+              //  + " : "
+            }
             {hypContent}
           </div>
           <div className="rule-modal-single-argument">
-            {expectedArguments[1] + " : "}
+            {
+              expectedArguments[1]
+              // + " : "
+            }
             {firstArgument}
           </div>
           <div className="rule-modal-single-argument">
-            {expectedArguments[2] + " : "}
+            {
+              expectedArguments[2]
+              // + " : "
+            }
             {secondArgument}
           </div>
         </li>
@@ -175,11 +195,14 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument">
-            {expectedArguments[0] + " : "}
+            {
+              expectedArguments[0]
+              // + " : "
+            }
             {disjonctionArgument}
           </div>
           <div className="rule-modal-single-argument">
-            {"B : "}
+            {"B"}
             {arbitraryArgument}
           </div>
           {keyboard}
@@ -236,15 +259,21 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument">
-            {expectedArguments[0] + " : "}
+            {
+              expectedArguments[0]
+              // + " : "
+            }
             {exFalsoTrueArgument}
           </div>
           <div className="rule-modal-single-argument">
-            {expectedArguments[1] + " : "}
+            {
+              expectedArguments[1]
+              // + " : "
+            }
             {exFalsoFalseArgument}
           </div>
           <div className="rule-modal-single-argument">
-            {"B : "}
+            {"B"}
             {arbitraryArgument}
           </div>
           {keyboard}

@@ -22,7 +22,7 @@ class InferenceProvider extends Component {
       return MakeAllInferences(this.state);
     };
 
-    this.addInference = (newInference, hyp) => {
+    this.addInference = (newInference, hyp, secondNewInference) => {
       // la méthode addInference() fait 2 choses : en récupérant les données envoyées depuis une autre classe, elle a) le met dans un tableau tout simple qui stocke toutes les inférences et b) le met dans un tableau qui htmlise le contenu de l'inférence
       // newInference = { itself: "", numberCommentary: "", commentary: "", numberCommentaryHypothesis : "", inferenceType: "" }
       // hyp = "nouvelle hypothèse" / "nouvelle hyp ve" / "hypothèse validée" / "hypothèse réfutée"
@@ -78,6 +78,16 @@ class InferenceProvider extends Component {
         this.state.hypothesisCurrentLevelAndId.level + hypNumber;
       newInference.actualHypID = hypIDNumber;
       copyArrayThemselves.push(newInference);
+
+      if (secondNewInference) {
+        // peut arriver avec les règles impliquant un choix
+        secondNewInference.level =
+          this.state.hypothesisCurrentLevelAndId.level + hypNumber;
+        secondNewInference.actualHypID = hypIDNumber;
+        copyArrayThemselves.push(secondNewInference);
+        console.log("bonjour");
+      }
+
       if (
         this.state.ruleModalShown.normal === true &&
         hyp !== "hypothèse validée" &&
@@ -92,6 +102,10 @@ class InferenceProvider extends Component {
         );
       }
 
+      if (newInference.commentary !== "rep") {
+        this.setRuleModal("rule-ended-well", "ended-well modal-ending");
+      }
+      console.log(copyArrayThemselves);
       this.setState(state => ({
         allInferencesThemselves: copyArrayThemselves
       }));
@@ -166,9 +180,9 @@ class InferenceProvider extends Component {
 
         //  anticipation de la prochaine inférence
         InferenceForecaster(
-          copyArrayStoredInference,
-          copyStoredNumbers,
-          ruleName,
+          copyArrayStoredInference, // on envoie l'array des inférences stockées
+          copyStoredNumbers, // on envoie l'array des nombress stockés
+          ruleName, // on envoie le str de la règle en cours
           this.state
         );
 
@@ -176,7 +190,8 @@ class InferenceProvider extends Component {
         this.setState(state => ({
           storedInference: copyArrayStoredInference,
           storedNumbers: copyStoredNumbers,
-          storedHypID: copyStoredHypId
+          storedHypID: copyStoredHypId,
+          ruleModalChoiceContent: ""
         }));
       }
     };
@@ -272,20 +287,12 @@ class InferenceProvider extends Component {
             copyAEHI // contenu des hypothèses terminées
           );
         }
-
         this.setState(state => ({
           allInferencesThemselves: copyAllInferencesThemselves,
           allHypotheticalInferences: copyAHI,
           allEndedHypotheticalInferences: copyAEHI
         }));
       }
-    };
-
-    this.getCurrentHyp = () => {
-      // cette fonction cherche la première hypothèse en partant de la fin, à toujours être true, et maj la variable "theCurrentHypID" avec le bon nombre
-      let newTheOneAndOnlyCurrentHyp = null;
-
-      return newTheOneAndOnlyCurrentHyp;
     };
 
     this.manageLotsOfStuffAboutHypothesis = (hypothesisItself, hyp, change) => {
@@ -380,6 +387,7 @@ class InferenceProvider extends Component {
       // Si str est true, ruleModalShown devient true (visible). Si str est false, ruleModalShown devient false (invisible). Si str est "change", ruleModalShown devient l'opposé de ce qu'il était. Si str est quoi que ce soit d'autre, setRuleModal vérifie quand même la className.
       // "eal" contient expectedArguments.length
       // setRuleModal très en lien avec forecastInference(active,A,B,operator,commentary,numberCommentary)
+      console.log("str", str);
       let newRuleModalShown = { normal: false };
       let newClassName = ""; // rule-modal-ended-well ou rule-modal-ended-badly
       let newRuleModalContent = { ruleName: "" };
@@ -474,6 +482,12 @@ class InferenceProvider extends Component {
         } else {
           newBooleansOptionsAboutInferences.boolInferenceScanner = true;
         }
+      } else if (str === "finalCheck") {
+        if (newBooleansOptionsAboutInferences.boolFinalCheck === true) {
+          newBooleansOptionsAboutInferences.boolFinalCheck = false;
+        } else {
+          newBooleansOptionsAboutInferences.boolFinalCheck = true;
+        }
       }
       this.setState({
         booleansOptionsAboutInferences: newBooleansOptionsAboutInferences
@@ -515,7 +529,7 @@ class InferenceProvider extends Component {
     };
 
     this.setInversion = () => {
-      // permet d'inverser l'inférence qui sera produite. fonction utilisée uniquement par l'élimination de la disjonction
+      // permet d'inverser l'inférence qui sera produite. fonction utilisée uniquement par l'introduction de la disjonction
       if (this.state.inversion === false) {
         this.setState({
           inversion: true
@@ -571,10 +585,7 @@ class InferenceProvider extends Component {
           activable: false
         };
       }
-      // console.log(
-      //   "on va setState cette newProbableInference",
-      //   newProbableInference
-      // );
+
       this.setState({ probableInference: newProbableInference });
     };
 
@@ -646,7 +657,8 @@ class InferenceProvider extends Component {
       // section de l'objet des options relatives aux déductions et inférences
       booleansOptionsAboutInferences: {
         boolInferenceScanner: true, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
-        boolDebugger: false // le debugger est-il activé ? (il affiche certaines informations)
+        boolDebugger: false, // le debugger est-il activé ? (il affiche certaines informations)
+        boolFinalCheck: false // les règles tentent-elles de s'activer automatiquement si tous les arguments ont été entrés ?
       },
       toggleOptionsAboutInferences: this.toggleOptionsAboutInferences,
       // sections de divers boutons de l'interface
@@ -655,7 +667,6 @@ class InferenceProvider extends Component {
       resetDeduction: this.resetDeduction,
       // section de l'hypothèse
       manageLotsOfStuffAboutHypothesis: this.manageLotsOfStuffAboutHypothesis,
-      getCurrentHyp: this.getCurrentHyp,
       hypothesisCurrentLevelAndId: {
         level: 0,
         maxID: -1, // -1 signifie qu'aucune hypothèse n'a encore été créée

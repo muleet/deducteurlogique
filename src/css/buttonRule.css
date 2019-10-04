@@ -1,17 +1,43 @@
-.setOfRules {
+.globalSetOfRules {
+  /*style de l'ensemble des infos de l'exo en cours ou du sandbox*/
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* justify-content: center; */
+  align-items: center;
+  /* align-content: center; */
+  /* padding: 10px; */
+  /* width: 400px; */
+  /* border: rgb(43, 226, 180) solid 1px; */
+}
+
+.specificSetOfRules {
+  /* border: greenyellow solid 1px; */
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
   align-items: center;
   align-content: center;
-  padding: 10px;
-  width: 70px;
+  justify-content: center;
+  max-width: 260px;
+  flex-wrap: wrap;
+  /* align-content: center;
+  /* display: flex;
+  flex-direction: row; */
+}
+.specificSetOfRules-title {
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 3px;
+  /* color: rgb(85, 47, 102); */
+  margin-top: 8 px;
 }
 
 .setOfRules-twoCharacters {
   max-height: 264px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -29,20 +55,17 @@
   justify-content: center;
   align-items: center;
   border: 1px white solid;
+  margin-right: 5px;
 }
 
 .tinyRule {
   height: 36px;
   width: 36px;
-  margin-bottom: 6px;
-  margin-right: 6px;
 }
 
 .fatRule {
   height: 36px;
   width: 50px;
-  margin-top: 6px;
-  margin-right: 6px;
 }
 
 .unclickableRule {
@@ -55,30 +78,24 @@
   border-radius: 5px;
 }
 
-.all-buttons-about-inferences {
+.all-set-buttons-about-inferences {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 22px;
+}
+
+.set-buttons-about-inferences {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100px;
+  /* background-color: rgb(29, 29, 29); */
+  padding: 7px;
+  border-radius: 5px;
 }
 
-.all-buttons-about-inferences > .icon {
-  font-size: 26px;
-  margin-bottom: 10px;
-  width: 30px;
-}
-
-.all-toggle-buttons-about-inferences {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 50px;
-  margin-left: 20px;
-}
-
-.all-toggle-buttons-about-inferences > i {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.set-toggle-buttons-about-inferences > i {
 }
 
 .longSelected {

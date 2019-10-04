@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 // import Exercises from "../../data/Exercises.json";
 import ShowInfoSandbox from "./Components/ShowInfoSandbox";
 // import SandboxShowUserRequirements from "./Components/SandboxShowUserRequirements";
@@ -9,22 +9,12 @@ import InferenceProvider, {
 import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
+import ButtonDeductionMaker from "../Calcul Tools/Deducer Tools/ButtonDeductionMaker";
 
 // Cette classe est appelée dans Calcul des propositions. Elle affiche la totalité des composants nécessaires à une déduction.
 // Elle réceptionne un exercice et son contenu, et le redistribue à différentes classes et fonctions.
 // Elle réceptionne InferenceContext, qui va véhiculer les infos de chaque nouvelle inférence.
 class Deducer extends Component {
-  renderCompatibleInferencesForCurrentRule(value) {
-    let result = "";
-    if (value.booleansOptionsAboutInferences.boolInferenceScanner) {
-      result = (
-        <div className="all-indicators-about-inference-validation">
-          {value.allInferencesValidForCurrentRule}
-        </div>
-      ); /* on affiche le tableau contenant les inférences compatibles ou non */
-    }
-    return result;
-  }
   renderDebugger(value) {
     let result = "";
     if (value.booleansOptionsAboutInferences.boolDebugger) {
@@ -90,27 +80,24 @@ class Deducer extends Component {
                       valueInference={value}
                     />
                   }
-                  <Fragment>
-                    <ul className="deduction">
-                      {this.renderCompatibleInferencesForCurrentRule(value)}
-                      {value.showAllInferences() /* on affiche le tableau */}
-                    </ul>
-                    {value.advice}
-                    {this.renderDebugger(value)}
-                  </Fragment>
-                </section>
-                <section className="usablesRules">
-                  <ul className="setOfRules">
+                  <div id="deduction-and-setOfRules">
                     <ButtonRuleMaker
                       // rulesSent={this.state.currentExercise.rulesImplied}
                       valueInference={value}
                       sandbox={true}
                     />
-                  </ul>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <ButtonDeductionMaker valueInference={value} />
+                      <ul className="deduction">
+                        {value.showAllInferences() /* on affiche le tableau */}
+                      </ul>
+                    </div>
+                  </div>
+                  {value.advice}
+                  {this.renderDebugger(value)}
                 </section>
-              </div>
 
-              {/* <div className="user-box-info user-color">
+                {/* <div className="user-box-info user-color">
                 <SandboxShowUserRequirements
                   premissesSent=""
                   conclusionSent=""
@@ -119,6 +106,7 @@ class Deducer extends Component {
                   valueInference={value}
                 />
               </div> */}
+              </div>
             </div>
           )}
         </InferenceContext.Consumer>

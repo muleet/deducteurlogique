@@ -15,7 +15,7 @@
 }
 
 .mini-header-deducer {
-  height: 100px;
+  height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -39,26 +39,30 @@
 }
 
 .infos-and-deduction-itself {
-  width: 400px;
+  width: 900px;
+  align-items: center;
+  align-content: center;
+}
+
+#deduction-and-setOfRules {
+  /* contient la déduction (dont le css est ci-dessous) et l'ensemble de règles */
+  display: flex;
+  flex-direction: row;
+  /* border: 1px red solid; */
 }
 
 .deduction {
   display: flex;
   flex-direction: column;
-  height: 290px;
+  height: 330px;
+  margin-left: 40px;
   overflow: auto;
-}
-
-.usablesRules {
-  /*style de l'ensemble des infos de l'exo en cours quand on est dans la page d'une déduction*/
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 2px;
+  /* border: 1px red solid;
+  background-color: rgb(36, 0, 0); */
 }
 
 .exercise-title {
-  font-size: 16px;
+  /* font-size: 20px; */
   text-align: center;
 }
 
@@ -68,6 +72,9 @@
   display: flex;
   align-content: flex-start;
   justify-content: space-between;
+  text-align: center;
+  width: 500px;
+  margin-left: 100px;
   /* margin: 2px 0px 2px 0px; */
 }
 

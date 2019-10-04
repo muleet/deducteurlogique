@@ -35,11 +35,15 @@ class ShowInformationsExercise extends Component {
   render() {
     let setOfPremisses = [];
     let numberOfPremisses = 9; // cette variable permet de connaître le numéro de la prémisse. Elle utilise une fonction, que je ne comprends pas, pour traduire un nombre en lettre.
-    let textCanItBeDone;
+    let textCanItBeDone = "";
     // let exerciseComment = <i className="fas fa-comment deactivated" />;
     if (this.props.exerciseSent.doable === false) {
-      textCanItBeDone =
-        "(La création de cet exercice n'est pas terminée, il n'a donc probablement pas de solution.)";
+      textCanItBeDone = (
+        <p style={{ fontSize: "12px" }}>
+          La création de cet exercice n'est pas terminée, il n'a donc
+          probablement pas de solution.
+        </p>
+      );
     }
     if (this.props.exerciseSent.comment.length > 0) {
       // exerciseComment = (
@@ -112,7 +116,7 @@ class ShowInformationsExercise extends Component {
           {this.props.exerciseSent.title}
           {/* {exerciseComment} */}
         </p>
-        {<p style={{ fontSize: "12px" }}>{textCanItBeDone}</p>}
+        {textCanItBeDone}
         <ul className="setPremissesConclusion">
           <li>
             Prémisses

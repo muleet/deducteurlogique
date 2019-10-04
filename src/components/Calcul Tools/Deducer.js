@@ -10,6 +10,7 @@ import InferenceProvider, {
 import ShowPossibleSolutions from "./Deducer Tools/ShowPossibleSolutions";
 import ShowPossibleMeaning from "./Deducer Tools/ShowPossibleMeaning";
 import Debugger from "../Debugger.js";
+import ButtonDeductionMaker from "./Deducer Tools/ButtonDeductionMaker";
 // import Debugger from "../Debugger";
 // import AppShortcuts from "../AppShortcuts";
 // import { ShortcutManager } from "react-shortcuts";
@@ -144,30 +145,29 @@ class Deducer extends Component {
                       />
                     }
                     {/* Sert à afficher des infos à l'utilisateur */}
-                    <Fragment>
-                      <ul className="deduction">
-                        {this.renderCompatibleInferencesForCurrentRule(value)}
-                        {value.showAllInferences() /* on affiche le tableau */}
-                      </ul>
-                      {value.advice}
-                      {this.renderDebugger(value)}
-                      <ShowPossibleMeaning
-                        exerciseSent={this.state.currentExercise}
-                        valueInference={value}
-                      />
-                      <div style={{ fontSize: 16 }}>
-                        Solutions :
-                        <ShowPossibleSolutions valueInference={value} />
-                      </div>
-                    </Fragment>
-                  </section>
-                  <section className="usablesRules">
-                    <ul className="setOfRules">
+                    <div id="deduction-and-setOfRules">
                       <ButtonRuleMaker
                         rulesSent={this.state.currentExercise.rulesImplied}
                         valueInference={value}
                       />
-                    </ul>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <ButtonDeductionMaker valueInference={value} />
+                        <ul className="deduction">
+                          {this.renderCompatibleInferencesForCurrentRule(value)}
+                          {value.showAllInferences() /* on affiche le tableau */}
+                        </ul>
+                      </div>
+                    </div>
+                    {value.advice}
+                    {this.renderDebugger(value)}
+                    <ShowPossibleMeaning
+                      exerciseSent={this.state.currentExercise}
+                      valueInference={value}
+                    />
+                    <div style={{ fontSize: 16 }}>
+                      Solutions :
+                      <ShowPossibleSolutions valueInference={value} />
+                    </div>
                   </section>
                 </div>
               </Fragment>

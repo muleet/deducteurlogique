@@ -7,6 +7,7 @@
     "arrayUtilization": "",
     "instruction": "Cliquez directement sur une prémisse, sans passer par cette fenêtre.",
     "expectedArguments": [],
+    "ruleType": "basic",
     "available": "yes"
   },
   {
@@ -17,6 +18,7 @@
     "arrayUtilization": [["A", "|B", "|A reit"]],
     "instruction": "Cliquez sur l'inférence à réitérer, issue d'une hypothèse en cours.",
     "expectedArguments": ["A"],
+    "ruleType": "basic",
     "available": "yes"
   },
   {
@@ -30,6 +32,7 @@
     ],
     "instruction": "Formulez une hypothèse pour ensuite tenter de la valider ou de la réfuter.",
     "expectedArguments": ["hyp"],
+    "ruleType": "hypothetical",
     "available": "yes"
   },
   {
@@ -40,6 +43,7 @@
     "arrayUtilization": [["A", "~A", "B ex falso"], ["A", "~A", "C ex falso"]],
     "instruction": "Cliquez sur A, puis ~A, et décidez arbitrairement de B, pour inférer B.",
     "expectedArguments": ["A", "~A"],
+    "ruleType": "other",
     "available": "yes"
   },
   {
@@ -53,6 +57,7 @@
     ],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, et qu'au moins deux inférence B et ~B la suivent, confirmez cette règle pour réfuter l'hypothèse, en inférant ~A.",
     "expectedArguments": ["hyp A", "B", "~B"],
+    "ruleType": "hypothetical",
     "available": "yes"
   },
   {
@@ -63,6 +68,7 @@
     "arrayUtilization": [["~~A", "A ~~e"], ["~~(A∧B)", "A∧B ~~e"]],
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
+    "ruleType": "other",
     "available": "yes"
   },
   {
@@ -73,6 +79,7 @@
     "arrayUtilization": [["A", "B", "A∧B ∧i"]],
     "instruction": "Cliquez sur A, puis B, pour inférer A∧B.",
     "expectedArguments": ["A", "B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -83,6 +90,7 @@
     "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
     "instruction": "Cliquez sur A∧B, validez, puis sélectionnez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -97,6 +105,7 @@
     ],
     "instruction": "Cliquez sur A, puis décidez arbitrairement de B, pour inférer A∨B.",
     "expectedArguments": ["A"],
+    "ruleType": "disjonction",
     "available": "yes"
   },
   {
@@ -110,19 +119,21 @@
     ],
     "instruction": "Cliquez sur ~A (ou ~B), puis A∨B, pour inférer B (ou A).",
     "expectedArguments": ["~A ou ~B", "A∨B"],
+    "ruleType": "disjonction",
     "available": "yes",
     "otherInterpretation": {
-      "_name": "∨e",
-      "_lecture": "A∨B se lit \"A et/ou B\"",
-      "_verbalName": "Règle d'élimination de la disjonction inclusive",
-      "_verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
-      "_arrayUtilization": [
+      "name": "∨e'",
+      "lecture": "A∨B se lit \"A et/ou B\"",
+      "verbalName": "Règle d'élimination de la disjonction inclusive (syllogisme disjonctif)",
+      "verbalDescription": "Si A∨B a été posé, et que depuis l'hypothèse A, C a été trouvé, et que depuis l'hypothèse B, C a été trouvé, alors on peut inférer C. Y compris si C est identique à A ou B.",
+      "arrayUtilization": [
         ["A∨B", "|A hyp", "|C", "|B hyp", "|C", "C 1, 2-3, 4-5, ∨e"],
         ["A∨B", "|A hyp", "|A", "|B hyp", "|A", "A 1, 2-3, 4-5, ∨e"]
       ],
-      "_instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
-      "_expectedArguments": ["A∨B", "C |A", "C |B"],
-      "_available": "test"
+      "instruction": "Cliquez sur A∨B, puis créez une hypothèse A depuis cette fenêtre, puis cliquez sur une inférence C (qui peut être semblable à A ou B) dans cette hypothèse, refermez-la depuis cette fenêtre, ouvrez une hypothèse B depuis cette fenêtre, puis cliquez sur une inférence C dans cette hypothèse, et enfin refermez-la. Validez alors la règle pour inférer C.",
+      "expectedArguments": ["A∨B", "C |A", "C |B"],
+      "ruleType": "disjonction",
+      "available": "soon"
     }
   },
   {
@@ -133,6 +144,7 @@
     "arrayUtilization": [["A⊅B", "B⊅A", "A⊻B ⊻i"]],
     "instruction": "Cliquez sur A⊅B, puis B⊅A, pour inférer A⊻B.",
     "expectedArguments": ["A⊅B", "B⊅A"],
+    "ruleType": "disjonction",
     "available": "yes"
   },
   {
@@ -143,6 +155,7 @@
     "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
+    "ruleType": "disjonction",
     "available": "yes"
   },
   {
@@ -153,6 +166,7 @@
     "arrayUtilization": [["|A hyp", "|B", "A⊃B ⊃i"]],
     "instruction": "Créez une hypothèse A, et pendant qu'elle est en cours, cliquez sur une inférence B puis confirmez cette règle, pour valider l'hypothèse et inférer A⊃B.",
     "expectedArguments": ["hyp A", "B"],
+    "ruleType": "hypothetical",
     "available": "yes"
   },
   {
@@ -163,7 +177,19 @@
     "arrayUtilization": [["A", "A⊃B", "B ⊃e"]],
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
     "expectedArguments": ["A", "A⊃B"],
-    "available": "yes"
+    "ruleType": "disjonction",
+    "available": "yes",
+    "otherInterpretation": {
+      "name": "⊂e",
+      "lecture": "A⊂B se lit \"si ~B alors ~A\"",
+      "verbalName": "Règle de contraposition de l'élimination du conditionnel",
+      "verbalDescription": "Si l'on a posé ~B, et que l'on a posé A⊃B, on peut poser ~A. Cette règle est impliquée par la règle d'élimination du conditionnel.",
+      "arrayUtilization": [["A", "A⊃B", "B ⊂e"]],
+      "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
+      "expectedArguments": ["A", "A⊃B"],
+      "ruleType": "disjonction",
+      "available": "soon"
+    }
   },
   {
     "name": "≡i",
@@ -173,6 +199,7 @@
     "arrayUtilization": [["A⊃B", "B⊃A", "A≡B ≡i"]],
     "instruction": "Cliquez sur A⊃B, puis B⊃A, pour inférer A≡B.",
     "expectedArguments": ["A⊃B", "B⊃A"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -183,6 +210,7 @@
     "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
     "instruction": "Cliquez sur A≡B, validez, puis sélectionnez A⊃B ou B⊃A, pour l'inférer.",
     "expectedArguments": ["A≡B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -193,6 +221,7 @@
     "arrayUtilization": [["A", "~B", "A⊅B ⊅i"]],
     "instruction": "Cliquez sur A, puis ~B, pour inférer A⊅B.",
     "expectedArguments": ["A", "~B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -203,6 +232,7 @@
     "arrayUtilization": [["A", "A⊅B", "~B ⊅e"]],
     "instruction": "Cliquez sur A, puis A⊅B, pour inférer ~B.",
     "expectedArguments": ["A", "A⊅B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -213,6 +243,7 @@
     "arrayUtilization": [["A", "~B", "A∧B ↑i"]],
     "instruction": "Cliquez sur A, puis ~B, pour inférer A↑B.",
     "expectedArguments": ["A", "~B"],
+    "ruleType": "disjonction",
     "available": "yes"
   },
   {
@@ -223,6 +254,7 @@
     "arrayUtilization": [["A↑B", "A", "~B ↑e"]],
     "instruction": "Cliquez sur A (ou B) puis A↑B,  pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A↑B"],
+    "ruleType": "disjonction",
     "available": "yes"
   },
   {
@@ -233,6 +265,7 @@
     "arrayUtilization": [["~A", "~B", "A↓B ↓i"]],
     "instruction": "Cliquez sur ~A, puis ~B, pour inférer A↓B.",
     "expectedArguments": ["~A", "~B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -243,6 +276,7 @@
     "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
     "instruction": "Cliquez sur A↓B, validez, puis sélectionnez ~A ou ~B, pour l'inférer.",
     "expectedArguments": ["A↓B"],
+    "ruleType": "conjonction",
     "available": "yes"
   },
   {
@@ -253,6 +287,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
+    "ruleType": "",
     "available": "later"
   },
   {
@@ -263,6 +298,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
+    "ruleType": "",
     "available": "later"
   },
   {
@@ -273,6 +309,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
+    "ruleType": "",
     "available": "later"
   },
   {
@@ -283,6 +320,7 @@
     "arrayUtilization": "",
     "instruction": "(Pas encore codée)",
     "expectedArguments": [],
+    "ruleType": "",
     "available": "later"
   },
   {

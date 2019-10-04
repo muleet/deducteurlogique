@@ -6,7 +6,7 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
   let result = { itself: "", activable: false },
     A = "?",
     B = "?";
-  const oneStepRules = ["rep", "~~e", "∧e", "∨i", "⊃i", "≡e", "↓e", "reit"];
+  const oneStepRules = ["rep", "~~e", "∧e", "⊃i", "≡e", "↓e", "reit"];
   const twoStepRules = [
     "⊃e",
     "∧i",
@@ -20,6 +20,8 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
     "↑i",
     "↑e",
     "↓i",
+    "∨e",
+    "∨i",
     "ex falso"
   ];
 
@@ -37,9 +39,20 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
     result.activable = true;
   } else if (ruleName) {
     if (oneStepRules.indexOf(ruleName) !== -1) {
-      result = scanOneStepRule(ruleName, A, value.allHypotheticalInferences);
+      result = scanOneStepRule(
+        ruleName,
+        A,
+        value.allHypotheticalInferences,
+        value.inversion
+      );
     } else if (twoStepRules.indexOf(ruleName) !== -1) {
-      result = scanTwoStepRule(ruleName, A, B, value.allHypotheticalInferences);
+      result = scanTwoStepRule(
+        ruleName,
+        A,
+        B,
+        value.allHypotheticalInferences,
+        value.inversion
+      );
     } else if (ruleName === "hyp") {
       // result.itself = value.futureInference;
       result.activable = true;
@@ -59,7 +72,12 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
   }
 }
 
-function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
+function scanOneStepRule(
+  ruleName,
+  inference,
+  allHypotheticalInferences,
+  inversion
+) {
   let objectToReturn = { itself: "?", activable: false };
 
   if (ruleName === "rep") {
@@ -78,8 +96,6 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     if (AorB !== "error") {
       objectToReturn.itself = AorB[0] + " ou " + AorB[1];
     }
-  } else if (ruleName === "∨i") {
-    // A pour A∨B
   } else if (ruleName === "⊃i") {
     // (A), B pour A⊃B
     let A = "?",
@@ -96,8 +112,17 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
       InfTools.mayAddFirstParenthesis(B);
   } else if (ruleName === "≡e") {
     // A≡B pour A⊃B ou B⊃A
-  } else if (ruleName === "⊅i") {
-    // (A), B pour A⊅B
+    inference = InfTools.returnWhatIsBeforeAndAfterTheOperator(inference, "≡");
+    if (inference !== "error") {
+      objectToReturn.itself =
+        inference[0] +
+        "⊃" +
+        inference[1] +
+        " ou " +
+        inference[1] +
+        "⊃" +
+        inference[0];
+    }
   } else if (ruleName === "↓e") {
     // A↓B pour ~A ou ~B
     const neitherAnorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
@@ -105,8 +130,7 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
       "↓"
     );
     if (neitherAnorB !== "error") {
-      objectToReturn.itself =
-        "~" + neitherAnorB[0] + " ou " + "~" + neitherAnorB[1];
+      objectToReturn.itself = "~" + neitherAnorB[0] + " ou ~" + neitherAnorB[1];
     }
   } else if (ruleName === "reit") {
     // A pour A
@@ -125,7 +149,8 @@ function scanTwoStepRule(
   ruleName,
   inferenceOne,
   inferenceTwo,
-  allHypotheticalInferences
+  allHypotheticalInferences,
+  inversion
 ) {
   // "⊃e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "⊅e" "↑i" "↑e" "↓i" "∨e" "ex falso"
   let objectToReturn = { itself: "?", activable: false };
@@ -168,6 +193,17 @@ function scanTwoStepRule(
     }
   } else if (ruleName === "⊻i") {
     // A⊅B, B⊅A pour A⊻B
+    const ifAthenB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+        inferenceOne,
+        "⊅"
+      ),
+      ifBthenA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+        inferenceTwo,
+        "⊅"
+      );
+    if (ifAthenB[0] === ifBthenA[1] && ifAthenB[1] === ifBthenA[0]) {
+      objectToReturn.itself = ifAthenB[0] + "⊻" + ifBthenA[0];
+    }
   } else if (ruleName === "⊻e") {
     // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
     const AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
@@ -186,6 +222,16 @@ function scanTwoStepRule(
       objectToReturn.itself = AorB[1];
     } else if (AorB[1] === "~" + inferenceOne) {
       objectToReturn.itself = AorB[0];
+    }
+  } else if (ruleName === "⊅i") {
+    // A, ~B pour A⊅B
+    if (inferenceOne && inferenceTwo[0] === "~") {
+      inferenceTwo = InfTools.withdrawFirstCharacters(inferenceTwo, 1);
+      objectToReturn.itself = InfTools.returnAnInferenceOutOfTwoInferences(
+        inferenceOne,
+        inferenceTwo,
+        "⊅"
+      );
     }
   } else if (ruleName === "⊅e") {
     // A, A⊅B pour ~B
@@ -223,6 +269,18 @@ function scanTwoStepRule(
       inferenceOne = inferenceOne.substring(1);
       inferenceTwo = inferenceTwo.substring(1);
       objectToReturn.itself = inferenceOne + "↓" + inferenceTwo;
+    }
+  } else if (ruleName === "∨i") {
+    // A pour A∨B
+    if (inferenceOne && inferenceTwo) {
+      inferenceOne = InfTools.mayAddFirstParenthesis(inferenceOne);
+      inferenceTwo = InfTools.mayAddFirstParenthesis(inferenceTwo);
+      console.log("inversion", inversion);
+      if (!inversion) {
+        objectToReturn.itself = inferenceOne + "∨" + inferenceTwo;
+      } else {
+        objectToReturn.itself = inferenceTwo + "∨" + inferenceOne;
+      }
     }
   } else if (ruleName === "∨e") {
     // ~A (ou ~B), A∨B pour A (ou B)

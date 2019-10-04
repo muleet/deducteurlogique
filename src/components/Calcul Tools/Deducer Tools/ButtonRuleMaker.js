@@ -1,9 +1,9 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import RulePopover from "../../Modals and Popovers/RulePopover";
 import InfoRules from "../../../data/InfoRules.json";
-// import RuleModal from "../../Modals and Popovers/RuleModal";
 import RuleModal from "../../Modals and Popovers/RuleModal";
 import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
+// import ButtonDeductionMaker from "./ButtonDeductionMaker";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
@@ -22,7 +22,6 @@ class ButtonRuleMaker extends Component {
     if (this.props.valueInference.ruleModalContent.ruleName === "hyp") {
       return (
         <RuleHypothesisModal
-          modalButton={""}
           instruction={this.props.valueInference.ruleModalContent.instruction}
           expectedArguments={
             this.props.valueInference.ruleModalContent.expectedArguments
@@ -34,7 +33,6 @@ class ButtonRuleMaker extends Component {
     } else {
       return (
         <RuleModal
-          modalButton={""}
           instruction={this.props.valueInference.ruleModalContent.instruction}
           expectedArguments={
             this.props.valueInference.ruleModalContent.expectedArguments
@@ -105,279 +103,180 @@ class ButtonRuleMaker extends Component {
     }
   }
 
+  makeTypeRule(type, content) {
+    let title = "";
+    if (content.length >= 1) {
+      if (type === "basic") {
+        title = "Règles de base";
+      }
+      if (type === "hypothetical") {
+        title = "Règles d'hypothèse";
+      }
+      if (type === "conjonction" || type === "disjonction") {
+        title = "Conjonctions & Disjonctions";
+      }
+      // if (type === "disjonction") {
+      //   title = "Disjonctions";
+      // }
+      if (type === "other") {
+        title = "Autres règles";
+        // title = "Autres règles";
+      }
+      return (
+        <div>
+          <p className="specificSetOfRules-title">{title}</p>
+          <ul className="specificSetOfRules">{content}</ul>
+        </div>
+      );
+    }
+  }
+
+  makeOneButtonRule(num, Rule, RulePopoverClassName, organizedUtilization) {
+    return (
+      <li
+        key={num}
+        onClick={() => {
+          if (Rule.name !== "rep") {
+            this.handleClick(
+              Rule.instruction,
+              Rule.expectedArguments,
+              Rule.name,
+              this.props.valueInference
+            );
+          }
+        }}
+      >
+        <RulePopover
+          RulePopoverClassName={RulePopoverClassName} // singleRule tinyRule fatRule + this.renderRuleClassName(name, available)
+          ruleName={Rule.name}
+          lecture={Rule.lecture}
+          verbalName={Rule.verbalName}
+          Description={Rule.verbalDescription}
+          HowToUse={organizedUtilization}
+          // ShouldItBeResized={true} // par exemple pour ~~e
+        />
+      </li>
+    );
+  }
+
   render() {
-    let arrayRulesSent = [];
-    let arrayRuleModal;
-    let arrayRulesTwoCharacters = [];
-    let arrayAllOtherRules = [];
-    let arrayUnclickableRule = [];
+    // SECTION 1 : DÉCLARATION DES CREATIONS DES VARIABLES
+    let allCurrentRuleNames = []; // tableau contenant des str avec tous les noms de règles en cours
+    let allBasicRulesRendered = [];
+    let allHypotheticalRulesRendered = [];
+    let allConjonctionRulesRendered = [];
+    // let allDisjonctionRulesRendered = [];
+    let allOtherRulesRendered = [];
     if (this.props.sandbox) {
+      // cas 1 (sandbox) : allCurrentRuleNames contient les noms de toutes les règles du site
       for (let i = 0; i < InfoRules.length; i++) {
         if (
           InfoRules[i].available === "yes" ||
           InfoRules[i].available === "test" ||
           InfoRules[i].available === "bug"
         ) {
-          arrayRulesSent.push(InfoRules[i].name);
+          allCurrentRuleNames.push(InfoRules[i].name); // ne contient QUE les noms des règles
         }
       }
     } else {
-      arrayRulesSent = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
+      // cas 2 (un exercice spécifique) : allCurrentRuleNames contient les noms de toutes les règles de l'exo sélectionné
+      allCurrentRuleNames = [...this.props.rulesSent]; // rulesSent est envoyée par Deducer et contient seulement les noms en str des règles impliquées
     }
-    if (arrayRulesSent.length === 0) {
-      // (A faire : Si le tableau de règle envoyé par Deducer est vide, cette fonction doit renvoyer la totalité des règles possibles.)
-    } else if (arrayRulesSent.length > 0) {
+
+    // SECTION 2 : CRÉATION DES BUTTONRULES
+    if (allCurrentRuleNames.length > 0) {
       // On commence par créer un tableau qui va contenir toutes les infos des règles de l'exo. C'est lui qui sera la source de toutes les autres infos.
-      let arrayCurrentRules = [];
-      for (let i = 0; i < arrayRulesSent.length; i++) {
+      let arrayCurrentRulesData = [];
+      for (let i = 0; i < allCurrentRuleNames.length; i++) {
         for (let j = 0; j < InfoRules.length; j++) {
-          if (arrayRulesSent[i] === InfoRules[j].name) {
-            arrayCurrentRules.push(InfoRules[j]);
+          if (allCurrentRuleNames[i] === InfoRules[j].name) {
+            arrayCurrentRulesData.push(InfoRules[j]);
           }
         }
       }
-      // On va maintenant créer le popover tout en organisant ses données.
-      for (let i = 0; i < Number(arrayCurrentRules.length); i++) {
-        let organizedUtilization = [];
-        for (let j = 0; j < arrayCurrentRules[i].arrayUtilization.length; j++) {
-          organizedUtilization.push(
-            <ol key={j}>{arrayCurrentRules[i].arrayUtilization[j]}</ol>
-          );
-        }
-
-        if (arrayRulesSent[i] === "rep") {
-          arrayUnclickableRule.push(
-            <li key={i}>
-              {arrayRulesSent[i].name}
-              <RulePopover
-                key={i}
-                RulePopoverClassName="fatRule unclickableRule"
-                ruleName={arrayRulesSent[i]}
-                lecture={arrayCurrentRules[i].lecture}
-                verbalName={arrayCurrentRules[i].verbalName}
-                Description={arrayCurrentRules[i].verbalDescription}
-              />
-            </li>
-          );
-        } else if (arrayRulesSent[i] === "hyp") {
-          arrayAllOtherRules.push(
-            <li
-              key={i}
-              onClick={() => {
-                this.handleClick(
-                  arrayCurrentRules[i].instruction,
-                  arrayCurrentRules[i].expectedArguments,
-                  // arrayCurrentRules[i].name,
-                  arrayRulesSent[i],
-                  this.props.valueInference
-                );
-              }}
-            >
-              {arrayRulesSent[i].name}
-              <RulePopover
-                key={i}
-                RulePopoverClassName={
-                  "singleRule fatRule " +
-                  this.renderRuleClassName(
-                    arrayCurrentRules[i].name,
-                    arrayCurrentRules[i].available
-                  )
-                }
-                ruleName={arrayCurrentRules[i].name}
-                lecture={arrayCurrentRules[i].lecture}
-                verbalName={arrayCurrentRules[i].verbalName}
-                Description={arrayCurrentRules[i].verbalDescription}
-                HowToUse={organizedUtilization}
-              />
-            </li>
-          );
-        } else if (
-          Number(arrayRulesSent[i].length) === 2 ||
-          arrayRulesSent[i] === "~~e"
-          // || arrayRulesSent !== "~~e"
+      // On va maintenant créer le popover tout en organisant ses données. A l'aide de cette fonction :
+      // makeOneButtonRule(num, Rule, RulePopoverClassName, organizedUtilization)
+      for (let i = 0; i < Number(arrayCurrentRulesData.length); i++) {
+        let organizedUtilization = [],
+          classNameRulePopover = this.renderRuleClassName(
+            arrayCurrentRulesData[i].name,
+            arrayCurrentRulesData[i].available
+          ),
+          currentRuleRendered = "";
+        for (
+          let j = 0;
+          j < arrayCurrentRulesData[i].arrayUtilization.length;
+          j++
         ) {
-          let currentRuleName = arrayCurrentRules[i].name;
-          if (arrayRulesSent[i] === "~~e") {
-            currentRuleName = (
-              <p id="negationElimination">{arrayCurrentRules[i].name}</p>
-            );
-          }
+          organizedUtilization.push(
+            <ol key={j}>{arrayCurrentRulesData[i].arrayUtilization[j]}</ol>
+          );
+        }
 
-          arrayRulesTwoCharacters.push(
-            <li
-              key={i}
-              onClick={() => {
-                this.handleClick(
-                  arrayCurrentRules[i].instruction,
-                  arrayCurrentRules[i].expectedArguments,
-                  arrayCurrentRules[i].name,
-                  this.props.valueInference
-                );
-              }}
-            >
-              {arrayRulesSent[i].name}
-              <RulePopover
-                key={i}
-                RulePopoverClassName={
-                  "singleRule tinyRule " +
-                  this.renderRuleClassName(
-                    arrayCurrentRules[i].name,
-                    arrayCurrentRules[i].available
-                  )
-                }
-                ruleName={currentRuleName}
-                lecture={arrayCurrentRules[i].lecture}
-                verbalName={arrayCurrentRules[i].verbalName}
-                Description={arrayCurrentRules[i].verbalDescription}
-                HowToUse={organizedUtilization}
-              />
-            </li>
-          );
-        } else if (Number(arrayRulesSent[i].length) > 2) {
+        if (arrayCurrentRulesData[i].ruleType === "basic") {
+          classNameRulePopover += " singleRule fatRule";
+
+          if (arrayCurrentRulesData[i].name === "rep") {
+            classNameRulePopover = "singleRule fatRule unclickableRule";
+          }
+        } else if (allCurrentRuleNames[i] === "hyp") {
+          classNameRulePopover = "singleRule fatRule " + classNameRulePopover;
+        } else if (
+          allCurrentRuleNames[i].length === 2 ||
+          allCurrentRuleNames[i] === "~~e"
+        ) {
+          if (allCurrentRuleNames[i] === "~~e") {
+            classNameRulePopover += " negationElimination";
+          }
+          classNameRulePopover = "singleRule tinyRule " + classNameRulePopover;
+        } else if (Number(allCurrentRuleNames[i].length) > 2) {
           // sauf l'hypothèse
-          arrayAllOtherRules.push(
-            <li
-              key={i}
-              onClick={() => {
-                this.handleClick(
-                  arrayCurrentRules[i].instruction,
-                  arrayCurrentRules[i].expectedArguments,
-                  arrayCurrentRules[i].name,
-                  this.props.valueInference
-                );
-              }}
-            >
-              {arrayRulesSent[i].name}
-              <RulePopover
-                key={i}
-                RulePopoverClassName={
-                  "singleRule fatRule " +
-                  this.renderRuleClassName(
-                    arrayCurrentRules[i].name,
-                    arrayCurrentRules[i].available
-                  )
-                }
-                ruleName={arrayCurrentRules[i].name}
-                // lecture={arrayCurrentRules[i].lecture}
-                verbalName={arrayCurrentRules[i].verbalName}
-                Description={arrayCurrentRules[i].verbalDescription}
-                HowToUse={organizedUtilization}
-              />
-            </li>
-          );
+          classNameRulePopover =
+            "singleRule fatRule " +
+            this.renderRuleClassName(
+              arrayCurrentRulesData[i].name,
+              arrayCurrentRulesData[i].available
+            );
+        }
+        currentRuleRendered = this.makeOneButtonRule(
+          i, // nombre de la règle
+          arrayCurrentRulesData[i], // tout le contenu de la règle
+          classNameRulePopover, // className de la règle
+          organizedUtilization
+        );
+
+        //  if (
+        //   Number(allCurrentRuleNames[i].length) === 2 ||
+        //   allCurrentRuleNames[i] === "~~e"
+        // ) {
+        //   let currentRuleName = arrayCurrentRulesData[i].name;
+        if (arrayCurrentRulesData[i].ruleType === "basic") {
+          allBasicRulesRendered.push(currentRuleRendered);
+        } else if (arrayCurrentRulesData[i].ruleType === "hypothetical") {
+          allHypotheticalRulesRendered.push(currentRuleRendered);
+        } else if (
+          arrayCurrentRulesData[i].ruleType === "conjonction" ||
+          arrayCurrentRulesData[i].ruleType === "disjonction"
+        ) {
+          allConjonctionRulesRendered.push(currentRuleRendered);
+          // } else if (arrayCurrentRulesData[i].ruleType === "disjonction") {
+          //   allDisjonctionRulesRendered.push(currentRuleRendered);
+        } else if (arrayCurrentRulesData[i].ruleType === "other") {
+          allOtherRulesRendered.push(currentRuleRendered);
         }
       }
     }
 
-    // section dédiée au bouton qui permet d'activer ou désactiver la détection des inférences compatibles avec la règle en cours
-    let eyeOfCompatibleInferences = "",
-      textOfTheEye = (
-        <div className="question-mark">
-          <div className="question-mark-content">
-            Cliquez pour activer/désactiver la détection automatique des
-            inférences compatibles avec la règle en cours.
-          </div>
-        </div>
-      );
-    if (
-      !this.props.valueInference.booleansOptionsAboutInferences
-        .boolInferenceScanner
-    ) {
-      eyeOfCompatibleInferences = (
-        <i
-          className="fas fa-eye-slash icon question-mark-button"
-          onClick={() => {
-            this.props.valueInference.toggleOptionsAboutInferences(
-              "InferenceScanner"
-            );
-          }}
-        >
-          {textOfTheEye}
-        </i>
-      );
-    } else if (
-      this.props.valueInference.booleansOptionsAboutInferences
-        .boolInferenceScanner
-    ) {
-      eyeOfCompatibleInferences = (
-        <i
-          className="fas fa-eye icon question-mark-button"
-          onClick={() => {
-            this.props.valueInference.toggleOptionsAboutInferences(
-              "InferenceScanner"
-            );
-          }}
-        >
-          {textOfTheEye}
-        </i>
-      );
-    }
-    // section dédiée au bouton qui permet d'activer ou désactiver le debugger
-    let cameraOfTheDebugger = "",
-      textOfTheCamera = (
-        <div className="question-mark">
-          <div className="question-mark-content">
-            Cliquez pour activer/désactiver l'outil de détection des bugs.
-          </div>
-        </div>
-      );
-    if (
-      !this.props.valueInference.booleansOptionsAboutInferences.boolDebugger
-    ) {
-      cameraOfTheDebugger = (
-        <i
-          className="fas fa-video-slash icon hidden question-mark-button"
-          onClick={() => {
-            this.props.valueInference.toggleOptionsAboutInferences("Debugger");
-          }}
-        >
-          {textOfTheCamera}
-        </i>
-      );
-    } else if (
-      this.props.valueInference.booleansOptionsAboutInferences.boolDebugger
-    ) {
-      cameraOfTheDebugger = (
-        <i
-          className="fas fa-video icon hidden question-mark-button"
-          onClick={() => {
-            this.props.valueInference.toggleOptionsAboutInferences("Debugger");
-          }}
-        >
-          {textOfTheCamera}
-        </i>
-      );
-    }
     // pour finir, on retourne tous les boutons relatifs aux règles
     return (
-      <Fragment>
-        <div className="all-toggle-buttons-about-inferences">
-          {eyeOfCompatibleInferences}
-          {cameraOfTheDebugger}
-        </div>
-        <div className="all-buttons-about-inferences">
-          <i
-            className="fas fa-long-arrow-alt-left icon"
-            onClick={() => {
-              this.props.valueInference.removeLastInference();
-            }}
-          />
-          <i
-            className="fas fa-eraser icon"
-            onClick={() => {
-              this.props.valueInference.resetDeduction();
-            }}
-          />
-        </div>
-        <ul>{arrayUnclickableRule}</ul>
+      <ul className="globalSetOfRules">
+        {this.makeTypeRule("basic", allBasicRulesRendered)}
+        {this.makeTypeRule("hypothetical", allHypotheticalRulesRendered)}
+        {this.makeTypeRule("conjonction", allConjonctionRulesRendered)}
+        {/* {this.makeTypeRule("disjonction", allDisjonctionRulesRendered)} */}
+        {this.makeTypeRule("other", allOtherRulesRendered)}
         {this.renderModal(this.props.valueInference.ruleModalContent)}
-        {arrayRuleModal}
-        {arrayAllOtherRules}
-        <hr style={{ width: "20px" }} />
-        <div className="setOfRules-twoCharacters">
-          {arrayRulesTwoCharacters}
-        </div>
-      </Fragment>
+      </ul>
     );
   }
 }

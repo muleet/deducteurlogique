@@ -13,7 +13,8 @@
 
 .inferenceItself {
   color: #93b5ff;
-  width: 180px;
+  min-width: 200px;
+  max-width: 350px;
   margin-right: 10px;
 }
 
@@ -24,6 +25,7 @@
 
 .inferenceCommentary {
   color: #ffb58e;
+  width: 110px;
 }
 
 .inferenceGlobal:hover .hypothesis-level {

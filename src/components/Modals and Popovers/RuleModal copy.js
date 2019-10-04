@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-// import ReactModal from "react-modal";
+import ReactModal from "react-modal";
 import RuleProvider, { RuleContext } from "../Context/RuleProvider";
 import ShowExpectedArguments from "./Components/ShowExpectedArguments";
 import ShowModalButtons from "./Components/ShowModalButtons";
@@ -45,8 +45,7 @@ class RuleModalProvider extends Component {
   }
 
   render() {
-    let keyboard = "",
-      ruleModalClassName = ""; // soit "", soit "hidden"
+    let keyboard = "";
     if (this.props.ruleName === "") {
       keyboard = (
         <ul className="typable-text">
@@ -55,11 +54,6 @@ class RuleModalProvider extends Component {
         </ul>
       );
     }
-
-    if (!this.props.valueInference.ruleModalShown.normal) {
-      ruleModalClassName = "hidden";
-    }
-
     return (
       <RuleProvider
         valueInference={this.props.valueInference}
@@ -69,34 +63,49 @@ class RuleModalProvider extends Component {
           {value => (
             <Fragment>
               <div>
-                <section
+                <ReactModal
+                  // isOpen={this.state.showModal}
+                  isOpen={this.props.valueInference.ruleModalShown.normal}
+                  contentLabel="onRequestClose Example"
+                  // onAfterOpen={handleAfterOpenFunc}
+                  onRequestClose={this.handleCloseModal}
+                  portalClassName="rule-modal-portal"
+                  overlayClassName="rule-modal-overlay"
                   className={
-                    "rule-modal-window animation-fadeIn " + ruleModalClassName
+                    "rule-modal fade " +
+                    this.props.valueInference.ruleModalClassName
                   }
+                  shouldFocusAfterRender={true}
+                  shouldCloseOnOverlayClick={false}
+                  shouldCloseOnEsc={true}
+                  shouldReturnFocusAfterClose={true}
+                  ariaHideApp={false}
+                  closeTimeoutMS={400}
                 >
-                  <p className="rule-modal-ruleName">{this.props.ruleName}</p>
-                  <p className="rule-modal-ruleInstruction">
-                    {this.props.instruction}
-                  </p>
-                  <ul className="rule-modal-all-arguments">
-                    {this.showExpectedArguments(
-                      this.props.expectedArguments,
-                      this.props.ruleName,
-                      value
-                    )}
-                    {keyboard}
-                    {this.props.valueInference.ruleModalChoiceContent}
-                    {/* cette variable, ruleModalChoiceContent, est vide la plupart du temps */}
-                  </ul>
-                  <div className="rule-modal-all-buttons">
-                    {this.showModalButtons(
-                      this.props.expectedArguments,
-                      this.props.ruleName,
-                      value
-                    )}
-                  </div>
-                </section>
-                {/* </ReactModal> */}
+                  <section className="rule-modal-window">
+                    <p className="rule-modal-ruleName">{this.props.ruleName}</p>
+                    <p className="rule-modal-ruleInstruction">
+                      {this.props.instruction}
+                    </p>
+                    <ul className="rule-modal-all-arguments">
+                      {this.showExpectedArguments(
+                        this.props.expectedArguments,
+                        this.props.ruleName,
+                        value
+                      )}
+                      {keyboard}
+                      {this.props.valueInference.ruleModalChoiceContent}
+                      {/* cette variable, ruleModalChoiceContent, est vide la plupart du temps */}
+                    </ul>
+                    <div className="rule-modal-all-buttons">
+                      {this.showModalButtons(
+                        this.props.expectedArguments,
+                        this.props.ruleName,
+                        value
+                      )}
+                    </div>
+                  </section>
+                </ReactModal>
               </div>
             </Fragment>
           )}

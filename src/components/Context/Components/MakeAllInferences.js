@@ -9,18 +9,24 @@ function MakeAllInferences(value) {
 
   let allInferencesShown = [],
     selectableClassName = "",
-    previousInference = "";
+    previousInference = "",
+    isItTheLastInference = false;
   if (value.allInferencesThemselves) {
     for (let i = 0; i < value.allInferencesThemselves.length; i++) {
       if (value.canInferenceBeStored === true) {
         selectableClassName = "selectable ";
+      }
+      console.log(i + 1, "===", value.allInferencesThemselves.length);
+      if (i + 1 === value.allInferencesThemselves.length) {
+        isItTheLastInference = true;
       }
       allInferencesShown.push(
         renderInference(
           value.allInferencesThemselves[i],
           i + 1,
           selectableClassName,
-          value
+          value,
+          isItTheLastInference
         )
       );
     }
@@ -33,11 +39,20 @@ function MakeAllInferences(value) {
   return allInferencesShown;
 }
 
-function renderInference(inference, num, selectableClassName, value) {
+function renderInference(
+  inference,
+  num,
+  selectableClassName,
+  value,
+  isItTheLastInference
+) {
   let commentary = "",
     hypothesisLevel = "",
     classNames = "",
-    adequacyArrow = "";
+    adequacyArrow = "",
+    fadeClassName = "",
+    fadingBackground = "",
+    fadeID = "";
   // section des barres d'hypothèses
   for (let i = 0; i < inference.level; i++) {
     hypothesisLevel += "|";
@@ -52,8 +67,18 @@ function renderInference(inference, num, selectableClassName, value) {
   if (inference.inferenceType) {
     classNames = inference.inferenceType;
   }
+  if (isItTheLastInference) {
+    // fadeClassName = "fadeOut-lastInferenceAdded-relative";
+    fadeID = "demo-wesh";
+    fadingBackground = <div className="fadeOut-lastInferenceAdded" />;
+    // fadeClassName = " animation-fadeOut fadeOut-lastInferenceAdded ";
+  }
   // section des classNames pour la flèche d'adéquation
-  if (inference.adequacyType && value.canInferenceBeStored) {
+  if (
+    inference.adequacyType &&
+    value.canInferenceBeStored &&
+    value.booleansOptionsAboutInferences.boolInferenceScanner
+  ) {
     adequacyArrow = (
       <div className={"adequacyArrow indicator-" + inference.adequacyType}>
         ▶
@@ -78,30 +103,38 @@ function renderInference(inference, num, selectableClassName, value) {
   }
 
   return (
-    <li
-      key={num - 1}
-      className={"inferenceGlobal " + classNames + selectableClassName}
-      onClick={() => {
-        if (value.canInferenceBeStored === true) {
-          value.storageForRuleVerification(
-            num, // on envoie le futur numéro d'inférence
-            inference.itself, // on envoie l'inférence elle-même
-            inference.actualHypID // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
-          );
+    <Fragment>
+      {fadingBackground}
+      <li
+        key={num - 1}
+        className={
+          "inferenceGlobal " + fadeClassName + classNames + selectableClassName
         }
-      }}
-    >
-      <div className={"inferenceNumber " + classNames}>{num}.</div>
-      <div className={"hypothesis-level " + classNames}>
-        {hypothesisLevel}
-        {/* {this.props.hypIDSent} */}
-      </div>
-      <div className={"inferenceItself " + classNames}>{inference.itself}</div>
-      <div className={"inferenceCommentary " + classNames}>{commentary}</div>
-      {/* {this.renderCheckSquare(this.props.checkSquare)} */}
-      {/* {this.props.checkSquare} */}
-      {adequacyArrow}
-    </li>
+        id={fadeID}
+        onClick={() => {
+          if (value.canInferenceBeStored === true) {
+            value.storageForRuleVerification(
+              num, // on envoie le futur numéro d'inférence
+              inference.itself, // on envoie l'inférence elle-même
+              inference.actualHypID // on envoie l'id de l'hypothèse, pour vérifier si l'inférence est stockable
+            );
+          }
+        }}
+      >
+        <div className={"inferenceNumber " + classNames}>{num}.</div>
+        <div className={"hypothesis-level " + classNames}>
+          {hypothesisLevel}
+          {/* {this.props.hypIDSent} */}
+        </div>
+        <div className={"inferenceItself " + classNames}>
+          {inference.itself}
+        </div>
+        <div className={"inferenceCommentary " + classNames}>{commentary}</div>
+        {/* {this.renderCheckSquare(this.props.checkSquare)} */}
+        {/* {this.props.checkSquare} */}
+        {adequacyArrow}
+      </li>
+    </Fragment>
   );
 }
 
