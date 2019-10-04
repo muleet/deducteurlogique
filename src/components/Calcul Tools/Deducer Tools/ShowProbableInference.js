@@ -20,7 +20,8 @@ function ShowProbableInference(value, previousInference) {
     SN = value.storedNumbers;
   if (
     value.canInferenceBeStored &&
-    value.booleansOptionsAboutInferences.boolInferenceScanner
+    value.booleansOptionsAboutInferences.boolInferenceScanner &&
+    AIT.length > 0
   ) {
     // Section de la création des adequacyArrows
     if (ruleName === "⊃i" || ruleName === "~i") {
@@ -44,7 +45,7 @@ function ShowProbableInference(value, previousInference) {
         firstArrow = makeIndicator("inadequate", true);
       }
     }
-    if (expectedArguments.length === 2 && ruleName !== "⊃i") {
+    if (expectedArguments.length === 2 && ruleName !== "⊃i" && AIT.length > 1) {
       secondArrow = makeIndicator("second", false);
       if (value.storedInference[1]) {
         if (AIT[SN[1] - 1].adequacyType === "second") {
