@@ -31,6 +31,10 @@ class ShowExpectedArguments extends Component {
     return <div className="rule-modal-all-button-hypothesis">{keyboard}</div>;
   };
 
+  renderInstructionOrArgument(className, instructionOrArgument) {
+    return <p className={className}>{instructionOrArgument}</p>;
+  }
+
   render() {
     let arrayExpectedArguments = [];
     let arrayEmptyArgument = [];
@@ -39,24 +43,25 @@ class ShowExpectedArguments extends Component {
     const storedInference = this.props.valueInference.storedInference;
     const allHypotheticalInferences = this.props.valueInference
       .allHypotheticalInferences;
+    let classNameIsItForecasted = "";
+
+    if (this.props.valueInference.attemptOfForecastInference) {
+      classNameIsItForecasted = "transparent";
+    }
 
     // déclaration des arguments attendus
-    let hypContent = (
-      <p className="awaiting-an-inference-blinking">
-        {"<Créez d'abord une hypothèse A, à l'aide de la règle \"hyp\">"}
-      </p>
+    let hypContent = this.renderInstructionOrArgument(
+      "awaiting-an-inference-blinking",
+      "<Créez d'abord une hypothèse A, à l'aide de la règle \"hyp\">"
     );
-    let firstArgument = (
-      <p className="awaiting-an-inference-blinking">
-        {"<Cliquez sur une inférence B au sein de l'hypothèse A>"}
-      </p>
+    let firstArgument = this.renderInstructionOrArgument(
+      "awaiting-an-inference-blinking",
+      "<Cliquez sur une inférence B au sein de l'hypothèse A>"
     );
-    let secondArgument = (
-      <p className="awaiting-an-inference-blinking">
-        {"<Cliquez sur une inférence qui nie l'inférence B>"}
-      </p>
+    let secondArgument = this.renderInstructionOrArgument(
+      "awaiting-an-inference-blinking",
+      "<Cliquez sur une inférence qui nie l'inférence B>"
     );
-
     if (
       ruleName !== "⊃i" &&
       ruleName !== "~i" &&
@@ -67,24 +72,37 @@ class ShowExpectedArguments extends Component {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
         arrayEmptyArgument.push(
-          <p className="awaiting-an-inference-blinking">
-            {"<Cliquez sur une inférence adéquate>"}
-          </p>
+          this.renderInstructionOrArgument(
+            "awaiting-an-inference-blinking",
+            "<Cliquez sur une inférence adéquate>"
+          )
         );
+        if (this.props.valueInference.attemptOfForecastInference) {
+          classNameIsItForecasted = " transparent";
+        }
         if (storedInference[i]) {
-          arrayEmptyArgument[i] = (
-            <p className="infItself-modal">{storedInference[i]} </p>
+          arrayEmptyArgument[i] = this.renderInstructionOrArgument(
+            "infItself-modal" + classNameIsItForecasted,
+            storedInference[i]
+          );
+        } else {
+          arrayEmptyArgument.push(
+            this.renderInstructionOrArgument(
+              "awaiting-an-inference-blinking",
+              "<Cliquez sur une inférence adéquate>"
+            )
           );
         }
         arrayExpectedArguments.push(
           <li key={i} className="rule-modal-single-argument">
-            <p>
-              {
-                expectedArguments[i]
-                //  + " :"
-              }
-            </p>
-            {arrayEmptyArgument[i]}
+            {this.renderInstructionOrArgument(
+              "expected-argument",
+              expectedArguments[i]
+            )}
+            {this.renderInstructionOrArgument(
+              "instruction-awaiting",
+              arrayEmptyArgument[i]
+            )}
           </li>
         );
       }
@@ -106,17 +124,11 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
-            {
-              expectedArguments[0]
-              //  + " : "
-            }
+            {expectedArguments[0]}
             {hypContent}
           </div>
           <div className="rule-modal-single-argument">
-            {
-              expectedArguments[1]
-              //  + " : "
-            }
+            {expectedArguments[1]}
             {firstArgument}
           </div>
         </li>
@@ -143,24 +155,15 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
-            {
-              expectedArguments[0]
-              //  + " : "
-            }
+            {expectedArguments[0]}
             {hypContent}
           </div>
           <div className="rule-modal-single-argument">
-            {
-              expectedArguments[1]
-              // + " : "
-            }
+            {expectedArguments[1]}
             {firstArgument}
           </div>
           <div className="rule-modal-single-argument">
-            {
-              expectedArguments[2]
-              // + " : "
-            }
+            {expectedArguments[2]}
             {secondArgument}
           </div>
         </li>
@@ -195,10 +198,7 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument">
-            {
-              expectedArguments[0]
-              // + " : "
-            }
+            {expectedArguments[0]}
             {disjonctionArgument}
           </div>
           <div className="rule-modal-single-argument">
@@ -259,17 +259,11 @@ class ShowExpectedArguments extends Component {
           className="rule-modal-all-arguments"
         >
           <div className="rule-modal-single-argument">
-            {
-              expectedArguments[0]
-              // + " : "
-            }
+            {expectedArguments[0]}
             {exFalsoTrueArgument}
           </div>
           <div className="rule-modal-single-argument">
-            {
-              expectedArguments[1]
-              // + " : "
-            }
+            {expectedArguments[1]}
             {exFalsoFalseArgument}
           </div>
           <div className="rule-modal-single-argument">

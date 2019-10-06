@@ -38,7 +38,7 @@ function ShowProbableInference(value, previousInference) {
 
     // cas de toutes les règles
     firstArrow = makeIndicator("first", false);
-    if (value.storedInference[0]) {
+    if (value.storedInference[0] && AIT[SN[0] - 1]) {
       if (AIT[SN[0] - 1].adequacyType === "first") {
         firstArrow = makeIndicator("first", true);
       } else {
@@ -47,7 +47,7 @@ function ShowProbableInference(value, previousInference) {
     }
     if (expectedArguments.length === 2 && ruleName !== "⊃i" && AIT.length > 1) {
       secondArrow = makeIndicator("second", false);
-      if (value.storedInference[1]) {
+      if (value.storedInference[1] && AIT[SN[1] - 1]) {
         if (AIT[SN[1] - 1].adequacyType === "second") {
           secondArrow = makeIndicator("second", true);
         } else if (ruleName === "∧i") {

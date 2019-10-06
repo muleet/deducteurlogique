@@ -101,17 +101,19 @@
   display: flex;
   flex-wrap: nowrap;
   border-top: 1px solid rgb(53, 53, 53);
-  /* flex-direction: row;  */
   margin: 1px;
   padding: 1px;
-  /* flex-wrap: nowrap; */
   word-wrap: nowrap;
-  /* line-break: loose; */
-  /* font-size:20px; */
 }
 
-.rule-modal-single-argument > p:first-child {
-  margin-right: 8px;
+.expected-argument {
+  border-right: 1px solid rgb(53, 53, 53);
+  min-width: 40px;
+  text-align: center;
+}
+
+.awaiting-instruction {
+  text-align: center;
 }
 
 .rule-modal-hypothetical-argument {

@@ -1,7 +1,13 @@
 // import React from "react";
 import InfTools from "./InferenceTools";
 
-function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
+function InferenceForecaster(
+  storedInferences,
+  storedNumbers,
+  ruleName,
+  value,
+  areWeForecasting
+) {
   // 0. déclaration des variables
   let result = { itself: "", activable: false },
     A = "?",

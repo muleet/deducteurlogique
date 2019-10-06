@@ -109,8 +109,14 @@ class InferenceProvider extends Component {
       }));
     };
 
-    this.storageForRuleVerification = (numInference, infItself, hypID) => {
+    this.storageForRuleVerification = (
+      numInference,
+      infItself,
+      hypID,
+      areWeTempForecasting
+    ) => {
       // déclaration des variables essentielles à cette fonction
+      // areWeTempForecasting : true ou false, selon que la fonction soit utilisée par MakeAllInferences (true) ou l'une des fonctions d'InferenceProvider (false)
       let copyArrayStoredInference = [...this.state.storedInference], // inférence elle-même
         copyStoredNumbers = [...this.state.storedNumbers], // numéro(s) justifiant l'inférence (c'est une chaîne de caractères)
         copyStoredHypId = [...this.state.storedHypID], // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
@@ -123,11 +129,11 @@ class InferenceProvider extends Component {
       }
       // début de l'intérêt principal de cette fonction
       if (this.state.canInferenceBeStored === true) {
-        // cas de la règle reit
         if (
           ruleName === "reit" &&
           this.state.hypothesisCurrentLevelAndId.theCurrentHypID >= hypID
         ) {
+          // cas de la règle reit
           copyArrayStoredInference = [infItself]; // inférence elle-même
           copyStoredNumbers = [numInference]; // nombre de l'inférence
         } else if (ruleName === "reit") {
@@ -184,14 +190,20 @@ class InferenceProvider extends Component {
           this.state
         );
 
+        if (areWeTempForecasting === "becomingFalse") {
+          copyArrayStoredInference.pop();
+          areWeTempForecasting = false;
+        }
+
         // maj du state
-        this.setState(state => ({
+        this.setState({
           storedInference: copyArrayStoredInference,
           storedNumbers: copyStoredNumbers,
           storedHypID: copyStoredHypId,
           ruleModalChoiceContent: "",
-          attemptOfRuleValidation: false // il redevient false quoi qu'il arrive, dans cette méthode
-        }));
+          attemptOfRuleValidation: false, // il redevient false quoi qu'il arrive, dans cette méthode
+          attemptOfForecastInference: areWeTempForecasting
+        });
       }
     };
 
@@ -290,7 +302,10 @@ class InferenceProvider extends Component {
           allInferencesThemselves: copyAllInferencesThemselves,
           allHypotheticalInferences: copyAHI,
           allEndedHypotheticalInferences: copyAEHI,
-          anInferenceWasJustRemoved: true
+          storedInference: [],
+          storedNumbers: [],
+          storedHypID: 0,
+          ruleModalChoiceContent: ""
         }));
       }
     };
@@ -761,7 +776,8 @@ class InferenceProvider extends Component {
       },
       attemptingToValidateARule: this.attemptingToValidateARule,
       attemptOfRuleValidation: false, // devient "true" dès que l'utilisateur ou l'automatisme, a tenté de valider la règle (et lorsqu'il est true la fenêtre de règle devient rouge)
-      anInferenceWasJustRemoved: false, // toujours faux, sauf lorsque "removeLastInference" vient d'être utilisé
+      attemptingToForecastInference: this.attemptingToForecastInference,
+      attemptOfForecastInference: false, // devient "true" dès qu'on fait un storageForRuleVerification juste en plaçant la souris sur une inférence
       modifyClassNameOfAnyInference: this.modifyClassNameOfAnyInference
     };
   }

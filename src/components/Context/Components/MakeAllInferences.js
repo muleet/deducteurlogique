@@ -1,5 +1,6 @@
 import React from "react";
 import ShowProbableInference from "../../Calcul Tools/Deducer Tools/ShowProbableInference";
+import InferenceForecaster from "../../Context/Components/InferenceForecaster";
 
 // la fonction MakeAllInferences est appelée par "ShowAllInferences" provenant de InferenceProvider, laquelle se trouve dans Deducer
 // la fonction MakeAllInferences appelle ShowProbableInference
@@ -87,6 +88,7 @@ function renderInference(inference, num, value, isItTheLastInference) {
   } else {
     adequacyArrow = "";
   }
+
   return (
     <li
       key={num - 1}
@@ -103,14 +105,26 @@ function renderInference(inference, num, value, isItTheLastInference) {
       }}
       onMouseOver={() => {
         // console.log("est-ce true", value.canInferenceBeStored);
-        // if (value.canInferenceBeStored) {
-        value.modifyClassNameOfAnyInference("selected", num);
-        // }
+        if (value.canInferenceBeStored && !value.attemptOfForecastInference) {
+          value.modifyClassNameOfAnyInference("selected", num);
+          //   value.storageForRuleVerification(
+          //     num,
+          //     inference.itself,
+          //     inference.actualHypID,
+          //     true
+          //   );
+        }
       }}
       onMouseOut={() => {
-        // if (value.canInferenceBeStored) {
-        value.modifyClassNameOfAnyInference("unselected", num);
-        // }
+        if (value.canInferenceBeStored) {
+          // value.storageForRuleVerification(
+          //   "",
+          //   "",
+          //   inference.actualHypID,
+          //   "becomingFalse"
+          // );
+          value.modifyClassNameOfAnyInference("unselected", num);
+        }
       }}
     >
       <div className={"inferenceNumber " + classNames}>{num}.</div>

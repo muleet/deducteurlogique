@@ -400,3 +400,7 @@ h3 {
 .french-color {
   color: rgb(228, 190, 114);
 }
+
+.transparent {
+  opacity: 0.5;
+}
