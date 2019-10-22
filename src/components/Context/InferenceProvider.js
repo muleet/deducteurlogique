@@ -78,13 +78,16 @@ class InferenceProvider extends Component {
         this.state.hypothesisCurrentLevelAndId.level + hypNumber;
       newInference.actualHypID = hypIDNumber;
       copyArrayThemselves.push(newInference);
-
+      this.state.addLastEvent("addInference"); // cette ligne ne sera pas faite si il y a un "secondNewInference"
+      this.state.modifyClassNameOfAnyInference("addInference", "last");
       if (secondNewInference) {
         // peut arriver avec les règles impliquant un choix
         secondNewInference.level =
           this.state.hypothesisCurrentLevelAndId.level + hypNumber;
         secondNewInference.actualHypID = hypIDNumber;
         copyArrayThemselves.push(secondNewInference);
+        this.state.addLastEvent("doubleAddInference");
+        this.state.modifyClassNameOfAnyInference("doubleAddInference", "last");
       }
 
       if (
@@ -109,17 +112,11 @@ class InferenceProvider extends Component {
       }));
     };
 
-    this.storageForRuleVerification = (
-      numInference,
-      infItself,
-      hypID,
-      areWeTempForecasting
-    ) => {
+    this.storageForRuleVerification = (numInference, infItself, hypID) => {
       // déclaration des variables essentielles à cette fonction
-      // areWeTempForecasting : true ou false, selon que la fonction soit utilisée par MakeAllInferences (true) ou l'une des fonctions d'InferenceProvider (false)
-      let copyArrayStoredInference = [...this.state.storedInference], // inférence elle-même
+      let copyStoredInferences = [...this.state.storedInference], // inférence elle-même
         copyStoredNumbers = [...this.state.storedNumbers], // numéro(s) justifiant l'inférence (c'est une chaîne de caractères)
-        copyStoredHypId = [...this.state.storedHypID], // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
+        copyStoredHypIDs = [...this.state.storedHypID], // ID de l'hypothèse de CETTE inférence (à comparer avec le niveau actuel d'inférence)
         // petite déclaration intermédiaire pour bien préparer le moment où on va reset le tableau des arguments
         expectedArgumentsLength = this.state.ruleModalContent.expectedArguments
           .length;
@@ -129,23 +126,9 @@ class InferenceProvider extends Component {
       }
       // début de l'intérêt principal de cette fonction
       if (this.state.canInferenceBeStored === true) {
-        if (
-          ruleName === "reit" &&
-          this.state.hypothesisCurrentLevelAndId.theCurrentHypID >= hypID
-        ) {
-          // cas de la règle reit
-          copyArrayStoredInference = [infItself]; // inférence elle-même
-          copyStoredNumbers = [numInference]; // nombre de l'inférence
-        } else if (ruleName === "reit") {
-          this.setAdvice(
-            "Impossible de réitérer une inférence provenant d'une hypothèse terminée",
-            "error-advice"
-          );
-        }
-
         // cas de toutes les règles sauf reit
         console.log(
-          "faut que ce soit égal",
+          "2) faut que ce soit égal",
           this.state.hypothesisCurrentLevelAndId.theCurrentHypID,
           "===",
           hypID
@@ -155,19 +138,34 @@ class InferenceProvider extends Component {
           ruleName !== "reit" &&
           this.state.hypothesisCurrentLevelAndId.theCurrentHypID === hypID
         ) {
-          if (expectedArgumentsLength === copyArrayStoredInference.length) {
+          if (expectedArgumentsLength === copyStoredInferences.length) {
             // dans ce if on reset les arguments, vu que l'utilisateur a dépassé le nombre d'arguments max en cliquant
-            copyArrayStoredInference = [infItself]; // inférence elle-même
+            copyStoredInferences = [infItself]; // inférence elle-même
             copyStoredNumbers = [numInference]; // nombre de l'inférence
+            copyStoredHypIDs = [hypID]; // IDs de l'hypothèse de chaque inférence
           } else {
             // dans ce else on rajoute un argument, vu que l'utilisateur n'a pas encore dépassé le nombre d'arguments max en cliquant
-            copyArrayStoredInference.push(infItself);
+            copyStoredInferences.push(infItself);
             copyStoredNumbers.push(numInference);
-            copyStoredHypId.push(hypID);
+            copyStoredHypIDs.push(hypID);
           }
         } else if (ruleName !== "reit") {
           this.setAdvice(
             "Impossible d'utiliser des inférences hors de l'hypothèse en cours, sauf pour reit",
+            "error-advice"
+          );
+        }
+        if (
+          ruleName === "reit" &&
+          this.state.hypothesisCurrentLevelAndId.theCurrentHypID >= hypID
+        ) {
+          // cas de la règle reit
+          copyStoredInferences = [infItself]; // inférence elle-même
+          copyStoredNumbers = [numInference]; // nombre de l'inférence
+          copyStoredHypIDs = [hypID]; // IDs de l'hypothèse de chaque inférence
+        } else if (ruleName === "reit") {
+          this.setAdvice(
+            "Impossible de réitérer une inférence provenant d'une hypothèse terminée",
             "error-advice"
           );
         }
@@ -184,27 +182,60 @@ class InferenceProvider extends Component {
 
         //  anticipation de la prochaine inférence
         InferenceForecaster(
-          copyArrayStoredInference, // on envoie l'array des inférences stockées
+          copyStoredInferences, // on envoie l'array des inférences stockées
           copyStoredNumbers, // on envoie l'array des nombress stockés
           ruleName, // on envoie le str de la règle en cours
           this.state
         );
-
-        if (areWeTempForecasting === "becomingFalse") {
-          copyArrayStoredInference.pop();
-          areWeTempForecasting = false;
-        }
-
-        // maj du state
-        this.setState({
-          storedInference: copyArrayStoredInference,
-          storedNumbers: copyStoredNumbers,
-          storedHypID: copyStoredHypId,
-          ruleModalChoiceContent: "",
-          attemptOfRuleValidation: false, // il redevient false quoi qu'il arrive, dans cette méthode
-          attemptOfForecastInference: areWeTempForecasting
-        });
       }
+      // maj du state
+      this.setState({
+        storedInference: copyStoredInferences,
+        storedNumbers: copyStoredNumbers,
+        storedHypID: copyStoredHypIDs,
+        ruleModalChoiceContent: "",
+        attemptOfRuleValidation: false // il redevient false quoi qu'il arrive, dans cette méthode
+      });
+    };
+
+    this.storageForecastInference = (
+      str,
+      infNum,
+      infItself,
+      infActualHypID
+    ) => {
+      let newCurrentlyForecasting = false,
+        newForecastedStoredInference = "",
+        newStoredInference = this.state.storedInference,
+        newStoredNumbers = this.state.storedNumbers;
+      if (str === "onMouseEnter") {
+        newCurrentlyForecasting = true;
+        newForecastedStoredInference = {
+          numbers: infNum,
+          itself: infItself,
+          actualHypID: infActualHypID
+        };
+
+        // this.storageForRuleVerification(infNum, infItself, infActualHypID, str);
+        // if () {
+        newStoredInference.push(infItself);
+        newStoredNumbers = infNum;
+        // }
+      } else if (str === "onMouseLeave") {
+        // this.storageForRuleVerification("", "", 0, "onMouseLeave");
+      }
+      // InferenceForecaster(
+      //   this.state.storedInference, // on envoie l'array des inférences stockées
+      //   this.state.storedNumbers, // on envoie l'array des nombress stockés
+      //   this.state.ruleModalContent.ruleName, // on envoie le str de la règle en cours
+      //   this.state
+      // );
+      this.setState({
+        currentlyForecasting: newCurrentlyForecasting,
+        mouseAndInference: str,
+        forecastedStoredInference: newForecastedStoredInference
+        // storedInference: this.state.storedInference
+      });
     };
 
     this.longStorageForRuleVerification = (inference, numbers, bool) => {
@@ -298,6 +329,7 @@ class InferenceProvider extends Component {
             copyAEHI // contenu des hypothèses terminées
           );
         }
+        this.state.addLastEvent("removeLastInference");
         this.setState(state => ({
           allInferencesThemselves: copyAllInferencesThemselves,
           allHypotheticalInferences: copyAHI,
@@ -403,7 +435,7 @@ class InferenceProvider extends Component {
       // "eal" contient expectedArguments.length
       // setRuleModal très en lien avec forecastInference(active,A,B,operator,commentary,numberCommentary)
       // howItEnded est soit "ended-well" soit "ended-badly" soit "hypothesis-ended-well" soit "hypothesis-ended-badly"
-      console.log("str", str);
+      // console.log("str", str);
       let newRuleModalShown = { normal: false },
         newRuleModalContent = { ruleName: "" },
         newAttemptOfRuleValidation = false;
@@ -612,9 +644,20 @@ class InferenceProvider extends Component {
       classNameType,
       positionOfInference
     ) => {
-      let newAllInferencesThemselves = [...this.state.allInferencesThemselves],
-        newClassName = "";
-      if (newAllInferencesThemselves.length > 0) {
+      let newAIT = [...this.state.allInferencesThemselves],
+        newClassName = "",
+        countOfRemovedInference = 0;
+      for (let i = 0; i < newAIT.length; i++) {
+        if (
+          this.state.allEvent[this.state.allEvent.length + i] ===
+          "removeLastInference"
+        ) {
+          countOfRemovedInference++;
+        } else {
+          i = newAIT.length;
+        }
+      }
+      if (newAIT.length > 0) {
         if (classNameType === "unremovable") {
           newClassName = "unremovableInference-blinking";
         } else if (classNameType === "removable") {
@@ -625,22 +668,29 @@ class InferenceProvider extends Component {
           newClassName = "unselectedInference-blinking";
         }
         if (positionOfInference === "last") {
-          newAllInferencesThemselves[
-            newAllInferencesThemselves.length - 1
-          ].inferenceBackground = newClassName;
+          newAIT[newAIT.length - 1].inferenceBackground = newClassName;
         } else if (positionOfInference === "all") {
-          for (let i = 0; i < newAllInferencesThemselves.length; i++) {
-            newAllInferencesThemselves[i].inferenceBackground = newClassName;
+          for (let i = 0; i < newAIT.length; i++) {
+            newAIT[i].inferenceBackground = newClassName;
           }
         } else if (typeof positionOfInference === "number") {
-          newAllInferencesThemselves[
-            positionOfInference - 1
+          newAIT[
+            positionOfInference - 1 - countOfRemovedInference
           ].inferenceBackground = newClassName;
         }
         this.setState({
-          allInferencesThemselves: newAllInferencesThemselves
+          allInferencesThemselves: newAIT
         });
       }
+    };
+
+    this.addLastEvent = newEvent => {
+      let newAllEvent = [...this.state.allEvent];
+      newAllEvent.push(newEvent);
+      if (newEvent === "doubleAddInference") {
+        newAllEvent.push(newEvent);
+      }
+      this.setState({ allEvent: newAllEvent });
     };
 
     this.resetDeduction = () => {
@@ -691,7 +741,8 @@ class InferenceProvider extends Component {
           numberCommentary: "",
           activable: false
         },
-        attemptOfRuleValidation: false
+        attemptOfRuleValidation: false,
+        allEvent: []
       }));
     };
 
@@ -705,17 +756,18 @@ class InferenceProvider extends Component {
       storedInference: [], // contient les données "brutes" des inférences stockées pour la validation d'une règle
       storedNumbers: "", // Contient les nombres des inférences en question (ce ne sera jamais autre chose qu'une courte chaîne de caractère)
       storedHypID: 0, // chaque inférence dans une hypothèse a un id d'hypothèse (qui est à 0 s'il n'y a pas d'hyp en cours), storedHypID permet de stocker cet id d'hypothèse, pour le comparer à celui de l'hypothèse en cours
+      forecastedStoredInference: "", // str contenant la prochaine inf
       // section des données stockées dans des situations spécifiques (et destockées dans des situations spécifiques)
       longStoredInference: [], // stockage conditionnel
       longStorageForRuleVerification: this.longStorageForRuleVerification,
       // section de l'objet des options relatives aux déductions et inférences
       booleansOptionsAboutInferences: {
         boolInferenceScanner: true, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
-        boolDebugger: false, // le debugger est-il activé ? (il affiche certaines informations)
+        boolDebugger: true, // le debugger est-il activé ? (il affiche certaines informations)
         boolFinalCheck: false // les règles tentent-elles de s'activer automatiquement si tous les arguments ont été entrés ?
       },
       toggleOptionsAboutInferences: this.toggleOptionsAboutInferences,
-      // sections de divers boutons de l'interface
+      // section de divers boutons de l'interface
       giveSolution: this.giveSolution,
       removeLastInference: this.removeLastInference,
       resetDeduction: this.resetDeduction,
@@ -776,9 +828,12 @@ class InferenceProvider extends Component {
       },
       attemptingToValidateARule: this.attemptingToValidateARule,
       attemptOfRuleValidation: false, // devient "true" dès que l'utilisateur ou l'automatisme, a tenté de valider la règle (et lorsqu'il est true la fenêtre de règle devient rouge)
-      attemptingToForecastInference: this.attemptingToForecastInference,
-      attemptOfForecastInference: false, // devient "true" dès qu'on fait un storageForRuleVerification juste en plaçant la souris sur une inférence
-      modifyClassNameOfAnyInference: this.modifyClassNameOfAnyInference
+      currentlyForecasting: false, // devient "true" dès qu'on fait un storageForRuleVerification juste en plaçant la souris sur une inférence
+      mouseAndInference: "onMouseLeave", // contient soit "onMouseEnter", "OnMouseLeave", voire "onClick", pour savoir ce que l'utilisateur a fait en dernier
+      storageForecastInference: this.storageForecastInference, // utilise les deux précédentes variables du state
+      modifyClassNameOfAnyInference: this.modifyClassNameOfAnyInference,
+      allEvent: [], // peut prendre les valeurs "removeLastInference", "addInference", "doubleAddInference"
+      addLastEvent: this.addLastEvent // permet de fixer quel est le dernier évènement dans la déduction
     };
   }
 

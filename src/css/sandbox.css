@@ -1,11 +1,3 @@
-#slidingMenuPossiblePremisses {
-  margin-left: 105px;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-}
-
 #buttonKeyboardPremisses {
   margin: 0px 8px 0px 34px;
 }
@@ -20,19 +12,28 @@
   display: none;
 }
 
+#slidingMenuPossiblePremisses {
+  margin-left: 51px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  width: 130px;
+}
+
 #slidingMenuPossiblePremisses:hover .possible-premisse-sandbox {
   /* quand on met sa souris sur le bouton, les prémisses possibles apparaissent */
   background-color: #333;
-  width: 110px;
   display: flex;
   justify-content: center;
-  position: absolute relative;
+}
+#slidingMenuPossiblePremisses:first-child {
+  width: 50px;
 }
 #slidingMenuPossiblePremisses .possible-premisse-sandbox:hover {
   /* quand on met sa souris sur les prémisses possibles, elles deviennent grises */
   background-color: #777;
 }
-
 #slidingMenuPossiblePremisses:hover .possible-premisse-sandbox-added {
   background-color: rgb(105, 101, 101);
 }

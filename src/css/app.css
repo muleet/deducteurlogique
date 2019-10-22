@@ -224,7 +224,7 @@ h3 {
 .debugger {
   display: flex;
   flex-direction: column;
-  font-size: 15px;
+  font-size: 18px;
   border: 1px solid purple;
   background-color: rgba(128, 0, 128, 0.24);
   min-width: 300px;

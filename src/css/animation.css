@@ -104,7 +104,7 @@
   }
 }
 
-#demo-addedInference-blinking {
+.addedInference-blinking {
   /* NAME | TIME | ITERATION */
   animation: addedInference-blinking 1.2s normal;
   -webkit-animation: addedInference-blinking 1.2s normal;
@@ -120,8 +120,8 @@
 }
 .removableInference-blinking {
   /* NAME | TIME | ITERATION */
-  animation: removableInference-blinking 0.8s both;
-  -webkit-animation: removableInference-blinking 0.8s both;
+  animation: removableInference-blinking 0.2s both;
+  -webkit-animation: removableInference-blinking 0.2s both;
 }
 @keyframes unremovableInference-blinking {
   0% {
@@ -133,8 +133,8 @@
 }
 .unremovableInference-blinking {
   /* NAME | TIME | ITERATION */
-  animation: unremovableInference-blinking 0.8s both;
-  -webkit-animation: unremovableInference-blinking 0.8s both;
+  animation: unremovableInference-blinking 0.2s both;
+  -webkit-animation: unremovableInference-blinking 0.2s both;
 }
 
 @keyframes selectedInference-blinking {
@@ -147,8 +147,8 @@
 }
 .selectedInference-blinking {
   /* NAME | TIME | ITERATION */
-  animation: selectedInference-blinking 0.8s both;
-  -webkit-animation: selectedInference-blinking 0.8s both;
+  animation: selectedInference-blinking 0.1s both;
+  -webkit-animation: selectedInference-blinking 0.1s both;
 }
 @keyframes unselectedInference-blinking {
   0% {
@@ -160,6 +160,6 @@
 }
 .unselectedInference-blinking {
   /* NAME | TIME | ITERATION */
-  animation: unselectedInference-blinking 1s both;
-  -webkit-animation: unselectedInference-blinking 1s both;
+  animation: unselectedInference-blinking 0.1s both;
+  -webkit-animation: unselectedInference-blinking 0.1s both;
 }

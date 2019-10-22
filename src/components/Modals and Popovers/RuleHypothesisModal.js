@@ -14,7 +14,7 @@ class RuleModal extends Component {
   }
 
   handleCloseModal() {
-    this.props.valueInference.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInference + storedInference est vidé
+    this.props.valueInference.changeStorageBoolean(); // il n'est plus possible de pusher dans storedInferences + storedInferences est vidé
     this.props.valueInference.setRuleModal(false);
     this.resetHypothesis();
   }

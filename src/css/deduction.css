@@ -66,7 +66,7 @@
   text-align: center;
 }
 
-.setPremissesConclusion {
+.setPremissesAndConclusion {
   /* Concerne la box qui contient toutes les infos d'un exo. Aussi bien les termes introductifs, que les boutons de prémisses, que la conclusion, ou autre.*/
   font-style: italic;
   display: flex;
@@ -75,11 +75,15 @@
   text-align: center;
   width: 500px;
   margin-left: 100px;
+  margin-top: 5px;
   /* margin: 2px 0px 2px 0px; */
 }
 
-.setPremissesConclusion > li {
-  padding: 4px;
+.setPremissesOrConclusion {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
 }
 
 .premisse {

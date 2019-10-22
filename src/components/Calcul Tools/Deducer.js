@@ -81,17 +81,17 @@ class Deducer extends Component {
     );
   }
 
-  renderCompatibleInferencesForCurrentRule(value) {
-    let result = "";
-    if (value.booleansOptionsAboutInferences.boolInferenceScanner) {
-      result = (
-        <div className="setAdequacyArrows">
-          {value.allInferencesValidForCurrentRule}
-        </div>
-      ); /* on affiche le tableau contenant les inférences compatibles ou non */
-    }
-    return result;
-  }
+  // renderCompatibleInferencesForCurrentRule(value) {
+  //   let result = "";
+  //   if (value.booleansOptionsAboutInferences.boolInferenceScanner) {
+  //     result = (
+  //       <div className="setAdequacyArrows">
+  //         {value.allInferencesValidForCurrentRule}
+  //       </div>
+  //     ); /* on affiche le tableau contenant les inférences compatibles ou non */
+  //   }
+  //   return result;
+  // }
   renderDebugger(value) {
     let result = "";
     if (value.booleansOptionsAboutInferences.boolDebugger) {
@@ -153,7 +153,7 @@ class Deducer extends Component {
                       <div style={{ display: "flex", flexDirection: "column" }}>
                         <ButtonDeductionMaker valueInference={value} />
                         <ul className="deduction">
-                          {this.renderCompatibleInferencesForCurrentRule(value)}
+                          {/* {this.renderCompatibleInferencesForCurrentRule(value)} */}
                           {value.showAllInferences() /* on affiche le tableau */}
                         </ul>
                       </div>

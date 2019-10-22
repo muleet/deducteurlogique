@@ -12,10 +12,8 @@ function ShowProbableInference(value, previousInference) {
     hypothesisLevel = "",
     hypothesisLevelNumber = Number(previousInference.level),
     probableCommentary = "?," + ruleName;
-  let hypotheticalArrow = "",
-    firstArrow = "",
-    secondArrow = "",
-    setAdequacyArrows = "",
+  console.log(hypothesisLevelNumber);
+  let setAdequacyArrows = "",
     AIT = value.allInferencesThemselves,
     SN = value.storedNumbers;
   if (
@@ -24,62 +22,12 @@ function ShowProbableInference(value, previousInference) {
     AIT.length > 0
   ) {
     // Section de la création des adequacyArrows
-    if (ruleName === "⊃i" || ruleName === "~i") {
-      // cas des règles hypothétiques
-      hypotheticalArrow = makeIndicator("hypothetical", false);
-      if (value.allHypotheticalInferences[0]) {
-        hypotheticalArrow = makeIndicator("hypothetical", true);
-      }
-      firstArrow = makeIndicator("first", false);
-      if (ruleName === "~i") {
-        secondArrow = makeIndicator("second", false);
-      }
-    }
-
-    // cas de toutes les règles
-    firstArrow = makeIndicator("first", false);
-    if (value.storedInference[0] && AIT[SN[0] - 1]) {
-      if (AIT[SN[0] - 1].adequacyType === "first") {
-        firstArrow = makeIndicator("first", true);
-      } else {
-        firstArrow = makeIndicator("inadequate", true);
-      }
-    }
-    if (expectedArguments.length === 2 && ruleName !== "⊃i" && AIT.length > 1) {
-      secondArrow = makeIndicator("second", false);
-      if (value.storedInference[1] && AIT[SN[1] - 1]) {
-        if (AIT[SN[1] - 1].adequacyType === "second") {
-          secondArrow = makeIndicator("second", true);
-        } else if (ruleName === "∧i") {
-          // cas spécifique de ∧i, puisque cette règle fonctionne avec toutes les inférences
-          secondArrow = makeIndicator("first", true);
-        } else if (
-          ruleName === "↓i" &&
-          AIT[SN[1] - 1].adequacyType === "first"
-        ) {
-          // cas spécifique de ↓i
-          secondArrow = makeIndicator("first", true);
-        } else {
-          secondArrow = makeIndicator("inadequate", true);
-        }
-      }
-    } else if (expectedArguments.length === 3) {
-      // cas spécifique de ~i, qui a 3 arguments
-      if (value.storedInference[1]) {
-        if (AIT[SN[1] - 1].adequacyType === "second") {
-          secondArrow = makeIndicator("second", true);
-        } else {
-          secondArrow = makeIndicator("inadequate", true);
-        }
-      }
-    }
-
-    setAdequacyArrows = (
-      <ul className={"setAdequacyArrows "}>
-        {hypotheticalArrow}
-        {firstArrow}
-        {secondArrow}
-      </ul>
+    setAdequacyArrows = makeSetAdequacyArrows(
+      value,
+      ruleName,
+      AIT,
+      SN,
+      expectedArguments
     );
   }
   if (probableInference.active === false) {
@@ -89,12 +37,8 @@ function ShowProbableInference(value, previousInference) {
       probableCommentary = "?";
     }
   } else if (probableInference.activable === true) {
-    // probableCommentary = "?, " + ruleName;
-    // if (ruleName) {
     probableCommentary =
       probableInference.numberCommentary + ", " + probableInference.commentary;
-    // }
-    // checkSquareClassName = "";
     newInference = {
       itself: probableInference.itself,
       commentary: probableInference.commentary + ", " + ruleName,
@@ -113,6 +57,7 @@ function ShowProbableInference(value, previousInference) {
       hypothesisLevelNumber--;
     }
   } else if (ruleName === "hyp") {
+    hypothesisLevelNumber++;
     classNames = "hypotheticalInference ";
     probableInference.itself = value.futureInference;
     probableInference.commentary = "hyp";
@@ -123,7 +68,6 @@ function ShowProbableInference(value, previousInference) {
       numberCommentary: ""
     };
     // hyp = "nouvelle hypothèse";
-    hypothesisLevelNumber++;
     // } else if (ruleName === "∨e") {
     //   // à faire plus tard
     //   hyp = "nouvelle hyp ∨e";
@@ -165,6 +109,66 @@ function ShowProbableInference(value, previousInference) {
     </li>
   );
   return nextInference;
+}
+
+function makeSetAdequacyArrows(value, ruleName, AIT, SN, expectedArguments) {
+  let hypotheticalArrow = "",
+    firstArrow = "",
+    secondArrow = "";
+  if (ruleName === "⊃i" || ruleName === "~i") {
+    // cas des règles hypothétiques
+    hypotheticalArrow = makeIndicator("hypothetical", false);
+    if (value.allHypotheticalInferences[0]) {
+      hypotheticalArrow = makeIndicator("hypothetical", true);
+    }
+    firstArrow = makeIndicator("first", false);
+    if (ruleName === "~i") {
+      secondArrow = makeIndicator("second", false);
+    }
+  }
+
+  // cas de toutes les règles
+  firstArrow = makeIndicator("first", false);
+  if (SN[0] && AIT[SN[0] - 1]) {
+    if (AIT[SN[0] - 1].adequacyType === "first") {
+      firstArrow = makeIndicator("first", true);
+    } else {
+      firstArrow = makeIndicator("inadequate", true);
+    }
+  }
+  if (expectedArguments.length === 2 && ruleName !== "⊃i" && AIT.length > 1) {
+    secondArrow = makeIndicator("second", false);
+    if (SN[1] && AIT[SN[1] - 1]) {
+      if (AIT[SN[1] - 1].adequacyType === "second") {
+        secondArrow = makeIndicator("second", true);
+      } else if (ruleName === "∧i") {
+        // cas spécifique de ∧i, puisque cette règle fonctionne avec toutes les inférences
+        secondArrow = makeIndicator("first", true);
+      } else if (ruleName === "↓i" && AIT[SN[1] - 1].adequacyType === "first") {
+        // cas spécifique de ↓i
+        secondArrow = makeIndicator("first", true);
+      } else {
+        secondArrow = makeIndicator("inadequate", true);
+      }
+    }
+  } else if (expectedArguments.length === 3) {
+    // cas spécifique de ~i, qui a 3 arguments
+    if (SN[1]) {
+      if (AIT[SN[1] - 1].adequacyType === "second") {
+        secondArrow = makeIndicator("second", true);
+      } else {
+        secondArrow = makeIndicator("inadequate", true);
+      }
+    }
+  }
+
+  return (
+    <ul className={"setAdequacyArrows "}>
+      {hypotheticalArrow}
+      {firstArrow}
+      {secondArrow}
+    </ul>
+  );
 }
 
 function makeIndicator(type, bool) {

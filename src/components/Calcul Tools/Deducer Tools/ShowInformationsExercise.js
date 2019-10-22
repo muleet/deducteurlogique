@@ -117,12 +117,11 @@ class ShowInformationsExercise extends Component {
           {/* {exerciseComment} */}
         </p>
         {textCanItBeDone}
-        <ul className="setPremissesConclusion">
-          <li>
-            Prémisses
-            {setOfPremisses}
+        <ul className="setPremissesAndConclusion">
+          <li className="setPremissesOrConclusion">
+            Prémisses{setOfPremisses}
           </li>
-          <li>
+          <li className="setPremissesOrConclusion">
             Conclusion
             <div id="conclusion">{this.props.exerciseSent.conclusion}</div>
           </li>

@@ -225,7 +225,7 @@ class ShowModalButtons extends Component {
     //   return ""; // pas de boutons pour reit
     // }
 
-    // SECTION TRES IMPORTANTE, la tentative de vérification automatique de la règle, lors que tous les arguments ont été rentrés (il y a 5 conditions !!!)
+    // SECTION TRES IMPORTANTE, la tentative de vérification automatique de la règle, lors que tous les arguments ont été rentrés (il y a SIX conditions !!!)
     if (ruleName === "⊃i" || ruleName === "~i") {
       storedInferenceLength++;
     }
@@ -234,7 +234,8 @@ class ShowModalButtons extends Component {
       this.props.valueInference.booleansOptionsAboutInferences.boolFinalCheck && // b) si boolFinalCheck est true
       !this.props.valueInference.ruleModalChoiceContent && // c) s'il n'y a pas déjà un ruleModalChoiceContent
       this.props.valueInference.ruleModalShown.normal && // d) s'il y a bien un ruleModal en cours
-      !this.props.valueInference.attemptOfRuleValidation // e) a-t-on déjà essayé de valider CETTE règle avec CES arguments
+      !this.props.valueInference.attemptOfRuleValidation && // e) a-t-on déjà essayé de valider CETTE règle avec CES arguments
+      !this.props.valueInference.currentlyForecasting
     ) {
       if (ruleName === "⊃i" || ruleName === "~i") {
         this.verifyBreakHypothesisRule(this.props.valueRule);

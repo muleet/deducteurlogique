@@ -142,7 +142,6 @@ class ShowInfoSandbox extends Component {
     let newSetofPremisses = [...this.state.setOfPremisses],
       newConclusion = this.state.conclusion,
       newStoredObjectExercise = this.props.valueInference.storedObjectExercise;
-    console.log("newContent", newContent, "type", type);
     if (type === "premisse") {
       if (
         newSetofPremisses.indexOf(newContent) === -1 &&
@@ -274,7 +273,7 @@ class ShowInfoSandbox extends Component {
     return (
       <Fragment>
         <p className={"exercise-title "} />
-        <ul className="setPremissesConclusion">
+        <ul className="setPremissesAndConclusion">
           <li style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               {this.showKeyboard()}

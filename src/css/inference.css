@@ -49,15 +49,17 @@
 
 .inference-normalText {
   /* utilisé pour mettre du texte normal au milieu d'une inférence, par exemple pour afficher l'inférence probable avec ∧e */
+  /* enfin, idéalement c'est utilisé pour ça, parce que finalement ça marche pas */
   color: white;
 }
 
 .concluding-inference-blinking {
   color: rgb(0, 209, 0);
   animation: slow-blinker 3s linear infinite;
-  /* font-weight:bold; */
-  /* border:3px solid green; */
-  /* text-decoration: underline; */
+}
+
+.forecastedInference {
+  background-color: green;
 }
 
 /* SECTION DE LA PROCHAINE INFERENCE */

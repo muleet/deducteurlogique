@@ -31,37 +31,59 @@ class ShowExpectedArguments extends Component {
     return <div className="rule-modal-all-button-hypothesis">{keyboard}</div>;
   };
 
-  renderInstructionOrArgument(className, instructionOrArgument) {
-    return <p className={className}>{instructionOrArgument}</p>;
+  renderInstructionOrArgumentOfCurrentRule(
+    className,
+    instructionOrArgument,
+    otherInstructionOrArgument
+  ) {
+    return (
+      <div className={className}>
+        {instructionOrArgument}
+        {otherInstructionOrArgument}
+      </div>
+    );
   }
 
   render() {
-    let arrayExpectedArguments = [];
-    let arrayEmptyArgument = [];
-    const ruleName = this.props.ruleName;
-    const expectedArguments = this.props.expectedArguments;
-    const storedInference = this.props.valueInference.storedInference;
-    const allHypotheticalInferences = this.props.valueInference
-      .allHypotheticalInferences;
-    let classNameIsItForecasted = "";
-
-    if (this.props.valueInference.attemptOfForecastInference) {
-      classNameIsItForecasted = "transparent";
-    }
+    let arrayExpectedArguments = [],
+      arrayEmptyArgument = [],
+      storedInference = this.props.valueInference.storedInference;
+    const ruleName = this.props.ruleName,
+      expectedArguments = this.props.expectedArguments,
+      allHypotheticalInferences = this.props.valueInference
+        .allHypotheticalInferences;
 
     // déclaration des arguments attendus
-    let hypContent = this.renderInstructionOrArgument(
+    let hypContent = this.renderInstructionOrArgumentOfCurrentRule(
       "awaiting-an-inference-blinking",
       "<Créez d'abord une hypothèse A, à l'aide de la règle \"hyp\">"
     );
-    let firstArgument = this.renderInstructionOrArgument(
+    let firstArgument = this.renderInstructionOrArgumentOfCurrentRule(
       "awaiting-an-inference-blinking",
       "<Cliquez sur une inférence B au sein de l'hypothèse A>"
     );
-    let secondArgument = this.renderInstructionOrArgument(
+    let secondArgument = this.renderInstructionOrArgumentOfCurrentRule(
       "awaiting-an-inference-blinking",
       "<Cliquez sur une inférence qui nie l'inférence B>"
     );
+    // if (
+    //   this.props.valueInference.forecastedStoredInference &&
+    //   ruleName !== "hyp"
+    // ) {
+    // arrayExpectedArguments.push(
+    //   this.renderInstructionOrArgumentOfCurrentRule(
+    //     "forecastedInference",
+    //     this.props.valueInference.forecastedStoredInference.itself
+    //   )
+    // );
+    // } else {
+    //   arrayExpectedArguments.push(
+    //     this.renderInstructionOrArgumentOfCurrentRule(
+    //       "awaiting-an-inference-blinking",
+    //       "<Sélectionnez une inférence>"
+    //     )
+    //   );
+    // }
     if (
       ruleName !== "⊃i" &&
       ruleName !== "~i" &&
@@ -72,22 +94,19 @@ class ShowExpectedArguments extends Component {
       // Toutes les règles, sauf les cas spécifiques comme en dessous
       for (let i = 0; i < expectedArguments.length; i++) {
         arrayEmptyArgument.push(
-          this.renderInstructionOrArgument(
+          this.renderInstructionOrArgumentOfCurrentRule(
             "awaiting-an-inference-blinking",
             "<Cliquez sur une inférence adéquate>"
           )
         );
-        if (this.props.valueInference.attemptOfForecastInference) {
-          classNameIsItForecasted = " transparent";
-        }
         if (storedInference[i]) {
-          arrayEmptyArgument[i] = this.renderInstructionOrArgument(
-            "infItself-modal" + classNameIsItForecasted,
+          arrayEmptyArgument[i] = this.renderInstructionOrArgumentOfCurrentRule(
+            "infItself-modal",
             storedInference[i]
           );
         } else {
           arrayEmptyArgument.push(
-            this.renderInstructionOrArgument(
+            this.renderInstructionOrArgumentOfCurrentRule(
               "awaiting-an-inference-blinking",
               "<Cliquez sur une inférence adéquate>"
             )
@@ -95,12 +114,12 @@ class ShowExpectedArguments extends Component {
         }
         arrayExpectedArguments.push(
           <li key={i} className="rule-modal-single-argument">
-            {this.renderInstructionOrArgument(
+            {this.renderInstructionOrArgumentOfCurrentRule(
               "expected-argument",
               expectedArguments[i]
             )}
-            {this.renderInstructionOrArgument(
-              "instruction-awaiting",
+            {this.renderInstructionOrArgumentOfCurrentRule(
+              "awaiting-instruction",
               arrayEmptyArgument[i]
             )}
           </li>
@@ -109,80 +128,90 @@ class ShowExpectedArguments extends Component {
     } else if (ruleName === "⊃i") {
       // introduction du conditionnel
       if (allHypotheticalInferences.length >= 1) {
-        hypContent = (
-          <p className="infItself-modal">
-            {allHypotheticalInferences[0].itself}
-          </p>
+        hypContent = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          allHypotheticalInferences[0].itself
         );
       }
       if (storedInference[0]) {
-        firstArgument = <p className="infItself-modal">{storedInference[0]}</p>;
+        firstArgument = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          storedInference[0]
+        );
       }
       arrayExpectedArguments.push(
         <li
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
-            {expectedArguments[0]}
-            {hypContent}
-          </div>
-          <div className="rule-modal-single-argument">
-            {expectedArguments[1]}
-            {firstArgument}
-          </div>
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument rule-modal-hypothetical-argument",
+            expectedArguments[0],
+            hypContent
+          )}
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument",
+            expectedArguments[1],
+            firstArgument
+          )}
         </li>
       );
     } else if (ruleName === "~i") {
       if (allHypotheticalInferences.length >= 1) {
-        hypContent = (
-          <p className="infItself-modal">
-            {allHypotheticalInferences[0].itself}
-          </p>
+        hypContent = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          allHypotheticalInferences[0].itself
         );
       }
       if (storedInference[0]) {
-        firstArgument = <p className="infItself-modal">{storedInference[0]}</p>;
-      }
-      if (storedInference[1]) {
-        secondArgument = (
-          <p className="infItself-modal">{storedInference[1]}</p>
+        firstArgument = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          storedInference[0]
         );
       }
+      if (storedInference[1]) {
+        secondArgument = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          storedInference[1]
+        );
+      }
+
       arrayExpectedArguments.push(
         <li
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          <div className="rule-modal-single-argument rule-modal-hypothetical-argument">
-            {expectedArguments[0]}
-            {hypContent}
-          </div>
-          <div className="rule-modal-single-argument">
-            {expectedArguments[1]}
-            {firstArgument}
-          </div>
-          <div className="rule-modal-single-argument">
-            {expectedArguments[2]}
-            {secondArgument}
-          </div>
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument rule-modal-hypothetical-argument",
+            expectedArguments[0],
+            hypContent
+          )}
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument",
+            expectedArguments[1],
+            firstArgument
+          )}
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument",
+            expectedArguments[2],
+            secondArgument
+          )}
         </li>
       );
     } else if (ruleName === "∨i") {
-      let disjonctionArgument = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Cliquez sur une inférence adéquate>"}
-        </p>
+      let disjonctionArgument = this.renderInstructionOrArgumentOfCurrentRule(
+        "awaiting-an-inference-blinking",
+        "<Cliquez sur une inférence adéquate>"
       );
-      let arbitraryArgument = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Utilisez le clavier virtuel>"}
-        </p>
+      let arbitraryArgument = this.renderInstructionOrArgumentOfCurrentRule(
+        "awaiting-an-inference-blinking",
+        "<Utilisez le clavier virtuel>"
       );
 
       if (storedInference[0]) {
-        disjonctionArgument = (
-          <p className="infItself-modal">{storedInference[0]}</p>
+        disjonctionArgument = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          storedInference[0]
         );
       }
 
@@ -197,14 +226,16 @@ class ShowExpectedArguments extends Component {
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          <div className="rule-modal-single-argument">
-            {expectedArguments[0]}
-            {disjonctionArgument}
-          </div>
-          <div className="rule-modal-single-argument">
-            {"B"}
-            {arbitraryArgument}
-          </div>
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument",
+            expectedArguments[0],
+            disjonctionArgument
+          )}
+          {this.renderInstructionOrArgumentOfCurrentRule(
+            "rule-modal-single-argument",
+            "B",
+            arbitraryArgument
+          )}
           {keyboard}
         </li>
       );
@@ -220,30 +251,29 @@ class ShowExpectedArguments extends Component {
       //     />
       //   );
     } else if (ruleName === "ex falso") {
-      let exFalsoTrueArgument = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Cliquez sur une inférence A>"}
-        </p>
+      let exFalsoTrueArgument = this.renderInstructionOrArgument(
+        "awaiting-an-inference-blinking",
+        "<Cliquez sur une inférence A>"
       );
-      let exFalsoFalseArgument = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Cliquez sur une inférence ~A>"}
-        </p>
+      let exFalsoFalseArgument = this.renderInstructionOrArgument(
+        "awaiting-an-inference-blinking",
+        "<Cliquez sur une inférence ~A>"
       );
-      let arbitraryArgument = (
-        <p className="awaiting-an-inference-blinking">
-          {"<Utilisez le clavier virtuel>"}
-        </p>
+      let arbitraryArgument = this.renderInstructionOrArgument(
+        "awaiting-an-inference-blinking",
+        "<Utilisez le clavier virtuel>"
       );
 
       if (storedInference[0]) {
-        exFalsoTrueArgument = (
-          <p className="infItself-modal">{storedInference[0]}</p>
+        exFalsoTrueArgument = this.renderInstructionOrArgument(
+          "infItself-modal",
+          storedInference[0]
         );
       }
       if (storedInference[1]) {
-        exFalsoFalseArgument = (
-          <p className="infItself-modal">{storedInference[1]}</p>
+        exFalsoFalseArgument = this.renderInstructionOrArgument(
+          "infItself-modal",
+          storedInference[1]
         );
       }
 
@@ -258,18 +288,21 @@ class ShowExpectedArguments extends Component {
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          <div className="rule-modal-single-argument">
-            {expectedArguments[0]}
-            {exFalsoTrueArgument}
-          </div>
-          <div className="rule-modal-single-argument">
-            {expectedArguments[1]}
-            {exFalsoFalseArgument}
-          </div>
-          <div className="rule-modal-single-argument">
-            {"B"}
-            {arbitraryArgument}
-          </div>
+          {this.renderInstructionOrArgument(
+            "rule-modal-single-argument",
+            expectedArguments[0],
+            exFalsoTrueArgument
+          )}
+          {this.renderInstructionOrArgument(
+            "rule-modal-single-argument",
+            expectedArguments[1],
+            exFalsoFalseArgument
+          )}
+          {this.renderInstructionOrArgument(
+            "rule-modal-single-argument",
+            "B",
+            arbitraryArgument
+          )}
           {keyboard}
         </li>
       );

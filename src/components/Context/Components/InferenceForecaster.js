@@ -75,6 +75,14 @@ function InferenceForecaster(
       storedNumbers, // numberCommentary,
       result.activable // activable
     );
+  } else {
+    value.forecastInference(
+      false // active
+      // result.itself, // itself
+      // ruleName, // commentary
+      // storedNumbers, // numberCommentary,
+      // result.activable // activable
+    );
   }
 }
 

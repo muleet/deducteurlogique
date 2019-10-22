@@ -104,11 +104,13 @@
   margin: 1px;
   padding: 1px;
   word-wrap: nowrap;
+  min-height: 30px;
+  align-items: center;
 }
 
 .expected-argument {
   border-right: 1px solid rgb(53, 53, 53);
-  min-width: 40px;
+  min-width: 60px;
   text-align: center;
 }
 

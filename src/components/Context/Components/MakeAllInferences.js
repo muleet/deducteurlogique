@@ -1,6 +1,6 @@
 import React from "react";
 import ShowProbableInference from "../../Calcul Tools/Deducer Tools/ShowProbableInference";
-import InferenceForecaster from "../../Context/Components/InferenceForecaster";
+// import InferenceForecaster from "../../Context/Components/InferenceForecaster";
 
 // la fonction MakeAllInferences est appelée par "ShowAllInferences" provenant de InferenceProvider, laquelle se trouve dans Deducer
 // la fonction MakeAllInferences appelle ShowProbableInference
@@ -9,19 +9,22 @@ function MakeAllInferences(value) {
   // checkSquare est soit 'undefined', soit il contient du html
 
   let allInferencesShown = [],
-    previousInference = "",
-    isItTheLastInference = false;
+    previousInference = { level: 0 },
+    isItTheLastInference = false,
+    allInfLength = value.allInferencesThemselves.length - 1;
   if (value.allInferencesThemselves) {
     for (let i = 0; i < value.allInferencesThemselves.length; i++) {
       if (i + 1 === value.allInferencesThemselves.length) {
         isItTheLastInference = true;
       }
+
       allInferencesShown.push(
         renderInference(
           value.allInferencesThemselves[i],
           i + 1,
           value,
-          isItTheLastInference
+          isItTheLastInference,
+          allInfLength
         )
       );
     }
@@ -34,13 +37,18 @@ function MakeAllInferences(value) {
   return allInferencesShown;
 }
 
-function renderInference(inference, num, value, isItTheLastInference) {
+function renderInference(
+  inference,
+  num,
+  value,
+  isItTheLastInference,
+  allInfLength
+) {
   let commentary = "",
     hypothesisLevel = "",
     classNames = "",
     adequacyArrow = "",
-    fadeClassName = "",
-    fadeID = "";
+    fadeClassName = "";
   // section des barres d'hypothèses
   for (let i = 0; i < inference.level; i++) {
     hypothesisLevel += "|";
@@ -57,8 +65,16 @@ function renderInference(inference, num, value, isItTheLastInference) {
   }
   if (inference.inferenceBackground) {
     fadeClassName = inference.inferenceBackground;
-  } else if (isItTheLastInference) {
-    fadeID = "demo-addedInference-blinking";
+  } else if (
+    value.allEvent[num - 1] === "addInference" &&
+    isItTheLastInference
+  ) {
+    fadeClassName = "addedInference-blinking ";
+  } else if (
+    value.allEvent[value.allEvent.length - 1] === "doubleAddInference" &&
+    (num === allInfLength || isItTheLastInference)
+  ) {
+    fadeClassName = "addedInference-blinking ";
   }
   // section des classNames pour la flèche d'adéquation
   if (
@@ -92,8 +108,8 @@ function renderInference(inference, num, value, isItTheLastInference) {
   return (
     <li
       key={num - 1}
-      className={"inferenceGlobal " + fadeClassName + classNames}
-      id={fadeID}
+      className={"inferenceGlobal " + fadeClassName}
+      // id={fadeID}
       onClick={() => {
         if (value.canInferenceBeStored) {
           value.storageForRuleVerification(
@@ -103,26 +119,20 @@ function renderInference(inference, num, value, isItTheLastInference) {
           );
         }
       }}
-      onMouseOver={() => {
-        // console.log("est-ce true", value.canInferenceBeStored);
-        if (value.canInferenceBeStored && !value.attemptOfForecastInference) {
+      onMouseEnter={() => {
+        if (value.canInferenceBeStored) {
           value.modifyClassNameOfAnyInference("selected", num);
-          //   value.storageForRuleVerification(
-          //     num,
-          //     inference.itself,
-          //     inference.actualHypID,
-          //     true
-          //   );
+          // value.storageForecastInference(
+          //   "onMouseEnter",
+          //   num,
+          //   inference.itself,
+          //   inference.actualHypID
+          // );
         }
       }}
-      onMouseOut={() => {
+      onMouseLeave={() => {
         if (value.canInferenceBeStored) {
-          // value.storageForRuleVerification(
-          //   "",
-          //   "",
-          //   inference.actualHypID,
-          //   "becomingFalse"
-          // );
+          // value.storageForecastInference("onMouseLeave");
           value.modifyClassNameOfAnyInference("unselected", num);
         }
       }}
