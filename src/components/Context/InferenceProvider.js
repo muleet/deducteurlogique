@@ -763,8 +763,9 @@ class InferenceProvider extends Component {
       // section de l'objet des options relatives aux déductions et inférences
       booleansOptionsAboutInferences: {
         boolInferenceScanner: true, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
-        boolDebugger: true, // le debugger est-il activé ? (il affiche certaines informations)
-        boolFinalCheck: false // les règles tentent-elles de s'activer automatiquement si tous les arguments ont été entrés ?
+        boolDebugger: false, // le debugger est-il activé ? (il affiche certaines informations)
+        boolFinalCheck: false, // les règles tentent-elles de s'activer automatiquement si tous les arguments ont été entrés ?
+        boolOtherInterpretation: false // si l'on a ⊃e et que c'est true, alors on a ⊂e (ça fonctionne pour ⊃e, ≡e, ∨e et peut-être ⊅e)
       },
       toggleOptionsAboutInferences: this.toggleOptionsAboutInferences,
       // section de divers boutons de l'interface
