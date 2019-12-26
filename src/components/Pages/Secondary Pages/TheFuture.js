@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 function makeLegendAboutColorRule() {
   const LegendAboutColorRule = (
     <Fragment>
-      {/* <li className="yes-available-rule legend-example">{"Disponible"}</li> */}
+      <li className="yes-available-rule legend-example">{"Disponible"}</li>
       <li className="soon-available-rule legend-example">
         {"Prochains ajouts"}
       </li>
@@ -41,11 +41,21 @@ const TheFuture = () => {
             marginBottom: "10px"
           }}
         >
+          <p className="yes-available-rule">
+            0.67a : Versions alternatives des règles ⊃e, ⊅e (les
+            contrapositions), et ≡e (permettre d'avoir A si on A≡B et B, et
+            inversement).
+          </p>
           <p className="soon-available-rule">
-            Jusqu'à 0.70 : Versions alternatives des règles ⊃e, ⊅e (les
-            contrapositions), ∨e (syllogisme disjonctif), et ≡e (permettre
-            d'avoir A si on A≡B et B, et inversement). Refonte d'une partie de
-            l'interface.
+            0.67b : Version alternative de la règle ∨e (syllogisme disjonctif).
+          </p>
+          <p className="soon-available-rule">
+            0.68 : Pouvoir valider une inférence en cliquant sur sa
+            prévisualisation. Affichage alternatif des exercices (une ligne avec
+            infos détaillées par exo, plutôt qu'une grille avec tous les exos.)
+          </p>
+          <p className="soon-available-rule">
+            0.69 : Affichage traditionnel des lignes d'hypothèse.
           </p>
           <p className="soon-available-rule">
             0.70-0.80 : Un système de comptes utilisateur pour créer des exos,

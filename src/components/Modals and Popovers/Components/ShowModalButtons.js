@@ -21,7 +21,7 @@ class ShowModalButtons extends Component {
       );
       if (
         this.props.ruleName !== "∧e" &&
-        this.props.ruleName !== "≡e" &&
+        this.props.ruleName !== "≡e'" &&
         this.props.ruleName !== "↓e"
       ) {
         // ∧e et ≡e et ↓e sont exclus parce qu'ils ne doivent pas s'arrêter juste après que l'utilisateur ait validé la règle
@@ -183,6 +183,7 @@ class ShowModalButtons extends Component {
             // if (this.props.ruleName === "∨e") {
             //   this.verifyLongStorageRule(this.props.valueRule);
             // } else
+            console.log(ruleName);
             if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
               this.verifyRule(this.props.valueRule);
             } else {
@@ -194,7 +195,10 @@ class ShowModalButtons extends Component {
         </p>
       ),
       buttonCloseModal = (
-        <p className="rule-modal-button" onClick={this.props.handleCloseModal}>
+        <p
+          className="rule-modal-button"
+          onClick={this.props.handleCloseModalFromButton}
+        >
           <i className="fas fa-times-circle" />
         </p>
       );

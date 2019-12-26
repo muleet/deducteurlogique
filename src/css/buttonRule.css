@@ -114,6 +114,10 @@
   /* border: 1px solid red; */
   background-color: hsl(0, 100%, 24%);
 }
+.selectedOtherInterpretation {
+  /* border: 1px solid red; */
+  background-color: hsl(27, 100%, 24%);
+}
 
 #negationElimination {
   font-size: 16px;

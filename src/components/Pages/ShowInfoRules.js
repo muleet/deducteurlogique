@@ -26,7 +26,7 @@ class ShowInfoRules extends Component {
       if (Rules[i].otherInterpretation) {
         renderedListRules.push(
           <li
-            key={i}
+            key={i + 100}
             className={
               "single-rule " +
               Rules[i].otherInterpretation.available +
@@ -124,12 +124,17 @@ class ShowInfoRules extends Component {
         }
       }
     }
+    let latinName = "";
+    if (Rule.latinName) {
+      latinName = <p className="latin-name">{Rule.latinName}</p>;
+    }
 
     // Compilation de toutes les données en une seule variable, qui est l'état arrayInfoRule
     this.setState({
       arrayInfoRule: (
         <Fragment>
           <div className="title-rule">{verbalNameToRender}</div>
+          {latinName}
           <section style={{ display: "flex", flexDirection: "row" }}>
             <div className="semi-box-info-rule">
               <p className="category-name">Description : </p>

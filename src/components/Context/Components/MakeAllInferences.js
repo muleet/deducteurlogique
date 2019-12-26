@@ -1,6 +1,5 @@
 import React from "react";
 import ShowProbableInference from "../../Calcul Tools/Deducer Tools/ShowProbableInference";
-// import InferenceForecaster from "../../Context/Components/InferenceForecaster";
 
 // la fonction MakeAllInferences est appelée par "ShowAllInferences" provenant de InferenceProvider, laquelle se trouve dans Deducer
 // la fonction MakeAllInferences appelle ShowProbableInference

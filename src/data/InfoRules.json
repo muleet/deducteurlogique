@@ -1,6 +1,7 @@
 [
   {
     "name": "rep",
+    "latinName": "",
     "lecture": "A se lit \"on admet que A\"",
     "verbalName": "Règle de répétition",
     "verbalDescription": "Si A était dans les prémisses, alors on peut répéter A dans la déduction. (Cliquez sur la prémisse à répéter.)",
@@ -12,6 +13,7 @@
   },
   {
     "name": "reit",
+    "latinName": "",
     "lecture": "A se lit \"on réitère A, puisqu'il était déjà admis\"",
     "verbalName": "Règle de réitération",
     "verbalDescription": "Si A a été posé dans la déduction, alors on peut réitérer A dans la déduction. Il est impossible de réitérer l'inférence A si elle provient d'une hypothèse terminée.",
@@ -23,6 +25,7 @@
   },
   {
     "name": "hyp",
+    "latinName": "",
     "lecture": "|A se lit \"on fait l'hypothèse que A\"",
     "verbalName": "Hypothèse",
     "verbalDescription": "A tout moment d'une déduction, on peut faire une hypothèse A. On peut sortir de cette hypothèse en la validant (ce qui permet d'introduire le conditionnel entre le contenu de l'hypothèse, et la dernière inférence, B, avant la sortie de l'hypothèse : inférer A⊃B) ou en la réfutant si l'on arrive à une contradiction (ce qui permet de nier le contenu de l'hypothèse : inférer ~A).\nDe plus, il est toujours possible de créer une hypothèse au sein d'une autre hypothèse. On peut aussi y répéter des prémisses ou y réitérer des inférences, si l'on veut les y utiliser.",
@@ -37,10 +40,14 @@
   },
   {
     "name": "ex falso",
+    "latinName": "",
     "lecture": "",
     "verbalName": "Règle ex falso, ou principe d'explosion",
     "verbalDescription": "A partir d'une contradiction, on peut conclure ce que l'on veut. Par exemple lorsque deux prémisses contenaient à elles seules une contradiction.",
-    "arrayUtilization": [["A", "~A", "B ex falso"], ["A", "~A", "C ex falso"]],
+    "arrayUtilization": [
+      ["A", "~A", "B ex falso"],
+      ["A", "~A", "C ex falso"]
+    ],
     "instruction": "Cliquez sur A, puis ~A, et décidez arbitrairement de B, pour inférer B.",
     "expectedArguments": ["A", "~A"],
     "ruleType": "other",
@@ -48,6 +55,7 @@
   },
   {
     "name": "~i",
+    "latinName": "",
     "lecture": "~A se lit \"il est faux que A\"",
     "verbalName": "Règle d'introduction de la négation",
     "verbalDescription": "Si l'on a prouvé que A était faux (en montrant une contradiction dans une hypothèse A) on peut inférer ~A.",
@@ -62,10 +70,14 @@
   },
   {
     "name": "~~e",
+    "latinName": "",
     "lecture": "~~A se lit \"il est faux de dire qu'il est faux que A\"",
-    "verbalName": "Règle d'élimination de la double négation, dérivée de ~i",
+    "verbalName": "Règle d'élimination de la double négation",
     "verbalDescription": "Si l'on a posé ~~A, on peut inférer A. (Dans la conception binaire du vrai et du faux ~~A et A ont la même valeur de vérité.)",
-    "arrayUtilization": [["~~A", "A ~~e"], ["~~(A∧B)", "A∧B ~~e"]],
+    "arrayUtilization": [
+      ["~~A", "A ~~e"],
+      ["~~(A∧B)", "A∧B ~~e"]
+    ],
     "instruction": "Cliquez sur ~~A, pour inférer A.",
     "expectedArguments": ["~~A"],
     "ruleType": "other",
@@ -73,6 +85,7 @@
   },
   {
     "name": "∧i",
+    "latinName": "",
     "lecture": "A∧B se lit \"A et B\"",
     "verbalName": "Règle d'introduction de la conjonction",
     "verbalDescription": "Si A et B ont été posés, on peut inférer A∧B.",
@@ -84,10 +97,14 @@
   },
   {
     "name": "∧e",
+    "latinName": "",
     "lecture": "A∧B se lit \"A et B\"",
     "verbalName": "Règle d'élimination de la conjonction",
     "verbalDescription": "Si A∧B a été posé, on peut inférer A et on peut inférer B.",
-    "arrayUtilization": [["A∧B", "A ∧e"], ["A∧B", "B ∧e"]],
+    "arrayUtilization": [
+      ["A∧B", "A ∧e"],
+      ["A∧B", "B ∧e"]
+    ],
     "instruction": "Cliquez sur A∧B, validez, puis choisissez A ou B, pour l'inférer.",
     "expectedArguments": ["A∧B"],
     "ruleType": "conjonction",
@@ -95,6 +112,7 @@
   },
   {
     "name": "∨i",
+    "latinName": "",
     "lecture": "A∨B se lit \"A et/ou B\"",
     "verbalName": "Règle d'introduction de la disjonction inclusive",
     "verbalDescription": "Si A a été posé, on peut inférer A∨B, quel que soit B.",
@@ -110,6 +128,7 @@
   },
   {
     "name": "∨e",
+    "latinName": "",
     "lecture": "A∨B se lit \"A et/ou B\"",
     "verbalName": "Règle d'élimination de la disjonction inclusive",
     "verbalDescription": "Si ~A (ou ~B) a été posé, et que A∨B a été posé, on peut inférer A (ou B).",
@@ -138,6 +157,7 @@
   },
   {
     "name": "⊻i",
+    "latinName": "",
     "lecture": "A⊻B se lit \"ou bien A, ou bien B\" ; \"soit A, soit B\"",
     "verbalName": "Règle d'introduction de la disjonction exclusive",
     "verbalDescription": "Si A⊅B et B⊅A ont été posés, on peut inférer A⊻B.",
@@ -149,10 +169,14 @@
   },
   {
     "name": "⊻e",
+    "latinName": "",
     "lecture": "A⊻B se lit \"ou bien A, ou bien B\" ; \"soit A, soit B\"",
     "verbalName": "Règle d'élimination de la disjonction exclusive",
     "verbalDescription": "Dans A⊻B, A et B s'excluent mutuellement, donc si l'un est posé, on peut inférer la négation de l'autre, et si l'un est nié on peut inférer l'autre.",
-    "arrayUtilization": [["A⊻B", "A", "~B ⊻e"], ["A⊻B", "~A", "B ⊻e"]],
+    "arrayUtilization": [
+      ["A⊻B", "A", "~B ⊻e"],
+      ["A⊻B", "~A", "B ⊻e"]
+    ],
     "instruction": "Cliquez sur A (ou B), puis A⊻B, pour inférer ~B (ou ~A).",
     "expectedArguments": ["A ou B", "A⊻B"],
     "ruleType": "disjonction",
@@ -160,6 +184,7 @@
   },
   {
     "name": "⊃i",
+    "latinName": "",
     "lecture": "A⊃B se lit \"si A alors B\"",
     "verbalName": "Règle d'introduction du conditionnel",
     "verbalDescription": "Si l'on fait l'hypothèse que A et que l'on arrive à B, on peut valider l'hypothèse et inférer A⊃B (si A alors B). Cette règle signifie que si l'on part d'une hypothèse et que l'on peut arriver à un certain résultat, alors il y a un lien de nécessité généralisable entre les deux.",
@@ -171,8 +196,9 @@
   },
   {
     "name": "⊃e",
+    "latinName": "Modus ponens",
     "lecture": "A⊃B se lit \"si A alors B\"",
-    "verbalName": "Règle d'élimination du conditionnel (modus ponens)",
+    "verbalName": "Règle d'élimination du conditionnel",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊃B, on peut poser B isolément.",
     "arrayUtilization": [["A", "A⊃B", "B ⊃e"]],
     "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
@@ -181,18 +207,20 @@
     "available": "yes",
     "otherInterpretation": {
       "name": "⊂e",
+      "latinName": "Modus tollens",
       "lecture": "A⊂B se lit \"si ~B alors ~A\"",
-      "verbalName": "Règle de contraposition de l'élimination du conditionnel",
-      "verbalDescription": "Si l'on a posé ~B, et que l'on a posé A⊃B, on peut poser ~A. Cette règle est impliquée par la règle d'élimination du conditionnel.",
-      "arrayUtilization": [["A", "A⊃B", "B ⊂e"]],
-      "instruction": "Cliquez sur A, puis A⊃B, pour inférer B.",
-      "expectedArguments": ["A", "A⊃B"],
+      "verbalName": "Règle contraposée de l'élimination du conditionnel",
+      "verbalDescription": "Si l'on a posé ~B, et que l'on a posé A⊃B, on peut poser ~A. Cette règle est une autre interprétation de la règle ⊃e.",
+      "arrayUtilization": [["~B", "A⊃B", "~A ⊂e"]],
+      "instruction": "Cliquez sur ~B, puis A⊃B, pour inférer ~A.",
+      "expectedArguments": ["~B", "A⊃B"],
       "ruleType": "disjonction",
-      "available": "soon"
+      "available": "yes"
     }
   },
   {
     "name": "≡i",
+    "latinName": "",
     "lecture": "A≡B se lit \"A si et seulement si B\"",
     "verbalName": "Règle d'introduction du biconditionnel",
     "verbalDescription": "Si A⊃B et B⊃A ont été posés, on peut poser A≡B.",
@@ -204,17 +232,37 @@
   },
   {
     "name": "≡e",
+    "latinName": "",
     "lecture": "A≡B se lit \"A si et seulement si B\"",
     "verbalName": "Règle d'élimination du biconditionnel",
-    "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
-    "arrayUtilization": [["A≡B", "A⊃B ≡e"], ["A≡B", "B⊃A ≡e"]],
-    "instruction": "Cliquez sur A≡B, validez, puis choisissez A⊃B ou B⊃A, pour l'inférer.",
-    "expectedArguments": ["A≡B"],
+    "verbalDescription": "Si A (ou B) et A≡B ont été posés, alors B (ou A) peut être inféré. ",
+    "arrayUtilization": [
+      ["A", "A≡B", "B ≡e"],
+      ["B", "A≡B", "A ≡e"]
+    ],
+    "instruction": "Cliquez sur A (ou B) puis A≡B pour inférer B (ou A).",
+    "expectedArguments": ["A", "A≡B"],
     "ruleType": "conjonction",
-    "available": "yes"
+    "available": "yes",
+    "otherInterpretation": {
+      "name": "≡e'",
+      "latinName": "",
+      "lecture": "A≡B se lit \"A si et seulement si B\"",
+      "verbalName": "Règle alternative d'élimination du biconditionnel",
+      "verbalDescription": "Si A≡B a été posé, A⊃B et B⊃A peuvent être inférés.",
+      "arrayUtilization": [
+        ["A≡B", "A⊃B ≡e"],
+        ["A≡B", "B⊃A ≡e"]
+      ],
+      "instruction": "Cliquez sur A≡B, validez, puis choisissez A⊃B ou B⊃A, pour l'inférer.",
+      "expectedArguments": ["A≡B"],
+      "ruleType": "conjonction",
+      "available": "yes"
+    }
   },
   {
     "name": "⊅i",
+    "latinName": "",
     "lecture": "A⊅B se lit \"A et non B\"",
     "verbalName": "Règle d'introduction de l'abjonction",
     "verbalDescription": "Si l'on a posé A, et que l'on a posé ~B, on peut inférer A⊅B.",
@@ -226,17 +274,31 @@
   },
   {
     "name": "⊅e",
+    "latinName": "",
     "lecture": "A⊅B se lit \"A et non B\"",
     "verbalName": "Règle d'élimination de l'abjonction",
-    "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B ou A⊅B, on peut poser ~B isolément.",
+    "verbalDescription": "Si l'on a posé A, et que l'on a posé A⊅B, on peut poser ~B isolément.",
     "arrayUtilization": [["A", "A⊅B", "~B ⊅e"]],
     "instruction": "Cliquez sur A, puis A⊅B, pour inférer ~B.",
     "expectedArguments": ["A", "A⊅B"],
     "ruleType": "conjonction",
-    "available": "yes"
+    "available": "yes",
+    "otherInterpretation": {
+      "name": "⊄e",
+      "latinName": "",
+      "lecture": "A⊄B se lit \"non A et B\" ou \"On n'a pas A et on a B\"",
+      "verbalName": "Règle contraposée de l'élimination de l'abjonction",
+      "verbalDescription": "Si l'on a posé ~B, et que l'on a posé A⊅B, on peut poser A, en contraposant la règle ⊅e.",
+      "arrayUtilization": [["B", "A⊅B", "~A ⊄e"]],
+      "instruction": "Cliquez sur B, puis A⊅B, pour inférer ~A.",
+      "expectedArguments": ["B", "A⊅B"],
+      "ruleType": "conjonction",
+      "available": "test"
+    }
   },
   {
     "name": "↑i",
+    "latinName": "",
     "lecture": "A↑B se lit \"A et B sont incompatibles, ils ne peuvent être vrais ensembles\"",
     "verbalName": "Règle d'introduction de l'incompatibilité",
     "verbalDescription": "Si A et ~B ont été posés, on peut inférer A↑B.",
@@ -248,8 +310,9 @@
   },
   {
     "name": "↑e",
+    "latinName": "Modus ponendo tollens",
     "lecture": "A↑B se lit \"A et B sont incompatibles, ils ne peuvent être vrais ensembles\"",
-    "verbalName": "Règle d'élimination de l'incompatibilité (ou modus ponendo tollens)",
+    "verbalName": "Règle d'élimination de l'incompatibilité",
     "verbalDescription": "Si l'on a A↑B, que l'on a A (ou B), on peut inférer que ~B (ou ~A). (En revanche si l'on a ~A ou ~B, on ne peut pas dire que B ou A.) A et B peuvent être faux ensembles.",
     "arrayUtilization": [["A↑B", "A", "~B ↑e"]],
     "instruction": "Cliquez sur A (ou B) puis A↑B,  pour inférer ~B (ou ~A).",
@@ -259,6 +322,7 @@
   },
   {
     "name": "↓i",
+    "latinName": "",
     "lecture": "A↓B se lit \"ni A ni B\"",
     "verbalName": "Règle d'introduction de la disjonction réciproque",
     "verbalDescription": "Si ~A et ~B ont été posés, on peut inférer A↓B.",
@@ -270,10 +334,14 @@
   },
   {
     "name": "↓e",
+    "latinName": "",
     "lecture": "A↓B se lit \"ni A ni B\"",
     "verbalName": "Règle d'élimination de la disjonction réciproque",
     "verbalDescription": "Si A↓B a été posé, on peut inférer ~A et/ou ~B.",
-    "arrayUtilization": [["A↓B", "~A ↓e"], ["A↓B", "~B ↓e"]],
+    "arrayUtilization": [
+      ["A↓B", "~A ↓e"],
+      ["A↓B", "~B ↓e"]
+    ],
     "instruction": "Cliquez sur A↓B, validez, puis choisissez ~A ou ~B, pour l'inférer.",
     "expectedArguments": ["A↓B"],
     "ruleType": "conjonction",

@@ -365,24 +365,11 @@ class RuleProvider extends Component {
       );
       if (ArrayIfAthenB.length === 2) {
         const antecedent = ArrayIfAthenB[0];
-        let consequent = ArrayIfAthenB[1];
-        if (consequent[0] === "(") {
-          let noFirstParenthesis = "";
-          for (let i = 1; i < consequent.length - 1; i++) {
-            noFirstParenthesis = noFirstParenthesis + consequent[i];
-          }
-          consequent = noFirstParenthesis;
-        } else {
-          this.props.valueInference.setAdvice(
-            "Pour utiliser ⊃e, il faut une inférence A et une inférence A⊃B.",
-            "error-advice"
-          );
-        }
-
+        const consequent = ArrayIfAthenB[1];
         if (antecedent === A) {
           // si on arrive dans ce if, c'est que la règle est validée
           const inferenceToAdd = {
-            itself: consequent,
+            itself: InferenceTools.mayAddFirstParenthesis(antecedent),
             numberCommentary: numbers,
             commentary: "⊃e"
           };
@@ -400,6 +387,37 @@ class RuleProvider extends Component {
         }
       }
     }; // ⊃e
+
+    this.contraposalConditionalElimination = (notB, ifAthenB, numbers) => {
+      // ⊂e
+      const ArrayIfAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+        ifAthenB,
+        "⊃"
+      );
+      if (ArrayIfAthenB.length === 2) {
+        const antecedent = ArrayIfAthenB[0];
+        const consequent = ArrayIfAthenB[1];
+        if ("~" + consequent === notB) {
+          // si on arrive dans ce if, c'est que la règle est validée
+          const inferenceToAdd = {
+            itself: "~" + InferenceTools.mayAddFirstParenthesis(antecedent),
+            numberCommentary: numbers,
+            commentary: "⊂e"
+          };
+          this.props.valueInference.setAdvice(
+            "Contraposée du conditionnel éliminée, nouvelle inférence : " +
+              inferenceToAdd.itself,
+            "rule-advice"
+          );
+          this.addInferenceFromRule(inferenceToAdd);
+        } else {
+          this.props.valueInference.setAdvice(
+            "Pour utiliser ⊂e, ~B doit être identique dans les propositions ~B et A⊃B.",
+            "error-advice"
+          );
+        }
+      }
+    }; // ⊂e
 
     this.biconditionalIntroduction = (ifAthenB, ifBthenA, number) => {
       const ArrayifAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
@@ -434,7 +452,40 @@ class RuleProvider extends Component {
       }
     }; // ≡i
 
-    this.biconditionalElimination = (AifandonlyifB, number) => {
+    this.biconditionalElimination = (A, AifandonlyifB, number) => {
+      // ≡e
+      let B = "";
+      AifandonlyifB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+        AifandonlyifB,
+        "≡"
+      );
+      if (A === AifandonlyifB[0]) {
+        B = AifandonlyifB[1];
+      } else if (A === AifandonlyifB[1]) {
+        B = AifandonlyifB[0];
+      }
+      if (B) {
+        const inferenceToAdd = {
+          itself: B,
+          numberCommentary: number,
+          commentary: "≡e"
+        };
+        this.props.valueInference.addInference(inferenceToAdd);
+        this.props.valueInference.setAdvice(
+          "Biconditionnel introduit, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser la règle ≡e, sélectionnez A ou B puis A≡B.",
+          "error-advice"
+        );
+      }
+    }; // ≡e
+
+    this.biconditionalAlternativeElimination = (AifandonlyifB, number) => {
+      // ≡e'
       let leftChoice, rightChoice;
       const ArrayAifandonlyifB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         AifandonlyifB,
@@ -451,57 +502,76 @@ class RuleProvider extends Component {
         }
         leftChoice = A + "⊃" + B;
         rightChoice = B + "⊃" + A;
-        return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "≡e");
+        return this.showChoiceOnTheModal(
+          leftChoice,
+          rightChoice,
+          number,
+          "≡e'"
+        );
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser la règle ≡e, sélectionnez A≡B.",
+          "Pour utiliser la règle ≡e', sélectionnez A≡B.",
           "error-advice"
         );
       }
-    }; // ≡e
+    }; // ≡e'
 
     this.abjonctionIntroduction = (notB, numbers) => {}; // ⊅i
 
     this.abjonctionElimination = (A, ifAthenNotB, numbers) => {
-      let ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      ifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenNotB,
-        "⊃"
+        "⊅"
       );
-      if (ArrayifAthenNotB.length !== 2) {
-        ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
-          ifAthenNotB,
-          "⊅"
+      if (A === ifAthenNotB[0]) {
+        // si on arrive dans ce if, c'est que la règle est validée
+        const notB =
+          "~" + InferenceTools.mayAddFirstParenthesis(ifAthenNotB[1]);
+        const inferenceToAdd = {
+          itself: notB,
+          numberCommentary: numbers,
+          commentary: "⊅e"
+        };
+        this.props.valueInference.setAdvice(
+          "Abjonction éliminée, nouvelle inférence : " + inferenceToAdd.itself,
+          "rule-advice"
         );
-        if (ArrayifAthenNotB.length === 2) {
-          ArrayifAthenNotB[1] = "~" + ArrayifAthenNotB[1];
-        } else {
-          ArrayifAthenNotB = [];
-        }
-      }
-      if (ArrayifAthenNotB.length === 2) {
-        const antecedent = ArrayifAthenNotB[0];
-        const consequent = ArrayifAthenNotB[1];
-        if (A === antecedent) {
-          // si on arrive dans ce if, c'est que la règle est validée
-          const inferenceToAdd = {
-            itself: consequent,
-            numberCommentary: numbers,
-            commentary: "⊅e"
-          };
-          this.props.valueInference.setAdvice(
-            "Abjonction éliminée, nouvelle inférence : " +
-              inferenceToAdd.itself,
-            "rule-advice"
-          );
-          this.addInferenceFromRule(inferenceToAdd);
-        }
+        this.addInferenceFromRule(inferenceToAdd);
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser ⊅e, il faut une inférence A et une inférence A⊅B ou A⊃~B.",
+          "Pour utiliser ⊅e, il faut une inférence A et une inférence A⊅B.",
           "error-advice"
         );
       }
     }; // ⊅e
+
+    this.abjonctionContraposalElimination = (B, ifAthenNotB, numbers) => {
+      // ⊄e
+      ifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+        ifAthenNotB,
+        "⊅"
+      );
+      if (B === ifAthenNotB[1]) {
+        // si on arrive dans ce if, c'est que la règle est validée
+        const A =
+          "~" + InferenceTools.mayAddFirstParenthesis(ifAthenNotB[0]);
+        const inferenceToAdd = {
+          itself: A,
+          numberCommentary: numbers,
+          commentary: "⊄e"
+        };
+        this.props.valueInference.setAdvice(
+          "Abjonction éliminée, nouvelle inférence : " + inferenceToAdd.itself,
+          "rule-advice"
+        );
+        this.addInferenceFromRule(inferenceToAdd);
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ⊄e, il faut une inférence B et une inférence A⊅B.",
+          "error-advice"
+        );
+      }
+    }; // ⊄e
 
     this.incompatibilityIntroduction = (A, notB, numbers) => {
       // ↑i
@@ -694,14 +764,20 @@ class RuleProvider extends Component {
         this.conditionalIntroduction(arrInf[0], numbers); // (A), B pour A⊃B
       } else if (ruleName === "⊃e") {
         this.conditionalElimination(arrInf[0], arrInf[1], numbers); // A, A⊃B pour B
+      } else if (ruleName === "⊂e") {
+        this.contraposalConditionalElimination(arrInf[0], arrInf[1], numbers); // ~B, A⊃B pour ~A
       } else if (ruleName === "≡i") {
         this.biconditionalIntroduction(arrInf[0], arrInf[1], numbers); // A⊃B, B⊃A pour A≡B
       } else if (ruleName === "≡e") {
-        this.biconditionalElimination(arrInf[0], numbers); // A≡B pour A⊃B ou B⊃A
+        this.biconditionalElimination(arrInf[0], arrInf[1], numbers); // A≡B pour A⊃B ou B⊃A
+      } else if (ruleName === "≡e'") {
+        this.biconditionalAlternativeElimination(arrInf[0], numbers); // A≡B pour A⊃B ou B⊃A
       } else if (ruleName === "⊅i") {
         this.abjonctionIntroduction(arrInf[0], numbers); // (A), B pour A⊅B
       } else if (ruleName === "⊅e") {
         this.abjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊅B pour ~B
+      } else if (ruleName === "⊄e") {
+        this.abjonctionContraposalElimination(arrInf[0], arrInf[1], numbers); // ~B, A⊅B pour A
       } else if (ruleName === "↑i") {
         this.incompatibilityIntroduction(arrInf[0], arrInf[1], numbers); // A, ~B, pour A↑B
       } else if (ruleName === "↑e") {
@@ -732,8 +808,8 @@ class RuleProvider extends Component {
       let verbalRuleName = "";
       if (ruleName === "∧e") {
         verbalRuleName = "Conjonction éliminée";
-      } else if (ruleName === "≡e") {
-        verbalRuleName = "Biconditionnel éliminé";
+      } else if (ruleName === "≡e'") {
+        verbalRuleName = "Biconditionnel éliminé par la règle alternative";
       } else if (ruleName === "↓e") {
         verbalRuleName = "Disjonction réciproque éliminée";
       }
@@ -806,31 +882,7 @@ class RuleProvider extends Component {
       this.props.valueInference.setChoiceContent(choiceContent);
     };
 
-    // this.makeACommutatedInference = inference => {
-    //   // n'est utilisé que pour ∧e, ⊻e, ≡e, ↓e (et pourrait l'être pour ∨e)
-
-    //   return "pandq";
-    // };
-
     this.state = {
-      // negationIntroduction: this.negationIntroduction, // ~i
-      // negationElimination: this.negationElimination, // ~~e
-      // conjonctionIntroduction: this.conjonctionIntroduction, // ∧i
-      // conjonctionElimination: this.conjonctionElimination, // ∧e
-      // inclusiveDisjonctionIntroduction: this.inclusiveDisjonctionIntroduction, // ∨i
-      // inclusiveDisjonctionElimination: this.inclusiveDisjonctionElimination, // ∨e
-      // exclusiveDisjonctionIntroduction: this.exclusiveDisjonctionIntroduction, // ⊻i
-      // exclusiveDisjonctionElimination: this.exclusiveDisjonctionElimination, // ⊻e
-      // conditionalIntroduction: this.conditionalIntroduction, // ⊃i
-      // conditionalElimination: this.conditionalElimination, // ⊃e
-      // biconditionalIntroduction: this.biconditionalIntroduction, // ≡i
-      // biconditionalElimination: this.biconditionalElimination, // ≡e
-      // abjonctionIntroduction: this.abjonctionIntroduction, // ⊅i
-      // abjonctionElimination: this.abjonctionElimination, // ⊅e
-      // incompatibilityIntroduction: this.incompatibilityIntroduction, // ↑i
-      // incompatibilityElimination: this.incompatibilityElimination, // ↑e
-      // exFalso: this.exFalso,
-      // reit: this.reit,
       addInferenceFromRule: this.addInferenceFromRule,
       redirectToTheRightRule: this.redirectToTheRightRule,
       showChoiceOnTheModal: this.showChoiceOnTheModal

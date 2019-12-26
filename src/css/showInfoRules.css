@@ -5,15 +5,16 @@
 }
 
 .list-rules {
-  min-width: 330px;
-  width: 480px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  text-align: center;
+  /* text-align: center; */
+  /* align-items: stretch; */
   flex-flow: wrap;
-  margin: 10px;
-  padding: 10px;
+  min-width: 330px;
+  width: 480px;
+  /* height: 360px; */
+  /* margin: 10px; */
+  /* padding: 10px; */
   /* border: 1px white solid; */
 }
 
@@ -38,6 +39,10 @@
 .box-info-rule {
   height: 360px;
   width: 500px;
+  /* max-height: 360px;
+  min-height: 200px;
+  max-width: 500px;
+  min-width: 200px; */
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -127,4 +132,10 @@
   font-style: italic;
   margin-top: 20px;
   margin-left: 20px;
+}
+
+.latin-name {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
 }

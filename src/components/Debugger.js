@@ -38,8 +38,8 @@ class Debugger extends Component {
             value.hypothesisCurrentLevelAndId.whichIDIsStillOpen}
         </li> */}
         {/* <li>{"maxID : " + value.hypothesisCurrentLevelAndId.maxID}</li> */}
-        <li>{"currentlyForecasting : " + value.currentlyForecasting}</li>
-        {/* <li>{"level : " + value.hypothesisCurrentLevelAndId.level}</li> */}
+        {/* <li>{"currentlyForecasting : " + value.currentlyForecasting}</li>
+        {/* <li>{"level : " + value.hypothesisCurrentLevelAndId.level}</li>
         <li>{"storedInference : " + value.storedInference}</li>
         <li>{"storedNumbers : " + value.storedNumbers}</li>
         <li>{"storedHypID : " + value.storedHypID}</li>
@@ -50,7 +50,11 @@ class Debugger extends Component {
         <li>
           {value.storedInference.length}/
           {value.ruleModalContent.expectedArguments.length}
-        </li>
+        </li> */}
+        <li>{value.ruleModalContent.ruleName}</li>
+        <li>{value.otherInterpretation}</li>
+        {/* <li>{value.ruleModalShown.normal}</li> */}
+        <li>{value.ruleModalShown.normal}</li>
       </ul>
     );
   }

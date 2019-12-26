@@ -96,11 +96,12 @@ class InferenceProvider extends Component {
         hyp !== "hypothèse réfutée"
       ) {
         InferenceScanner(
-          this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
+          this.state.ruleModalContent, // contenu du RuleModal en cours (seul le ruleName sera utile, et potentiellement le ruleName de l'otherInterpretation)
           copyArrayThemselves, // ensemble des inférences actuelles (qui seront scannées)
           this.state.allHypotheticalInferences, // contenu des hyp en cours
           this.state.hypothesisCurrentLevelAndId, // données des hyp en cours
-          this.state.allEndedHypotheticalInferences
+          this.state.allEndedHypotheticalInferences,
+          this.state.otherInterpretation // l'info selon laquelle l'autre interprétation est possible et/ou active
         );
       }
 
@@ -120,7 +121,10 @@ class InferenceProvider extends Component {
         // petite déclaration intermédiaire pour bien préparer le moment où on va reset le tableau des arguments
         expectedArgumentsLength = this.state.ruleModalContent.expectedArguments
           .length;
-      const ruleName = this.state.ruleModalContent.ruleName;
+      let ruleName = this.state.ruleModalContent.ruleName;
+      if (this.state.otherInterpretation[0] === "active") {
+        ruleName = this.state.ruleModalContent.otherInterpretation.ruleName;
+      }
       if (ruleName === "~i" || ruleName === "⊃i") {
         expectedArgumentsLength--;
       }
@@ -204,38 +208,31 @@ class InferenceProvider extends Component {
       infItself,
       infActualHypID
     ) => {
-      let newCurrentlyForecasting = false,
-        newForecastedStoredInference = "",
-        newStoredInference = this.state.storedInference,
-        newStoredNumbers = this.state.storedNumbers;
-      if (str === "onMouseEnter") {
-        newCurrentlyForecasting = true;
-        newForecastedStoredInference = {
-          numbers: infNum,
-          itself: infItself,
-          actualHypID: infActualHypID
-        };
-
-        // this.storageForRuleVerification(infNum, infItself, infActualHypID, str);
-        // if () {
-        newStoredInference.push(infItself);
-        newStoredNumbers = infNum;
-        // }
-      } else if (str === "onMouseLeave") {
-        // this.storageForRuleVerification("", "", 0, "onMouseLeave");
-      }
-      // InferenceForecaster(
-      //   this.state.storedInference, // on envoie l'array des inférences stockées
-      //   this.state.storedNumbers, // on envoie l'array des nombress stockés
-      //   this.state.ruleModalContent.ruleName, // on envoie le str de la règle en cours
-      //   this.state
-      // );
-      this.setState({
-        currentlyForecasting: newCurrentlyForecasting,
-        mouseAndInference: str,
-        forecastedStoredInference: newForecastedStoredInference
-        // storedInference: this.state.storedInference
-      });
+      // let newCurrentlyForecasting = false,
+      //   newForecastedStoredInference = "",
+      //   newStoredInference = this.state.storedInference;
+      // // newStoredNumbers = this.state.storedNumbers;
+      // if (str === "onMouseEnter") {
+      //   newCurrentlyForecasting = true;
+      //   newForecastedStoredInference = {
+      //     numbers: infNum,
+      //     itself: infItself,
+      //     actualHypID: infActualHypID
+      //   };
+      //   // this.storageForRuleVerification(infNum, infItself, infActualHypID, str);
+      //   // if () {
+      //   newStoredInference.push(infItself);
+      //   // newStoredNumbers = infNum;
+      //   // }
+      // } else if (str === "onMouseLeave") {
+      //   // this.storageForRuleVerification("", "", 0, "onMouseLeave");
+      // }
+      // this.setState({
+      //   currentlyForecasting: newCurrentlyForecasting,
+      //   mouseAndInference: str,
+      //   forecastedStoredInference: newForecastedStoredInference
+      //   // storedInference: this.state.storedInference
+      // });
     };
 
     this.longStorageForRuleVerification = (inference, numbers, bool) => {
@@ -254,7 +251,7 @@ class InferenceProvider extends Component {
       });
     };
 
-    this.changeStorageBoolean = (bool, num) => {
+    this.changeStorageBoolean = bool => {
       // sert à désactiver le tableau storedInference quand un modal n'est pas activé
       let canInferenceBeStored = true,
         storedInference = [],
@@ -265,11 +262,8 @@ class InferenceProvider extends Component {
         inversion = false;
       if (bool === "resetButStillTrue") {
         // si cette méthode arrive là c'est que l'utilisateur a cliqué sur la touche pour effacer ce qu'il avait entré
-      } else if (bool === true) {
+        // } else if (bool === true) {
       } else if (bool === false) {
-        canInferenceBeStored = false;
-      } else if (!this.state.canInferenceBeStored) {
-      } else {
         canInferenceBeStored = false;
         ruleModalChoiceContent = "";
       }
@@ -322,11 +316,12 @@ class InferenceProvider extends Component {
         copyAllInferencesThemselves.pop(); // on extrait une partie du tableau, la première en partant de la fin
         if (this.state.ruleModalShown.normal === true) {
           InferenceScanner(
-            this.state.ruleModalContent.ruleName, // nom de la règle du ruleModal en cours
+            this.state.ruleModalContent, // contenu du RuleModal en cours (seul le ruleName sera utile, et potentiellement le ruleName de l'otherInterpretation)
             copyAllInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
             copyAHI, // contenu des hypothèses en cours
             this.state.hypothesisCurrentLevelAndId, // données des hyp en cours // contenu des hyp en cours
-            copyAEHI // contenu des hypothèses terminées
+            copyAEHI, // contenu des hypothèses terminées
+            this.state.otherInterpretation // l'info selon laquelle l'autre interprétation est possible et/ou active
           );
         }
         this.state.addLastEvent("removeLastInference");
@@ -435,15 +430,13 @@ class InferenceProvider extends Component {
       // "eal" contient expectedArguments.length
       // setRuleModal très en lien avec forecastInference(active,A,B,operator,commentary,numberCommentary)
       // howItEnded est soit "ended-well" soit "ended-badly" soit "hypothesis-ended-well" soit "hypothesis-ended-badly"
-      // console.log("str", str);
       let newRuleModalShown = { normal: false },
-        newRuleModalContent = { ruleName: "" },
+        newRuleModalContent = { ruleName: "", otherInterpretation: "" },
         newAttemptOfRuleValidation = false;
       if (ruleModalContent) {
         newRuleModalContent = ruleModalContent;
-      } else {
-        newRuleModalContent = this.state.ruleModalContent;
       }
+
       if (str === "stillOpen" || str === "initial") {
         // cas 1 : rien n'était ouvert et on ouvre un premier ruleModal
         newRuleModalShown.normal = true;
@@ -468,8 +461,6 @@ class InferenceProvider extends Component {
           "", // numberCommentary
           false // activable
         );
-      } else if (str === "change" && !newRuleModalShown.shown) {
-        // cas 3 : L'utilisateur a fermé le ruleModal qui était ouvert, en cliquant sur le bouton "fermer" du ruleModal, par conséquent plus rien n'est ouvert
       }
       if (
         str === false ||
@@ -482,6 +473,13 @@ class InferenceProvider extends Component {
         newRuleModalShown.normal = false;
         this.changeStorageBoolean(false);
         this.forecastInference(false);
+        this.setOtherInterpretation("reset");
+        newRuleModalContent = {
+          instruction: "",
+          expectedArguments: [],
+          ruleName: "",
+          otherInterpretation: ""
+        };
       }
 
       if (
@@ -491,11 +489,12 @@ class InferenceProvider extends Component {
         (str === "change" && newRuleModalShown.normal === true)
       ) {
         InferenceScanner(
-          newRuleModalContent.ruleName, // nom de la règle du ruleModal en cours
+          newRuleModalContent, // contenu du RuleModal en cours (seul le ruleName sera utile, et potentiellement le ruleName de l'otherInterpretation)
           this.state.allInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
           this.state.allHypotheticalInferences, // contenu des hyp en cours
           this.state.hypothesisCurrentLevelAndId, // données des hyp en cours // contenu des hyp en cours
-          this.state.allEndedHypotheticalInferences // données des hyp terminées
+          this.state.allEndedHypotheticalInferences, // données des hyp terminées
+          this.state.otherInterpretation // l'info selon laquelle l'autre interprétation est possible et/ou active
         );
       }
 
@@ -513,31 +512,31 @@ class InferenceProvider extends Component {
     };
 
     this.toggleOptionsAboutInferences = str => {
-      // str peut avoir "Debugger" ou "inferenceScanner" comme valeur, selon l'option qu'on veut changer
-      let newBooleansOptionsAboutInferences = {
+      // str peut avoir "Debugger" ou "InferenceScanner" comme valeur, selon l'option qu'on veut changer
+      let newBOAI = {
         ...this.state.booleansOptionsAboutInferences
       };
       if (str === "Debugger") {
-        if (newBooleansOptionsAboutInferences.boolDebugger === true) {
-          newBooleansOptionsAboutInferences.boolDebugger = false;
+        if (newBOAI.boolDebugger) {
+          newBOAI.boolDebugger = false;
         } else {
-          newBooleansOptionsAboutInferences.boolDebugger = true;
+          newBOAI.boolDebugger = true;
         }
       } else if (str === "InferenceScanner") {
-        if (newBooleansOptionsAboutInferences.boolInferenceScanner === true) {
-          newBooleansOptionsAboutInferences.boolInferenceScanner = false;
+        if (newBOAI.boolInferenceScanner) {
+          newBOAI.boolInferenceScanner = false;
         } else {
-          newBooleansOptionsAboutInferences.boolInferenceScanner = true;
+          newBOAI.boolInferenceScanner = true;
         }
       } else if (str === "finalCheck") {
-        if (newBooleansOptionsAboutInferences.boolFinalCheck === true) {
-          newBooleansOptionsAboutInferences.boolFinalCheck = false;
+        if (newBOAI.boolFinalCheck) {
+          newBOAI.boolFinalCheck = false;
         } else {
-          newBooleansOptionsAboutInferences.boolFinalCheck = true;
+          newBOAI.boolFinalCheck = true;
         }
       }
       this.setState({
-        booleansOptionsAboutInferences: newBooleansOptionsAboutInferences
+        booleansOptionsAboutInferences: newBOAI
       });
     };
 
@@ -685,12 +684,39 @@ class InferenceProvider extends Component {
     };
 
     this.addLastEvent = newEvent => {
+      // fonction pour indiquer quel a été le dernier évènement dans l'inférence, soit "addInference", "removeInference", "doubleAddInference" (et dans ce dernier cas on ajoute 2 fois l'évènement)
+      // fonction qui sert principalement pour les classNames des backgrounds des inférences
       let newAllEvent = [...this.state.allEvent];
       newAllEvent.push(newEvent);
       if (newEvent === "doubleAddInference") {
         newAllEvent.push(newEvent);
       }
       this.setState({ allEvent: newAllEvent });
+    };
+
+    this.setOtherInterpretation = str => {
+      // fonction pour indiquer si l'autre interprétation est activée
+      // str peut être "active" ou "possible" ou "reset"
+      let newOtherInterpretation = [...this.state.otherInterpretation];
+      if (str === "active" || str === "inactive") {
+        newOtherInterpretation[0] = str;
+      } else if (str === "possible" || str === "impossible") {
+        newOtherInterpretation[1] = str;
+      } else if (str === "reset") {
+        newOtherInterpretation = ["inactive", "impossible"];
+      }
+      InferenceScanner(
+        this.state.ruleModalContent, // contenu du RuleModal en cours (seul le ruleName sera utile, et potentiellement le ruleName de l'otherInterpretation)
+        this.state.allInferencesThemselves, // ensemble des inférences actuelles (qui seront scannées)
+        this.state.allHypotheticalInferences, // contenu des hyp en cours
+        this.state.hypothesisCurrentLevelAndId, // données des hyp en cours
+        this.state.allEndedHypotheticalInferences,
+        newOtherInterpretation // l'info selon laquelle l'autre interprétation est possible et/ou active
+      );
+      // InferenceForecaster("normal", this.state); // Pareil que la ligne au-dessus
+      this.setState({
+        otherInterpretation: newOtherInterpretation
+      });
     };
 
     this.resetDeduction = () => {
@@ -715,7 +741,8 @@ class InferenceProvider extends Component {
         ruleModalContent: {
           instruction: "",
           expectedArguments: [],
-          ruleName: ""
+          ruleName: "",
+          otherInterpretation: ""
         },
         stepRule: 0,
         ruleModalChoiceContent: "",
@@ -764,8 +791,7 @@ class InferenceProvider extends Component {
       booleansOptionsAboutInferences: {
         boolInferenceScanner: true, // le scanner est-il activé ? (l'utilisateur peut l'activer ou le désactiver en cliquant sur l'oeil dans l'interface des exos)
         boolDebugger: false, // le debugger est-il activé ? (il affiche certaines informations)
-        boolFinalCheck: false, // les règles tentent-elles de s'activer automatiquement si tous les arguments ont été entrés ?
-        boolOtherInterpretation: false // si l'on a ⊃e et que c'est true, alors on a ⊂e (ça fonctionne pour ⊃e, ≡e, ∨e et peut-être ⊅e)
+        boolFinalCheck: false // les règles tentent-elles de s'activer automatiquement si tous les arguments ont été entrés ?
       },
       toggleOptionsAboutInferences: this.toggleOptionsAboutInferences,
       // section de divers boutons de l'interface
@@ -787,7 +813,8 @@ class InferenceProvider extends Component {
       ruleModalContent: {
         instruction: "",
         expectedArguments: [],
-        ruleName: ""
+        ruleName: "",
+        otherInterpretation: ""
       },
       stepRule: 0,
       ruleModalChoiceContent: "",
@@ -834,7 +861,9 @@ class InferenceProvider extends Component {
       storageForecastInference: this.storageForecastInference, // utilise les deux précédentes variables du state
       modifyClassNameOfAnyInference: this.modifyClassNameOfAnyInference,
       allEvent: [], // peut prendre les valeurs "removeLastInference", "addInference", "doubleAddInference"
-      addLastEvent: this.addLastEvent // permet de fixer quel est le dernier évènement dans la déduction
+      addLastEvent: this.addLastEvent, // permet de fixer quel est le dernier évènement dans la déduction
+      otherInterpretation: ["inactive", "impossible"], // concerne le fait que l'utilisateur ait activé ou non l'autre interprétation, en fonction de si c'était possible ou non
+      setOtherInterpretation: this.setOtherInterpretation
     };
   }
 

@@ -29,34 +29,6 @@
   /* animation: blinker 1s linear 1s; */
 }
 
-.ReactModal__Content {
-  opacity: 0;
-}
-
-.ReactModal__Content--after-open {
-  opacity: 1;
-  transition: opacity 600ms;
-}
-
-.ReactModal__Content--before-close {
-  opacity: 0;
-}
-.rule-modal-portal {
-  /* margin:300px; */
-  margin-top: -500px;
-  /* margin-left:40px; */
-  /* background-color:greenyellow; */
-}
-
-.rule-modal-overlay {
-  /* position: fixed; */
-  /* top: 0; */
-  /* left: 0; */
-  /* right: 0; */
-  /* bottom: 0; */
-  /* background-color: rgba(255, 255, 255, 0.75); */
-}
-
 .rule-modal-window {
   border: 1px solid rgb(53, 53, 53);
   background-color: rgb(20, 20, 20);
@@ -70,9 +42,25 @@
 
 .rule-modal-ruleName {
   font-size: 20px;
-  display: flex;
-  justify-content: center;
   margin-bottom: 10px;
+  /* justify-content: center; */
+}
+
+.rule-modal-all-tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+  /* border-bottom: 1px solid rgb(73, 73, 73); */
+}
+.rule-modal-tab-active {
+  width: 150px;
+  background-color: rgb(20, 20, 20);
+}
+.rule-modal-tab-inactive {
+  width: 150px;
+  color: rgba(255, 255, 255, 0.315);
+  background-color: rgb(40, 40, 40);
 }
 
 .rule-modal-all-buttons {

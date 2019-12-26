@@ -1,5 +1,10 @@
 #buttonKeyboardPremisses {
   margin: 0px 8px 0px 34px;
+  z-index: 11;
+}
+
+#buttonEraseAllPremisses {
+  z-index: 11;
 }
 
 #buttonKeyboardConclusion {

@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from "react";
-// import ReactModal from "react-modal";
 import RuleProvider, { RuleContext } from "../Context/RuleProvider";
-// import ReactDOM from "react-dom";
 
-// ReactModal.setAppElement("#main");
+// RuleHypothesisModal n'est appelé que par ButtonRuleMaker
+
 class RuleModal extends Component {
   constructor() {
     super();
@@ -196,7 +195,4 @@ class RuleModal extends Component {
   }
 }
 
-// const props = {};
-
-// ReactDOM.render(<RuleModal {...props} />, document.getElementById("main"));
 export default RuleModal;

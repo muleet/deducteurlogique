@@ -7,6 +7,7 @@ import RuleHypothesisModal from "../../Modals and Popovers/RuleHypothesisModal";
 
 // ButtonRuleMaker génère la liste des règles d'un exercice. Par défaut, chaque exercice a un nombre de règles fixes.
 // Si aucune règle n'est fixée pour un exercice, alors ButtonRuleMaker renvoie la totalité des règles.
+// ButtonRuleMaker est appelé par Deducer et Sandbox
 
 class ButtonRuleMaker extends Component {
   // renderSlashedEyeForButtonRule(bool) {
@@ -18,26 +19,23 @@ class ButtonRuleMaker extends Component {
   //   }
   // }
 
-  renderModal() {
-    if (this.props.valueInference.ruleModalContent.ruleName === "hyp") {
+  renderModal(ruleModalContent) {
+    if (ruleModalContent.ruleName === "hyp") {
       return (
         <RuleHypothesisModal
-          instruction={this.props.valueInference.ruleModalContent.instruction}
-          expectedArguments={
-            this.props.valueInference.ruleModalContent.expectedArguments
-          } // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
-          ruleName={this.props.valueInference.ruleModalContent.ruleName}
+          instruction={ruleModalContent.instruction}
+          expectedArguments={ruleModalContent.expectedArguments} // pas pareil pour l'hypothèse ? j'ai un doute alors je laisse ce commentaire
+          ruleName={ruleModalContent.ruleName}
           valueInference={this.props.valueInference}
         />
       );
     } else {
       return (
         <RuleModal
-          instruction={this.props.valueInference.ruleModalContent.instruction}
-          expectedArguments={
-            this.props.valueInference.ruleModalContent.expectedArguments
-          }
-          ruleName={this.props.valueInference.ruleModalContent.ruleName}
+          instruction={ruleModalContent.instruction}
+          expectedArguments={ruleModalContent.expectedArguments}
+          ruleName={ruleModalContent.ruleName}
+          otherInterpretation={ruleModalContent.otherInterpretation}
           valueInference={this.props.valueInference}
         />
       );
@@ -58,48 +56,71 @@ class ButtonRuleMaker extends Component {
       this.props.valueInference.ruleModalShown.normal
     ) {
       classNameToReturn += " selected";
+      if (this.props.valueInference.otherInterpretation[0] === "active") {
+        classNameToReturn += "OtherInterpretation";
+      }
     }
 
     return classNameToReturn;
   }
 
-  handleClick(instruction, expectedArguments, ruleName, valueInference) {
+  handleClick(
+    instruction,
+    expectedArguments,
+    ruleName,
+    otherInterpretation,
+    valueInference
+  ) {
     const objectForTheRuleModal = {
-      instruction: instruction,
-      expectedArguments: expectedArguments,
-      ruleName: ruleName
-    };
-    // les deux conditions ci-dessous permettent de vérifier si canInferenceBeStored doit être ouvert ou fermé
+        instruction: instruction,
+        expectedArguments: expectedArguments,
+        ruleName: ruleName,
+        otherInterpretation: otherInterpretation
+      },
+      interpretableRules = ["⊃e", "⊂e", "∨e", "∨e'", "⊅e", "⊄e", "≡e", "≡e'"];
+    // ci-dessous on vérifie si canInferenceBeStored doit être ouvert ou fermé, et du même coup que faire avec le RuleModal (l'ouvrir, le changer ou le fermer)
+    // cas 1 (fermeture) : le modal est déjà ouvert avec un même ruleName que celui sur lequel l'utilisateur a fermé, il donc donc être fermé
     if (
-      this.props.valueInference.ruleModalShown.normal === true &&
-      ruleName === this.props.valueInference.ruleModalContent.ruleName
+      valueInference.ruleModalShown.normal === true &&
+      ruleName === valueInference.ruleModalContent.ruleName
     ) {
       valueInference.changeStorageBoolean(false);
-    } else {
+      valueInference.setRuleModal(false);
     }
-    if (this.props.valueInference.ruleModalShown.normal === false) {
-      valueInference.changeStorageBoolean(
-        true,
-        expectedArguments.length,
-        ruleName
-      );
-    }
-    if (this.props.valueInference.ruleModalShown.normal === false) {
-      valueInference.setRuleModal(
-        // cas 1
-        "initial",
-        "",
-        objectForTheRuleModal,
-        expectedArguments.length
-      );
-    } else {
-      valueInference.setRuleModal(
-        // cas 2 et 3
-        "change",
-        "",
-        objectForTheRuleModal,
-        expectedArguments.length
-      );
+    // cas 2 et 3 : l'utilisateur va pouvoir cliquer
+    else {
+      // pour les cas 2 et 3, il faut vérifier si c'est une règle avec interprétations possibles
+      // moment très important du code : c'est le seul où l'on vérifie s'il est possible d'activer l'autre interprétation (et c'est dans RuleModal.js que se trouve le code pour l'activer ou non)
+      if (interpretableRules.indexOf(ruleName) !== -1) {
+        valueInference.setOtherInterpretation("possible");
+      } else {
+        valueInference.setOtherInterpretation("reset"); // on reset plutôt que rendre impossible, car si c'était actif il faut que ça redevienne inactif
+      }
+      // cas 2 (ouverture normale) : le modal est fermé, il doit donc être ouvert avec le nouveau ruleName
+      if (valueInference.ruleModalShown.normal === false) {
+        valueInference.changeStorageBoolean(
+          true,
+          expectedArguments.length,
+          ruleName
+        );
+        valueInference.setRuleModal(
+          "initial",
+          "",
+          objectForTheRuleModal,
+          expectedArguments.length
+        );
+      } else if (
+        // cas 3 (changement) : le modal est fermé, il doit donc être ouvert avec le nouveau ruleName (en prenant en compte les autres interprétations possibles)
+        valueInference.ruleModalShown.normal === true &&
+        ruleName !== valueInference.ruleModalContent.ruleName
+      ) {
+        valueInference.setRuleModal(
+          "change",
+          "",
+          objectForTheRuleModal,
+          expectedArguments.length
+        );
+      }
     }
   }
 
@@ -132,6 +153,14 @@ class ButtonRuleMaker extends Component {
   }
 
   makeOneButtonRule(num, Rule, RulePopoverClassName, organizedUtilization) {
+    let otherInterpretation = "";
+    if (Rule.otherInterpretation) {
+      otherInterpretation = {
+        instruction: Rule.otherInterpretation.instruction,
+        expectedArguments: Rule.otherInterpretation.expectedArguments,
+        ruleName: Rule.otherInterpretation.name
+      };
+    }
     return (
       <li
         key={num}
@@ -141,6 +170,7 @@ class ButtonRuleMaker extends Component {
               Rule.instruction,
               Rule.expectedArguments,
               Rule.name,
+              otherInterpretation,
               this.props.valueInference
             );
           }
@@ -190,9 +220,10 @@ class ButtonRuleMaker extends Component {
       for (let i = 0; i < allCurrentRuleNames.length; i++) {
         for (let j = 0; j < InfoRules.length; j++) {
           if (allCurrentRuleNames[i] === InfoRules[j].name) {
-            arrayCurrentRulesData.push(InfoRules[j]);
+            arrayCurrentRulesData.push(InfoRules[j]); // on ajoute une règle aux règles disponibles pour l'exo (et si elle a une autre interprétation, on l'envoie aussi du coup)
           }
         }
+        // console.log("wesh ça marche ou pas", arrayCurrentRulesData);
       }
       // On va maintenant créer le popover tout en organisant ses données. A l'aide de cette fonction :
       // makeOneButtonRule(num, Rule, RulePopoverClassName, organizedUtilization)

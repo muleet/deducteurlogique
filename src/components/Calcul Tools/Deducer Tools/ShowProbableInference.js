@@ -3,8 +3,13 @@ import React from "react";
 // la fonction ShowProbableInference est appelée par MakeAllInferences
 
 function ShowProbableInference(value, previousInference) {
-  const ruleName = value.ruleModalContent.ruleName,
+  let ruleName = value.ruleModalContent.ruleName,
     expectedArguments = value.ruleModalContent.expectedArguments;
+  if (value.otherInterpretation[0] === "active") {
+    ruleName = value.ruleModalContent.otherInterpretation.ruleName;
+    expectedArguments =
+      value.ruleModalContent.otherInterpretation.expectedArguments;
+  }
   let probableInference = value.probableInference,
     // checkSquareClassName = "-inactive",
     newInference = {},
@@ -12,7 +17,6 @@ function ShowProbableInference(value, previousInference) {
     hypothesisLevel = "",
     hypothesisLevelNumber = Number(previousInference.level),
     probableCommentary = "?," + ruleName;
-  console.log(hypothesisLevelNumber);
   let setAdequacyArrows = "",
     AIT = value.allInferencesThemselves,
     SN = value.storedNumbers;

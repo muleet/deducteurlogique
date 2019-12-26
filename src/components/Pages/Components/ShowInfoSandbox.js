@@ -282,6 +282,7 @@ class ShowInfoSandbox extends Component {
               {
                 <i
                   className="fas fa-eraser icon"
+                  id="buttonEraseAllPremisses"
                   onClick={() => {
                     this.resetPartOfState("premisse");
                     this.props.valueInference.resetDeduction();

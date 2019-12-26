@@ -99,10 +99,8 @@
       { "itself": "p", "numberCommentary": "1", "commentary": "∧e" },
       { "itself": "r", "numberCommentary": "1", "commentary": "∧e" },
       { "itself": "p≡(q≡r)", "numberCommentary": "b", "commentary": "rep" },
-      { "itself": "p⊃(q≡r)", "numberCommentary": "4", "commentary": "≡e" },
-      { "itself": "q≡r", "numberCommentary": "2, 5", "commentary": "⊃e" },
-      { "itself": "r⊃q", "numberCommentary": "6", "commentary": "≡e" },
-      { "itself": "q", "numberCommentary": "3, 7", "commentary": "⊃e" }
+      { "itself": "q≡r", "numberCommentary": "2, 4", "commentary": "≡e" },
+      { "itself": "q", "numberCommentary": "3, 5", "commentary": "≡e" }
     ]
   },
   {

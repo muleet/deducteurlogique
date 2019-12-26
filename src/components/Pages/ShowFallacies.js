@@ -246,8 +246,8 @@ class ShowFallacies extends Component {
         <div className="question-mark">
           <div className="question-mark-title">
             Cliquez pour changer la langue des noms et descriptions, français
-            vers anglais / change the language of the names and descriptions,
-            English to French.
+            vers anglais / click to change the language of the names and
+            descriptions, English to French.
           </div>
         </div>
       </div>

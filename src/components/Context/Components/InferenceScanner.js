@@ -6,28 +6,41 @@ import InfTools from "./InferenceTools";
 // Par exemple pour le modus ponens : si on détecte l'inférence A dans une inférence A⊃B, il faut savoir quand s'arrête l'emplacement de A.
 
 function scanInferences(
-  ruleName,
+  ruleModalContent,
   allInferencesThemselves,
   allHypotheticalInferences,
   hypCurrentLevelAndId,
-  allEndedHypotheticalInferences
+  allEndedHypotheticalInferences,
+  otherInterpretation
 ) {
   for (let i = 0; i < allInferencesThemselves.length; i++) {
     allInferencesThemselves[i].adequacyType = "";
   }
+
+  let ruleName = undefined;
+  if (ruleModalContent) {
+    ruleName = ruleModalContent.ruleName;
+    if (otherInterpretation[0] === "active") {
+      ruleName = ruleModalContent.otherInterpretation.ruleName;
+    }
+  }
+
   if (ruleName) {
     let result = true; // retourné à la fin de cette fonction, vers la méthode qui l'a appelé dans InferenceProvider, c'est-à-dire setRuleModal() ou removeLastInference()
     const hypotheticalRules = ["⊃i", "~i"];
-    const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e", "↓e", "reit"];
+    const oneStepRules = ["~~e", "∧e", "∨i", "⊃i", "≡e'", "↓e", "reit"];
     const twoStepRules = [
       "⊃e",
+      "⊂e",
       "~i",
       "∨e",
       "⊻i",
       "⊻e",
       "⊅i",
       "⊅e",
+      "⊄e",
       "≡i",
+      "≡e",
       "↑i",
       "↑e",
       "↓i",
@@ -57,8 +70,7 @@ function scanInferences(
           ruleName === "↑e"
         ) {
           characterDetector = ruleName[0];
-        } else if (ruleName === "≡i") {
-          // il faut deux inférences avec un ⊃
+        } else if (ruleName === "≡i" || ruleName === "⊂e") {
           characterDetector = "⊃";
         } else if (ruleName === "⊻i") {
           // il faut deux inférences avec un ⊅
@@ -156,6 +168,8 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "≡e") {
+    // A (ou B) et A≡B pour B (ou A)
+  } else if (ruleName === "≡e'") {
     // A≡B pour A⊃B ou B⊃A
     const arrayAiffB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inference,
@@ -191,7 +205,7 @@ function scanTwoStepRule(
   inferenceTwo,
   allHypotheticalInferences
 ) {
-  // "⊃e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "↑i" "↑e" "↓i" "∨e" "ex falso"
+  // "⊃e" "⊂e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "↑i" "↑e" "↓i" "∨e" "ex falso"
   let isTheRuleAdequate = false;
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
@@ -200,6 +214,15 @@ function scanTwoStepRule(
       "⊃"
     );
     if (inferenceTwo[0] === inferenceOne) {
+      isTheRuleAdequate = true;
+    }
+  } else if (ruleName === "⊂e") {
+    // ~B, A⊃B pour ~A
+    inferenceTwo = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊃"
+    );
+    if ("~" + inferenceTwo[1] === inferenceOne) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "~i") {
@@ -218,6 +241,18 @@ function scanTwoStepRule(
       "⊃"
     );
     if (AthenB[0] === BthenA[1] && AthenB[1] === BthenA[0]) {
+      isTheRuleAdequate = true;
+    }
+  } else if (ruleName === "≡e") {
+    // A (ou B) et A≡B pour B (ou A)
+    const AifandonlyifB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "≡"
+    );
+    if (
+      inferenceOne === AifandonlyifB[0] ||
+      inferenceOne === AifandonlyifB[1]
+    ) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊻i") {
@@ -256,6 +291,15 @@ function scanTwoStepRule(
       "⊅"
     );
     if (InfTools.mayRemoveFirstParenthesis(inferenceTwo[0]) === inferenceOne) {
+      isTheRuleAdequate = true;
+    }
+  } else if (ruleName === "⊄e") {
+    // B, A⊅B pour ~A
+    inferenceTwo = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊅"
+    );
+    if (InfTools.mayRemoveFirstParenthesis(inferenceTwo[1]) === inferenceOne) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "↑i") {
