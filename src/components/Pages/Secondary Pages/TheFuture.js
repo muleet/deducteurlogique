@@ -42,12 +42,12 @@ const TheFuture = () => {
           }}
         >
           <p className="yes-available-rule">
-            0.67a : Versions alternatives des règles ⊃e, ⊅e (les
+            0.67b : Versions alternatives des règles ⊃e, ⊅e (les
             contrapositions), et ≡e (permettre d'avoir A si on A≡B et B, et
-            inversement).
+            inversement). Beaucoup de corrections de vieux bugs.
           </p>
           <p className="soon-available-rule">
-            0.67b : Version alternative de la règle ∨e (syllogisme disjonctif).
+            0.67c : Version alternative de la règle ∨e (syllogisme disjonctif).
           </p>
           <p className="soon-available-rule">
             0.68 : Pouvoir valider une inférence en cliquant sur sa
@@ -57,7 +57,7 @@ const TheFuture = () => {
           <p className="soon-available-rule">
             0.69 : Affichage traditionnel des lignes d'hypothèse.
           </p>
-          <p className="soon-available-rule">
+          <p className="later-available-rule">
             0.70-0.80 : Un système de comptes utilisateur pour créer des exos,
             savoir quels exos on a résolus etc.
           </p>

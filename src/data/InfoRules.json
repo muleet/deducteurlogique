@@ -293,7 +293,7 @@
       "instruction": "Cliquez sur B, puis A⊅B, pour inférer ~A.",
       "expectedArguments": ["B", "A⊅B"],
       "ruleType": "conjonction",
-      "available": "test"
+      "available": "yes"
     }
   },
   {

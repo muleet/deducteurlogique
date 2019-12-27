@@ -5,6 +5,7 @@ class ShowModalButtons extends Component {
   verifyRule(valueRule) {
     // Généalogie : "RuleModal", puis "ShowExpectedArguments"/"ShowModalButtons", puis "VerifyRule", puis "redirectToTheRightRule", puis "[la règle en question]", puis "addInference"
     // puis dans le cas des hypothèses, changeHypothesisLevel, puis updateHypotheticalInferencesThemselves puis RIEN (pas d'updateInferencesOfCurrentHypotheses)
+
     if (
       this.props.valueInference.storedInference !== undefined &&
       this.props.expectedArguments.length ===
@@ -37,7 +38,7 @@ class ShowModalButtons extends Component {
           ", avant de la valider.",
         "error-advice"
       );
-      this.props.valueInference.setRuleModal("stillOpen", "ended-badly");
+      // this.props.valueInference.setRuleModal("stillOpen","ended-badly");
     }
   }
 
@@ -145,7 +146,7 @@ class ShowModalButtons extends Component {
           className="rule-modal-button"
           onClick={() => {
             this.props.valueInference.changeStorageBoolean("resetButStillTrue");
-            this.props.valueInference.setRuleModal("stillOpen", "");
+            // this.props.valueInference.setRuleModal("stillOpen", "");
           }}
         >
           <i className="fas fa-eraser" />
@@ -183,7 +184,6 @@ class ShowModalButtons extends Component {
             // if (this.props.ruleName === "∨e") {
             //   this.verifyLongStorageRule(this.props.valueRule);
             // } else
-            console.log(ruleName);
             if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
               this.verifyRule(this.props.valueRule);
             } else {

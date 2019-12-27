@@ -87,12 +87,7 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
   }
 }
 
-function scanOneStepRule(
-  ruleName,
-  inference,
-  allHypotheticalInferences,
-  inversion
-) {
+function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
   let objectToReturn = { itself: "?", activable: false };
 
   if (ruleName === "rep") {
@@ -103,7 +98,7 @@ function scanOneStepRule(
     // ~~A pour A
     if (inference[0] === "~" && inference[1] === "~") {
       inference = InfTools.withdrawFirstCharacters(inference, 2);
-      objectToReturn.itself = InfTools.mayRemoveFirstParenthesis(inference);
+      objectToReturn.itself = InfTools.mayRemoveParenthesis(inference);
     }
   } else if (ruleName === "∧e") {
     //  A∧B pour A ou B
@@ -122,23 +117,15 @@ function scanOneStepRule(
       B = inference;
     }
     objectToReturn.itself =
-      InfTools.mayAddFirstParenthesis(A) +
-      "⊃" +
-      InfTools.mayAddFirstParenthesis(B);
-  } else if (ruleName === "≡e") {
-    // A (ou B) et A≡B pour B (ou A)
+      InfTools.mayAddParenthesis(A) + "⊃" + InfTools.mayAddParenthesis(B);
   } else if (ruleName === "≡e'") {
     // A≡B pour A⊃B ou B⊃A
+    console.log("gtgtgjoeridf");
     inference = InfTools.returnWhatIsBeforeAndAfterTheOperator(inference, "≡");
     if (inference !== "error") {
-      objectToReturn.itself =
-        inference[0] +
-        "⊃" +
-        inference[1] +
-        " ou " +
-        inference[1] +
-        "⊃" +
-        inference[0];
+      const A = InfTools.mayAddParenthesis(inference[0]),
+        B = InfTools.mayAddParenthesis(inference[1]);
+      objectToReturn.itself = A + "⊃" + B + " ou " + B + "⊃" + A;
     }
   } else if (ruleName === "↓e") {
     // A↓B pour ~A ou ~B
@@ -147,7 +134,9 @@ function scanOneStepRule(
       "↓"
     );
     if (neitherAnorB !== "error") {
-      objectToReturn.itself = "~" + neitherAnorB[0] + " ou ~" + neitherAnorB[1];
+      const A = InfTools.mayAddParenthesis(neitherAnorB[0]),
+        B = InfTools.mayAddParenthesis(neitherAnorB[1]);
+      objectToReturn.itself = "~" + A + " ou ~" + B;
     }
   } else if (ruleName === "reit") {
     // A pour A
@@ -155,7 +144,6 @@ function scanOneStepRule(
       objectToReturn.itself = inference;
     }
   }
-
   if (objectToReturn.itself !== "?") {
     objectToReturn.activable = true;
   }
@@ -185,21 +173,25 @@ function scanTwoStepRule(
     }
   } else if (ruleName === "⊂e") {
     // ~B, A⊃B pour ~A
-    if (
-      inferenceOne ===
-      "~" + InfTools.returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊃")[1]
-    ) {
-      objectToReturn.itself =
-        "~" +
-        InfTools.returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊃")[0];
+    let A = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+        inferenceTwo,
+        "⊃"
+      )[0],
+      B = InfTools.returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊃")[1];
+    A = InfTools.mayAddParenthesis(A);
+    B = InfTools.mayAddParenthesis(B);
+    console.log("infOne", inferenceOne, "===", "~" + B);
+    if (inferenceOne === "~" + B) {
+      console.log("ça marche");
+      objectToReturn.itself = "~" + A;
     }
   } else if (ruleName === "∧i") {
     // A, B pour A∧B
     if (inferenceOne && inferenceTwo) {
       objectToReturn.itself =
-        InfTools.mayAddFirstParenthesis(inferenceOne) +
+        InfTools.mayAddParenthesis(inferenceOne) +
         "∧" +
-        InfTools.mayAddFirstParenthesis(inferenceTwo);
+        InfTools.mayAddParenthesis(inferenceTwo);
     }
   } else if (ruleName === "~i") {
     // B, ~B, pour réfuter l'hypothèse (A)
@@ -213,9 +205,9 @@ function scanTwoStepRule(
       "≡"
     );
     if (inferenceOne === AifandonlyifB[0]) {
-      objectToReturn.itself = InfTools.mayAddFirstParenthesis(AifandonlyifB[1]);
+      objectToReturn.itself = InfTools.mayAddParenthesis(AifandonlyifB[1]);
     } else if (inferenceOne === AifandonlyifB[1]) {
-      objectToReturn.itself = InfTools.mayAddFirstParenthesis(AifandonlyifB[0]);
+      objectToReturn.itself = InfTools.mayAddParenthesis(AifandonlyifB[0]);
     }
   } else if (ruleName === "≡i") {
     // A⊃B, B⊃A pour A≡B
@@ -245,26 +237,45 @@ function scanTwoStepRule(
     }
   } else if (ruleName === "⊻e") {
     // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
-    const AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+    const eitherA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceTwo,
       "⊻"
-    );
-    if (AorB[0] === inferenceOne) {
-      objectToReturn.itself = "~" + AorB[1];
-    } else if (AorB[1] === inferenceOne) {
-      objectToReturn.itself = "~" + AorB[0];
-    } else if ("~" + AorB[0] === inferenceOne) {
-      objectToReturn.itself = AorB[1];
-    } else if ("~" + AorB[1] === inferenceOne) {
-      objectToReturn.itself = AorB[0];
-    } else if (AorB[0] === "~" + inferenceOne) {
-      objectToReturn.itself = AorB[1];
-    } else if (AorB[1] === "~" + inferenceOne) {
-      objectToReturn.itself = AorB[0];
+    )[0];
+    const eitherB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊻"
+    )[1];
+    // résultat : ~B [A et A ; ~A et ~A]
+    if (inferenceOne === eitherA) {
+      objectToReturn.itself = "~" + InfTools.mayAddParenthesis(eitherB);
+    }
+
+    // résultat : B [~A et A ; A et ~A ; ~(A∧C) et A∧C]
+    if (
+      "~" + InfTools.mayAddParenthesis(inferenceOne) === eitherA ||
+      inferenceOne === "~" + InfTools.mayAddParenthesis(eitherA)
+    ) {
+      objectToReturn.itself = eitherB;
+    }
+
+    // résultat : ~A [B et B ; ~B et ~B]
+    if (inferenceOne === eitherB) {
+      objectToReturn.itself = "~" + InfTools.mayAddParenthesis(eitherA);
+    }
+
+    // résultat : A [~B et B ; B et ~B ; ~(B∧C) et B∧C]
+    if (
+      "~" + InfTools.mayAddParenthesis(inferenceOne) === eitherB ||
+      inferenceOne === "~" + InfTools.mayAddParenthesis(eitherB)
+    ) {
+      objectToReturn.itself = eitherA;
     }
   } else if (ruleName === "⊅i") {
     // A, ~B pour A⊅B
-    if (inferenceOne && inferenceTwo[0] === "~") {
+    if (
+      InfTools.returnNegationCount(inferenceOne) <
+      InfTools.returnNegationCount(inferenceTwo)
+    ) {
       inferenceTwo = InfTools.withdrawFirstCharacters(inferenceTwo, 1);
       objectToReturn.itself = InfTools.returnAnInferenceOutOfTwoInferences(
         inferenceOne,
@@ -279,8 +290,7 @@ function scanTwoStepRule(
       "⊅"
     );
     if (inferenceTwo[0] === inferenceOne) {
-      objectToReturn.itself =
-        "~" + InfTools.mayAddFirstParenthesis(inferenceTwo[1]);
+      objectToReturn.itself = "~" + InfTools.mayAddParenthesis(inferenceTwo[1]);
     }
   } else if (ruleName === "⊄e") {
     // B, A⊅B pour ~A
@@ -289,8 +299,7 @@ function scanTwoStepRule(
       "⊅"
     );
     if (inferenceTwo[1] === inferenceOne) {
-      objectToReturn.itself =
-        "~" + InfTools.mayAddFirstParenthesis(inferenceTwo[0]);
+      objectToReturn.itself = "~" + InfTools.mayAddParenthesis(inferenceTwo[0]);
     }
   } else if (ruleName === "↑i") {
     // A, ~B, pour A↑B
@@ -323,8 +332,8 @@ function scanTwoStepRule(
   } else if (ruleName === "∨i") {
     // A pour A∨B
     if (inferenceOne && inferenceTwo) {
-      inferenceOne = InfTools.mayAddFirstParenthesis(inferenceOne);
-      inferenceTwo = InfTools.mayAddFirstParenthesis(inferenceTwo);
+      inferenceOne = InfTools.mayAddParenthesis(inferenceOne);
+      inferenceTwo = InfTools.mayAddParenthesis(inferenceTwo);
       if (!inversion) {
         objectToReturn.itself = inferenceOne + "∨" + inferenceTwo;
       } else {

@@ -109,14 +109,6 @@ class RuleModalProvider extends Component {
       ruleName = this.props.ruleName,
       firstRuleNameShown = this.props.ruleName,
       secondRuleNameShown = "";
-    if (ruleName === "") {
-      keyboard = (
-        <ul className="typable-text">
-          {this.props.valueInference.futureInference}
-          <p className="blinking">_</p>
-        </ul>
-      );
-    }
 
     if (!this.props.valueInference.ruleModalShown.normal) {
       ruleModalClassName = "hidden";
@@ -124,6 +116,7 @@ class RuleModalProvider extends Component {
 
     // étape optionnelle : changer la règle qui est ajoutée, par son autre interprétation
     if (this.props.valueInference.otherInterpretation[1] === "possible") {
+      // la "possibilité" est déterminée par le code de ButtonRuleMaker
       secondRuleNameShown = this.props.otherInterpretation.ruleName; // c'est juste pour l'affichage de la règle sur le RuleModal
       // si l'utilisateur a activé l'autre interprétation de la règle en cours (d'autres conditions sur d'autres pages vérifient que c'était possible
       if (this.props.valueInference.otherInterpretation[0] === "active") {

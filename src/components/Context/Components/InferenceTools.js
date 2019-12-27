@@ -1,15 +1,17 @@
 // import React, { createContext, Component, Fragment } from "react";
 
-function mayAddFirstParenthesis(inference) {
-  // concerne ∧i, ⊻i, ⊃i, ↑e, ↓e, ex falso
-  if (inference.length > 2 && inference[inference.length - 1] !== "~") {
+function mayAddParenthesis(inference) {
+  // cas pour lesquels ça ne doit pas s'activer: p, ~p, ~(p∧q)
+  // cas pour lesquels ça doit s'activer: p∧q, (p∧q)∧(p∧r), ~(p∧q)∧~(p∧r)
+  if (isThereAMainOperator(inference)) {
     inference = "(" + inference + ")";
   }
   return inference;
 }
 
-function mayRemoveFirstParenthesis(inference) {
-  // concerne ~i
+function mayRemoveParenthesis(inference) {
+  // cas pour lesquels ça ne doit pas s'activer:
+  // cas pour lesquels ça doit s'activer:
   let newInference = inference;
   if (inference[0] === "(") {
     newInference = "";
@@ -66,9 +68,9 @@ function returnWhatIsBeforeAndAfterTheOperator(str, operator, mayCommute) {
         operator === "↓")
     ) {
       arrayToReturn =
-        this.mayAddFirstParenthesis(arrayToReturn[1]) +
+        this.mayAddParenthesis(arrayToReturn[1]) +
         operator +
-        this.mayAddFirstParenthesis(arrayToReturn[0]);
+        this.mayAddParenthesis(arrayToReturn[0]);
     }
   } else {
     arrayToReturn = "error";
@@ -77,8 +79,8 @@ function returnWhatIsBeforeAndAfterTheOperator(str, operator, mayCommute) {
 }
 
 function returnAnInferenceOutOfTwoInferences(A, B, operator) {
-  A = this.mayAddFirstParenthesis(A);
-  B = this.mayAddFirstParenthesis(B);
+  A = this.mayAddParenthesis(A);
+  B = this.mayAddParenthesis(B);
   let AoperatorB = A + operator + B;
   return AoperatorB;
 }
@@ -135,7 +137,7 @@ function isThereAMainOperator(inference) {
   let result = "",
     bool = false;
   for (let i = 0; i < everyConnector.length; i++) {
-    result = this.returnWhatIsBeforeAndAfterTheOperator(
+    result = returnWhatIsBeforeAndAfterTheOperator(
       inference,
       everyConnector[i]
     );
@@ -160,8 +162,8 @@ function returnNegationCount(inference) {
 }
 
 export default {
-  mayAddFirstParenthesis,
-  mayRemoveFirstParenthesis,
+  mayAddParenthesis,
+  mayRemoveParenthesis,
   returnWhatIsBeforeAndAfterTheOperator,
   returnAnInferenceOutOfTwoInferences,
   commute,

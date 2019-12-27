@@ -53,7 +53,6 @@ class Debugger extends Component {
         </li> */}
         <li>{value.ruleModalContent.ruleName}</li>
         <li>{value.otherInterpretation}</li>
-        {/* <li>{value.ruleModalShown.normal}</li> */}
         <li>{value.ruleModalShown.normal}</li>
       </ul>
     );

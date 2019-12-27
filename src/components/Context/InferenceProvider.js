@@ -123,7 +123,10 @@ class InferenceProvider extends Component {
           .length;
       let ruleName = this.state.ruleModalContent.ruleName;
       if (this.state.otherInterpretation[0] === "active") {
+        // ici on peut remplacer la ruleName et l'expectedArguments, par l'autre interprétation, si elle a été activée par l'utilisateur
         ruleName = this.state.ruleModalContent.otherInterpretation.ruleName;
+        expectedArgumentsLength = this.state.ruleModalContent
+          .otherInterpretation.expectedArguments.length;
       }
       if (ruleName === "~i" || ruleName === "⊃i") {
         expectedArgumentsLength--;
@@ -559,7 +562,7 @@ class InferenceProvider extends Component {
       this.setState({ advice: adviceToReturn });
       setTimeout(() => {
         this.setState({ advice: <div className="advice" /> });
-      }, 5000);
+      }, 4000);
     };
 
     this.setPossibleMeaning = () => {

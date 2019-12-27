@@ -178,8 +178,6 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
     if (arrayAiffB.length === 2) {
       isTheRuleAdequate = true;
     }
-  } else if (ruleName === "⊅i") {
-    // (A), B pour A⊅B
   } else if (ruleName === "↓e") {
     // A↓B pour ~A ou ~B
     const neitherAnorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
@@ -270,17 +268,30 @@ function scanTwoStepRule(
     }
   } else if (ruleName === "⊻e") {
     // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
-    const AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+    const eitherA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       inferenceTwo,
       "⊻"
-    );
+    )[0];
+    const eitherB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+      inferenceTwo,
+      "⊻"
+    )[1];
+    // si une seule des 6 conditions ci-dessous passe, c'est bon
     if (
-      AorB[0] === inferenceOne ||
-      AorB[1] === inferenceOne ||
-      "~" + AorB[0] === inferenceOne ||
-      "~" + AorB[1] === inferenceOne ||
-      AorB[0] === "~" + inferenceOne ||
-      AorB[1] === "~" + inferenceOne
+      inferenceOne === eitherA ||
+      "~" + InfTools.mayAddParenthesis(inferenceOne) === eitherA ||
+      inferenceOne === "~" + InfTools.mayAddParenthesis(eitherA) ||
+      inferenceOne === eitherB ||
+      "~" + InfTools.mayAddParenthesis(inferenceOne) === eitherB ||
+      inferenceOne === "~" + InfTools.mayAddParenthesis(eitherB)
+    ) {
+      isTheRuleAdequate = true;
+    }
+  } else if (ruleName === "⊅i") {
+    // A, ~B pour A⊅B (il suffit de vérifier que B a plus de symboles de négation)
+    if (
+      InfTools.returnNegationCount(inferenceOne) <
+      InfTools.returnNegationCount(inferenceTwo)
     ) {
       isTheRuleAdequate = true;
     }
@@ -290,7 +301,7 @@ function scanTwoStepRule(
       inferenceTwo,
       "⊅"
     );
-    if (InfTools.mayRemoveFirstParenthesis(inferenceTwo[0]) === inferenceOne) {
+    if (InfTools.mayRemoveParenthesis(inferenceTwo[0]) === inferenceOne) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "⊄e") {
@@ -299,7 +310,7 @@ function scanTwoStepRule(
       inferenceTwo,
       "⊅"
     );
-    if (InfTools.mayRemoveFirstParenthesis(inferenceTwo[1]) === inferenceOne) {
+    if (InfTools.mayRemoveParenthesis(inferenceTwo[1]) === inferenceOne) {
       isTheRuleAdequate = true;
     }
   } else if (ruleName === "↑i") {

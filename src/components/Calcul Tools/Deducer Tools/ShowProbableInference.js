@@ -23,7 +23,8 @@ function ShowProbableInference(value, previousInference) {
   if (
     value.canInferenceBeStored &&
     value.booleansOptionsAboutInferences.boolInferenceScanner &&
-    AIT.length > 0
+    AIT.length > 0 &&
+    expectedArguments
   ) {
     // Section de la création des adequacyArrows
     setAdequacyArrows = makeSetAdequacyArrows(

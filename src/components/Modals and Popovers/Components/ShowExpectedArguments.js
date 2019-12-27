@@ -36,12 +36,31 @@ class ShowExpectedArguments extends Component {
     instructionOrArgument,
     otherInstructionOrArgument
   ) {
+    let boolCursor = false;
+    if (instructionOrArgument[0] === "argument arbitraire") {
+      boolCursor = true;
+      instructionOrArgument = "";
+      otherInstructionOrArgument = instructionOrArgument[1];
+    }
     return (
       <div className={className}>
         {instructionOrArgument}
+        {this.renderKeyboardBlinkingCursor(boolCursor)}
         {otherInstructionOrArgument}
       </div>
     );
+  }
+
+  renderKeyboardBlinkingCursor(boolCursor) {
+    // utilisé les règles qui impliquent de pouvoir rentrer arbitrairement un contenu inférentiel (ex falso et ∨i)
+    if (boolCursor) {
+      return (
+        <ul className="typable-text">
+          {this.props.valueInference.futureInference}
+          <p className="blinking">_</p>
+        </ul>
+      );
+    }
   }
 
   render() {
@@ -216,7 +235,10 @@ class ShowExpectedArguments extends Component {
       }
 
       if (this.props.valueInference.futureInference.length > 0) {
-        arbitraryArgument = this.props.valueInference.futureInference;
+        arbitraryArgument = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          ["argument arbitraire", this.props.valueInference.futureInference]
+        );
       }
 
       const keyboard = this.showKeyboard();
@@ -251,34 +273,37 @@ class ShowExpectedArguments extends Component {
       //     />
       //   );
     } else if (ruleName === "ex falso") {
-      let exFalsoTrueArgument = this.renderInstructionOrArgument(
+      let exFalsoTrueArgument = this.renderInstructionOrArgumentOfCurrentRule(
         "awaiting-an-inference-blinking",
         "<Cliquez sur une inférence A>"
       );
-      let exFalsoFalseArgument = this.renderInstructionOrArgument(
+      let exFalsoFalseArgument = this.renderInstructionOrArgumentOfCurrentRule(
         "awaiting-an-inference-blinking",
         "<Cliquez sur une inférence ~A>"
       );
-      let arbitraryArgument = this.renderInstructionOrArgument(
+      let arbitraryArgument = this.renderInstructionOrArgumentOfCurrentRule(
         "awaiting-an-inference-blinking",
         "<Utilisez le clavier virtuel>"
       );
 
       if (storedInference[0]) {
-        exFalsoTrueArgument = this.renderInstructionOrArgument(
+        exFalsoTrueArgument = this.renderInstructionOrArgumentOfCurrentRule(
           "infItself-modal",
           storedInference[0]
         );
       }
       if (storedInference[1]) {
-        exFalsoFalseArgument = this.renderInstructionOrArgument(
+        exFalsoFalseArgument = this.renderInstructionOrArgumentOfCurrentRule(
           "infItself-modal",
           storedInference[1]
         );
       }
 
       if (this.props.valueInference.futureInference.length > 0) {
-        arbitraryArgument = this.props.valueInference.futureInference;
+        arbitraryArgument = this.renderInstructionOrArgumentOfCurrentRule(
+          "infItself-modal",
+          ["argument arbitraire", this.props.valueInference.futureInference]
+        );
       }
 
       const keyboard = this.showKeyboard();
@@ -288,17 +313,17 @@ class ShowExpectedArguments extends Component {
           key={arrayExpectedArguments.length}
           className="rule-modal-all-arguments"
         >
-          {this.renderInstructionOrArgument(
+          {this.renderInstructionOrArgumentOfCurrentRule(
             "rule-modal-single-argument",
             expectedArguments[0],
             exFalsoTrueArgument
           )}
-          {this.renderInstructionOrArgument(
+          {this.renderInstructionOrArgumentOfCurrentRule(
             "rule-modal-single-argument",
             expectedArguments[1],
             exFalsoFalseArgument
           )}
-          {this.renderInstructionOrArgument(
+          {this.renderInstructionOrArgumentOfCurrentRule(
             "rule-modal-single-argument",
             "B",
             arbitraryArgument

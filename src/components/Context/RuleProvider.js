@@ -1,5 +1,5 @@
 import React, { createContext, Component } from "react";
-import InferenceTools from "./Components/InferenceTools";
+import InfTools from "./Components/InferenceTools";
 
 export const RuleContext = createContext();
 
@@ -13,7 +13,7 @@ class RuleProvider extends Component {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself;
       let notA,
         notBbecomeB = notB.substring(1);
-      notBbecomeB = InferenceTools.mayRemoveFirstParenthesis(notBbecomeB);
+      notBbecomeB = InfTools.mayRemoveParenthesis(notBbecomeB);
       if (notB[0] === "~" && B === notBbecomeB) {
         if (A.length > 2 && A[1] !== "(") {
           notA = "~(" + A + ")";
@@ -53,8 +53,8 @@ class RuleProvider extends Component {
     this.doubleNegationElimination = (notnotA, numbers) => {
       if (notnotA[0] === "~" && notnotA[1] === "~") {
         let A = "";
-        notnotA = InferenceTools.withdrawFirstCharacters(notnotA, 2);
-        A = InferenceTools.mayRemoveFirstParenthesis(notnotA);
+        notnotA = InfTools.withdrawFirstCharacters(notnotA, 2);
+        A = InfTools.mayRemoveParenthesis(notnotA);
         const inferenceToAdd = {
           itself: A,
           numberCommentary: numbers,
@@ -76,12 +76,7 @@ class RuleProvider extends Component {
 
     this.conjonctionIntroduction = (A, B, numbers) => {
       // ∧i
-      let AandB = InferenceTools.returnAnInferenceOutOfTwoInferences(
-        A,
-        B,
-        "∧",
-        true
-      );
+      let AandB = InfTools.returnAnInferenceOutOfTwoInferences(A, B, "∧", true);
       const inferenceToAdd = {
         itself: AandB,
         numberCommentary: numbers,
@@ -95,7 +90,7 @@ class RuleProvider extends Component {
     }; // ∧i
 
     this.conjonctionElimination = (AandB, number) => {
-      const arrayTwoChoices = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const arrayTwoChoices = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         AandB,
         "∧"
       );
@@ -115,17 +110,9 @@ class RuleProvider extends Component {
       const B = this.props.valueInference.futureInference;
       let ArbitraryAorB;
       if (!this.props.valueInference.inversion) {
-        ArbitraryAorB = InferenceTools.returnAnInferenceOutOfTwoInferences(
-          A,
-          B,
-          "∨"
-        );
+        ArbitraryAorB = InfTools.returnAnInferenceOutOfTwoInferences(A, B, "∨");
       } else {
-        ArbitraryAorB = InferenceTools.returnAnInferenceOutOfTwoInferences(
-          B,
-          A,
-          "∨"
-        );
+        ArbitraryAorB = InfTools.returnAnInferenceOutOfTwoInferences(B, A, "∨");
       }
       const inferenceToAdd = {
         // itself: AutomaticAorB,
@@ -149,7 +136,7 @@ class RuleProvider extends Component {
     }; // ∨i
 
     this.inclusiveDisjonctionElimination = (notA, AorB, number) => {
-      AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(AorB, "∨");
+      AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(AorB, "∨");
       if (notA[0] === "~" && AorB !== "error") {
         notA = notA.substring(1);
         let B = "";
@@ -176,7 +163,7 @@ class RuleProvider extends Component {
         );
       }
 
-      // const AorB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      // const AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       //   expectedArguments[0],
       //   "∨"
       // );
@@ -217,16 +204,16 @@ class RuleProvider extends Component {
     }; // ∨e
 
     this.exclusiveDisjonctionIntroduction = (ifAthenNotB, ifBthenNotA, num) => {
-      let ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      let ArrayifAthenNotB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenNotB,
         "⊃"
       );
-      let ArrayifBthenNotA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      let ArrayifBthenNotA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifBthenNotA,
         "⊃"
       );
       if (ArrayifAthenNotB.length !== 2) {
-        ArrayifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+        ArrayifAthenNotB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
           ifAthenNotB,
           "⊅"
         );
@@ -238,7 +225,7 @@ class RuleProvider extends Component {
       }
 
       if (ArrayifBthenNotA.length !== 2) {
-        ArrayifBthenNotA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+        ArrayifBthenNotA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
           ifBthenNotA,
           "⊅"
         );
@@ -256,9 +243,9 @@ class RuleProvider extends Component {
         ArrayifAthenNotB[1] === "~" + ArrayifBthenNotA[0]
       ) {
         const eitherAeitherB =
-          InferenceTools.mayAddFirstParenthesis(ArrayifAthenNotB[0]) +
+          InfTools.mayAddParenthesis(ArrayifAthenNotB[0]) +
           "⊻" +
-          InferenceTools.mayAddFirstParenthesis(ArrayifBthenNotA[0]);
+          InfTools.mayAddParenthesis(ArrayifBthenNotA[0]);
         const inferenceToAdd = {
           itself: eitherAeitherB,
           numberCommentary: num,
@@ -280,35 +267,43 @@ class RuleProvider extends Component {
 
     this.exclusiveDisjonctionElimination = (A, eitherAeitherB, numbers) => {
       // A, A⊻B pour ~B || ~A, A⊻B, pour B || B, A⊻B pour ~A || ~B, A⊻B, pour A
-      const ArrayeitherAeitherB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
-        eitherAeitherB,
-        "⊻"
-      );
+      const eitherA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+          eitherAeitherB,
+          "⊻"
+        )[0],
+        eitherB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+          eitherAeitherB,
+          "⊻"
+        )[1];
       let inferenceToAdd = {
         itself: "",
         numberCommentary: numbers,
         commentary: "⊻e"
       };
-      // A === A⊻B pour ~B
-      if (A === ArrayeitherAeitherB[0]) {
-        inferenceToAdd.itself = "~" + ArrayeitherAeitherB[1];
+      // résultat : ~B [A et A ; ~A et ~A]
+      if (A === eitherA) {
+        inferenceToAdd.itself = "~" + InfTools.mayAddParenthesis(eitherB);
       }
-      if (A === ArrayeitherAeitherB[1]) {
-        inferenceToAdd.itself = "~" + ArrayeitherAeitherB[0];
+
+      // résultat : B [~A et A ; A et ~A ; ~(A∧C) et A∧C]
+      if (
+        "~" + InfTools.mayAddParenthesis(A) === eitherA ||
+        A === "~" + InfTools.mayAddParenthesis(eitherA)
+      ) {
+        inferenceToAdd.itself = eitherB;
       }
-      // ~+A === ~A⊻B pour B
-      if ("~" + A === ArrayeitherAeitherB[0]) {
-        inferenceToAdd.itself = ArrayeitherAeitherB[1];
+
+      // résultat : ~A [B et B ; ~B et ~B]
+      if (A === eitherB) {
+        inferenceToAdd.itself = "~" + InfTools.mayAddParenthesis(eitherA);
       }
-      if ("~" + A === ArrayeitherAeitherB[1]) {
-        inferenceToAdd.itself = ArrayeitherAeitherB[0];
-      }
-      // ~A === ~+A⊻B pour B
-      if (A === "~" + ArrayeitherAeitherB[0]) {
-        inferenceToAdd.itself = ArrayeitherAeitherB[1];
-      }
-      if (A === "~" + ArrayeitherAeitherB[1]) {
-        inferenceToAdd.itself = ArrayeitherAeitherB[0];
+
+      // résultat : A [~B et B ; B et ~B ; ~(B∧C) et B∧C]
+      if (
+        "~" + InfTools.mayAddParenthesis(A) === eitherB ||
+        A === "~" + InfTools.mayAddParenthesis(eitherB)
+      ) {
+        inferenceToAdd.itself = eitherA;
       }
 
       if (inferenceToAdd.itself.length > 0) {
@@ -328,11 +323,7 @@ class RuleProvider extends Component {
 
     this.conditionalIntroduction = (B, numbers) => {
       const A = this.props.valueInference.allHypotheticalInferences[0].itself; // A est déterminé par le programme : il sélectionne automatiquement l'hypothèse la plus récente encore en cours.
-      let ifAthenB = InferenceTools.returnAnInferenceOutOfTwoInferences(
-        A,
-        B,
-        "⊃"
-      );
+      let ifAthenB = InfTools.returnAnInferenceOutOfTwoInferences(A, B, "⊃");
       numbers =
         this.props.valueInference.allHypotheticalInferences[0]
           .numberCommentaryHypothesis +
@@ -359,7 +350,7 @@ class RuleProvider extends Component {
 
     this.conditionalElimination = (A, ifAthenB, numbers) => {
       // ⊃e
-      const ArrayIfAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayIfAthenB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenB,
         "⊃"
       );
@@ -369,7 +360,7 @@ class RuleProvider extends Component {
         if (antecedent === A) {
           // si on arrive dans ce if, c'est que la règle est validée
           const inferenceToAdd = {
-            itself: InferenceTools.mayAddFirstParenthesis(antecedent),
+            itself: consequent,
             numberCommentary: numbers,
             commentary: "⊃e"
           };
@@ -390,7 +381,7 @@ class RuleProvider extends Component {
 
     this.contraposalConditionalElimination = (notB, ifAthenB, numbers) => {
       // ⊂e
-      const ArrayIfAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayIfAthenB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenB,
         "⊃"
       );
@@ -400,7 +391,7 @@ class RuleProvider extends Component {
         if ("~" + consequent === notB) {
           // si on arrive dans ce if, c'est que la règle est validée
           const inferenceToAdd = {
-            itself: "~" + InferenceTools.mayAddFirstParenthesis(antecedent),
+            itself: "~" + InfTools.mayAddParenthesis(antecedent),
             numberCommentary: numbers,
             commentary: "⊂e"
           };
@@ -420,11 +411,11 @@ class RuleProvider extends Component {
     }; // ⊂e
 
     this.biconditionalIntroduction = (ifAthenB, ifBthenA, number) => {
-      const ArrayifAthenB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayifAthenB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenB,
         "⊃"
       );
-      const ArrayifBthenA = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayifBthenA = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifBthenA,
         "⊃"
       );
@@ -455,7 +446,7 @@ class RuleProvider extends Component {
     this.biconditionalElimination = (A, AifandonlyifB, number) => {
       // ≡e
       let B = "";
-      AifandonlyifB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      AifandonlyifB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         AifandonlyifB,
         "≡"
       );
@@ -487,19 +478,15 @@ class RuleProvider extends Component {
     this.biconditionalAlternativeElimination = (AifandonlyifB, number) => {
       // ≡e'
       let leftChoice, rightChoice;
-      const ArrayAifandonlyifB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayAifandonlyifB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         AifandonlyifB,
         "≡"
       );
       let A = ArrayAifandonlyifB[0];
       let B = ArrayAifandonlyifB[1];
       if (ArrayAifandonlyifB.length === 2) {
-        if (A.length > 2) {
-          A = "(" + A + ")";
-        }
-        if (B.length > 2) {
-          B = "(" + B + ")";
-        }
+        A = InfTools.mayAddParenthesis(A);
+        B = InfTools.mayAddParenthesis(B);
         leftChoice = A + "⊃" + B;
         rightChoice = B + "⊃" + A;
         return this.showChoiceOnTheModal(
@@ -516,17 +503,44 @@ class RuleProvider extends Component {
       }
     }; // ≡e'
 
-    this.abjonctionIntroduction = (notB, numbers) => {}; // ⊅i
+    this.abjonctionIntroduction = (A, notB, numbers) => {
+      if (
+        InfTools.returnNegationCount(A) < InfTools.returnNegationCount(notB)
+      ) {
+        // si on arrive dans ce if, c'est que la règle est validée
+        notB = InfTools.withdrawFirstCharacters(notB, 1);
+        const AabjonctionB = InfTools.returnAnInferenceOutOfTwoInferences(
+          A,
+          notB,
+          "⊅"
+        );
+        const inferenceToAdd = {
+          itself: AabjonctionB,
+          numberCommentary: numbers,
+          commentary: "⊅i"
+        };
+        this.props.valueInference.setAdvice(
+          "Abjonction introduite, nouvelle inférence : " +
+            inferenceToAdd.itself,
+          "rule-advice"
+        );
+        this.addInferenceFromRule(inferenceToAdd);
+      } else {
+        this.props.valueInference.setAdvice(
+          "Pour utiliser ⊅i, il faut une inférence A et une inférence ~B.",
+          "error-advice"
+        );
+      }
+    }; // ⊅i
 
-    this.abjonctionElimination = (A, ifAthenNotB, numbers) => {
-      ifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
-        ifAthenNotB,
+    this.abjonctionElimination = (A, AabjonctionB, numbers) => {
+      AabjonctionB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
+        AabjonctionB,
         "⊅"
       );
-      if (A === ifAthenNotB[0]) {
+      if (A === AabjonctionB[0]) {
         // si on arrive dans ce if, c'est que la règle est validée
-        const notB =
-          "~" + InferenceTools.mayAddFirstParenthesis(ifAthenNotB[1]);
+        const notB = "~" + InfTools.mayAddParenthesis(AabjonctionB[1]);
         const inferenceToAdd = {
           itself: notB,
           numberCommentary: numbers,
@@ -547,14 +561,13 @@ class RuleProvider extends Component {
 
     this.abjonctionContraposalElimination = (B, ifAthenNotB, numbers) => {
       // ⊄e
-      ifAthenNotB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      ifAthenNotB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         ifAthenNotB,
         "⊅"
       );
       if (B === ifAthenNotB[1]) {
         // si on arrive dans ce if, c'est que la règle est validée
-        const A =
-          "~" + InferenceTools.mayAddFirstParenthesis(ifAthenNotB[0]);
+        const A = "~" + InfTools.mayAddParenthesis(ifAthenNotB[0]);
         const inferenceToAdd = {
           itself: A,
           numberCommentary: numbers,
@@ -577,14 +590,12 @@ class RuleProvider extends Component {
       // ↑i
       let AincompatibleB = "";
       if (
-        !InferenceTools.isThereAMainOperator(notB) &&
-        InferenceTools.returnNegationCount(A) <
-          InferenceTools.returnNegationCount(notB)
+        !InfTools.isThereAMainOperator(notB) &&
+        InfTools.returnNegationCount(A) < InfTools.returnNegationCount(notB)
       ) {
         // note : s'il y a un opérateur dominant, notB est forcément vraie, donc ↑i ne peut pas avoir lieu
-        let B = InferenceTools.withdrawFirstCharacters(notB, 1);
-        B = InferenceTools.mayRemoveFirstParenthesis(B);
-        AincompatibleB = InferenceTools.returnAnInferenceOutOfTwoInferences(
+        let B = InfTools.withdrawFirstCharacters(notB, 1);
+        AincompatibleB = InfTools.returnAnInferenceOutOfTwoInferences(
           A,
           B,
           "↑"
@@ -609,7 +620,7 @@ class RuleProvider extends Component {
     }; // ↑i
 
     this.incompatibilityElimination = (A, AincompatibleB, numbers) => {
-      const ArrayAincompatibleB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      const ArrayAincompatibleB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         AincompatibleB,
         "↑"
       );
@@ -621,11 +632,11 @@ class RuleProvider extends Component {
       // A === A↑B pour ~B
       if (A === ArrayAincompatibleB[0]) {
         inferenceToAdd.itself =
-          "~" + InferenceTools.mayAddFirstParenthesis(ArrayAincompatibleB[1]);
+          "~" + InfTools.mayAddParenthesis(ArrayAincompatibleB[1]);
       }
       if (A === ArrayAincompatibleB[1]) {
         inferenceToAdd.itself =
-          "~" + InferenceTools.mayAddFirstParenthesis(ArrayAincompatibleB[0]);
+          "~" + InfTools.mayAddParenthesis(ArrayAincompatibleB[0]);
       }
 
       if (inferenceToAdd.itself.length > 0) {
@@ -646,8 +657,8 @@ class RuleProvider extends Component {
 
     this.reciprocalDisjonctionIntroduction = (notA, notB, numbers) => {
       if (notA[0] === "~" && notB[0] === "~") {
-        notA = notA.slice(1, notA.length);
-        notB = notB.slice(1, notB.length);
+        notA = InfTools.withdrawFirstCharacters(notA, 1);
+        notB = InfTools.withdrawFirstCharacters(notB, 1);
         const neitherAneitherB = notA + "↓" + notB;
         const inferenceToAdd = {
           itself: neitherAneitherB,
@@ -669,15 +680,15 @@ class RuleProvider extends Component {
     }; // ↓i
 
     this.reciprocalDisjonctionElimination = (neitherAneitherB, number) => {
-      neitherAneitherB = InferenceTools.returnWhatIsBeforeAndAfterTheOperator(
+      neitherAneitherB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
         neitherAneitherB,
         "↓"
       );
       if (neitherAneitherB.length === 2) {
         const leftChoice =
-          "~" + InferenceTools.mayAddFirstParenthesis(neitherAneitherB[0]);
+          "~" + InfTools.mayAddParenthesis(neitherAneitherB[0]);
         const rightChoice =
-          "~" + InferenceTools.mayAddFirstParenthesis(neitherAneitherB[1]);
+          "~" + InfTools.mayAddParenthesis(neitherAneitherB[1]);
         return this.showChoiceOnTheModal(leftChoice, rightChoice, number, "↓e");
       } else {
         this.props.valueInference.setAdvice(
@@ -689,11 +700,7 @@ class RuleProvider extends Component {
 
     this.exFalso = (A, notA, numbers) => {
       const B = this.props.valueInference.futureInference;
-      if (
-        ("~" + A === notA ||
-          "~" + InferenceTools.mayAddFirstParenthesis(A) === notA) &&
-        B.length > 0
-      ) {
+      if (InfTools.mayAddParenthesis(A) === notA && B.length > 0) {
         let inferenceToAdd = {
           itself: B,
           numberCommentary: numbers,
@@ -769,11 +776,11 @@ class RuleProvider extends Component {
       } else if (ruleName === "≡i") {
         this.biconditionalIntroduction(arrInf[0], arrInf[1], numbers); // A⊃B, B⊃A pour A≡B
       } else if (ruleName === "≡e") {
-        this.biconditionalElimination(arrInf[0], arrInf[1], numbers); // A≡B pour A⊃B ou B⊃A
+        this.biconditionalElimination(arrInf[0], arrInf[1], numbers); // A (ou B) et A≡B pour B (ou A)
       } else if (ruleName === "≡e'") {
         this.biconditionalAlternativeElimination(arrInf[0], numbers); // A≡B pour A⊃B ou B⊃A
       } else if (ruleName === "⊅i") {
-        this.abjonctionIntroduction(arrInf[0], numbers); // (A), B pour A⊅B
+        this.abjonctionIntroduction(arrInf[0], arrInf[1], numbers); // (A), B pour A⊅B
       } else if (ruleName === "⊅e") {
         this.abjonctionElimination(arrInf[0], arrInf[1], numbers); // A, A⊅B pour ~B
       } else if (ruleName === "⊄e") {
