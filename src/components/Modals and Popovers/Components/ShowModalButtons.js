@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-// import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
+import ShowDisjonctionEliminationArguments from "./ShowDisjonctionEliminationArgumentsAndButtons";
 
 class ShowModalButtons extends Component {
   verifyRule(valueRule) {
@@ -140,7 +140,7 @@ class ShowModalButtons extends Component {
     // let buttonDisjonctionEliminationHypothesis = "";
 
     // CONDITIONS PERMETTANT DE DONNER LEURS RÔLES AUX BOUTONS EN FONCTION DE LA REGLE EN COURS
-    if (this.props.ruleName !== "∨e") {
+    if (this.props.ruleName !== "∨e'") {
       buttonResetArguments = (
         <p
           className="rule-modal-button"
@@ -181,10 +181,12 @@ class ShowModalButtons extends Component {
         <p
           className="rule-modal-button"
           onClick={() => {
-            // if (this.props.ruleName === "∨e") {
-            //   this.verifyLongStorageRule(this.props.valueRule);
-            // } else
-            if (this.props.ruleName !== "⊃i" && this.props.ruleName !== "~i") {
+            if (this.props.ruleName === "∨e'") {
+              this.verifyLongStorageRule(this.props.valueRule);
+            } else if (
+              this.props.ruleName !== "⊃i" &&
+              this.props.ruleName !== "~i"
+            ) {
               this.verifyRule(this.props.valueRule);
             } else {
               this.verifyBreakHypothesisRule(this.props.valueRule);
@@ -211,19 +213,19 @@ class ShowModalButtons extends Component {
       buttonCloseModal = "";
     }
 
-    // if (this.props.ruleName === "∨e") {
-    //   buttonSpecificRule = (
-    //     <ShowDisjonctionEliminationArguments
-    //       key={1}
-    //       whatToReturn="buttons"
-    //       // expectedArguments={expectedArguments}
-    //       valueRule={this.props.valueRule}
-    //       valueInference={this.props.valueInference}
-    //     />
-    //   );
-    //   // buttonResetArguments = "???"
-    //   // à faire : pour la règle d'élimination de la disjonction il faut pouvoir supprimer les deux hypothèses créées, à volonté. Y compris si une seule hypothèse avait été créée.
-    // }
+    if (this.props.ruleName === "∨e'") {
+      buttonSpecificRule = (
+        <ShowDisjonctionEliminationArguments
+          key={1}
+          whatToReturn="buttons"
+          // expectedArguments={expectedArguments}
+          valueRule={this.props.valueRule}
+          valueInference={this.props.valueInference}
+        />
+      );
+      // buttonResetArguments = "???"
+      // à faire : pour la règle d'élimination de la disjonction il faut pouvoir supprimer les deux hypothèses créées, à volonté. Y compris si une seule hypothèse avait été créée.
+    }
 
     // if (this.props.ruleName === "reit") {
     //   return ""; // pas de boutons pour reit
@@ -253,7 +255,7 @@ class ShowModalButtons extends Component {
         {/* les deux boutons ci-desous ne concernent que ∨i */}
         {buttonRemoveLastCharacter}
         {buttonInverseInference}
-        {/* le bouton ci-dessous ne concerne que ∨e */}
+        {/* le bouton ci-dessous ne concerne que ∨e' */}
         {buttonSpecificRule}
         {/* {buttonDisjonctionEliminationHypothesis} */}
         {buttonVerifyRule}

@@ -158,11 +158,14 @@ class RuleProvider extends Component {
         );
       } else {
         this.props.valueInference.setAdvice(
-          "Pour utiliser la règle ∨e, lisez bien les instructions",
+          "Pour utiliser la règle ∨e, il faut une inférence ~A (ou ~B), et une inférence A∨B.",
           "error-advice"
         );
       }
+    }; // ∨e
 
+    this.inclusiveDisjonctionSyllogisticalElimination = () => {
+      // ∨e'
       // const AorB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
       //   expectedArguments[0],
       //   "∨"
@@ -172,10 +175,9 @@ class RuleProvider extends Component {
       // let inferenceToAdd = {
       //   itself: "",
       //   numberCommentary: number,
-      //   commentary: "∨e"
+      //   commentary: "∨e'"
       // };
       // let proposition;
-
       // if (AorB[0] === concA && AorB[0] === concB) {
       //   inferenceToAdd.itself = AorB[0];
       //   proposition = "A";
@@ -197,11 +199,11 @@ class RuleProvider extends Component {
       //   );
       // } else {
       //   this.props.valueInference.setAdvice(
-      //     "Pour utiliser la règle ∨e, lisez bien les instructions",
+      //     "Pour utiliser la règle ∨e', lisez attentivement les instructions.",
       //     "error-advice"
       //   );
       // }
-    }; // ∨e
+    }; // ∨e'
 
     this.exclusiveDisjonctionIntroduction = (ifAthenNotB, ifBthenNotA, num) => {
       let ArrayifAthenNotB = InfTools.returnWhatIsBeforeAndAfterTheOperator(
@@ -763,6 +765,8 @@ class RuleProvider extends Component {
         this.inclusiveDisjonctionIntroduction(arrInf[0], numbers); // A pour A∨B
       } else if (ruleName === "∨e") {
         this.inclusiveDisjonctionElimination(arrInf[0], arrInf[1], numbers); // ~A (ou ~B), A∨B, pour B (ou A)
+      } else if (ruleName === "∨e'") {
+        this.inclusiveDisjonctionSyllogisticalElimination(arrInf, numbers); // ??????
       } else if (ruleName === "⊻i") {
         this.exclusiveDisjonctionIntroduction(arrInf[0], arrInf[1], numbers); // A⊅B, B⊅A pour A⊻B
       } else if (ruleName === "⊻e") {

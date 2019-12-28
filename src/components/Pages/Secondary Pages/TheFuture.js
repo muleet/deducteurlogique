@@ -47,15 +47,15 @@ const TheFuture = () => {
             inversement). Beaucoup de corrections de vieux bugs.
           </p>
           <p className="soon-available-rule">
-            0.67c : Version alternative de la règle ∨e (syllogisme disjonctif).
+            0.67c : Affichage traditionnel des lignes d'hypothèse.
+          </p>
+          <p className="soon-available-rule">
+            0.68 : Version alternative de la règle ∨e (syllogisme disjonctif).
           </p>
           <p className="soon-available-rule">
             0.68 : Pouvoir valider une inférence en cliquant sur sa
             prévisualisation. Affichage alternatif des exercices (une ligne avec
             infos détaillées par exo, plutôt qu'une grille avec tous les exos.)
-          </p>
-          <p className="soon-available-rule">
-            0.69 : Affichage traditionnel des lignes d'hypothèse.
           </p>
           <p className="later-available-rule">
             0.70-0.80 : Un système de comptes utilisateur pour créer des exos,

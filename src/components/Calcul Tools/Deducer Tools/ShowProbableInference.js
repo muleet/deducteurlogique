@@ -73,10 +73,13 @@ function ShowProbableInference(value, previousInference) {
       numberCommentary: ""
     };
     // hyp = "nouvelle hypothèse";
-    // } else if (ruleName === "∨e") {
-    //   // à faire plus tard
-    //   hyp = "nouvelle hyp ∨e";
-    //   hypothesisLevelNumber++;
+  } else if (ruleName === "∨e'") {
+    // // à faire plus tard
+    // // hyp = "nouvelle hyp ∨e";
+    // probableInference.itself = "[?!]";
+    // probableInference.commentary = "hyp ∨e'";
+    // probableInference.numberCommentary = "";
+    // hypothesisLevelNumber++;
   }
   for (let i = 0; i < hypothesisLevelNumber; i++) {
     hypothesisLevel += "|";

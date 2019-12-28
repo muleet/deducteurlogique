@@ -57,8 +57,11 @@
   height: 330px;
   margin-left: 40px;
   overflow: auto;
-  /* border: 1px red solid;
-  background-color: rgb(36, 0, 0); */
+  /* border: 1px red solid; */
+  /*background-color: rgb(36, 0, 0); */
+}
+
+.hypothesis-line-test {
 }
 
 .exercise-title {

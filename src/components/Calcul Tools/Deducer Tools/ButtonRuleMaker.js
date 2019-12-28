@@ -44,9 +44,12 @@ class ButtonRuleMaker extends Component {
 
   renderRuleClassName(ruleName, availability) {
     let classNameToReturn = " selectable ";
-    // if (this.props.valueInference.longStoredInference) {
+    // if (
+    //   this.props.valueInference.longStoredInference.length > 1 &&
+    //   (ruleName === "∨e'" || ruleName === "∨e'")
+    // ) {
+    //   // si la longStoredInference est activée (pour la seule règle qui l'utilise) alors on le montre sur l'icône de la règle, jusqu'à la fin de la règle
     //   classNameToReturn = "longSelected";
-    //   // this.renderRuleClassName("∨e");
     // }
     if (availability === "test" || availability === "bug") {
       classNameToReturn += " testRule ";
@@ -223,7 +226,6 @@ class ButtonRuleMaker extends Component {
             arrayCurrentRulesData.push(InfoRules[j]); // on ajoute une règle aux règles disponibles pour l'exo (et si elle a une autre interprétation, on l'envoie aussi du coup)
           }
         }
-        // console.log("wesh ça marche ou pas", arrayCurrentRulesData);
       }
       // On va maintenant créer le popover tout en organisant ses données. A l'aide de cette fonction :
       // makeOneButtonRule(num, Rule, RulePopoverClassName, organizedUtilization)

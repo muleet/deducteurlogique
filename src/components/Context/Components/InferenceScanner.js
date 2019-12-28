@@ -34,6 +34,7 @@ function scanInferences(
       "⊂e",
       "~i",
       "∨e",
+      "∨e'",
       "⊻i",
       "⊻e",
       "⊅i",
@@ -203,7 +204,7 @@ function scanTwoStepRule(
   inferenceTwo,
   allHypotheticalInferences
 ) {
-  // "⊃e" "⊂e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "↑i" "↑e" "↓i" "∨e" "ex falso"
+  // "⊃e" "⊂e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "↑i" "↑e" "↓i" "∨e" "∨e'" "ex falso"
   let isTheRuleAdequate = false;
   if (ruleName === "⊃e") {
     // A, A⊃B pour B
@@ -352,6 +353,8 @@ function scanTwoStepRule(
         isTheRuleAdequate = true;
       }
     }
+  } else if (ruleName === "∨e'") {
+    // règle très compliquée
   } else if (ruleName === "ex falso") {
     // A, ~A pour B
     if (inferenceTwo === "~" + inferenceOne) {

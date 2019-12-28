@@ -32,8 +32,8 @@ class InferenceProvider extends Component {
       let copyArrayThemselves = [...this.state.allInferencesThemselves];
       // section de l'hypothèse (ignorée si hyp est undefined)
       if (
-        hyp === "nouvelle hypothèse"
-        // || hyp === "nouvelle hyp ∨e"
+        hyp === "nouvelle hypothèse" 
+      // || hyp === "nouvelle hyp ∨e'"
       ) {
         hypNumber = 1;
         newInference.numberCommentaryHypothesis =
@@ -177,9 +177,11 @@ class InferenceProvider extends Component {
           );
         }
 
-        // // cas de la règle ∨e
-        // if (ruleName === "∨e") {
-        //   // consolelog("la règle d'élimination de la disjonction inclusive, fait son oeuvre");
+        // // cas de la règle ∨e'
+        // if (ruleName === "∨e'") {
+        //   console.log(
+        //     "la règle d'élimination de la disjonction inclusive, fait son oeuvre"
+        //   );
         //   this.longStorageForRuleVerification(
         //     infItself,
         //     copyStoredNumbers,
@@ -239,7 +241,7 @@ class InferenceProvider extends Component {
     };
 
     this.longStorageForRuleVerification = (inference, numbers, bool) => {
-      // utilisé uniquement pour l'élimination de la disjonction inclusive
+      // utilisé uniquement par ∨e'
       let newlongStoredInference = [];
       if (bool === true) {
         newlongStoredInference = [...this.state.longStoredInference];
@@ -399,15 +401,14 @@ class InferenceProvider extends Component {
       let copyAllHypotheticalInferences = [
         ...this.state.allHypotheticalInferences
       ];
-      if (
-        hyp === "nouvelle hypothèse"
-        // || hyp === "nouvelle hyp ∨e"
+      if (hyp === "nouvelle hypothèse"
+      // ||  hyp === "nouvelle hyp ∨e'"
       ) {
         copyAllHypotheticalInferences.unshift(hypothesisItself); // On rajoute une hypothèse dans le tableau qui ne contient que les hypothèses
       } else if (
         hyp === "hypothèse validée" ||
         hyp === "hypothèse réfutée"
-        // || hyp === "fin hyp ∨e"
+        // || hyp === "fin hyp ∨e'"
       ) {
         copyAEHI.unshift(copyAllHypotheticalInferences[0]); // utilisé uniquement pour removeLastInference
         copyAllHypotheticalInferences = copyAllHypotheticalInferences.slice(1); // On retire une hypothèse dans le tableau qui ne contient que les hypothèses

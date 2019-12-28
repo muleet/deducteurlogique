@@ -23,7 +23,7 @@ function InferenceForecaster(storedInferences, storedNumbers, ruleName, value) {
     "↑i",
     "↑e",
     "↓i",
-    "∨e",
+    "∨e'",
     "∨i",
     "ex falso"
   ];
@@ -120,7 +120,6 @@ function scanOneStepRule(ruleName, inference, allHypotheticalInferences) {
       InfTools.mayAddParenthesis(A) + "⊃" + InfTools.mayAddParenthesis(B);
   } else if (ruleName === "≡e'") {
     // A≡B pour A⊃B ou B⊃A
-    console.log("gtgtgjoeridf");
     inference = InfTools.returnWhatIsBeforeAndAfterTheOperator(inference, "≡");
     if (inference !== "error") {
       const A = InfTools.mayAddParenthesis(inference[0]),
@@ -157,7 +156,7 @@ function scanTwoStepRule(
   allHypotheticalInferences,
   inversion
 ) {
-  // "⊃e" "⊂e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "⊅e" "↑i" "↑e" "↓i" "∨e" "ex falso"
+  // "⊃e" "⊂e" "~i" "≡i"  "⊻i" "⊻e" "⊅i" "⊅e" "↑i" "↑e" "↓i" "∨e" "∨e'" "ex falso"
   let objectToReturn = { itself: "?", activable: false };
 
   if (ruleName === "⊃e") {
@@ -180,9 +179,7 @@ function scanTwoStepRule(
       B = InfTools.returnWhatIsBeforeAndAfterTheOperator(inferenceTwo, "⊃")[1];
     A = InfTools.mayAddParenthesis(A);
     B = InfTools.mayAddParenthesis(B);
-    console.log("infOne", inferenceOne, "===", "~" + B);
     if (inferenceOne === "~" + B) {
-      console.log("ça marche");
       objectToReturn.itself = "~" + A;
     }
   } else if (ruleName === "∧i") {
@@ -354,6 +351,8 @@ function scanTwoStepRule(
         objectToReturn.itself = inferenceTwo[0];
       }
     }
+  } else if (ruleName === "∨e'") {
+    // règle très compliquée
   } else if (ruleName === "ex falso") {
     // A, ~A pour B
     if (inferenceTwo === "~" + inferenceOne) {
