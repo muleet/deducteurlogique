@@ -213,6 +213,14 @@
     "type": "inductive"
   },
   {
+    "name": "Missing the point",
+    "alternateName": "Ignoratio elenchi, Conclusion excessive, Ignorance de la réfutation",
+    "definition": "Presenting an argument that may or may not be valid and sound, but whose conclusion fails to adress the issue in question. To ignore what is supposed to be proved.",
+    "link": "",
+    "frenchExamples": [],
+    "type": ""
+  },
+  {
     "name": "Moralistic fallacy",
     "definition": "Justify what ought to be, by a moral prejudice.",
     "link": "https://en.wikipedia.org/wiki/Moralistic_fallacy",

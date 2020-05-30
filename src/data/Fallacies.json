@@ -37,7 +37,7 @@
     "definition": "Dire qu'un argument ou une action est partagée ou faite par beaucoup de gens, pour tenter de valider cet argument ou cette action.",
     "link": "",
     "examples": [
-      "Le monde entier se presse pour visiter la Tour Eiffel c'est bien qu'elle est remarquable !"
+      "Le monde entier se presse pour visiter la Tour Eiffel c'est donc un magnifique monument !"
     ],
     "type": "irrelevant"
   },
@@ -127,8 +127,9 @@
   },
   {
     "name": "Cum hoc ergo propter hoc",
+    "alternateName": "Corrélation n'est pas causation",
     "englishName": "Cum hoc ergo propter hoc",
-    "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux (confondre corrélation et causation). \"Avec cela donc à cause de cela.\"",
+    "definition": "Présumer que puisque deux évènements sont corrélés, alors il y a un lien de cause à effet entre les deux. \"Avec cela donc à cause de cela.\"",
     "link": "",
     "examples": [
       "On peut voir une corrélation entre le taux de meurtrier en France et le nombre de jeux vidéos achetés, donc l'un est causé par l'autre."
@@ -167,15 +168,24 @@
     "type": "denial"
   },
   {
-    "name": "Homme de paille",
+    "name": "Humain.e de paille",
     "alternateName": "Sophisme de l'épouvantail",
-    "englishName": "Strawman",
+    "englishName": "Strawman fallacy",
     "definition": "Mal expliquer un argument, pour mieux l'attaquer.",
     "link": "https://fr.wikipedia.org/wiki/%C3%89pouvantail_(rh%C3%A9torique)",
     "examples": [
-      "Je ne comprends pas pourquoi tu veux arrêter de consommer de la viande, si ce n'est pour mettre au chômage les les bouchers !"
+      "Je ne comprends pas pourquoi tu veux arrêter de consommer de la viande, si ce n'est pour mettre au chômage les bouchers !"
     ],
     "type": "irrelevant"
+  },
+  {
+    "name": "Ignorance de l'argument",
+    "alternateName": "Ignoratio elenchi, Conclusion excessive, Ignorance de la réfutation",
+    "englishName": "Missing the point",
+    "definition": "Présenter un argument qui est ou n'est pas valide et correct, mais dont la conclusion prouve autre chose que ce qui est en cause. Ignorer ce qui est à prouver.",
+    "link": "",
+    "examples": ["\"Ce chat est-il heureux ?\" \"Il le devrait en tout cas.\""],
+    "type": ""
   },
   {
     "name": "Incrédulité personnelle",
@@ -262,7 +272,7 @@
     "definition": "Pour contrer la réfutation d'une affirmation, proposer de faire une exception en faisant une hypothèse arbitraire, \"pour cela\".",
     "link": "",
     "examples": [
-      "\"Les Licornes n'existent pas, la science l'affirme.\" \"Bien sûr que si elles existent.\" \"Nos appareils ne permettent pas de le montrer.\" \"Ah mais c'est normal, elles disparaissent quand un sceptique comme vous les fait fonctionner.\"."
+      "Les licornes existent, cet appareil scientifique le montre très bien. Il arrête cependant de fonctionner chaque fois qu'une personne sceptique l'utilise."
     ],
     "type": "denial"
   },
@@ -280,7 +290,7 @@
     "name": "Sophisme de division",
     "alternateName": "Sophisme de composition",
     "englishName": "Division fallacy, Composition Fallacy",
-    "definition": "Présumer que ce qui est vrai à propos d'une partie de quelque chose, doit être appliqué au reste (tout ou partie) de cette chose.",
+    "definition": "Présumer que ce qui est vrai à propos d'une partie d'un objet, doit être appliqué au reste (tout ou partie) de cet objet.",
     "link": "",
     "examples": [
       "Chacun des joueurs de cette équipe est bon, c'est donc que c'est une bonne équipe."
@@ -350,7 +360,7 @@
   {
     "name": "Sophisme du tireur d'élite texan",
     "englishName": "The texas sharpshooter",
-    "definition": "Sélectionner a posteriori des évènements possédants des caractéristiques similaires pour en déduire une relation causale.",
+    "definition": "Sélectionner a posteriori des évènements ayant des caractéristiques liées pour en déduire une relation causale.",
     "link": "https://fr.wikipedia.org/wiki/Sophisme_du_tireur_d%27%C3%A9lite_texan",
     "examples": [
       "Avec le recul, c'était évident qu'un clown en bicycle jonglant avec des pantoufles, allait arriver."
@@ -392,7 +402,7 @@
   {
     "name": "Sophisme moraliste",
     "englishName": "Moralistic fallacy",
-    "definition": "Justifier ce qui devrait être, par un présupposé moral.",
+    "definition": "Faire appel à un présupposé moral pour justifier un argument.",
     "link": "https://en.wikipedia.org/wiki/Moralistic_fallacy",
     "examples": [
       "La nature humaine est mauvaise, puisque nous faisons la guerre et nous entretuons."
@@ -412,7 +422,7 @@
   {
     "name": "Tu quoque",
     "englishName": "",
-    "definition": "Eviter de répondre à une critique en la retournant contre celui qui l'énonce ; répondre à la critique par la critique.",
+    "definition": "Eviter de répondre à une critique en la retournant contre cellui qui l'énonce ; répondre à la critique par la critique.",
     "link": "",
     "examples": [
       "Je ne vois pas l'intérêt d'écouter ce philosophe : il n'appliquait pas lui-même ce qu'il disait."
