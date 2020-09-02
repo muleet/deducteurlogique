@@ -1,5 +1,58 @@
 [
   {
+    "name": "Ad antiquitatem",
+    "alternateName": "",
+    "definition": "Using the old age of a claim, in order to say if it is a true one or not.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad consequentiam",
+    "definition": "To use the consequence of an argument in order to support or praise an argument. \"X cannot be false, or else the consequence Y would be false.\"",
+    "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad hominem",
+    "definition": "To turn back the claim of someone against himself or herself, in order to disqualify what he or she says.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad nauseam",
+    "alternateName": "Being right par reason, Ad infinitum, Argument from repetition",
+    "definition": "Repeating a claim till it seems true (mecanism of propaganda).",
+    "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad novitatem",
+    "alternateName": "",
+    "definition": "Using the novelty of a claim, in order to say if it is a true one or not.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad odium",
+    "alternateName": "",
+    "definition": "To make an argument hateful, by reformulating it in a pejorative way.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad personam",
+    "definition": "To attack someone, or his personal traits, that says a claim, rather than the claim itself.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
     "name": "Ad hoc reasoning",
     "alternateName": "Special pleading",
     "definition": "Make an exception when a claim has been shown as false, by a new reasoning justifying that exception (in order to let the claim as it was).",
@@ -54,59 +107,6 @@
     "name": "Appeal to nature",
     "definition": "Saying that something is natural and is therefore valid, justified.",
     "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad antiquitatem",
-    "alternateName": "",
-    "definition": "Using the old age of a claim, in order to say if it is a true one or not.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad consequentiam",
-    "definition": "To use the consequence of an argument in order to support or praise an argument. \"X cannot be false, or else the consequence Y would be false.\"",
-    "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad hominem",
-    "definition": "To turn back the claim of someone against himself or herself, in order to disqualify what he or she says.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad nauseam",
-    "alternateName": "Being right par reason, Ad infinitum, Argument from repetition",
-    "definition": "Repeating a claim till it seems true (mecanism of propaganda).",
-    "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad novitatem",
-    "alternateName": "",
-    "definition": "Using the novelty of a claim, in order to say if it is a true one or not.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad odium",
-    "alternateName": "",
-    "definition": "To make an argument hateful, by reformulating it in a pejorative way.",
-    "link": "",
-    "frenchExamples": [],
-    "type": "irrelevant"
-  },
-  {
-    "name": "Ad personam",
-    "definition": "To attack someone, or his personal traits, that says a claim, rather than the claim itself.",
-    "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
   },

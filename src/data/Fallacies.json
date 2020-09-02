@@ -1,73 +1,5 @@
 [
   {
-    "name": "Ambiguité syntaxique",
-    "alternateName": "Ambiguité structurelle, Amphibologie, Amphibolie",
-    "englishName": "Syntactic ambiguity",
-    "definition": "Construction syntaxique permettant à une phrase d'avoir deux sens différents, de façon indécidable. (Elle n'est pas un sophisme en elle-même, mais peut y mener.)",
-    "link": "",
-    "examples": ["La petite brise la glace."],
-    "type": "irrelevant",
-    "formalization": [""]
-  },
-  {
-    "name": "Appel à l'émotion",
-    "englishName": "Appeal to emotion",
-    "definition": "Faire appel aux émotions à la place d'un argument valide. Par extension, employer des mots émotionnellement chargés pour convaincre.",
-    "link": "",
-    "examples": [
-      "Tu devrais finir ton assiette, car il y a des enfants dans le monde qui sont affamés."
-    ],
-    "type": "irrelevant",
-    "formalization": ["P réfère à l'émotion X", "P est vraie/fausse"]
-  },
-  {
-    "name": "Appel à l'ignorance",
-    "alternateName": "Ad ignorantiam",
-    "englishName": "",
-    "definition": "Si une affirmation n'a pas été démontrée comme fausse, c'est qu'elle est forcément vraie.",
-    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
-    "examples": [
-      "On n'a jamais réfuté l'idée que les aliens n'existaient pas donc ils doivent exister."
-    ],
-    "type": "inductive",
-    "formalization": ["P n'a jamais été prouvée fausse", "P est vraie"]
-  },
-  {
-    "name": "Appel à la force",
-    "englishName": "Appeal to force",
-    "alternateName": "Ad baculum, Appel au bâton, Menace de force",
-    "definition": "Faire appel à la force pour convaincre, plutôt que par un argument valide.",
-    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
-    "examples": [
-      "Comment ça il est raté mon gateau à la fraise ? Tu la vois celle-là ?"
-    ],
-    "type": "irrelevant",
-    "formalization": ["P réfère à la nature", "P est vraie"]
-  },
-  {
-    "name": "Appel à la nature",
-    "englishName": "Appeal to nature",
-    "definition": "Dire que quelque chose est naturel et est par conséquent valide, justifié.",
-    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
-    "examples": [
-      "Tous les champignons sont bons pour nous puisqu'ils sont le fruit de la nature."
-    ],
-    "type": "irrelevant",
-    "formalization": ["P réfère à la nature", "P est vraie"]
-  },
-  {
-    "name": "Appel à la popularité",
-    "alternateName": "Raison de la majorité, Effet de mode",
-    "englishName": "Bandwagon effect",
-    "definition": "Dire qu'un argument ou une action est partagée ou faite par beaucoup de gens, pour tenter de valider cet argument ou cette action.",
-    "link": "",
-    "examples": [
-      "Le monde entier se presse pour visiter la Tour Eiffel c'est donc un magnifique monument !"
-    ],
-    "type": "irrelevant",
-    "formalization": ["P est populaire", "P est vraie"]
-  },
-  {
     "name": "Ad antiquitatem",
     "alternateName": "Appel à l'ancienneté",
     "englishName": "",
@@ -149,6 +81,74 @@
       "P est dite par la personne X, qui a les traits Y",
       "P est fausse"
     ]
+  },
+  {
+    "name": "Ambiguité syntaxique",
+    "alternateName": "Ambiguité structurelle, Amphibologie, Amphibolie",
+    "englishName": "Syntactic ambiguity",
+    "definition": "Construction syntaxique permettant à une phrase d'avoir deux sens différents, de façon indécidable. (Elle n'est pas un sophisme en elle-même, mais peut y mener.)",
+    "link": "",
+    "examples": ["La petite brise la glace."],
+    "type": "irrelevant",
+    "formalization": [""]
+  },
+  {
+    "name": "Appel à l'émotion",
+    "englishName": "Appeal to emotion",
+    "definition": "Faire appel aux émotions à la place d'un argument valide. Par extension, employer des mots émotionnellement chargés pour convaincre.",
+    "link": "",
+    "examples": [
+      "Tu devrais finir ton assiette, car il y a des enfants dans le monde qui sont affamés."
+    ],
+    "type": "irrelevant",
+    "formalization": ["P réfère à l'émotion X", "P est vraie/fausse"]
+  },
+  {
+    "name": "Appel à l'ignorance",
+    "alternateName": "Ad ignorantiam",
+    "englishName": "",
+    "definition": "Si une affirmation n'a pas été démontrée comme fausse, c'est qu'elle est forcément vraie.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
+    "examples": [
+      "On n'a jamais réfuté l'idée que les aliens n'existaient pas donc ils doivent exister."
+    ],
+    "type": "inductive",
+    "formalization": ["P n'a jamais été prouvée fausse", "P est vraie"]
+  },
+  {
+    "name": "Appel à la force",
+    "englishName": "Appeal to force",
+    "alternateName": "Ad baculum, Appel au bâton, Menace de force",
+    "definition": "Faire appel à la force pour convaincre, plutôt que par un argument valide.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
+    "examples": [
+      "Comment ça il est raté mon gateau à la fraise ? Tu la vois celle-là ?"
+    ],
+    "type": "irrelevant",
+    "formalization": ["P réfère à la nature", "P est vraie"]
+  },
+  {
+    "name": "Appel à la nature",
+    "englishName": "Appeal to nature",
+    "definition": "Dire que quelque chose est naturel et est par conséquent valide, justifié.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
+    "examples": [
+      "Tous les champignons sont bons pour nous puisqu'ils sont le fruit de la nature."
+    ],
+    "type": "irrelevant",
+    "formalization": ["P réfère à la nature", "P est vraie"]
+  },
+  {
+    "name": "Appel à la popularité",
+    "alternateName": "Raison de la majorité, Effet de mode",
+    "englishName": "Bandwagon effect",
+    "definition": "Dire qu'un argument ou une action est partagée ou faite par beaucoup de gens, pour tenter de valider cet argument ou cette action.",
+    "link": "",
+    "examples": [
+      "Le monde entier se presse pour visiter la Tour Eiffel c'est donc un magnifique monument !"
+    ],
+    "type": "irrelevant",
+    "formalization": ["P est populaire", "P est vraie"]
   },
   {
     "name": "Charge de la preuve",
