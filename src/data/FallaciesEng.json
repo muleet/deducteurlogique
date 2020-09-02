@@ -2,7 +2,7 @@
   {
     "name": "Ad hoc reasoning",
     "alternateName": "Special pleading",
-    "definition": "Make an exception when an claim has been shown as false, by a new reasoning justifying that exception (in order to let the claim as it was).",
+    "definition": "Make an exception when a claim has been shown as false, by a new reasoning justifying that exception (in order to let the claim as it was).",
     "link": "",
     "frenchExamples": [
       "Une licorne rose invisible est proche de moi, c'est prouvé. Mais elle part en présence des sceptiques."
@@ -29,6 +29,16 @@
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
+  },
+  {
+    "name": "Appeal to force",
+    "definition": "Use a threat to force appel à in order to convince, rather than a valid argument.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
+    "examples": [
+      "What do you mean my strawberry pie isn't good ? You want me to hit you ?"
+    ],
+    "type": "irrelevant",
+    "formalization": ["P réfère à la nature", "P est vraie"]
   },
   {
     "name": "Appeal to ignorance",
@@ -81,6 +91,14 @@
     "name": "Ad novitatem",
     "alternateName": "",
     "definition": "Using the novelty of a claim, in order to say if it is a true one or not.",
+    "link": "",
+    "frenchExamples": [],
+    "type": "irrelevant"
+  },
+  {
+    "name": "Ad odium",
+    "alternateName": "",
+    "definition": "To make an argument hateful, by reformulating it in a pejorative way.",
     "link": "",
     "frenchExamples": [],
     "type": "irrelevant"
@@ -229,7 +247,7 @@
   },
   {
     "name": "Naturalistic fallacy",
-    "definition": "Justify what ought to be (prescription) by actually is (description) ; pretend to see a normativity in what exists.",
+    "definition": "Justify what ought to be (prescription) by what actually is (description) ; pretend to see a normativity in existence.",
     "link": "https://fr.wikipedia.org/wiki/Paralogisme_naturaliste",
     "frenchExamples": [],
     "type": "deductive"
@@ -248,6 +266,16 @@
     "link": "https://fr.wikipedia.org/wiki/Sophisme_du_vrai_%C3%89cossais",
     "frenchExamples": [],
     "type": "denial"
+  },
+  {
+    "name": "Non sequitur",
+    "definition": "Use an argument whose conclusion does not follow its premisses. Formal invalid arguments are one of the four categories of fallacy.",
+    "link": "",
+    "examples": [
+      "All the ravens are blacks, that thing is black, so that thing is a raven."
+    ],
+    "type": "deductive",
+    "formalization": [""]
   },
   {
     "name": "Personal incredulity",
@@ -274,11 +302,29 @@
     "type": "denial"
   },
   {
+    "name": "Sorites paradox",
+    "definition": "To reject a notion under the pretext that it's unclear. (Semantic blur being however a regular trait of common language.)",
+    "link": "",
+    "examples": [
+      "It's obviously not a heap of sand ! Those are merely 7638 grain of sand."
+    ],
+    "type": "irrelevant",
+    "formalization": ["P est une notion imprécise", "P est vraie"]
+  },
+  {
     "name": "Strawman fallacy",
     "definition": "Misrepresent an argument to make it easier to attack.",
     "link": "https://fr.wikipedia.org/wiki/%C3%89pouvantail_(rh%C3%A9torique)",
     "frenchExamples": [],
     "type": "irrelevant"
+  },
+  {
+    "name": "Syntactic ambiguity",
+    "definition": "A situation where a sentence may be interpreted in more than one way due to ambiguous sentence structure. (It doesn't make that sentence a fallacy, but it can lead to it.)",
+    "link": "",
+    "examples": ["Jane saw the man on the mountain with a telescope."],
+    "type": "irrelevant",
+    "formalization": [""]
   },
   {
     "name": "The gambler's fallacy",

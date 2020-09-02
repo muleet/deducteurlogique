@@ -1,5 +1,15 @@
 [
   {
+    "name": "Ambiguité syntaxique",
+    "alternateName": "Ambiguité structurelle, Amphibologie, Amphibolie",
+    "englishName": "Syntactic ambiguity",
+    "definition": "Construction syntaxique permettant à une phrase d'avoir deux sens différents, de façon indécidable. (Elle n'est pas un sophisme en elle-même, mais peut y mener.)",
+    "link": "",
+    "examples": ["La petite brise la glace."],
+    "type": "irrelevant",
+    "formalization": [""]
+  },
+  {
     "name": "Appel à l'émotion",
     "englishName": "Appeal to emotion",
     "definition": "Faire appel aux émotions à la place d'un argument valide. Par extension, employer des mots émotionnellement chargés pour convaincre.",
@@ -7,18 +17,32 @@
     "examples": [
       "Tu devrais finir ton assiette, car il y a des enfants dans le monde qui sont affamés."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P réfère à l'émotion X", "P est vraie/fausse"]
   },
   {
     "name": "Appel à l'ignorance",
-    "alternateName": "",
+    "alternateName": "Ad ignorantiam",
     "englishName": "",
     "definition": "Si une affirmation n'a pas été démontrée comme fausse, c'est qu'elle est forcément vraie.",
     "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_l%27ignorance",
     "examples": [
       "On n'a jamais réfuté l'idée que les aliens n'existaient pas donc ils doivent exister."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["P n'a jamais été prouvée fausse", "P est vraie"]
+  },
+  {
+    "name": "Appel à la force",
+    "englishName": "Appeal to force",
+    "alternateName": "Ad baculum, Appel au bâton, Menace de force",
+    "definition": "Faire appel à la force pour convaincre, plutôt que par un argument valide.",
+    "link": "https://fr.wikipedia.org/wiki/Appel_%C3%A0_la_nature",
+    "examples": [
+      "Comment ça il est raté mon gateau à la fraise ? Tu la vois celle-là ?"
+    ],
+    "type": "irrelevant",
+    "formalization": ["P réfère à la nature", "P est vraie"]
   },
   {
     "name": "Appel à la nature",
@@ -28,7 +52,8 @@
     "examples": [
       "Tous les champignons sont bons pour nous puisqu'ils sont le fruit de la nature."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P réfère à la nature", "P est vraie"]
   },
   {
     "name": "Appel à la popularité",
@@ -39,28 +64,32 @@
     "examples": [
       "Le monde entier se presse pour visiter la Tour Eiffel c'est donc un magnifique monument !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P est populaire", "P est vraie"]
   },
   {
     "name": "Ad antiquitatem",
-    "alternateName": "",
+    "alternateName": "Appel à l'ancienneté",
     "englishName": "",
     "definition": "Se référer à l'ancienneté d'une affirmation pour dire si elle est vraie ou non.",
     "link": "",
     "examples": [
       "On mange de la viande depuis des milliers d'années je ne vois pas quel est le problème !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P est relative à l'ancienneté", "P est vraie"]
   },
   {
     "name": "Ad consequentiam",
+    "alternateName": "Appel aux conséquences",
     "englishName": "",
     "definition": "Utiliser une conséquence d'un argument pour supporter ou critiquer un argument. \"X ne peut pas être faux puisque sinon la conséquence Y serait fausse.\"",
     "link": "https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam",
     "examples": [
       "Si l'on permet une révocabilité des élus, en conséquence plus personne ne pourra gouverner."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P a une conséquence X", "P est vraie/fausse"]
   },
   {
     "name": "Ad hominem",
@@ -70,7 +99,8 @@
     "examples": [
       "Et puis d'abord, toi aussi tu profites des bienfaits du capitalisme alors arrête de le critiquer, c'est un système qui t'aide comme beaucoup !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P est dite par la personne X", "P est fausse"]
   },
   {
     "name": "Ad nauseam",
@@ -81,18 +111,30 @@
     "examples": [
       "Le mouvement des gilets jaunes s'essouffle. Le mouvement des gilets jaunes s'essouffle. Le mouvement des gilets jaunes s'essouffle..."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P est répétée", "P est vraie"]
   },
   {
     "name": "Ad novitatem",
-    "alternateName": "",
+    "alternateName": "Appel à la nouveauté",
     "englishName": "",
     "definition": "Se référer à la nouveauté d'une affirmation pour dire si elle est vraie ou non.",
     "link": "",
     "examples": [
       "Ce nouveau bijou technologique augure forcément de bonnes choses !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P est relative à la nouveauté", "P est vraie"]
+  },
+  {
+    "name": "Ad odium",
+    "alternateName": "Appel à la haine, appel au dépit",
+    "englishName": "",
+    "definition": "Rendre un argument détestable en le reformulant de façon péjorative, sans justifier cela logiquement.",
+    "link": "",
+    "examples": ["Je déteste la peinture ! Hitler peignait."],
+    "type": "irrelevant",
+    "formalization": ["P est haïssable", "P est fausse"]
   },
   {
     "name": "Ad personam",
@@ -102,7 +144,11 @@
     "examples": [
       "Ce que tu dis est faux, cela se voit sur ton visage de menteur !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": [
+      "P est dite par la personne X, qui a les traits Y",
+      "P est fausse"
+    ]
   },
   {
     "name": "Charge de la preuve",
@@ -112,18 +158,23 @@
     "examples": [
       "Il y a une théière en orbite autour du soleil, entre la Terre et Mars. Si vous n'êtes pas d'accord c'est à vous de prouver le contraire."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
-    "name": "Citation hors contexte",
-    "alternateName": "Contextomie",
+    "name": "Contextomie",
+    "alternateName": "Citation hors contexte",
     "englishName": "Contextomy",
     "definition": "Citer un propos hors du contenu qui l'entoure, d'une façon telle que cela déforme son sens.",
     "link": "",
     "examples": [
       "\"Quand le sage montre la lune, l'imbécile regarde le doigt\", donc il faut regarder la lune quand on l'indique !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": [
+      "Pa provient du contexte A",
+      "Pa est cité dans contexte B"
+    ]
   },
   {
     "name": "Cum hoc ergo propter hoc",
@@ -134,7 +185,8 @@
     "examples": [
       "On peut voir une corrélation entre le taux de meurtrier en France et le nombre de jeux vidéos achetés, donc l'un est causé par l'autre."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["P est corrélé à Q", "P cause Q"]
   },
   {
     "name": "Faux compromis",
@@ -145,7 +197,12 @@
     "examples": [
       "\"Je te dis que notre destination implique d'aller à gauche !\" \"Non, à droite, j'en suis sûr !\" \"Et si on allait tout droit alors ?\""
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": [
+      "P est un extrême",
+      "Q est l'autre extrême",
+      "R, situé entre les deux, est vrai"
+    ]
   },
   {
     "name": "Faux dilemme",
@@ -154,7 +211,11 @@
     "definition": "Présenter deux alternatives comme les deux seules possibilités, lorsque que d'autres possibilités existent.",
     "link": "",
     "examples": ["C'est soit le capitalisme, soit le stalinisme !"],
-    "type": "deductive"
+    "type": "deductive",
+    "formalization": [
+      "A est un ensemble de possibilités",
+      "P et Q font partie de A et sont les seules possibilités énoncées"
+    ]
   },
   {
     "name": "Gage de Loki",
@@ -165,10 +226,11 @@
     "examples": [
       "\"J'ai parié ma tête et j'ai perdu, alors soit, coupe-la moi. Mais seulement la tête.\" \"Si je commence ici, ça va ?\" \"Ah non, c'est trop bas, c'est mon cou !\" \"Ici alors ?\" \"Non, c'est le menton.\" (...) \"Oh, je laisse tomber c'est impossible !\""
     ],
-    "type": "denial"
+    "type": "denial",
+    "formalization": ["P est un concept imprécis", "P est faux"]
   },
   {
-    "name": "Humain.e de paille",
+    "name": "Humain·e de paille",
     "alternateName": "Sophisme de l'épouvantail",
     "englishName": "Strawman fallacy",
     "definition": "Mal expliquer un argument, pour mieux l'attaquer.",
@@ -176,7 +238,11 @@
     "examples": [
       "Je ne comprends pas pourquoi tu veux arrêter de consommer de la viande, si ce n'est pour mettre au chômage les bouchers !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": [
+      "P est un argument mal reformulé par une autre personne que l'énonciateur",
+      "P est faux"
+    ]
   },
   {
     "name": "Ignorance de l'argument",
@@ -185,7 +251,12 @@
     "definition": "Présenter un argument qui est ou n'est pas valide et correct, mais dont la conclusion prouve autre chose que ce qui est en cause. Ignorer ce qui est à prouver.",
     "link": "",
     "examples": ["\"Ce chat est-il heureux ?\" \"Il le devrait en tout cas.\""],
-    "type": ""
+    "type": "deductive",
+    "formalization": [
+      "Les prémisses P sont posées",
+      "La conclusion Q est posée relativement à P",
+      "Q est vraie"
+    ]
   },
   {
     "name": "Incrédulité personnelle",
@@ -193,7 +264,8 @@
     "definition": "Présumer que parce qu'on trouve une idée difficile à comprendre, alors elle ne doit pas être vraie.",
     "link": "",
     "examples": ["Je ne comprends rien à ce que tu dis, donc tu te trompes."],
-    "type": "denial"
+    "type": "denial",
+    "formalization": ["P est difficile à comprendre", "P est fausse"]
   },
   {
     "name": "Ipse dixit",
@@ -204,7 +276,32 @@
     "examples": [
       "Ce que j'affirme, Platon l'écrivait déjà dans la République !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["P est relative à telle autorité", "P est vraie"]
+  },
+  {
+    "name": "Non sequitur",
+    "alternateName": "Qui ne suit pas les prémisses, Sophisme formel, Cela ne suit pas, Sophisme déductif",
+    "englishName": "",
+    "definition": "Présenter un argument dont la conclusion n'a pas suivi les prémisses. Les arguments formels invalides sont l'une des quatre catégories de sophisme.",
+    "link": "",
+    "examples": [
+      "Tous les corbeaux sont noirs, cet objet est noir, donc cet objet est un corbeau."
+    ],
+    "type": "deductive",
+    "formalization": [""]
+  },
+  {
+    "name": "Paradoxe sorite",
+    "alternateName": "Argument du tas, Sophisme du continuum, Sophisme de la barbe",
+    "englishName": "Sorites paradox",
+    "definition": "Rejeter une notion au prétexte qu'elle est imprécise. (Le flou sémantique étant un trait commun du langage courant.)",
+    "link": "",
+    "examples": [
+      "Bien sûr que non ce n'est pas un tas de sable ! Ce sont 7638 grain de sable."
+    ],
+    "type": "irrelevant",
+    "formalization": ["P est une notion imprécise", "P est vraie"]
   },
   {
     "name": "Pente savonneuse",
@@ -214,7 +311,11 @@
     "examples": [
       "Si on laisse trop de liberté aux enfants en les éduquant, ils manqueront de rigueur dans leur vie."
     ],
-    "type": "denial"
+    "type": "denial",
+    "formalization": [
+      "P peut précéder Q, qu'on ne souhaite pas",
+      "P ne doit pas arriver"
+    ]
   },
   {
     "name": "Pétition de principe",
@@ -225,7 +326,8 @@
     "examples": [
       "Si Dieu n'existait pas il serait imparfait, or Dieu est parfait, donc Dieu existe."
     ],
-    "type": "deductive"
+    "type": "deductive",
+    "formalization": ["P est vraie et mène à Q", "Q est vraie"]
   },
   {
     "name": "Post hoc ergo propter hoc",
@@ -236,7 +338,8 @@
     "examples": [
       "Je ne m'étonne pas que les récoltes soient mauvaises : une comète est passée dans le ciel l'hiver dernier."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["P précède Q", "P cause Q"]
   },
   {
     "name": "Procès d'intention",
@@ -246,7 +349,8 @@
     "examples": [
       "Il faut refuser la charité car celui qui donne aux pauvres ne le fait que pour être bien vu."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Question à double canon",
@@ -255,7 +359,8 @@
     "definition": "Poser une question qui devrait attendre deux réponses, mais ne permet qu'un type de réponse (oui/non, par exemple), laquelle impliquera par conséquent un présupposé.",
     "link": "",
     "examples": ["Es-tu pour ou contre l'Europe ?"],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Question piège",
@@ -263,7 +368,8 @@
     "definition": "Poser une question qui contient un présupposé, d'une manière telle qu'on ne peut y répondre sans accepter ce présupposé.",
     "link": "",
     "examples": ["Savez-vous dire non ?"],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Raisonnement ad hoc",
@@ -274,7 +380,8 @@
     "examples": [
       "Les licornes existent, cet appareil scientifique le montre très bien. Il arrête cependant de fonctionner chaque fois qu'une personne sceptique l'utilise."
     ],
-    "type": "denial"
+    "type": "denial",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme d'ambiguité",
@@ -284,7 +391,8 @@
     "examples": [
       "Comment ça mon heure a sonné ? Je n'ai pas entendu de cloches !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme de division",
@@ -295,7 +403,8 @@
     "examples": [
       "Chacun des joueurs de cette équipe est bon, c'est donc que c'est une bonne équipe."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme de l'anecdote",
@@ -303,9 +412,10 @@
     "definition": "Utiliser une expérience personnelle ou un cas isolé plutôt qu'un argument valide (en particulier pour chercher à rendre fausse des statistiques).",
     "link": "",
     "examples": [
-      "Je pense que les fonctionnaires sont fainéants, puisque j'en ai déjà croisé plusieurs comme cela."
+      "Je pense que tous les fonctionnaires sont fainéants, puisque ceux que j'ai rencontré l'étaient."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme de la double faute",
@@ -314,7 +424,8 @@
     "definition": "Justifier une mauvaise action par le fait qu'une autre mauvaise action a été commise avant ; prétendre guérir un tort par un autre tort.",
     "link": "",
     "examples": ["Tu m'as frappé donc j'ai le droit de te frapper."],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme de la vitre cassée",
@@ -325,17 +436,20 @@
     "examples": [
       "Rien ne vaut une bonne guerre pour relancer l'économie d'un pays."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme du Nirvana",
+    "alternateName": "Sophisme du tout ou rien",
     "englishName": "Nirvana fallacy",
     "definition": "Rejeter des solutions réalistes au prétexte qu'elles sont moins bonnes qu'une solution idéale peu ou pas atteignable.",
     "link": "",
     "examples": [
-      "Le communisme est un idéal trop grand, l'humain est trop égoïste pour que ce soit possible."
+      "Le communisme est un idéal trop grand, l'humain est trop égoïste pour qu'on ait un jour une société qui atteigne sa perfection théorique."
     ],
-    "type": "denial"
+    "type": "denial",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme du parieur",
@@ -345,7 +459,8 @@
     "examples": [
       "J'ai déjà été frappé 7 fois par la foudre, aucune chance que ça arrive à nouveau !"
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme du sophisme",
@@ -355,7 +470,8 @@
     "examples": [
       "Ton raisonnement est fallacieux, donc ce que tu cherches à prouver est faux."
     ],
-    "type": "deductive"
+    "type": "deductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme du tireur d'élite texan",
@@ -365,7 +481,8 @@
     "examples": [
       "Avec le recul, c'était évident qu'un clown en bicycle jonglant avec des pantoufles, allait arriver."
     ],
-    "type": "inductive"
+    "type": "inductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme du vrai écossais",
@@ -376,7 +493,8 @@
     "examples": [
       "Les écossais ne mettent pas de sucre dans leur thé, sinon ce ne sont pas de vrais écossais."
     ],
-    "type": "denial"
+    "type": "denial",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme épistémique",
@@ -387,7 +505,8 @@
     "examples": [
       "Je crois que la Tour Eiffel est en sucre, puisque tu crois que c'est le cas."
     ],
-    "type": "deductive"
+    "type": "deductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme génétique",
@@ -397,7 +516,8 @@
     "examples": [
       "Ce que j'ai lu vient de ce journal, ça doit encore être de la diffamation !"
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme moraliste",
@@ -407,7 +527,8 @@
     "examples": [
       "La nature humaine est mauvaise, puisque nous faisons la guerre et nous entretuons."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Sophisme naturaliste",
@@ -417,7 +538,8 @@
     "examples": [
       "On devrait arrêter de mettre des pantalons car l'humain à l'état naturel vivait nu !"
     ],
-    "type": "deductive"
+    "type": "deductive",
+    "formalization": ["", ""]
   },
   {
     "name": "Tu quoque",
@@ -427,7 +549,8 @@
     "examples": [
       "Je ne vois pas l'intérêt d'écouter ce philosophe : il n'appliquait pas lui-même ce qu'il disait."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   },
   {
     "name": "Vérité creuse",
@@ -438,6 +561,7 @@
     "examples": [
       "Il n'y a pas de pendule dans cette salle. Donc aucun pendule de cette salle n'indique l'heure."
     ],
-    "type": "irrelevant"
+    "type": "irrelevant",
+    "formalization": ["", ""]
   }
 ]
