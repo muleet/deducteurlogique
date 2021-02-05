@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Fallacies from "../../data/Fallacies";
 import FallaciesEng from "../../data/FallaciesEng";
 import BasicReactModal from "../BasicTools/BasicReactModal";
+import ShowFallaciesCard from "./ShowFallaciesCard";
 
 class ShowFallacies extends Component {
   state = {
@@ -14,8 +15,9 @@ class ShowFallacies extends Component {
     content: Fallacies, // peut être Fallacies ou FallaciesEng
     language: "fr", // peut être "fr" ou "en"
     isItRandomOrSorted: "random", // peut être "random" ou "sorted"
-    definitionOrExample: 1 // 0=définition & exemple, 1=définition, 2=exemple
+    definitionOrExample: 1, // 0=définition & exemple, 1=définition, 2=exemple
     // mistakes: 0
+    showPDF: "nonexistent",
   };
 
   resetState() {
@@ -30,12 +32,14 @@ class ShowFallacies extends Component {
       undeterminedNumbers: resettedNumbers,
       currentNumber: newCurrentNumber,
       wrongNumbers: [],
-      rightNumbers: []
+      rightNumbers: [],
     });
   }
 
   changeBoolean(bool) {
+    console.log("wesh", bool);
     if (bool === "language") {
+      // changement de langue
       let newContent = Fallacies,
         newLanguage = "fr";
       if (this.state.language === "fr") {
@@ -50,6 +54,14 @@ class ShowFallacies extends Component {
         newBool = false;
       }
       this.setState({ categoriesBool: newBool });
+    } else if (bool === "PDF") {
+      // activation/désactivation de l'affichage du PDF (qui existe, qu'il soit affiché ou non ; la valeur devient soit "", soit "nonexistent")
+      let newBool = "";
+      if (this.state.showPDF === "") {
+        newBool = "nonexistent";
+      }
+      console.log("bool", newBool);
+      this.setState({ showPDF: newBool });
     }
   }
 
@@ -82,7 +94,7 @@ class ShowFallacies extends Component {
       undeterminedNumbers: newUndeterminedNumbers,
       currentNumber: newCurrentNumber,
       wrongNumbers: newWrongNumbers,
-      rightNumbers: newRightNumbers
+      rightNumbers: newRightNumbers,
       // mistakes: newMistakes
     });
   }
@@ -175,6 +187,14 @@ class ShowFallacies extends Component {
     this.setState({ definitionOrExample: newDefinitionOrExample });
   }
 
+  showFallaciesCardPDF() {
+    return (
+      <div id="pdfListFallacy" className={this.state.showPDF}>
+        <ShowFallaciesCard Fallacies={this.state.content} />
+      </div>
+    );
+  }
+
   render() {
     // section du point d'interrogation
     const questionMark = (
@@ -197,7 +217,7 @@ class ShowFallacies extends Component {
         />{" "}
         <div className="question-mark">
           <div className="question-mark-title">
-            Cliquez pour activer/désactiver la triche.
+            Activer/désactiver la triche.
           </div>
         </div>
       </div>
@@ -245,9 +265,7 @@ class ShowFallacies extends Component {
         />
         <div className="question-mark">
           <div className="question-mark-title">
-            Cliquez pour changer la langue des noms et descriptions, français
-            vers anglais / click to change the language of the names and
-            descriptions, English to French.
+            Choisir la langue / choose language.
           </div>
         </div>
       </div>
@@ -261,20 +279,34 @@ class ShowFallacies extends Component {
         />
         <div className="question-mark">
           <div className="question-mark-title">
-            Cliquez ici pour afficher les catégories de sophismes.
+            Afficher les catégories de sophismes.
           </div>
         </div>
       </div>
     );
 
-    // const togglerRandomizeOrSort = (
-    //   <div className={"question-mark-button icon"}>
-    //     <i className="fas fa-dice" /> onClick=
-    //     {() => this.randomizeOrSort()}
+    const togglerRandomizeOrSort = (
+      <div className={"question-mark-button deactivated"}>
+        <i className="fas fa-dice" onClick={() => ""} />
+        {/* {() => this.randomizeOrSort()} */}
+        <div className="question-mark">
+          <div className="question-mark-title">
+            Classer les sophismes aléatoirement ou par ordre alphabétique. [non
+            codé]
+          </div>
+        </div>
+      </div>
+    );
+
+    // const togglerInfoAlternateNames = (
+    //   <div className={"question-mark-button deactivated"}>
+    //     <i className="fas fa-comment-alt" onClick={() => ""} />
+    //     {/* {() => this.randomizeOrSort()} */}
     //     <div className="question-mark">
     //       <div className="question-mark-title">
-    //         Cliquez ici classer les sophismes aléatoirement ou par ordre
-    //         alphabétique.
+    //         Activer/désactiver l'apparition d'infobulles
+    //         contenant les noms secondaires d'un sophisme, lorsque vous mettez le
+    //         curseur dessus. [Non codé]
     //       </div>
     //     </div>
     //   </div>
@@ -288,7 +320,6 @@ class ShowFallacies extends Component {
     } else if (this.state.definitionOrExample === 2) {
       classNameFontAwesome = "fas fa-sort-down";
     }
-
     const togglerDefinitionAndOrExample = (
       <div className={"question-mark-button icon"}>
         <i
@@ -297,8 +328,84 @@ class ShowFallacies extends Component {
         />
         <div className="question-mark">
           <div className="question-mark-title">
-            Cliquez ici pour choisir si vous voulez que pour tout sophisme tiré
-            au hasard, sa définition s'affiche, ou son exemple, ou les deux.
+            Pour chaque sophisme, afficher sa définition, ou son exemple, ou les
+            deux.
+          </div>
+        </div>
+      </div>
+    );
+
+    const togglerFormalization = (
+      // NE FAIT RIEN POUR LE MOMENT
+      <div className={"question-mark-button deactivated"}>
+        <i className="fas fa-code-branch" onClick={() => ""} />
+        <div className="question-mark">
+          <div className="question-mark-title">
+            Activer/désactiver la formalisation du sophisme à trouver.
+          </div>
+        </div>
+      </div>
+    );
+
+    const showListFallacy = (
+      <BasicReactModal
+        buttonSent={
+          <div className={"question-mark-button icon"}>
+            <i className="fas fa-th-list icon" />
+            <div className="question-mark">
+              <div className="question-mark-title">
+                Cliquez ici pour afficher la liste de tous les raisonnements
+                fallacieux pris en compte sur ce site.
+              </div>
+            </div>
+          </div>
+        }
+        contentSent={
+          <Fragment>
+            <div className="text-all-fallacy-information">
+              Voici la liste des sophismes pris en compte sur ce site. Cliquez
+              en dehors de cette liste pour la quitter.
+              <br />
+              Ils peuvent être catégorisés en 4 types : <br />
+              <p style={{ color: "red" }}>Sophismes déductifs</p>
+              Raisonnements abstraits, supposés n'utiliser que la forme logique,
+              et ne tenant pas compte de l'expérience du monde. Leurs
+              conclusions sont fausses de manière a priori, car leurs
+              conclusions ne suivent pas les prémisses.
+              <br />
+              <p style={{ color: "blue" }}>Sophismes d'incohérence</p>
+              Raisonnements qui introduisent des facteurs incohérents, empêchant
+              l'écoulement logique d'un argument.
+              <br />
+              <p style={{ color: "green" }}>Sophismes de réfutation</p>
+              Raisonnements utilisés pour réfuter des affirmations.
+              <br />
+              <p style={{ color: "yellow" }}>Sophismes inductifs</p>
+              Raisonnements qui impliquent l'expérience du monde, à partir
+              desquelles des conclusions sont tirées. Souvent probabilistes.{" "}
+              <br />
+            </div>
+            <ul className="set-all-fallacy-information">
+              {listOfTheFallacies}
+            </ul>
+          </Fragment>
+        }
+      />
+    );
+
+    const pdfCardShower = (
+      <div className={"question-mark-button icon"}>
+        <i
+          className="fas fa-copy"
+          onClick={() => {
+            console.log("sssss");
+            this.changeBoolean("PDF");
+          }}
+        />
+        <div className="question-mark">
+          <div className="question-mark-title">
+            Afficher un PDF permettant d'imprimer tous les sophismes
+            disponibles, sous forme de cartes recto verso.
           </div>
         </div>
       </div>
@@ -306,54 +413,18 @@ class ShowFallacies extends Component {
 
     return (
       <main className="main-page-fallacy">
+        {this.showFallaciesCardPDF()}
         <h2>
           Mémoriser les raisonnements fallacieux et leur définition
           <div className="set-of-page-icons">
             {questionMark} {togglerDefinitionAndOrExample}
+            {togglerFormalization}
             {togglerInfoIconFallacies} {togglerLanguage}
-            {/* {togglerRandomizeOrSort} */}
+            {togglerRandomizeOrSort}
+            {/* {togglerInfoAlternateNames} */}
             {togglerCheat}
-            <BasicReactModal
-              buttonSent={
-                <div className={"question-mark-button icon"}>
-                  <i className="fas fa-th-list icon" />
-                  <div className="question-mark">
-                    <div className="question-mark-title">
-                      Cliquez ici pour afficher la liste de tous les
-                      raisonnements fallacieux pris en compte sur ce site.
-                    </div>
-                  </div>
-                </div>
-              }
-              contentSent={
-                <Fragment>
-                  <div className="text-all-fallacy-information">
-                    Voici la liste des sophismes pris en compte sur ce site.
-                    Cliquez en dehors de cette liste pour la quitter.
-                    <br />
-                    Ils peuvent être catégorisés en 4 types : <br />
-                    <p style={{ color: "red" }}>Sophismes déductifs</p>
-                    Raisonnements abstraits, supposés n'utiliser que la forme
-                    logique, et ne tenant pas compte de l'expérience du monde.
-                    Leurs conclusions sont fausses de manière a priori.
-                    <br />
-                    <p style={{ color: "blue" }}>Sophismes non pertinents</p>
-                    Raisonnements qui introduisent des facteurs non pertinents,
-                    empêchant l'écoulement logique d'un argument.
-                    <br />
-                    <p style={{ color: "green" }}>Sophismes de réfutation</p>
-                    Raisonnements utilisés pour réfuter des affirmations.
-                    <br />
-                    <p style={{ color: "yellow" }}>Sophismes inductifs</p>
-                    Raisonnements qui impliquent l'expérience du monde, à partir
-                    desquelles des conclusions sont tirées. <br />
-                  </div>
-                  <ul className="set-all-fallacy-information">
-                    {listOfTheFallacies}
-                  </ul>
-                </Fragment>
-              }
-            />
+            {showListFallacy}
+            {pdfCardShower}
           </div>
         </h2>
         <div className="main-fallacy">

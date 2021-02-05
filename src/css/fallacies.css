@@ -91,7 +91,6 @@
   height: 600px;
   overflow: auto;
 }
-
 .single-fallacy-information {
   border: 1px solid rgb(97, 97, 255);
   background-color: rgba(97, 97, 255, 0.25);
@@ -134,4 +133,64 @@
 .denial-bullet,
 .inductive-bullet {
   margin-right: 3px;
+}
+
+/* Section des cartes imprimables de sophisme */
+#pdfListFallacy {
+  /* cet ID concerne le PDF lui-même */
+  position: absolute;
+  margin-top: 1750px;
+  /* margin-right: 800px; */
+  z-index: 10;
+  opacity: 1;
+  font-size: 20px;
+  font-style: black;
+}
+
+.allFallacyCard {
+  /* cet ID concerne la liste des cartes de Fallacy, à l'intérieur du PDF */
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 2000px;
+  height: 2400px;
+  background-color: white;
+  color: black;
+  justify-content: space-evenly;
+}
+
+.fallacyCard-bothside {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 480px;
+  margin: 4px;
+}
+.fallacyCard-template {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* border: blue 2px solid; */
+  height: 160px;
+  width: 230px;
+}
+.fc-recto {
+  border: 1px solid rgb(255, 97, 97);
+  background-color: rgba(255, 71, 71, 0.25);
+}
+.fc-verso {
+  border: 1px solid rgb(97, 97, 255);
+  background-color: rgba(97, 97, 255, 0.25);
+}
+.fallacyCardName {
+  font-size: 25px;
+  font-style: 1100;
+  margin: 10px;
+}
+.fallacyCardDefinition {
+  font-size: 14px;
+  margin: 5px;
 }

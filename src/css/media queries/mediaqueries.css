@@ -9,10 +9,6 @@
     flex-direction: unset;
   }
 
-  .unavailable-yet {
-    display: none;
-  }
-
   .nav-list > li a,
   .header-nav-list a {
     margin-right: 5px;

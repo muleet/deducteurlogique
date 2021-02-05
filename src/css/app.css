@@ -159,7 +159,7 @@ h3 {
 
 .set-of-page-icons {
   /* désigne le container des icônes spécifiques à une page */
-  width: 250px;
+  width: 400px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -403,4 +403,8 @@ h3 {
 
 .transparent {
   opacity: 0.5;
+}
+
+.nonexistent {
+  display: none;
 }
